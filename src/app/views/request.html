@@ -94,33 +94,29 @@
 
           </div>
           <div class="dtc v-mid ph3 ph6-l">
-              <form class="form-signup measure center avenir" action="/request-success" method="post">
+              <form class="form-signup measure center avenir" action="/request" method="post">
                   <p class="f3 fw6 ph0 mh0">Good things come to those who... Nudj 👊</p>
                   <div class="pb2 pt bb b--near-white bw1">
                   <p>
                     Just enter your details below and we'll get back to you asap.
                   </p>
                   </div>
-                  <form action="/request" method="post" accept-charset="utf-8">
                   <div class="mt3">
-                      <label class="db fw6 lh-copy f6" for="email-address">Name</label>
-                      <input class="input-signup avenir pa2 ba bg-transparent light-silver w-100 br1 b--light-silver" name="fullname" required type="text" value="" >
+                      <label class="db fw6 lh-copy f6" for="fullname">Name</label>
+                      <input class="input-signup avenir pa2 ba bg-transparent light-silver w-100 br1 b--light-silver" id="fullname" name="fullname" required type="text" value="" >
                   </div>
                   <div class="mt3">
-                      <label class="db fw6 lh-copy f6" for="email-address">Email</label>
-                      <input class="input-signup avenir pa2 ba bg-transparent light-silver w-100 br1 b--light-silver" name="email" required type="text" value="" >
+                      <label class="db fw6 lh-copy f6" for="email">Email</label>
+                      <input class="input-signup avenir pa2 ba bg-transparent light-silver w-100 br1 b--light-silver" id="email" name="email" required type="text" value="" >
                   </div>
                   <div class="mv3">
-                      <label class="db fw6 lh-copy f6" for="password">Company</label>
-                      <input class="input-signup avenir pa2 ba bg-transparent light-silver w-100 br1 b--light-silver" name="company_name" type="text" value="">
+                      <label class="db fw6 lh-copy f6" for="company_name">Company</label>
+                      <input class="input-signup avenir pa2 ba bg-transparent light-silver w-100 br1 b--light-silver" id="company_name" name="company_name" type="text" value="">
                   </div>
                   <div>
                   </div>
                   <div class="avenir">
-                                            <input class="submit fw6 ph3 pv2 input-reset ba b--green bg-green grow pointer f6 dib white br1 avenir" value="Request access" name="submit" type="submit">
-                  </div>
-                  <div class="lh-copy mt3">
-                      <p class="f6">Already have an account? <a class="f6 link dim green" href=/signin>Sign in</a></p>
+                      <input class="submit fw6 ph3 pv2 input-reset ba b--green bg-green grow pointer f6 dib white br1 avenir" name="submit" type="submit">
                   </div>
           </div>
       </div>

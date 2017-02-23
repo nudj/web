@@ -14,9 +14,11 @@
   },
   "homepage": "https://github.com/nudj/web#readme",
   "dependencies": {
+    "body-parser": "^1.16.1",
     "consolidate": "^0.14.5",
     "express": "^4.14.1",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "sendmail": "^1.1.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
