@@ -1,7 +1,7 @@
 CWD=$(shell pwd)
 BIN:=./node_modules/.bin
 
-.PHONY: build local run test tdd
+.PHONY: build dev run test tdd
 
 build:
 	@docker build -t nudj/web .
