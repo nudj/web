@@ -3,4 +3,5 @@ WORKDIR /usr/src
 COPY src/package.json /usr/src/package.json
 RUN cd /usr/src && npm i --production
 COPY src/app /usr/src/app
+EXPOSE 3000
 CMD node .
