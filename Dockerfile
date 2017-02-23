@@ -1,4 +1,4 @@
-FROM node:6.9.1
+FROM node:6.10.0-alpine
 WORKDIR /usr/src
 COPY src/package.json /usr/src/package.json
 RUN cd /usr/src && npm i --production

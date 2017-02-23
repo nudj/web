@@ -6,8 +6,8 @@ BIN:=./node_modules/.bin
 build:
 	@docker build -t nudj/web .
 
-local:
-	@docker build -t nudj/web-local -f $(CWD)/Dockerfile.local .
+dev:
+	@docker build -t nudj/web-dev -f $(CWD)/Dockerfile.dev .
 
 run:
 	@docker run --rm --name web nudj/web
@@ -18,7 +18,7 @@ test:
 		--name test-container \
 		-v $(CWD)/src/app:/usr/src/app \
 		-v $(CWD)/src/test:/usr/src/test \
-		nudj/web-local \
+		nudj/web-dev \
 		$(BIN)/mocha test/*.js
 
 tdd:
@@ -27,7 +27,7 @@ tdd:
 		--name test-container \
 		-v $(CWD)/src/app:/usr/src/app \
 		-v $(CWD)/src/test:/usr/src/test \
-		nudj/web-local \
+		nudj/web-dev \
 		$(BIN)/nodemon \
 			--quiet \
 			--watch ./ \
