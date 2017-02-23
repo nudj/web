@@ -1,0 +1,4 @@
+FROM nudj/web
+RUN cd /usr/src && npm i
+COPY src/test /usr/src/test
+CMD ./node_modules/.bin/mocha src/test/*.js
