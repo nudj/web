@@ -1,6 +1,8 @@
 # web
 
-Marketing website for Nudj
+Nudj website
+
+[![Codefresh build status]( https://g.codefresh.io/api/badges/build?repoOwner=nudj&repoName=web&branch=master&pipelineName=web&accountName=collingo&key=eyJhbGciOiJIUzI1NiJ9.NThhZDVhYzdhOGU4YWUwMTAwMzQ4MTcz.LswrznCGW0BHHD1jCDCg-EWQm_-4_j0qwWCvUTZcCYA&type=cf-1)]( https://g.codefresh.io/repositories/nudj/web/builds?filter=trigger:build;branch:master;service:58af1fc2a6eaef01000f1bd6~web)
 
 ## Contributing
 
