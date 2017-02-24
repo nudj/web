@@ -24,6 +24,7 @@ dev:
 		-v $(CWD)/src/app:/usr/src/app \
 		nudj/web-dev \
 		$(BIN)/nodemon \
+			-e js,html \
 			--quiet \
 			--watch ./ \
 			--delay 250ms \
