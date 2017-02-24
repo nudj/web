@@ -1,10 +1,12 @@
 CWD=$(shell pwd)
 BIN:=./node_modules/.bin
+#IMAGE:=nudj/web
+IMAGE:=collingo/nudj-web
 
 .PHONY: build dev run test tdd
 
 build:
-	@docker build -t nudj/web .
+	@docker build -t $(IMAGE) .
 
 buildDev:
 	@docker build -t nudj/web-dev -f $(CWD)/Dockerfile.dev .
@@ -13,7 +15,7 @@ run:
 	@docker run -d --rm \
 		--name web \
 		-p 0.0.0.0:8000:3000 \
-		nudj/web
+		$(IMAGE)
 	@echo 'App running on http://localhost:8000/'
 
 dev:
