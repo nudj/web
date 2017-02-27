@@ -1,7 +1,6 @@
 CWD=$(shell pwd)
 BIN:=./node_modules/.bin
-#IMAGE:=nudj/web
-IMAGE:=collingo/nudj-web
+IMAGE:=nudj/web
 
 .PHONY: build dev run test tdd
 
