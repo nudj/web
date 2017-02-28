@@ -13,9 +13,9 @@ buildDev:
 run:
 	@docker run -d --rm \
 		--name web \
-		-p 0.0.0.0:8000:3000 \
+		-p 0.0.0.0:4000:3000 \
 		$(IMAGE)
-	@echo 'App running on http://localhost:8000/'
+	@echo 'App running on http://localhost:4000/'
 
 dev:
 	-@docker rm -f dev-container 2> /dev/null || true
