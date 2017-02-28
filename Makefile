@@ -13,8 +13,10 @@ buildDev:
 run:
 	@docker run -d --rm \
 		--name web \
-		-p 0.0.0.0:8000:3000 \
+
+		-p 0.0.0.0:4000:3000 \
 		$(IMAGE)
+    
 	@echo 'App running on http://localhost:8000/'
 
 dev:
