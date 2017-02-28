@@ -1,0 +1,10 @@
+version: '1.0'
+
+steps:
+
+  build_image:
+    title: Building Image
+    type: build
+    image_name: nudj/web-dev
+    working_directory: ${{main_clone}}
+    dockerfile: Dockerfile
