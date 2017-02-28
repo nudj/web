@@ -1,6 +1,8 @@
+IMAGE:=nudj/web
+IMAGEDEV:=nudj/web-dev
+
 CWD=$(shell pwd)
 BIN:=./node_modules/.bin
-IMAGE:=nudj/web
 
 .PHONY: build dev run test tdd
 
@@ -8,7 +10,7 @@ build:
 	@docker build -t $(IMAGE) .
 
 buildDev:
-	@docker build -t nudj/web-dev -f $(CWD)/Dockerfile.dev .
+	@docker build -t $(IMAGEDEV) -f $(CWD)/Dockerfile.dev .
 
 run:
 	@docker run -d --rm \
@@ -23,7 +25,7 @@ dev:
 		--name dev-container \
 		-p 0.0.0.0:3000:3000 \
 		-v $(CWD)/src/app:/usr/src/app \
-		nudj/web-dev \
+		$(IMAGEDEV) \
 		$(BIN)/nodemon \
 			-e js,html \
 			--quiet \
@@ -37,7 +39,7 @@ test:
 		--name test-container \
 		-v $(CWD)/src/app:/usr/src/app \
 		-v $(CWD)/src/test:/usr/src/test \
-		nudj/web-dev \
+		$(IMAGEDEV) \
 		$(BIN)/mocha test/*.js
 
 tdd:
@@ -46,7 +48,7 @@ tdd:
 		--name test-container \
 		-v $(CWD)/src/app:/usr/src/app \
 		-v $(CWD)/src/test:/usr/src/test \
-		nudj/web-dev \
+		$(IMAGEDEV) \
 		$(BIN)/nodemon \
 			--quiet \
 			--watch ./ \
