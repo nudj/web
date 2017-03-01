@@ -1,0 +1,59 @@
+@import url("fonts-style.css");
+@import url("colors-style.css");
+/********** JOBS ****************/
+.title-dashboard {
+  font-family: avenir;
+  font-size: 18px;
+}
+
+.active-job-container {
+  width: 89%;
+  margin: 9px auto;
+  padding: 15px 5%;
+  border: 1px solid #D5DDEA;
+  border-radius: 9px;
+  overflow: auto;
+  background: white;
+}
+
+.grey-pretitle {
+  color: var(--lightgrey2);
+  font-family: Avenir;
+  font-size: 13px;
+}
+
+.grey-subtitle {
+  color: var(--lightgrey2);
+  font-family: AvenirNextLight;
+  font-size: 14px;
+}
+
+.grey-subtitle b {
+  color: #000;
+}
+
+.button-options {
+  font-family: Avenir;
+  font-size: 16px;
+  padding: 16px;
+}
+
+.margin-bottom0 {
+  margin-bottom: 0;
+}
+
+.margin-top0 {
+  margin-top: 0;
+}
+
+.margin5-0 {
+  margin: 5px 0;
+}
+
+.margin0-38 {
+  margin: 0px 0px 38px;
+}
+
+.padding-top22 {
+  padding-top: 22px;
+}

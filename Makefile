@@ -4,7 +4,7 @@ IMAGEDEV:=nudj/web-dev
 CWD=$(shell pwd)
 BIN:=./node_modules/.bin
 
-.PHONY: build dev run test tdd
+.PHONY: build dev run packClient packServer pack est tdd
 
 build:
 	@docker build -t $(IMAGE) .
@@ -24,21 +24,32 @@ dev:
 	@docker run --rm -it \
 		--name dev-container \
 		-p 0.0.0.0:3000:3000 \
-		-v $(CWD)/src/app:/usr/src/app \
+		-v $(CWD)/src:/usr/www/src \
 		$(IMAGEDEV) \
 		$(BIN)/nodemon \
+			--config src/nodemon.json \
 			-e js,html \
 			--quiet \
 			--watch ./ \
 			--delay 250ms \
 			-x 'node .'
 
+packClient:
+	@docker exec -i dev-container \
+		$(BIN)/webpack --config ./src/webpack.client.js --bail --hide-modules
+
+packServer:
+	@docker exec -i dev-container \
+		$(BIN)/webpack --config ./src/webpack.server.js --bail --hide-modules
+
+pack: packClient packServer
+
 test:
 	-@docker rm -f test-container 2> /dev/null || true
 	@docker run --rm -it \
 		--name test-container \
-		-v $(CWD)/src/app:/usr/src/app \
-		-v $(CWD)/src/test:/usr/src/test \
+		-v $(CWD)/src:/usr/www/src \
+		-v $(CWD)/test:/usr/www/test \
 		$(IMAGEDEV) \
 		$(BIN)/mocha test/*.js
 
@@ -46,8 +57,8 @@ tdd:
 	-@docker rm -f test-container 2> /dev/null || true
 	@docker run --rm -it \
 		--name test-container \
-		-v $(CWD)/src/app:/usr/src/app \
-		-v $(CWD)/src/test:/usr/src/test \
+		-v $(CWD)/src:/usr/www/src \
+		-v $(CWD)/test:/usr/www/test \
 		$(IMAGEDEV) \
 		$(BIN)/nodemon \
 			--quiet \

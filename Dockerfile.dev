@@ -1,4 +1,5 @@
 FROM nudj/web
-RUN cd /usr/src && npm i
-COPY src/test /usr/src/test
-CMD ./node_modules/.bin/mocha src/test/*.js
+COPY test /usr/www/test
+RUN npm i
+# RUN npm i && ./node_modules/.bin/webpack --config ./src/webpack.client.js --bail --hide-modules && ./node_modules/.bin/webpack --config ./src/webpack.server.js --bail --hide-modules
+CMD ./node_modules/.bin/mocha test/*.js

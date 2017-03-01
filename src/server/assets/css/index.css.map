@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///webpack:///src/app/index.css"],"names":[],"mappings":"AAAA;EACE,WAAW;CACZ","file":"./src/server/assets/css/index.css","sourcesContent":[".test {\n  color: red;\n}\n\n\n\n// WEBPACK FOOTER //\n// webpack:///src/app/index.css"],"sourceRoot":""}
