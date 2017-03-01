@@ -6,7 +6,7 @@ process.traceDeprecation = true
 module.exports = {
   target: 'node',
   entry: {
-    'src/server/build': './src/app'
+    'src/server/build': './src/app/server'
   },
   output: {
     libraryTarget: 'commonjs2',
