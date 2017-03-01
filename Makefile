@@ -4,7 +4,7 @@ IMAGEDEV:=nudj/web-dev
 CWD=$(shell pwd)
 BIN:=./node_modules/.bin
 
-.PHONY: build dev run packClient packServer pack est tdd
+.PHONY: build dev run packClient packServer pack test tdd
 
 build:
 	@docker build -t $(IMAGE) .
@@ -13,7 +13,7 @@ buildDev:
 	@docker build -t $(IMAGEDEV) -f $(CWD)/Dockerfile.dev .
 
 run:
-	@docker run -d --rm \
+	@docker run -it --rm \
 		--name web \
 		-p 0.0.0.0:4000:3000 \
 		$(IMAGE)
