@@ -1,0 +1,23 @@
+.nav {
+  max-width: 64rem;
+  height: 76px;
+  margin: 0 auto;
+}
+.left {
+  height: 100%;
+}
+.home {
+  display: inline-block;
+  height: 100%;
+}
+.logo {
+  display: inline-block;
+  height: 100%;
+}
+.right {
+  height: 100%;
+}
+.link {
+  display: inline-block;
+  height: 100%;
+}

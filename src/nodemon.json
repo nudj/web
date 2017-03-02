@@ -2,7 +2,8 @@
   "ignore": [
     "server/build*",
     "server/assets/js/app*",
-    "server/assets/css/app*"
+    "server/assets/css/app*",
+    "ignore*"
   ],
   "events": {
     "exit": "./node_modules/.bin/webpack --config ./src/webpack.client.js --bail --hide-modules && ./node_modules/.bin/webpack --config ./src/webpack.server.js --bail --hide-modules"

@@ -28,7 +28,7 @@ dev:
 		$(IMAGEDEV) \
 		$(BIN)/nodemon \
 			--config src/nodemon.json \
-			-e js,html \
+			-e js,html,css \
 			--quiet \
 			--watch ./ \
 			--delay 250ms \
