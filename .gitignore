@@ -1,5 +1,5 @@
 node_modules
 .DS_Store
 src/server/assets/js/app*
-src/server/assets/css/app*
+src/server/assets/css/app.*
 src/server/build*

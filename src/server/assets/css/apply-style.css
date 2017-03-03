@@ -1,0 +1,142 @@
+@import url("fonts-style.css");
+@import url("colors-style.css");
+
+.apply-header {
+  width: 70%;
+  margin: auto;
+  margin-top: 150px;
+  margin-bottom: 70px;
+}
+
+.apply-header .client-logo {
+  display: block;
+  margin: auto;
+  text-align: center;
+  width: 150px;
+}
+
+.apply-header .client2-logo {
+  display: block;
+  margin: auto;
+  width: 200px;
+  text-align: center;
+}
+
+.apply-header .client-logo img {
+  width: 150px;
+}
+
+.apply-header .client2-logo img {
+  width: 200px;
+}
+
+.apply-header .client-job {
+  text-align: center;
+}
+
+.apply-header .client-location {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.apply-header .client-details {
+  text-align: center;
+  font-size: 16px;
+  font-family: 'AvenirNextLight';
+  letter-spacing: 1px;
+  line-height: 27px;
+  padding-bottom: 5px;
+  color: #8f8f8f;
+}
+
+.apply-header .nudj-gray-small-text {
+  text-align: center;
+  font-family: Avenir;
+  font-size: 12px;
+  opacity: 0.3;
+  margin: 16px 0px 22px;
+}
+
+/*        FORM          */
+
+.nudj-form {
+  width: 70%;
+  max-width: 570px;
+  margin: auto;
+}
+
+.nudj-form .form-label {
+  font-size: 18px;
+  font-family: 'AvenirNextLight';
+  letter-spacing: 1px;
+  line-height: 28px;
+  margin-left: 2px;
+  margin-right: 20px;
+  float: left;
+  margin-top: 2px;
+}
+
+.nudj-form .input-field {
+  width: 100%;
+  margin: 8px 0px 35px;
+  border: none;
+  border-bottom: 1px solid #8F8F8F;
+  height: 35px;
+  outline: 0 none;
+  font-size: 16px;
+  font-family: 'AvenirNextLight';
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #8F8F8F;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #8F8F8F;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #8F8F8F;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    #8F8F8F;
+}
+
+.nudj-form .upload-container {
+  display: inline-block;
+  width: 109px !important;
+  height: 32px;
+  overflow: hidden;
+}
+
+.nudj-form .upload-input {
+  opacity: 0;
+  margin: 0;
+  height: 31px;
+  position: relative;
+  left: -40px;
+  top: -31px;
+  cursor: pointer;
+}
+
+.nudj-form .upload-button {
+  font-family: 'Gotham Rounded Book';
+  background-color:  #8F8F8F;
+  border-radius: 18px;
+  border-width: 0;
+  color: #fff;
+  font-size: 10px;
+  letter-spacing: 1px;
+  height: 32px;
+  padding: 0 26px;
+}
+
+.nudj-form .client-section-button {
+  margin-top: 80px;
+  margin-bottom: 150px;
+}
+
+.max-width520 {
+  max-width: 520px;
+  margin: auto;
+}
