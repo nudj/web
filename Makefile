@@ -51,7 +51,7 @@ test:
 		-v $(CWD)/src:/usr/www/src \
 		-v $(CWD)/test:/usr/www/test \
 		$(IMAGEDEV) \
-		$(BIN)/mocha test/*.js
+		sh -c '$(BIN)/standard && $(BIN)/mocha test/*.js'
 
 tdd:
 	-@docker rm -f test-container 2> /dev/null || true

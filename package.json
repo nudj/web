@@ -13,10 +13,22 @@
     "url": "https://github.com/nudj/web/issues"
   },
   "homepage": "https://github.com/nudj/web#readme",
+  "standard": {
+    "parser": "babel-eslint",
+    "ignore": [
+      "src/server/assets",
+      "src/server/build*",
+      "src/node_modules",
+      "src/webpack*"
+    ]
+  },
   "dependencies": {
     "body-parser": "^1.16.1",
+    "bulma": "^0.3.2",
+    "classnames": "^2.2.5",
     "consolidate": "^0.14.5",
     "express": "^4.14.1",
+    "font-awesome": "^4.7.0",
     "lodash": "^4.17.4",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
@@ -24,15 +36,18 @@
   },
   "devDependencies": {
     "babel-core": "^6.23.1",
+    "babel-eslint": "^7.1.1",
     "babel-loader": "^6.3.2",
     "babel-preset-env": "^1.1.10",
     "babel-preset-react": "^6.23.0",
     "chai": "^3.5.0",
     "css-loader": "^0.26.2",
     "directory-named-webpack-plugin": "^2.1.0",
+    "dirty-chai": "^1.2.2",
     "extract-text-webpack-plugin": "^2.0.0",
     "mocha": "^3.2.0",
     "nodemon": "^1.11.0",
+    "standard": "^9.0.0",
     "style-loader": "^0.13.2",
     "webpack": "^2.2.1"
   }

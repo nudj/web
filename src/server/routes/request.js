@@ -30,8 +30,8 @@ router.post('/', (req, res) => {
         <br/>
       </body>
       </html>
-    `,
-  }, function(err, reply) {
+    `
+  }, (err, reply) => {
     if (err) {
       console.error(err)
       return res.render('request', req.body)

@@ -1,23 +1,24 @@
 .nav {
-  max-width: 64rem;
-  height: 76px;
-  margin: 0 auto;
+  composes: nav from 'bulma/css/bulma.css';
+}
+.container {
+  composes: container from 'bulma/css/bulma.css';
 }
 .left {
-  height: 100%;
+  composes: nav-left from 'bulma/css/bulma.css';
 }
 .home {
-  display: inline-block;
-  height: 100%;
+  composes: nav-item from 'bulma/css/bulma.css';
 }
-.logo {
-  display: inline-block;
-  height: 100%;
+.toggle {
+  composes: nav-toggle from 'bulma/css/bulma.css';
 }
 .right {
-  height: 100%;
+  composes: nav-right nav-menu from 'bulma/css/bulma.css';
 }
-.link {
-  display: inline-block;
-  height: 100%;
+.isActive {
+  composes: is-active from 'bulma/css/bulma.css';
+}
+.request {
+  composes: nav-item is-tab from 'bulma/css/bulma.css';
 }
