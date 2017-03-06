@@ -3,4 +3,4 @@ import ReactDOM from 'react-dom'
 
 import App from './index'
 
-ReactDOM.render(<App />, document.getElementById('app'))
+export default (data) => ReactDOM.render(<App {...data} />, document.getElementById('app'))
