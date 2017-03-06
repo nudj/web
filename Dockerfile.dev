@@ -7,4 +7,4 @@ COPY src /usr/www/src
 COPY test /usr/www/test
 RUN ./node_modules/.bin/webpack --config ./src/webpack.client.js --bail --hide-modules && ./node_modules/.bin/webpack --config ./src/webpack.server.js --bail --hide-modules
 EXPOSE 3000
-CMD ["/bin/sh", "-c", "./node_modules/.bin/standard && ./node_modules/.bin/mocha test/*.js"]
+CMD ["/bin/sh", "-c", "node_modules/.bin/standard && node_modules/.bin/mocha test/*.js"]
