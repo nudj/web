@@ -4,6 +4,7 @@ let bodyParser = require('body-parser')
 let cons = require('consolidate')
 
 let requestRoutes = require('./routes/request')
+let appRoutes = require('./routes/app')
 
 let app = express()
 app.engine('html', cons.lodash)
@@ -17,39 +18,7 @@ app.use('/assets', express.static(path.join(__dirname, 'assets')))
 app.get('/', (req, res) => res.render('index'))
 app.get('/success', (req, res) => res.render('success'))
 app.use('/request', requestRoutes)
-app.get('/app', (req, res) => {
-  let data = {
-    page: {
-      job: {
-        title: 'Job title 1',
-        location: 'Location 1',
-        salary: 'Salary 1',
-        url: '#jobUrl',
-        company: {
-          url: '#companyUrl'
-        },
-        related: [
-          {
-            title: 'Job title 2',
-            location: 'Location 2'
-          },
-          {
-            title: 'Job title 3',
-            location: 'Location 3'
-          },
-          {
-            title: 'Job title 4',
-            location: 'Location 4'
-          }
-        ]
-      }
-    }
-  }
-  return res.render('app', {
-    data: JSON.stringify(data),
-    html: require('./build').default(data)
-  })
-})
+app.use('/app', appRoutes)
 
 app.use(function(req, res){
   res.status(404)
