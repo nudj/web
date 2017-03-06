@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import style from './job-page.css'
 
 export default ({
@@ -50,7 +51,7 @@ export default ({
         <h2 className={style.relatedTitle}>Other positions</h2>
         <ul>
           {job.related.map((related) => <li key={related.title.split(' ').join('-')}>
-            <a href="#">{related.title}, {related.location}</a>
+            <Link to={`/jobs/${related.id}`}>{related.title}, {related.location}</Link>
           </li>)}
         </ul>
       </div>

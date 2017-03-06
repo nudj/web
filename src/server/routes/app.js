@@ -7,7 +7,7 @@ router.get('*', (req, res) => {
   let data = {
     page: {
       job: {
-        title: 'Job title 1',
+        title: `Job title ${req.path.split('/')[2]}`,
         location: 'Location 1',
         salary: 'Salary 1',
         url: '#jobUrl',
@@ -16,14 +16,17 @@ router.get('*', (req, res) => {
         },
         related: [
           {
+            id: 2,
             title: 'Job title 2',
             location: 'Location 2'
           },
           {
+            id: 3,
             title: 'Job title 3',
             location: 'Location 3'
           },
           {
+            id: 4,
             title: 'Job title 4',
             location: 'Location 4'
           }
