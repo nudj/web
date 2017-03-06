@@ -10,7 +10,7 @@ steps:
     dockerfile: Dockerfile.dev
 
   test:
-    image_name: ${{build_test}}
+    image: ${{build_test}}
     working_directory: ${{main_clone}}
 
   build_image:
