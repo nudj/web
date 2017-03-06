@@ -2,6 +2,17 @@ version: '1.0'
 
 steps:
 
+  build_test:
+    title: Building Image
+    type: build
+    image_name: nudj/web-dev-test
+    working_directory: ${{main_clone}}
+    dockerfile: Dockerfile.dev
+
+  test:
+    image_name: ${{build_test}}
+    working_directory: ${{main_clone}}
+
   build_image:
     title: Building Image
     type: build
