@@ -2,7 +2,7 @@ import React from 'react'
 import style from './header.css'
 
 export default class Header extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.onClickToggle = this.onClickToggle.bind(this)
     this.state = {
@@ -14,7 +14,7 @@ export default class Header extends React.Component {
       menuOpen: !this.state.menuOpen
     })
   }
-  render() {
+  render () {
     return (
       <nav className={style.nav}>
         <div className={style.container}>
@@ -24,9 +24,9 @@ export default class Header extends React.Component {
             </a>
           </div>
           <span className={style.toggle} onClick={this.onClickToggle}>
-            <span></span>
-            <span></span>
-            <span></span>
+            <span />
+            <span />
+            <span />
           </span>
           <div className={`${style.right} ${this.state.menuOpen ? style.isActive : ''}`}>
             <a className={style.request} href='/request'>Request access</a>

@@ -5,7 +5,7 @@ import _get from 'lodash/get'
 import style from './job-page.css'
 
 function get (object, path, fallback) {
-  return _get(object, path, fallback !== undefined ? fallback : <span style={{color:'red'}}>UNDEFINED</span>)
+  return _get(object, path, fallback !== undefined ? fallback : <span style={{ color: 'red' }}>UNDEFINED</span>)
 }
 
 export default ({
@@ -26,22 +26,22 @@ export default ({
         </li>
         <li className={style.social}>
           <a className={style.socialLink} href='#'>
-            <i className={style.facebook}></i>
+            <i className={style.facebook} />
           </a>
         </li>
         <li className={style.social}>
           <a className={style.socialLink} href='#'>
-            <i className={style.twitter}></i>
+            <i className={style.twitter} />
           </a>
         </li>
         <li className={style.social}>
           <a className={style.socialLink} href='#'>
-            <i className={style.linkedin}></i>
+            <i className={style.linkedin} />
           </a>
         </li>
         <li className={style.social}>
           <a className={style.socialLink} href='#'>
-            <i className={style.instagram}></i>
+            <i className={style.instagram} />
           </a>
         </li>
       </ul>

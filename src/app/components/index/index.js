@@ -1,19 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route } from 'react-router-dom'
-import style from './index.css'
+// import style from './index.css'
 import Header from '../header'
 import JobPage from '../job-page'
 
 class Index extends Component {
-  constructor (props) {
-    super(props)
-  }
   render () {
     return (
       <div>
         <Header />
-        <Route path="/jobs/:jid" render={(props) => <JobPage {...props} {...this.props.page} />} />
+        <Route path='/jobs/:jid' render={(props) => <JobPage {...props} {...this.props.page} />} />
       </div>
     )
   }
