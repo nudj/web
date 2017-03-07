@@ -12,7 +12,7 @@ steps:
   test:
     title: Test
     image: ${{build_test}}
-    working_directory: /usr/www
+    working_directory: 'IMAGE_WORK_DIR'
 
   build_image:
     title: Build Image
