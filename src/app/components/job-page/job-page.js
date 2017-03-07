@@ -8,21 +8,19 @@ function get (object, path, fallback) {
   return _get(object, path, fallback !== undefined ? fallback : <span style={{ color: 'red' }}>UNDEFINED</span>)
 }
 
-export default ({
- job
-}) => (
+export default (props) => (
   <div className={style.container}>
     <div className={style.job}>
       <img className={style.logo} src='' />
-      <h1 className={style.title}>{get(job, 'title')}</h1>
-      <h2 className={style.location}>{get(job, 'location')}</h2>
-      <h2 className={style.salary}>{get(job, 'salary')}</h2>
+      <h1 className={style.title}>{get(props, 'job.title')}</h1>
+      <h2 className={style.location}>{get(props, 'job.location')}</h2>
+      <h2 className={style.salary}>{get(props, 'job.salary')}</h2>
       <ul className={style.links}>
         <li className={style.link}>
-          <a href={get(job, 'company.url')}>View company website</a>
+          <a href={get(props, 'job.company.url')}>View company website</a>
         </li>
         <li className={style.link}>
-          <a href={get(job, 'url')}>View full job post</a>
+          <a href={get(props, 'job.url')}>View full job post</a>
         </li>
         <li className={style.social}>
           <a className={style.socialLink} href='#'>
@@ -57,7 +55,7 @@ export default ({
         <h2 className={style.relatedTitle}>Other positions</h2>
         <Link to={`/`}>Home</Link>
         <ul>
-          {get(job, 'related', []).map((related) => <li key={related.title.split(' ').join('-')}>
+          {get(props, 'job.related', []).map((related) => <li key={related.title.split(' ').join('-')}>
             <Link to={`/jobs/${related.id}`}>{related.title}, {related.location}</Link>
           </li>)}
         </ul>
