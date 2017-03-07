@@ -11,7 +11,6 @@ steps:
 
   test:
     image: ${{build_test}}
-    working_directory: ${{main_clone}}
 
   build_image:
     title: Building Image
