@@ -1,22 +1,28 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import _get from 'lodash/get'
+
 import style from './job-page.css'
 
+function get (object, path, fallback) {
+  return _get(object, path, fallback !== undefined ? fallback : <span style={{color:'red'}}>UNDEFINED</span>)
+}
+
 export default ({
-  job
+ job
 }) => (
   <div className={style.container}>
     <div className={style.job}>
       <img className={style.logo} src='' />
-      <h1 className={style.title}>{job.title}</h1>
-      <h2 className={style.location}>{job.location}</h2>
-      <h2 className={style.salary}>{job.salary}</h2>
+      <h1 className={style.title}>{get(job, 'title')}</h1>
+      <h2 className={style.location}>{get(job, 'location')}</h2>
+      <h2 className={style.salary}>{get(job, 'salary')}</h2>
       <ul className={style.links}>
         <li className={style.link}>
-          <a href={job.company.url}>View company website</a>
+          <a href={get(job, 'company.url')}>View company website</a>
         </li>
         <li className={style.link}>
-          <a href={job.url}>View full job post</a>
+          <a href={get(job, 'url')}>View full job post</a>
         </li>
         <li className={style.social}>
           <a className={style.socialLink} href='#'>
@@ -49,8 +55,9 @@ export default ({
       </div>
       <div className={style.related}>
         <h2 className={style.relatedTitle}>Other positions</h2>
+        <Link to={`/`}>Home</Link>
         <ul>
-          {job.related.map((related) => <li key={related.title.split(' ').join('-')}>
+          {get(job, 'related', []).map((related) => <li key={related.title.split(' ').join('-')}>
             <Link to={`/jobs/${related.id}`}>{related.title}, {related.location}</Link>
           </li>)}
         </ul>

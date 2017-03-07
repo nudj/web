@@ -6,10 +6,12 @@ steps:
     title: Building Image
     type: build
     image_name: nudj/web-dev-test
+    working_directory: ${{main_clone}}
     dockerfile: Dockerfile.dev
 
   test:
     image: ${{build_test}}
+    working_directory: /usr/www
 
   build_image:
     title: Building Image
