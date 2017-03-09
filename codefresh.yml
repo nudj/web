@@ -21,6 +21,8 @@ steps:
     type: build
     image_name: nudj/web-dev
     dockerfile: Dockerfile
+    build_arguments:
+      - NPM_TOKEN=${{NPM_TOKEN}}
     when:
       branch:
         ignore:
@@ -33,6 +35,8 @@ steps:
     tag: 0.2.0
     working_directory: ${{main_clone}}
     dockerfile: Dockerfile
+    build_arguments:
+      - NPM_TOKEN=${{NPM_TOKEN}}
     when:
       branch:
         only:
