@@ -8,6 +8,8 @@ steps:
     image_name: nudj/web-dev-test
     working_directory: ${{main_clone}}
     dockerfile: Dockerfile.dev
+    build_arguments:
+      - NPM_TOKEN=${{NPM_TOKEN}}
 
   test:
     title: Test
