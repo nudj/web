@@ -6,7 +6,7 @@ process.traceDeprecation = true
 
 module.exports = {
   entry: {
-    'src/server/assets/js/app': './src/app/client'
+    'lib/server/assets/js/app': './lib/app/client'
   },
   output: {
     path: './',

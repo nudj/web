@@ -6,7 +6,7 @@ process.traceDeprecation = true
 module.exports = {
   target: 'node',
   entry: {
-    'src/server/build': './src/app/server'
+    'lib/server/build': './lib/app/server'
   },
   output: {
     libraryTarget: 'commonjs2',
@@ -36,7 +36,7 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin({
-      filename: './src/server/assets/css/app.css',
+      filename: './lib/server/assets/css/app.css',
       allChunks: true
     })
   ],

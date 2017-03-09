@@ -46,4 +46,9 @@ app.use(function(error, req, res, next){
   res.type('txt').send('500: Internal server error')
 })
 
+if (process.env.NODE_ENV !== 'production') {
+  let mockApi = require('../../mocks/api')
+  mockApi.listen(3001, () => console.log('JSON Server is running'))
+}
+
 app.listen(3000, () => console.log('App running on http://localhost:3000/'))
