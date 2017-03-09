@@ -1,5 +1,6 @@
 node_modules
 .DS_Store
-app.*
-build.*
+src/lib/server/assets/css/app.*
+src/lib/server/assets/js/app.*
+src/lib/server/build.*
 db.json
