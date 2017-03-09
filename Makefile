@@ -13,7 +13,11 @@ build:
 		.
 
 buildDev:
-	@docker build -t $(IMAGEDEV) -f $(CWD)/Dockerfile.dev .
+	@docker build \
+		-t $(IMAGEDEV) \
+		--build-arg NPM_TOKEN=${NPM_TOKEN} \
+		-f $(CWD)/Dockerfile.dev \
+		.
 
 run:
 	@docker run -it --rm \
@@ -27,10 +31,12 @@ dev:
 	@docker run --rm -it \
 		--name dev-container \
 		-p 0.0.0.0:3000:3000 \
-		-v $(CWD)/src:/usr/www/src \
+		-v $(CWD)/src/lib:/usr/src/lib \
+		-v $(CWD)/src/mocks:/usr/src/mocks \
+		-v $(CWD)/src/package.json:/usr/src/package.json \
 		$(IMAGEDEV) \
 		$(BIN)/nodemon \
-			--config src/nodemon.json \
+			--config ./nodemon.json \
 			-e js,html,css \
 			--quiet \
 			--watch ./ \
@@ -51,16 +57,16 @@ test:
 	-@docker rm -f test-container 2> /dev/null || true
 	@docker run --rm -it \
 		--name test-container \
-		-v $(CWD)/src:/usr/www/src \
-		-v $(CWD)/test:/usr/www/test \
+		-v $(CWD)/src/lib:/usr/src/lib \
+		-v $(CWD)/src/test:/usr/src/test \
 		$(IMAGEDEV)
 
 tdd:
 	-@docker rm -f test-container 2> /dev/null || true
 	@docker run --rm -it \
 		--name test-container \
-		-v $(CWD)/src:/usr/www/src \
-		-v $(CWD)/test:/usr/www/test \
+		-v $(CWD)/src/lib:/usr/src/lib \
+		-v $(CWD)/src/test:/usr/src/test \
 		$(IMAGEDEV) \
 		$(BIN)/nodemon \
 			--quiet \

@@ -19,7 +19,7 @@
       "lib/server/assets",
       "lib/server/build*",
       "lib/node_modules",
-      "lib/webpack*"
+      "webpack*"
     ]
   },
   "dependencies": {
