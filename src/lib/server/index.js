@@ -48,7 +48,7 @@ app.use(function(error, req, res, next){
 
 if (process.env.NODE_ENV !== 'production') {
   let mockApi = require('../../mocks/api')
-  mockApi.listen(3001, () => console.log('JSON Server is running'))
+  mockApi.listen(3001, () => console.log('Mock API running on http://localhost:3001/'))
 }
 
 app.listen(3000, () => console.log('App running on http://localhost:3000/'))

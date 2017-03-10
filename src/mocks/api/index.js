@@ -7,6 +7,10 @@ let router = jsonServer.router(dummy({
   companies: {
     schema: schemas.company,
     count: 3
+  },
+  jobs: {
+    schema: schemas.job,
+    count: 20
   }
 }))
 let middlewares = jsonServer.defaults()
