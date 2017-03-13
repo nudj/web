@@ -8,7 +8,7 @@ router.get('*', (req, res) => {
   let path = req.path.split('/')
   let dataPromise
   if (path.length === 3 && path[1] === 'jobs') {
-    dataPromise = fetch(`http://127.0.0.1:3001/jobs/${path[2]}`)
+    dataPromise = fetch(`http://api:3001/jobs/${path[2]}`)
       .then((response) => response.json())
       .then((job) => ({
         page: {

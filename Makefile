@@ -32,6 +32,7 @@ dev:
 		--name dev-container \
 		-p 0.0.0.0:3000:3000 \
 		-p 0.0.0.0:3001:3001 \
+		--add-host api:127.0.0.1 \
 		-v $(CWD)/src/lib:/usr/src/lib \
 		-v $(CWD)/src/mocks:/usr/src/mocks \
 		-v $(CWD)/src/package.json:/usr/src/package.json \
