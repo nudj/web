@@ -17,10 +17,10 @@ export default (props) => (
       <h2 className={style.salary}>£{get(props, 'job.remuneration') * 1000}</h2>
       <ul className={style.links}>
         <li className={style.link}>
-          <a href={get(props, 'job.company.url')}>View company website</a>
+          <a href={get(props, 'job.company.url', '#company-url')}>View company website</a>
         </li>
         <li className={style.link}>
-          <a href={get(props, 'job.url')}>View full job post</a>
+          <a href={get(props, 'job.url', '#job-url')}>View full job post</a>
         </li>
         <li className={style.social}>
           <a className={style.socialLink} href='#'>

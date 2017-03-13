@@ -2,11 +2,11 @@ let dummy = require('@nudj/dummy')
 let schemas = require('@nudj/schemas')
 let jsonServer = require('json-server')
 
-let jsonserver = jsonServer.create()
+let server = jsonServer.create()
 let router = jsonServer.router(dummy({
   companies: {
     schema: schemas.company,
-    count: 3
+    count: 5
   },
   jobs: {
     schema: schemas.job,
@@ -14,7 +14,10 @@ let router = jsonServer.router(dummy({
   }
 }))
 let middlewares = jsonServer.defaults()
-jsonserver.use(middlewares)
-jsonserver.use(router)
+server.use(middlewares)
+server.use(jsonServer.rewriter({
+  '/jobs/:jid': '/jobs/:jid?_expand=company'
+}))
+server.use(router)
 
-module.exports = jsonserver
+module.exports = server
