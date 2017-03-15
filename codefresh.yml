@@ -32,7 +32,7 @@ steps:
     title: Build Image
     type: build
     image_name: nudj/web
-    tag: 0.2.0
+    tag: 0.1.0
     working_directory: ${{main_clone}}
     dockerfile: Dockerfile
     build_arguments:
