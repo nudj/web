@@ -2,7 +2,7 @@ var webpack = require('webpack')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var DirectoryNamedWebpackPlugin = require('directory-named-webpack-plugin')
 
-process.traceDeprecation = true
+process.noDeprecation = true
 
 module.exports = {
   entry: {

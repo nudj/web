@@ -18,7 +18,7 @@ app.use('/assets', express.static(path.join(__dirname, 'assets')))
 app.get('/', (req, res) => res.render('index'))
 app.get('/success', (req, res) => res.render('success'))
 app.use('/request', requestRoutes)
-app.use('/app', appRoutes)
+app.use(appRoutes)
 
 app.use(function(req, res){
   res.status(404)

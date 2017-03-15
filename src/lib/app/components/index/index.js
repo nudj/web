@@ -10,7 +10,7 @@ class Index extends Component {
     return (
       <div>
         <Header />
-        <Route path='/jobs/:jid' render={(props) => <JobPage {...props} {...this.props.page} />} />
+        <Route path='/:companySlug/:jobSlugId' render={(props) => <JobPage {...props} {...this.props.page} />} />
       </div>
     )
   }

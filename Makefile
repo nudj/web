@@ -43,7 +43,7 @@ dev:
 			--quiet \
 			--watch ./ \
 			--delay 250ms \
-			-x './node_modules/.bin/webpack --config ./webpack.client.js --bail --hide-modules && ./node_modules/.bin/webpack --config ./webpack.server.js --bail --hide-modules && node .'
+			-x 'printf "\n\nBuilding...\n" && ./node_modules/.bin/webpack --config ./webpack.client.js --bail --hide-modules && ./node_modules/.bin/webpack --config ./webpack.server.js --bail --hide-modules && node .'
 
 packClient:
 	@docker exec -i dev-container \

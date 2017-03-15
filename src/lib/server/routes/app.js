@@ -1,24 +1,36 @@
 let express = require('express')
-let fetch = require('node-fetch')
+let nodeFetch = require('node-fetch')
 
 let build = require('../build').default
 let router = express.Router()
 
-router.get('*', (req, res) => {
-  let path = req.path.split('/')
-  let dataPromise
-  if (path.length === 3 && path[1] === 'jobs') {
-    dataPromise = fetch(`http://api:3001/jobs/${path[2]}`)
-      .then((response) => response.json())
-      .then((job) => ({
-        page: {
-          job
-        }
-      }))
-  } else {
-    dataPromise = Promise.resolve({})
-  }
-  dataPromise.then((data) => {
+function fetch (uri) {
+  return nodeFetch(`http://api:3001/${uri}`).then((response) => response.json())
+}
+
+router.get('/:companySlug/:jobSlugId', (req, res) => {
+  let jobId = req.params.jobSlugId.split('+')[1]
+  let companySlug = req.params.companySlug
+  let refId = req.query.ref
+  Promise.all([
+    fetch(`jobs/${jobId}`),
+    fetch(`companies/${companySlug}`),
+    fetch(`people/${refId}`)
+  ])
+  .then(([
+    job,
+    company,
+    referrer
+  ]) => {
+    return {
+      page: {
+        job,
+        company,
+        referrer
+      }
+    }
+  })
+  .then((data) => {
     let renderResult = build(data, req.url)
     if (renderResult.url) {
       res.writeHead(302, {
