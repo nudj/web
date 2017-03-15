@@ -50,66 +50,9 @@
 
 <body>
 
-<script>
-    function goBack() {
-        window.history.back();
-    }
-
-    $( document ).ready(function() {
-        console.log( "resdfdsfady!" );
-
-        $('#preview-post-job').click(function( event ) {
-
-            console.log('que esta pasando');
-
-            //alert( "Handler for .submit() called." );
-            //event.preventDefault();
-
-            $(this).attr('disabled','disabled');
-
-            var subfolder = "";
-            var base_url = document.location.origin;
-            if(base_url.includes("localhost")) { // if local environment
-                subfolder = "/nudj-web";
-            } else if(base_url.includes("zudent")){ // if test environment
-                subfolder = "/dev.nudj";
-            }
-
-              var title = "";
-              var description = "";
-              var salary = "";
-              var referral_bonus = "";
-              var location = "";
-              var brief = "";
-
-              var preferences = null;
-              var skills = null;
-
-              var url = base_url + subfolder + "/add-job/create-job";
-              var redirect = base_url + subfolder + "/add-job/ask-for-referral/";
-
-              console.log('url  ----   ' + url);
-
-              $.ajax({
-                type: 'POST',
-                url: url, //this should be url to your PHP file
-                dataType: 'html',
-                data: { 'brief':brief, 'preferences': preferences, 'skills':skills, 'title': title, 'description':description, 'location':location, 'salary':salary, 'referral_bonus':referral_bonus },
-                complete: function() { console.log("complete?");},
-                success: function(stream) { window.location.href = redirect + stream; }
-            });
-
-
-
-        });
-
-    });
-
-</script>
-
 <!-- CONTENT  -->
 
-<section class="hero is-fullheight" style="background-color: rgba(255, 255, 255, 0.6);">
+<section class="hero is-fullheight">
         <nav class="nav mb1 mt1" style="box-shadow: none;">
             <div class="container">
                 <div class="nav-left">
@@ -135,6 +78,34 @@
                   </div>
             </div>
         </div>
+
+        <footer class="section">
+            <div class="container">
+                <div class="content has-text-centered">
+                    <p class="h5 md-h4">
+                        © 2017 <strong>NUDJ</strong>, All Rights Reserved
+                    </p>
+                    <a href="//www.iubenda.com/privacy-policy/8051143" title="Privacy Policy" class="button is-link h5 md-h4">Privacy</a>
+                    <script type="text/javascript">
+                        (function(w, d) {
+                            var loader = function() {
+                                var s = d.createElement("script"),
+                                    tag = d.getElementsByTagName("script")[0];
+                                s.src = "//cdn.iubenda.com/iubenda.js";
+                                tag.parentNode.insertBefore(s, tag);
+                            };
+                            if (w.addEventListener) {
+                                w.addEventListener("load", loader, false);
+                            } else if (w.attachEvent) {
+                                w.attachEvent("onload", loader);
+                            } else {
+                                w.onload = loader;
+                            }
+                        })(window, document);
+                    </script>
+                </div>
+            </div>
+        </footer>
 </section>
 
 </body>
