@@ -9,23 +9,30 @@ function fetch (uri) {
 }
 
 router.get('/:companySlug/:jobSlugId', (req, res) => {
-  let jobId = req.params.jobSlugId.split('+')[1]
   let companySlug = req.params.companySlug
+  let jobSlug = req.params.jobSlugId.split('+')[0]
+  let jobId = req.params.jobSlugId.split('+')[1]
   let refId = req.query.ref
   Promise.all([
-    fetch(`jobs/${jobId}`),
     fetch(`companies/${companySlug}`),
+    fetch(`jobs/${jobId}`),
     fetch(`people/${refId}`)
   ])
   .then(([
-    job,
     company,
+    job,
     referrer
   ]) => {
+    // ensure a valid url
+    if (company.id !== job.companyId || jobSlug !== job.slug) {
+      return {
+        error: '404'
+      }
+    }
     return {
       page: {
-        job,
         company,
+        job,
         referrer
       }
     }

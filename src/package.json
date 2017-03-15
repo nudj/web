@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@nudj/dummy": "0.3.0",
-    "@nudj/schemas": "0.4.1",
+    "@nudj/schemas": "0.4.2",
     "body-parser": "^1.16.1",
     "bulma": "^0.3.2",
     "classnames": "^2.2.5",

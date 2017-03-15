@@ -7,7 +7,7 @@ import JobPage from '../job-page'
 
 class Index extends Component {
   render () {
-    return (
+    return this.props.error ? <div>{this.props.error}</div> : (
       <div>
         <Header />
         <Route path='/:companySlug/:jobSlugId' render={(props) => <JobPage {...props} {...this.props.page} />} />

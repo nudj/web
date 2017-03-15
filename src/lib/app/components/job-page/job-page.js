@@ -11,13 +11,13 @@ function get (object, path, fallback) {
 export default (props) => (
   <div className={style.container}>
     <div className={style.job}>
-      <img className={style.logo} src='' />
+      <img className={style.logo} src={get(props, 'company.logo')} />
       <h1 className={style.title}>{get(props, 'job.title')}</h1>
       <h2 className={style.location}>{get(props, 'job.location')}</h2>
       <h2 className={style.salary}>£{get(props, 'job.remuneration') * 1000}</h2>
       <ul className={style.links}>
         <li className={style.link}>
-          <a href={get(props, 'job.company.url', '#company-url')}>View company website</a>
+          <a href={get(props, 'company.url', '#company-url')}>View company website</a>
         </li>
         <li className={style.link}>
           <a href={get(props, 'job.url', '#job-url')}>View full job post</a>

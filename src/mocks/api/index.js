@@ -25,11 +25,9 @@ let middlewares = jsonServer.defaults()
 server.use(middlewares)
 server.get('/companies/:cid', (req, res, next) => {
   if (!req.params.cid.match(/^\d+$/)) {
-    console.log('Found slug')
     let company = find(dummyData.companies, {
       slug: req.params.cid
     })
-    console.log('match', company)
     if (company) {
       res.json(company)
     } else {
