@@ -21,7 +21,7 @@ app.use('/request', requestRoutes)
 app.use(function(req, res){
   res.status(404)
   if (req.accepts('html')) {
-    res.render('/404', { url: req.url })
+    res.render('404', { url: req.url })
     return
   }
   if (req.accepts('json')) {
