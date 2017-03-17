@@ -7,8 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href=/assets/images/nudj-square.ico type="image/x-icon"/>
 
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.3.2/css/bulma.min.css">
     <link href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
     <link href="https://unpkg.com/basscss-responsive-type-scale@1.0.1/css/responsive-type-scale.css" rel="stylesheet">
@@ -113,6 +111,7 @@
   <body>
 
     <section class="hero is-fullheight">
+
             <nav class="nav mb1 mt1" style="box-shadow: none;">
                 <div class="container">
                     <div class="nav-left">
@@ -122,10 +121,10 @@
                     </div>
                 </div>
             </nav>
+
             <div class="hero-body" style="color:#000">
-              <div class="form" action="/request" method="post"></div>
-                <div class="container colums is-mobile">
-                  <div class="column is-half is-offset-one-quarter">
+              <div class="container">
+                  <div class="column is-half-desktop is-offset-one-quarter-desktop">
                     <div class="has-text-centered">
                       <h1 class="h2 md-h1">Good things come to those who... Nudj &#x1f91c; &#x1f91b;
                       </h1>
@@ -134,6 +133,7 @@
                       </p>
                     </div>
                   <hr>
+                  <form class="form" action="/request" method="post">
                   <label class="label h4 md-h3">Full Name</label>
                   <p class="control">
                   <input class="input h4 md-h3 is-medium" id="fullname" name="fullname" required type="text" type="text">
@@ -149,9 +149,9 @@
                   <p class="control pt1">
                   <input class="button is-success is-medium" name="submit" type="submit" value="Send request"></input>
                   </p>
+                  </form>
                 </div>
                 </div>
-              </div>
             </div>
 
             <footer class="section">
@@ -182,6 +182,8 @@
                 </div>
             </footer>
     </section>
+
+
 
 </body>
 </html>
