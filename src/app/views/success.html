@@ -7,139 +7,164 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href=/assets/images/nudj-square.ico type="image/x-icon"/>
 
-    <script
-              src="https://code.jquery.com/jquery-3.1.1.min.js"
-              integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-              crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.3.2/css/bulma.min.css">
+    <link href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/basscss-responsive-type-scale@1.0.1/css/responsive-type-scale.css" rel="stylesheet">
 
-    <link rel="stylesheet" href=/assets/css/style.css>
-    <link rel="stylesheet" href=/assets/css/dashboard-style.css>
-    <link rel="stylesheet" href=/assets/css/addjob-style.css>
-    <link rel="stylesheet" href=/assets/css/candidates-style.css>
-    <link rel="stylesheet" href=/assets/css/jobs-style.css>
-    <link rel="stylesheet" href=/assets/css/profile-style.css>
-    <link rel="stylesheet" href=/assets/css/job-style.css>
-    <link rel="stylesheet" href=/assets/css/apply-style.css>
-    <link rel="stylesheet" href=/assets/css/responsive-style.css>
-    <link rel="stylesheet" href=/assets/css/login-style.css>
-    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css"/>
+    <!-- Intercom -->
+    <script>
+        window.intercomSettings = {
+            app_id: "jmk9ujo0",
+            custom_launcher_selector: '#open-intercom'
+        };
+    </script>
+    <script>
+        (function() {
+            var w = window;
+            var ic = w.Intercom;
+            if (typeof ic === "function") {
+                ic('reattach_activator');
+                ic('update', intercomSettings);
+            } else {
+                var d = document;
+                var i = function() {
+                    i.c(arguments)
+                };
+                i.q = [];
+                i.c = function(args) {
+                    i.q.push(args)
+                };
+                w.Intercom = i;
 
-<!--
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script> -->
+                function l() {
+                    var s = d.createElement('script');
+                    s.type = 'text/javascript';
+                    s.async = true;
+                    s.src = 'https://widget.intercom.io/widget/fwqdxwzg';
+                    var x = d.getElementsByTagName('script')[0];
+                    x.parentNode.insertBefore(s, x);
+                }
+                if (w.attachEvent) {
+                    w.attachEvent('onload', l);
+                } else {
+                    w.addEventListener('load', l, false);
+                }
+            }
+        })()
+    </script>
+
+    <!-- FullStory -->
 
     <script>
         window['_fs_debug'] = false;
         window['_fs_host'] = 'www.fullstory.com';
         window['_fs_org'] = '3127D';
         window['_fs_namespace'] = 'FS';
-        (function(m,n,e,t,l,o,g,y){
-            if (e in m && m.console && m.console.log) { m.console.log('FullStory namespace conflict. Please set window["_fs_namespace"].'); return;}
-            g=m[e]=function(a,b){g.q?g.q.push([a,b]):g._api(a,b);};g.q=[];
-            o=n.createElement(t);o.async=1;o.src='https://'+_fs_host+'/s/fs.js';
-            y=n.getElementsByTagName(t)[0];y.parentNode.insertBefore(o,y);
-            g.identify=function(i,v){g(l,{uid:i});if(v)g(l,v)};g.setUserVars=function(v){g(l,v)};
-            g.identifyAccount=function(i,v){o='account';v=v||{};v.acctId=i;g(o,v)};
-            g.clearUserCookie=function(c,d,i){if(!c || document.cookie.match('fs_uid=[`;`]*`[`;`]*`[`;`]*`')){
-            d=n.domain;while(1){n.cookie='fs_uid=;domain='+d+
-            ';path=/;expires='+new Date(0).toUTCString();i=d.indexOf('.');if(i<0)break;d=d.slice(i+1)}}};
-        })(window,document,window['_fs_namespace'],'script','user');
+        (function(m, n, e, t, l, o, g, y) {
+            if (e in m && m.console && m.console.log) {
+                m.console.log('FullStory namespace conflict. Please set window["_fs_namespace"].');
+                return;
+            }
+            g = m[e] = function(a, b) {
+                g.q ? g.q.push([a, b]) : g._api(a, b);
+            };
+            g.q = [];
+            o = n.createElement(t);
+            o.async = 1;
+            o.src = 'https://' + _fs_host + '/s/fs.js';
+            y = n.getElementsByTagName(t)[0];
+            y.parentNode.insertBefore(o, y);
+            g.identify = function(i, v) {
+                g(l, {
+                    uid: i
+                });
+                if (v) g(l, v)
+            };
+            g.setUserVars = function(v) {
+                g(l, v)
+            };
+            g.identifyAccount = function(i, v) {
+                o = 'account';
+                v = v || {};
+                v.acctId = i;
+                g(o, v)
+            };
+            g.clearUserCookie = function(c, d, i) {
+                if (!c || document.cookie.match('fs_uid=[`;`]*`[`;`]*`[`;`]*`')) {
+                    d = n.domain;
+                    while (1) {
+                        n.cookie = 'fs_uid=;domain=' + d +
+                            ';path=/;expires=' + new Date(0).toUTCString();
+                        i = d.indexOf('.');
+                        if (i < 0) break;
+                        d = d.slice(i + 1)
+                    }
+                }
+            };
+        })(window, document, window['_fs_namespace'], 'script', 'user');
     </script>
-
-    <script>
-  window.intercomSettings = {
-    app_id: "jmk9ujo0",
-    custom_launcher_selector: '#open-intercom'
-  };
-</script>
-<script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/jmk9ujo0';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()</script>
 
 </head>
 
 <body>
 
-<script>
-    function goBack() {
-        window.history.back();
-    }
-
-    $( document ).ready(function() {
-        console.log( "resdfdsfady!" );
-
-        $('#preview-post-job').click(function( event ) {
-
-            console.log('que esta pasando');
-
-            //alert( "Handler for .submit() called." );
-            //event.preventDefault();
-
-            $(this).attr('disabled','disabled');
-
-            var subfolder = "";
-            var base_url = document.location.origin;
-            if(base_url.includes("localhost")) { // if local environment
-                subfolder = "/nudj-web";
-            } else if(base_url.includes("zudent")){ // if test environment
-                subfolder = "/dev.nudj";
-            }
-
-              var title = "";
-              var description = "";
-              var salary = "";
-              var referral_bonus = "";
-              var location = "";
-              var brief = "";
-
-              var preferences = null;
-              var skills = null;
-
-              var url = base_url + subfolder + "/add-job/create-job";
-              var redirect = base_url + subfolder + "/add-job/ask-for-referral/";
-
-              console.log('url  ----   ' + url);
-
-              $.ajax({
-                type: 'POST',
-                url: url, //this should be url to your PHP file
-                dataType: 'html',
-                data: { 'brief':brief, 'preferences': preferences, 'skills':skills, 'title': title, 'description':description, 'location':location, 'salary':salary, 'referral_bonus':referral_bonus },
-                complete: function() { console.log("complete?");},
-                success: function(stream) { window.location.href = redirect + stream; }
-            });
-
-
-
-        });
-
-    });
-
-</script>
-
 <!-- CONTENT  -->
 
-  <div class="vh-100 dt w-100 avenir">
-    <div class="absolute w-100">
-      <nav class="dt w-100 mw8 center">
-          <div class="dtc w2 v-mid pa3">
-              <a href=/ class="dib w3 grow">
-                  <img src=/assets/images/nudj-logo.png >
-              </a>
-          </div>
-      </nav>
-    </div>
-    <div class="vh-100 dt w-100 black">
-      <div class="dtc v-mid ph3 ph6-l tc">
-        <iframe src="//giphy.com/embed/26ufmAlKt4ne2JDnq?html5=true" width="300" height="300" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-        <p class="fw6 f3">Nice one!</p>
-        <p class="f5 pb3 ml6-m mr6-m pr6-m pl6-m">Someone from our team will be in touch shortly. Until then do us a solid and follow us on Twitter.</p>
-        <div class="center-twitter">
-          <iframe ng-show="user.twitter" allowtransparency="true" frameborder="0" scrolling="no"
-                src="//platform.twitter.com/widgets/follow_button.html?screen_name=NudjHQ"
-                style="width:208px; height:20px;"></iframe>
+<section class="hero is-fullheight">
+        <nav class="nav mb1 mt1" style="box-shadow: none;">
+            <div class="container">
+                <div class="nav-left">
+                  <a class="nav-item" href="/">
+                    <img style="max-height: 2.5rem;" src=/assets/images/nudj-logo.png></img>
+                  </a>
+                </div>
+            </div>
+        </nav>
+        <div class="hero-body" style="color:#000">
+            <div class="container has-text-centered">
+              <iframe src="//giphy.com/embed/26ufmAlKt4ne2JDnq?html5=true" width="300" height="300" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+              <h1 class="h1 md-h0 pt2">
+                Nice one!
+              </h1>
+              <p class="h3 md-h2">
+                Someone from our team will be in touch shortly. Until then do us a solid and follow us on Twitter.
+              </p>
+              <div class="pt3">
+              <iframe ng-show="user.twitter" allowtransparency="true" frameborder="0" scrolling="no"
+                    src="//platform.twitter.com/widgets/follow_button.html?screen_name=NudjHQ"
+                    style="width:208px; height:20px;"></iframe>
+                  </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
+
+        <footer class="section">
+            <div class="container">
+                <div class="content has-text-centered">
+                    <p class="h5 md-h4">
+                        © 2017 <strong>NUDJ</strong>, All Rights Reserved
+                    </p>
+                    <a href="//www.iubenda.com/privacy-policy/8051143" title="Privacy Policy" class="button is-link h5 md-h4">Privacy</a>
+                    <script type="text/javascript">
+                        (function(w, d) {
+                            var loader = function() {
+                                var s = d.createElement("script"),
+                                    tag = d.getElementsByTagName("script")[0];
+                                s.src = "//cdn.iubenda.com/iubenda.js";
+                                tag.parentNode.insertBefore(s, tag);
+                            };
+                            if (w.addEventListener) {
+                                w.addEventListener("load", loader, false);
+                            } else if (w.attachEvent) {
+                                w.attachEvent("onload", loader);
+                            } else {
+                                w.onload = loader;
+                            }
+                        })(window, document);
+                    </script>
+                </div>
+            </div>
+        </footer>
+</section>
 
 </body>
 </html>
