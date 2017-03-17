@@ -20,7 +20,7 @@ app.get('/success', (req, res) => res.render('success'))
 app.use('/request', requestRoutes)
 app.use(appRoutes)
 
-app.use(function(req, res){
+app.use((req, res) => {
   res.status(404)
   if (req.accepts('html')) {
     res.render('404', { url: req.url })
@@ -28,12 +28,13 @@ app.use(function(req, res){
   }
   if (req.accepts('json')) {
     res.send({ error: '404: Page not found' })
-    return;
+    return
   }
   res.type('txt').send('404: Page not found')
 })
 
-app.use(function(error, req, res, next){
+app.use((error, req, res, next) => {
+  console.error(error)
   res.status(500)
   if (req.accepts('html')) {
     res.render('500', { url: req.url })
@@ -41,7 +42,7 @@ app.use(function(error, req, res, next){
   }
   if (req.accepts('json')) {
     res.send({ error: '500: Internal server error' })
-    return;
+    return
   }
   res.type('txt').send('500: Internal server error')
 })
