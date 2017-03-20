@@ -1,21 +1,25 @@
 let express = require('express')
 let Sendmail = require('sendmail')
+let Intercom = require('intercom-client')
+let client = new Intercom.Client({
+    token: 'dG9rOjhlMmY3MjczXzczMDNfNGQzOF9hY2I3XzIwMzc2ZGI0ZjA3MToxOjA='
+})
 
 let logger = require('../logger')
 
 let router = express.Router()
 let sendmail = Sendmail({
-  silent: true
+    silent: true
 })
 
 router.get('/', (req, res) => res.render('request'))
 router.post('/', (req, res) => {
-  logger.log('info', 'Sending email', req.body)
-  sendmail({
-    from: 'hello@nudj.co',
-    to: 'hello@nudj.co',
-    subject: 'Request Access',
-    html: `
+    logger.log('info', 'Sending email', req.body)
+    sendmail({
+        from: 'hello@nudj.co',
+        to: 'jamie@nudj.co',
+        subject: 'Request Access',
+        html: `
       <html>
       <body>
         <br/>
@@ -33,13 +37,26 @@ router.post('/', (req, res) => {
       </body>
       </html>
     `,
-  }, (err, reply) => {
-    if (err) {
-      logger.log('Error', err)
-      return res.render('request')
-    }
-    res.redirect('/success')
-  })
+    }, (err, reply) => {
+        if (err) {
+            logger.log('Error', err)
+            return res.render('request')
+        }
+        logger.log('info', 'Sending Lead to Intercom')
+        client.leads.create({
+            name: req.body.fullname,
+            email: req.body.email,
+            custom_attributes: {
+              company: req.body.company_name
+            }
+        }, function(err, response) {
+            if (err) {
+                logger.log('Error', err)
+                return res.render('request')
+            }
+            res.redirect('/success')
+        })
+    })
 })
 
 module.exports = router
