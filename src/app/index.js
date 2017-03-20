@@ -48,4 +48,4 @@ app.use(function(error, req, res, next) {
   res.type('txt').send('500: Internal server error')
 })
 
-app.listen(3000, () => logger.log('info', 'App running on http://localhost:3000/'))
+app.listen(80, () => logger.log('info', 'App running'))

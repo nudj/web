@@ -1,5 +1,6 @@
 IMAGE:=nudj/web
 IMAGEDEV:=nudj/web-dev
+DEVURL:=
 
 CWD=$(shell pwd)
 BIN:=./node_modules/.bin
@@ -15,15 +16,16 @@ buildDev:
 run:
 	@docker run -d --rm \
 		--name web \
-		-p 0.0.0.0:4000:3000 \
+		-p 0.0.0.0:4000:80 \
 		$(IMAGE)
 	@echo 'App running on http://localhost:4000/'
 
 dev:
 	-@docker rm -f dev-container 2> /dev/null || true
+	@echo 'App will run on http://localhost:3000/'
 	@docker run --rm -it \
 		--name dev-container \
-		-p 0.0.0.0:3000:3000 \
+		-p 0.0.0.0:3000:80 \
 		-v $(CWD)/src/app:/usr/src/app \
 		$(IMAGEDEV) \
 		$(BIN)/nodemon \
