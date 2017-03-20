@@ -1,4 +1,8 @@
-FROM nudj/web
-RUN cd /usr/src && npm i
-COPY src/test /usr/src/test
-CMD ./node_modules/.bin/mocha src/test/*.js
+FROM node:6.10.0-alpine
+ARG NPM_TOKEN
+RUN mkdir -p /usr/src
+WORKDIR /usr/src
+COPY src /usr/src
+RUN npm i
+EXPOSE 3000 3001
+CMD ./node_modules/.bin/standard && ./node_modules/.bin/mocha test/*.js
