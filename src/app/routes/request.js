@@ -1,6 +1,8 @@
 let express = require('express')
 let Sendmail = require('sendmail')
 
+let logger = require('../logger')
+
 let router = express.Router()
 let sendmail = Sendmail({
   silent: true
@@ -8,7 +10,7 @@ let sendmail = Sendmail({
 
 router.get('/', (req, res) => res.render('request'))
 router.post('/', (req, res) => {
-  console.log('Sending email', req.body)
+  logger.log('info', 'Sending email', req.body)
   sendmail({
     from: 'hello@nudj.co',
     to: 'hello@nudj.co',
@@ -31,10 +33,10 @@ router.post('/', (req, res) => {
       </body>
       </html>
     `,
-  }, function(err, reply) {
+  }, (err, reply) => {
     if (err) {
-      console.error(err)
-      return res.render('request', req.body)
+      logger.log('Error', err)
+      return res.render('request')
     }
     res.redirect('/success')
   })

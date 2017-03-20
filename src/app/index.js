@@ -1,3 +1,5 @@
+let logger = require('./logger')
+
 let path = require('path')
 let express = require('express')
 let bodyParser = require('body-parser')
@@ -18,7 +20,8 @@ app.get('/', (req, res) => res.render('index'))
 app.get('/success', (req, res) => res.render('success'))
 app.use('/request', requestRoutes)
 
-app.use(function(req, res){
+app.use(function(req, res) {
+  logger.log('warn', 'Page not found', req.url)
   res.status(404)
   if (req.accepts('html')) {
     res.render('404', { url: req.url })
@@ -26,12 +29,13 @@ app.use(function(req, res){
   }
   if (req.accepts('json')) {
     res.send({ error: '404: Page not found' })
-    return;
+    return
   }
   res.type('txt').send('404: Page not found')
 })
 
-app.use(function(error, req, res, next){
+app.use(function(error, req, res, next) {
+  logger.log('error', 'Application error', error)
   res.status(500)
   if (req.accepts('html')) {
     res.render('500', { url: req.url })
@@ -39,9 +43,9 @@ app.use(function(error, req, res, next){
   }
   if (req.accepts('json')) {
     res.send({ error: '500: Internal server error' })
-    return;
+    return
   }
   res.type('txt').send('500: Internal server error')
 })
 
-app.listen(3000, () => console.log('App running on http://localhost:3000/'))
+app.listen(3000, () => logger.log('info', 'App running on http://localhost:3000/'))
