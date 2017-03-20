@@ -2,23 +2,51 @@ version: '1.0'
 
 steps:
 
+  build_test_image:
+    title: Build Test Image
+    type: build
+    image_name: nudj/web-dev-test
+    working_directory: ${{main_clone}}
+    dockerfile: Dockerfile.dev
+    build_arguments:
+      - NPM_TOKEN=${{NPM_TOKEN}}
+
+  test:
+    title: Test
+    image: ${{build_test_image}}
+    working_directory: 'IMAGE_WORK_DIR'
+
+  build_dev_image:
+    title: Build Dev Image
+    type: build
+    image_name: nudj/web-dev
+    dockerfile: Dockerfile
+    build_arguments:
+      - NPM_TOKEN=${{NPM_TOKEN}}
+    when:
+      branch:
+        ignore:
+          - master
+
   build_image:
-    title: Building Image
+    title: Build Image
     type: build
     image_name: nudj/web
-    tag: 0.2.0
+    tag: 0.2.1
     working_directory: ${{main_clone}}
     dockerfile: Dockerfile
+    build_arguments:
+      - NPM_TOKEN=${{NPM_TOKEN}}
     when:
       branch:
         only:
           - master
 
-  push_to_registry:
-    title: Pushing to Docker Registry (with credentials)
+  push_image:
+    title: Push Image
     type: push
     candidate: '${{build_image}}'
-    tag: 0.2.0
+    tag: 0.2.1
     provider: 'ecr'
     registry: ${{AWS_REGISTRY}}
     accessKeyId: ${{AWS_ACCESS_KEY}}
