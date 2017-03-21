@@ -1,0 +1,501 @@
+@import url("fonts-style.css");
+@import url("colors-style.css");
+@import url("https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css");
+/* Master Styles */
+h1 {
+  color: #369;
+  font-family: 'avenir next', avenir, Arial, Helvetica, sans-serif;
+  font-size: 250%;
+}
+
+h2, h3 {
+  color: #444;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: lighter;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+button:focus {
+  outline: none;
+}
+
+input {
+  -webkit-appearance: none;
+}
+
+input:focus {
+  outline: none !important;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+/************** BODY ************/
+body {
+  margin: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: var(--green);
+  font-weight: normal;
+}
+
+/************ BUTTONS **************/
+.green-button {
+  background-color: var(--green);
+  border-radius: 19px;
+  color: #fff;
+  font-size: 16px;
+  font-family: Avenir;
+  padding: 6px 23px;
+  font-weight: 300;
+  cursor: pointer;
+}
+
+.grey-button {
+  font-family: Avenir;
+  background-color: #C9D3E0;
+  border-radius: 25px;
+  border-width: 0;
+  color: #fff;
+  font-size: 13px;
+  padding: 6px 23px;
+  font-weight: 300;
+  margin-left: 5px;
+}
+
+/************** MENU ************/
+.menu {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  background: white;
+  height: 75px;
+  z-index: 300;
+}
+
+.menu .menu-content {
+  width: 70%;
+  margin: auto;
+  padding: 22px 0px 7px 0px;
+}
+
+.menu .menu-logo {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.menu .menu-logo img {
+  height: 28.5px;
+}
+
+.menu .menu-options {
+  float: right;
+}
+
+.menu .menu-options .menu-regular-button {
+  font-family: 'Gotham Rounded Medium';
+  background: none;
+  border: none;
+  padding: 8px 14px;
+}
+
+.menu .menu-options .menu-green-button {
+  background-color: var(--green);
+  border-radius: 12px;
+  border-width: 0;
+  color: #fff;
+  font-family: 'Gotham Rounded Book';
+  font-size: 9.5px;
+  height: 23px;
+  letter-spacing: 1px;
+  margin: 0 8px 0 14px;
+  width: 79px;
+}
+
+/******************  HEADER  ****************/
+.header {
+  width: 70%;
+  margin: auto;
+  background-size: cover;
+  position: relative;
+  height: 100vh;
+}
+
+.header .header-title {
+  font-family: AvenirNextUltraLight;
+  font-size: 37px;
+  margin-bottom: 12px;
+  position: relative;
+  top: 50%;
+  margin-top: -35px;
+}
+
+.header .header-description {
+  font-family: AvenirNextLight;
+  font-size: 17px;
+  opacity: 0.5;
+  margin: 0;
+  position: relative;
+  top: 50%;
+}
+
+/*            POWERED            */
+/*       HOME - SECTION 1          */
+.home-section1 {
+  width: 70%;
+  margin: auto;
+  padding-top: 130px;
+  margin-bottom: 50px;
+  visibility: hidden;
+}
+
+.home-section1 .home-section1-logo {
+  margin: auto;
+  opacity: 0.5;
+  width: 30px;
+}
+
+.home-section1 .home-section1-logo img {
+  width: 30px;
+}
+
+/*       HOME - SECTIONS - GENERAL      */
+.home-section-title {
+  text-align: center;
+  font-family: AvenirNextLight;
+  letter-spacing: 1px;
+  font-size: 25px;
+  margin-bottom: 17px !important;
+  margin-top: 25px !important;
+  text-transform: uppercase;
+  cursor: default;
+}
+
+.home-section-pretitle {
+  text-align: center;
+  font-family: Avenir;
+  font-size: 8px;
+  opacity: 0.3;
+  letter-spacing: 1px;
+  cursor: default;
+}
+
+.home-section-description {
+  text-align: center;
+  font-family: 'Avenir';
+  font-size: 13px;
+  opacity: 0.3;
+  line-height: 28px;
+}
+
+.home-section-button {
+  font-family: 'Gotham Rounded Book';
+  background-color: var(--green);
+  border-radius: 18px;
+  border-width: 0;
+  color: #fff;
+  font-size: 10px;
+  letter-spacing: 1px;
+  height: 32px;
+  padding: 0 26px;
+  display: block;
+}
+
+.home-section-button-container {
+  width: 152px;
+  margin: 24px auto auto;
+}
+
+/*     HOME - SECTION 2     */
+.home-section2 {
+  width: 70%;
+  margin: auto;
+}
+
+/*     HOME - SECTION 3     */
+.home-section3 {
+  width: 70%;
+  margin: auto;
+}
+
+.home-section3 .home-gallery-img {
+  width: 100%;
+  display: block;
+  max-width: 400px;
+  margin: auto;
+  margin-bottom: 100px;
+}
+
+.home-section3 .home-gallery-img img {
+  width: 100%;
+  max-width: 400px;
+}
+
+/*     HOME - SECTION 4     */
+.home-section4 {
+  width: 70%;
+  margin: auto;
+}
+
+.home-section4 .home-client-gallery {
+  display: block;
+  width: 100%;
+  margin: auto;
+  margin-top: 40px;
+  margin-bottom: -70px;
+}
+
+.home-section4 .home-client-gallery img {
+  width: 100%;
+  max-width: 650px;
+  padding: 20px 0;
+}
+
+/*     HOME - SECTION 5     */
+.home-section5 {
+  width: 70%;
+  margin: auto;
+  margin-bottom: 60px;
+}
+
+.home-section5-button-container {
+  width: 241px;
+  margin: 24px auto auto;
+  margin-top: -30px;
+  margin-bottom: 100px;
+}
+
+.home-section5-button {
+  font-family: 'Gotham Rounded Book';
+  background-color: var(--green);
+  border-radius: 18px;
+  border-width: 0;
+  color: #fff;
+  font-size: 10px;
+  letter-spacing: 1px;
+  height: 32px;
+  padding: 0 26px;
+  display: block;
+  margin: auto;
+}
+
+/*          FOOTER           */
+.footer {
+  width: 100%;
+}
+
+.footer .footer-content {
+  width: 70%;
+  margin: auto;
+  padding: 35px 0px;
+}
+
+.footer .footer-logo {
+  background: transparent;
+  border: none;
+  padding: 0;
+  width: 20%;
+  text-align: left;
+}
+
+.footer .footer-logo img {
+  height: 28.5px;
+}
+
+.footer .footer-regular-button {
+  font-family: 'Gotham Rounded Medium';
+  background: none;
+  border: none;
+  padding: 8px 14px;
+  width: 20%;
+  margin-top: -42px;
+}
+
+.footer .footer-social-icons {
+  float: right;
+  width: 17%;
+  display: inline;
+}
+
+.footer-options {
+  display: inline;
+  position: relative;
+  top: -8px;
+}
+
+.footer .footer-social-icons button {
+  width: 10px;
+  padding: 9px 13px;
+}
+
+.footer .footer-social-icons img {
+  width: 10px;
+}
+
+/*      DELIMITERS      */
+.delimiter {
+  height: 170px;
+  width: 1px;
+  background-color: #000;
+  opacity: 0.3;
+  margin: 100px auto;
+}
+
+.vertical-delimiter {
+  width: 40px;
+  height: 1px;
+  background-color: #000;
+  opacity: 0.3;
+  margin: 20px auto;
+}
+
+.full-delimiter {
+  height: 1px;
+  width: 100%;
+  background-color: #000;
+  opacity: 0.05;
+}
+
+.max-width340 {
+  max-width: 340px;
+  margin: auto;
+}
+
+.max-width370 {
+  max-width: 370px;
+  margin: auto;
+}
+
+.max-width520 {
+  max-width: 520px;
+  margin: auto;
+}
+
+/*        BE RIGHT BACK     */
+.beback-text {
+  font-size: 10px;
+  font-family: 'Gotham Rounded Medium';
+  float: right;
+}
+
+.berightback {
+  width: 80%;
+  margin: auto;
+  background-size: cover;
+  position: relative;
+  height: 100vh;
+}
+
+.cotent-back {
+  position: relative;
+  top: 50%;
+  margin-top: -200px;
+}
+
+.h1-green {
+  display: block;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  color: var(--green);
+  font-family: Avenir;
+  font-size: 80px;
+}
+
+.success {
+  width: 250px;
+  margin: 0 auto;
+}
+
+.success img {
+  width: 250px;
+  overflow: hidden;
+}
+
+.back {
+  width: 190px;
+  margin: 0 auto;
+}
+
+.back img {
+  width: 190px;
+  overflow: hidden;
+}
+
+.beback-subcaption {
+  font-family: 'AvenirNextLight';
+  font-size: 20px;
+  text-align: center;
+  margin-top: 13px;
+  margin-bottom: 0px;
+}
+
+.beback-description {
+  font-family: Avenir;
+  font-size: 14px;
+  text-align: center;
+  opacity: 0.3;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 360px;
+}
+
+.success-description {
+  font-family: Avenir;
+  font-size: 14px;
+  text-align: center;
+  opacity: 0.3;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 300px;
+}
+
+.short-delimiter {
+  height: 1px;
+  max-width: 150px;
+  margin: auto;
+  background-color: #000;
+  opacity: 0.3;
+}
+
+.center-twitter {
+  display: block;
+  margin: 18px auto;
+  text-align: center;
+}
+
+.padding-top15-bottom25 {
+  padding: 15px 0 25px;
+}
+
+/* ERROR */
+.error {
+  color: #ff0000;
+  font-family: Avenir;
+  font-size: 11px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.left-side {
+  float: left;
+}
+
+.right-side {
+  float: right;
+}
+
+.clear-both {
+  clear: both;
+}

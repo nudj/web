@@ -4,5 +4,5 @@ RUN mkdir -p /usr/src
 WORKDIR /usr/src
 COPY src /usr/src
 RUN npm i
-EXPOSE 80
-CMD ./node_modules/.bin/mocha test/*.js
+EXPOSE 80 81
+CMD echo '127.0.0.1 api' >> /etc/hosts && ./node_modules/.bin/standard && ./node_modules/.bin/mocha test/*.js

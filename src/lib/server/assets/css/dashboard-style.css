@@ -1,0 +1,187 @@
+@import url("fonts-style.css");
+@import url("colors-style.css");
+
+/********** MENU DASHBOARD ****************/
+
+.menu-dashboard {
+  width: 90%;
+  margin: auto;
+  padding: 22px 0px 7px 0px;
+}
+
+.menu-options-dashboard {
+	float:right;
+	margin-right: -3%;
+}
+
+.notifications-button {
+	position: relative;
+	top: -12px;
+}
+
+.profile-button {
+	width: 35px;
+	height: 35px;
+	overflow: hidden;
+	border-radius: 18px;
+	padding:0;
+}
+
+.profile-button img {
+	width: 35px;
+	height: 35px;
+	margin-top: -1px;
+}
+
+.dropdown-button {
+
+}
+
+.menu-dashboard .acronym {
+	background-color: var(--green);
+	height: 35px;
+	width: 35px;
+	margin-top: -1px;
+	text-transform: uppercase;
+	font-family: Avenir;
+	font-size: 14px;
+	color: #fff;
+}
+
+.menu-dashboard .acronym span {
+	position: relative;
+	top: 8px;
+}
+
+.top8 {
+	top: 8px;
+}
+
+/***********  CONTENT  **************/
+
+.dashboard-content {
+	background-color: #F5F5F2;
+	margin: auto;
+  	background-size:cover;
+  	position:relative;
+  	min-height:100vh;
+}
+
+.dashboard-content .content {
+	padding: 125px 50px 0 50px;
+}
+
+.dashboard-content .tile {
+	width: 200px;
+	height: 200px;
+	border-radius: 6px;
+	border: 1px solid var(--lightgrey);
+	float:left;
+	background-color: #fff;
+	margin: 0 5px 5px;
+	cursor: pointer;
+}
+
+.dashboard-content .tile img {
+	width: 50px;
+    height: 50px;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+    position: relative;
+    top: 50%;
+    margin-top: -45px;
+}
+
+.dashboard-content .tile p {
+	text-align: center;
+	position: relative;
+	top: 105px;
+	font-family: Avenir;
+	font-size: 17px;
+}
+
+/***********  FOOTER  **************/
+
+.footer-dashboard {
+	position: fixed;
+	bottom: 0;
+	background: white;
+	height: 77px;
+	z-index: 300;
+	width: 100%;
+}
+
+.footer-dashboard .footer-content {
+	width: 90%;
+	margin: 0 auto;
+}
+
+.footer-dashboard .footer-content p {
+	font-family: avenir;
+	font-size: 18px;
+	margin-top: 17px;
+	margin-bottom: 0;
+}
+
+.footer-dashboard .footer-content a {
+	color: #A8A8A8;
+	font-family: 'AvenirNextLight';
+	font-size: 12px;
+}
+
+.footer-dashboard .footer-content #logoutbutton {
+	color: #A8A8A8;
+	font-family: 'AvenirNextLight';
+	font-size: 12px;
+	padding:0;
+}
+
+.footer-dashboard .footer-content .go-back {
+	color: #A8A8A8;
+	font-family: 'AvenirNextLight';
+	font-size: 12px;
+	padding:0;
+}
+
+.footer-dashboard .left-side {
+	float: left;
+}
+
+.footer-dashboard .right-side {
+	float: right;
+	margin-top: 19px;
+}
+
+.footer-dashboard .green-button {
+	font-family: Avenir;
+	background-color: var(--green);
+	border-radius: 25px;
+	border-width: 0;
+	color: #fff;
+	font-size: 15px;
+	letter-spacing: 1px;
+	height: 38px;
+	padding: 0 26px;
+}
+
+.footer-dashboard .grey-button {
+	font-family: Avenir;
+	background-color: #C9D3E0;
+	border-radius: 25px;
+	border-width: 0;
+	color: #fff;
+	font-size: 15px;
+	letter-spacing: 1px;
+	height: 38px;
+	padding: 0 26px;
+	margin-left: 5px;
+}
+
+#ssIFrame_google {
+	top: -1px;
+}
+
+
+
+

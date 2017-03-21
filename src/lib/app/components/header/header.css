@@ -1,0 +1,24 @@
+.nav {
+  composes: nav from 'bulma/css/bulma.css';
+}
+.container {
+  composes: container from 'bulma/css/bulma.css';
+}
+.left {
+  composes: nav-left from 'bulma/css/bulma.css';
+}
+.home {
+  composes: nav-item from 'bulma/css/bulma.css';
+}
+.toggle {
+  composes: nav-toggle from 'bulma/css/bulma.css';
+}
+.right {
+  composes: nav-right nav-menu from 'bulma/css/bulma.css';
+}
+.isActive {
+  composes: is-active from 'bulma/css/bulma.css';
+}
+.request {
+  composes: nav-item is-tab from 'bulma/css/bulma.css';
+}

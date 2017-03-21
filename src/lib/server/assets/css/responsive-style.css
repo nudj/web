@@ -1,0 +1,295 @@
+@media (max-width: 1090px) {
+  .client-header .client-information {
+    width: 42%;
+  }
+  .client-header .client-information2 {
+    width: 42%;
+  }
+}
+
+@media (max-width: 795px) {
+  .client-header {
+    display: block;
+    clear: both;
+    position: static;
+    height: auto;
+  }
+  .voucher {
+    width: 100%;
+  }
+  .voucher img {
+    width: 100%;
+  }
+  .client-header .client-information {
+    float: none;
+    width: 100%;
+    margin-top: 150px;
+    height: 240px;
+  }
+  .client-header .client-information2 {
+    float: none;
+    width: 100%;
+    margin-top: 150px;
+    height: 330px;
+  }
+  .apply-container .copy-button {
+    left: 15%;
+  }
+  .client-header .client-photo {
+    float: none;
+    margin: auto;
+    width: 100%;
+    max-width: 380px;
+    display: block;
+    padding-bottom: 20px;
+  }
+  .client-header2 .client-information3 {
+    width: 60%;
+  }
+  .client-photo .photo1 {
+    width: 48%;
+  }
+  .client-photo .photo2 {
+    width: 75%;
+    margin-left: 140px;
+    margin-top: -90px;
+  }
+  .find-more {
+    display: inline;
+    position: static;
+    margin-top: 0px;
+  }
+  .footer .footer-regular-button {
+    width: 18%;
+  }
+  .footer .footer-social-icons {
+    width: 20%;
+  }
+  .footer .footer-social-icons button {
+    padding: 9px 10px;
+  }
+  .h1-green {
+    font-size: 60px;
+  }
+  .success {
+    width: 190px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .success img {
+    width: 190px;
+    text-align: center;
+  }
+  .back {
+    width: 190px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .back img {
+    width: 190px;
+    text-align: center;
+  }
+  .beback-subcaption {
+    font-size: 16px;
+  }
+  .berightback {
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+
+@media (max-width: 485px) {
+  .h1-green {
+    font-size: 40px;
+  }
+  .voucher {
+    width: 100%;
+  }
+  .voucher img {
+    width: 100%;
+  }
+  .client-photo .photo1 {
+    width: 45%;
+  }
+  .client-photo .photo2 {
+    width: 60%;
+    margin-left: 45%;
+    margin-top: -90px;
+  }
+  .delimiter {
+    height: 60px;
+    margin: 65px auto;
+  }
+  .client-section-title {
+    font-size: 18px;
+  }
+  /*  HOME - INDEX  */
+  .home-section-title {
+    font-size: 18px;
+  }
+  /* FOOTER  */
+  .footer-logo {
+    float: none;
+    display: block;
+    margin: auto;
+    margin-bottom: 20px;
+  }
+  .footer .footer-regular-button {
+    display: inline-block;
+    width: 31%;
+  }
+  .footer .footer-social-icons {
+    float: none;
+    width: 100px;
+    margin: auto;
+    display: block;
+  }
+  .footer .footer-social-icons button {
+    padding: 9px 13px 0 11px;
+  }
+  .success {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .success img {
+    width: 80%;
+    text-align: center;
+  }
+  .back {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .back img {
+    width: 80%;
+    text-align: center;
+  }
+  .signup-box {
+    width: 90% !important;
+    margin-top: 0 !important;
+    top: 40px !important;
+    padding-bottom: 100px !important;
+  }
+  .signin-box {
+    width: 90% !important;
+    margin-top: 0 !important;
+    top: 40px !important;
+    padding-bottom: 100px !important;
+  }
+  .form-add-job .float-left, .form-add-job .float-right {
+    float: none;
+    width: 100%;
+  }
+  .form-add-job .float-left .input-job, .form-add-job .float-right .input-job {
+    width: 89%;
+  }
+  .footer-dashboard {
+    height: 130px;
+  }
+  .footer-dashboard .left-side {
+    float: none;
+    text-align: center;
+  }
+  .footer-dashboard .right-side {
+    float: none;
+    margin-top: 15px;
+    text-align: center;
+  }
+  .dashboard-content {
+    padding-bottom: 170px;
+  }
+  .dashboard-content .tile {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #input-add-skill {
+    width: 78%;
+  }
+  #input-add-preferences {
+    width: 78%;
+  }
+  .active-job-container {
+    padding: 15px 20px;
+    width: 87%;
+  }
+  .button-options {
+    padding: 6px;
+  }
+  .dashboard-content .content {
+    padding: 120px 25px 0 25px;
+  }
+  .referral-box {
+    width: 77%;
+    height: 400px;
+    top: 20px;
+    left: 20px;
+    margin: 0;
+    overflow: auto;
+  }
+  .referral-received-nudj {
+    width: 90%;
+    position: absolute;
+    margin-left: -44%;
+    margin-top: -200px;
+    height: 400px;
+  }
+  .referral-url {
+    font-size: 20px;
+  }
+  .client-header2 .client-photo2 {
+    float: none;
+    z-index: 0;
+    /*width: 100%;
+    margin: 0 auto;*/
+    margin-top: 50px;
+    margin-bottom: 80px;
+  }
+  .client-header2 .client-information3 {
+    float: none;
+    width: 80%;
+    margin-top: 74px;
+  }
+  .client-header2 .header-container {
+    display: block;
+    clear: both;
+    position: static;
+    height: auto;
+  }
+  .client-header2 {
+    display: block;
+    clear: both;
+    position: static;
+    height: auto;
+  }
+  .client-header2:after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+  .find-more2 {
+    display: inline;
+    position: static;
+    margin-top: 0px;
+  }
+  .find-more2 .arrow-down-button {
+    padding-bottom: 15px;
+  }
+  .fixed-footer .container-footer {
+    height: 25px;
+  }
+  .fixed-footer .container-footer .left-side {
+    float: none;
+    margin: 0 auto;
+    width: 145px;
+    display: none;
+  }
+  .fixed-footer .container-footer .right-side {
+    float: none;
+    margin: 0 auto;
+    width: 235px;
+  }
+}
