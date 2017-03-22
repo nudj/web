@@ -14,25 +14,19 @@ let appRoutes = require('./routes/app')
 let userRoutes = require('./routes/user')
 
 let strategy = new Auth0Strategy({
-    domain:       process.env.AUTH0_DOMAIN,
-    clientID:     process.env.AUTH0_CLIENT_ID,
-    clientSecret: process.env.AUTH0_CLIENT_SECRET,
-    callbackURL:  process.env.AUTH0_CALLBACK_URL || '/callback'
-  }, function(accessToken, refreshToken, extraParams, profile, done) {
-    // accessToken is the token to call Auth0 API (not needed in the most cases)
-    // extraParams.id_token has the JSON Web Token
-    // profile has all the information from the user
-    console.log('profile', profile)
-    return done(null, profile)
-  })
+  domain: process.env.AUTH0_DOMAIN,
+  clientID: process.env.AUTH0_CLIENT_ID,
+  clientSecret: process.env.AUTH0_CLIENT_SECRET,
+  callbackURL: process.env.AUTH0_CALLBACK_URL || '/callback'
+}, (accessToken, refreshToken, extraParams, profile, done) => {
+  // accessToken is the token to call Auth0 API (not needed in the most cases)
+  // extraParams.id_token has the JSON Web Token
+  // profile has all the information from the user
+  return done(null, profile)
+})
 passport.use(strategy)
-// This can be used to keep a smaller payload
-passport.serializeUser(function(user, done) {
-  done(null, user)
-})
-passport.deserializeUser(function(user, done) {
-  done(null, user)
-})
+passport.serializeUser((user, done) => done(null, user))
+passport.deserializeUser((user, done) => done(null, user))
 
 let app = express()
 app.engine('html', cons.lodash)

@@ -1,5 +1,4 @@
 let express = require('express')
-let passport = require('passport')
 let ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn()
 let router = express.Router()
 

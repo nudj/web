@@ -19,7 +19,7 @@ router.get('/logout', (req, res) => {
 
 router.get('/callback',
   passport.authenticate('auth0', { failureRedirect: '/login' }),
-  function(req, res) {
+  (req, res) => {
     if (!req.user) {
       throw new Error('user null')
     }
@@ -27,9 +27,6 @@ router.get('/callback',
   }
 )
 
-router.get('/login',
-  passport.authenticate('auth0', {}), function (req, res) {
-  res.redirect('/')
-})
+router.get('/login', passport.authenticate('auth0', {}), (req, res) => res.redirect('/'))
 
 module.exports = router
