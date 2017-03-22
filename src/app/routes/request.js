@@ -17,7 +17,7 @@ router.post('/', (req, res) => {
     logger.log('info', 'Sending email', req.body)
     sendmail({
         from: 'hello@nudj.co',
-        to: 'jamie@nudj.co',
+        to: 'hello@nudj.co',
         subject: 'Request Access',
         html: `
       <html>
