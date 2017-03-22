@@ -1,8 +1,0 @@
-@import url("fonts-style.css");
-@import url("colors-style.css");
-
-.not-active {
-   pointer-events: none;
-   cursor: default;
-}
-
