@@ -9,7 +9,7 @@ let logger = require('../logger')
 
 let router = express.Router()
 let sendmail = Sendmail({
-    silent: true
+  silent: false
 })
 
 router.get('/', (req, res) => res.render('request'))

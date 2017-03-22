@@ -32,7 +32,7 @@ steps:
     title: Build Image
     type: build
     image_name: nudj/web
-    tag: 0.2.2
+    tag: 0.2.3
     working_directory: ${{main_clone}}
     dockerfile: Dockerfile
     build_arguments:
@@ -46,12 +46,10 @@ steps:
     title: Push Image
     type: push
     candidate: '${{build_image}}'
-    tag: 0.2.2
-    provider: 'ecr'
-    registry: ${{AWS_REGISTRY}}
-    accessKeyId: ${{AWS_ACCESS_KEY}}
-    secretAccessKey: ${{AWS_SECRET_KEY}}
-    region: ${{AWS_REGION}}
+    tag: 0.2.3
+    credentials:
+      username: '${{dockerUsername}}'
+      password: '${{dockerPassword}}'
     when:
       branch:
         only:
