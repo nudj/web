@@ -27,7 +27,6 @@ dev:
 		--name dev-container \
 		-p 0.0.0.0:3000:80 \
 		-v $(CWD)/src/app:/usr/src/app \
-		--env-file $(CWD)/env \
 		$(IMAGEDEV) \
 		$(BIN)/nodemon \
 			-e js,html \

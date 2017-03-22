@@ -2,7 +2,7 @@ let express = require('express')
 let Sendmail = require('sendmail')
 let Intercom = require('intercom-client')
 let client = new Intercom.Client({
-    token: process.env.INTERCOM_ACCESS_TOKEN
+    token: 'dG9rOjhlMmY3MjczXzczMDNfNGQzOF9hY2I3XzIwMzc2ZGI0ZjA3MToxOjA='
 })
 
 let logger = require('../logger')
