@@ -9,7 +9,7 @@ module.exports = {
     'lib/server/assets/js/app': './lib/app/client'
   },
   output: {
-    path: './',
+    path: __dirname,
     filename: '[name].js',
     chunkFilename: '[id].js'
   },

@@ -10,7 +10,7 @@ module.exports = {
   },
   output: {
     libraryTarget: 'commonjs2',
-    path: './',
+    path: __dirname,
     filename: '[name].js',
     chunkFilename: '[id].js'
   },

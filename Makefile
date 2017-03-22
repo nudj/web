@@ -29,7 +29,7 @@ run:
 
 dev:
 	-@docker rm -f dev-container 2> /dev/null || true
-	@echo 'App will run on http://localhost:3000/'
+	@echo 'App=http://localhost:3000/, Api=http://localhost:3001/'
 	@docker run --rm -it \
 		--name dev-container \
 		-p 0.0.0.0:3000:80 \
@@ -38,6 +38,7 @@ dev:
 		-v $(CWD)/src/lib:/usr/src/lib \
 		-v $(CWD)/src/mocks:/usr/src/mocks \
 		-v $(CWD)/src/package.json:/usr/src/package.json \
+    --env-file $(CWD)/env \
 		$(IMAGEDEV) \
 		$(BIN)/nodemon \
 			--config ./nodemon.json \
