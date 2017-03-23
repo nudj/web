@@ -26,7 +26,7 @@
     "@nudj/dummy": "0.3.0",
     "@nudj/schemas": "0.4.2",
     "body-parser": "^1.16.1",
-    "bulma": "^0.3.2",
+    "bulma": "^0.4",
     "classnames": "^2.2.5",
     "connect-ensure-login": "^0.1.1",
     "consolidate": "^0.14.5",
@@ -45,7 +45,12 @@
     "react-router-redux": "^5.0.0-alpha.3",
     "redux": "^3.6.0",
     "sendmail": "^1.1.1",
-    "winston": "^2.3.1"
+    "winston": "^2.3.1",
+    "basscss": "^8.0.3",
+    "basscss-responsive-type-scale": "^1.0.1",
+    "basscss-responsive-typography": "^1.0.1",
+    "basscss-responsive-padding": "^1.1.0",
+    "basscss-responsive-margin": "^1.1.0"
   },
   "devDependencies": {
     "babel-core": "^6.23.1",

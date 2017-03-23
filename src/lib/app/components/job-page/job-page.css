@@ -1,27 +1,45 @@
+.section {
+  composes: hero is-fullheight from 'bulma/css/bulma.css';
+  min-height: calc(100vh - 52px) !important;
+  color: #000000;
+}
 .container {
-  composes: container from 'bulma/css/bulma.css';
+  composes: hero-body from 'bulma/css/bulma.css';
+  composes: columns is-mobile from 'bulma/css/bulma.css';
 }
 .job {
-  composes: column is-half is-offset-one-quarter from 'bulma/css/bulma.css';
+  composes: column is-half-widescreen is-offset-one-quarter-widescreen from 'bulma/css/bulma.css';
+}
+.logo {
+  composes: image is-96x96 from 'bulma/css/bulma.css';
 }
 .title {
-  composes: title is-1 from 'bulma/css/bulma.css';
+  composes: h1 from 'basscss/css/basscss.css';
+  composes: md-h00 from 'basscss-responsive-type-scale/css/responsive-type-scale.css';
+  composes: pt2 from 'basscss-padding/css/padding.css';
 }
 .location {
-  composes: title is-2 from 'bulma/css/bulma.css';
+  composes: h2 from 'basscss/css/basscss.css';
+  composes: md-h1 from 'basscss-responsive-type-scale/css/responsive-type-scale.css';
 }
 .salary {
-  composes: title is-3 from 'bulma/css/bulma.css';
+  composes: h2 from 'basscss/css/basscss.css';
+  composes: md-h1 from 'basscss-responsive-type-scale/css/responsive-type-scale.css';
 }
 .links {
-  composes: level from 'bulma/css/bulma.css';
+  composes: columns from 'bulma/css/bulma.css';
+  composes: pt1 pb1 m0 from 'basscss/css/basscss.css';
 }
-.link,
+.link {
+  composes: column is-3 from 'bulma/css/bulma.css';
+  composes: left-align from 'basscss/css/basscss.css';
+  composes: md-center from 'basscss-responsive-typography/css/responsive-typography.css';
+}
 .social {
-  composes: level-item from 'bulma/css/bulma.css';
+  composes: column is-6 level is-mobile from 'bulma/css/bulma.css';
 }
 .socialLink {
-  composes: icon from 'bulma/css/bulma.css';
+  composes: level-item from 'bulma/css/bulma.css';
 }
 .facebook,
 .twitter,
@@ -53,7 +71,18 @@
 }
 .apply {
   composes: is-primary from 'bulma/css/bulma.css';
+  composes: mt2 from 'basscss/css/basscss.css';
+}
+.nudj {
+  composes: is-black from 'bulma/css/bulma.css';
+  composes: mt2 from 'basscss/css/basscss.css';
 }
 .relatedTitle {
   composes: title is-3 from 'bulma/css/bulma.css';
+}
+.bold {
+  composes: bold from 'basscss/css/basscss.css';
+}
+.breakLine {
+  border: 1.25px solid #efefef;
 }
