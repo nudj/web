@@ -3,13 +3,10 @@ let passport = require('passport')
 
 let router = express.Router()
 
-router.get('/', (req, res) => res.render('index'))
+router.get('/', (req, res) => res.render('index', {
+  user: req.user
+}))
 router.get('/success', (req, res) => res.render('success'))
-
-// Render the login template
-router.get('/login', (req, res) => {
-  res.render('login', { env: process.env })
-})
 
 // Perform session logout and redirect to homepage
 router.get('/logout', (req, res) => {

@@ -104,6 +104,7 @@
             };
         })(window, document, window['_fs_namespace'], 'script', 'user');
     </script>
+    <script src="http://cdn.auth0.com/js/lock/10.13.0/lock.min.js"></script>
 </head>
 
 <!-- CONTENT  -->
@@ -121,8 +122,13 @@
                     </div>
                     <div class="nav-right">
                       <div class="nav-item is-pulled-right">
+                        <% if (user) { %>
+                          <span>Hi, <%= user.displayName %></span>
+                        <% } else { %>
+                          <a id="login" class="button">Login</a>
+                        <% } %>
                         <a class="button is-success is-medium" href=/request>
-                        <span>Request access</span>
+                          <span>Request access</span>
                         </a>
                       </div>
                     </div>
@@ -346,6 +352,7 @@
             </div>
         </div>
     </footer>
+    <script src="/assets/js/index.js"></script>
 </body>
 
 </html>
