@@ -13,18 +13,18 @@ export default (props) => (
     <div className={style.container}>
       <div className={style.job}>
         <img className={style.logo} src={get(props, 'company.logo')} />
-       <h1 className={style.title}>{get(props, 'job.title')}</h1>
-       <h2 className={style.location}>{get(props, 'job.location')}</h2>
-       <h2 className={style.salary}>£{get(props, 'job.remuneration') * 1000}</h2>
-       <hr className={style.breakLine} />
-       <div className={style.links}>
-        <div className={style.link}>
+        <h1 className={style.title}>{get(props, 'job.title')}</h1>
+        <h2 className={style.location}>{get(props, 'job.location')}</h2>
+        <h2 className={style.salary}>£{get(props, 'job.remuneration') * 1000}</h2>
+        <hr className={style.breakLine} />
+        <div className={style.links}>
+         <div className={style.link}>
           <a href={get(props, 'company.url', '#company-url')}>View company website</a>
-        </div>
-        <div className={style.link}>
+         </div>
+         <div className={style.link}>
           <a href={get(props, 'job.url', '#job-url')}>View full job post</a>
-        </div>
-        <div className={style.social}>
+         </div>
+         <div className={style.social}>
           <div className={style.socialLink}>
             <a href='#'>
               <i className={style.facebook} />
@@ -46,7 +46,7 @@ export default (props) => (
             </a>
           </div>
         </div>
-      </div>
+       </div>
         <hr className={style.breakLine} />
         <div className={style.actions}>
         <div className={style.action}>
@@ -55,7 +55,7 @@ export default (props) => (
         <div className={style.action}>
           <p>Know someone perfect? We’ll give you <strong>£{get(props, 'job.bonus')}</strong> if they get the job.</p><a className={style.nudj} href='#'>Nudj</a>
         </div>
-      </div>
+        </div>
         <hr className={style.breakLine} />
         <div className={style.related}>
         <h2 className={style.relatedTitle}>Other positions</h2>
