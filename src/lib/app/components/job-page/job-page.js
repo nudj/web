@@ -19,33 +19,33 @@ export default (props) => (
         <hr className={style.breakLine} />
         <div className={style.links}>
           <div className={style.link}>
-          <a href={get(props, 'company.url', '#company-url')}>View company website</a>
-        </div>
-        <div className={style.link}>
-          <a href={get(props, 'job.url', '#job-url')}>View full job post</a>
-        </div>
-        <div className={style.social}>
-          <div className={style.socialLink}>
-            <a href='#'>
-              <i className={style.facebook} />
-            </a>
+            <a href={get(props, 'company.url', '#company-url')}>View company website</a>
           </div>
-          <div className={style.socialLink}>
-            <a href='#'>
-              <i className={style.twitter} />
-            </a>
+          <div className={style.link}>
+            <a href={get(props, 'job.url', '#job-url')}>View full job post</a>
           </div>
-          <div className={style.socialLink}>
-            <a href='#'>
-              <i className={style.linkedin} />
-            </a>
+          <div className={style.social}>
+            <div className={style.socialLink}>
+              <a href='#'>
+                <i className={style.facebook} />
+              </a>
+            </div>
+            <div className={style.socialLink}>
+              <a href='#'>
+                <i className={style.twitter} />
+              </a>
+            </div>
+            <div className={style.socialLink}>
+              <a href='#'>
+                <i className={style.linkedin} />
+              </a>
+            </div>
+            <div className={style.socialLink}>
+              <a href='#'>
+                <i className={style.instagram} />
+              </a>
+            </div>
           </div>
-          <div className={style.socialLink}>
-            <a href='#'>
-              <i className={style.instagram} />
-            </a>
-          </div>
-        </div>
         </div>
         <hr className={style.breakLine} />
         <div className={style.actions}>
@@ -63,7 +63,7 @@ export default (props) => (
           <ul>
             {get(props, 'job.related', []).map((related) => <li key={related.title.split(' ').join('-')}>
               <Link to={`/jobs/${related.id}`}>{related.title}, {related.location}</Link>
-              </li>)}
+            </li>)}
           </ul>
         </div>
       </div>
