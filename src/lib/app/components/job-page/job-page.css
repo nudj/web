@@ -8,7 +8,7 @@
   composes: columns is-mobile from 'bulma/css/bulma.css';
 }
 .job {
-  composes: column is-half-widescreen is-offset-one-quarter-widescreen from 'bulma/css/bulma.css';
+  composes: column is-half-desktop is-offset-one-quarter-desktop from 'bulma/css/bulma.css';
 }
 .logo {
   composes: image is-96x96 from 'bulma/css/bulma.css';
@@ -28,7 +28,7 @@
 }
 .links {
   composes: columns from 'bulma/css/bulma.css';
-  composes: pt1 pb1 m0 from 'basscss/css/basscss.css';
+  composes: m0 from 'basscss/css/basscss.css';
 }
 .link {
   composes: column is-3 from 'bulma/css/bulma.css';
