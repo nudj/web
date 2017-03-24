@@ -18,13 +18,13 @@ export default (props) => (
         <h2 className={style.salary}>£{get(props, 'job.remuneration') * 1000}</h2>
         <hr className={style.breakLine} />
         <div className={style.links}>
-         <div className={style.link}>
+          <div className={style.link}>
           <a href={get(props, 'company.url', '#company-url')}>View company website</a>
-         </div>
-         <div className={style.link}>
+        </div>
+        <div className={style.link}>
           <a href={get(props, 'job.url', '#job-url')}>View full job post</a>
-         </div>
-         <div className={style.social}>
+        </div>
+        <div className={style.social}>
           <div className={style.socialLink}>
             <a href='#'>
               <i className={style.facebook} />
@@ -46,26 +46,26 @@ export default (props) => (
             </a>
           </div>
         </div>
-       </div>
+        </div>
         <hr className={style.breakLine} />
         <div className={style.actions}>
-        <div className={style.action}>
-          <p>Interested? It only takes <strong>2 seconds</strong> to apply & you don’t need a CV.</p><a className={style.apply} href='#'>Apply</a>
-        </div>
-        <div className={style.action}>
-          <p>Know someone perfect? We’ll give you <strong>£{get(props, 'job.bonus')}</strong> if they get the job.</p><a className={style.nudj} href='#'>Nudj</a>
-        </div>
+          <div className={style.action}>
+            <p>Interested? It only takes <strong>2 seconds</strong> to apply & you don’t need a CV.</p><a className={style.apply} href='#'>Apply</a>
+          </div>
+          <div className={style.action}>
+            <p>Know someone perfect? We’ll give you <strong>£{get(props, 'job.bonus')}</strong> if they get the job.</p><a className={style.nudj} href='#'>Nudj</a>
+          </div>
         </div>
         <hr className={style.breakLine} />
         <div className={style.related}>
-        <h2 className={style.relatedTitle}>Other positions</h2>
-        <Link to={`/`}>Home</Link>
-        <ul>
-          {get(props, 'job.related', []).map((related) => <li key={related.title.split(' ').join('-')}>
-            <Link to={`/jobs/${related.id}`}>{related.title}, {related.location}</Link>
-          </li>)}
-        </ul>
-      </div>
+          <h2 className={style.relatedTitle}>Other positions</h2>
+          <Link to={`/`}>Home</Link>
+          <ul>
+            {get(props, 'job.related', []).map((related) => <li key={related.title.split(' ').join('-')}>
+              <Link to={`/jobs/${related.id}`}>{related.title}, {related.location}</Link>
+              </li>)}
+          </ul>
+        </div>
       </div>
     </div>
   </div>
