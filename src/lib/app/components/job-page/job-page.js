@@ -12,12 +12,12 @@ export default (props) => (
   <div className={style.section}>
     <div className={style.container}>
       <div className={style.job}>
-      <img className={style.logo} src={get(props, 'company.logo')} />
-      <h1 className={style.title}>{get(props, 'job.title')}</h1>
-      <h2 className={style.location}>{get(props, 'job.location')}</h2>
-      <h2 className={style.salary}>£{get(props, 'job.remuneration') * 1000}</h2>
-      <hr className={style.breakLine}></hr>
-      <div className={style.links}>
+        <img className={style.logo} src={get(props, 'company.logo')} />
+       <h1 className={style.title}>{get(props, 'job.title')}</h1>
+       <h2 className={style.location}>{get(props, 'job.location')}</h2>
+       <h2 className={style.salary}>£{get(props, 'job.remuneration') * 1000}</h2>
+       <hr className={style.breakLine} />
+       <div className={style.links}>
         <div className={style.link}>
           <a href={get(props, 'company.url', '#company-url')}>View company website</a>
         </div>
@@ -47,8 +47,8 @@ export default (props) => (
           </div>
         </div>
       </div>
-      <hr className={style.breakLine}></hr>
-      <div className={style.actions}>
+        <hr className={style.breakLine} />
+        <div className={style.actions}>
         <div className={style.action}>
           <p>Interested? It only takes <strong>2 seconds</strong> to apply & you don’t need a CV.</p><a className={style.apply} href='#'>Apply</a>
         </div>
@@ -56,8 +56,8 @@ export default (props) => (
           <p>Know someone perfect? We’ll give you <strong>£{get(props, 'job.bonus')}</strong> if they get the job.</p><a className={style.nudj} href='#'>Nudj</a>
         </div>
       </div>
-      <hr className={style.breakLine}></hr>
-      <div className={style.related}>
+        <hr className={style.breakLine} />
+        <div className={style.related}>
         <h2 className={style.relatedTitle}>Other positions</h2>
         <Link to={`/`}>Home</Link>
         <ul>
@@ -66,7 +66,7 @@ export default (props) => (
           </li>)}
         </ul>
       </div>
+      </div>
     </div>
-  </div>
   </div>
 )
