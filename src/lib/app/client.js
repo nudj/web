@@ -11,8 +11,6 @@ import { appReducer } from './reducers/app'
 
 const store = createStore(appReducer, data)
 
-console.log('loaded')
-
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter basename='/app'>
