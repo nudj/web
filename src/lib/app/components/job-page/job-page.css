@@ -1,11 +1,9 @@
 .section {
   composes: hero is-fullheight from 'bulma/css/bulma.css';
   min-height: calc(100vh - 52px) !important;
-  color: #000000;
 }
 .container {
-  composes: hero-body from 'bulma/css/bulma.css';
-  composes: columns is-mobile from 'bulma/css/bulma.css';
+  composes: hero-body columns is-mobile from 'bulma/css/bulma.css';
 }
 .job {
   composes: column is-half-desktop is-offset-one-quarter-desktop from 'bulma/css/bulma.css';
@@ -48,16 +46,16 @@
   composes: fa from 'font-awesome/css/font-awesome.css';
 }
 .facebook {
-  composes: fa-facebook-square from 'font-awesome/css/font-awesome.css';
+  composes: fa-facebook-square fa-lg from 'font-awesome/css/font-awesome.css';
 }
 .twitter {
-  composes: fa-twitter-square from 'font-awesome/css/font-awesome.css';
+  composes: fa-twitter-square fa-lg from 'font-awesome/css/font-awesome.css';
 }
 .linkedin {
-  composes: fa-linkedin-square from 'font-awesome/css/font-awesome.css';
+  composes: fa-linkedin-square fa-lg from 'font-awesome/css/font-awesome.css';
 }
 .instagram {
-  composes: fa-instagram from 'font-awesome/css/font-awesome.css';
+  composes: fa-instagram fa-lg from 'font-awesome/css/font-awesome.css';
 }
 .actions {
   composes: columns from 'bulma/css/bulma.css';
