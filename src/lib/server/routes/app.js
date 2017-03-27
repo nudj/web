@@ -5,7 +5,7 @@ let build = require('../build').default
 let router = express.Router()
 
 function fetch (uri) {
-  return nodeFetch(`http://api:3001/${uri}`).then((response) => response.json())
+  return nodeFetch(`http://api:81/${uri}`).then((response) => response.json())
 }
 
 router.get('/:companySlug/:jobSlugId', (req, res) => {
