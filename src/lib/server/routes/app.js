@@ -1,6 +1,7 @@
 let express = require('express')
 let nodeFetch = require('node-fetch')
 
+let logger = require('../logger')
 let build = require('../build').default
 let router = express.Router()
 
@@ -24,21 +25,32 @@ router.get('/', (req, res) => {
   }
 })
 
-router.get('/:companySlug/:jobSlugId', (req, res) => {
+router.get('/:companySlug/:jobSlugRefId', (req, res) => {
+  let company, referral, job, referrer
   let companySlug = req.params.companySlug
-  let jobSlug = req.params.jobSlugId.split('+')[0]
-  let jobId = req.params.jobSlugId.split('+')[1]
-  let refId = req.query.ref
+  let jobSlug = req.params.jobSlugRefId.split('+')[0]
+  let refId = req.params.jobSlugRefId.split('+')[1]
   Promise.all([
     fetch(`companies/${companySlug}`),
-    fetch(`jobs/${jobId}`),
-    fetch(`people/${refId}`)
+    fetch(`referrals/${refId}`)
   ])
   .then(([
-    company,
-    job,
-    referrer
+    fetchedCompany,
+    fetchedReferral
   ]) => {
+    company = fetchedCompany
+    referral = fetchedReferral
+    return Promise.all([
+      fetch(`jobs/${referral.jobId}`),
+      fetch(`people/${referral.personId}`)
+    ])
+  })
+  .then(([
+    fetchedJob,
+    fetchedPerson
+  ]) => {
+    job = fetchedJob
+    referrer = fetchedPerson
     // ensure a valid url
     if (company.id !== job.companyId || jobSlug !== job.slug) {
       return {
@@ -48,9 +60,16 @@ router.get('/:companySlug/:jobSlugId', (req, res) => {
     return {
       page: {
         company,
+        referral,
         job,
         referrer
       }
+    }
+  })
+  .catch((error) => {
+    logger.log('error', error)
+    return {
+      error: '500'
     }
   })
   .then((data) => {
@@ -61,7 +80,7 @@ router.get('/:companySlug/:jobSlugId', (req, res) => {
       })
       res.end()
     } else {
-      return res.render('app', {
+      res.render('app', {
         data: JSON.stringify(data),
         html: renderResult
       })
