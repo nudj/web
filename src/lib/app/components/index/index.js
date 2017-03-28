@@ -8,7 +8,7 @@ import JobPage from '../job-page'
 
 class Index extends Component {
   render () {
-    return this.props.error ? <div>{this.props.error}</div> : (
+    return this.props.error ? <div>{this.props.error} - {this.props.message}</div> : (
       <div>
         <header className={style.header}>
           <Header />

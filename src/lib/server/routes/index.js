@@ -17,10 +17,10 @@ router.get('/callback',
     if (!req.user) {
       throw new Error('user null')
     }
-    res.redirect('/')
+    res.redirect(req.session.returnTo || '/')
   }
 )
 
-router.get('/login', passport.authenticate('auth0', {}), (req, res) => res.redirect('/'))
+router.get('/login', passport.authenticate('auth0', {}), (req, res) => res.redirect(req.session.returnTo || '/'))
 
 module.exports = router

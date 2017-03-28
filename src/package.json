@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@nudj/dummy": "0.3.0",
-    "@nudj/schemas": "0.4.2",
+    "@nudj/schemas": "0.5.0",
     "basscss": "^8.0.3",
     "basscss-responsive-type-scale": "^1.0.1",
     "basscss-responsive-typography": "^1.0.1",

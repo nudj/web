@@ -77,9 +77,9 @@ app.use((error, req, res, next) => {
   res.type('txt').send('500: Internal server error')
 })
 
-// if (process.env.NODE_ENV !== 'production') {
-//   let mockApi = require('../../mocks/api')
-//   mockApi.listen(81, () => logger.log('info', 'Mock API running'))
-// }
+if (process.env.NODE_ENV !== 'production') {
+  let mockApi = require('../../mocks/api')
+  mockApi.listen(81, () => logger.log('info', 'Mock API running'))
+}
 
 app.listen(80, () => logger.log('info', 'App running'))

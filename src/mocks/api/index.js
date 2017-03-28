@@ -15,6 +15,10 @@ let dummyData = dummy({
   people: {
     schema: schemas.people,
     count: 20
+  },
+  referrals: {
+    schema: schemas.referrals,
+    count: 20
   }
 })
 
@@ -35,6 +39,18 @@ server.get('/companies/:cid', (req, res, next) => {
     }
   } else {
     next()
+  }
+})
+server.get('/people/first', (req, res, next) => {
+  let person = find(dummyData.people, req.query)
+  if (person) {
+    res.json(person)
+  } else {
+    res.json({
+      error: true,
+      errorCode: '404',
+      errorMessage: 'no match'
+    })
   }
 })
 server.use(router)

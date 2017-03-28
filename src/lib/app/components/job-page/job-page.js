@@ -58,9 +58,9 @@ export default (props) => (
             <div className={style.action}>
               <p>Interested? It only takes <strong>2 seconds</strong> to apply & you don’t need a CV.</p><a className={style.apply} href='#'>Apply</a>
             </div>
-            <div className={style.action}>
-              <p>Know someone perfect? We’ll give you <strong>£{get(props, 'job.bonus')}</strong> if they get the job.</p><a className={style.nudj} href='#'>Nudj</a>
-            </div>
+            <form className={style.action} action={`/${get(props, 'company.slug')}/${get(props, 'job.slug')}+${get(props, 'referral.id')}/nudj`} method='GET'>
+              <p>Know someone perfect? We’ll give you £{get(props, 'job.bonus')} if they get the job.</p><button className={style.nudj}>Nudj</button>
+            </form>
           </div>
           <hr className={style.breakLine} />
           <div className={style.related}>
