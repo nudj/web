@@ -6,6 +6,7 @@ import Header from '../header'
 import Message from '../message'
 import HomePage from '../home-page'
 import JobPage from '../job-page'
+import NudjPage from '../nudj-page'
 import ErrorPage from '../error-page'
 
 class Index extends Component {
@@ -18,6 +19,7 @@ class Index extends Component {
         {this.props.message ? <Message key='message' message={this.props.message} /> : ''}
         <Route exact path='/' render={(props) => <HomePage {...props} {...this.props} />} />
         <Route exact path='/:companySlug/:jobSlugId' render={(props) => <JobPage {...props} {...this.props} />} />
+        <Route exact path='/:companySlug/:jobSlugId/nudj' render={(props) => <NudjPage {...props} {...this.props} />} />
       </div>
     )
   }

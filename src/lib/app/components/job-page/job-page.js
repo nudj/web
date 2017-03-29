@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import _get from 'lodash/get'
 import Header from '../header'
+import NudjSuccess from '../nudj-success'
 import style from './job-page.css'
 
 function get (object, path, fallback) {
@@ -11,12 +12,7 @@ function get (object, path, fallback) {
 function renderLinkMessage (props) {
   let message
   if (get(props, 'page.referrer.email') === get(props, 'user._json.email')) {
-    message = (
-      <div className={style.linkMessage}>
-        <p>Awesomesauce! Here's your special link...</p>
-        <a href={`/${get(props, 'page.company.slug')}/${get(props, 'page.job.slug')}+${get(props, 'page.referral.id')}`}>{`http://nudj.co/${get(props, 'page.company.slug')}/${get(props, 'page.job.slug')}+${get(props, 'page.referral.id')}`}</a>
-      </div>
-    )
+    message = <NudjSuccess {...props.page} />
   }
   return message
 }
@@ -72,7 +68,7 @@ export default (props) => (
             <div className={style.action}>
               <p>Interested? It only takes <strong>2 seconds</strong> to apply & you don’t need a CV.</p><a className={style.apply} href='#'>Apply</a>
             </div>
-            <form className={style.action} action={`/${get(props, 'page.company.slug')}/${get(props, 'page.job.slug')}+${get(props, 'page.referral.id')}/nudj`} method='GET'>
+            <form className={style.action} action={`/${get(props, 'page.company.slug')}/${get(props, 'page.job.slug')}+${get(props, 'page.referral.id')}/nudj`} method='POST'>
               <p>Know someone perfect? We’ll give you £{get(props, 'page.job.bonus')} if they get the job.</p><button className={style.nudj}>Nudj</button>
             </form>
           </div>

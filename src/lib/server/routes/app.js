@@ -14,10 +14,7 @@ router.get('/', (req, res) => {
   let data = {page: {}}
   let renderResult = build(data, req.url)
   if (renderResult.url) {
-    res.writeHead(302, {
-      Location: renderResult.url
-    })
-    res.end()
+    res.redirect(renderResult.url)
   } else {
     return res.render('app', {
       data: JSON.stringify(data),
@@ -26,7 +23,7 @@ router.get('/', (req, res) => {
   }
 })
 
-router.get('/:companySlug/:jobSlugRefId/nudj', ensureLoggedIn, (req, res) => {
+let nudjHandler = (req, res) => {
   let company, referral, job, referrer
   let companySlug = req.params.companySlug
   let jobSlug = req.params.jobSlugRefId.split('+')[0]
@@ -106,10 +103,29 @@ router.get('/:companySlug/:jobSlugRefId/nudj', ensureLoggedIn, (req, res) => {
       req.session.message = data.message
       res.redirect(`/${company.slug}/${job.slug}+${referral.id}`)
     } else {
-      res.redirect(`/${company.slug}/${job.slug}+${data.id}`)
+      let renderResult = build({
+        user: req.user,
+        page: {
+          company,
+          job,
+          referrer,
+          referral: data
+        }
+      }, req.url)
+      if (renderResult.url) {
+        res.redirect(renderResult.url)
+      } else {
+        res.render('app', {
+          data: JSON.stringify(data),
+          html: renderResult
+        })
+      }
     }
   })
-})
+}
+
+router.get('/:companySlug/:jobSlugRefId/nudj', ensureLoggedIn, nudjHandler)
+router.post('/:companySlug/:jobSlugRefId/nudj', ensureLoggedIn, nudjHandler)
 
 router.get('/:companySlug/:jobSlugRefId', (req, res) => {
   let company, referral, job, referrer
@@ -172,10 +188,7 @@ router.get('/:companySlug/:jobSlugRefId', (req, res) => {
     }
     let renderResult = build(data, req.url)
     if (renderResult.url) {
-      res.writeHead(302, {
-        Location: renderResult.url
-      })
-      res.end()
+      res.redirect(renderResult.url)
     } else {
       res.render('app', {
         data: JSON.stringify(data),
