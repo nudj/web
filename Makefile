@@ -29,11 +29,11 @@ run:
 
 dev:
 	-@docker rm -f dev-container 2> /dev/null || true
-	@echo 'App=http://localhost:3000/, Api=http://localhost:3001/'
+	@echo 'App=http://localhost:80/, Api=http://localhost:81/'
 	@docker run --rm -it \
 		--name dev-container \
-		-p 0.0.0.0:3000:80 \
-		-p 0.0.0.0:3001:81 \
+		-p 0.0.0.0:80:80 \
+		-p 0.0.0.0:81:81 \
 		--add-host api:127.0.0.1 \
 		-v $(CWD)/src/lib:/usr/src/lib \
 		-v $(CWD)/src/mocks:/usr/src/mocks \

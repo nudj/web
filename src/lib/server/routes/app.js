@@ -137,8 +137,8 @@ router.get('/:companySlug/:jobSlugRefId', (req, res) => {
     // ensure a valid url
     if (company.id !== job.companyId || jobSlug !== job.slug) {
       return {
-        error: '400',
-        message: 'Invalid url'
+        error: '404',
+        message: 'Not found'
       }
     }
     return {

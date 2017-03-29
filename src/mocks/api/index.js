@@ -21,6 +21,17 @@ let dummyData = dummy({
     count: 20
   }
 })
+dummyData.people.push({
+  id: '21',
+  firstName: 'Nick',
+  lastName: 'Collings',
+  email: 'nick@nudj.co',
+  urls: ['http://test.com/'],
+  title: 'Tech Lead',
+  type: 'external',
+  company: 'nudj',
+  status: 'user'
+})
 
 let server = jsonServer.create()
 let router = jsonServer.router(dummyData)
@@ -35,20 +46,25 @@ server.get('/companies/:cid', (req, res, next) => {
     if (company) {
       res.json(company)
     } else {
-      res.status(404).json({})
+      res.json({
+        error: true,
+        code: 404,
+        errorMessage: 'no match'
+      })
     }
   } else {
     next()
   }
 })
-server.get('/people/first', (req, res, next) => {
-  let person = find(dummyData.people, req.query)
-  if (person) {
-    res.json(person)
+server.get('/:type/first', (req, res, next) => {
+  let type = req.params.type
+  let match = find(dummyData[type], req.query)
+  if (match) {
+    res.json(match)
   } else {
     res.json({
       error: true,
-      errorCode: '404',
+      code: 404,
       errorMessage: 'no match'
     })
   }
