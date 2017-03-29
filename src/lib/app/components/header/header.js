@@ -20,7 +20,7 @@ export default class Header extends React.Component {
         <div className={style.container}>
           <div className={style.left}>
             <a className={style.home} href='/'>
-              <img className={style.logo} src='/assets/images/nudj-logo.png' />
+              <img className={style.brand} src='/assets/images/nudj-logo.png' />
             </a>
           </div>
           <span className={style.toggle} onClick={this.onClickToggle}>
@@ -29,8 +29,9 @@ export default class Header extends React.Component {
             <span />
           </span>
           <div className={`${style.right} ${this.state.menuOpen ? style.isActive : ''}`}>
+            <a className={style.login} href='/request'>Log in</a>
+            <span className={style.padding} />
             <a className={style.request} href='/request'>Request access</a>
-            <a className={style.request} href='/request'>Log in</a>
           </div>
         </div>
       </nav>

@@ -3,9 +3,6 @@ let passport = require('passport')
 
 let router = express.Router()
 
-router.get('/', (req, res) => res.render('index', {
-  user: req.user
-}))
 router.get('/success', (req, res) => res.render('success'))
 
 // Perform session logout and redirect to homepage

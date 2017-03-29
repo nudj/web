@@ -8,6 +8,22 @@ function fetch (uri) {
   return nodeFetch(`http://api:81/${uri}`).then((response) => response.json())
 }
 
+router.get('/', (req, res) => {
+  let data = {page: {}}
+  let renderResult = build(data, req.url)
+  if (renderResult.url) {
+    res.writeHead(302, {
+      Location: renderResult.url
+    })
+    res.end()
+  } else {
+    return res.render('app', {
+      data: JSON.stringify(data),
+      html: renderResult
+    })
+  }
+})
+
 router.get('/:companySlug/:jobSlugId', (req, res) => {
   let companySlug = req.params.companySlug
   let jobSlug = req.params.jobSlugId.split('+')[0]

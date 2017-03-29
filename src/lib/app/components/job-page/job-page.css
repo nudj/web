@@ -1,9 +1,43 @@
-.section {
+.body{
+  color: #000000;
+}
+.heroFull {
   composes: hero is-fullheight from 'bulma/css/bulma.css';
-  min-height: calc(100vh - 52px) !important;
+}
+.heroBody {
+  composes: hero-body columns is-mobile from 'bulma/css/bulma.css';
+}
+.heroHead {
+  composes: hero-head from 'bulma/css/bulma.css';
+}
+.nav {
+  composes: nav from 'bulma/css/bulma.css';
+  composes: pt1 from 'basscss-padding/css/padding.css';
+  box-shadow: none !important;
+}
+.left {
+  composes: nav-left from 'bulma/css/bulma.css';
+}
+.home {
+  composes: nav-item from 'bulma/css/bulma.css';
+}
+.brand {
+  max-height: 2.5rem !important;
+}
+.right {
+  composes: nav-right nav-item from 'bulma/css/bulma.css';
+}
+.login{
+  composes: button is-link from 'bulma/css/bulma.css'
+}
+.request {
+  composes: button is-primary from 'bulma/css/bulma.css';
 }
 .container {
-  composes: hero-body columns is-mobile from 'bulma/css/bulma.css';
+  composes: container from 'bulma/css/bulma.css';
+}
+.centered {
+  composes: container has-text-centered from 'bulma/css/bulma.css';
 }
 .job {
   composes: column is-half-desktop is-offset-one-quarter-desktop from 'bulma/css/bulma.css';
@@ -83,4 +117,18 @@
 }
 .breakLine {
   border: 1.25px solid #efefef;
+}
+.heroFoot {
+  composes: hero-foot from 'bulma/css/bulma.css';
+}
+.footerCopy,
+.buttonLink {
+  composes: h5 from 'basscss/css/basscss.css';
+  composes: md-h4 from 'basscss-responsive-type-scale/css/responsive-type-scale.css';
+}
+.buttonLink {
+  composes: button is-link from 'bulma/css/bulma.css';
+}
+.padding {
+  composes: pl2 from 'basscss-padding/css/padding.css';
 }
