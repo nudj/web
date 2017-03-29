@@ -57,8 +57,10 @@ router.get('/:companySlug/:jobSlugRefId/nudj', ensureLoggedIn, (req, res) => {
     // ensure person hasn't already referred this job
     if (fetchedReferral.code !== 404) {
       return {
-        error: '400',
-        message: 'Already referred'
+        message: {
+          type: 'error',
+          message: 'Already referred'
+        }
       }
     }
     // ensure this is a valid referral url
@@ -71,8 +73,10 @@ router.get('/:companySlug/:jobSlugRefId/nudj', ensureLoggedIn, (req, res) => {
       jobSlug !== job.slug
     ) {
       return {
-        error: '400',
-        message: 'Invalid data'
+        message: {
+          type: 'error',
+          message: 'Invalid data'
+        }
       }
     }
     // create new referral
@@ -91,17 +95,16 @@ router.get('/:companySlug/:jobSlugRefId/nudj', ensureLoggedIn, (req, res) => {
   .catch((error) => {
     logger.log('error', error)
     return {
-      error: '500',
-      message: 'Something went wrong'
+      message: {
+        type: 'error',
+        message: 'Something went wrong'
+      }
     }
   })
   .then((data) => {
-    if (data.error) {
-      let renderResult = build(data, req.url)
-      res.render('app', {
-        data: JSON.stringify(data),
-        html: renderResult
-      })
+    if (data.message) {
+      req.session.message = data.message
+      res.redirect(`/${company.slug}/${job.slug}+${referral.id}`)
     } else {
       res.redirect(`/${company.slug}/${job.slug}+${data.id}`)
     }
@@ -137,8 +140,10 @@ router.get('/:companySlug/:jobSlugRefId', (req, res) => {
     // ensure a valid url
     if (company.id !== job.companyId || jobSlug !== job.slug) {
       return {
-        error: '404',
-        message: 'Not found'
+        error: {
+          code: 404,
+          message: 'Not found'
+        }
       }
     }
     return {
@@ -153,11 +158,18 @@ router.get('/:companySlug/:jobSlugRefId', (req, res) => {
   .catch((error) => {
     logger.log('error', error)
     return {
-      error: '500',
-      message: 'Something went wrong :('
+      error: {
+        code: 500,
+        message: 'Something went wrong :('
+      }
     }
   })
   .then((data) => {
+    data.user = req.user
+    if (req.session.message) {
+      data.message = req.session.message
+      delete req.session.message
+    }
     let renderResult = build(data, req.url)
     if (renderResult.url) {
       res.writeHead(302, {
