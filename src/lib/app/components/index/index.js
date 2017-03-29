@@ -3,11 +3,10 @@ import { connect } from 'react-redux'
 import { Route } from 'react-router-dom'
 import style from './index.css'
 import Header from '../header'
+import Message from '../message'
 import HomePage from '../home-page'
 import JobPage from '../job-page'
 import ErrorPage from '../error-page'
-
-let renderMessage = (message) => message ? <div className={style[`${message.type}Message`]}>{message.message}</div> : ''
 
 class Index extends Component {
   render () {
@@ -16,9 +15,9 @@ class Index extends Component {
         <header className={style.header}>
           <Header />
         </header>
-        {renderMessage(this.props.message)}
-        <Route exact path='/' render={(props) => <HomePage {...props} {...this.props.page} />} />
-        <Route exact path='/:companySlug/:jobSlugId' render={(props) => <JobPage {...props} {...this.props.page} />} />
+        {this.props.message ? <Message key='message' message={this.props.message} /> : ''}
+        <Route exact path='/' render={(props) => <HomePage {...props} {...this.props} />} />
+        <Route exact path='/:companySlug/:jobSlugId' render={(props) => <JobPage {...props} {...this.props} />} />
       </div>
     )
   }

@@ -8,27 +8,41 @@ function get (object, path, fallback) {
   return _get(object, path, fallback !== undefined ? fallback : <span style={{ color: 'red' }}>UNDEFINED</span>)
 }
 
+function renderLinkMessage (props) {
+  let message
+  if (get(props, 'page.referrer.email') === get(props, 'user._json.email')) {
+    message = (
+      <div className={style.linkMessage}>
+        <p>Awesomesauce! Here's your special link...</p>
+        <a href={`/${get(props, 'page.company.slug')}/${get(props, 'page.job.slug')}+${get(props, 'page.referral.id')}`}>{`http://nudj.co/${get(props, 'page.company.slug')}/${get(props, 'page.job.slug')}+${get(props, 'page.referral.id')}`}</a>
+      </div>
+    )
+  }
+  return message
+}
+
 export default (props) => (
   <div className={style.body}>
     <div className={style.heroFull}>
       <div className={style.heroHead}>
         <div className={style.container}>
-          <Header />
+          <Header user={props.user} message={props.message} />
         </div>
       </div>
       <div className={style.heroBody}>
         <div className={style.job}>
-          <img className={style.logo} src={get(props, 'company.logo')} />
-          <h1 className={style.title}>{get(props, 'job.title')}</h1>
-          <h2 className={style.location}>{get(props, 'job.location')}</h2>
-          <h2 className={style.salary}>£{get(props, 'job.remuneration') * 1000}</h2>
+          {renderLinkMessage(props)}
+          <img className={style.logo} src={get(props, 'page.company.logo')} />
+          <h1 className={style.title}>{get(props, 'page.job.title')}</h1>
+          <h2 className={style.location}>{get(props, 'page.job.location')}</h2>
+          <h2 className={style.salary}>£{get(props, 'page.job.remuneration') * 1000}</h2>
           <hr className={style.breakLine} />
           <div className={style.links}>
             <div className={style.link}>
-              <a href={get(props, 'company.url', '#company-url')}>View company website</a>
+              <a href={get(props, 'page.company.url', '#company-url')}>View company website</a>
             </div>
             <div className={style.link}>
-              <a href={get(props, 'job.url', '#job-url')}>View full job post</a>
+              <a href={get(props, 'page.job.url', '#job-url')}>View full job post</a>
             </div>
             <div className={style.social}>
               <div className={style.socialLink}>
@@ -58,8 +72,8 @@ export default (props) => (
             <div className={style.action}>
               <p>Interested? It only takes <strong>2 seconds</strong> to apply & you don’t need a CV.</p><a className={style.apply} href='#'>Apply</a>
             </div>
-            <form className={style.action} action={`/${get(props, 'company.slug')}/${get(props, 'job.slug')}+${get(props, 'referral.id')}/nudj`} method='GET'>
-              <p>Know someone perfect? We’ll give you £{get(props, 'job.bonus')} if they get the job.</p><button className={style.nudj}>Nudj</button>
+            <form className={style.action} action={`/${get(props, 'page.company.slug')}/${get(props, 'page.job.slug')}+${get(props, 'page.referral.id')}/nudj`} method='GET'>
+              <p>Know someone perfect? We’ll give you £{get(props, 'page.job.bonus')} if they get the job.</p><button className={style.nudj}>Nudj</button>
             </form>
           </div>
           <hr className={style.breakLine} />
@@ -67,7 +81,7 @@ export default (props) => (
             <h2 className={style.relatedTitle}>Other positions</h2>
             <Link to={`/`}>Home</Link>
             <ul>
-              {get(props, 'job.related', []).map((related) => <li key={related.title.split(' ').join('-')}>
+              {get(props, 'page.job.related', []).map((related) => <li key={related.title.split(' ').join('-')}>
                 <Link to={`/jobs/${related.id}`}>{related.title}, {related.location}</Link>
               </li>)}
             </ul>

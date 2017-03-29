@@ -183,6 +183,7 @@ router.get('/:companySlug/:jobSlugRefId', (req, res) => {
       })
     }
   })
+  .catch((error) => logger.log('error', error))
 })
 
 module.exports = router
