@@ -1,8 +1,7 @@
 .nav {
   composes: nav from 'bulma/css/bulma.css';
-}
-.container {
-  composes: container from 'bulma/css/bulma.css';
+  composes: pt1 from 'basscss-padding/css/padding.css';
+  box-shadow: none !important;
 }
 .left {
   composes: nav-left from 'bulma/css/bulma.css';
@@ -13,12 +12,21 @@
 .toggle {
   composes: nav-toggle from 'bulma/css/bulma.css';
 }
+.brand {
+  max-height: 2rem !important;
+}
 .right {
   composes: nav-right nav-menu from 'bulma/css/bulma.css';
 }
-.isActive {
-  composes: is-active from 'bulma/css/bulma.css';
+.login{
+  composes: nav-item button is-link from 'bulma/css/bulma.css'
 }
 .request {
-  composes: nav-item is-tab from 'bulma/css/bulma.css';
+  composes: nav-item button is-primary from 'bulma/css/bulma.css';
+}
+.padding {
+  composes: p1 from 'basscss-padding/css/padding.css';
+}
+.container {
+  composes: container from 'bulma/css/bulma.css';
 }

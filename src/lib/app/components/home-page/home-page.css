@@ -49,7 +49,7 @@
   composes: nav-right is-pulled-right from 'bulma/css/bulma.css';
 }
 .request {
-  composes: button is-success is-medium from 'bulma/css/bulma.css';
+  composes: button is-success from 'bulma/css/bulma.css';
 }
 .header,
 .indicator,
@@ -136,7 +136,7 @@
   composes: pl2 pr2 from 'basscss-padding/css/padding.css';
 }
 .outlined {
-  composes: button is-outlined is-medium from 'bulma/css/bulma.css';
+  composes: button is-outlined from 'bulma/css/bulma.css';
 }
 .footerCopy,
 .buttonLink {

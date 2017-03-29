@@ -1,4 +1,5 @@
 import React from 'react'
+import Header from '../header'
 import style from './home-page.css'
 
 export default (props) => (
@@ -7,17 +8,7 @@ export default (props) => (
       <div className={style.heroFull}>
         <div className={style.heroHead}>
           <div className={style.container}>
-            <nav className={style.nav}>
-              <div className={style.left}>
-                <a className={style.home}>
-                  <img className={style.logo} src='/assets/images/nudj-logo.png' />
-                </a>
-              </div>
-              <div className={style.right}>
-                <a className={style.request} href='/request'>Log in</a>
-                <a className={style.request} href='/request'>Request access</a>
-              </div>
-            </nav>
+            <Header />
           </div>
         </div>
         <div className={style.heroBody}>
