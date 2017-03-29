@@ -21,17 +21,52 @@ let dummyData = dummy({
     count: 20
   }
 })
-dummyData.people.push({
-  id: '21',
-  firstName: 'Nick',
-  lastName: 'Collings',
-  email: 'nick@nudj.co',
-  urls: ['http://test.com/'],
-  title: 'Tech Lead',
-  type: 'external',
-  company: 'nudj',
-  status: 'user'
-})
+dummyData.people = dummyData.people.concat([
+  {
+    id: '21',
+    firstName: 'Nick',
+    lastName: 'Collings',
+    email: 'nick@nudj.co',
+    urls: ['http://test.com/'],
+    title: 'Tech Lead',
+    type: 'external',
+    company: 'nudj',
+    status: 'user'
+  },
+  {
+    id: '22',
+    firstName: 'Robyn',
+    lastName: 'McGirl',
+    email: 'robyn@nudj.co',
+    urls: ['http://test.com/'],
+    title: 'CEO',
+    type: 'external',
+    company: 'nudj',
+    status: 'user'
+  },
+  {
+    id: '23',
+    firstName: 'Jamie',
+    lastName: 'Gunson',
+    email: 'jamie@nudj.co',
+    urls: ['http://test.com/'],
+    title: 'Head of Product',
+    type: 'external',
+    company: 'nudj',
+    status: 'user'
+  },
+  {
+    id: '24',
+    firstName: 'Matt',
+    lastName: 'Ellis',
+    email: 'matt@nudj.co',
+    urls: ['http://test.com/'],
+    title: 'Design Wizard',
+    type: 'external',
+    company: 'nudj',
+    status: 'user'
+  }
+])
 
 let server = jsonServer.create()
 let router = jsonServer.router(dummyData)
