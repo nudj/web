@@ -1,16 +1,10 @@
 import React from 'react'
-import Header from '../header'
 import style from './home-page.css'
 
 export default (props) => (
   <div className={style.body}>
     <div className={style.background}>
       <div className={style.heroFull}>
-        <div className={style.heroHead}>
-          <div className={style.container}>
-            <Header />
-          </div>
-        </div>
         <div className={style.heroBody}>
           <div className={style.container}>
             <div className={style.centered}>
