@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import _get from 'lodash/get'
-import Header from '../header'
 import NudjSuccess from '../nudj-success'
 import style from './job-page.css'
 
