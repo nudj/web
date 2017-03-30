@@ -1,4 +1,4 @@
-.body{
+.body {
   color: #000000;
 }
 .background {
@@ -27,6 +27,7 @@
 }
 .heroBody {
   composes: hero-body from 'bulma/css/bulma.css';
+  composes: mt5 from 'tachyons/css/tachyons.css';
 }
 .centered {
   composes: container has-text-centered from 'bulma/css/bulma.css';

@@ -50,6 +50,7 @@
     "react-router-redux": "^5.0.0-alpha.3",
     "redux": "^3.6.0",
     "sendmail": "^1.1.1",
+    "tachyons": "^4.6.2",
     "winston": "^2.3.1"
   },
   "devDependencies": {

@@ -1,32 +1,44 @@
 .nav {
-  composes: nav from 'bulma/css/bulma.css';
-  composes: pt1 from 'basscss-padding/css/padding.css';
-  box-shadow: none !important;
+  composes: w-100 mw8 center flex justify-between items-stretch h3 ph3 from 'tachyons/css/tachyons.css';
 }
 .left {
-  composes: nav-left from 'bulma/css/bulma.css';
+  composes: flex items-center from 'tachyons/css/tachyons.css';
 }
 .home {
-  composes: nav-item from 'bulma/css/bulma.css';
-}
-.toggle {
-  composes: nav-toggle from 'bulma/css/bulma.css';
+  composes: dib from 'tachyons/css/tachyons.css';
 }
 .brand {
-  max-height: 2rem !important;
+  composes: mw3 from 'tachyons/css/tachyons.css';
+}
+.toggle {
+  composes: db dn-l h3 w3 relative from 'tachyons/css/tachyons.css';
+  cursor: pointer;
+}
+.toggle span {
+  position: absolute;
+  display: block;
+  background-color: #4a4a4a;
+  height: 1px;
+  left: 50%;
+  margin-left: -10px;
+  top: 50%;
+  width: 20px;
+}
+.toggle span:nth-child(1) {
+  margin-top: -6px;
+}
+.toggle span:nth-child(2) {
+  margin-top: 0;
+}
+.toggle span:nth-child(3) {
+  margin-top: 6px;
 }
 .right {
-  composes: nav-right nav-menu from 'bulma/css/bulma.css';
+  composes: dn flex-l items-end items-center from 'tachyons/css/tachyons.css';
 }
-.login{
-  composes: nav-item button is-link from 'bulma/css/bulma.css'
+.login {
+  composes: f5 link black ph3 pv2 from 'tachyons/css/tachyons.css';
 }
 .request {
-  composes: nav-item button is-primary from 'bulma/css/bulma.css';
-}
-.padding {
-  composes: p1 from 'basscss-padding/css/padding.css';
-}
-.container {
-  composes: container from 'bulma/css/bulma.css';
+  composes: f5 link dim br2 ph3 pv2 dib white bg-green from 'tachyons/css/tachyons.css';
 }
