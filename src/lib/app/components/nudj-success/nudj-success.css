@@ -1,0 +1,31 @@
+.container {
+  composes: tc from 'tachyons/css/tachyons.css';
+}
+.heading {
+  composes: f3 mv4 from 'tachyons/css/tachyons.css';
+}
+.link {
+  composes: f5 mv4 db from 'tachyons/css/tachyons.css';
+}
+.actions {
+  composes: flex justify-center items-center mv4 from 'tachyons/css/tachyons.css';
+}
+.copyLink {
+  composes: link dim br2 ph3 pv2 dib white bg-gray mr2 from 'tachyons/css/tachyons.css';
+}
+.socialAction {
+  composes: ma2 from 'tachyons/css/tachyons.css';
+  width: 24px;
+  height: 24px;
+}
+.waLink,
+.fbmLink,
+.liLink,
+.gLink {
+  composes: link dim br2 dib from 'tachyons/css/tachyons.css';
+  width: 24px;
+  height: 24px;
+}
+.linkText {
+  composes: clip from 'tachyons/css/tachyons.css';
+}

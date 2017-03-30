@@ -20,11 +20,6 @@ function renderLinkMessage (props) {
 export default (props) => (
   <div className={style.body}>
     <div className={style.heroFull}>
-      <div className={style.heroHead}>
-        <div className={style.container}>
-          <Header user={props.user} message={props.message} />
-        </div>
-      </div>
       <div className={style.heroBody}>
         <div className={style.job}>
           {renderLinkMessage(props)}
