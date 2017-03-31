@@ -62,7 +62,7 @@ export default (props) => (
       </div>
     </div>
     <div className={style.heroMedium}>
-      <div clasName={style.heroHead}>
+      <div className={style.heroHead}>
         <div className={style.centered}>
           <h2 className={style.header}>How we compare</h2>
           <div className={style.subtitle}>Anyone can say they're the best, so we'll just let the numbers do the talking. &#x1F60F;</div>

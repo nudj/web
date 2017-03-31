@@ -34,11 +34,14 @@
   margin-top: 6px;
 }
 .right {
-  composes: dn flex-l items-end items-center from 'tachyons/css/tachyons.css';
+  composes: dn absolute right-0 static-l flex-l items-end items-center from 'tachyons/css/tachyons.css';
 }
 .login {
   composes: f5 link black ph3 pv2 from 'tachyons/css/tachyons.css';
 }
 .request {
   composes: f5 link dim br2 ph3 pv2 dib white bg-green from 'tachyons/css/tachyons.css';
+}
+.isActive {
+  composes: flex from 'tachyons/css/tachyons.css';
 }

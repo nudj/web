@@ -15,8 +15,58 @@ let dummyData = dummy({
   people: {
     schema: schemas.people,
     count: 20
+  },
+  referrals: {
+    schema: schemas.referrals,
+    count: 20
   }
 })
+dummyData.people = dummyData.people.concat([
+  {
+    id: '21',
+    firstName: 'Nick',
+    lastName: 'Collings',
+    email: 'nick@nudj.co',
+    urls: ['http://test.com/'],
+    title: 'Tech Lead',
+    type: 'external',
+    company: 'nudj',
+    status: 'user'
+  },
+  {
+    id: '22',
+    firstName: 'Robyn',
+    lastName: 'McGirl',
+    email: 'robyn@nudj.co',
+    urls: ['http://test.com/'],
+    title: 'CEO',
+    type: 'external',
+    company: 'nudj',
+    status: 'user'
+  },
+  {
+    id: '23',
+    firstName: 'Jamie',
+    lastName: 'Gunson',
+    email: 'jamie@nudj.co',
+    urls: ['http://test.com/'],
+    title: 'Head of Product',
+    type: 'external',
+    company: 'nudj',
+    status: 'user'
+  },
+  {
+    id: '24',
+    firstName: 'Matt',
+    lastName: 'Ellis',
+    email: 'matt@nudj.co',
+    urls: ['http://test.com/'],
+    title: 'Design Wizard',
+    type: 'external',
+    company: 'nudj',
+    status: 'user'
+  }
+])
 
 let server = jsonServer.create()
 let router = jsonServer.router(dummyData)
@@ -31,10 +81,27 @@ server.get('/companies/:cid', (req, res, next) => {
     if (company) {
       res.json(company)
     } else {
-      res.status(404).json({})
+      res.json({
+        error: true,
+        code: 404,
+        errorMessage: 'no match'
+      })
     }
   } else {
     next()
+  }
+})
+server.get('/:type/first', (req, res, next) => {
+  let type = req.params.type
+  let match = find(dummyData[type], req.query)
+  if (match) {
+    res.json(match)
+  } else {
+    res.json({
+      error: true,
+      code: 404,
+      errorMessage: 'no match'
+    })
   }
 })
 server.use(router)

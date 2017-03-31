@@ -2,12 +2,10 @@ import {
   SET_JOB
 } from '../actions/app'
 
-const initialState = {
-  page: {}
-}
+const initialState = {}
 
-export function appReducer (state = initialState, action) {
-  console.log(action, state)
+export function messageReducer (state = initialState, action) {
+  console.log('messageReducer', action, state)
   switch (action.type) {
     case SET_JOB:
       return state

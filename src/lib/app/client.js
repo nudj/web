@@ -2,20 +2,36 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter } from 'react-router-dom'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import createHistory from 'history/createBrowserHistory'
+import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux'
 
 import App from './components/index'
-import { appReducer } from './reducers/app'
+import { userReducer } from './reducers/user'
+import { messageReducer } from './reducers/message'
+import { pageReducer } from './reducers/page'
 
-const store = createStore(appReducer, data)
+const history = createHistory()
+console.log('history', history)
+console.log('history.location', history.location)
+const middleware = routerMiddleware(history)
+const store = createStore(
+  combineReducers({
+    user: userReducer,
+    page: pageReducer,
+    message: messageReducer,
+    router: routerReducer
+  }),
+  data,
+  applyMiddleware(middleware)
+)
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter basename='/app'>
+    <ConnectedRouter history={history}>
       <App />
-    </BrowserRouter>
+    </ConnectedRouter>
   </Provider>,
   document.getElementById('app')
 )
