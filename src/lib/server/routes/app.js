@@ -98,20 +98,21 @@ let nudjHandler = (req, res) => {
       }
     }
   })
-  .then((data) => {
-    if (data.message) {
-      req.session.message = data.message
+  .then((newReferral) => {
+    if (newReferral.message) {
+      req.session.message = newReferral.message
       res.redirect(`/${company.slug}/${job.slug}+${referral.id}`)
     } else {
-      let renderResult = build({
+      let data = {
         user: req.user,
         page: {
           company,
           job,
           referrer,
-          referral: data
+          referral: newReferral
         }
-      }, req.url)
+      }
+      let renderResult = build(data, req.url)
       if (renderResult.url) {
         res.redirect(renderResult.url)
       } else {

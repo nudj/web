@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import style from './header.css'
 
 export default class Header extends React.Component {
@@ -18,9 +19,9 @@ export default class Header extends React.Component {
     return (
       <nav className={style.nav}>
         <div className={style.left}>
-          <a className={style.home} href='/'>
+          <Link className={style.home} to='/'>
             <img className={style.brand} src='/assets/images/nudj-logo.png' />
-          </a>
+          </Link>
         </div>
         <span className={style.toggle} onClick={this.onClickToggle}>
           <span />
