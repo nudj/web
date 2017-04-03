@@ -5,3 +5,6 @@ src/lib/server/assets/css/app.*
 src/lib/server/assets/js/app.*
 src/lib/server/build.*
 db.json
+.cache/*
+!.cache/readme.md
+!.cache/.npmrc

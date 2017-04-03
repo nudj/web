@@ -20,6 +20,14 @@ buildDev:
 		-f $(CWD)/Dockerfile.dev \
 		.
 
+cache:
+	-@docker rm -f dev-cache 2> /dev/null || true
+	@docker run --rm -it \
+		--name dev-cache \
+		-v $(CWD)/.cache:/usr/src/.cache \
+		$(IMAGEDEV) \
+		/bin/sh -c 'cp -R /tmp/node_modules/. .cache/'
+
 run:
 	@docker run -it --rm \
 		--name web \
@@ -40,13 +48,13 @@ dev:
 		-v $(CWD)/src/package.json:/usr/src/package.json \
 		--env-file $(CWD)/env \
 		$(IMAGEDEV) \
-		$(BIN)/nodemon \
+		/bin/sh -c 'ln -s /tmp/node_modules ./node_modules && $(BIN)/nodemon \
 			--config ./nodemon.json \
 			-e js,html,css \
 			--quiet \
 			--watch ./ \
 			--delay 250ms \
-			-x 'printf "\n\nBuilding...\n" && ./node_modules/.bin/webpack --config ./webpack.client.js --bail --hide-modules && ./node_modules/.bin/webpack --config ./webpack.server.js --bail --hide-modules && node .'
+			-x "printf \"\n\nBuilding...\n\" && ./node_modules/.bin/webpack --config ./webpack.client.js --bail --hide-modules && ./node_modules/.bin/webpack --config ./webpack.server.js --bail --hide-modules && node ."'
 
 packClient:
 	@docker exec -i dev-container \
@@ -73,8 +81,8 @@ tdd:
 		-v $(CWD)/src/lib:/usr/src/lib \
 		-v $(CWD)/src/test:/usr/src/test \
 		$(IMAGEDEV) \
-		$(BIN)/nodemon \
+		/bin/sh -c 'ln -s /tmp/node_modules ./node_modules && $(BIN)/nodemon \
 			--quiet \
 			--watch ./ \
 			--delay 250ms \
-			-x '$(BIN)/mocha test/*.js || exit 1'
+			-x "$(BIN)/mocha test/*.js || exit 1"'
