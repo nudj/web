@@ -128,7 +128,7 @@ router.get('/:companySlug/:jobSlugRefId/nudj', ensureLoggedIn, nudjHandler)
 router.post('/:companySlug/:jobSlugRefId/nudj', ensureLoggedIn, nudjHandler)
 
 let applicationHandler = (req, res) => {
-  let company, referral, job, applicant
+  let company, referral, job, referrer, applicant
   let companySlug = req.params.companySlug
   let jobSlug = req.params.jobSlugRefId.split('+')[0]
   let refId = req.params.jobSlugRefId.split('+')[1]
