@@ -6,19 +6,42 @@ let find = require('lodash/find')
 let dummyData = dummy({
   companies: {
     schema: schemas.company,
-    count: 20
+    count: 5
   },
   jobs: {
     schema: schemas.job,
-    count: 20
+    count: 5
   },
   people: {
     schema: schemas.people,
-    count: 20
+    count: 5
   },
   referrals: {
     schema: schemas.referrals,
-    count: 20
+    count: 5
+  },
+  applications: {
+    schema: {
+      jobId: {
+        example: {
+          fn: 'choice',
+          args: [['1']]
+        }
+      },
+      personId: {
+        example: {
+          fn: 'choice',
+          args: [['1']]
+        }
+      },
+      referralId: {
+        example: {
+          fn: 'choice',
+          args: [['1']]
+        }
+      }
+    },
+    count: 5
   }
 })
 dummyData.people = dummyData.people.concat([
