@@ -28,29 +28,28 @@ let nudjHandler = (req, res) => {
   let companySlug = req.params.companySlug
   let jobSlug = req.params.jobSlugRefId.split('+')[0]
   let refId = req.params.jobSlugRefId.split('+')[1]
-  Promise.all([
+  let initialRequests = [
     fetch(`companies/${companySlug}`),
-    fetch(`referrals/${refId}`),
+    fetch(`jobs/${jobSlug}`),
     fetch(`people/first?email=${req.user._json.email}`)
-  ])
-  .then(([
+  ]
+  if (refId) {
+    initialRequests.push(fetch(`referrals/${refId}`))
+  }
+  Promise.all(initialRequests).then(([
     fetchedCompany,
-    fetchedReferral,
-    fetchedPerson
-  ]) => {
-    company = fetchedCompany
-    referral = fetchedReferral
-    referrer = fetchedPerson
-    return Promise.all([
-      fetch(`jobs/${referral.jobId}`),
-      fetch(`referrals/first?jobId=${referral.jobId}&personId=${referrer.id}`)
-    ])
-  })
-  .then(([
     fetchedJob,
+    fetchedPerson,
     fetchedReferral
   ]) => {
+    company = fetchedCompany
     job = fetchedJob
+    referrer = fetchedPerson
+    referral = fetchedReferral
+
+    return fetch(`referrals/first?jobId=${job.id}&personId=${referrer.id}`)
+  })
+  .then((fetchedReferral) => {
     // ensure person hasn't already referred this job
     if (fetchedReferral.code !== 404) {
       return {
@@ -63,11 +62,11 @@ let nudjHandler = (req, res) => {
     // ensure this is a valid referral url
     if (
       company.code === 404 ||
-      referral.code === 404 ||
+      (referral && referral.code === 404) ||
       referrer.code === 404 ||
       job.code === 404 ||
       company.id !== job.companyId ||
-      jobSlug !== job.slug
+      (referral && referral.jobId !== job.id)
     ) {
       return {
         message: {
@@ -85,7 +84,7 @@ let nudjHandler = (req, res) => {
       body: JSON.stringify({
         jobId: job.id,
         personId: referrer.id,
-        referralId: referral.id
+        referralId: referral ? referral.id : null
       })
     })
   })
@@ -101,7 +100,7 @@ let nudjHandler = (req, res) => {
   .then((newReferral) => {
     if (newReferral.message) {
       req.session.message = newReferral.message
-      res.redirect(`/${company.slug}/${job.slug}+${referral.id}`)
+      res.redirect(`/${company.slug}/${job.slug}${referral ? `+${referral.id}` : ''}`)
     } else {
       let data = {
         user: req.user,
@@ -128,36 +127,32 @@ router.get('/:companySlug/:jobSlugRefId/nudj', ensureLoggedIn, nudjHandler)
 router.post('/:companySlug/:jobSlugRefId/nudj', ensureLoggedIn, nudjHandler)
 
 let applicationHandler = (req, res) => {
-  let company, referral, job, referrer, applicant
+  let company, referral, job, applicant
   let companySlug = req.params.companySlug
   let jobSlug = req.params.jobSlugRefId.split('+')[0]
   let refId = req.params.jobSlugRefId.split('+')[1]
-  Promise.all([
+  let initialRequests = [
     fetch(`companies/${companySlug}`),
-    fetch(`referrals/${refId}`),
+    fetch(`jobs/${jobSlug}`),
     fetch(`people/first?email=${req.user._json.email}`)
-  ])
-  .then(([
+  ]
+  if (refId) {
+    initialRequests.push(fetch(`referrals/${refId}`))
+  }
+  Promise.all(initialRequests).then(([
     fetchedCompany,
-    fetchedReferral,
-    fetchedPerson
+    fetchedJob,
+    fetchedPerson,
+    fetchedReferral
   ]) => {
     company = fetchedCompany
-    referral = fetchedReferral
-    applicant = fetchedPerson
-    return Promise.all([
-      fetch(`jobs/${referral.jobId}`),
-      fetch(`people/${referral.personId}`),
-      fetch(`applications/first?jobId=${referral.jobId}&personId=${applicant.id}`)
-    ])
-  })
-  .then(([
-    fetchedJob,
-    fetchedReferrer,
-    fetchedApplication
-  ]) => {
     job = fetchedJob
-    referrer = fetchedReferrer
+    applicant = fetchedPerson
+    referral = fetchedReferral
+
+    return fetch(`applications/first?jobId=${job.id}&personId=${applicant.id}`)
+  })
+  .then((fetchedApplication) => {
     // ensure person hasn't already referred this job
     if (fetchedApplication.code !== 404) {
       return {
@@ -170,12 +165,11 @@ let applicationHandler = (req, res) => {
     // ensure this is a valid referral url
     if (
       company.code === 404 ||
-      referral.code === 404 ||
-      referrer.code === 404 ||
+      (referral && referral.code === 404) ||
       applicant.code === 404 ||
       job.code === 404 ||
       company.id !== job.companyId ||
-      jobSlug !== job.slug
+      (referral && referral.jobId !== job.id)
     ) {
       return {
         message: {
@@ -193,7 +187,7 @@ let applicationHandler = (req, res) => {
       body: JSON.stringify({
         jobId: job.id,
         personId: applicant.id,
-        referralId: referral.id
+        referralId: referral ? referral.id : null
       })
     })
   })
@@ -209,14 +203,13 @@ let applicationHandler = (req, res) => {
   .then((application) => {
     if (application.message) {
       req.session.message = application.message
-      res.redirect(`/${company.slug}/${job.slug}+${referral.id}`)
+      res.redirect(`/${company.slug}/${job.slug}${referral ? `+${referral.id}` : ''}`)
     } else {
       let data = {
         user: req.user,
         page: {
           company,
           job,
-          referrer,
           applicant,
           application
         }
@@ -241,29 +234,33 @@ router.get('/:companySlug/:jobSlugRefId', (req, res) => {
   let companySlug = req.params.companySlug
   let jobSlug = req.params.jobSlugRefId.split('+')[0]
   let refId = req.params.jobSlugRefId.split('+')[1]
-  Promise.all([
+  let initialRequests = [
     fetch(`companies/${companySlug}`),
-    fetch(`referrals/${refId}`)
-  ])
-  .then(([
+    fetch(`jobs/${jobSlug}`)
+  ]
+  if (refId) {
+    initialRequests.push(fetch(`referrals/${refId}`))
+  }
+
+  Promise.all(initialRequests).then(([
     fetchedCompany,
+    fetchedJob,
     fetchedReferral
   ]) => {
     company = fetchedCompany
-    referral = fetchedReferral
-    return Promise.all([
-      fetch(`jobs/${referral.jobId}`),
-      fetch(`people/${referral.personId}`)
-    ])
-  })
-  .then(([
-    fetchedJob,
-    fetchedPerson
-  ]) => {
     job = fetchedJob
+    referral = fetchedReferral
+
+    if (referral) {
+      return fetch(`people/${referral.personId}`)
+    } else {
+      return Promise.resolve()
+    }
+  })
+  .then((fetchedPerson) => {
     referrer = fetchedPerson
     // ensure a valid url
-    if (company.id !== job.companyId || jobSlug !== job.slug) {
+    if (company.id !== job.companyId || (referral && referral.jobId !== job.id)) {
       return {
         error: {
           code: 404,

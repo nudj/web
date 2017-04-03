@@ -114,6 +114,24 @@ server.get('/companies/:cid', (req, res, next) => {
     next()
   }
 })
+server.get('/jobs/:jid', (req, res, next) => {
+  if (!req.params.jid.match(/^\d+$/)) {
+    let job = find(dummyData.jobs, {
+      slug: req.params.jid
+    })
+    if (job) {
+      res.json(job)
+    } else {
+      res.json({
+        error: true,
+        code: 404,
+        errorMessage: 'no match'
+      })
+    }
+  } else {
+    next()
+  }
+})
 server.get('/:type/first', (req, res, next) => {
   let type = req.params.type
   let match = find(dummyData[type], req.query)
