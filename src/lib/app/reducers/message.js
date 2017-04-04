@@ -5,7 +5,6 @@ import {
 const initialState = {}
 
 export function messageReducer (state = initialState, action) {
-  console.log('messageReducer', action, state)
   switch (action.type) {
     case SET_JOB:
       return state

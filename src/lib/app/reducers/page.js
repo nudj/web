@@ -5,7 +5,6 @@ import {
 const initialState = {}
 
 export function pageReducer (state = initialState, action) {
-  console.log('pageReducer', action, state)
   switch (action.type) {
     case SET_JOB:
       return state

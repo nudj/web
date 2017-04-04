@@ -1,309 +1,124 @@
 let express = require('express')
-let nodeFetch = require('node-fetch')
-let ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn()
+let get = require('lodash/get')
+let _ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn()
 
 let logger = require('../logger')
+let job = require('../modules/job')
 let build = require('../build').default
 let router = express.Router()
 
-function fetch (uri, options) {
-  return nodeFetch(`http://api:81/${uri}`, options).then((response) => response.json())
-}
-
-router.get('/', (req, res) => {
-  let data = {page: {}}
-  let renderResult = build(data, req.url)
-  if (renderResult.url) {
-    res.redirect(renderResult.url)
+function ensureLoggedIn (req, res, next) {
+  if (req.session.logout) {
+    res.redirect('/')
   } else {
-    return res.render('app', {
-      data: JSON.stringify(data),
-      html: renderResult
-    })
+    _ensureLoggedIn(req, res, next)
   }
-})
-
-let nudjHandler = (req, res) => {
-  let company, referral, job, referrer
-  let companySlug = req.params.companySlug
-  let jobSlug = req.params.jobSlugRefId.split('+')[0]
-  let refId = req.params.jobSlugRefId.split('+')[1]
-  let initialRequests = [
-    fetch(`companies/${companySlug}`),
-    fetch(`jobs/${jobSlug}`),
-    fetch(`people/first?email=${req.user._json.email}`)
-  ]
-  if (refId) {
-    initialRequests.push(fetch(`referrals/${refId}`))
-  }
-  Promise.all(initialRequests).then(([
-    fetchedCompany,
-    fetchedJob,
-    fetchedPerson,
-    fetchedReferral
-  ]) => {
-    company = fetchedCompany
-    job = fetchedJob
-    referrer = fetchedPerson
-    referral = fetchedReferral
-
-    return fetch(`referrals/first?jobId=${job.id}&personId=${referrer.id}`)
-  })
-  .then((fetchedReferral) => {
-    // ensure person hasn't already referred this job
-    if (fetchedReferral.code !== 404) {
-      return {
-        message: {
-          type: 'error',
-          message: 'Already referred'
-        }
-      }
-    }
-    // ensure this is a valid referral url
-    if (
-      company.code === 404 ||
-      (referral && referral.code === 404) ||
-      referrer.code === 404 ||
-      job.code === 404 ||
-      company.id !== job.companyId ||
-      (referral && referral.jobId !== job.id)
-    ) {
-      return {
-        message: {
-          type: 'error',
-          message: 'Invalid data'
-        }
-      }
-    }
-    // create new referral
-    return fetch(`referrals`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        jobId: job.id,
-        personId: referrer.id,
-        referralId: referral ? referral.id : null
-      })
-    })
-  })
-  .catch((error) => {
-    logger.log('error', error)
-    return {
-      message: {
-        type: 'error',
-        message: 'Something went wrong'
-      }
-    }
-  })
-  .then((newReferral) => {
-    if (newReferral.message) {
-      req.session.message = newReferral.message
-      res.redirect(`/${company.slug}/${job.slug}${referral ? `+${referral.id}` : ''}`)
-    } else {
-      let data = {
-        user: req.user,
-        page: {
-          company,
-          job,
-          referrer,
-          referral: newReferral
-        }
-      }
-      let renderResult = build(data, req.url)
-      if (renderResult.url) {
-        res.redirect(renderResult.url)
-      } else {
-        res.render('app', {
-          data: JSON.stringify(data),
-          html: renderResult
-        })
-      }
-    }
-  })
+  delete req.session.logout
 }
-router.get('/:companySlug/:jobSlugRefId/nudj', ensureLoggedIn, nudjHandler)
-router.post('/:companySlug/:jobSlugRefId/nudj', ensureLoggedIn, nudjHandler)
 
-let applicationHandler = (req, res) => {
-  let company, referral, job, applicant
-  let companySlug = req.params.companySlug
-  let jobSlug = req.params.jobSlugRefId.split('+')[0]
-  let refId = req.params.jobSlugRefId.split('+')[1]
-  let initialRequests = [
-    fetch(`companies/${companySlug}`),
-    fetch(`jobs/${jobSlug}`),
-    fetch(`people/first?email=${req.user._json.email}`)
-  ]
-  if (refId) {
-    initialRequests.push(fetch(`referrals/${refId}`))
-  }
-  Promise.all(initialRequests).then(([
-    fetchedCompany,
-    fetchedJob,
-    fetchedPerson,
-    fetchedReferral
-  ]) => {
-    company = fetchedCompany
-    job = fetchedJob
-    applicant = fetchedPerson
-    referral = fetchedReferral
-
-    return fetch(`applications/first?jobId=${job.id}&personId=${applicant.id}`)
-  })
-  .then((fetchedApplication) => {
-    // ensure person hasn't already referred this job
-    if (fetchedApplication.code !== 404) {
-      return {
-        message: {
-          type: 'error',
-          message: 'Already applied'
-        }
-      }
-    }
-    // ensure this is a valid referral url
-    if (
-      company.code === 404 ||
-      (referral && referral.code === 404) ||
-      applicant.code === 404 ||
-      job.code === 404 ||
-      company.id !== job.companyId ||
-      (referral && referral.jobId !== job.id)
-    ) {
-      return {
-        message: {
-          type: 'error',
-          message: 'Invalid data'
-        }
-      }
-    }
-    // create new application
-    return fetch(`applications`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        jobId: job.id,
-        personId: applicant.id,
-        referralId: referral ? referral.id : null
-      })
-    })
-  })
-  .catch((error) => {
-    logger.log('error', error)
-    return {
-      message: {
-        type: 'error',
-        message: 'Something went wrong'
-      }
-    }
-  })
-  .then((application) => {
-    if (application.message) {
-      req.session.message = application.message
-      res.redirect(`/${company.slug}/${job.slug}${referral ? `+${referral.id}` : ''}`)
-    } else {
-      let data = {
-        user: req.user,
-        page: {
-          company,
-          job,
-          applicant,
-          application
-        }
-      }
-      let renderResult = build(data, req.url)
-      if (renderResult.url) {
-        res.redirect(renderResult.url)
-      } else {
-        res.render('app', {
-          data: JSON.stringify(data),
-          html: renderResult
-        })
-      }
-    }
-  })
-}
-router.get('/:companySlug/:jobSlugRefId/apply', ensureLoggedIn, applicationHandler)
-router.post('/:companySlug/:jobSlugRefId/apply', ensureLoggedIn, applicationHandler)
-
-router.get('/:companySlug/:jobSlugRefId', (req, res) => {
-  let company, referral, job, referrer
-  let companySlug = req.params.companySlug
-  let jobSlug = req.params.jobSlugRefId.split('+')[0]
-  let refId = req.params.jobSlugRefId.split('+')[1]
-  let initialRequests = [
-    fetch(`companies/${companySlug}`),
-    fetch(`jobs/${jobSlug}`)
-  ]
-  if (refId) {
-    initialRequests.push(fetch(`referrals/${refId}`))
-  }
-
-  Promise.all(initialRequests).then(([
-    fetchedCompany,
-    fetchedJob,
-    fetchedReferral
-  ]) => {
-    company = fetchedCompany
-    job = fetchedJob
-    referral = fetchedReferral
-
-    if (referral) {
-      return fetch(`people/${referral.personId}`)
-    } else {
-      return Promise.resolve()
-    }
-  })
-  .then((fetchedPerson) => {
-    referrer = fetchedPerson
-    // ensure a valid url
-    if (company.id !== job.companyId || (referral && referral.jobId !== job.id)) {
-      return {
-        error: {
-          code: 404,
-          message: 'Not found'
-        }
-      }
-    }
-    return {
-      page: {
-        company,
-        referral,
-        job,
-        referrer
-      }
-    }
-  })
-  .catch((error) => {
-    logger.log('error', error)
-    return {
-      error: {
-        code: 500,
-        message: 'Something went wrong :('
-      }
-    }
-  })
-  .then((data) => {
-    data.user = req.user
+function getRenderDataBuilder (req) {
+  return (page) => {
+    page.person = req.session.person
     if (req.session.message) {
-      data.message = req.session.message
+      page.message = req.session.message
       delete req.session.message
     }
-    let renderResult = build(data, req.url)
-    if (renderResult.url) {
-      res.redirect(renderResult.url)
-    } else {
-      res.render('app', {
-        data: JSON.stringify(data),
-        html: renderResult
-      })
+    page.url = {
+      protocol: req.protocol,
+      hostname: req.hostname,
+      originalUrl: req.originalUrl
     }
-  })
-  .catch((error) => logger.log('error', error))
-})
+    return {
+      page
+    }
+  }
+}
+
+function getErrorHandler (req, res, next) {
+  return (error) => {
+    switch (error.message) {
+      case 'Already referred':
+      case 'Already applied':
+        req.session.message = {
+          code: 403,
+          message: error.message
+        }
+        let destination = req.originalUrl.split('/')
+        logger.log('error', req.method, req.params.companySlug, req.params.jobSlugRefId, destination.pop(), error)
+        destination = destination.join('/')
+        res.redirect(destination)
+        break
+      case 'Not found':
+      default:
+        let data = getRenderDataBuilder(req)({
+          error: {
+            code: error.message === 'Not found' ? 404 : 500,
+            message: error.message === 'Not found' ? error.message : 'Something went wrong'
+          }
+        })
+        getRenderer(req, res, next)(data)
+    }
+  }
+}
+
+function getRenderer (req, res, next) {
+  return (data) => {
+    console.log('data', data)
+    try {
+      delete req.session.logout
+      delete req.session.returnTo
+      let renderResult = build(data)
+      if (renderResult.url) {
+        res.redirect(renderResult.url)
+      } else {
+        let status = get(data, 'error.code', 200)
+        res.status(status).render('app', {
+          data: JSON.stringify(data),
+          html: renderResult
+        })
+      }
+    } catch (error) {
+      logger.log('error', error)
+      next(error)
+    }
+  }
+}
+
+function homeHandler (req, res, next) {
+  let data = getRenderDataBuilder(req)({})
+  getRenderer(req, res)(data)
+}
+
+function jobHandler (req, res, next) {
+  job
+    .get(req.params.companySlug, req.params.jobSlugRefId, req.session.person)
+    .then(getRenderDataBuilder(req, res, next))
+    .then(getRenderer(req, res, next))
+    .catch(getErrorHandler(req, res, next))
+}
+
+let nudjHandler = (req, res, next) => {
+  job
+    .nudj(req.params.companySlug, req.params.jobSlugRefId, req.session.person)
+    .then(getRenderDataBuilder(req, res, next))
+    .then(getRenderer(req, res, next))
+    .catch(getErrorHandler(req, res, next))
+}
+
+function applyHandler (req, res, next) {
+  job
+    .apply(req.params.companySlug, req.params.jobSlugRefId, req.session.person)
+    .then(getRenderDataBuilder(req, res, next))
+    .then(getRenderer(req, res, next))
+    .catch(getErrorHandler(req, res, next))
+}
+
+router.get('/', homeHandler)
+router.get('/:companySlug/:jobSlugRefId', jobHandler)
+router.get('/:companySlug/:jobSlugRefId/nudj', ensureLoggedIn, nudjHandler)
+router.post('/:companySlug/:jobSlugRefId/nudj', ensureLoggedIn, nudjHandler)
+router.get('/:companySlug/:jobSlugRefId/apply', ensureLoggedIn, applyHandler)
+router.post('/:companySlug/:jobSlugRefId/apply', ensureLoggedIn, applyHandler)
 
 router.get('*', (req, res) => {
   let data = {page: {}}
