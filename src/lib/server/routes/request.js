@@ -8,7 +8,6 @@ let sendmail = Sendmail({
   silent: false
 })
 
-router.get('/', (req, res) => res.render('request'))
 router.post('/', (req, res) => {
   logger.log('info', 'Sending email', req.body)
   sendmail({

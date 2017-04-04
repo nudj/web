@@ -1,149 +1,70 @@
 .body {
-  color: #000000;
+  composes: sans-serif from 'tachyons/css/tachyons.css';
 }
 .background {
-  background-image: url(/assets/images/desk-1.jpg);
-  background-size: cover;
-  background-position: center;
+  composes: cover bg-right bg-center-l from 'tachyons/css/tachyons.css';
+  background-image: url(/assets/images/person-2.jpg);
 }
-.heroFull {
-  composes: hero is-fullheight from 'bulma/css/bulma.css';
-  background-color: rgba(255, 255, 255, 0.65);
-}
-.section {
-  composes: section from 'bulma/css/bulma.css';
-}
-.sectionMedium {
-  composes: section is-medium from 'bulma/css/bulma.css';
-}
-.heroMedium {
-  composes: hero is-medium from 'bulma/css/bulma.css';
-}
-.heroHead {
-  composes: hero-head from 'bulma/css/bulma.css';
-}
-.container {
-  composes: container from 'bulma/css/bulma.css';
+.hero {
+  composes: flex flex-column justify-between items-stretch min-vh-100 from 'tachyons/css/tachyons.css';
+  background-color: rgba(255, 255, 255, 0.7);
 }
 .heroBody {
-  composes: hero-body from 'bulma/css/bulma.css';
-  composes: mt5 from 'tachyons/css/tachyons.css';
+  composes: flex flex-column justify-center items-center from 'tachyons/css/tachyons.css';
+  flex: 1;
 }
-.centered {
-  composes: container has-text-centered from 'bulma/css/bulma.css';
+.outcomes {
+  composes: flex flex-row flex-wrap mw8 pt5 pt0-ns from 'tachyons/css/tachyons.css';
 }
-.nav {
-  composes: nav from 'bulma/css/bulma.css';
-  composes: p2 from 'basscss-padding/css/padding.css';
-  box-shadow: none !important;
+.outcome {
+  composes: w-50-ns w-100 pa4-ns ph2 pv3 pv2-ns from 'tachyons/css/tachyons.css';
 }
-.left {
-  composes: nav-left from 'bulma/css/bulma.css';
+.outcomeImage {
+  composes: f2 tc from 'tachyons/css/tachyons.css';
 }
-.home {
-  composes: nav-item from 'bulma/css/bulma.css';
+.outcomeText {
+  composes: f3-l f4 fw6 tc lh-subtitle from 'tachyons/css/tachyons.css';
 }
-.logo {
-  max-height: 2.5rem !important;
-}
-.right {
-  composes: nav-right is-pulled-right from 'bulma/css/bulma.css';
-}
-.request {
-  composes: button is-success from 'bulma/css/bulma.css';
-}
-.header,
-.indicator,
-.headerBold {
-  composes: h1 from 'basscss/css/basscss.css';
-  composes: md-h0 from 'basscss-responsive-type-scale/css/responsive-type-scale.css';
+.heroFooter {
+  composes: flex flex-column justify-center items-center pb2 from 'tachyons/css/tachyons.css';
+  flex: 0;
 }
 .indicator {
-  composes: pb2 from 'basscss-padding/css/padding.css'
+  composes: f2 tc from 'tachyons/css/tachyons.css';
 }
-.heroFoot {
-  composes: hero-foot from 'bulma/css/bulma.css';
+.sectionMedium {
+  composes: flex flex-column items-center justify-center pa4 pa5-l from 'tachyons/css/tachyons.css';
+}
+.howItWorks {
+  composes: justify-center items-center w-100 mw6 center from 'tachyons/css/tachyons.css';
+}
+.title {
+  composes: f2 fw6 lh-title tl tc-l mb0 from 'tachyons/css/tachyons.css';
 }
 .subtitle {
-  composes: h3 from 'basscss/css/basscss.css';
-  composes: md-h2 from 'basscss-responsive-type-scale/css/responsive-type-scale.css';
+  composes: f3 f3-l fw4 lh-subtitle tl tc-l mb4 from 'tachyons/css/tachyons.css';
 }
-.columnsMobile {
-  composes: columns is-mobile from 'bulma/css/bulma.css';
-}
-.columns {
-  composes: columns from 'bulma/css/bulma.css';
-  composes: pt2 from 'basscss-padding/css/padding.css';
-}
-.columnHalf {
-  composes: column is-half-desktop is-offset-one-quarter-desktop from 'bulma/css/bulma.css';
-}
-.column {
-  composes: column from 'bulma/css/bulma.css';
+.number {
+  composes: bold light-red f2 fw5 lh-title tl tc-l mb0 from 'tachyons/css/tachyons.css';
 }
 .step {
-  composes: h2 from 'basscss/css/basscss.css';
-  composes: md-h1 from 'basscss-responsive-type-scale/css/responsive-type-scale.css';
+  composes: f4 fw4 tl tc-l mb4 from 'tachyons/css/tachyons.css';
 }
-.detail {
-  composes: h4 from 'basscss/css/basscss.css';
-  composes: md-h3 from 'basscss-responsive-type-scale/css/responsive-type-scale.css';
+.everyone {
+  composes: f2 flex justify-center items-center tc from 'tachyons/css/tachyons.css';
 }
-.table {
-  composes: table from 'bulma/css/bulma.css';
-  color: #000000 !important;
-}
-.tableHeader {
-  composes: h4 from 'basscss/css/basscss.css';
-  composes: md-h1 from 'basscss-responsive-type-scale/css/responsive-type-scale.css';
-  composes: regular from 'basscss/css/basscss.css';
-  text-align: center !important;
-  color: #000000 !important;
-}
-.tableHeaderNudj {
-  composes: h4 from 'basscss/css/basscss.css';
-  composes: md-h1 from 'basscss-responsive-type-scale/css/responsive-type-scale.css';
-  composes: bold from 'basscss/css/basscss.css';
-  text-align: center !important;
-  color: #23d160 !important;
-}
-.tableItem {
-  composes: h4 from 'basscss/css/basscss.css';
-  composes: md-h3 from 'basscss-responsive-type-scale/css/responsive-type-scale.css';
-  composes: center from 'basscss/css/basscss.css';
-}
-.tableItemNudj {
-  composes: h4 from 'basscss/css/basscss.css';
-  composes: md-h3 from 'basscss-responsive-type-scale/css/responsive-type-scale.css';
-  composes: center bold from 'basscss/css/basscss.css';
-  color: #23d160;
-}
-.bodyNudj {
-  composes: h4 from 'basscss/css/basscss.css';
-  composes: md-h3 from 'basscss-responsive-type-scale/css/responsive-type-scale.css';
-  composes: pt3 from 'basscss-padding/css/padding.css';
-  color: #23d160;
-}
-.brand {
-  composes: mx-auto from 'basscss/css/basscss.css';
-}
-.headerBold {
-  composes: bold from 'basscss/css/basscss.css';
+.link {
+  composes: f3 fw4 light-red dim no-underline from 'tachyons/css/tachyons.css';
 }
 .buttons {
-  composes: pt3 from 'basscss-padding/css/padding.css';
-}
-.padding {
-  composes: pl2 pr2 from 'basscss-padding/css/padding.css';
-}
-.outlined {
-  composes: button is-outlined from 'bulma/css/bulma.css';
-}
-.footerCopy,
-.buttonLink {
-  composes: h5 from 'basscss/css/basscss.css';
-  composes: md-h4 from 'basscss-responsive-type-scale/css/responsive-type-scale.css';
+  composes: pv3 pv4-m pv5-l tc from 'tachyons/css/tachyons.css';
 }
 .buttonLink {
-  composes: button is-link from 'bulma/css/bulma.css';
+  composes: f5 dib ph3 pv2 dim no-underline link ba bw1 light-red from 'tachyons/css/tachyons.css';
+}
+.spacer {
+  composes: pv3 pa3-ns db dib-ns from 'tachyons/css/tachyons.css';
+}
+.button {
+  composes: f5 dib ph3 pv2 dim no-underline link white ba bw1 b--light-red bg-light-red from 'tachyons/css/tachyons.css';
 }

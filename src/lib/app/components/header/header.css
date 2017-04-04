@@ -1,5 +1,5 @@
 .nav {
-  composes: w-100 mw8 center flex justify-between items-stretch h3 ph3 from 'tachyons/css/tachyons.css';
+  composes: w-100 mw8 center flex justify-between items-stretch from 'tachyons/css/tachyons.css';
 }
 .left {
   composes: flex items-center from 'tachyons/css/tachyons.css';
@@ -8,7 +8,7 @@
   composes: dib from 'tachyons/css/tachyons.css';
 }
 .brand {
-  composes: mw3 from 'tachyons/css/tachyons.css';
+  composes: mw3 pl0-ns pl2 from 'tachyons/css/tachyons.css';
 }
 .toggle {
   composes: db dn-l h3 w3 relative from 'tachyons/css/tachyons.css';
@@ -36,11 +36,14 @@
 .right {
   composes: dn absolute right-0 static-l flex-l items-end items-center from 'tachyons/css/tachyons.css';
 }
+.link {
+  composes: f5 dim ma2 ma3-l no-underline black link from 'tachyons/css/tachyons.css';
+}
 .login {
-  composes: f5 link black ph3 pv2 from 'tachyons/css/tachyons.css';
+  composes: f5 dib ma1 ma3-l ph3 pv2 dim no-underline link ba bw1 light-red from 'tachyons/css/tachyons.css';
 }
 .request {
-  composes: f5 link dim br2 ph3 pv2 dib white bg-green from 'tachyons/css/tachyons.css';
+  composes: f5 dib ma1 ma3-l ph3 pv2 dim no-underline link white ba bw1 b--light-red bg-light-red from 'tachyons/css/tachyons.css';
 }
 .isActive {
   composes: flex from 'tachyons/css/tachyons.css';

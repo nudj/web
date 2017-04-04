@@ -53,7 +53,7 @@ app.use((req, res) => {
   logger.log('warn', 'Page not found', req.url)
   res.status(404)
   if (req.accepts('html')) {
-    res.render('404', { url: req.url })
+    res.render({ url: req.url })
     return
   }
   if (req.accepts('json')) {
@@ -67,7 +67,7 @@ app.use((error, req, res, next) => {
   logger.log('error', 'Application error', error)
   res.status(500)
   if (req.accepts('html')) {
-    res.render('500', { url: req.url })
+    res.render({ url: req.url })
     return
   }
   if (req.accepts('json')) {

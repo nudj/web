@@ -1,4 +1,14 @@
+.body {
+  composes: relative sans-serif from 'tachyons/css/tachyons.css';
+  padding-bottom: 64px;
+}
 .header {
-  position: absolute;
-  width: 100%;
+  composes: absolute w-100 sans-serif from 'tachyons/css/tachyons.css';
+  left: 0;
+  top: 0;
+}
+.footer {
+  composes: absolute w-100 sans-serif from 'tachyons/css/tachyons.css';
+  left: 0;
+  bottom: 0;
 }
