@@ -20,72 +20,68 @@ export default (props) => {
   let referral = get(props, 'page.referral')
   return (
     <div className={style.body}>
-      <div className={style.heroFull}>
-        <div className={style.heroBody}>
-          <div className={style.job}>
-            {renderLinkMessage(props)}
+      <div className={style.hero}>
+        <div className={style.job}>
+          {renderLinkMessage(props)}
+          <div className={style.info}>
             <img className={style.logo} src={get(props, 'page.company.logo')} />
-            <h1 className={style.title}>{get(props, 'page.job.title')}</h1>
-            <h2 className={style.location}>{get(props, 'page.job.location')}</h2>
-            <h2 className={style.salary}>£{get(props, 'page.job.remuneration') * 1000}</h2>
-            <hr className={style.breakLine} />
+            <h1 className={style.title}>{get(props, 'page.job.title')} @ {get(props, 'page.company.name')}</h1>
+            <h2 className={style.location}>Based in: {get(props, 'page.job.location')}</h2>
+            <h2 className={style.salary}>Salary: £{get(props, 'page.job.remuneration') * 1000}</h2>
+          </div>
+          <hr className={style.breakLine} />
+          <div className={style.why}>
+            <p className={style.awesomeTitle}>&#x1F525; Why this job is so hot right now...</p>
+            <p className={style.awesome}>{get(props, 'page.job.description')}</p>
+          </div>
+          <hr className={style.breakLine} />
+          <div className={style.companyLinks}>
             <div className={style.links}>
               <div className={style.link}>
-                <a href={get(props, 'page.company.url', '#company-url')}>View company website</a>
+                <a className={style.bodyLinks} href={get(props, 'page.company.url', '#company-url')}>View company website</a>
               </div>
               <div className={style.link}>
-                <a href={get(props, 'page.job.url', '#job-url')}>View full job post</a>
-              </div>
-              <div className={style.social}>
-                <div className={style.socialLink}>
-                  <a href='#'>
-                    <i className={style.facebook} />
-                  </a>
-                </div>
-                <div className={style.socialLink}>
-                  <a href='#'>
-                    <i className={style.twitter} />
-                  </a>
-                </div>
-                <div className={style.socialLink}>
-                  <a href='#'>
-                    <i className={style.linkedin} />
-                  </a>
-                </div>
-                <div className={style.socialLink}>
-                  <a href='#'>
-                    <i className={style.instagram} />
-                  </a>
-                </div>
+                <a className={style.bodyLinks} href={get(props, 'page.job.url', '#job-url')}>View full job post</a>
               </div>
             </div>
-            <hr className={style.breakLine} />
-            <div className={style.actions}>
-              <form className={style.action} action={`/${get(props, 'page.company.slug')}/${get(props, 'page.job.slug')}${referral ? `+${referral.id}` : ''}/apply`} method='POST'>
-                <p>Interested? It only takes <strong>2 seconds</strong> to apply & you don’t need a CV.</p><button className={style.apply}>Apply</button>
-              </form>
-              <form className={style.action} action={`/${get(props, 'page.company.slug')}/${get(props, 'page.job.slug')}${referral ? `+${referral.id}` : ''}/nudj`} method='POST'>
-                <p>Know someone perfect? We’ll give you £{get(props, 'page.job.bonus')} if they get the job.</p><button className={style.nudj}>Nudj</button>
-              </form>
+            <div className={style.social}>
+              <div className={style.socialLink}>
+                <a href={get(props, 'page.facebook.url', '#facebook-url')}>
+                  <i className={style.facebook} />
+                </a>
+              </div>
+              <div className={style.socialLink}>
+                <a href={get(props, 'page.twitter.url', '#twitter-url')}>
+                  <i className={style.twitter} />
+                </a>
+              </div>
+              <div className={style.socialLink}>
+                <a href={get(props, 'page.linkedin.url', '#linkedin-url')}>
+                  <i className={style.linkedin} />
+                </a>
+              </div>
             </div>
-            <hr className={style.breakLine} />
-            <div className={style.related}>
-              <h2 className={style.relatedTitle}>Other positions</h2>
-              <Link to={`/`}>Home</Link>
-              <ul>
-                {get(props, 'page.job.related', []).map((related) => <li key={related.title.split(' ').join('-')}>
-                  <Link to={`/jobs/${related.id}`}>{related.title}, {related.location}</Link>
-                </li>)}
-              </ul>
-            </div>
+          </div>
+          <hr className={style.breakLine} />
+          <div className={style.actions}>
+            <form className={style.action} action={`/${get(props, 'page.company.slug')}/${get(props, 'page.job.slug')}${referral ? `+${referral.id}` : ''}/apply`} method='POST'>
+              <p>Interested? It only takes <strong>2 seconds</strong> to apply & you don’t need a CV.</p><button className={style.apply}>Apply</button>
+            </form>
+            <form className={style.action} action={`/${get(props, 'page.company.slug')}/${get(props, 'page.job.slug')}${referral ? `+${referral.id}` : ''}/nudj`} method='POST'>
+              <p>Know someone perfect? <strong>We’ll give you £{get(props, 'page.job.bonus')}</strong> if they get the job.</p><button className={style.nudj}>Nudj</button>
+            </form>
+          </div>
+          <hr className={style.breakLine} />
+          <div className={style.related}>
+            <h2 className={style.title}>Other positions</h2>
+            <Link className={style.bodyLinks} to={`/`}>Home</Link>
+            <ul>
+              {get(props, 'job.related', []).map((related) => <li key={related.title.split(' ').join('-')}>
+                <Link to={`/jobs/${related.id}`}>{related.title}, {related.location}</Link>
+              </li>)}
+            </ul>
           </div>
         </div>
-        <footer className={style.heroFoot}>
-          <div className={style.centered}>
-            <div className={style.footerCopy}>© 2017 <strong>nudj</strong>, All Rights Reserved</div>
-            <a className={style.buttonLink} href='https://www.iubenda.com/privacy-policy/8051143' target='_blank'>Privacy</a>
-          </div>
-        </footer>
       </div>
     </div>
   )

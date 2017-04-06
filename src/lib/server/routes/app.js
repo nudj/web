@@ -305,4 +305,20 @@ router.get('/:companySlug/:jobSlugRefId', (req, res) => {
   .catch((error) => logger.log('error', error))
 })
 
+router.get('*', (req, res) => {
+  let data = {page: {}}
+  let renderResult = build(data, req.url)
+  if (renderResult.url) {
+    res.writeHead(302, {
+      Location: renderResult.url
+    })
+    res.end()
+  } else {
+    return res.render('app', {
+      data: JSON.stringify(data),
+      html: renderResult
+    })
+  }
+})
+
 module.exports = router

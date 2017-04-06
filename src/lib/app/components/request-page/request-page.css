@@ -1,0 +1,36 @@
+.body {
+  composes: sans-serif from 'tachyons/css/tachyons.css';
+}
+.hero {
+  composes: min-vh-100 flex flex-column justify-center items-center from 'tachyons/css/tachyons.css';
+}
+.heroBody {
+  composes: pa2 pa4-ns from 'tachyons/css/tachyons.css';
+}
+.request {
+  composes: w-100 mw6 center pv3-ns pv0 from 'tachyons/css/tachyons.css';
+}
+.formHeader {
+  composes: pb0 pb2-ns bb b--near-white bw1 from 'tachyons/css/tachyons.css';
+}
+.title {
+  composes: f4 f3-l fw5 tc from 'tachyons/css/tachyons.css';
+}
+.subtitle {
+  composes: f5 f4-l tc from 'tachyons/css/tachyons.css';
+}
+.fieldSet {
+  composes: ba b--transparent ph0 mh0 from 'tachyons/css/tachyons.css';
+}
+.fieldWrap {
+  composes: mv3 from 'tachyons/css/tachyons.css';
+}
+.fieldLabel {
+  composes: db fw6 lh-copy f6 pb1 from 'tachyons/css/tachyons.css';
+}
+.fieldInput {
+  composes: pa2 input-reset ba bg-transparent w-100 from 'tachyons/css/tachyons.css';
+}
+.fieldSubmit {
+  composes: ph3 pv2 input-reset ba f6 dib bg-light-red white b--light-red dim from 'tachyons/css/tachyons.css';
+}

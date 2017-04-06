@@ -25,13 +25,7 @@
   "dependencies": {
     "@nudj/dummy": "0.4.0",
     "@nudj/schemas": "0.5.1",
-    "basscss": "^8.0.3",
-    "basscss-responsive-type-scale": "^1.0.1",
-    "basscss-responsive-typography": "^1.0.1",
-    "basscss-responsive-padding": "^1.1.0",
-    "basscss-responsive-margin": "^1.1.0",
     "body-parser": "^1.16.1",
-    "bulma": "^0.4.0",
     "classnames": "^2.2.5",
     "connect-ensure-login": "^0.1.1",
     "consolidate": "^0.14.5",
