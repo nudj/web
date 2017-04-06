@@ -5,13 +5,17 @@ import { Provider } from 'react-redux'
 import { createStore, combineReducers } from 'redux'
 
 import App from './components/index'
+import { urlReducer } from './reducers/url'
+import { errorReducer } from './reducers/error'
 import { userReducer } from './reducers/user'
 import { messageReducer } from './reducers/message'
 import { pageReducer } from './reducers/page'
 
-export default (data, url) => {
+export default (data) => {
   const store = createStore(
     combineReducers({
+      url: urlReducer,
+      error: errorReducer,
       user: userReducer,
       page: pageReducer,
       message: messageReducer
@@ -22,7 +26,7 @@ export default (data, url) => {
   const html = ReactDOMServer.renderToString(
     <Provider store={store}>
       <StaticRouter
-        location={url}
+        location={data.page.url.originalUrl}
         context={context}
       >
         <App />

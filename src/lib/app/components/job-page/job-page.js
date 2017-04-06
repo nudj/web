@@ -7,56 +7,56 @@ import style from './job-page.css'
 function renderLinkMessage (props) {
   let message
   if (
-    get(props, 'page.referrer.email') &&
+    get(props, 'referrer.email') &&
     get(props, 'user._json.email') &&
-    get(props, 'page.referrer.email') === get(props, 'user._json.email')
+    get(props, 'referrer.email') === get(props, 'user._json.email')
   ) {
-    message = <NudjSuccess {...props.page} />
+    message = <NudjSuccess {...props} />
   }
   return message
 }
 
 export default (props) => {
-  let referral = get(props, 'page.referral')
+  let referral = get(props, 'referral')
   return (
     <div className={style.body}>
       <div className={style.hero}>
         <div className={style.job}>
           {renderLinkMessage(props)}
           <div className={style.info}>
-            <img className={style.logo} src={get(props, 'page.company.logo')} />
-            <h1 className={style.title}>{get(props, 'page.job.title')} @ {get(props, 'page.company.name')}</h1>
-            <h2 className={style.location}>Based in: {get(props, 'page.job.location')}</h2>
-            <h2 className={style.salary}>Salary: £{get(props, 'page.job.remuneration') * 1000}</h2>
+            <img className={style.logo} src={get(props, 'company.logo')} />
+            <h1 className={style.title}>{get(props, 'job.title')} @ {get(props, 'company.name')}</h1>
+            <h2 className={style.location}>Based in: {get(props, 'job.location')}</h2>
+            <h2 className={style.salary}>Salary: £{get(props, 'job.remuneration') * 1000}</h2>
           </div>
           <hr className={style.breakLine} />
           <div className={style.why}>
             <p className={style.awesomeTitle}>&#x1F525; Why this job is so hot right now...</p>
-            <p className={style.awesome}>{get(props, 'page.job.description')}</p>
+            <p className={style.awesome}>{get(props, 'job.description')}</p>
           </div>
           <hr className={style.breakLine} />
           <div className={style.companyLinks}>
             <div className={style.links}>
               <div className={style.link}>
-                <a className={style.bodyLinks} href={get(props, 'page.company.url', '#company-url')}>View company website</a>
+                <a className={style.bodyLinks} href={get(props, 'company.url', '#company-url')}>View company website</a>
               </div>
               <div className={style.link}>
-                <a className={style.bodyLinks} href={get(props, 'page.job.url', '#job-url')}>View full job post</a>
+                <a className={style.bodyLinks} href={get(props, 'job.url', '#job-url')}>View full job post</a>
               </div>
             </div>
             <div className={style.social}>
               <div className={style.socialLink}>
-                <a href={get(props, 'page.facebook.url', '#facebook-url')}>
+                <a href={get(props, 'facebook.url', '#facebook-url')}>
                   <i className={style.facebook} />
                 </a>
               </div>
               <div className={style.socialLink}>
-                <a href={get(props, 'page.twitter.url', '#twitter-url')}>
+                <a href={get(props, 'twitter.url', '#twitter-url')}>
                   <i className={style.twitter} />
                 </a>
               </div>
               <div className={style.socialLink}>
-                <a href={get(props, 'page.linkedin.url', '#linkedin-url')}>
+                <a href={get(props, 'linkedin.url', '#linkedin-url')}>
                   <i className={style.linkedin} />
                 </a>
               </div>
@@ -64,11 +64,11 @@ export default (props) => {
           </div>
           <hr className={style.breakLine} />
           <div className={style.actions}>
-            <form className={style.action} action={`/${get(props, 'page.company.slug')}/${get(props, 'page.job.slug')}${referral ? `+${referral.id}` : ''}/apply`} method='POST'>
+            <form className={style.action} action={`/${get(props, 'company.slug')}/${get(props, 'job.slug')}${referral ? `+${referral.id}` : ''}/apply`} method='POST'>
               <p>Interested? It only takes <strong>2 seconds</strong> to apply & you don’t need a CV.</p><button className={style.apply}>Apply</button>
             </form>
-            <form className={style.action} action={`/${get(props, 'page.company.slug')}/${get(props, 'page.job.slug')}${referral ? `+${referral.id}` : ''}/nudj`} method='POST'>
-              <p>Know someone perfect? <strong>We’ll give you £{get(props, 'page.job.bonus')}</strong> if they get the job.</p><button className={style.nudj}>Nudj</button>
+            <form className={style.action} action={`/${get(props, 'company.slug')}/${get(props, 'job.slug')}${referral ? `+${referral.id}` : ''}/nudj`} method='POST'>
+              <p>Know someone perfect? <strong>We’ll give you £{get(props, 'job.bonus')}</strong> if they get the job.</p><button className={style.nudj}>Send to a friend</button>
             </form>
           </div>
           <hr className={style.breakLine} />

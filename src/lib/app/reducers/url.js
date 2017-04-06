@@ -4,7 +4,7 @@ import {
 
 const initialState = {}
 
-export function userReducer (state = initialState, action) {
+export function urlReducer (state = initialState, action) {
   switch (action.type) {
     case SET_JOB:
       return state

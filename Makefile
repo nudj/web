@@ -26,7 +26,7 @@ cache:
 		--name dev-cache \
 		-v $(CWD)/.cache:/usr/src/.cache \
 		$(IMAGEDEV) \
-		/bin/sh -c 'cp -R /tmp/node_modules/. .cache/'
+		/bin/sh -c 'rm -rf .cache/* && cp -R /tmp/node_modules/. .cache/'
 
 run:
 	@docker run -it --rm \
