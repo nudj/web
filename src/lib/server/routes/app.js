@@ -63,7 +63,6 @@ function getErrorHandler (req, res, next) {
 
 function getRenderer (req, res, next) {
   return (data) => {
-    console.log('data', data)
     try {
       delete req.session.logout
       delete req.session.returnTo
@@ -82,11 +81,6 @@ function getRenderer (req, res, next) {
       next(error)
     }
   }
-}
-
-function homeHandler (req, res, next) {
-  let data = getRenderDataBuilder(req)({})
-  getRenderer(req, res)(data)
 }
 
 function jobHandler (req, res, next) {
@@ -113,7 +107,6 @@ function applyHandler (req, res, next) {
     .catch(getErrorHandler(req, res, next))
 }
 
-router.get('/', homeHandler)
 router.get('/:companySlug/:jobSlugRefId', jobHandler)
 router.get('/:companySlug/:jobSlugRefId/nudj', ensureLoggedIn, nudjHandler)
 router.post('/:companySlug/:jobSlugRefId/nudj', ensureLoggedIn, nudjHandler)
@@ -121,19 +114,8 @@ router.get('/:companySlug/:jobSlugRefId/apply', ensureLoggedIn, applyHandler)
 router.post('/:companySlug/:jobSlugRefId/apply', ensureLoggedIn, applyHandler)
 
 router.get('*', (req, res) => {
-  let data = {page: {}}
-  let renderResult = build(data, req.url)
-  if (renderResult.url) {
-    res.writeHead(302, {
-      Location: renderResult.url
-    })
-    res.end()
-  } else {
-    return res.render('app', {
-      data: JSON.stringify(data),
-      html: renderResult
-    })
-  }
+  let data = getRenderDataBuilder(req)({})
+  getRenderer(req, res)(data)
 })
 
 module.exports = router
