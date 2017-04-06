@@ -79,7 +79,7 @@
   composes: dt-ns dt--fixed-ns from 'tachyons/css/tachyons.css';
 }
 .brand {
-  composes: dtc-ns tc w-33-ns w-100 from 'tachyons/css/tachyons.css';
+  composes: tc w-33-ns w-100 from 'tachyons/css/tachyons.css';
 }
 .cost {
   composes: justify-center items-center w-100  mw8 from 'tachyons/css/tachyons.css';
