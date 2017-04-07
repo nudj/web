@@ -18,6 +18,7 @@ function ensureLoggedIn (req, res, next) {
 
 function getRenderDataBuilder (req) {
   return (page) => {
+    req.session.person = page.person || req.session.person
     page.person = req.session.person
     if (req.session.message) {
       page.message = req.session.message
@@ -44,12 +45,13 @@ function getErrorHandler (req, res, next) {
           message: error.message
         }
         let destination = req.originalUrl.split('/')
-        logger.log('error', req.method, req.params.companySlug, req.params.jobSlugRefId, destination.pop(), error)
+        logger.log('error', error.message, req.method, req.params.companySlug, req.params.jobSlugRefId, destination.pop(), error)
         destination = destination.join('/')
         res.redirect(destination)
         break
       case 'Not found':
       default:
+        logger.log('error', error.message, error)
         let data = getRenderDataBuilder(req)({
           error: {
             code: error.message === 'Not found' ? 404 : 500,
@@ -101,7 +103,7 @@ let nudjHandler = (req, res, next) => {
 
 function applyHandler (req, res, next) {
   job
-    .apply(req.params.companySlug, req.params.jobSlugRefId, req.session.person)
+    .apply(req.params.companySlug, req.params.jobSlugRefId, req.session.person, req.body)
     .then(getRenderDataBuilder(req, res, next))
     .then(getRenderer(req, res, next))
     .catch(getErrorHandler(req, res, next))

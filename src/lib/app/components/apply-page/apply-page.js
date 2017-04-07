@@ -30,13 +30,14 @@ function renderSuccess (props) {
 }
 
 function renderForm (props) {
+  console.log('person', props.person)
   return (
     <form className={style.form} method='POST'>
       <h1 className={style.title}>Apply for <strong>{get(props, 'job.title')}</strong> @ <strong>{get(props, 'company.name')}</strong> in <strong>{get(props, 'job.location')}</strong></h1>
-      {renderField({ id: 'firstName', label: 'First name', required: true, value: get(props, 'applicant.firstName') })}
-      {renderField({ id: 'lastName', label: 'Last name', required: true, value: get(props, 'applicant.lastName') })}
-      {renderField({ id: 'email', label: 'Email', required: true, value: get(props, 'applicant.email'), disabled: true })}
-      {renderField({ id: 'url', label: 'Add a profile URL', value: get(props, 'applicant.url') })}
+      {renderField({ id: 'firstName', label: 'First name', required: true, value: get(props, 'person.firstName'), disabled: true })}
+      {renderField({ id: 'lastName', label: 'Last name', required: true, value: get(props, 'person.lastName'), disabled: true })}
+      {renderField({ id: 'email', label: 'Email', required: true, value: get(props, 'person.email'), disabled: true })}
+      {renderField({ id: 'url', label: 'Add a profile URL', value: get(props, 'person.url') })}
       <p className={style.field}>
         <button className={style.submit}>Apply</button>
       </p>
@@ -47,7 +48,7 @@ function renderForm (props) {
 export default (props) => {
   return (
     <div className={style.page}>
-      {get(props, 'application') ? renderSuccess(props) : renderForm(props)}
+      {get(props, 'person.url') ? renderSuccess(props) : renderForm(props)}
     </div>
   )
 }
