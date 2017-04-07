@@ -5,9 +5,9 @@ import style from './header.css'
 function renderLoginLogout (person) {
   let html
   if (person) {
-    html = <span className={style.login}>{person.firstName} (<Link to={`/logout`}>Logout</Link>)</span>
+    html = <Link className={style.login} to='/logout'>Logout</Link>
   } else {
-    html = <Link className={style.login} to={`/login`}>Log in</Link>
+    html = <Link className={style.login} to='/login'>Log in</Link>
   }
   return html
 }
