@@ -1,20 +1,19 @@
 let isURL = require('validator/lib/isURL')
+let some = require('lodash/some')
 let logger = require('../logger')
 let fetch = require('../lib/fetch')
 
 function promiseMap (promiseObj) {
   let promiseArr = []
   let keyMap = {}
-  let i = 0
-  Object.keys(promiseObj).forEach((key) => {
+  Object.keys(promiseObj).forEach((key, i) => {
     keyMap[i] = key
     promiseArr[i] = promiseObj[key]
-    i++
   })
-  return Promise.all(promiseArr).then((rArr) => {
-    return rArr.reduce((responseObj, v, i) => {
-      responseObj[keyMap[i]] = v
-      return responseObj
+  return Promise.all(promiseArr).then((resolvedArr) => {
+    return resolvedArr.reduce((resolvedObj, v, i) => {
+      resolvedObj[keyMap[i]] = v
+      return resolvedObj
     }, {})
   })
 }
@@ -87,30 +86,53 @@ function nudj (data) {
   return promiseMap(data)
 }
 
-function updatePerson (data, personUpdate) {
-  if (typeof personUpdate.url === 'string' && isURL(personUpdate.url)) {
-    let person = data.person
-    return fetch(`people/${person.id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        url: personUpdate.url
-      })
-    })
-    .then((person) => {
-      if (person.error) {
-        logger.log('error', 'Person update failed', person)
-        throw new Error('Person update failed')
-      }
-      data.person = person
-      return data
-    })
-  } else {
-    logger.log('error', 'Invalid url', personUpdate.url)
-    throw new Error('Invalid url')
+function validatePersonFields (personData) {
+  let anyInvalid = false
+  let fields = Object.keys(personData).reduce((fields, field) => {
+    let fieldState
+    let value = personData[field]
+    let invalid
+    switch (field) {
+      case 'firstName':
+      case 'lastName':
+        invalid = !(!!value && typeof value === 'string' && !!value.length)
+        break
+      case 'url':
+        invalid = !(!!value && typeof value === 'string' && !!value.length && isURL(value))
+        break
+    }
+    fields[field] = {
+      value,
+      invalid
+    }
+    if (invalid) {
+      anyInvalid = true
+    }
+    return fields
+  }, {})
+  return {
+    invalid: anyInvalid,
+    fields
   }
+}
+
+function updatePerson (data, personUpdate) {
+  let person = data.person
+  return fetch(`people/${person.id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(personUpdate)
+  })
+  .then((person) => {
+    if (person.error) {
+      logger.log('error', 'Person update failed', person)
+      throw new Error('Person update failed')
+    }
+    data.person = person
+    return data
+  })
 }
 
 function apply (data) {
@@ -151,11 +173,29 @@ module.exports.apply = function (companySlug, jobSlugRefId, loggedInPerson, pers
   return getBaseData(companySlug, jobSlugRefId, loggedInPerson)
   .then(ensureValidReferralUrl)
   .then(fetchExisting('application'))
+  .then(ensureDoesNotExist('application'))
   .then((data) => {
+    let personValidity
     if (personUpdate.url !== undefined) {
-      return updatePerson(data, personUpdate)
+      // form submitted
+      personValidity = validatePersonFields(personUpdate)
+      data.form = personValidity.fields
+      if (personValidity.invalid) {
+        logger.log('error', 'Invalid data', personUpdate)
+        return data
+      } else {
+        return updatePerson(data, personUpdate).then(apply)
+      }
     } else {
-      return ensureDoesNotExist('application')(data).then(apply)
+      // page accessed
+      personValidity = validatePersonFields(data.person)
+      data.form = personValidity.fields
+      if (personValidity.invalid) {
+        logger.log('error', 'Incomplete data', personUpdate)
+        return data
+      } else {
+        return apply(data)
+      }
     }
   })
 }

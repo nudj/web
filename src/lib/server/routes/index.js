@@ -29,7 +29,7 @@ router.get('/callback',
 
     fetch(`people/first?email=${req.user._json.email}`)
     .then((person) => {
-      if (person.code === 404) {
+      if (!person) {
         return fetch(`people`, {
           method: 'POST',
           headers: {
