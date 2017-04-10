@@ -1,5 +1,6 @@
 import React from 'react'
 import get from 'lodash/get'
+import { Link } from 'react-router-dom'
 import style from './apply-page.css'
 
 function renderField ({
@@ -23,7 +24,7 @@ function renderSuccess (props) {
       <img src='https://media.giphy.com/media/l2Sqir5ZxfoS27EvS/giphy.gif' width='320' height='320' />
       <h1 className={style.heading}>Great job, you've applied!</h1>
       <p className={style.copy}>Someone from our team will be in touch shortly. In the meantime, sit back, relax and give yourself a pat on the back.</p>
-      <p className={style.copy}>If you'd like to hear about other awesome jobs on our platform then <a className={style.link} href='' id='open-intercom'>get in touch</a>.</p>
+      <p className={style.copy}>If you'd like to hear about other awesome jobs on our platform then <Link className={style.link} to='' id='open-intercom'>get in touch</Link>.</p>
     </div>
   )
 }
