@@ -1,17 +1,17 @@
 .hero {
-  composes: vh-100 flex flex-column justify-center items-center from 'tachyons/css/tachyons.css';
+  composes: min-vh-100 flex flex-column justify-center items-center from 'tachyons/css/tachyons.css';
 }
 .heroBody {
-  composes: pv6-s pv0 tc from 'tachyons/css/tachyons.css';
+  composes: ph2 pv6 pv0-ns tc from 'tachyons/css/tachyons.css';
 }
 .header {
   composes: fw6 f3 m0 from 'tachyons/css/tachyons.css';
 }
 .copy {
-  composes: f5 m0 pt2 from 'tachyons/css/tachyons.css';
+  composes: f5 m0 from 'tachyons/css/tachyons.css';
 }
 .error {
-  composes: i ttu mid-gray from 'tachyons/css/tachyons.css';
+  composes: i ttu mid-gray pv2 from 'tachyons/css/tachyons.css';
 }
 .pages {
   composes: pa2 from 'tachyons/css/tachyons.css';

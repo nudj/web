@@ -31,7 +31,7 @@ export default (props) => {
           </div>
           <hr className={style.breakLine} />
           <div className={style.why}>
-            <p className={style.awesomeTitle}>&#x1F525; Why this job is so hot right now...</p>
+            <p className={style.awesomeTitle}>&#x1F525; Why this job is so hot right now &#x1F525;</p>
             <p className={style.awesome}>{get(props, 'job.description')}</p>
           </div>
           <hr className={style.breakLine} />
@@ -65,7 +65,7 @@ export default (props) => {
           <hr className={style.breakLine} />
           <div className={style.actions}>
             <form className={style.action} action={`/${get(props, 'company.slug')}/${get(props, 'job.slug')}${referral ? `+${referral.id}` : ''}/apply`} method='POST'>
-              <p>Interested? It only takes <strong>2 seconds</strong> to apply & you don’t need a CV.</p><button className={style.apply}>Apply</button>
+              <p>Interested? It only takes <strong>2 seconds</strong> to apply & you don’t need a CV.</p><button className={style.apply}>Apply for job</button>
             </form>
             <form className={style.action} action={`/${get(props, 'company.slug')}/${get(props, 'job.slug')}${referral ? `+${referral.id}` : ''}/nudj`} method='POST'>
               <p>Know someone perfect? <strong>We’ll give you £{get(props, 'job.bonus')}</strong> if they get the job.</p><button className={style.nudj}>Send to a friend</button>
