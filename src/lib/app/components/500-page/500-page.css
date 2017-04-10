@@ -1,7 +1,4 @@
-.hero {
-  composes: vh-100 flex flex-column justify-center items-center from 'tachyons/css/tachyons.css';
-}
-.heroBody {
+.content {
   composes: pv6-s pv0 tc from 'tachyons/css/tachyons.css';
 }
 .header {
