@@ -1,14 +1,12 @@
 .body {
-  composes: relative sans-serif from 'tachyons/css/tachyons.css';
-  padding-bottom: 64px;
+  composes: relative sans-serif min-vh-100 flex flex-column justify-between from 'tachyons/css/tachyons.css';
 }
 .header {
-  composes: absolute w-100 sans-serif from 'tachyons/css/tachyons.css';
-  left: 0;
-  top: 0;
+  composes: w-100 sans-serif flex-none from 'tachyons/css/tachyons.css';
+}
+.content {
+  composes: flex flex-column justify-center flex-auto from 'tachyons/css/tachyons.css';
 }
 .footer {
-  composes: absolute w-100 sans-serif from 'tachyons/css/tachyons.css';
-  left: 0;
-  bottom: 0;
+  composes: w-100 sans-serif flex-none pt2 from 'tachyons/css/tachyons.css';
 }

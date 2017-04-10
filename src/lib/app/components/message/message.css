@@ -1,6 +1,5 @@
 .wrapper {
-  composes: absolute w-100 from 'tachyons/css/tachyons.css';
-  z-index: 999;
+  composes: w-100 flex-none from 'tachyons/css/tachyons.css';
 }
 .primary {
   composes: flex items-center justify-center pa4-ns pa3 bg-near-black white from 'tachyons/css/tachyons.css';
@@ -11,7 +10,7 @@
 .warning {
   composes: flex items-center justify-center pa4-ns pa3 bg-gold white from 'tachyons/css/tachyons.css';
 }
-.danger {
+.error {
   composes: flex items-center justify-center pa4-ns pa3 bg-dark-red white from 'tachyons/css/tachyons.css';
 }
 .success {

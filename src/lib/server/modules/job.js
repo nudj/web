@@ -1,5 +1,5 @@
 let isURL = require('validator/lib/isURL')
-let logger = require('../logger')
+let logger = require('../lib/logger')
 let fetch = require('../lib/fetch')
 
 function promiseMap (promiseObj) {

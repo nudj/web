@@ -1,4 +1,4 @@
-let logger = require('./logger')
+let logger = require('./lib/logger')
 
 let path = require('path')
 let express = require('express')
@@ -8,10 +8,8 @@ let session = require('express-session')
 let passport = require('passport')
 let Auth0Strategy = require('passport-auth0')
 
-let indexRoutes = require('./routes/index')
-let requestRoutes = require('./routes/request')
+let authRoutes = require('./routes/auth')
 let appRoutes = require('./routes/app')
-let userRoutes = require('./routes/user')
 
 let strategy = new Auth0Strategy({
   domain: process.env.AUTH0_DOMAIN,
@@ -44,10 +42,8 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.use(indexRoutes)
-app.use('/request', requestRoutes)
+app.use(authRoutes)
 app.use(appRoutes)
-app.use('/user', userRoutes)
 
 app.use((req, res) => {
   logger.log('warn', 'Page not found', req.url)

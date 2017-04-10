@@ -6,8 +6,9 @@
   background-image: url(/assets/images/office-space-2.jpg);
 }
 .hero {
-  composes: flex flex-column justify-between items-stretch min-vh-100 from 'tachyons/css/tachyons.css';
+  composes: flex flex-column justify-between items-stretch from 'tachyons/css/tachyons.css';
   background-color: rgba(255, 255, 255, 0.7);
+  min-height: calc(100vh - 70px);
 }
 .heroBody {
   composes: flex flex-column justify-center items-center w-100 mw8 center from 'tachyons/css/tachyons.css';

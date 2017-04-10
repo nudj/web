@@ -1,7 +1,7 @@
 let express = require('express')
 let passport = require('passport')
 let fetch = require('../lib/fetch')
-let logger = require('../logger')
+let logger = require('../lib/logger')
 
 function cacheReturnTo (req, res, next) {
   if (!req.session.returnTo) {
