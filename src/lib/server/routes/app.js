@@ -1,11 +1,7 @@
 let express = require('express')
 let get = require('lodash/get')
 let _ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn()
-let Sendmail = require('sendmail')
 
-let sendmail = Sendmail({
-  silent: true
-})
 let logger = require('../lib/logger')
 let request = require('../modules/request')
 let job = require('../modules/job')
@@ -24,20 +20,20 @@ function ensureLoggedIn (req, res, next) {
 }
 
 function getRenderDataBuilder (req) {
-  return (page) => {
-    req.session.person = page.person || req.session.person
-    page.person = req.session.person
+  return (data) => {
+    req.session.person = data.person || req.session.person
+    data.person = req.session.person
     if (req.session.message) {
-      page.message = req.session.message
+      data.message = req.session.message
       delete req.session.message
     }
-    page.url = {
+    data.url = {
       protocol: req.protocol,
       hostname: req.hostname,
       originalUrl: req.originalUrl
     }
     return {
-      page
+      page: data
     }
   }
 }
@@ -143,55 +139,20 @@ function applyHandler (req, res, next) {
     .catch(getErrorHandler(req, res, next))
 }
 
-router.post('/request', (req, res, next) => {
-  logger.log('info', 'Sending email', req.body)
-  request.send({
-    from: 'hello@nudj.co',
-    to: 'hello@nudj.co',
-    subject: 'Request Access',
-    html: `
-      <html>
-      <body>
-        <br/>
-        <p>Hi team,</p>
-        <p>A new user has requested access.</p>
-        <br/>
-        <p>
-          <strong>Full name:</strong> ${req.body.fullname}<br/>
-          <strong>Email:</strong> ${req.body.email}<br/>
-          <strong>Company Name:</strong> ${req.body.company_name}<br/>
-        </p>
-        <br/>
-        <p>Love<br/> Your friendly nudj bot.</p>
-        <br/>
-      </body>
-      </html>
-    `
-  }, (err, reply) => {
-    logger.log('info', 'mailer response', reply)
-    let data = {
-      success: true
-    }
-    if (err) {
-      logger.log('Error', err)
-      data.message = {
-        type: 'error',
-        code: 500,
-        message: 'Something went wrong'
-      }
-      delete data.success
-    }
-    data = getRenderDataBuilder(req)(data)
-    getRenderer(req, res)(data)
-  })
-})
+function requestHandler (req, res, next) {
+  request
+    .send(req.body.fullname, req.body.email, req.body.company_name)
+    .then(getRenderDataBuilder(req, res, next))
+    .then(getRenderer(req, res, next))
+    .catch(getErrorHandler(req, res, next))
+}
 
+router.post('/request', requestHandler)
 router.get('/:companySlug/:jobSlugRefId', jobHandler)
 router.get('/:companySlug/:jobSlugRefId/nudj', ensureLoggedIn, nudjHandler)
 router.post('/:companySlug/:jobSlugRefId/nudj', ensureLoggedIn, nudjHandler)
 router.get('/:companySlug/:jobSlugRefId/apply', ensureLoggedIn, applyHandler)
 router.post('/:companySlug/:jobSlugRefId/apply', ensureLoggedIn, applyHandler)
-
 router.get('*', (req, res) => {
   let data = getRenderDataBuilder(req)({})
   getRenderer(req, res)(data)
