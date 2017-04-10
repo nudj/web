@@ -2,16 +2,16 @@
   composes: sans-serif from 'tachyons/css/tachyons.css';
 }
 .background {
-  composes: cover bg-right bg-center-l from 'tachyons/css/tachyons.css';
+  composes: cover bg-right bg-center-l flex from 'tachyons/css/tachyons.css';
   background-image: url(/assets/images/person-2.jpg);
+  min-height: calc(100vh - 70px);
 }
 .hero {
-  composes: flex flex-column justify-between items-stretch min-vh-100 from 'tachyons/css/tachyons.css';
+  composes: flex flex-column justify-between items-stretch flex-auto from 'tachyons/css/tachyons.css';
   background-color: rgba(255, 255, 255, 0.7);
 }
 .heroBody {
-  composes: flex flex-column justify-center items-center from 'tachyons/css/tachyons.css';
-  flex: 1;
+  composes: flex flex-column justify-center items-center flex-auto from 'tachyons/css/tachyons.css';
 }
 .outcomes {
   composes: flex flex-row flex-wrap mw8 pt5 pt0-ns from 'tachyons/css/tachyons.css';
@@ -26,8 +26,7 @@
   composes: f3-l f4 fw6 tc lh-subtitle from 'tachyons/css/tachyons.css';
 }
 .heroFooter {
-  composes: flex flex-column justify-center items-center pb2 from 'tachyons/css/tachyons.css';
-  flex: 0;
+  composes: flex flex-column justify-center items-center pb4 flex-none from 'tachyons/css/tachyons.css';
 }
 .indicator {
   composes: f2 tc from 'tachyons/css/tachyons.css';

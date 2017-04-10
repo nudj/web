@@ -1,5 +1,5 @@
 let nodeFetch = require('node-fetch')
-let logger = require('../logger')
+let logger = require('./logger')
 
 function fetch (uri, options) {
   return nodeFetch(`http://api:81/${uri}`, options)

@@ -1,11 +1,8 @@
-.body{
+.body {
   composes: sans-serif from 'tachyons/css/tachyons.css';
 }
-.hero {
-  composes: min-vh-100 flex flex-column justify-center items-center from 'tachyons/css/tachyons.css';
-}
 .job {
-  composes: w-100 mw7 center pt4 pt5-ns pb2 pb0-ns ph2 from 'tachyons/css/tachyons.css';
+  composes: w-100 mw7 center pv4 pv5-ns pb2 pb0-ns ph2 from 'tachyons/css/tachyons.css';
 }
 .info,
 .why,

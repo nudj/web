@@ -1,8 +1,12 @@
 let express = require('express')
 let get = require('lodash/get')
 let _ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn()
+let Sendmail = require('sendmail')
 
-let logger = require('../logger')
+let sendmail = Sendmail({
+  silent: true
+})
+let logger = require('../lib/logger')
 let job = require('../modules/job')
 let build = require('../build').default
 let router = express.Router()
@@ -47,6 +51,7 @@ function getErrorHandler (req, res, next) {
         case 'Already applied':
           req.session.message = {
             code: 403,
+            type: 'error',
             message: error.message
           }
           let destination = req.originalUrl.split('/')
@@ -58,6 +63,7 @@ function getErrorHandler (req, res, next) {
         case 'Invalid url':
           errorMessage = {
             code: 400,
+            error: 'error',
             message: 'Form submission data invalid'
           }
           data = getRenderDataBuilder(req)({
@@ -72,12 +78,14 @@ function getErrorHandler (req, res, next) {
             case 'Not found':
               errorMessage = {
                 code: 404,
+                type: 'error',
                 message: 'Not found'
               }
               break
             default:
               errorMessage = {
                 code: 500,
+                type: 'error',
                 message: 'Something went wrong'
               }
           }
@@ -133,6 +141,49 @@ function applyHandler (req, res, next) {
     .then(getRenderer(req, res, next))
     .catch(getErrorHandler(req, res, next))
 }
+
+
+router.post('/request', (req, res) => {
+  logger.log('info', 'Sending email', req.body)
+  sendmail({
+    from: 'hello@nudj.co',
+    to: 'hello@nudj.co',
+    subject: 'Request Access',
+    html: `
+      <html>
+      <body>
+        <br/>
+        <p>Hi team,</p>
+        <p>A new user has requested access.</p>
+        <br/>
+        <p>
+          <strong>Full name:</strong> ${req.body.fullname}<br/>
+          <strong>Email:</strong> ${req.body.email}<br/>
+          <strong>Company Name:</strong> ${req.body.company_name}<br/>
+        </p>
+        <br/>
+        <p>Love<br/> Your friendly nudj bot.</p>
+        <br/>
+      </body>
+      </html>
+    `
+  }, (err, reply) => {
+    let data = {
+      success: true
+    }
+    if (err) {
+      logger.log('Error', err)
+      data.message = {
+        type: 'error',
+        code: 500,
+        message: 'Something went wrong'
+      }
+      delete data.success
+    }
+    data = getRenderDataBuilder(req)(data)
+    getRenderer(req, res)(data)
+  })
+})
 
 router.get('/:companySlug/:jobSlugRefId', jobHandler)
 router.get('/:companySlug/:jobSlugRefId/nudj', ensureLoggedIn, nudjHandler)

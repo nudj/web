@@ -6,7 +6,6 @@ import Header from '../header'
 import Message from '../message'
 import HomePage from '../home-page'
 import RequestPage from '../request-page'
-import SuccessPage from '../success-page'
 import HirerPage from '../hirer-page'
 import JobPage from '../job-page'
 import ApplyPage from '../apply-page'
@@ -25,15 +24,16 @@ class Index extends Component {
           <Header {...data} />
         </header>
         {data.message ? <Message key='message' message={data.message} /> : ''}
-        <Route exact path='/' render={(props) => <HomePage {...props} {...data} />} />
-        <Route exact path='/companies' render={(props) => <HirerPage {...props} {...data} />} />
-        <Route exact path='/request' render={(props) => <RequestPage {...props} {...data} />} />
-        <Route exact path='/success' render={(props) => <SuccessPage {...props} {...data} />} />
-        <Route exact path='/:companySlug/:jobSlugId' render={(props) => <JobPage {...props} {...data} />} />
-        <Route exact path='/:companySlug/:jobSlugId/apply' render={(props) => <ApplyPage {...props} {...data} />} />
-        <Route exact path='/:companySlug/:jobSlugId/nudj' render={(props) => <NudjPage {...props} {...data} />} />
-        <Route exact path='/404' render={(props) => <PageNotFound {...props} {...data} />} />
-        <Route exact path='/500' render={(props) => <ServerError {...props} {...data} />} />
+        <div className={style.content}>
+          <Route exact path='/' render={(props) => <HomePage {...props} {...data} />} />
+          <Route exact path='/companies' render={(props) => <HirerPage {...props} {...data} />} />
+          <Route exact path='/request' render={(props) => <RequestPage {...props} {...data} />} />
+          <Route exact path='/:companySlug/:jobSlugId' render={(props) => <JobPage {...props} {...data} />} />
+          <Route exact path='/:companySlug/:jobSlugId/apply' render={(props) => <ApplyPage {...props} {...data} />} />
+          <Route exact path='/:companySlug/:jobSlugId/nudj' render={(props) => <NudjPage {...props} {...data} />} />
+          <Route exact path='/404' render={(props) => <PageNotFound {...props} {...data} />} />
+          <Route exact path='/500' render={(props) => <ServerError {...props} {...data} />} />
+        </div>
         <footer className={style.footer}>
           <Footer />
         </footer>
