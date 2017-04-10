@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@nudj/dummy": "0.4.0",
-    "@nudj/schemas": "0.5.1",
+    "@nudj/schemas": "0.6.1",
     "body-parser": "^1.16.1",
     "classnames": "^2.2.5",
     "connect-ensure-login": "^0.1.1",
@@ -46,6 +46,7 @@
     "redux": "^3.6.0",
     "sendmail": "^1.1.1",
     "tachyons": "^4.6.2",
+    "validator": "^7.0.0",
     "winston": "^2.3.1"
   },
   "devDependencies": {

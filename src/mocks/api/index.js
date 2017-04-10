@@ -21,26 +21,7 @@ let dummyData = dummy({
     count: 5
   },
   applications: {
-    schema: {
-      jobId: {
-        example: {
-          fn: 'choice',
-          args: [['1']]
-        }
-      },
-      personId: {
-        example: {
-          fn: 'choice',
-          args: [['1']]
-        }
-      },
-      referralId: {
-        example: {
-          fn: 'choice',
-          args: [['1']]
-        }
-      }
-    },
+    schema: schemas.applications,
     count: 5
   }
 })
@@ -50,7 +31,7 @@ dummyData.people = dummyData.people.concat([
     firstName: 'Nick',
     lastName: 'Collings',
     email: 'nick@nudj.co',
-    urls: ['http://test.com/'],
+    url: 'http://test.com/',
     title: 'Tech Lead',
     type: 'external',
     company: 'nudj',
@@ -61,7 +42,7 @@ dummyData.people = dummyData.people.concat([
     firstName: 'Robyn',
     lastName: 'McGirl',
     email: 'robyn@nudj.co',
-    urls: ['http://test.com/'],
+    url: 'http://test.com/',
     title: 'CEO',
     type: 'external',
     company: 'nudj',
@@ -72,7 +53,7 @@ dummyData.people = dummyData.people.concat([
     firstName: 'Jamie',
     lastName: 'Gunson',
     email: 'jamie@nudj.co',
-    urls: ['http://test.com/'],
+    url: 'http://test.com/',
     title: 'Head of Product',
     type: 'external',
     company: 'nudj',
@@ -83,7 +64,7 @@ dummyData.people = dummyData.people.concat([
     firstName: 'Matt',
     lastName: 'Ellis',
     email: 'matt@nudj.co',
-    urls: ['http://test.com/'],
+    url: 'http://test.com/',
     title: 'Design Wizard',
     type: 'external',
     company: 'nudj',

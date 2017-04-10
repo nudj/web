@@ -28,3 +28,9 @@
 .fieldLabel {
   composes: db from 'tachyons/css/tachyons.css';
 }
+.invalidInput {
+  composes: ba b--red from 'tachyons/css/tachyons.css';
+}
+.invalidMessage {
+  composes: db red from 'tachyons/css/tachyons.css';
+}

@@ -6,14 +6,16 @@ import style from './apply-page.css'
 function renderField ({
   id,
   label,
+  invalidMessage,
   required,
   value,
   disabled
-}) {
+}, state) {
   return (
     <p className={style.field}>
-      <label className={style.fieldLabel} for={id}>{label}</label>
-      <input className={style.fieldInput} id={id} name={id} required={!!required} disabled={!!disabled} value={value || ''} />
+      <label className={style.fieldLabel} htmlFor={id}>{label}</label>
+      <input className={state.invalid ? style.invalidInput : style.fieldInput} id={id} name={id} required={!!required} disabled={!!disabled} value={(state && state.value) || value || ''} />
+      {state && state.invalid ? <span className={style.invalidMessage}>{invalidMessage}</span> : ''}
     </p>
   )
 }
@@ -30,14 +32,38 @@ function renderSuccess (props) {
 }
 
 function renderForm (props) {
-  console.log('person', props.person)
   return (
     <form className={style.form} method='POST'>
       <h1 className={style.title}>Apply for <strong>{get(props, 'job.title')}</strong> @ <strong>{get(props, 'company.name')}</strong> in <strong>{get(props, 'job.location')}</strong></h1>
-      {renderField({ id: 'firstName', label: 'First name', required: true, value: get(props, 'person.firstName'), disabled: true })}
-      {renderField({ id: 'lastName', label: 'Last name', required: true, value: get(props, 'person.lastName'), disabled: true })}
-      {renderField({ id: 'email', label: 'Email', required: true, value: get(props, 'person.email'), disabled: true })}
-      {renderField({ id: 'url', label: 'Add a profile URL', value: get(props, 'person.url') })}
+      {renderField({
+        id: 'firstName',
+        label: 'First name',
+        invalidMessage: 'Please enter a valid first name',
+        required: true,
+        value: get(props, 'person.firstName')
+      }, get(props, 'form.firstName'))}
+      {renderField({
+        id: 'lastName',
+        label: 'Last name',
+        invalidMessage: 'Please enter a valid last name',
+        required: true,
+        value: get(props, 'person.lastName')
+      }, get(props, 'form.lastName'))}
+      {renderField({
+        id: 'email',
+        label: 'Email',
+        invalidMessage: 'Please enter a valid email',
+        required: true,
+        value: get(props, 'person.email'),
+        disabled: true
+      }, get(props, 'form.email'))}
+      {renderField({
+        id: 'url',
+        label: 'Add a profile URL',
+        invalidMessage: 'Please enter a valid profile url',
+        required: true,
+        value: get(props, 'person.url')
+      }, get(props, 'form.url'))}
       <p className={style.field}>
         <button className={style.submit}>Apply</button>
       </p>
@@ -45,10 +71,14 @@ function renderForm (props) {
   )
 }
 
+function isProfileComplete (person) {
+  return person.firstName && person.lastName && person.url
+}
+
 export default (props) => {
   return (
     <div className={style.page}>
-      {get(props, 'person.url') ? renderSuccess(props) : renderForm(props)}
+      {isProfileComplete(props.person) ? renderSuccess(props) : renderForm(props)}
     </div>
   )
 }

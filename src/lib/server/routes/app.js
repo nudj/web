@@ -9,7 +9,9 @@ let router = express.Router()
 
 function ensureLoggedIn (req, res, next) {
   if (req.session.logout) {
-    res.redirect('/')
+    let url = req.originalUrl.split('/')
+    url.pop()
+    res.redirect(url.join('/'))
   } else {
     _ensureLoggedIn(req, res, next)
   }
@@ -37,50 +39,73 @@ function getRenderDataBuilder (req) {
 
 function getErrorHandler (req, res, next) {
   return (error) => {
-    switch (error.message) {
-      case 'Already referred':
-      case 'Already applied':
-        req.session.message = {
-          code: 403,
-          message: error.message
-        }
-        let destination = req.originalUrl.split('/')
-        logger.log('error', error.message, req.method, req.params.companySlug, req.params.jobSlugRefId, destination.pop(), error)
-        destination = destination.join('/')
-        res.redirect(destination)
-        break
-      case 'Not found':
-      default:
-        logger.log('error', error.message, error)
-        let data = getRenderDataBuilder(req)({
-          error: {
-            code: error.message === 'Not found' ? 404 : 500,
-            message: error.message === 'Not found' ? error.message : 'Something went wrong'
+    try {
+      let data, errorMessage
+      switch (error.message) {
+        // redirects with message
+        case 'Already referred':
+        case 'Already applied':
+          req.session.message = {
+            code: 403,
+            message: error.message
           }
-        })
-        getRenderer(req, res, next)(data)
+          let destination = req.originalUrl.split('/')
+          logger.log('error', error.message, req.method, req.params.companySlug, req.params.jobSlugRefId, destination.pop(), error)
+          destination = destination.join('/')
+          res.redirect(destination)
+          break
+        // renders with message
+        case 'Invalid url':
+          errorMessage = {
+            code: 400,
+            message: 'Form submission data invalid'
+          }
+          data = getRenderDataBuilder(req)({
+            message: errorMessage
+          })
+          getRenderer(req, res, next)(data)
+          break
+        // full page errors
+        default:
+          logger.log('error', error.message, error)
+          switch (error.message) {
+            case 'Not found':
+              errorMessage = {
+                code: 404,
+                message: 'Not found'
+              }
+              break
+            default:
+              errorMessage = {
+                code: 500,
+                message: 'Something went wrong'
+              }
+          }
+          data = getRenderDataBuilder(req)({
+            error: errorMessage
+          })
+          getRenderer(req, res, next)(data)
+      }
+    } catch (error) {
+      logger.log('error', error)
+      next(error)
     }
   }
 }
 
 function getRenderer (req, res, next) {
   return (data) => {
-    try {
-      delete req.session.logout
-      delete req.session.returnTo
-      let renderResult = build(data)
-      if (renderResult.url) {
-        res.redirect(renderResult.url)
-      } else {
-        let status = get(data, 'error.code', 200)
-        res.status(status).render('app', {
-          data: JSON.stringify(data),
-          html: renderResult
-        })
-      }
-    } catch (error) {
-      logger.log('error', error)
-      next(error)
+    delete req.session.logout
+    delete req.session.returnTo
+    let renderResult = build(data)
+    if (renderResult.url) {
+      res.redirect(renderResult.url)
+    } else {
+      let status = get(data, 'error.code', 200)
+      res.status(status).render('app', {
+        data: JSON.stringify(data),
+        html: renderResult
+      })
     }
   }
 }
