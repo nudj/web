@@ -12,7 +12,6 @@ import ApplyPage from '../apply-page'
 import NudjPage from '../nudj-page'
 import ErrorPage from '../error-page'
 import PageNotFound from '../404-page'
-import ServerError from '../500-page'
 import Footer from '../footer'
 
 class Index extends Component {
