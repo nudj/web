@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import NudjSuccess from '../nudj-success'
 
 import style from './nudj-page.css'
@@ -8,9 +7,8 @@ export default (props) => {
   return (
     <div className={style.page}>
       <div className={style.box}>
-        <iframe src='//giphy.com/embed/3oz8xsRKgCWlzkqT7y' width='480' height='270' frameBorder='0' className='giphy-embed' allowFullScreen />
+        <img src='https://media.giphy.com/media/3o6Zt3p4l4OyuWxvK8/giphy.gif' width='320' height='320' />
         <NudjSuccess {...props} />
-        <Link className={style.continue} to='/dashboard'>Continue to dashboard -></Link>
       </div>
     </div>
   )

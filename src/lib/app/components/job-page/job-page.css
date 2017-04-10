@@ -13,7 +13,11 @@
   composes: pv2 w-100 from 'tachyons/css/tachyons.css';
 }
 .logo {
-  max-height: 2.5rem !important;
+  composes: ba bw1 b--light-gray br2 h3 w3 di from 'tachyons/css/tachyons.css';
+  -webkit-filter: grayscale(100%) contrast(180%) brightness(100%);
+  filter: grayscale(100%) contrast(180%) brightness(100%);
+  opacity: 0.9;
+  max-height: 4rem !important;
 }
 .title {
   composes: f3 f2-l fw5 tl from 'tachyons/css/tachyons.css';
@@ -65,10 +69,12 @@
   composes: w-50-ns w-100 pa1 from 'tachyons/css/tachyons.css';
 }
 .apply {
-  composes: f5 dib ph3 pv2 mb2 dim no-underline white ba bw1 bg-dark-blue from 'tachyons/css/tachyons.css';
+  composes: f5 dib ph3 pv2 mb2 dim no-underline white ba bw1 b--dark-blue bg-dark-blue from 'tachyons/css/tachyons.css';
+  cursor: pointer;
 }
 .nudj {
-  composes: f5 dib ph3 pv2 mb2 dim no-underline dark-blue ba bw1 from 'tachyons/css/tachyons.css';
+  composes: f5 dib ph3 pv2 mb2 dim no-underline dark-blue bg-white ba bw1 b--dark-blue from 'tachyons/css/tachyons.css';
+  cursor: pointer;
 }
 .breakLine {
   composes: ba b--dashed light-gray from 'tachyons/css/tachyons.css';

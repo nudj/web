@@ -1,32 +1,22 @@
-  /*.nav {
-    composes: nav from 'bulma/css/bulma.css';
-    composes: pt1 from 'basscss-padding/css/padding.css';
-    box-shadow: none !important;
-  }
-  .left {
-    composes: nav-left from 'bulma/css/bulma.css';
-  }
-  .home {
-    composes: nav-item from 'bulma/css/bulma.css';
-  }
-  .toggle {
-    composes: nav-toggle from 'bulma/css/bulma.css';
-  }
-  .brand {
-    max-height: 2rem !important;
-  }
-  .right {
-    composes: nav-right nav-menu from 'bulma/css/bulma.css';
-  }
-  .login{
-    composes: nav-item button is-link from 'bulma/css/bulma.css'
-  }
-  .request {
-    composes: nav-item button is-primary from 'bulma/css/bulma.css';
-  }
-  .padding {
-    composes: p1 from 'basscss-padding/css/padding.css';
-  }
-  .container {
-    composes: container from 'bulma/css/bulma.css';
-  }*/
+.wrapper {
+  composes: absolute w-100 from 'tachyons/css/tachyons.css';
+  z-index: 99;
+}
+.primary {
+  composes: flex items-center justify-center pa4 bg-near-black white from 'tachyons/css/tachyons.css';
+}
+.info {
+  composes: flex items-center justify-center pa4 bg-dark-blue white from 'tachyons/css/tachyons.css';
+}
+.warning {
+  composes: flex items-center justify-center pa4 bg-gold white from 'tachyons/css/tachyons.css';
+}
+.danger {
+  composes: flex items-center justify-center pa4 bg-dark-red white from 'tachyons/css/tachyons.css';
+}
+.success {
+  composes: flex items-center justify-center pa4 bg-green white from 'tachyons/css/tachyons.css';
+}
+.copy {
+  composes: f6 f5-ns lh-title from 'tachyons/css/tachyons.css';
+}
