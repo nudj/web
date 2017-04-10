@@ -56,9 +56,7 @@ function fetchExisting (type) {
 function ensureDoesNotExist (type) {
   return (data) => {
     if (data[type]) {
-      let message = `Already ${type === 'application' ? 'applied' : 'referred'}`
-      logger.log('error', message)
-      throw new Error(message)
+      throw new Error(`Already ${type === 'application' ? 'applied' : 'referred'}`)
     }
     return Promise.resolve(data)
   }
