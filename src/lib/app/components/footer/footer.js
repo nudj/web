@@ -16,7 +16,7 @@ export default (props) => (
       </li>
       <li className={style.link}>
         <Link className={style.hiring} to=''>We're Hiring!</Link>
-        <p className={style.label}><small>Help us build something awesome.</small></p>
+        <p className={style.label}><small>Join our team &amp; build something awesome.</small></p>
       </li>
       <li className={style.link}>
         <Link className={style.terms} to='//www.iubenda.com/privacy-policy/8051143' target='_blank'>Terms &amp; Privacy</Link>
