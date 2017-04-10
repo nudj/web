@@ -1,8 +1,8 @@
 .page {
-  composes: flex min-vh-100 justify-center items-center from 'tachyons/css/tachyons.css';
+  composes: pt5 flex vh-100 justify-center items-center from 'tachyons/css/tachyons.css';
 }
 .box {
-  composes: mw6 tc ph2 pv6 pv0-ns from 'tachyons/css/tachyons.css';
+  composes: mw6 tc from 'tachyons/css/tachyons.css';
 }
 .continue {
   composes: mt5 db from 'tachyons/css/tachyons.css';

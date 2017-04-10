@@ -2,19 +2,19 @@
   composes: tc from 'tachyons/css/tachyons.css';
 }
 .heading {
-  composes: f3 fw5 mv4 from 'tachyons/css/tachyons.css';
+  composes: f3 mv4 from 'tachyons/css/tachyons.css';
 }
 .link {
-  composes: f5 mv4 db light-red from 'tachyons/css/tachyons.css';
+  composes: f5 mv4 db from 'tachyons/css/tachyons.css';
 }
 .actions {
-  composes: list flex justify-center items-center mv4 from 'tachyons/css/tachyons.css';
+  composes: flex justify-center items-center mv4 from 'tachyons/css/tachyons.css';
 }
 .copyLink {
-  composes: link dim ph3 pv2 dib white bg-dark-blue mr3 from 'tachyons/css/tachyons.css';
+  composes: link dim br2 ph3 pv2 dib white bg-gray mr2 from 'tachyons/css/tachyons.css';
 }
 .socialAction {
-  composes: ma3 from 'tachyons/css/tachyons.css';
+  composes: ma2 from 'tachyons/css/tachyons.css';
   width: 24px;
   height: 24px;
 }
@@ -28,19 +28,4 @@
 }
 .linkText {
   composes: clip from 'tachyons/css/tachyons.css';
-}
-.tip {
-  composes: mw6 bg-white br2 pa1 pa2-ns mv4 mh2 ba b--black-10 from 'tachyons/css/tachyons.css';
-}
-.tipTitle {
-  composes: f4 from 'tachyons/css/tachyons.css';
-}
-.tipBreak {
-  composes: mw5 bb bw1 b--black-10 from 'tachyons/css/tachyons.css';
-}
-.tipBody {
-  composes: pa2 f6 f5-ns lh-copy measure mv0 from 'tachyons/css/tachyons.css';
-}
-.breakLine {
-  composes: ba b--dashed light-gray mh1 mh0-ns from 'tachyons/css/tachyons.css';
 }

@@ -5,9 +5,7 @@ export default (props) => (
   <div className={style.body}>
     <div className={style.hero}>
       <div className={style.heroBody}>
-        <div className={style.gif}>
-          <img src='https://media.giphy.com/media/ZeB4HcMpsyDo4/giphy.gif' width='320' height='202' />
-        </div>
+        <iframe src='//giphy.com/embed/ZeB4HcMpsyDo4' width='320' height='202' frameBorder='0' allowFullScreen />
         <p className={style.header}>Dang-it!</p>
         <p className={style.copy}>That wasn't supposed to happen.</p>
         <small className={style.error}>Error code: 500</small>
