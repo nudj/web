@@ -5,7 +5,7 @@
   composes: f6 db tc mid-gray from 'tachyons/css/tachyons.css';
 }
 .links {
-  composes: flex flex-row flex-wrap justify-between items-stretch-ns items-center w-100 center tc mt3 list from 'tachyons/css/tachyons.css';
+  composes: flex flex-row flex-wrap justify-between items-stretch-ns items-center w-100 center tc mt3 list pa0 from 'tachyons/css/tachyons.css';
 }
 .link {
   composes: justify-center items-center w-25-ns w-100 tc ph3 pv2 pv3-l from 'tachyons/css/tachyons.css';
