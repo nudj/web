@@ -1,9 +1,27 @@
 .container {
-  composes: w-100 mw8 center flex flex-column justify-center items-center pv2 from 'tachyons/css/tachyons.css';
+  composes: w-100 mw7 center flex flex-column justify-center items-center pv3 pv4-l bt bw1 b--light-gray from 'tachyons/css/tachyons.css';
 }
 .copyright {
   composes: f6 db tc mid-gray from 'tachyons/css/tachyons.css';
 }
-.privacy {
-  composes: f6 link mid-gray dim pv2 underline from 'tachyons/css/tachyons.css';
+.links {
+  composes: flex flex-row flex-wrap justify-between items-stretch-ns items-center w-100 center tc mt3 from 'tachyons/css/tachyons.css';
+}
+.link {
+  composes: justify-center items-center w-25-ns w-100 tc ph3 pv2 pv3-l from 'tachyons/css/tachyons.css';
+}
+.release {
+  composes: f6 link dim no-underline-ns underline dib-ns di ph2 pv2 mh1 mv1 bg-white-ns ba-ns bw1-ns b--light-blue-ns blue from 'tachyons/css/tachyons.css';
+}
+.roadmap {
+  composes: f6 link dim no-underline-ns underline dib-ns di ph2 pv2 mh1 mv1 bg-white-ns ba-ns bw1-ns b--light-green-ns green from 'tachyons/css/tachyons.css';
+}
+.hiring {
+  composes: f6 link dim no-underline-ns underline dib-ns di ph2 pv2 mh1 mv1 bg-white-ns ba-ns bw1-ns b--light-purple-ns purple from 'tachyons/css/tachyons.css';
+}
+.terms {
+  composes: f6 link dim no-underline-ns underline dib-ns di pv2 ph2 mh1 mv1 bg-white-ns ba-ns bw1-ns b--near-black-ns black from 'tachyons/css/tachyons.css';
+}
+.label {
+  composes: tc pt2 mh0 mv0 dn dib-ns mid-gray from 'tachyons/css/tachyons.css';
 }

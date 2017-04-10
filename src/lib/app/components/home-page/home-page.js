@@ -50,7 +50,7 @@ export default (props) => (
       <p className={style.subtitle}>With your help, we connect the best companies with the best people, without any of the faff.</p>
       <div className={style.buttons}>
         <a className={style.button} href='#'>Sign-up for updates</a>
-        <span className={style.spacer}>OR</span>
+        <span className={style.spacer}>or</span>
         <a className={style.buttonLink} id='open-intercom' href='#'>Get in touch</a>
       </div>
     </div>

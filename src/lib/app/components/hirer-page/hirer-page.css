@@ -2,7 +2,7 @@
   composes: sans-serif black from 'tachyons/css/tachyons.css';
 }
 .background {
-  composes: cover bg-left bg-center-l from 'tachyons/css/tachyons.css';
+  composes: cover bg-center from 'tachyons/css/tachyons.css';
   background-image: url(/assets/images/office-space-2.jpg);
 }
 .hero {
@@ -15,7 +15,7 @@
   flex: 1;
 }
 .title {
-  composes: f2 f1-l fw5 measure tc pt5 pt0-ns m0 from 'tachyons/css/tachyons.css';
+  composes: f2 f1-l fw5 measure tc pt5 pt0-ns ph2 from 'tachyons/css/tachyons.css';
 }
 .subtitle {
   composes: f4 f3-l lh-subtitle pb4 pb2-ns tc from 'tachyons/css/tachyons.css';
@@ -53,7 +53,7 @@
   border-spacing: 0;
 }
 .tableHeader {
-  composes: f3-l bb b--black-20 pv2 tc tracked from 'tachyons/css/tachyons.css';
+  composes: f3-l bb b--black-20 pv2 tc from 'tachyons/css/tachyons.css';
 }
 .tableHeaderNudj {
   composes: f5 f3-l bb b--black-20 pv2 tc light-red from 'tachyons/css/tachyons.css';
@@ -86,7 +86,7 @@
   composes: justify-center items-center w-100  mw8 from 'tachyons/css/tachyons.css';
 }
 .pricing {
-  composes: pt4 pt5-m pt6-l from 'tachyons/css/tachyons.css';
+  composes: pv4 pv5-m pv6-l mb5 mb0-ns from 'tachyons/css/tachyons.css';
 }
 .price {
   composes: f2 f1-l fw6 tc lh-title from 'tachyons/css/tachyons.css';
@@ -98,11 +98,11 @@
   composes: tc pa3 from 'tachyons/css/tachyons.css';
 }
 .request {
-  composes: f6 dib-ns db ph3 pv2 grow no-underline white ba bw1 bg-light-red from 'tachyons/css/tachyons.css';
+  composes: f5 dib ph3 pv2 grow no-underline white ba bw1 bg-light-red from 'tachyons/css/tachyons.css';
 }
 .padding {
   composes: pa3-ns pv3 dib-ns db from 'tachyons/css/tachyons.css';
 }
 .outlined {
-  composes: f6 dib-ns db ph3 pv2 no-underline grow ba bw1 light-red from 'tachyons/css/tachyons.css';
+  composes: f5 dib ph3 pv2 no-underline grow ba bw1 light-red from 'tachyons/css/tachyons.css';
 }

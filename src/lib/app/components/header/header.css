@@ -8,7 +8,7 @@
   composes: dib from 'tachyons/css/tachyons.css';
 }
 .brand {
-  composes: mw3 pl0-ns pl2 from 'tachyons/css/tachyons.css';
+  composes: mw3 pl2 from 'tachyons/css/tachyons.css';
 }
 .toggle {
   composes: db dn-l h3 w3 relative from 'tachyons/css/tachyons.css';
@@ -18,7 +18,7 @@
   position: absolute;
   display: block;
   background-color: #4a4a4a;
-  height: 1px;
+  height: 2px;
   left: 50%;
   margin-left: -10px;
   top: 50%;

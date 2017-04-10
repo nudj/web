@@ -82,7 +82,7 @@ export default (props) => (
           <p className={style.detail}>So sign-up for beta access today!</p>
           <div className={style.buttons}>
             <a className={style.request} href='/request'>Request access</a>
-            <span className={style.padding}>OR</span>
+            <span className={style.padding}>or</span>
             <a className={style.outlined} id='open-intercom'>Get in touch</a>
           </div>
         </div>

@@ -39,8 +39,9 @@ export default class Header extends React.Component {
           <span />
         </span>
         <div className={`${style.right} ${this.state.menuOpen ? style.isActive : ''}`}>
+          <a className={style.link} href='https://help.nudj.co'>Help</a>
           <a className={style.link} href='/'>Jobs</a>
-          <a className={style.link} href='/companies'>Hiring</a>
+          <a className={style.link} href='/hiring'>Hiring</a>
           {renderLoginLogout(this.props.person)}
           <a className={style.request} href='/request'>Request access</a>
         </div>
