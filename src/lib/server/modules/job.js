@@ -1,5 +1,4 @@
 let isURL = require('validator/lib/isURL')
-let some = require('lodash/some')
 let logger = require('../logger')
 let fetch = require('../lib/fetch')
 
@@ -95,7 +94,6 @@ function validatePersonFields (personData) {
   }, personData)
   let anyInvalid = false
   let fields = Object.keys(personData).reduce((fields, field) => {
-    let fieldState
     let value = personData[field]
     let invalid
     switch (field) {
