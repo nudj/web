@@ -7,6 +7,7 @@ let sendmail = Sendmail({
   silent: true
 })
 let logger = require('../lib/logger')
+let request = require('../modules/request')
 let job = require('../modules/job')
 let build = require('../build').default
 let router = express.Router()
@@ -142,9 +143,9 @@ function applyHandler (req, res, next) {
     .catch(getErrorHandler(req, res, next))
 }
 
-router.post('/request', (req, res) => {
+router.post('/request', (req, res, next) => {
   logger.log('info', 'Sending email', req.body)
-  sendmail({
+  request.send({
     from: 'hello@nudj.co',
     to: 'hello@nudj.co',
     subject: 'Request Access',
@@ -167,6 +168,7 @@ router.post('/request', (req, res) => {
       </html>
     `
   }, (err, reply) => {
+    logger.log('info', 'mailer response', reply)
     let data = {
       success: true
     }
