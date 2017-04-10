@@ -142,7 +142,6 @@ function applyHandler (req, res, next) {
     .catch(getErrorHandler(req, res, next))
 }
 
-
 router.post('/request', (req, res) => {
   logger.log('info', 'Sending email', req.body)
   sendmail({
