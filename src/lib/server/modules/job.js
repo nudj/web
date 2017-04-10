@@ -87,6 +87,12 @@ function nudj (data) {
 }
 
 function validatePersonFields (personData) {
+  personData = Object.assign({
+    email: undefined,
+    firstName: undefined,
+    lastName: undefined,
+    url: undefined
+  }, personData)
   let anyInvalid = false
   let fields = Object.keys(personData).reduce((fields, field) => {
     let fieldState
@@ -179,8 +185,8 @@ module.exports.apply = function (companySlug, jobSlugRefId, loggedInPerson, pers
     if (personUpdate.url !== undefined) {
       // form submitted
       personValidity = validatePersonFields(personUpdate)
-      data.form = personValidity.fields
       if (personValidity.invalid) {
+        data.form = personValidity.fields
         logger.log('error', 'Invalid data', personUpdate)
         return data
       } else {
@@ -189,8 +195,8 @@ module.exports.apply = function (companySlug, jobSlugRefId, loggedInPerson, pers
     } else {
       // page accessed
       personValidity = validatePersonFields(data.person)
-      data.form = personValidity.fields
       if (personValidity.invalid) {
+        data.form = personValidity.fields
         logger.log('error', 'Incomplete data', personUpdate)
         return data
       } else {

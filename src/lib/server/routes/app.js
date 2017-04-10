@@ -9,7 +9,9 @@ let router = express.Router()
 
 function ensureLoggedIn (req, res, next) {
   if (req.session.logout) {
-    res.redirect('/')
+    let url = req.originalUrl.split('/')
+    url.pop()
+    res.redirect(url.join('/'))
   } else {
     _ensureLoggedIn(req, res, next)
   }

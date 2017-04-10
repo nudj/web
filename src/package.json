@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@nudj/dummy": "0.4.0",
-    "@nudj/schemas": "0.5.1",
+    "@nudj/schemas": "0.6.1",
     "body-parser": "^1.16.1",
     "classnames": "^2.2.5",
     "connect-ensure-login": "^0.1.1",
