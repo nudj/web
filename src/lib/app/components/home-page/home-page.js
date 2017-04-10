@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import style from './home-page.css'
 
 export default (props) => (
@@ -42,16 +43,16 @@ export default (props) => (
         <p className={style.step}>...who can apply in a matter of seconds &amp; get direct access to the company.</p>
         <div className={style.number}>4.</div>
         <p className={style.step}>If they get hired then everyone gets rewarded - they get an awesome new job, the company gets an awesome employee and the friend that referred them get's paid!</p>
-        <div className={style.everyone}>&#x1F483;&nbsp;<a className={style.link} href='https://www.youtube.com/watch?v=-SFFRaIUisY'>Everyone's a winner, baby!</a>&#x1F57A;</div>
+        <div className={style.everyone}>&#x1F483;&nbsp;<Link to='//www.youtube.com/watch?v=-SFFRaIUisY' className={style.link}>Everyone's a winner, baby!</Link>&#x1F57A;</div>
       </div>
     </div>
     <div className={style.sectionMedium}>
       <h2 className={style.title}>What are you waiting for?</h2>
       <p className={style.subtitle}>With your help, we connect the best companies with the best people, without any of the faff.</p>
       <div className={style.buttons}>
-        <a className={style.button} href='#'>Sign-up for updates</a>
+        <Link to='' className={style.button}>Sign-up for updates</Link>
         <span className={style.spacer}>or</span>
-        <a className={style.buttonLink} id='open-intercom' href='#'>Get in touch</a>
+        <Link to='' className={style.buttonLink} id='open-intercom'>Get in touch</Link>
       </div>
     </div>
   </div>

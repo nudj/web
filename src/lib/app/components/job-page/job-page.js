@@ -37,27 +37,27 @@ export default (props) => {
         <div className={style.companyLinks}>
           <div className={style.links}>
             <div className={style.link}>
-              <a className={style.bodyLinks} href={get(props, 'company.url', '#company-url')}>View company website</a>
+              <Link to={get(props, 'company.url', '#company-url')} className={style.bodyLinks}>View company website</Link>
             </div>
             <div className={style.link}>
-              <a className={style.bodyLinks} href={get(props, 'job.url', '#job-url')}>View full job post</a>
+              <Link to={get(props, 'job.url', '#job-url')} className={style.bodyLinks}>View full job post</Link>
             </div>
           </div>
           <div className={style.social}>
             <div className={style.socialLink}>
-              <a href={get(props, 'facebook.url', '#facebook-url')}>
+              <Link to={get(props, 'facebook.url', '#facebook-url')}>
                 <i className={style.facebook} />
-              </a>
+              </Link>
             </div>
             <div className={style.socialLink}>
-              <a href={get(props, 'twitter.url', '#twitter-url')}>
+              <Link to={get(props, 'twitter.url', '#twitter-url')}>
                 <i className={style.twitter} />
-              </a>
+              </Link>
             </div>
             <div className={style.socialLink}>
-              <a href={get(props, 'linkedin.url', '#linkedin-url')}>
+              <Link to={get(props, 'linkedin.url', '#linkedin-url')}>
                 <i className={style.linkedin} />
-              </a>
+              </Link>
             </div>
           </div>
         </div>
