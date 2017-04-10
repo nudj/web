@@ -8,5 +8,5 @@
   composes: flex flex-column justify-center flex-auto from 'tachyons/css/tachyons.css';
 }
 .footer {
-  composes: w-100 sans-serif flex-none pt2 from 'tachyons/css/tachyons.css';
+  composes: w-100 sans-serif flex-none ph4 ph0-l from 'tachyons/css/tachyons.css';
 }

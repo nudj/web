@@ -27,7 +27,7 @@ class Index extends Component {
           {data.error && data.error.code ? <ErrorPage {...data.error} /> : (
             <Switch>
               <Route exact path='/' render={(props) => <HomePage {...props} {...data} />} />
-              <Route exact path='/companies' render={(props) => <HirerPage {...props} {...data} />} />
+              <Route exact path='/hiring' render={(props) => <HirerPage {...props} {...data} />} />
               <Route exact path='/request' render={(props) => <RequestPage {...props} {...data} />} />
               <Route exact path='/:companySlug/:jobSlugId' render={(props) => <JobPage {...props} {...data} />} />
               <Route exact path='/:companySlug/:jobSlugId/apply' render={(props) => <ApplyPage {...props} {...data} />} />

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import style from './hirer-page.css'
 
 export default (props) => (
@@ -81,9 +82,9 @@ export default (props) => (
           <div className={style.price}>£0 + referral fee. &#x1F62E;</div>
           <p className={style.detail}>So sign-up for beta access today!</p>
           <div className={style.buttons}>
-            <a className={style.request} href='/request'>Request access</a>
-            <span className={style.padding}>OR</span>
-            <a className={style.outlined} id='open-intercom'>Get in touch</a>
+            <Link to='/request' className={style.request} >Request access</Link>
+            <span className={style.padding}>or</span>
+            <Link to='' className={style.outlined} id='open-intercom'>Get in touch</Link>
           </div>
         </div>
       </div>
