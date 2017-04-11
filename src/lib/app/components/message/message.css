@@ -2,7 +2,7 @@
   composes: w-100 flex-none from 'tachyons/css/tachyons.css';
 }
 .primary {
-  composes: flex items-center justify-center pa4-ns pa3 bg-near-black white from 'tachyons/css/tachyons.css';
+  composes: flex items-center justify-center pa3-ns pa2 bg-near-black white from 'tachyons/css/tachyons.css';
 }
 .info {
   composes: flex items-center justify-center pa4-ns pa3 bg-dark-blue white from 'tachyons/css/tachyons.css';
