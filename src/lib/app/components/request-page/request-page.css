@@ -1,5 +1,5 @@
 .body {
-  composes: sans-serif flex flex-column justify-center items-center from 'tachyons/css/tachyons.css';
+  composes: avenir flex flex-column justify-center items-center from 'tachyons/css/tachyons.css';
 }
 .content {
   composes: w-100 mw6 center pv3-ns pv0 pa2 tc from 'tachyons/css/tachyons.css';

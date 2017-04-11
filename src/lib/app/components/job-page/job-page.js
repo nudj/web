@@ -70,10 +70,10 @@ export default (props) => {
         <hr className={style.breakLine} />
         <div className={style.actions}>
           <form className={style.action} action={`/${get(props, 'company.slug')}/${get(props, 'job.slug')}${referral ? `+${referral.id}` : ''}/apply`} method='POST'>
-            <p className={style.actionCopy}>Interested? It only takes <strong>a few seconds</strong> to apply & you don’t need a CV.</p><button className={style.apply}>Apply for job</button>
+            <p className={style.actionCopy}>Interested? It only takes <strong>a few seconds to apply</strong> and you don’t need a CV.</p><button className={style.apply}>Apply for job</button>
           </form>
           <form className={style.action} action={`/${get(props, 'company.slug')}/${get(props, 'job.slug')}${referral ? `+${referral.id}` : ''}/nudj`} method='POST'>
-            <p className={style.actionCopy}>Know someone perfect? <strong>We’ll give you £{get(props, 'job.bonus')}</strong> if they get the job.</p><button className={style.nudj}>Send to a friend</button>
+            <p className={style.actionCopy}>Know someone perfect? <strong>We’ll give you £{get(props, 'job.bonus')}</strong> if they get the job and you get to feel awesome for helping out a mate!</p><button className={style.nudj}>Send to a friend</button>
           </form>
         </div>
         <hr className={style.breakLine} />
