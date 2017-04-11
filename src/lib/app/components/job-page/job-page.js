@@ -45,19 +45,19 @@ export default (props) => {
           </div>
           <div className={style.social}>
             <div className={style.socialLink}>
-              <Link to={get(props, 'facebook.url', '#facebook-url')}>
+              <a href={get(props, 'company.facebook', '#facebook-url')}>
                 <i className={style.facebook} />
-              </Link>
+              </a>
             </div>
             <div className={style.socialLink}>
-              <Link to={get(props, 'twitter.url', '#twitter-url')}>
+              <a href={get(props, 'company.twitter', '#twitter-url')}>
                 <i className={style.twitter} />
-              </Link>
+              </a>
             </div>
             <div className={style.socialLink}>
-              <Link to={get(props, 'linkedin.url', '#linkedin-url')}>
+              <a href={get(props, 'company.linkedin', '#linkedin-url')}>
                 <i className={style.linkedin} />
-              </Link>
+              </a>
             </div>
           </div>
         </div>
