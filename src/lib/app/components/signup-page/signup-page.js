@@ -13,7 +13,7 @@ export default (props) => {
     )
   } else {
     html = (
-      <form className={style.content} action='/request' method='post'>
+      <form className={style.content} action='/signup' method='post'>
         <div className={style.formHeader}>
           <h2 className={style.title}>Great jobs come to those who... nudj</h2>
           <p className={style.subtitle}>Just enter your details below and we'll get back to you as soon as possible.</p>
@@ -36,29 +36,29 @@ export default (props) => {
             <input className={style.fieldInput} id='job_title' name='job_title' type='text' />
           </div>
           <div className={style.fieldWrap}>
-            <label className={style.fieldLabel} for='job_title'>Role</label>
-            <small>Tell us what you do day-to-day - select as many as you like!</small>
+            <label className={style.fieldLabel}>Role</label>
+            <small className={style.helper}>Tell us what you do day-to-day - select as many as you like!</small>
             <div className={style.checkbox}>
-              <label className={style.checkboxLabel} for='development'><input className={style.checkboxInput} type='checkbox' id='development' value='development' name='development' />Development</label>
+              <label className={style.checkboxLabel}><input className={style.checkboxInput} type='checkbox' id='development' value='development' name='role' />Development</label>
             </div>
             <div className={style.checkbox}>
-              <label className={style.checkboxLabel} for='design'><input className={style.checkboxInput} type='checkbox' id='design' value='design' />Design</label>
+              <label className={style.checkboxLabel}><input className={style.checkboxInput} type='checkbox' id='design' value='design' name='role' />Design</label>
             </div>
             <div className={style.checkbox}>
-              <label className={style.checkboxLabel} for='marketing'><input className={style.checkboxInput} type='checkbox' id='marketing' value='marketing' />Marketing</label>
+              <label className={style.checkboxLabel}><input className={style.checkboxInput} type='checkbox' id='marketing' value='marketing' name='role' />Marketing</label>
             </div>
             <div className={style.checkbox}>
-              <label className={style.checkboxLabel} for='sales'><input className={style.checkboxInput} type='checkbox' id='sales' value='sales' />Sales</label>
+              <label className={style.checkboxLabel}><input className={style.checkboxInput} type='checkbox' id='sales' value='sales' name='role' />Sales</label>
             </div>
             <div className={style.checkbox}>
-              <label className={style.checkboxLabel} for='product'><input className={style.checkboxInput} type='checkbox' id='product' value='product' />Product</label>
+              <label className={style.checkboxLabel}><input className={style.checkboxInput} type='checkbox' id='product' value='product' name='role' />Product</label>
             </div>
             <div className={style.checkbox}>
-              <label className={style.checkboxLabel} for='other'><input className={style.checkboxInput} type='checkbox' id='other' value='other' />Other</label>
+              <label className={style.checkboxLabel}><input className={style.checkboxInput} type='checkbox' id='other' value='other' name='role' />Other</label>
             </div>
           </div>
         </fieldset>
-        <input className={style.fieldSubmit} type='submit' value='Request access' />
+        <input className={style.fieldSubmit} type='submit' value='Sign-up' />
       </form>
     )
   }

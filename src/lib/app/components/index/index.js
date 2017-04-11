@@ -30,7 +30,7 @@ class Index extends Component {
               <Route exact path='/' render={(props) => <HomePage {...props} {...data} />} />
               <Route exact path='/hiring' render={(props) => <HirerPage {...props} {...data} />} />
               <Route exact path='/request' render={(props) => <RequestPage {...props} {...data} />} />
-              <Route exact path='/sign-up' render={(props) => <SignupPage {...props} {...data} />} />
+              <Route exact path='/signup' render={(props) => <SignupPage {...props} {...data} />} />
               <Route exact path='/:companySlug/:jobSlugId' render={(props) => <JobPage {...props} {...data} />} />
               <Route exact path='/:companySlug/:jobSlugId/apply' render={(props) => <ApplyPage {...props} {...data} />} />
               <Route exact path='/:companySlug/:jobSlugId/nudj' render={(props) => <NudjPage {...props} {...data} />} />

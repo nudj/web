@@ -18,7 +18,7 @@ export default (props) => {
           <h2 className={style.title}>Good things come to those who... nudj</h2>
           <p className={style.subtitle}>Just enter your details below and we'll get back to you as soon as possible.</p>
         </div>
-        <fieldset className={style.fieldSet} id='sign_up'>
+        <fieldset className={style.fieldSet} id='request'>
           <div className={style.fieldWrap}>
             <label className={style.fieldLabel} for='first_name'>First Name</label>
             <input className={style.fieldInput} id='first_name' name='first_name' required type='text' />
