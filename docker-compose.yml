@@ -2,7 +2,6 @@ version: '2'
 services:
   web:
     image: nudj/web:latest
-    env_file: env
     environment:
       - NODE_ENV=production
     depends_on:

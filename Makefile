@@ -46,7 +46,7 @@ dev:
 		-v $(CWD)/src/lib:/usr/src/lib \
 		-v $(CWD)/src/mocks:/usr/src/mocks \
 		-v $(CWD)/src/package.json:/usr/src/package.json \
-		--env-file $(CWD)/env \
+		--env-file $(CWD)/.env \
 		$(IMAGEDEV) \
 		/bin/sh -c 'ln -s /tmp/node_modules ./node_modules && $(BIN)/nodemon \
 			--config ./nodemon.json \

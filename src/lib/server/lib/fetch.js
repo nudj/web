@@ -2,7 +2,7 @@ let nodeFetch = require('node-fetch')
 let logger = require('./logger')
 
 function fetch (uri, options) {
-  return nodeFetch(`http://api:81/${uri}`, options)
+  return nodeFetch(`http://${process.env.API_DOMAIN}:81/${uri}`, options)
     .then((response) => {
       if (response.status === 500) {
         throw new Error(response.statusText)
