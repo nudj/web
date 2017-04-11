@@ -2,19 +2,19 @@
   composes: avenir flex flex-column justify-center items-center from 'tachyons/css/tachyons.css';
 }
 .content {
-  composes: w-100 mw6 center pv3-ns pv0 pa2 tc from 'tachyons/css/tachyons.css';
+  composes: w-100 mw6 center pv3-ns pv0 pa2 from 'tachyons/css/tachyons.css';
 }
 .formHeader {
   composes: pb0 pb2-ns bb b--near-white bw1 from 'tachyons/css/tachyons.css';
 }
 .title {
-  composes: f4 f3-l fw5 tc from 'tachyons/css/tachyons.css';
+  composes: f4 f3-l fw5 from 'tachyons/css/tachyons.css';
 }
 .subtitle {
-  composes: f5 f4-l tc from 'tachyons/css/tachyons.css';
+  composes: f5 f4-l from 'tachyons/css/tachyons.css';
 }
 .fieldSet {
-  composes: ba b--transparent ph0 mh0 from 'tachyons/css/tachyons.css';
+  composes: ba b--transparent pa0 ma0 from 'tachyons/css/tachyons.css';
 }
 .fieldWrap {
   composes: mv3 from 'tachyons/css/tachyons.css';
@@ -26,7 +26,7 @@
   composes: pa2 input-reset ba bg-transparent w-100 from 'tachyons/css/tachyons.css';
 }
 .fieldSubmit {
-  composes: ph3 pv2 input-reset ba f6 dib bg-light-red white b--light-red dim from 'tachyons/css/tachyons.css';
+  composes: ph3 pv2 input-reset ba f6 bg-light-red white b--light-red dim tl from 'tachyons/css/tachyons.css';
 }
 .successHeader {
   composes: fw6 f3 m0 from 'tachyons/css/tachyons.css';
