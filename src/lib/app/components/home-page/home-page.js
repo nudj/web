@@ -22,7 +22,7 @@ export default (props) => (
             </div>
             <div className={style.outcome}>
               <div className={style.outcomeImage}>&#x1F91C;&#x1F91B;</div>
-              <h1 className={style.outcomeText}>With a simple nudj, help them access the best jobs &amp; get rewarded in the process.</h1>
+              <h1 className={style.outcomeText}>With a simple nudj, you can help them access the best jobs &amp; get rewarded if they're successful.</h1>
             </div>
           </div>
         </div>

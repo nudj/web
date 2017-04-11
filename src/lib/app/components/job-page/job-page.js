@@ -24,14 +24,20 @@ export default (props) => {
         {renderLinkMessage(props)}
         <div className={style.info}>
           <img className={style.logo} src={get(props, 'company.logo')} />
-          <h1 className={style.title}>{get(props, 'job.title')} @ {get(props, 'company.name')}</h1>
+          <h1 className={style.title}>{get(props, 'job.title')} @ <span>{get(props, 'company.name')}</span></h1>
           <h2 className={style.location}>Based in: {get(props, 'job.location')}</h2>
           <h2 className={style.salary}>Salary: £{get(props, 'job.remuneration') * 1000}</h2>
         </div>
         <hr className={style.breakLine} />
-        <div className={style.why}>
-          <p className={style.awesomeTitle}>&#x1F525; Why this job is so hot right now &#x1F525;</p>
-          <p className={style.awesome}>{get(props, 'job.description')}</p>
+        <div className={style.description}>
+          <div className={style.why}>
+            <p className={style.awesomeTitle}>Why is this job is so hot right now?</p>
+            <p className={style.awesome}>{get(props, 'company.description')}</p>
+          </div>
+          <div className={style.why}>
+            <p className={style.awesomeTitle}>What skills do you need?</p>
+            <p className={style.awesome}>{get(props, 'job.description')}</p>
+          </div>
         </div>
         <hr className={style.breakLine} />
         <div className={style.companyLinks}>
@@ -45,29 +51,29 @@ export default (props) => {
           </div>
           <div className={style.social}>
             <div className={style.socialLink}>
-              <a href={get(props, 'company.facebook', '#facebook-url')}>
+              <Link to={get(props, 'company.facebook', '#facebook-url')}>
                 <i className={style.facebook} />
-              </a>
+              </Link>
             </div>
             <div className={style.socialLink}>
-              <a href={get(props, 'company.twitter', '#twitter-url')}>
+              <Link to={get(props, 'company.twitter', '#twitter-url')}>
                 <i className={style.twitter} />
-              </a>
+              </Link>
             </div>
             <div className={style.socialLink}>
-              <a href={get(props, 'company.linkedin', '#linkedin-url')}>
+              <Link to={get(props, 'company.linkedin', '#linkedin-url')}>
                 <i className={style.linkedin} />
-              </a>
+              </Link>
             </div>
           </div>
         </div>
         <hr className={style.breakLine} />
         <div className={style.actions}>
           <form className={style.action} action={`/${get(props, 'company.slug')}/${get(props, 'job.slug')}${referral ? `+${referral.id}` : ''}/apply`} method='POST'>
-            <p>Interested? It only takes <strong>2 seconds</strong> to apply & you don’t need a CV.</p><button className={style.apply}>Apply for job</button>
+            <p className={style.actionCopy}>Interested? It only takes <strong>a few seconds</strong> to apply & you don’t need a CV.</p><button className={style.apply}>Apply for job</button>
           </form>
           <form className={style.action} action={`/${get(props, 'company.slug')}/${get(props, 'job.slug')}${referral ? `+${referral.id}` : ''}/nudj`} method='POST'>
-            <p>Know someone perfect? <strong>We’ll give you £{get(props, 'job.bonus')}</strong> if they get the job.</p><button className={style.nudj}>Send to a friend</button>
+            <p className={style.actionCopy}>Know someone perfect? <strong>We’ll give you £{get(props, 'job.bonus')}</strong> if they get the job.</p><button className={style.nudj}>Send to a friend</button>
           </form>
         </div>
         <hr className={style.breakLine} />
