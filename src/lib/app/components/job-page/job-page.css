@@ -2,7 +2,7 @@
   composes: sans-serif from 'tachyons/css/tachyons.css';
 }
 .job {
-  composes: w-100 mw7 center pv4 pv5-ns pb2 pb0-ns ph3 ph0-ns from 'tachyons/css/tachyons.css';
+  composes: w-100 mw7 center pv4 pv6-ns ph3 ph0-ns from 'tachyons/css/tachyons.css';
 }
 .info,
 .related {
@@ -10,7 +10,7 @@
 }
 .logo {
   composes: ba bw1 b--light-gray br2 di from 'tachyons/css/tachyons.css';
-  max-height: 4rem !important;
+  max-height: 6rem !important;
 }
 .title {
   composes: f3 f2-l fw5 tl from 'tachyons/css/tachyons.css';
@@ -24,7 +24,7 @@
 }
 .awesome,
 .action {
- composes: lh-copy tl from 'tachyons/css/tachyons.css';
+ composes: lh-copy tl pr2 from 'tachyons/css/tachyons.css';
 }
 .companyLinks,
 .actions,
