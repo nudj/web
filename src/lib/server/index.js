@@ -8,7 +8,7 @@ let session = require('express-session')
 let passport = require('passport')
 let Auth0Strategy = require('passport-auth0')
 let csrf = require('csurf')
-let redis = require("redis");
+let redis = require('redis')
 let RedisStore = require('connect-redis')(session)
 
 let authRoutes = require('./routes/auth')
@@ -89,6 +89,5 @@ app.use((error, req, res, next) => {
   }
   res.type('txt').send('500: Internal server error')
 })
-
 
 app.listen(80, () => logger.log('info', 'App running'))
