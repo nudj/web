@@ -14,6 +14,7 @@ export default (props) => {
   } else {
     html = (
       <form className={style.content} action='/signup' method='post'>
+        <input type='hidden' name='_csrf' value={props.csrfToken} />
         <div className={style.formHeader}>
           <h2 className={style.title}>Great jobs come to those who... nudj</h2>
           <p className={style.subtitle}>Just enter your details below and we'll get back to you as soon as possible.</p>

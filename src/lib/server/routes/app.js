@@ -22,6 +22,7 @@ function ensureLoggedIn (req, res, next) {
 
 function getRenderDataBuilder (req) {
   return (data) => {
+    data.csrfToken = req.csrfToken()
     req.session.person = data.person || req.session.person
     data.person = req.session.person
     if (req.session.message) {

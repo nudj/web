@@ -7,6 +7,7 @@ let cons = require('consolidate')
 let session = require('express-session')
 let passport = require('passport')
 let Auth0Strategy = require('passport-auth0')
+let csrf = require('csurf')
 
 let authRoutes = require('./routes/auth')
 let appRoutes = require('./routes/app')
@@ -41,6 +42,7 @@ app.use(session({
 }))
 app.use(passport.initialize())
 app.use(passport.session())
+app.use(csrf({}))
 
 app.use(authRoutes)
 app.use(appRoutes)

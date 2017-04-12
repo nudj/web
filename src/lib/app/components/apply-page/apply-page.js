@@ -34,6 +34,7 @@ function renderSuccess (props) {
 function renderForm (props) {
   return (
     <form className={style.form} method='POST'>
+      <input type='hidden' name='_csrf' value={props.csrfToken} />
       <h1 className={style.title}>Apply for <strong>{get(props, 'job.title')}</strong> @ <strong>{get(props, 'company.name')}</strong> in <strong>{get(props, 'job.location')}</strong></h1>
       {renderField({
         id: 'firstName',
