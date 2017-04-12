@@ -26,7 +26,7 @@ export default (props) => {
           <img className={style.logo} src={get(props, 'company.logo')} />
           <h1 className={style.title}>{get(props, 'job.title')} @ <span>{get(props, 'company.name')}</span></h1>
           <h2 className={style.location}>Based in: {get(props, 'job.location')}</h2>
-          <h2 className={style.salary}>Salary: £{get(props, 'job.remuneration') * 1000}</h2>
+          <h2 className={style.salary}>Salary: {get(props, 'job.remuneration')}</h2>
         </div>
         <hr className={style.breakLine} />
         <div className={style.description}>
