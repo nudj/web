@@ -31,7 +31,7 @@ export default (props) => {
         <hr className={style.breakLine} />
         <div className={style.description}>
           <div className={style.why}>
-            <p className={style.awesomeTitle}>Why is this job is so hot right now?</p>
+            <p className={style.awesomeTitle}>Why is this job so hot right now?</p>
             <p className={style.awesome}>{get(props, 'company.description')}</p>
           </div>
           <div className={style.why}>
