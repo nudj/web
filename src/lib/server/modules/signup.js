@@ -5,14 +5,14 @@ var mailgun = Mailgun({
   domain: process.env.MAILGUN_DOMAIN
 })
 
-module.exports.send = (firstName, lastName, email, companyName) => {
-  logger.log('info', 'Sending email', firstName, lastName, email, companyName)
+module.exports.send = (firstName, lastName, email, jobTitle, role) => {
+  logger.log('info', 'Sending email', firstName, lastName, email, jobTitle, role)
   return mailgun
     .messages()
     .send({
       from: 'hello@nudj.co',
       to: 'hello@nudj.co',
-      subject: 'Request Access',
+      subject: 'Sign-up for Updates',
       html: `
         <html>
         <body>
@@ -23,7 +23,8 @@ module.exports.send = (firstName, lastName, email, companyName) => {
           <p>
             <strong>Full name:</strong> ${firstName} ${lastName}<br/>
             <strong>Email:</strong> ${email}<br/>
-            <strong>Company Name:</strong> ${companyName}<br/>
+            <strong>Job Title:</strong> ${jobTitle}<br/>
+            <strong>Role(s):</strong> ${role}<br/>
           </p>
           <br/>
           <p>Love<br/> Your friendly nudj bot.</p>

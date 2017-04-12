@@ -4,6 +4,7 @@ let _ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn()
 
 let logger = require('../lib/logger')
 let request = require('../modules/request')
+let signup = require('../modules/signup')
 let job = require('../modules/job')
 let build = require('../build').default
 let router = express.Router()
@@ -141,13 +142,22 @@ function applyHandler (req, res, next) {
 
 function requestHandler (req, res, next) {
   request
-    .send(req.body.fullname, req.body.email, req.body.company_name)
+    .send(req.body.first_name, req.body.last_name, req.body.email, req.body.company_name)
+    .then(getRenderDataBuilder(req, res, next))
+    .then(getRenderer(req, res, next))
+    .catch(getErrorHandler(req, res, next))
+}
+
+function signupHandler (req, res, next) {
+  signup
+    .send(req.body.first_name, req.body.last_name, req.body.email, req.body.job_title, req.body.role)
     .then(getRenderDataBuilder(req, res, next))
     .then(getRenderer(req, res, next))
     .catch(getErrorHandler(req, res, next))
 }
 
 router.post('/request', requestHandler)
+router.post('/signup', signupHandler)
 router.get('/:companySlug/:jobSlugRefId', jobHandler)
 router.get('/:companySlug/:jobSlugRefId/nudj', ensureLoggedIn, nudjHandler)
 router.post('/:companySlug/:jobSlugRefId/nudj', ensureLoggedIn, nudjHandler)

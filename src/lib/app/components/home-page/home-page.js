@@ -50,7 +50,7 @@ export default (props) => (
       <h2 className={style.title}>What are you waiting for?</h2>
       <p className={style.subtitle}>We're all tired of recruiter spam, so we promise to only send you the stuff we know you'll care about (and you can opt-out anytime).</p>
       <div className={style.buttons}>
-        <Link to='' className={style.button}>Sign-up for updates</Link>
+        <Link to='/signup' className={style.button}>Sign-up for updates</Link>
         <span className={style.spacer}>or</span>
         <Link to='' className={style.buttonLink} id='open-intercom'>Get in touch</Link>
       </div>

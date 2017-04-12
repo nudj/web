@@ -15,13 +15,17 @@ export default (props) => {
     html = (
       <form className={style.content} action='/request' method='post'>
         <div className={style.formHeader}>
-          <h2 className={style.title}>Good things come to those who... Nudj</h2>
-          <p className={style.subtitle}>Just enter your details below and we'll get back to you asap.</p>
+          <h2 className={style.title}>Good things come to those who... nudj</h2>
+          <p className={style.subtitle}>Just enter your details below and we'll get back to you as soon as possible.</p>
         </div>
-        <fieldset className={style.fieldSet} id='sign_up'>
+        <fieldset className={style.fieldSet} id='request'>
           <div className={style.fieldWrap}>
-            <label className={style.fieldLabel} for='fullname'>Full Name</label>
-            <input className={style.fieldInput} id='fullname' name='fullname' required type='text' />
+            <label className={style.fieldLabel} for='first_name'>First Name</label>
+            <input className={style.fieldInput} id='first_name' name='first_name' required type='text' />
+          </div>
+          <div className={style.fieldWrap}>
+            <label className={style.fieldLabel} for='last_name'>Last Name</label>
+            <input className={style.fieldInput} id='last_name' name='last_name' required type='text' />
           </div>
           <div className={style.fieldWrap}>
             <label className={style.fieldLabel} for='email_address'>Email</label>
