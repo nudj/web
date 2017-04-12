@@ -13,6 +13,9 @@ build:
 		--build-arg NPM_TOKEN=${NPM_TOKEN} \
 		.
 
+push:
+	@docker push $(IMAGE):latest
+
 buildDev:
 	@docker build \
 		-t $(IMAGEDEV) \
