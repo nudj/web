@@ -1,14 +1,14 @@
 .container {
-  composes: w-100 mw7 center flex flex-column justify-center items-center pv3 pv4-l bt bw1 b--light-gray from 'tachyons/css/tachyons.css';
+  composes: w-100 mw8 center flex flex-column justify-center items-center pt3 pb2 bt bw1 b--light-gray from 'tachyons/css/tachyons.css';
 }
 .copyright {
   composes: f6 db tc mid-gray from 'tachyons/css/tachyons.css';
 }
 .links {
-  composes: flex flex-row flex-wrap justify-between items-stretch-ns items-center w-100 center tc mt3 list pa0 from 'tachyons/css/tachyons.css';
+  composes: flex flex-row flex-wrap justify-between items-stretch-ns items-center w-100 center tc list ma0 pa0 pt3 from 'tachyons/css/tachyons.css';
 }
 .link {
-  composes: justify-center items-center w-25-ns w-100 tc ph3 pv2 pv3-l from 'tachyons/css/tachyons.css';
+  composes: justify-center items-center w-25-ns w-100 tc ph1 pv1-ns pv2 from 'tachyons/css/tachyons.css';
 }
 .release {
   composes: f6 link dim no-underline-ns underline dib-ns di ph2 pv2 mh1 mv1 bg-white-ns ba-ns bw1-ns b--light-blue-ns blue from 'tachyons/css/tachyons.css';

@@ -1,8 +1,8 @@
 .body {
-  composes: sans-serif from 'tachyons/css/tachyons.css';
+  composes: avenir from 'tachyons/css/tachyons.css';
 }
 .background {
-  composes: cover bg-right bg-center-l flex from 'tachyons/css/tachyons.css';
+  composes: cover bg-center flex from 'tachyons/css/tachyons.css';
   background-image: url(/assets/images/person-2.jpg);
   min-height: calc(100vh - 70px);
 }
@@ -14,7 +14,7 @@
   composes: flex flex-column justify-center items-center flex-auto from 'tachyons/css/tachyons.css';
 }
 .outcomes {
-  composes: flex flex-row flex-wrap mw8 pv6 pv0-ns ph4 ph0-ns from 'tachyons/css/tachyons.css';
+  composes: flex flex-row flex-wrap mw8 pv5 pv0-ns ph3 ph0-ns from 'tachyons/css/tachyons.css';
 }
 .outcome {
   composes: w-50-ns w-100 pa4-ns ph2 pv3 pv2-ns from 'tachyons/css/tachyons.css';
@@ -32,31 +32,31 @@
   composes: f2 tc from 'tachyons/css/tachyons.css';
 }
 .sectionMedium {
-  composes: flex flex-column items-center justify-center pa4 pa5-l from 'tachyons/css/tachyons.css';
+  composes: flex flex-column items-center justify-center mw8 w-100 center pv4 pv5-l ph3 from 'tachyons/css/tachyons.css';
 }
 .howItWorks {
   composes: justify-center items-center w-100 mw6 center from 'tachyons/css/tachyons.css';
 }
 .title {
-  composes: f2 fw6 lh-title tc mb0 from 'tachyons/css/tachyons.css';
+  composes: f3 f1-l fw6 tc ma0 pa2 from 'tachyons/css/tachyons.css';
 }
 .subtitle {
-  composes: f3 f3-l fw4 lh-subtitle tc mb4 from 'tachyons/css/tachyons.css';
+  composes: f4 f3-l lh-subtitle pb4 pb5-ns ma0 tc from 'tachyons/css/tachyons.css';
 }
 .number {
-  composes: bold light-red f2 fw5 lh-title tc mb0 from 'tachyons/css/tachyons.css';
+  composes: bold light-red f2 fw6 lh-title tc mb0 from 'tachyons/css/tachyons.css';
 }
 .step {
-  composes: f4 fw4 tc mb4 from 'tachyons/css/tachyons.css';
+  composes: f5 f4-ns fw4 tc mb4 from 'tachyons/css/tachyons.css';
 }
 .everyone {
   composes: f2 flex justify-center items-center tc from 'tachyons/css/tachyons.css';
 }
 .link {
-  composes: f3 fw4 light-red dim no-underline from 'tachyons/css/tachyons.css';
+  composes: f4 f3-ns fw4 light-red dim no-underline from 'tachyons/css/tachyons.css';
 }
 .buttons {
-  composes: pv3 pv4-m pv5-l tc from 'tachyons/css/tachyons.css';
+  composes: pv3 pv4-m pv5-l mb5 mb0-ns tc from 'tachyons/css/tachyons.css';
 }
 .buttonLink {
   composes: f5 dib ph3 pv2 dim no-underline link ba bw1 light-red from 'tachyons/css/tachyons.css';
