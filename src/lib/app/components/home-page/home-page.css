@@ -38,13 +38,13 @@
   composes: justify-center items-center w-100 mw6 center from 'tachyons/css/tachyons.css';
 }
 .title {
-  composes: f2 f1-l fw6 tc ma0 pa2 from 'tachyons/css/tachyons.css';
+  composes: f3 f1-l fw6 tc ma0 pa2 from 'tachyons/css/tachyons.css';
 }
 .subtitle {
   composes: f4 f3-l lh-subtitle pb4 pb5-ns ma0 tc from 'tachyons/css/tachyons.css';
 }
 .number {
-  composes: bold light-red f2 fw5 lh-title tc mb0 from 'tachyons/css/tachyons.css';
+  composes: bold light-red f2 fw6 lh-title tc mb0 from 'tachyons/css/tachyons.css';
 }
 .step {
   composes: f5 f4-ns fw4 tc mb4 from 'tachyons/css/tachyons.css';

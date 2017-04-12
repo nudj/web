@@ -15,7 +15,7 @@
   flex: 1;
 }
 .title {
-  composes: f2 f1-l fw6 tc ma0 pa2 from 'tachyons/css/tachyons.css';
+  composes: f3 f1-l fw6 tc ma0 pa2 from 'tachyons/css/tachyons.css';
 }
 .subtitle {
   composes: f4 f3-l lh-subtitle pb4 pb5-ns ma0 tc from 'tachyons/css/tachyons.css';
@@ -37,7 +37,7 @@
   composes: justify-center items-center w-100 mw6 center ph2 from 'tachyons/css/tachyons.css';
 }
 .number {
-  composes: f3 lh-subtitle tl from 'tachyons/css/tachyons.css';
+  composes: f4 f3-l fw6 lh-subtitle tl from 'tachyons/css/tachyons.css';
 }
 .step {
   composes: lh-copy tl from 'tachyons/css/tachyons.css';
