@@ -1,5 +1,5 @@
 .nav {
-  composes: w-100 mw8 center flex justify-between items-stretch pv2-ns pv0 bb bw1 b--light-gray from 'tachyons/css/tachyons.css';
+  composes: w-100 mw8 center flex justify-between items-stretch pv2 from 'tachyons/css/tachyons.css';
 }
 .left {
   composes: flex items-center from 'tachyons/css/tachyons.css';

@@ -11,17 +11,17 @@
   min-height: calc(100vh - 70px);
 }
 .heroBody {
-  composes: flex flex-column justify-center items-center w-100 mw9 center from 'tachyons/css/tachyons.css';
+  composes: flex flex-column justify-center items-center w-100 mw8 center pv5 pv0-ns ph3 from 'tachyons/css/tachyons.css';
   flex: 1;
 }
 .title {
-  composes: f2 f1-l fw5 tc ma0 pa2 from 'tachyons/css/tachyons.css';
+  composes: f2 f1-l fw6 tc ma0 pa2 from 'tachyons/css/tachyons.css';
 }
 .subtitle {
   composes: f4 f3-l lh-subtitle pb4 pb5-ns ma0 tc from 'tachyons/css/tachyons.css';
 }
 .break {
-  composes: di dn-ns from 'tachyons/css/tachyons.css';
+  composes: di-ns dn from 'tachyons/css/tachyons.css';
 }
 .heroFooter {
   composes: flex flex-column justify-center items-center from 'tachyons/css/tachyons.css';
@@ -34,7 +34,7 @@
   composes: flex flex-column items-center justify-center mw8 w-100 center pv4 pv5-l ph3 from 'tachyons/css/tachyons.css';
 }
 .howItWorks {
-  composes: justify-center items-center w-100 mw6 center from 'tachyons/css/tachyons.css';
+  composes: justify-center items-center w-100 mw6 center ph2 from 'tachyons/css/tachyons.css';
 }
 .number {
   composes: f3 lh-subtitle tl from 'tachyons/css/tachyons.css';
@@ -74,16 +74,16 @@
   composes: p f5 f4-l lh-subtitle pt3 pb3 pt4-l pb4-l tc light-red from 'tachyons/css/tachyons.css';
 }
 .column {
-  composes: dt-ns dt--fixed-ns from 'tachyons/css/tachyons.css';
+  composes: flex flex-row flex-wrap justify-center from 'tachyons/css/tachyons.css';
 }
 .brand {
-  composes: tc w-33-ns w-100 from 'tachyons/css/tachyons.css';
+  composes: tc w-33-ns w-60 from 'tachyons/css/tachyons.css';
 }
 .cost {
   composes: justify-center items-center w-100  mw8 from 'tachyons/css/tachyons.css';
 }
 .pricing {
-  composes: pv4 pv5-m pv6-l mb5 mb0-ns from 'tachyons/css/tachyons.css';
+  composes: pv3 pv4-m pv5-l mb5 mb0-ns from 'tachyons/css/tachyons.css';
 }
 .price {
   composes: f2 f1-l fw6 tc lh-title from 'tachyons/css/tachyons.css';

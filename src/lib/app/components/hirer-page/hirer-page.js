@@ -7,7 +7,7 @@ export default (props) => (
     <div className={style.background}>
       <div className={style.hero}>
         <div className={style.heroBody}>
-          <h1 className={style.title}>The best jobs aren’t advertised. The best talent isn’t looking. <br className={style.break} />Maybe they just need a nudj.</h1>
+          <h1 className={style.title}>The best jobs aren’t advertised. <br className={style.break} />The best talent isn’t looking. <br className={style.break} />Maybe they just need a nudj.</h1>
         </div>
         <div className={style.heroFooter}>
           <div className={style.indicator}>👇</div>
