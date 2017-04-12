@@ -8,6 +8,8 @@ let session = require('express-session')
 let passport = require('passport')
 let Auth0Strategy = require('passport-auth0')
 let csrf = require('csurf')
+let redis = require('redis')
+let RedisStore = require('connect-redis')(session)
 
 let authRoutes = require('./routes/auth')
 let appRoutes = require('./routes/app')
@@ -28,6 +30,23 @@ passport.serializeUser((user, done) => done(null, user))
 passport.deserializeUser((user, done) => done(null, user))
 
 let app = express()
+let sessionOpts = {
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true
+}
+
+if (process.env.NODE_ENV === 'production') {
+  // add redis persistence to session
+  sessionOpts.store = new RedisStore({
+    client: redis.createClient(6379, 'redis')
+  })
+} else {
+  // start mock api
+  let mockApi = require('../../mocks/api')
+  mockApi.listen(81, () => logger.log('info', 'Mock API running'))
+}
+
 app.engine('html', cons.lodash)
 app.set('view engine', 'html')
 app.set('views', path.join(__dirname, 'views'))
@@ -35,11 +54,7 @@ app.set('views', path.join(__dirname, 'views'))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use('/assets', express.static(path.join(__dirname, 'assets')))
-app.use(session({
-  secret: 'nudj-session-secret',
-  resave: true,
-  saveUninitialized: true
-}))
+app.use(session(sessionOpts))
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(csrf({}))
@@ -74,10 +89,5 @@ app.use((error, req, res, next) => {
   }
   res.type('txt').send('500: Internal server error')
 })
-
-if (process.env.NODE_ENV !== 'production') {
-  let mockApi = require('../../mocks/api')
-  mockApi.listen(81, () => logger.log('info', 'Mock API running'))
-}
 
 app.listen(80, () => logger.log('info', 'App running'))
