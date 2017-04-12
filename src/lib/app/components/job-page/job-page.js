@@ -43,10 +43,10 @@ export default (props) => {
         <div className={style.companyLinks}>
           <div className={style.links}>
             <div className={style.link}>
-              <Link to={get(props, 'company.url', '#company-url')} className={style.bodyLinks}>View company website</Link>
+              <a href={get(props, 'company.url', '#company-url')} className={style.bodyLinks}>View company website</a>
             </div>
             <div className={style.link}>
-              <Link to={get(props, 'job.url', '#job-url')} className={style.bodyLinks}>View full job post</Link>
+              <a href={get(props, 'job.url', '#job-url')} className={style.bodyLinks}>View full job post</a>
             </div>
           </div>
           <div className={style.social}>

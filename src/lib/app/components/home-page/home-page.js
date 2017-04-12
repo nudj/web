@@ -43,7 +43,7 @@ export default (props) => (
         <p className={style.step}>...who can apply in a matter of seconds &amp; get direct access to the company.</p>
         <div className={style.number}>4.</div>
         <p className={style.step}>If they get hired then everyone gets rewarded - they get a great job, the company gets a great employee &amp; the friend that referred them gets paid!</p>
-        <div className={style.everyone}>&#x1F483;&nbsp;<Link to='//www.youtube.com/watch?v=-SFFRaIUisY' className={style.link}>Everyone's a winner, baby!</Link>&#x1F57A;</div>
+        <div className={style.everyone}>&#x1F483;&nbsp;<a href='https://www.youtube.com/watch?v=-SFFRaIUisY' className={style.link}>Everyone's a winner, baby!</a>&#x1F57A;</div>
       </div>
     </div>
     <div className={style.sectionMedium}>
