@@ -15,7 +15,7 @@ export default (props) => (
           <p className={style.label}><small>Help us decide what to build next.</small></p>
         </li>
         <li className={style.link}>
-          <Link className={style.hiring} to=''>We're Hiring!</Link>
+          <Link className={style.hiring} to='/nudj/full-stack-software-engineer'>We're Hiring!</Link>
           <p className={style.label}><small>Join our team &amp; build something awesome.</small></p>
         </li>
         <li className={style.link}>
