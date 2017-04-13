@@ -1,20 +1,20 @@
 .page {
-  composes: flex min-vh-100 justify-center items-center from 'tachyons/css/tachyons.css';
+  composes: flex min-vh-100 justify-center items-center pt3 pt4-ns pb2 pb4-ns ph3 ph0-ns from 'tachyons/css/tachyons.css';
 }
 .box {
-  composes: mw8 w-100 center tc ph2 pv4 pv0-ns from 'tachyons/css/tachyons.css';
+  composes: mw7 w-100 center tc ph2 pv4 pv0-ns from 'tachyons/css/tachyons.css';
 }
 .continue {
   composes: mt5 db from 'tachyons/css/tachyons.css';
 }
 .heading {
-  composes: f3 fw5 mv4 mw6 from 'tachyons/css/tachyons.css';
+  composes: f3 fw5 mw6 mv4 center from 'tachyons/css/tachyons.css';
 }
 .tip {
-  composes: mw6 bg-white br2 pa1 pa2-ns mv4 mh2 ba b--black-10 from 'tachyons/css/tachyons.css';
+  composes: mw6 center bg-white br2 pa1 pa2-ns mv4 mh2 ba bw1 b--black-10 from 'tachyons/css/tachyons.css';
 }
 .tipTitle {
-  composes: f4 from 'tachyons/css/tachyons.css';
+  composes: f4 ma0 pa2 from 'tachyons/css/tachyons.css';
 }
 .tipBreak {
   composes: mw5 bb bw1 b--black-10 from 'tachyons/css/tachyons.css';
@@ -23,5 +23,5 @@
   composes: pa2 f6 f5-ns lh-copy measure mv0 from 'tachyons/css/tachyons.css';
 }
 .breakLine {
-  composes: ba b--dashed light-gray mh1 mh0-ns from 'tachyons/css/tachyons.css';
+  composes: ba bw1 light-gray mh1 mh0-ns from 'tachyons/css/tachyons.css';
 }
