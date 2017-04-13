@@ -60,7 +60,7 @@ export default (props) => {
           <h2 className={style.title}>Other positions @ {get(props, 'company.name')}</h2>
           <ul className={style.list}>
             {get(props, 'job.related', []).map((related) => <li key={related.title.split(' ').join('-')}>
-              <Link className={style.bodyLinks} to={related.url}>{related.title}, {related.location}</Link>
+              <Link className={style.bodyLinks} to={related.url}>{related.title} @ {related.companyName}</Link>
             </li>)}
           </ul>
         </div>
