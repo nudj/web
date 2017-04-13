@@ -1,78 +1,60 @@
 .body {
-  composes: avenir from 'tachyons/css/tachyons.css';
+  composes: sans-serif from 'tachyons/css/tachyons.css';
 }
 .job {
-  composes: w-100 mw8 center pv4 pv6-ns ph3 ph0-ns from 'tachyons/css/tachyons.css';
+  composes: w-100 mw8 center pt3 pt4-ns pb2 pb4-ns ph3 ph0-ns from 'tachyons/css/tachyons.css';
 }
-.info,
+.backgroundFooter {
+  composes: bg-navy white tl from 'tachyons/css/tachyons.css';
+}
+.info {
+  composes: pa3-ns w-100 from 'tachyons/css/tachyons.css';
+}
 .related {
-  composes: pv2 w-100 from 'tachyons/css/tachyons.css';
-}
-.logo {
-  max-height: 6rem !important;
+  composes: w-100 mw8 center pt3 pt4-ns pb3 pb4-ns ph3-ns from 'tachyons/css/tachyons.css';
 }
 .title {
-  composes: f3 f2-l fw5 tl from 'tachyons/css/tachyons.css';
+  composes: f2 f1-l fw5 ma0 pa0 pv3 from 'tachyons/css/tachyons.css';
+}
+.brandName {
+  composes: light-red no-underline underline-hover from 'tachyons/css/tachyons.css';
 }
 .location,
 .salary {
- composes: f4 f3-l tl fw4 from 'tachyons/css/tachyons.css';
+ composes: f3 tl fw5 pa0 ma0 pt2 pb2 from 'tachyons/css/tachyons.css';
 }
 .awesomeTitle {
- composes: b lh-copy tl pa0 ma0 from 'tachyons/css/tachyons.css';
+ composes: f5 tl pa0 ma0 from 'tachyons/css/tachyons.css';
 }
-.awesome,
-.action {
- composes: flex flex-column jusitify-center items-start lh-copy tl from 'tachyons/css/tachyons.css';
+.actionTitle {
+  composes: f3 tl fw5 pa0 ma0 from 'tachyons/css/tachyons.css';
 }
-.companyLinks,
 .actions,
 .description {
   composes: flex flex-row flex-wrap justify-between items-stretch w-100 pv2 from 'tachyons/css/tachyons.css';
 }
-.links,
-.social {
-  composes: flex flex-row flex-wrap justify-between items-center w-50-ns w-100 from 'tachyons/css/tachyons.css';
+.why,
+.action {
+ composes: flex flex-column jusitify-center items-start lh-copy tl w-50-ns w-100 pa3-ns pb4 from 'tachyons/css/tachyons.css';
 }
 .link {
   composes: ph2 pv2-ns pv3 w-50-ns w-100 tc from 'tachyons/css/tachyons.css';
 }
 .bodyLinks {
-  composes: link underline dark-blue dim from 'tachyons/css/tachyons.css';
-}
-.socialLink {
-  composes: ph2 pv2-ns pv3 w-33 tc from 'tachyons/css/tachyons.css';
-}
-.facebook,
-.twitter,
-.linkedin {
-  composes: ph1 pv1 dark-blue link dim from 'tachyons/css/tachyons.css';
-  composes: fa from 'font-awesome/css/font-awesome.css';
-}
-.facebook {
-  composes: fa-facebook-square fa-2x from 'font-awesome/css/font-awesome.css';
-}
-.twitter {
-  composes: fa-twitter-square fa-2x from 'font-awesome/css/font-awesome.css';
-}
-.linkedin {
-  composes: fa-linkedin-square fa-2x from 'font-awesome/css/font-awesome.css';
-}
-.why,
-.action {
-  composes: w-50-ns w-100 pa2 from 'tachyons/css/tachyons.css';
+  composes: link underline light-red dim tc from 'tachyons/css/tachyons.css';
 }
 .actionCopy {
-  composes: ma0 pb3 from 'tachyons/css/tachyons.css';
+  composes: ma0 pb3 pt3 from 'tachyons/css/tachyons.css';
 }
 .apply {
-  composes: avenir f5 dib ph3 pv2 mb2-ns mb3 dim no-underline white ba bw1 b--dark-blue bg-dark-blue from 'tachyons/css/tachyons.css';
-  cursor: pointer;
+  composes: f5 dib ph3 pv3 grow pointer no-underline link br2 ba bw1 white bg-light-red b--light-red from 'tachyons/css/tachyons.css';
 }
 .nudj {
-  composes: avenir f5 dib ph3 pv2 mb2 dim no-underline dark-blue bg-white ba bw1 b--dark-blue from 'tachyons/css/tachyons.css';
-  cursor: pointer;
+  composes: f5 dib ph3 pv3 grow pointer no-underline link br2 ba bw1 light-red bg-white b--light-red from 'tachyons/css/tachyons.css';
 }
 .breakLine {
-  composes: ba b--dashed light-gray from 'tachyons/css/tachyons.css';
+  composes: ba light-gray from 'tachyons/css/tachyons.css';
+}
+.list {
+  composes: list pv3 from 'tachyons/css/tachyons.css';
 }

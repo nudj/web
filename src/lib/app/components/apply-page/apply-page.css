@@ -1,11 +1,17 @@
 .page {
-  composes: flex min-vh-100 justify-center items-center from 'tachyons/css/tachyons.css';
+  composes: flex min-vh-100 justify-center items-center mw6 w-100 center pv3 ph3 ph0-ns from 'tachyons/css/tachyons.css';
 }
 .successBox {
   composes: mw6 tc ph2 pv6 pv0-ns from 'tachyons/css/tachyons.css';
 }
-.heading {
-  composes: f3 fw5 mv4 from 'tachyons/css/tachyons.css';
+.formHeader {
+  composes: pb0 pb2-ns bb b--near-white bw1 from 'tachyons/css/tachyons.css';
+}
+.title {
+  composes: f3 f2-l fw5 mv3 tl from 'tachyons/css/tachyons.css';
+}
+.bold {
+  composes: fw6 from 'tachyons/css/tachyons.css';
 }
 .link {
   composes: light-red no-underline link from 'tachyons/css/tachyons.css';
@@ -19,18 +25,16 @@
 .form {
   composes: ph3 from 'tachyons/css/tachyons.css';
 }
-.title {
-  composes: mv3 from 'tachyons/css/tachyons.css';
-}
 .field {
   composes: mv3 from 'tachyons/css/tachyons.css';
 }
 .fieldLabel {
-  composes: db from 'tachyons/css/tachyons.css';
+  composes: db fw6 lh-copy f6 pb1 tl from 'tachyons/css/tachyons.css';
 }
+.fieldInput,
 .invalidInput {
-  composes: ba b--red from 'tachyons/css/tachyons.css';
+  composes: pa2 input-reset ba bg-transparent w-100 from 'tachyons/css/tachyons.css';
 }
-.invalidMessage {
-  composes: db red from 'tachyons/css/tachyons.css';
+.submit {
+  composes: f5 dib ph3 pv3 dim no-underline link white br2 ba bw1 bg-light-red b--light-red w-100 w-auto-ns from 'tachyons/css/tachyons.css';
 }

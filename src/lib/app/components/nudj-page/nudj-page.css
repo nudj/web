@@ -2,8 +2,26 @@
   composes: flex min-vh-100 justify-center items-center from 'tachyons/css/tachyons.css';
 }
 .box {
-  composes: mw6 tc ph2 pv6 pv0-ns from 'tachyons/css/tachyons.css';
+  composes: mw8 w-100 center tc ph2 pv4 pv0-ns from 'tachyons/css/tachyons.css';
 }
 .continue {
   composes: mt5 db from 'tachyons/css/tachyons.css';
+}
+.heading {
+  composes: f3 fw5 mv4 mw6 from 'tachyons/css/tachyons.css';
+}
+.tip {
+  composes: mw6 bg-white br2 pa1 pa2-ns mv4 mh2 ba b--black-10 from 'tachyons/css/tachyons.css';
+}
+.tipTitle {
+  composes: f4 from 'tachyons/css/tachyons.css';
+}
+.tipBreak {
+  composes: mw5 bb bw1 b--black-10 from 'tachyons/css/tachyons.css';
+}
+.tipBody {
+  composes: pa2 f6 f5-ns lh-copy measure mv0 from 'tachyons/css/tachyons.css';
+}
+.breakLine {
+  composes: ba b--dashed light-gray mh1 mh0-ns from 'tachyons/css/tachyons.css';
 }

@@ -25,6 +25,33 @@ let dummyData = dummy({
     count: 5
   }
 })
+dummyData.jobs = dummyData.jobs.concat([
+  {
+    'id': '99',
+    'title': 'Senior Full-Stack Software Engineer',
+    'slug': 'senior-full-stack-software-engineer-2',
+    'url': 'https://bulb.workable.com/j/389500EB72',
+    'status': 'Open',
+    'bonus': 1000,
+    'description': '5+ years software engineering experience, using Node (6+), ES6 (Babel) and TypeScript. You should also be familiar with Git, Github, PRs, Code Reviews - please send us a link to your Github profile.',
+    'type': 'Permanent',
+    'remuneration': 'Competitive + Options',
+    'tags': [
+      'Software',
+      'Developer',
+      'Full-Stack'
+    ],
+    'location': 'London',
+    'companyId': '2',
+    'related': [
+      {
+        'url': '/bulb/operations-strategy-analyst',
+        'title': 'Operations Strategy Analyst',
+        'location': 'London'
+      }
+    ]
+  }
+])
 dummyData.people = dummyData.people.concat([
   {
     id: '21',

@@ -12,11 +12,10 @@ function renderField ({
   disabled
 }, state) {
   return (
-    <p className={style.field}>
+    <div className={style.field}>
       <label className={style.fieldLabel} htmlFor={id}>{label}</label>
       <input className={state.invalid ? style.invalidInput : style.fieldInput} id={id} name={id} required={!!required} disabled={!!disabled} value={(state && state.value) || value || ''} />
-      {state && state.invalid ? <span className={style.invalidMessage}>{invalidMessage}</span> : ''}
-    </p>
+    </div>
   )
 }
 
@@ -35,7 +34,9 @@ function renderForm (props) {
   return (
     <form className={style.form} method='POST'>
       <input type='hidden' name='_csrf' value={props.csrfToken} />
-      <h1 className={style.title}>Apply for <strong>{get(props, 'job.title')}</strong> @ <strong>{get(props, 'company.name')}</strong> in <strong>{get(props, 'job.location')}</strong></h1>
+      <div className={style.formHeader}>
+        <h1 className={style.title}>Complete your application for <span className={style.bold}>{get(props, 'job.title')}</span> @ <span className={style.bold}>{get(props, 'company.name')}</span></h1>
+      </div>
       {renderField({
         id: 'firstName',
         label: 'First name',
@@ -60,7 +61,7 @@ function renderForm (props) {
       }, get(props, 'form.email'))}
       {renderField({
         id: 'url',
-        label: 'Add a profile URL',
+        label: 'Add Profile URL - e.g. a link to your LinkedIn or Github profile.',
         invalidMessage: 'Please enter a valid profile url',
         required: true,
         value: get(props, 'person.url')
