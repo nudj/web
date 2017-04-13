@@ -57,7 +57,7 @@ export default (props) => {
       </div>
       <div className={style.backgroundFooter}>
         <div className={style.related}>
-          <h2 className={style.title}>Other positions @ {get(props, 'company.name')}</h2>
+          <h2 className={style.title}>Other positions</h2>
           <ul className={style.list}>
             {get(props, 'job.related', []).map((related) => <li key={related.title.split(' ').join('-')}>
               <Link className={style.bodyLinks} to={related.url}>{related.title} @ {related.companyName}</Link>
