@@ -38,24 +38,24 @@ export default (props) => {
           </div>
           <div className={style.fieldWrap}>
             <label className={style.fieldLabel}>Role</label>
-            <small className={style.helper}>Tell us what you do day-to-day - select as many as you like!</small>
+            <small className={style.helper}>Tell us what you do day-to-day</small>
             <div className={style.checkbox}>
-              <label className={style.checkboxLabel}><input className={style.checkboxInput} type='checkbox' id='development' value='development' name='role' />Development</label>
+              <label className={style.checkboxLabel}><input className={style.checkboxInput} type='radio' id='development' value='development' name='role' />Development</label>
             </div>
             <div className={style.checkbox}>
-              <label className={style.checkboxLabel}><input className={style.checkboxInput} type='checkbox' id='design' value='design' name='role' />Design</label>
+              <label className={style.checkboxLabel}><input className={style.checkboxInput} type='radio' id='design' value='design' name='role' />Design</label>
             </div>
             <div className={style.checkbox}>
-              <label className={style.checkboxLabel}><input className={style.checkboxInput} type='checkbox' id='marketing' value='marketing' name='role' />Marketing</label>
+              <label className={style.checkboxLabel}><input className={style.checkboxInput} type='radio' id='marketing' value='marketing' name='role' />Marketing</label>
             </div>
             <div className={style.checkbox}>
-              <label className={style.checkboxLabel}><input className={style.checkboxInput} type='checkbox' id='sales' value='sales' name='role' />Sales</label>
+              <label className={style.checkboxLabel}><input className={style.checkboxInput} type='radio' id='sales' value='sales' name='role' />Sales</label>
             </div>
             <div className={style.checkbox}>
-              <label className={style.checkboxLabel}><input className={style.checkboxInput} type='checkbox' id='product' value='product' name='role' />Product</label>
+              <label className={style.checkboxLabel}><input className={style.checkboxInput} type='radio' id='product' value='product' name='role' />Product</label>
             </div>
             <div className={style.checkbox}>
-              <label className={style.checkboxLabel}><input className={style.checkboxInput} type='checkbox' id='other' value='other' name='role' />Other</label>
+              <label className={style.checkboxLabel}><input className={style.checkboxInput} type='radio' id='other' value='other' name='role' />Other</label>
             </div>
           </div>
         </fieldset>

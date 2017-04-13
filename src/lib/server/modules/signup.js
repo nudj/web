@@ -1,12 +1,39 @@
 let Mailgun = require('mailgun-js')
+let Intercom = require('intercom-client')
 let logger = require('../lib/logger')
 var mailgun = Mailgun({
   apiKey: process.env.MAILGUN_API_KEY,
   domain: process.env.MAILGUN_DOMAIN
 })
+let intercom = new Intercom.Client({
+  token: process.env.INTERCOM_ACCESS_TOKEN
+})
 
 module.exports.send = (firstName, lastName, email, jobTitle, role) => {
   logger.log('info', 'Sending email', firstName, lastName, email, jobTitle, role)
+  intercom.leads
+    .listBy({ email })
+    .then((response) => {
+      if (response.status !== 200) {
+        throw new Error(`Intercom gone done broke: ${response.status}`)
+      }
+      return response.body
+    })
+    .then((result) => !!result.total_count)
+    .then((exists) => {
+      if (!exists) {
+        logger.log('info', 'Creating new lead', firstName, lastName, email, jobTitle, role)
+        intercom.leads.create({
+          name: `${firstName} ${lastName}`,
+          email,
+          custom_attributes: {
+            job_title: jobTitle,
+            role
+          }
+        })
+      }
+    })
+    .catch((error) => logger.log('error', 'Intercom', error))
   return mailgun
     .messages()
     .send({
