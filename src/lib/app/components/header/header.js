@@ -2,16 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import style from './header.css'
 
-function renderLoginLogout (person) {
-  let html
-  if (person) {
-    html = <Link className={style.login} to='/logout'>Logout</Link>
-  } else {
-    html = <Link className={style.login} to='/login'>Log in</Link>
-  }
-  return html
-}
-
 export default class Header extends React.Component {
   constructor (props) {
     super(props)
@@ -39,11 +29,10 @@ export default class Header extends React.Component {
           <span />
         </span>
         <div className={`${style.right} ${this.state.menuOpen ? style.isActive : ''}`}>
-          <a href='http://help.nudj.co' className={style.link}>Help</a>
-          <Link to='/' className={style.link} >Jobs</Link>
-          <Link to='/hiring' className={style.link}>Hiring</Link>
-          {renderLoginLogout(this.props.person)}
-          <Link to='/request' className={style.request}>Request access</Link>
+          <a href='http://help.nudj.co' className={style.link}>Learn more</a>
+          <Link to='/' className={style.link} >Looking for a job</Link>
+          <Link to='/hiring' className={style.link}>Currently hiring</Link>
+          <Link to='' id='open-intercom' className={style.request}>Get in touch</Link>
         </div>
       </nav>
     )

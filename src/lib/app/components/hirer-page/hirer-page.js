@@ -74,17 +74,19 @@ export default (props) => (
         </div>
       </div>
     </div>
-    <div className={style.sectionMedium}>
-      <div className={style.cost}>
-        <h2 className={style.title}>How much does it cost</h2>
-        <div className={style.subtitle}>We will be announcing our pricing very soon, but while we're still in beta it costs...</div>
-        <div className={style.pricing}>
-          <div className={style.price}>£0 + referral fee. &#x1F62E;</div>
-          <p className={style.detail}>So sign-up for beta access today!</p>
-          <div className={style.buttons}>
-            <Link to='/request' className={style.request} >Request access</Link>
-            <span className={style.padding}>or</span>
-            <Link to='' className={style.outlined} id='open-intercom'>Get in touch</Link>
+    <div className={style.backgroundFooter}>
+      <div className={style.sectionMedium}>
+        <div className={style.cost}>
+          <h2 className={style.title}>How much does it cost</h2>
+          <div className={style.subtitle}>We will be announcing our pricing very soon, but while we're still in beta it costs...</div>
+          <div className={style.pricing}>
+            <div className={style.price}>£0 + referral fee. &#x1F62E;</div>
+            <p className={style.detail}>So sign-up for beta access today!</p>
+            <div className={style.buttons}>
+              <Link to='/request' className={style.request} >Request access</Link>
+              <span className={style.padding}>or</span>
+              <Link to='' className={style.outlined} id='open-intercom'>Get in touch</Link>
+            </div>
           </div>
         </div>
       </div>

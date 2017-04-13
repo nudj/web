@@ -59,7 +59,7 @@ export default (props) => {
             </div>
           </div>
         </fieldset>
-        <input className={style.fieldSubmit} type='submit' value='Sign-up' />
+        <input className={style.fieldSubmit} type='submit' value='Sign up' />
       </form>
     )
   }

@@ -43,16 +43,18 @@ export default (props) => (
         <p className={style.step}>...who can apply in a matter of seconds &amp; get direct access to the company.</p>
         <div className={style.number}>4.</div>
         <p className={style.step}>If they get hired then everyone gets rewarded - they get a great job, the company gets a great employee &amp; the friend that referred them gets paid!</p>
-        <div className={style.everyone}>&#x1F483;&nbsp;<a href='https://www.youtube.com/watch?v=-SFFRaIUisY' className={style.link}>Everyone's a winner, baby!</a>&#x1F57A;</div>
+        <div className={style.everyone}>&#x1F483;&nbsp;<a href='https://www.youtube.com/watch?v=-SFFRaIUisY' className={style.link}>Everyone's a winner!</a>&#x1F57A;</div>
       </div>
     </div>
-    <div className={style.sectionMedium}>
-      <h2 className={style.title}>What are you waiting for?</h2>
-      <p className={style.subtitle}>We're all tired of recruiter spam, so we promise to only send you the stuff we know you'll care about (and you can opt-out anytime).</p>
-      <div className={style.buttons}>
-        <Link to='/signup' className={style.button}>Sign-up for updates</Link>
-        <span className={style.spacer}>or</span>
-        <Link to='' className={style.buttonLink} id='open-intercom'>Get in touch</Link>
+    <div className={style.backgroundFooter}>
+      <div className={style.sectionMedium}>
+        <h2 className={style.title}>What are you waiting for?</h2>
+        <p className={style.subtitle}>We're all tired of recruiter spam, so we promise to only send you the stuff we know you'll care about (and you can opt-out anytime).</p>
+        <div className={style.buttons}>
+          <Link to='/signup' className={style.button}>Sign-up for updates</Link>
+          <span className={style.spacer}>or</span>
+          <Link to='' className={style.buttonLink} id='open-intercom'>Get in touch</Link>
+        </div>
       </div>
     </div>
   </div>
