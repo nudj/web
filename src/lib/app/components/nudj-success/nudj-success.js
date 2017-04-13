@@ -7,12 +7,11 @@ export default (props) => {
   let relativeLink = `/${get(props, 'company.slug')}/${get(props, 'job.slug')}+${get(props, 'referral.id')}`
   return (
     <div className={style.container}>
-      <h1 className={style.heading}>Awesomesauce! Here's your special link...</h1>
-      <Link className={style.link} to={relativeLink}>{`https://nudj.co${relativeLink}`}</Link>
+      <div className={style.link}>
+        <div className={style.linkContainer}>{`https://nudj.co${relativeLink}`}</div>
+        <input className={style.copyLink} type='submit' value='Copy' />
+      </div>
       <ul className={style.actions}>
-        <li>
-          <Link to='' className={style.copyLink} >Copy</Link>
-        </li>
         <li className={style.socialAction}>
           <Link to='' className={style.waLink}>
             <svg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
@@ -51,12 +50,6 @@ export default (props) => {
           </Link>
         </li>
       </ul>
-      <hr className={style.breakLine} />
-      <div className={style.tip}>
-        <h2 className={style.tipTitle}>Here's a little tip...</h2>
-        <hr className={style.tipBreak} />
-        <p className={style.tipBody}>Don't over think it. Just send it to straight to any of your friends that you think might be interested - they'll appreciate you thinking of them. &#x1F44D;</p>
-      </div>
     </div>
   )
 }

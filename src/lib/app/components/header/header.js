@@ -39,7 +39,7 @@ export default class Header extends React.Component {
           <span />
         </span>
         <div className={`${style.right} ${this.state.menuOpen ? style.isActive : ''}`}>
-          <Link to='//help.nudj.co' className={style.link}>Help</Link>
+          <a href='http://help.nudj.co' className={style.link}>Help</a>
           <Link to='/' className={style.link} >Jobs</Link>
           <Link to='/hiring' className={style.link}>Hiring</Link>
           {renderLoginLogout(this.props.person)}

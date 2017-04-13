@@ -8,8 +8,8 @@ function renderLinkMessage (props) {
   let message
   if (
     get(props, 'referrer.email') &&
-    get(props, 'user._json.email') &&
-    get(props, 'referrer.email') === get(props, 'user._json.email')
+    get(props, 'person.email') &&
+    get(props, 'referrer.email') === get(props, 'person.email')
   ) {
     message = <NudjSuccess {...props} />
   }
@@ -73,16 +73,15 @@ export default (props) => {
             <p className={style.actionCopy}>Interested? It only takes <strong>a few seconds to apply</strong> and you don’t need a CV.</p><button className={style.apply}>Apply for job</button>
           </form>
           <form className={style.action} action={`/${get(props, 'company.slug')}/${get(props, 'job.slug')}${referral ? `+${referral.id}` : ''}/nudj`} method='POST'>
-            <p className={style.actionCopy}>Know someone perfect? <strong>We’ll give you £{get(props, 'job.bonus')}</strong> if they get the job and you get to feel awesome for helping out a mate!</p><button className={style.nudj}>Send to a friend</button>
+            <p className={style.actionCopy}>Know someone perfect? <strong>We’ll give you £{get(props, 'job.bonus')}</strong> if they get the job (you'll need to create an account to do this).</p><button className={style.nudj}>Send to a friend</button>
           </form>
         </div>
         <hr className={style.breakLine} />
         <div className={style.related}>
           <h2 className={style.title}>Other positions</h2>
-          <Link className={style.bodyLinks} to={`/`}>Home</Link>
-          <ul>
+          <ul className={style.list}>
             {get(props, 'job.related', []).map((related) => <li key={related.title.split(' ').join('-')}>
-              <Link to={`/jobs/${related.id}`}>{related.title}, {related.location}</Link>
+              <Link className={style.bodyLinks} to={related.url}>{related.title}, {related.location}</Link>
             </li>)}
           </ul>
         </div>

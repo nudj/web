@@ -6,7 +6,7 @@
 }
 .info,
 .related {
-  composes: pv2 w-100 from 'tachyons/css/tachyons.css';
+  composes: ph2 pv2 w-100 from 'tachyons/css/tachyons.css';
 }
 .logo {
   max-height: 6rem !important;
@@ -75,4 +75,7 @@
 }
 .breakLine {
   composes: ba b--dashed light-gray from 'tachyons/css/tachyons.css';
+}
+.list {
+  composes: list from 'tachyons/css/tachyons.css';
 }
