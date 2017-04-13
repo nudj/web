@@ -1,5 +1,6 @@
 let Mailgun = require('mailgun-js')
 let logger = require('../lib/logger')
+let intercom = require('../lib/intercom')
 var mailgun = Mailgun({
   apiKey: process.env.MAILGUN_API_KEY,
   domain: process.env.MAILGUN_DOMAIN
@@ -7,6 +8,16 @@ var mailgun = Mailgun({
 
 module.exports.send = (firstName, lastName, email, companyName) => {
   logger.log('info', 'Sending email', firstName, lastName, email, companyName)
+  intercom.createUniqueLeadAndTag({
+    name: `${firstName} ${lastName}`,
+    email,
+    companies: [
+      {
+        company_id: companyName.toLowerCase().split(' ').join('-'),
+        name: companyName
+      }
+    ]
+  }, 'hirer')
   return mailgun
     .messages()
     .send({
