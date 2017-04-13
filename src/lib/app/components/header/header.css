@@ -1,14 +1,14 @@
 .nav {
-  composes: w-100 mw8 center flex justify-between items-stretch pv3-ns pv2 from 'tachyons/css/tachyons.css';
+  composes: w-100 mw8 center flex flex-column flex-row-ns justify-between items-stretch pv3-ns pv2 from 'tachyons/css/tachyons.css';
 }
 .left {
-  composes: flex items-center from 'tachyons/css/tachyons.css';
+  composes: flex justify-center justify-between-ns from 'tachyons/css/tachyons.css';
 }
 .home {
   composes: dib from 'tachyons/css/tachyons.css';
 }
 .brand {
-  composes: mw3 pl2 from 'tachyons/css/tachyons.css';
+  composes: mw3 pt2 from 'tachyons/css/tachyons.css';
 }
 .toggle {
   composes: db dn-l h3 w3 relative from 'tachyons/css/tachyons.css';
@@ -34,14 +34,14 @@
   margin-top: 6px;
 }
 .right {
-  composes: dn absolute right-0 static-l flex-l items-end items-center from 'tachyons/css/tachyons.css';
+  composes: static flex justify-center justify-end-ns from 'tachyons/css/tachyons.css';
 }
 .link {
-  composes: f5 ma3 mh4-l no-underline underline-hover dim navy link from 'tachyons/css/tachyons.css';
+  composes: f6 f5-l pa3 mh4-l no-underline underline-hover dim navy link db tc from 'tachyons/css/tachyons.css';
+}
+.learnMore {
+  composes: dn dib-l f6 f5-l pa3 mh4-l no-underline underline-hover dim navy link tc from 'tachyons/css/tachyons.css';
 }
 .request {
-  composes: f5 dib ph3 pv3 ml3-l grow no-underline link white br2 ba bw1 bg-light-red b--light-red from 'tachyons/css/tachyons.css';
-}
-.isActive {
-  composes: flex from 'tachyons/css/tachyons.css';
+  composes: f5 dn dib-l ph3 pv3 ml3-l grow no-underline link white br2 ba bw1 bg-light-red b--light-red from 'tachyons/css/tachyons.css';
 }
