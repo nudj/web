@@ -32,7 +32,7 @@ steps:
     title: Build Image
     type: build
     image_name: nudj/web
-    tag: 1.0.0
+    tag: 1.0.1
     working_directory: ${{main_clone}}
     dockerfile: Dockerfile
     build_arguments:
@@ -46,7 +46,7 @@ steps:
     title: Push Image
     type: push
     candidate: '${{build_image}}'
-    tag: 1.0.0
+    tag: 1.0.1
     credentials:
       username: '${{dockerUsername}}'
       password: '${{dockerPassword}}'
