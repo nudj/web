@@ -8,7 +8,7 @@ export default (props) => {
     <div className={style.container}>
       <div className={style.link}>
         <div className={style.linkContainer}>{link}</div>
-        <input className={style.copyLink} type='submit' value='Copy' />
+        <button id='copy' className={style.copyLink} data-clipboard-text={link}>Copy</button>
       </div>
       <ul className={style.actions}>
         <li className={style.socialAction}>
