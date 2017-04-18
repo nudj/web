@@ -15,6 +15,15 @@ import ErrorPage from '../error-page'
 import PageNotFound from '../404-page'
 import Footer from '../footer'
 
+const Status = ({ code, children }) => (
+  <Route render={({ staticContext }) => {
+    if (staticContext) {
+      staticContext.status = code
+    }
+    return children
+  }} />
+)
+
 class Index extends Component {
   render () {
     let { page: data } = this.props
@@ -34,7 +43,11 @@ class Index extends Component {
               <Route exact path='/:companySlug/:jobSlugId' render={(props) => <JobPage {...props} {...data} />} />
               <Route exact path='/:companySlug/:jobSlugId/apply' render={(props) => <ApplyPage {...props} {...data} />} />
               <Route exact path='/:companySlug/:jobSlugId/nudj' render={(props) => <NudjPage {...props} {...data} />} />
-              <Route render={(props) => <PageNotFound {...props} {...data} />} />
+              <Route render={(props) => (
+                <Status code={404}>
+                  <PageNotFound {...props} {...data} />
+                </Status>
+              )} />
             </Switch>
           )}
         </div>
