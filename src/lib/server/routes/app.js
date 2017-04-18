@@ -111,7 +111,8 @@ function getRenderer (req, res, next) {
       let status = get(data, 'error.code', staticContext.status || 200)
       res.status(status).render('app', {
         data: JSON.stringify(data),
-        html: staticContext.html
+        html: staticContext.html,
+        helmet: staticContext.helmet
       })
     }
   }

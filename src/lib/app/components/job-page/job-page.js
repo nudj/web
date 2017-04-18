@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import get from 'lodash/get'
+import { Helmet } from 'react-helmet'
 import NudjSuccess from '../nudj-success'
 import style from './job-page.css'
 
@@ -17,9 +18,19 @@ function renderLinkMessage (props) {
 }
 
 export default (props) => {
-  let referral = get(props, 'referral')
+  const referral = get(props, 'referral')
+  const title = `${get(props, 'company.name')} - ${get(props, 'job.title')}`
+  const image = get(props, 'company.logo')
   return (
     <div className={style.body}>
+      <Helmet>
+        <title>{title}</title>
+        <meta name='title' content={title} />
+        <meta property='og:title' content={title} />
+        <meta property='twitter:title' content={title} />
+        <meta property='twitter:image' content={image} />
+        <meta property='og:image' content={image} />
+      </Helmet>
       <div className={style.job}>
         {renderLinkMessage(props)}
         <div className={style.info}>

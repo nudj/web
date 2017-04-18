@@ -3,6 +3,7 @@ import ReactDOMServer from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { createStore, combineReducers } from 'redux'
+import { Helmet } from 'react-helmet'
 
 import App from './components/index'
 import { urlReducer } from './reducers/url'
@@ -33,5 +34,6 @@ export default (data) => {
       </StaticRouter>
     </Provider>
   )
+  context.helmet = Helmet.renderStatic()
   return context
 }

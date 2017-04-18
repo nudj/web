@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Switch, Route } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 import style from './index.css'
 import Header from '../header'
 import Message from '../message'
@@ -29,6 +30,24 @@ class Index extends Component {
     let { page: data } = this.props
     return (
       <div className={style.body}>
+        <Helmet>
+          <meta charSet='utf-8' />
+          <title>Nudj - Stop looking. Start hiring.</title>
+          <meta name='viewport' content='width=device-width, initial-scale=1' />
+          <meta name='description' content='With your help, nudj connects the best companies with the best people, without any of the faff.' />
+          <meta name='title' content='nudj - Stop looking. Start hiring.' />
+          <meta property='og:description' content='With your help, we connect the best companies with the best people, without any of the faff.' />
+          <meta property='twitter:description' content='With your help, we connect the best companies with the best people, without any of the faff.' />
+          <meta property='og:type' content='article' />
+          <meta property='og:title' content='nudj - Stop looking. Start hiring.' />
+          <meta property='twitter:card' content='nudj - Stop looking. Start hiring.' />
+          <meta property='twitter:title' content='nudj - Stop looking. Start hiring.' />
+          <meta property='og:site_name' content='nudj - Stop looking. Start hiring.' />
+          <meta property='twitter:image' content='' />
+          <meta property='og:image' content='' />
+          <link rel='icon' href='/assets/images/nudj-square.ico' type='image/x-icon' />
+          <link rel='stylesheet' href='/assets/css/app.css' />
+        </Helmet>
         <header className={style.header}>
           <Header {...data} />
         </header>
