@@ -17,10 +17,11 @@ import Footer from '../footer'
 
 const Status = ({ code, children }) => (
   <Route render={({ staticContext }) => {
-    if (staticContext)
+    if (staticContext) {
       staticContext.status = code
+    }
     return children
-  }}/>
+  }} />
 )
 
 class Index extends Component {
