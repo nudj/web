@@ -23,7 +23,7 @@ export default (data) => {
     data
   )
   const context = {}
-  const html = ReactDOMServer.renderToString(
+  context.html = ReactDOMServer.renderToString(
     <Provider store={store}>
       <StaticRouter
         location={data.page.url.originalUrl}
@@ -33,5 +33,5 @@ export default (data) => {
       </StaticRouter>
     </Provider>
   )
-  return context.url ? context : html
+  return context
 }
