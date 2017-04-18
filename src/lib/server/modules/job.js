@@ -17,7 +17,7 @@ function promiseMap (promiseObj) {
   })
 }
 
-function getBaseData (companySlug, jobSlugRefId, loggedInPerson) {
+function fetchBaseData (companySlug, jobSlugRefId, loggedInPerson) {
   let jobSlug = jobSlugRefId.split('+')[0]
   let refId = jobSlugRefId.split('+')[1]
   let requests = {
@@ -42,6 +42,14 @@ function ensureValidReferralUrl (data) {
     throw new Error('Not found')
   }
   return data
+}
+
+function fetchReferrer (data) {
+  let referral = data.referral
+  if (referral) {
+    data.referrer = fetch(`people/${referral.personId}`)
+  }
+  return promiseMap(data)
 }
 
 function fetchExisting (type) {
@@ -159,21 +167,24 @@ function apply (data) {
 }
 
 module.exports.get = function (companySlug, jobSlugRefId, loggedInPerson) {
-  return getBaseData(companySlug, jobSlugRefId, loggedInPerson)
+  return fetchBaseData(companySlug, jobSlugRefId, loggedInPerson)
   .then(ensureValidReferralUrl)
+  .then(fetchReferrer)
 }
 
 module.exports.nudj = function (companySlug, jobSlugRefId, loggedInPerson) {
-  return getBaseData(companySlug, jobSlugRefId, loggedInPerson)
+  return fetchBaseData(companySlug, jobSlugRefId, loggedInPerson)
   .then(ensureValidReferralUrl)
+  .then(fetchReferrer)
   .then(fetchExisting('referral'))
   .then(ensureDoesNotExist('referral'))
   .then(nudj)
 }
 
 module.exports.apply = function (companySlug, jobSlugRefId, loggedInPerson, personUpdate) {
-  return getBaseData(companySlug, jobSlugRefId, loggedInPerson)
+  return fetchBaseData(companySlug, jobSlugRefId, loggedInPerson)
   .then(ensureValidReferralUrl)
+  .then(fetchReferrer)
   .then(fetchExisting('application'))
   .then(ensureDoesNotExist('application'))
   .then((data) => {
