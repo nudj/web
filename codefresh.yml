@@ -41,7 +41,7 @@ steps:
   push_release:
     title: Push Release
     type: push
-    candidate: '${{build_image}}'
+    candidate: '${{build}}'
     tag: 1.0.2
     credentials:
       username: '${{dockerUsername}}'
