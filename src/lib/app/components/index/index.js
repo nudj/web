@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import style from './index.css'
@@ -24,7 +24,7 @@ const Status = ({ code, children }) => (
   }} />
 )
 
-let Index = (props) => {
+const Index = (props) => {
   let { page: data } = props
   data = data || {}
   return (
@@ -51,7 +51,7 @@ let Index = (props) => {
         <Route path='*' component={Header} />
       </header>
       <Route path='*' component={Message} />
-      {/*data.message ? <Message key='message' message={data.message} /> : ''*/}
+      {/* data.message ? <Message key='message' message={data.message} /> : '' */}
       <div className={style.content}>
         {data.error && data.error.code ? <ErrorPage {...data.error} /> : (
           <Switch>
