@@ -14,8 +14,6 @@ import { messageReducer } from './reducers/message'
 import { pageReducer } from './reducers/page'
 
 const history = createHistory()
-console.log('history', history)
-console.log('history.location', history.location)
 const middleware = routerMiddleware(history)
 const store = createStore(
   combineReducers({

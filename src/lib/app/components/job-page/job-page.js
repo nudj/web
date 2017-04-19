@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { withRouter, Link } from 'react-router-dom'
 import get from 'lodash/get'
 import { Helmet } from 'react-helmet'
 import NudjSuccess from '../nudj-success'
@@ -17,7 +18,7 @@ function renderLinkMessage (props) {
   return message
 }
 
-export default (props) => {
+const Component = (props) => {
   const referral = get(props, 'referral')
   const title = `${get(props, 'company.name')} - ${get(props, 'job.title')}`
   const image = get(props, 'company.logo')
@@ -79,3 +80,7 @@ export default (props) => {
     </div>
   )
 }
+
+const mapStateToProps = (state, props) => Object.assign({}, state.page, props)
+const mapDispatchToProps = (dispatch, ownProps) => ({})
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Component))

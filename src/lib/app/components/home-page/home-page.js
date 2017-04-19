@@ -1,8 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { withRouter, Link } from 'react-router-dom'
 import style from './home-page.css'
 
-export default (props) => (
+const Component = (props) => (
   <div className={style.body}>
     <div className={style.background}>
       <div className={style.hero}>
@@ -59,3 +60,7 @@ export default (props) => (
     </div>
   </div>
 )
+
+const mapStateToProps = (state, props) => Object.assign({}, state.page, props)
+const mapDispatchToProps = (dispatch, ownProps) => ({})
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Component))

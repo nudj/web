@@ -1,9 +1,11 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import NudjSuccess from '../nudj-success'
 
 import style from './nudj-page.css'
 
-export default (props) => {
+const Component = (props) => {
   return (
     <div className={style.page}>
       <div className={style.box}>
@@ -20,3 +22,7 @@ export default (props) => {
     </div>
   )
 }
+
+const mapStateToProps = (state, props) => Object.assign({}, state.page, props)
+const mapDispatchToProps = (dispatch, ownProps) => ({})
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Component))

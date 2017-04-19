@@ -1,8 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { withRouter, Link } from 'react-router-dom'
 import style from './header.css'
 
-export default (props) => {
+const Component = (props) => {
   return (
     <nav className={style.nav}>
       <div className={style.left}>
@@ -19,3 +20,7 @@ export default (props) => {
     </nav>
   )
 }
+
+const mapStateToProps = (state, props) => Object.assign({}, state.page, props)
+const mapDispatchToProps = (dispatch, ownProps) => ({})
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Component))
