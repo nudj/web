@@ -2,10 +2,10 @@ version: '1.0'
 
 steps:
 
-  build_test_image:
-    title: Build Test Image
+  build_test:
+    title: Build Test
     type: build
-    image_name: nudj/web-dev-test
+    image_name: nudj/web-test
     working_directory: ${{main_clone}}
     dockerfile: Dockerfile.dev
     build_arguments:
@@ -13,40 +13,36 @@ steps:
 
   test:
     title: Test
-    image: ${{build_test_image}}
+    image: ${{build_test}}
     working_directory: 'IMAGE_WORK_DIR'
 
-  build_dev_image:
-    title: Build Dev Image
-    type: build
-    image_name: nudj/web-dev
-    dockerfile: Dockerfile
-    build_arguments:
-      - NPM_TOKEN=${{NPM_TOKEN}}
-    when:
-      branch:
-        ignore:
-          - master
-
-  build_image:
-    title: Build Image
+  build:
+    title: Build
     type: build
     image_name: nudj/web
-    tag: 1.0.1
-    working_directory: ${{main_clone}}
+    tag: latest
     dockerfile: Dockerfile
     build_arguments:
       - NPM_TOKEN=${{NPM_TOKEN}}
+
+  push_latest:
+    title: Push Latest
+    type: push
+    candidate: '${{build}}'
+    tag: latest
+    credentials:
+      username: '${{dockerUsername}}'
+      password: '${{dockerPassword}}'
     when:
       branch:
         only:
-          - master
+          - develop
 
-  push_image:
-    title: Push Image
+  push_release:
+    title: Push Release
     type: push
     candidate: '${{build_image}}'
-    tag: 1.0.1
+    tag: 1.0.2
     credentials:
       username: '${{dockerUsername}}'
       password: '${{dockerPassword}}'

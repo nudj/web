@@ -104,14 +104,15 @@ function getRenderer (req, res, next) {
   return (data) => {
     delete req.session.logout
     delete req.session.returnTo
-    let renderResult = build(data)
-    if (renderResult.url) {
-      res.redirect(renderResult.url)
+    let staticContext = build(data)
+    if (staticContext.url) {
+      res.redirect(staticContext.url)
     } else {
-      let status = get(data, 'error.code', 200)
+      let status = get(data, 'error.code', staticContext.status || 200)
       res.status(status).render('app', {
         data: JSON.stringify(data),
-        html: renderResult
+        html: staticContext.html,
+        helmet: staticContext.helmet
       })
     }
   }

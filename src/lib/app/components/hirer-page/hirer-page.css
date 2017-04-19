@@ -74,7 +74,7 @@
   composes: p f5 f4-l lh-subtitle pt3 pb3 pt4-l pb4-l tc light-red from 'tachyons/css/tachyons.css';
 }
 .brand {
-  composes: tc w-33-ns w5 w-90 from 'tachyons/css/tachyons.css';
+  composes: tc w-33-ns w5 w-100 from 'tachyons/css/tachyons.css';
 }
 .backgroundFooter {
   composes: bg-navy white from 'tachyons/css/tachyons.css';
