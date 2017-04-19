@@ -51,24 +51,21 @@ const Index = (props) => {
         <Route path='*' component={Header} />
       </header>
       <Route path='*' component={Message} />
-      {/* data.message ? <Message key='message' message={data.message} /> : '' */}
       <div className={style.content}>
-        {data.error && data.error.code ? <ErrorPage {...data.error} /> : (
-          <Switch>
-            <Route exact path='/' component={HomePage} />
-            <Route exact path='/hiring' component={HirerPage} />
-            <Route exact path='/request' component={RequestPage} />
-            <Route exact path='/signup' component={SignupPage} />
-            <Route exact path='/:companySlug/:jobSlugId' component={JobPage} />
-            <Route exact path='/:companySlug/:jobSlugId/apply' component={ApplyPage} />
-            <Route exact path='/:companySlug/:jobSlugId/nudj' component={NudjPage} />
-            <Route render={(props) => (
-              <Status code={404}>
-                <PageNotFound {...props} {...data} />
-              </Status>
-            )} />
-          </Switch>
-        )}
+        <Switch>
+          <Route exact path='/' component={HomePage} />
+          <Route exact path='/hiring' component={HirerPage} />
+          <Route exact path='/request' component={RequestPage} />
+          <Route exact path='/signup' component={SignupPage} />
+          <Route exact path='/:companySlug/:jobSlugId' component={JobPage} />
+          <Route exact path='/:companySlug/:jobSlugId/apply' component={ApplyPage} />
+          <Route exact path='/:companySlug/:jobSlugId/nudj' component={NudjPage} />
+          <Route render={(props) => (
+            <Status code={404}>
+              <PageNotFound {...props} {...data} />
+            </Status>
+          )} />
+        </Switch>
       </div>
       <footer className={style.footer}>
         <Footer />
