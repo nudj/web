@@ -14,7 +14,7 @@ export default (props) => {
         <div className={style.tip}>
           <h2 className={style.tipTitle}>Here's a little tip...</h2>
           <hr className={style.tipBreak} />
-          <p className={style.tipBody}>Don't over think it. Just send it to straight to any of your friends that you think might be interested - they'll appreciate you thinking of them. &#x1F44D;</p>
+          <p className={style.tipBody}>Don't over think it. Just send it straight to any of your friends that you think might be interested - they'll appreciate you thinking of them. &#x1F44D;</p>
         </div>
       </div>
     </div>
