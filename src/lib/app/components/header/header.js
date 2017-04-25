@@ -8,14 +8,19 @@ const Component = (props) => {
     <nav className={style.nav}>
       <div className={style.left}>
         <Link className={style.home} to='/'>
-          <img className={style.brand} src='/assets/images/nudj-logo.png' />
+          <img className={style.brand} src='/assets/images/nudj-logo-light.svg' />
         </Link>
       </div>
       <div className={style.right}>
-        <a href='http://help.nudj.co' className={style.learnMore}>Learn more</a>
-        <Link to='/' className={style.link} >Job seeker</Link>
-        <Link to='/hiring' className={style.link}>Hirer</Link>
-        <Link to='' id='open-intercom' className={style.request}>Get in touch</Link>
+        <span className={style.toggle}>
+          <span />
+          <span />
+          <span />
+        </span>
+        <a href='http://help.nudj.co' className={style.link}>Learn more</a>
+        <Link to='/' className={style.link} >Companies</Link>
+        <Link to='/hiring' className={style.link}>About</Link>
+        <Link to='' id='open-intercom' className={style.request}>Sign up</Link>
       </div>
     </nav>
   )

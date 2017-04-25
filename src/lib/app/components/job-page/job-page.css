@@ -1,60 +1,60 @@
 .body {
-  composes: sans-serif from 'tachyons/css/tachyons.css';
+  composes: sans-serif from '@nudj/tachyons/css/tachyons.css';
 }
 .job {
-  composes: w-100 mw8 center pt3 pt4-ns pb2 pb4-ns ph3 ph0-ns from 'tachyons/css/tachyons.css';
+  composes: w-100 mw8 center pt3 pt4-ns pb2 pb4-ns ph3 ph0-ns from '@nudj/tachyons/css/tachyons.css';
 }
 .backgroundFooter {
-  composes: bg-navy white tl from 'tachyons/css/tachyons.css';
+  composes: bg-navy white tl from '@nudj/tachyons/css/tachyons.css';
 }
 .info {
-  composes: pa3-ns w-100 from 'tachyons/css/tachyons.css';
+  composes: pa3-ns w-100 from '@nudj/tachyons/css/tachyons.css';
 }
 .related {
-  composes: w-100 mw8 center pt3 pt4-ns pb2 pb4-ns ph3 ph0-ns from 'tachyons/css/tachyons.css';
+  composes: w-100 mw8 center pt3 pt4-ns pb2 pb4-ns ph3 ph0-ns from '@nudj/tachyons/css/tachyons.css';
 }
 .title {
-  composes: f2 f1-l fw5 ma0 pa0 pv3 from 'tachyons/css/tachyons.css';
+  composes: f2 f1-l fw5 ma0 pa0 pv3 from '@nudj/tachyons/css/tachyons.css';
 }
 .brandName {
-  composes: light-red no-underline underline-hover from 'tachyons/css/tachyons.css';
+  composes: light-red no-underline underline-hover from '@nudj/tachyons/css/tachyons.css';
 }
 .location,
 .salary {
- composes: f3 tl fw5 pa0 ma0 pt2 pb2 from 'tachyons/css/tachyons.css';
+ composes: f3 tl fw5 pa0 ma0 pt2 pb2 from '@nudj/tachyons/css/tachyons.css';
 }
 .awesomeTitle {
- composes: f5 tl pa0 ma0 from 'tachyons/css/tachyons.css';
+ composes: f5 tl pa0 ma0 from '@nudj/tachyons/css/tachyons.css';
 }
 .actionTitle {
-  composes: f3 tl fw5 pa0 ma0 from 'tachyons/css/tachyons.css';
+  composes: f3 tl fw5 pa0 ma0 from '@nudj/tachyons/css/tachyons.css';
 }
 .actions,
 .description {
-  composes: flex flex-row flex-wrap justify-between items-stretch w-100 pv2 from 'tachyons/css/tachyons.css';
+  composes: flex flex-row flex-wrap justify-between items-stretch w-100 pv2 from '@nudj/tachyons/css/tachyons.css';
 }
 .why,
 .action {
- composes: flex flex-column jusitify-center items-start lh-copy tl w-50-ns w-100 pa3-ns pb4 from 'tachyons/css/tachyons.css';
+ composes: flex flex-column jusitify-center items-start lh-copy tl w-50-ns w-100 pa3-ns pb4 from '@nudj/tachyons/css/tachyons.css';
 }
 .link {
-  composes: ph2 pv2-ns pv3 w-50-ns w-100 tc from 'tachyons/css/tachyons.css';
+  composes: ph2 pv2-ns pv3 w-50-ns w-100 tc from '@nudj/tachyons/css/tachyons.css';
 }
 .bodyLinks {
-  composes: link underline light-red dim tc from 'tachyons/css/tachyons.css';
+  composes: link underline light-red dim tc from '@nudj/tachyons/css/tachyons.css';
 }
 .actionCopy {
-  composes: ma0 pb3 pt3 from 'tachyons/css/tachyons.css';
+  composes: ma0 pb3 pt3 from '@nudj/tachyons/css/tachyons.css';
 }
 .apply {
-  composes: f5 dib pa3 grow pointer no-underline link br2 ba bw1 white bg-light-red b--light-red from 'tachyons/css/tachyons.css';
+  composes: f5 dib pa3 grow pointer no-underline link br2 ba bw1 white bg-light-red b--light-red from '@nudj/tachyons/css/tachyons.css';
 }
 .nudj {
-  composes: f5 dib pa3 grow pointer no-underline link br2 ba bw1 light-red bg-white b--light-red from 'tachyons/css/tachyons.css';
+  composes: f5 dib pa3 grow pointer no-underline link br2 ba bw1 light-red bg-white b--light-red from '@nudj/tachyons/css/tachyons.css';
 }
 .breakLine {
-  composes: ba light-gray from 'tachyons/css/tachyons.css';
+  composes: ba light-gray from '@nudj/tachyons/css/tachyons.css';
 }
 .list {
-  composes: list pv3 ma0 pa0 from 'tachyons/css/tachyons.css';
+  composes: list pv3 ma0 pa0 from '@nudj/tachyons/css/tachyons.css';
 }

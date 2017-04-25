@@ -5,59 +5,57 @@ import style from './home-page.css'
 
 const Component = (props) => (
   <div className={style.body}>
-    <div className={style.background}>
-      <div className={style.hero}>
-        <div className={style.heroBody}>
-          <div className={style.outcomes}>
-            <div className={style.outcome}>
-              <div className={style.outcomeImage}>&#x1F61E;</div>
-              <h1 className={style.outcomeText}>The best people are always busy in their jobs, but they aren't always happy.</h1>
-            </div>
-            <div className={style.outcome}>
-              <div className={style.outcomeImage}>&#x1F440;&#x1F464;</div>
-              <h1 className={style.outcomeText}>They're often hard to find &amp; unknown to most.</h1>
-            </div>
-            <div className={style.outcome}>
-              <div className={style.outcomeImage}>&#x1F46D;</div>
-              <h1 className={style.outcomeText}>Their friends know who they are, but have no way to help... until now.</h1>
-            </div>
-            <div className={style.outcome}>
-              <div className={style.outcomeImage}>&#x1F91C;&#x1F91B;</div>
-              <h1 className={style.outcomeText}>With a simple nudj, you can help them access the best jobs &amp; get rewarded if they're successful.</h1>
-            </div>
-          </div>
-        </div>
-        <div className={style.heroFooter}>
-          <div className={style.indicator}>&#x1F447;</div>
-        </div>
+    <section className={style.hero}>
+      <ul className={style.story}>
+        <li className={style.notHappy}>
+          <h1 className={style.heroTitle}>The best <span className={style.red}>designers</span> are always<br className={style.break} /> busy, but aren't always happy.</h1>
+          <img className={style.heroImage} src='/assets/images/unhappy-img.svg' />
+        </li>
+        <li className={style.unknown}>
+          <h1 className={style.unknownTitle}>They're often hard to find and are unknown to most.</h1>
+        </li>
+        <li className={style.friends}>
+          <h1 className={style.friendsTitle}>Their friends know who they are, but have no way to help... <span className={style.red}><br />until now.</span></h1>
+        </li>
+        <li className={style.simpleNudj}>
+          <h1 className={style.nudjTitle}>With a simple nudj, you can help them access the best jobs and get rewarded in the process.</h1>
+        </li>
+      </ul>
+    </section>
+    <section className={style.how}>
+      <h2 className={style.bodyTitle}><span className={style.howUnderline}>How nudj works</span></h2>
+      <ul className={style.steps}>
+        <li className={style.stepOne}>
+          <img src='/assets/images/post-jobs-img.svg' />
+          <h3 className={style.stepTitle}>Step One</h3>
+          <p className={style.stepBody}>Great companies post their jobs.</p>
+        </li>
+        <li className={style.stepTwo}>
+          <img src='/assets/images/ask-people-img.svg' />
+          <h3 className={style.stepTitle}>Step Two</h3>
+          <p className={style.stepBody}>They then ask the people they rate to recommend their talented friends...</p>
+        </li>
+        <li className={style.stepThree}>
+          <img src='/assets/images/apply-button-img.svg' />
+          <h3 className={style.stepTitle}>Step Three</h3>
+          <p className={style.stepBody}>...who can apply in a matter of seconds & get direct access to the company.</p>
+        </li>
+        <li className={style.stepFour}>
+          <img src='/assets/images/3-fist-img.svg' />
+          <h3 className={style.stepTitle}>Step Four</h3>
+          <p className={style.stepBody}>If they get hired then everyone gets rewarded - Everyone's a winner, baby.</p>
+        </li>
+      </ul>
+    </section>
+    <section className={style.signup}>
+      <h2 className={style.signupTitle}>What are you waiting for?</h2>
+      <p className={style.signupSubtitle}>We're all tired of recruiter spam, so we promise to only send you the stuff we know you'll care about (and you can opt-out anytime).</p>
+      <div className={style.cta}>
+        <Link to='/signup' className={style.signupButton}>Sign up</Link>
+        <span className={style.or}>or</span>
+        <Link to='/' id='open-intercom' className={style.contact}>Get in touch</Link>
       </div>
-    </div>
-    <div className={style.sectionMedium}>
-      <h2 className={style.title}>How it works</h2>
-      <p className={style.subtitle}>With your help, we connect the awesome companies with awesome people, without any of the faff.</p>
-      <div className={style.howItWorks}>
-        <div className={style.number}>1.</div>
-        <p className={style.step}>Kick-ass companies post their jobs on nudj.</p>
-        <div className={style.number}>2.</div>
-        <p className={style.step}>They then ask people they rate to recommend their talented friends...</p>
-        <div className={style.number}>3.</div>
-        <p className={style.step}>...who can apply in a matter of seconds &amp; get direct access to the company.</p>
-        <div className={style.number}>4.</div>
-        <p className={style.step}>If they get hired then everyone gets rewarded - they get a great job, the company gets a great employee &amp; the friend that referred them gets paid!</p>
-        <div className={style.everyone}>&#x1F483;&nbsp;<a href='https://www.youtube.com/watch?v=-SFFRaIUisY' className={style.link}>Everyone's a winner!</a>&#x1F57A;</div>
-      </div>
-    </div>
-    <div className={style.backgroundFooter}>
-      <div className={style.sectionMedium}>
-        <h2 className={style.title}>What are you waiting for?</h2>
-        <p className={style.subtitle}>We're all tired of recruiter spam, so we promise to only send you the stuff we know you'll care about (and you can opt-out anytime).</p>
-        <div className={style.buttons}>
-          <Link to='/signup' className={style.button}>Sign-up for updates</Link>
-          <span className={style.spacer}>or</span>
-          <Link to='' className={style.buttonLink} id='open-intercom'>Get in touch</Link>
-        </div>
-      </div>
-    </div>
+    </section>
   </div>
 )
 
