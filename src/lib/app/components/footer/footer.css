@@ -23,8 +23,35 @@
 .roadmap,
 .hiring,
 .terms {
-  composes: jan-bold f3-ns f4 link no-underline dib-ns di mh1 mv1-ns mv2 white dim from '@nudj/tachyons/css/tachyons.css';
+  composes: jan-bold f3-ns f4 link no-underline dib-ns di mh1 mt1-ns mb3-ns mv2 white dim from '@nudj/tachyons/css/tachyons.css';
+  position: relative;
 }
+.release:after,
+.roadmap:after,
+.hiring:after,
+.terms:after {
+  background-image: url('/assets/images/table-line-1.svg');
+  background-repeat: no-repeat;
+  bottom: -10px;
+  content: '';
+  height: 10px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+.release:after {
+  background-position: left center;
+}
+.roadmap:after {
+  background-position: 33% center;
+}
+.hiring:after {
+  background-position: 66% center;
+}
+.terms:after {
+  background-position: right center;
+}
+
 .label {
   composes: jan-thin tc pt2 mh0 mv0 dn dib-ns from '@nudj/tachyons/css/tachyons.css';
 }

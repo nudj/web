@@ -11,7 +11,34 @@
   composes: flex flex-column jusitfy-center items-center w-100 mw8 center pv6 from '@nudj/tachyons/css/tachyons.css';
 }
 .info {
-  composes: flex flex-row justify-center item-center w-100 from '@nudj/tachyons/css/tachyons.css';
+  composes: flex flex-row justify-center item-center w-100 mb5 mt4 from '@nudj/tachyons/css/tachyons.css';
+  position: relative;
+}
+.info:after {
+  /* break this out into a reusable module */
+  background-image: url('/assets/images/grey-wiggle-line.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  content: '';
+  height: 10px;
+  left: 0;
+  position: absolute;
+  bottom: -10px;
+  width: 100%;
+}
+.info:before {
+  /* break this out into a reusable module */
+  background-image: url('/assets/images/grey-wiggle-line.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  content: '';
+  height: 10px;
+  left: 0;
+  position: absolute;
+  top: -10px;
+  width: 100%;
 }
 .title {
   composes: jan-bold royal-blue f1-l f2 ma0 pv4 ph6 tc from '@nudj/tachyons/css/tachyons.css';
@@ -19,45 +46,80 @@
 .brandName {
   composes: mid-red no-underline underline-hover from '@nudj/tachyons/css/tachyons.css';
 }
-.infoContainer {
-  composes: w-50-ns w-100 bb bt bw1 b--light-grey-tint-4 pa3 from '@nudj/tachyons/css/tachyons.css';
+.infoContainer,
+.infoContainerWithSeparator {
+  composes: w-50-ns w-100 pa4 from '@nudj/tachyons/css/tachyons.css';
+  position: relative;
+}
+.infoContainerWithSeparator:after {
+  /* break this out into a reusable module */
+  background: url('/assets/images/grey-vertical-separator.svg') no-repeat center;
+  content: '';
+  height: 100%;
+  right: -10px;
+  position: absolute;
+  top: 0;
+  width: 10px;
 }
 .infoTitle {
-  composes: jan-thin charcoal tc f6 pa0 ma0 from '@nudj/tachyons/css/tachyons.css';
+  composes: jan-thin charcoal tc f6 pa0 pb2 ma0 from '@nudj/tachyons/css/tachyons.css';
 }
 .infoBody {
  composes: jan-thin charcoal tc f3-l f4 pt2 pb2 pv0 ma0 from '@nudj/tachyons/css/tachyons.css';
 }
 .actionTitle,
 .awesomeTitle {
-  composes: jan-bold f3 royal-blue tl-ns tc pa2 ma0 from '@nudj/tachyons/css/tachyons.css';
+  composes: jan-bold f3 royal-blue tl-ns tc pt2 pb2 ma0 from '@nudj/tachyons/css/tachyons.css';
 }
 .actionCopy,
 .awesomeCopy {
-  composes: jan-light f5 charcoal tl-ns tc pa2 ma0 from '@nudj/tachyons/css/tachyons.css';
+  composes: jan-light f5 charcoal tl-ns tc pt2 pb2 ma0 from '@nudj/tachyons/css/tachyons.css';
 }
 .actions,
 .description {
-  composes: flex flex-row flex-wrap justify-between items-stretch w-100 pv2 from '@nudj/tachyons/css/tachyons.css';
+  composes: flex flex-row flex-wrap justify-between items-stretch w-100 pv2 ph2 ph6-l from '@nudj/tachyons/css/tachyons.css';
 }
-.why,
-.action {
- composes: flex flex-column jusitify-center items-start lh-copy tl w-50-ns w-100 pv3 from '@nudj/tachyons/css/tachyons.css';
+/* I don't like these class names */
+.whyOdd,
+.actionOdd {
+  composes: flex flex-column jusitify-center items-start lh-copy tl w-50-ns w-100 pv3 pr4-ns from '@nudj/tachyons/css/tachyons.css';
+}
+.whyEven,
+.actionEven {
+  composes: flex flex-column jusitify-center items-start lh-copy tl w-50-ns w-100 pv3 pl4-ns from '@nudj/tachyons/css/tachyons.css';
 }
 .link {
   composes: ph2 pv2-ns pv3 w-50-ns w-100 tc from '@nudj/tachyons/css/tachyons.css';
 }
 .apply {
-  composes: jan-bold f5 dib ph4 pv3 dim pointer link br-pill ba bw1 white bg-royal-blue b--royal-blue from '@nudj/tachyons/css/tachyons.css';
+  composes: jan-bold f5 dib ph4 pv3 mv3 dim pointer link br-pill ba bw1 white bg-royal-blue b--royal-blue from '@nudj/tachyons/css/tachyons.css';
+  /* Where 140px is the button min-width @ scale */
+  min-width: calc(140px * 2);
 }
 .nudj {
-  composes: jan-bold f5 dib ph4 pv3 dim pointer link br-pill ba bw1 royal-blue bg-white b--royal-blue from '@nudj/tachyons/css/tachyons.css';
+  composes: jan-bold f5 dib ph4 pv3 mv3 dim pointer link br-pill ba bw1 royal-blue bg-white b--royal-blue from '@nudj/tachyons/css/tachyons.css';
+  /* Where 140px is the button min-width @ scale */
+  min-width: calc(140px * 2);
 }
 /* Section: Related Jobs */
 
 .related {
   composes: flex flex-column justify-center items-center bg-light-grey-tint-4 royal-blue tl pa5-ns pa4 from '@nudj/tachyons/css/tachyons.css';
+  position: relative;
 }
+.related:before {
+  /* break this out into a reusable module */
+  background-image: url('/assets/images/bg-wiggle-light-grey.svg');
+  background-repeat: no-repeat;
+  background-size: 110% auto;
+  content: '';
+  left: 0;
+  height: 20px;
+  position: absolute;
+  top: -20px;
+  width: 100%;
+}
+
 .list {
   composes: list flex flex-row justify-between items-start ma0 ph0 pv3 from '@nudj/tachyons/css/tachyons.css';
 }
@@ -70,9 +132,10 @@
 .bodyLinks {
   composes: jan-bold f5 link mid-red dim tl pt2 from '@nudj/tachyons/css/tachyons.css';
 }
-.actionCopy {
-  composes: ma0 pb3 pt3 from '@nudj/tachyons/css/tachyons.css';
-}
 .breakLine {
   composes: ba light-gray from '@nudj/tachyons/css/tachyons.css';
+}
+.strong {
+  composes: jan-bold from '@nudj/tachyons/css/tachyons.css';
+  /* move this to auto-bolding based on font-weight */
 }
