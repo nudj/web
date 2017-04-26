@@ -19,7 +19,7 @@
   composes: relative pv6 bg-mid-red from '@nudj/tachyons/css/tachyons.css';
 }
 .hero::after {
-  background: url(/assets/images/fist-bump-group.svg) no-repeat center;
+  background: url(/assets/images/hirer-page/fist-bump-group.svg) no-repeat center;
   content: '';
   position: absolute;
   width: 100%;
@@ -197,9 +197,8 @@
   composes: white mw6 w-100 center pa2 ma0 from '@nudj/tachyons/css/tachyons.css';
 }
 .pricingBox {
-  composes: pa6-ns pa4 ma0-ns mt2 tc from '@nudj/tachyons/css/tachyons.css';
+  composes: pa5-ns pa2 mt2 tc from '@nudj/tachyons/css/tachyons.css';
   background: url(/assets/images/blue-wobbly-box.svg) no-repeat center;
-  background-size: 70% 60%;
 }
 @media screen and (max-width: 30em) {
   .pricingBox {
@@ -214,7 +213,7 @@
   composes: jan-thin f6 white pa0 ma0 from '@nudj/tachyons/css/tachyons.css';
 }
 .cta {
-  composes: pv2-ns pv4 tc db from '@nudj/tachyons/css/tachyons.css';
+  composes: pv4 tc db from '@nudj/tachyons/css/tachyons.css';
 }
 .signup {
   composes: jan-bold f5 link no-underline ph5 pv3 bg-royal-blue br-pill white dim db ma3 from '@nudj/tachyons/css/tachyons.css';

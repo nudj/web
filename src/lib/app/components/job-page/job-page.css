@@ -1,33 +1,40 @@
 .body {
-  composes: sans-serif from '@nudj/tachyons/css/tachyons.css';
+  composes: pa0 ma0 min-vh-100 from '@nudj/tachyons/css/tachyons.css';
+}
+.red {
+  composes: mid-red from '@nudj/tachyons/css/tachyons.css';
+}
+.break {
+  composes: dib-ns dn from '@nudj/tachyons/css/tachyons.css';
 }
 .job {
-  composes: w-100 mw8 center pt3 pt4-ns pb2 pb4-ns ph3 ph0-ns from '@nudj/tachyons/css/tachyons.css';
-}
-.backgroundFooter {
-  composes: bg-navy white tl from '@nudj/tachyons/css/tachyons.css';
+  composes: flex flex-column jusitfy-center items-center w-100 mw8 center pv6 from '@nudj/tachyons/css/tachyons.css';
 }
 .info {
-  composes: pa3-ns w-100 from '@nudj/tachyons/css/tachyons.css';
-}
-.related {
-  composes: w-100 mw8 center pt3 pt4-ns pb2 pb4-ns ph3 ph0-ns from '@nudj/tachyons/css/tachyons.css';
+  composes: flex flex-row justify-center item-center w-100 from '@nudj/tachyons/css/tachyons.css';
 }
 .title {
-  composes: f2 f1-l fw5 ma0 pa0 pv3 from '@nudj/tachyons/css/tachyons.css';
+  composes: jan-bold royal-blue f1-l f2 ma0 pv4 ph6 tc from '@nudj/tachyons/css/tachyons.css';
 }
 .brandName {
-  composes: light-red no-underline underline-hover from '@nudj/tachyons/css/tachyons.css';
+  composes: mid-red no-underline underline-hover from '@nudj/tachyons/css/tachyons.css';
 }
-.location,
-.salary {
- composes: f3 tl fw5 pa0 ma0 pt2 pb2 from '@nudj/tachyons/css/tachyons.css';
+.infoContainer {
+  composes: w-50-ns w-100 bb bt bw1 b--light-grey-tint-4 pa3 from '@nudj/tachyons/css/tachyons.css';
 }
+.infoTitle {
+  composes: jan-thin charcoal tc f6 pa0 ma0 from '@nudj/tachyons/css/tachyons.css';
+}
+.infoBody {
+ composes: jan-thin charcoal tc f3-l f4 pt2 pb2 pv0 ma0 from '@nudj/tachyons/css/tachyons.css';
+}
+.actionTitle,
 .awesomeTitle {
- composes: f5 tl pa0 ma0 from '@nudj/tachyons/css/tachyons.css';
+  composes: jan-bold f3 royal-blue tl-ns tc pa2 ma0 from '@nudj/tachyons/css/tachyons.css';
 }
-.actionTitle {
-  composes: f3 tl fw5 pa0 ma0 from '@nudj/tachyons/css/tachyons.css';
+.actionCopy,
+.awesomeCopy {
+  composes: jan-light f5 charcoal tl-ns tc pa2 ma0 from '@nudj/tachyons/css/tachyons.css';
 }
 .actions,
 .description {
@@ -35,26 +42,37 @@
 }
 .why,
 .action {
- composes: flex flex-column jusitify-center items-start lh-copy tl w-50-ns w-100 pa3-ns pb4 from '@nudj/tachyons/css/tachyons.css';
+ composes: flex flex-column jusitify-center items-start lh-copy tl w-50-ns w-100 pv3 from '@nudj/tachyons/css/tachyons.css';
 }
 .link {
   composes: ph2 pv2-ns pv3 w-50-ns w-100 tc from '@nudj/tachyons/css/tachyons.css';
 }
+.apply {
+  composes: jan-bold f5 dib ph4 pv3 dim pointer link br-pill ba bw1 white bg-royal-blue b--royal-blue from '@nudj/tachyons/css/tachyons.css';
+}
+.nudj {
+  composes: jan-bold f5 dib ph4 pv3 dim pointer link br-pill ba bw1 royal-blue bg-white b--royal-blue from '@nudj/tachyons/css/tachyons.css';
+}
+/* Section: Related Jobs */
+
+.related {
+  composes: flex flex-column justify-center items-center bg-light-grey-tint-4 royal-blue tl pa5-ns pa4 from '@nudj/tachyons/css/tachyons.css';
+}
+.list {
+  composes: list flex flex-row justify-between items-start ma0 ph0 pv3 from '@nudj/tachyons/css/tachyons.css';
+}
+.relatedJob {
+  composes: pa4 from '@nudj/tachyons/css/tachyons.css';
+}
+.jobTitle {
+  composes: jan-bold f3 navy-blue tl ma0 pa0 from '@nudj/tachyons/css/tachyons.css';
+}
 .bodyLinks {
-  composes: link underline light-red dim tc from '@nudj/tachyons/css/tachyons.css';
+  composes: jan-bold f5 link mid-red dim tl pt2 from '@nudj/tachyons/css/tachyons.css';
 }
 .actionCopy {
   composes: ma0 pb3 pt3 from '@nudj/tachyons/css/tachyons.css';
 }
-.apply {
-  composes: f5 dib pa3 grow pointer no-underline link br2 ba bw1 white bg-light-red b--light-red from '@nudj/tachyons/css/tachyons.css';
-}
-.nudj {
-  composes: f5 dib pa3 grow pointer no-underline link br2 ba bw1 light-red bg-white b--light-red from '@nudj/tachyons/css/tachyons.css';
-}
 .breakLine {
   composes: ba light-gray from '@nudj/tachyons/css/tachyons.css';
-}
-.list {
-  composes: list pv3 ma0 pa0 from '@nudj/tachyons/css/tachyons.css';
 }

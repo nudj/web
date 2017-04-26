@@ -6,77 +6,48 @@
 .red {
   composes: mid-red from '@nudj/tachyons/css/tachyons.css';
 }
-.break {
-  composes: dib-ns dn from '@nudj/tachyons/css/tachyons.css';
+.standardBreak {
+  composes: dib-l dn from '@nudj/tachyons/css/tachyons.css';
+}
+.oppositeBreak {
+  composes: dib-l dib-m dn from '@nudj/tachyons/css/tachyons.css';
 }
 
 /* Section: Hero + Story */
 
 .hero {
-  composes: relative pt7-ns pb6-ns pt6 pb5 bg-white from '@nudj/tachyons/css/tachyons.css';
-  background: url(/assets/images/clouds.svg) no-repeat;
+  composes: relative pt7-ns pt5 bg-white from '@nudj/tachyons/css/tachyons.css';
+  background: url(/assets/images/home-page/clouds.svg) no-repeat;
   background-position: 50% 5%;
 }
 @media screen and (min-width: 30em) and (max-width: 60em) {
   .hero {
+    background: url(/assets/images/home-page/clouds.svg) no-repeat;
     background-size: contain;
-    background-position: 100% 10%;
+    background-position: 100% 5%;
   }
 }
 @media screen and (max-width: 30em) {
   .hero {
-    background: url(/assets/images/clouds-small.svg) no-repeat;
+    background: url(/assets/images/home-page/clouds-small.svg) no-repeat;
     background-size: contain;
-    background-position: 50% 7%;
-  }
-}
-.hero::after {
-  background: url(/assets/images/grouped-fist-bump-accent.svg) no-repeat center;
-  content: '';
-  position: absolute;
-  width: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  max-width: none;
-  display: block;
-  z-index: 99;
-}
-@media screen and (min-width: 60em) {
-  .hero::after {
-    height: 320px;
-    bottom: -68px;
-    background-size: 100% 80%;
-  }
-}
-@media screen and (min-width: 30em) and (max-width: 60em) {
-  .hero::after {
-    height: 320px;
-    bottom: -102px;
-    background-size: 100% 50%;
-  }
-}
-@media screen and (max-width: 30em) {
-  .hero::after {
-    background: url(/assets/images/fist-bump-group-mobile.svg) no-repeat;
-    height: 100px;
-    bottom: 20px;
-    background-size: 100%;
+    background-position: 50% 3%;
   }
 }
 .story {
   composes: list pa0 ma0 flex flex-column justify-center items-center from '@nudj/tachyons/css/tachyons.css';
 }
 .notHappy {
-  composes: flex flex-column justify-end-ns justify-center items-center pv6-ns pt6 pb0 ph0-ns ph3 from '@nudj/tachyons/css/tachyons.css';
+  composes: flex flex-column justify-end-ns justify-center items-center pt6-l pb4-l pt0-m pt6 pb2 from '@nudj/tachyons/css/tachyons.css';
 }
 .heroTitle,
 .unknownTitle,
 .friendsTitle,
 .nudjTitle {
-  composes: jan-bold f2-l f3 tc royal-blue ma0 from '@nudj/tachyons/css/tachyons.css';
+  composes: jan-bold f2-l f3 royal-blue ma0 from '@nudj/tachyons/css/tachyons.css';
 }
 .heroTitle {
-  composes: mw8 w-100 center pb5-ns pb6 ph3 from '@nudj/tachyons/css/tachyons.css';
+  composes: tc pb5-ns pb6 ph3 mw8 w-100 center from '@nudj/tachyons/css/tachyons.css';
 }
 .heroImage {
   composes: tc mw-100 ph0-ns ph4 from '@nudj/tachyons/css/tachyons.css';
@@ -87,78 +58,142 @@
   }
 }
 .unknown {
-  composes: flex flex-row flex-wrap justify-end items-center ph2 w-100 from '@nudj/tachyons/css/tachyons.css';
-  background: url(/assets/images/hidden-img.svg) no-repeat;
-  background-position: 40% 50%;
-  min-height: 26rem;
+  composes: flex flex-row flex-wrap justify-end items-center w-100 from '@nudj/tachyons/css/tachyons.css';
+}
+@media screen and (min-width: 60em) {
+  .unknown {
+    background: url(/assets/images/home-page/hidden-img.svg) no-repeat;
+    height: 450px;
+    width: 100%;
+    background-position: 50%;
+  }
+  .unknownTitle {
+    text-align: left;
+    width: 50%;
+    padding-right: 8rem;
+  }
 }
 @media screen and (min-width: 30em) and (max-width: 60em) {
   .unknown {
-    background-size: contain;
+    background: url(/assets/images/home-page/hard-to-find-cropped.svg) no-repeat bottom;
+    height: 400px;
+    background-size: 65%;
+    text-align: center;
+  }
+  .unknownTitle {
+    composes: w-100 ph4 tc from '@nudj/tachyons/css/tachyons.css';
+    padding-bottom: 250px;
   }
 }
 @media screen and (max-width: 30em) {
   .unknown {
-    background: url(/assets/images/hard-to-find-cropped.svg) no-repeat;
-    background-position: 100% 100%;
-    padding-bottom: 8rem;
+    background: url(/assets/images/home-page/hard-to-find-cropped.svg) no-repeat bottom;
+    height: 450px;
     background-size: contain;
   }
-}
-.unknownTitle {
-  composes: tl-ns ph2 pb0-l pb6-m pb5 pr5-ns pr0 w-50-ns w-100 from '@nudj/tachyons/css/tachyons.css';
-}
-.friendsTitle {
-  composes: tl-ns ph2 pb0-ns pb7 pl5-ns pl0 w-50-ns w-100 from '@nudj/tachyons/css/tachyons.css';
+  .unknownTitle {
+    composes: w-100 ph3 tc from '@nudj/tachyons/css/tachyons.css';
+    padding-bottom: 200px;
+  }
 }
 .friends {
-  composes: flex flex-row flex-wrap justify-start items-center ph2 w-100 from '@nudj/tachyons/css/tachyons.css';
-  background: url(/assets/images/pointing-hands.svg) no-repeat;
-  background-position: 100% 50%;
-  background-size: 50%;
-  min-height: 25rem;
+  composes: flex flex-row flex-wrap justify-start items-center w-100 from '@nudj/tachyons/css/tachyons.css';
+}
+@media screen and (min-width: 60em) {
+  .friends {
+    background: url(/assets/images/home-page/pointing-hands.svg) no-repeat;
+    height: 400px;
+    background-position: 110% 100%;
+  }
+  .friendsTitle {
+    text-align: left;
+    width: 50%;
+    padding-left: 8rem;
+  }
 }
 @media screen and (min-width: 30em) and (max-width: 60em) {
   .friends {
-    background-size: 50% 45%;
+    background: url(/assets/images/home-page/pointing-hands.svg) no-repeat bottom right;
+    height: 350px;
+    background-size: 75%;
+  }
+  .friendsTitle {
+    composes: w-100 ph4 tc from '@nudj/tachyons/css/tachyons.css';
+    padding-bottom: 200px;
   }
 }
 @media screen and (max-width: 30em) {
   .friends {
-    background: url(/assets/images/mobile/pointing-mobile.svg) no-repeat;
-    background-position: 100% 70%;
-    background-size: 90%;
+    background: url(/assets/images/home-page/pointing-mobile.svg) no-repeat bottom;
+    height: 400px;
+  }
+  .friendsTitle {
+    composes: w-100 ph3 tc from '@nudj/tachyons/css/tachyons.css';
+    padding-bottom: 200px;
   }
 }
 .simpleNudj {
-  composes: relative flex flex-column justify-center items-center ph0-ns ph4 mw7 w-100 center from '@nudj/tachyons/css/tachyons.css';
+  composes: relative flex flex-column justify-center items-center from '@nudj/tachyons/css/tachyons.css';
+  background: url(/assets/images/grouped-fist-bump-accent.svg) no-repeat center;
+}
+.nudjTitle {
+  composes: jan-bold f2 tc royal-blue ma0 ph7-l ph4-m ph4 from '@nudj/tachyons/css/tachyons.css';
 }
 @media screen and (min-width: 60em) {
   .simpleNudj {
-    padding-bottom: 12rem;
+    background: url(/assets/images/home-page/fist-bump.svg) no-repeat center;
+    height: 500px;
+    background-position: 100% 80%;
+  }
+  .nudjTitle {
+    padding-bottom: 200px;
   }
 }
 @media screen and (min-width: 30em) and (max-width: 60em) {
   .simpleNudj {
-    padding-bottom: 4rem;
+    background: url(/assets/images/home-page/fist-bump.svg) no-repeat center;
+    height: 250px;
+    background-size: contain;
+    background-position: 100% 70%;
+  }
+  .nudjTitle {
+    padding-bottom: 150px;
   }
 }
 @media screen and (max-width: 30em) {
   .simpleNudj {
-    padding-bottom: 6rem;
+    background: url(/assets/images/home-page/fist-bump-mobile.svg) no-repeat bottom;
+    height: 400px;
+    background-position: 100% 80%;
   }
-}
-.nudjTitle {
-  composes: jan-bold f2 tc royal-blue ma0 from '@nudj/tachyons/css/tachyons.css';
-}
-.fistBump {
-  composes: tc mw-100-l mw-none from '@nudj/tachyons/css/tachyons.css';
+  .nudjTitle {
+    padding-bottom: 100px;
+  }
 }
 
 /* Section: How nudj Works */
 
 .how {
-  composes: flex flex-column justify-between items-center bg-light-grey-tint-4 pv5-ns pv4 from '@nudj/tachyons/css/tachyons.css';
+  composes: relative flex flex-column justify-between items-center bg-light-grey-tint-4 pv5-ns pv4 from '@nudj/tachyons/css/tachyons.css';
+}
+.how::before {
+  background: url(/assets/images/home-page/fist-shadows.svg) no-repeat;
+  content: '';
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: none;
+  display: block;
+  height: 100px;
+  top: -50px;
+  background-size: 105% 100%;
+}
+@media screen and (max-width: 30em) {
+  .how::before {
+    background: url(/assets/images/home-page/fist-shadows-mobile.svg) no-repeat;
+    top: -10px;
+  }
 }
 .bodyTitle {
   composes: jan-bold f2 royal-blue ma0 pt2-ns pb4-ns pt4 pb2 from '@nudj/tachyons/css/tachyons.css';
@@ -177,6 +212,9 @@
 .stepTwo,
 .stepFour {
   composes: pt4-ns pb0-ns pv3 ph3 w-20-ns w-100 from '@nudj/tachyons/css/tachyons.css';
+}
+.stepImage {
+  composes: mw-100-ns from '@nudj/tachyons/css/tachyons.css';
 }
 .stepTitle {
   composes: jan-bold f3 royal-blue ma0 pv3 tc from '@nudj/tachyons/css/tachyons.css';
@@ -205,7 +243,7 @@
   composes: flex justify-center items-center jan-bold f2-l f3 white tc ma0 ph2 pv4 mw7 w-100 center from '@nudj/tachyons/css/tachyons.css';
 }
 .signupSubtitle {
-  composes: flex justify-center items-center jan-light f3-l f4 white tc ma0 ph2 pv2 mw7 w-100 center from '@nudj/tachyons/css/tachyons.css';
+  composes: flex justify-center items-center jan-light f3-l f4 white tc ma0 ph3 pv2 mw7 w-100 center from '@nudj/tachyons/css/tachyons.css';
 }
 .cta {
   composes: pv4 tc db mw5 w-100 center from '@nudj/tachyons/css/tachyons.css';
