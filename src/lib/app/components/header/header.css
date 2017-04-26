@@ -7,8 +7,9 @@
 .home {
   composes: dib link dim from '@nudj/tachyons/css/tachyons.css';
 }
-.brand {
-  composes: mw3 pt2 from '@nudj/tachyons/css/tachyons.css';
+.brand,
+.brandDark {
+  composes: pt0 from '@nudj/tachyons/css/tachyons.css';
 }
 .toggle {
   composes: db dn-l h3 w3 relative from '@nudj/tachyons/css/tachyons.css';

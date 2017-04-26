@@ -3,12 +3,20 @@ import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import style from './header.css'
 
+const renderBrandLogo = (props) => {
+  if (props.url.originalUrl === '/hiring') {
+    return (<img className={style.brand} src='/assets/images/nudj-logo-light.svg' alt='Nudj' />)
+  } else {
+    return (<img className={style.brandDark} src='/assets/images/nudj-logo-dark.svg' alt='Nudj' />)
+  }
+}
+
 const Component = (props) => {
   return (
     <nav className={style.nav}>
       <div className={style.left}>
         <Link className={style.home} to='/'>
-          <img className={style.brand} src='/assets/images/nudj-logo-light.svg' />
+          {renderBrandLogo(props)}
         </Link>
       </div>
       <div className={style.right}>
