@@ -11,8 +11,7 @@
   composes: flex flex-column jusitfy-center items-center w-100 mw8 center pv6 from '@nudj/tachyons/css/tachyons.css';
 }
 .info {
-  composes: flex flex-row justify-center item-center w-100 mb5 mt4 from '@nudj/tachyons/css/tachyons.css';
-  position: relative;
+  composes: relative flex flex-row justify-center item-center w-100 mb5 mt4 from '@nudj/tachyons/css/tachyons.css';
 }
 .info:after {
   /* break this out into a reusable module */
@@ -48,8 +47,7 @@
 }
 .infoContainer,
 .infoContainerWithSeparator {
-  composes: w-50-ns w-100 pa4 from '@nudj/tachyons/css/tachyons.css';
-  position: relative;
+  composes: relative w-50-ns w-100 pa4 from '@nudj/tachyons/css/tachyons.css';
 }
 .infoContainerWithSeparator:after {
   /* break this out into a reusable module */
@@ -104,8 +102,7 @@
 /* Section: Related Jobs */
 
 .related {
-  composes: flex flex-column justify-center items-center bg-light-grey-tint-4 royal-blue tl pa5-ns pa4 from '@nudj/tachyons/css/tachyons.css';
-  position: relative;
+  composes: relative flex flex-column justify-center items-center bg-light-grey-tint-4 royal-blue tl pa5-ns pa4 from '@nudj/tachyons/css/tachyons.css';
 }
 .related:before {
   /* break this out into a reusable module */

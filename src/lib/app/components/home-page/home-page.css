@@ -252,7 +252,7 @@
   composes: jan-bold f5 link no-underline ph5 pv3 bg-royal-blue br-pill white dim db ma3 from '@nudj/tachyons/css/tachyons.css';
 }
 .or {
-  composes: jan-thin f6 pv3 ph6 tc white w-100 from '@nudj/tachyons/css/tachyons.css';
+  composes: jan-thin db f6 pv3 ph6 tc white w-100 from '@nudj/tachyons/css/tachyons.css';
   background: url(/assets/images/cta-separator-line.svg) no-repeat center;
 }
 .contact {

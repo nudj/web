@@ -9,37 +9,97 @@
 }
 .brand,
 .brandDark {
-  composes: pt0 from '@nudj/tachyons/css/tachyons.css';
-}
-.toggle {
-  composes: db dn-l h3 w3 relative from '@nudj/tachyons/css/tachyons.css';
-  cursor: pointer;
-}
-.toggle span {
-  position: absolute;
-  display: block;
-  background-color: #2d2926;
-  height: 2px;
-  left: 50%;
-  margin-left: -10px;
-  top: 50%;
-  width: 20px;
-}
-.toggle span:nth-child(1) {
-  margin-top: -6px;
-}
-.toggle span:nth-child(2) {
-  margin-top: 0;
-}
-.toggle span:nth-child(3) {
-  margin-top: 6px;
+  composes: mw3 mw-none-ns pt2 pt0-ns from '@nudj/tachyons/css/tachyons.css';
 }
 .right {
   composes: flex-l justify-end-l items-stretch-l flex-auto-l from '@nudj/tachyons/css/tachyons.css';
 }
 .link {
-  composes: f6 f5-l pa3 mh3-l no-underline underline-hover dim royal-blue link dib-l dn-m dn tc from '@nudj/tachyons/css/tachyons.css';
+  composes: f6 f5-l pa3 ma0 no-underline underline-hover dim royal-blue link dib-l dn-m dn tc from '@nudj/tachyons/css/tachyons.css';
+}
+.linkMobile {
+  composes: f6 f5-l pa3 mh-auto mb3 w5 no-underline underline-hover dim white link db tc from '@nudj/tachyons/css/tachyons.css';
 }
 .request {
   composes: f6 pv3 ph4 ml3 link dim white ba bw1 b--royal-blue bg-royal-blue br-pill dib-l dn-m dn from '@nudj/tachyons/css/tachyons.css';
+}
+.requestMobile {
+  composes: f6 pv3 ph4 mh-auto w5 link dim white ba bw1 b--royal-blue bg-royal-blue br-pill db from '@nudj/tachyons/css/tachyons.css';
+}
+
+.navBarConstant,
+.navBarConstantIsActive {
+  composes: fixed flex dn-l justify-between items-center top-0 left-0 w-100 pv2 pl3 pr2 bg-charcoal z-5 from '@nudj/tachyons/css/tachyons.css';
+  box-shadow: 0 -1000px 0 1000px #2d2926;
+  transition: transform 0.275s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.navBarConstant {
+  pointer-events: all;
+  transform: translate3d(0, -100%, 0);
+}
+
+.navBarConstantIsActive {
+  pointer-events: all;
+  transform: translate3d(0, 0, 0);
+}
+
+.homeSmall {
+  composes: dib link dim h3 pv2 from '@nudj/tachyons/css/tachyons.css';
+}
+
+.brandLightSmall {
+  composes: mw-none pt0 h-100 from '@nudj/tachyons/css/tachyons.css';
+}
+
+.hamburgerHolder {
+  composes: dn-l from '@nudj/tachyons/css/tachyons.css';
+}
+
+.hamburger,
+.hamburgerLight {
+  composes: hamburger hamburger--elastic from 'hamburgers/dist/hamburgers.css';
+  composes: outline-0 from '@nudj/tachyons/css/tachyons.css';
+}
+
+.hamburgerIsActive,
+.hamburgerIsActiveLight {
+  composes: hamburger hamburger--elastic is-active from 'hamburgers/dist/hamburgers.css';
+  composes: outline-0 from '@nudj/tachyons/css/tachyons.css';
+}
+
+.hamburgerBox {
+  composes: hamburger-box from 'hamburgers/dist/hamburgers.css';
+}
+
+.hamburgerInner {
+  composes: hamburger-inner from 'hamburgers/dist/hamburgers.css';
+}
+
+.hamburgerLight .hamburgerInner,
+.hamburgerLight .hamburgerInner:after,
+.hamburgerLight .hamburgerInner:before,
+.hamburgerIsActiveLight .hamburgerInner,
+.hamburgerIsActiveLight .hamburgerInner:after,
+.hamburgerIsActiveLight .hamburgerInner:before {
+  /* Variable for colour would be nice */
+  background-color: #fff;
+}
+
+.mobileMenu,
+.mobileMenuIsActive {
+  composes: fixed flex flex-column justify-center items-center top-0 left-0 w-100 h-100 dn-l tc bg-charcoal z-4 from '@nudj/tachyons/css/tachyons.css';
+  /* reusable elements */
+  box-shadow: 1000px 0 0 1000px #2d2926;
+  transition: transform 0.275s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.mobileMenu {
+  pointer-events: none;
+  transform: translate3d(100%, 0, 0);
+}
+
+.mobileMenuIsActive {
+  pointer-events: all;
+  transform: translate3d(0, 0, 0);
 }

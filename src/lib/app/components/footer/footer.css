@@ -23,8 +23,7 @@
 .roadmap,
 .hiring,
 .terms {
-  composes: jan-bold f3-ns f4 link no-underline dib-ns di mh1 mt1-ns mb3-ns mv2 white dim from '@nudj/tachyons/css/tachyons.css';
-  position: relative;
+  composes: jan-bold relative f3-ns f4 link no-underline dib-ns di mh1 mt1-ns mb3-ns mv2 white dim from '@nudj/tachyons/css/tachyons.css';
 }
 .release:after,
 .roadmap:after,
