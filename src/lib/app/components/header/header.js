@@ -13,7 +13,7 @@ class Component extends React.Component {
     const burgerActive = false
     const burgerStyle = 'hamburger'
     const mobileMenuStyle = 'mobileMenu'
-    const navBarConstantStyle = 'navBarConstant';
+    const navBarConstantStyle = 'navBarConstant'
 
     this.state = {burgerActive, burgerStyle, mobileMenuStyle, navBarConstantStyle}
   }
@@ -39,16 +39,16 @@ class Component extends React.Component {
     event.preventDefault()
 
     const burgerActive = !this.state.burgerActive
-    const burgerStyle = burgerActive ? 'hamburgerIsActive' : 'hamburger';
-    const mobileMenuStyle = burgerActive ? 'mobileMenuIsActive' : 'mobileMenu';
+    const burgerStyle = burgerActive ? 'hamburgerIsActive' : 'hamburger'
+    const mobileMenuStyle = burgerActive ? 'mobileMenuIsActive' : 'mobileMenu'
 
     this.setState({burgerActive, burgerStyle, mobileMenuStyle}, () => this.updateNavBarStyle())
   }
 
   onClickLink () {
     const burgerActive = false
-    const burgerStyle = 'hamburger';
-    const mobileMenuStyle = 'mobileMenu';
+    const burgerStyle = 'hamburger'
+    const mobileMenuStyle = 'mobileMenu'
 
     this.setState({burgerActive, burgerStyle, mobileMenuStyle}, () => this.updateNavBarStyle())
   }
@@ -58,13 +58,15 @@ class Component extends React.Component {
     const navBarActive = pageYOffset >= offsetTrigger
 
     this.setState({navBarActive}, () => this.updateNavBarStyle())
-    window.requestAnimationFrame(() => this.handlingScrollUpdate = false)
+    window.requestAnimationFrame(() => {
+      this.handlingScrollUpdate = false
+    })
   }
 
   updateNavBarStyle () {
     const burgerActive = this.state.burgerActive
     const navBarActive = this.state.navBarActive
-    const navBarConstantStyle = navBarActive || burgerActive ? 'navBarConstantIsActive' : 'navBarConstant';
+    const navBarConstantStyle = navBarActive || burgerActive ? 'navBarConstantIsActive' : 'navBarConstant'
 
     this.setState({navBarConstantStyle})
   }
@@ -84,7 +86,7 @@ class Component extends React.Component {
       <div className={style.hamburgerHolder}>
         <button className={baseStyle} type='button' onClick={this.onClickBurger.bind(this)}>
           <span className={style.hamburgerBox}>
-            <span className={style.hamburgerInner}></span>
+            <span className={style.hamburgerInner} />
           </span>
         </button>
       </div>
