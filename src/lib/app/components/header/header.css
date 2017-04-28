@@ -1,5 +1,5 @@
 .nav {
-  composes: jan-regular flex flex-row justify-between items-center w-100 mw8 center pa3-ns pa2 from '@nudj/tachyons/css/tachyons.css';
+  composes: jan-regular flex flex-row justify-between items-center w-100 mw8 center pa3-ns pa2 pl3 from '@nudj/tachyons/css/tachyons.css';
 }
 .left {
   composes: flex justify-between from '@nudj/tachyons/css/tachyons.css';

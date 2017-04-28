@@ -2,6 +2,7 @@
 
 .body {
   composes: jan-bold relative pa0 ma0 from '@nudj/tachyons/css/tachyons.css';
+  margin-top: -100px;
 }
 .red {
   composes: mid-red from '@nudj/tachyons/css/tachyons.css';
