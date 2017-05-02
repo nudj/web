@@ -108,10 +108,7 @@ class Component extends React.Component {
     const baseStyle = style[baseStyleName]
     return (
       <nav className={baseStyle}>
-        <a href='http://help.nudj.co' className={style.linkMobile} onClick={this.onClickLink.bind(this)}>Learn more</a>
-        <Link to='/' className={style.linkMobile} onClick={this.onClickLink.bind(this)}>Companies</Link>
-        <Link to='/hiring' className={style.linkMobile} onClick={this.onClickLink.bind(this)}>About</Link>
-        <Link to='' id='open-intercom' className={style.requestMobile} onClick={this.onClickLink.bind(this)}>Sign up</Link>
+        {this.renderNavLinks(true)}
       </nav>
     )
   }
@@ -127,6 +124,18 @@ class Component extends React.Component {
     </div>)
   }
 
+  renderNavLinks (mobile = false) {
+    const linkStyle = mobile ? style.linkMobile : style.link
+    const requestStyle = mobile ? style.requestMobile : style.request
+    const about = (<a href='http://help.nudj.co' className={linkStyle} onClick={this.onClickLink.bind(this)} key='0'>About</a>)
+    const companies = (<Link to='/hiring' className={linkStyle} onClick={this.onClickLink.bind(this)} key='1'>Companies</Link>)
+    const getInTouch = (<Link to='' id='open-intercom' className={requestStyle} onClick={this.onClickLink.bind(this)} key='2'>Get in touch</Link>)
+
+    const defaultNav = [about, companies, getInTouch]
+
+    return (defaultNav)
+  }
+
   render () {
     return (
       <nav className={style.nav}>
@@ -139,10 +148,7 @@ class Component extends React.Component {
         {this.renderMobileMenu()}
         <div className={style.right}>
           {this.renderBurgerDark()}
-          <a href='http://help.nudj.co' className={style.link}>Learn more</a>
-          <Link to='/' className={style.link} >Companies</Link>
-          <Link to='/hiring' className={style.link}>About</Link>
-          <Link to='' id='open-intercom' className={style.request}>Sign up</Link>
+          {this.renderNavLinks()}
         </div>
       </nav>
     )
