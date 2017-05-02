@@ -30,7 +30,7 @@ router.get('/callback',
 
     if (req.session._intercom_visitor_id) {
       intercom.convertVisitorToUser({
-        "user_id": req.session._intercom_visitor_id
+        'user_id': req.session._intercom_visitor_id
       }, {
         email: req.user._json.email
       })
