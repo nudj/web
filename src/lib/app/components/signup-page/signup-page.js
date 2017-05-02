@@ -46,32 +46,32 @@ const Component = (props) => {
               <ul className={style.radioList}>
                 <li className={style.radio}>
                   <input className={style.radioInput} type='radio' id='development' value='development' name='role' />
-                  <label className={style.radioPrettyLabel} htmlFor='development'></label>
+                  <label className={style.radioPrettyLabel} htmlFor='development' />
                   <label className={style.radioLabel} htmlFor='development'>Development</label>
                 </li>
                 <li className={style.radio}>
                   <input className={style.radioInput} type='radio' id='design' value='design' name='role' />
-                  <label className={style.radioPrettyLabel} htmlFor='design'></label>
+                  <label className={style.radioPrettyLabel} htmlFor='design' />
                   <label className={style.radioLabel} htmlFor='design'>Design</label>
                 </li>
                 <li className={style.radio}>
                   <input className={style.radioInput} type='radio' id='marketing' value='marketing' name='role' />
-                  <label className={style.radioPrettyLabel} htmlFor='marketing'></label>
+                  <label className={style.radioPrettyLabel} htmlFor='marketing' />
                   <label className={style.radioLabel} htmlFor='marketing'>Marketing</label>
                 </li>
                 <li className={style.radio}>
                   <input className={style.radioInput} type='radio' id='sales' value='sales' name='role' />
-                  <label className={style.radioPrettyLabel} htmlFor='sales'></label>
+                  <label className={style.radioPrettyLabel} htmlFor='sales' />
                   <label className={style.radioLabel} htmlFor='sales'>Sales</label>
                 </li>
                 <li className={style.radio}>
                   <input className={style.radioInput} type='radio' id='product' value='product' name='role' />
-                  <label className={style.radioPrettyLabel} htmlFor='product'></label>
+                  <label className={style.radioPrettyLabel} htmlFor='product' />
                   <label className={style.radioLabel} htmlFor='product'>Product</label>
                 </li>
                 <li className={style.radio}>
                   <input className={style.radioInput} type='radio' id='other' value='other' name='role' />
-                  <label className={style.radioPrettyLabel} htmlFor='other'></label>
+                  <label className={style.radioPrettyLabel} htmlFor='other' />
                   <label className={style.radioLabel} htmlFor='other'>Other</label>
                 </li>
               </ul>
