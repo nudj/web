@@ -25,6 +25,18 @@ let dummyData = dummy({
     count: 5
   }
 })
+dummyData.companies = dummyData.companies.concat([
+  {
+    'id': '99',
+    'industry': ['IT', 'Mining', 'Healthcare'],
+    'location': 'London',
+    'logo': 'https://slack-imgs.com/?c=1&url=https%3A%2F%2Fs-media-cache-ak0.pinimg.com%2Foriginals%2F2a%2F89%2Fde%2F2a89dee5376d13e8d378e797d4e7e5fc.gif',
+    'name': 'Fake Company',
+    'slug': 'fake-company',
+    'url': 'http://omg.fake-company.com',
+    'description': 'OMG this job is SO hot right now. Ut nec massa vitae dui ullamcorper malesuada nec in neque. Suspendisse nec sapien faucibus, mollis metus ac, tempus eros. Praesent at nisl consequat ligula auctor eleifend nec sit amet eros. Fusce consequat, ante ac maximus auctor, felis justo vestibulum elit, congue congue ipsum ligula et lacus. Vivamus est risus, viverra quis iaculis et, eleifend eget est.'
+  }
+])
 dummyData.jobs = dummyData.jobs.concat([
   {
     'id': '99',
@@ -43,6 +55,30 @@ dummyData.jobs = dummyData.jobs.concat([
     ],
     'location': 'London',
     'companyId': '2',
+    'related': [
+      {
+        'url': '/bulb/operations-strategy-analyst',
+        'title': 'Operations Strategy Analyst',
+        'location': 'London'
+      }
+    ]
+  },
+  {
+    'id': '100',
+    'title': 'Senior Fake Test Job',
+    'slug': 'senior-fake-test-job',
+    'url': 'https://fake.com',
+    'status': 'Open',
+    'bonus': 1000,
+    'description': 'Fake job! vitae sodales velit ligula quis ligula. Sed et tincidunt nisi. Ut nec massa vitae dui ullamcorper malesuada nec in neque. Suspendisse nec sapien faucibus, mollis metus ac, tempus eros. Praesent at nisl consequat ligula auctor eleifend nec sit amet eros. Fusce consequat, ante ac maximus auctor, felis justo vestibulum elit, congue congue ipsum ligula et lacus. Vivamus est risus, viverra quis iaculis et, eleifend eget est.',
+    'type': 'Permanent',
+    'remuneration': 'Competitive + Options',
+    'tags': [
+      'Fake',
+      'Job'
+    ],
+    'location': 'London',
+    'companyId': '99',
     'related': [
       {
         'url': '/bulb/operations-strategy-analyst',
