@@ -40,18 +40,37 @@ function tagUser (user, tag) {
     .then(() => user)
 }
 
+function logAndReturn (data, ...itemsToLog) {
+  logger.log('info', ...itemsToLog)
+  return data
+}
+
 function createUniqueLeadAndTag (data, tag) {
   logger.log('info', 'createUniqueLeadAndTag', data, tag)
   return fetchLeadBy({ email: data.email })
     .then((user) => user || createLead(data))
     .then((user) => tagUser(user, tag))
-    .then((user) => {
-      logger.log('info', 'User created and tagged', data, tag)
-      return user
-    })
+    .then((user) => logAndReturn(user, 'User created and tagged', data, tag))
     .catch((error) => logger.log('error', 'Intercom', 'createUniqueLeadAndTag', data, tag, error))
 }
 
+function convert (visitor, user) {
+  return intercom.visitors
+    .convert({
+      visitor,
+      user,
+      type: 'user'
+    })
+}
+
+function convertVisitorToUser (visitor, user) {
+  logger.log('info', 'convertVisitorToUser', visitor, user)
+  return convert(visitor, user)
+    .then((user) => logAndReturn(user, 'Visitor converted to user', visitor, user))
+    .catch((error) => logger.log('error', 'Intercom', 'convertVisitorToUser', visitor, user, error))
+}
+
 module.exports = {
-  createUniqueLeadAndTag
+  createUniqueLeadAndTag,
+  convertVisitorToUser
 }

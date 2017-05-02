@@ -58,6 +58,22 @@ app.use(session(sessionOpts))
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(csrf({}))
+app.use((req, res, next) => {
+  if (req.body && req.body._csrf) {
+    delete req.body._csrf
+  }
+  if (req.params && req.params._csrf) {
+    delete req.params._csrf
+  }
+  next()
+})
+app.use((req, res, next) => {
+  if (req.body && req.body._intercom_visitor_id) {
+    req.session._intercom_visitor_id = req.body._intercom_visitor_id
+    delete req.body._intercom_visitor_id
+  }
+  next()
+})
 
 app.use(authRoutes)
 app.use(appRoutes)
