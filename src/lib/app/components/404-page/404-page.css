@@ -2,16 +2,16 @@
   composes: ph2 pv6 tc min-vh-100 flex flex-column items-center justify-center from '@nudj/tachyons/css/tachyons.css';
 }
 .header {
-  composes: jan-bold royal-blue f2 pa2 ma0 from '@nudj/tachyons/css/tachyons.css';
+  composes: jan-bold royal-blue f3 pt4 ma0 from '@nudj/tachyons/css/tachyons.css';
 }
 .copy {
-  composes: jan-regular charcoal f5 pa0 ma0 from '@nudj/tachyons/css/tachyons.css';
+  composes: jan-regular charcoal f5 pt3 ma0 from '@nudj/tachyons/css/tachyons.css';
 }
 .error {
-  composes: jan-thin mid-gray pv2 from '@nudj/tachyons/css/tachyons.css';
+  composes: jan-thin mid-gray pt3 from '@nudj/tachyons/css/tachyons.css';
 }
 .pages {
-  composes: pa2 from '@nudj/tachyons/css/tachyons.css';
+  composes: pv3 from '@nudj/tachyons/css/tachyons.css';
 }
 .links {
   composes: jan-bold dib pa2 mid-red no-underline dim from '@nudj/tachyons/css/tachyons.css';
