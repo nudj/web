@@ -26,12 +26,25 @@ function elementFromString (string) {
   return div.childNodes[0]
 }
 
-function onFormSubmit (event) {
-  if (!event.target.querySelector('#visitorId')) {
-    event.preventDefault()
-    const string = `<input id='visitorId' type='hidden' name='_intercom_visitor_id' value='${Intercom('getVisitorId')}' />`
-    event.target.appendChild(elementFromString(string))
-    event.target.submit()
+function onFormSubmit (eventType, props) {
+  return (event) => {
+    if (!event.target.querySelector('#visitorId')) {
+      event.preventDefault()
+      const string = `<input id='visitorId' type='hidden' name='_intercom_visitor_id' value='${Intercom('getVisitorId')}' />`
+      event.target.appendChild(elementFromString(string))
+      event.target.submit()
+    } else {
+      let meta = {
+        jobTitle: get(props, 'job.title'),
+        company: get(props, 'company.name'),
+        referrerName: get(props, 'referrer.name'),
+        referrerId: get(props, 'referrer.id')
+      }
+      if (eventType === 'new-application') {
+        meta.profileUrl = get(props, 'person.url')
+      }
+      Intercom('trackEvent', eventType, meta)
+    }
   }
 }
 
@@ -73,12 +86,12 @@ class Component extends React.Component {
           </div>
           <hr className={style.breakLine} />
           <div className={style.actions}>
-            <form className={style.action} action={`/${get(props, 'company.slug')}/${get(props, 'job.slug')}${referral ? `+${referral.id}` : ''}/apply`} method='POST' onSubmit={onFormSubmit}>
+            <form className={style.action} action={`/${get(props, 'company.slug')}/${get(props, 'job.slug')}${referral ? `+${referral.id}` : ''}/apply`} method='POST' onSubmit={onFormSubmit('new-application', props)}>
               <input type='hidden' name='_csrf' value={props.csrfToken} />
               <h2 className={style.actionTitle}>Interested?</h2>
               <p className={style.actionCopy}>It only takes <strong>a few seconds to apply</strong> &amp; you don’t even need a CV! Just enter a few details and we'll take care of the rest.</p><button className={style.apply}>Apply for job</button>
             </form>
-            <form className={style.action} action={`/${get(props, 'company.slug')}/${get(props, 'job.slug')}${referral ? `+${referral.id}` : ''}/nudj`} method='POST' onSubmit={onFormSubmit}>
+            <form className={style.action} action={`/${get(props, 'company.slug')}/${get(props, 'job.slug')}${referral ? `+${referral.id}` : ''}/nudj`} method='POST' onSubmit={onFormSubmit('new-referral', props)}>
               <input type='hidden' name='_csrf' value={props.csrfToken} />
               <h2 className={style.actionTitle}>Know someone perfect?</h2>
               <p className={style.actionCopy}>We’ll <strong>give you £{get(props, 'job.bonus')} if they get the job.</strong> Simply sign up &amp; we'll give you a unique link to this page, which you can share.</p>
