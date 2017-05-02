@@ -8,7 +8,7 @@ const Component = (props) => (
     <section className={style.hero}>
       <ul className={style.story}>
         <li className={style.notHappy}>
-          <h1 className={style.heroTitle}>The best <span className={style.red}>designers</span> are always<br className={style.oppositeBreak} /> busy, but aren't always happy.</h1>
+          <h1 className={style.heroTitle}>The best people are always busy in <br className={style.oppositeBreak} />their jobs, but they aren't always happy.</h1>
           <img className={style.heroImage} src='/assets/images/home-page/unhappy-img.svg' />
         </li>
         <li className={style.unknown}>

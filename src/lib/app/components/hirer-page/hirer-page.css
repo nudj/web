@@ -169,10 +169,11 @@
   top: -10px;
 }
 .logoWrapper {
-  composes: flex flex-row justify-center items-center mw9 w-100 center from '@nudj/tachyons/css/tachyons.css';
+  composes: flex flex-row flex-wrap justify-center items-center mw9 w-100 center from '@nudj/tachyons/css/tachyons.css';
 }
 .brand {
-  composes: db w-33 tc pa4-ns pa2 from '@nudj/tachyons/css/tachyons.css';
+  composes: db w-33-ns w-100 tc pa4-ns pa2 from '@nudj/tachyons/css/tachyons.css';
+  max-width: 300px;
 }
 
 /* Section: Pricing */
@@ -197,7 +198,7 @@
   composes: white mw6 w-100 center pa2 ma0 from '@nudj/tachyons/css/tachyons.css';
 }
 .pricingBox {
-  composes: pa5-ns pa2 mt2 tc from '@nudj/tachyons/css/tachyons.css';
+  composes: pa5-ns pa4 mt2 tc from '@nudj/tachyons/css/tachyons.css';
   background: url(/assets/images/blue-wobbly-box.svg) no-repeat center;
 }
 @media screen and (max-width: 30em) {

@@ -1,17 +1,18 @@
 .body {
-  composes: sans-serif flex flex-column justify-center items-center from '@nudj/tachyons/css/tachyons.css';
+  composes: sans-serif flex flex-column justify-center items-center pt6 from '@nudj/tachyons/css/tachyons.css';
+  /* remove padding when nav is fixed to include correct background colour depending on page */
 }
 .content {
   composes: w-100 pa0-ns ph-2 tc from '@nudj/tachyons/css/tachyons.css';
 }
 .formHeader {
-  composes: pb0 pv5 center bb b--near-white bw1 tc mw6 from '@nudj/tachyons/css/tachyons.css';
+  composes: pb4 pt5 center bb b--near-white bw1 tc mw6 from '@nudj/tachyons/css/tachyons.css';
 }
 .title {
   composes: jan-bold f2-l f3 royal-blue ma0 mb4 from '@nudj/tachyons/css/tachyons.css';
 }
 .subtitle {
-  composes: jan-light f3-l f4 charcoal ma0 center from '@nudj/tachyons/css/tachyons.css';
+  composes: jan-light f3-l f4 charcoal ma0 pv2 ph2 center from '@nudj/tachyons/css/tachyons.css';
 }
 .fieldSet {
   composes: relative bn pa0 pt5 pb6 ph3 ph0-ns ma0 tl from '@nudj/tachyons/css/tachyons.css';
@@ -26,7 +27,7 @@
   left: 0;
   height: 20px;
   position: absolute;
-  top: -20px;
+  top: -10px;
   width: 100%;
 }
 

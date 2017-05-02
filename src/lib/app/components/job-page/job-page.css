@@ -1,5 +1,6 @@
 .body {
-  composes: pa0 ma0 min-vh-100 from '@nudj/tachyons/css/tachyons.css';
+  composes: pt6 ma0 min-vh-100 from '@nudj/tachyons/css/tachyons.css';
+  /* remove padding when nav is fixed to include correct background colour depending on page */
 }
 .red {
   composes: mid-red from '@nudj/tachyons/css/tachyons.css';
@@ -8,10 +9,10 @@
   composes: dib-ns dn from '@nudj/tachyons/css/tachyons.css';
 }
 .job {
-  composes: flex flex-column jusitfy-center items-center w-100 mw8 center pv6 from '@nudj/tachyons/css/tachyons.css';
+  composes: flex flex-column jusitfy-center items-center w-100 mw8 center pb5-ns pb0 from '@nudj/tachyons/css/tachyons.css';
 }
 .info {
-  composes: relative flex flex-row justify-center item-center w-100 mb5 mt4 from '@nudj/tachyons/css/tachyons.css';
+  composes: relative flex flex-row flex-wrap justify-center item-center w-100 mb5-ns mt4-ns mv2 from '@nudj/tachyons/css/tachyons.css';
 }
 .info:after {
   /* break this out into a reusable module */
@@ -40,7 +41,7 @@
   width: 100%;
 }
 .title {
-  composes: jan-bold royal-blue f1-l f2 ma0 pv4 ph6 tc from '@nudj/tachyons/css/tachyons.css';
+  composes: jan-bold royal-blue f1-l f2 ma0 pv4 ph5-ns ph2 tc from '@nudj/tachyons/css/tachyons.css';
 }
 .brandName {
   composes: mid-red no-underline underline-hover from '@nudj/tachyons/css/tachyons.css';
@@ -80,11 +81,11 @@
 /* I don't like these class names */
 .whyOdd,
 .actionOdd {
-  composes: flex flex-column jusitify-center items-start lh-copy tl w-50-ns w-100 pv3 pr4-ns from '@nudj/tachyons/css/tachyons.css';
+  composes: flex flex-column jusitify-center items-start-ns items-center lh-copy w-50-ns w-100 pv3 pr4-ns from '@nudj/tachyons/css/tachyons.css';
 }
 .whyEven,
 .actionEven {
-  composes: flex flex-column jusitify-center items-start lh-copy tl w-50-ns w-100 pv3 pl4-ns from '@nudj/tachyons/css/tachyons.css';
+  composes: flex flex-column jusitify-center items-start-ns items-center lh-copy w-50-ns w-100 pv3 pl4-ns from '@nudj/tachyons/css/tachyons.css';
 }
 .link {
   composes: ph2 pv2-ns pv3 w-50-ns w-100 tc from '@nudj/tachyons/css/tachyons.css';
@@ -102,7 +103,7 @@
 /* Section: Related Jobs */
 
 .related {
-  composes: relative flex flex-column justify-center items-center bg-light-grey-tint-4 royal-blue tl pa5-ns pa4 from '@nudj/tachyons/css/tachyons.css';
+  composes: relative flex flex-column justify-center items-center bg-light-grey-tint-4 royal-blue pv5-ns pv4 from '@nudj/tachyons/css/tachyons.css';
 }
 .related:before {
   /* break this out into a reusable module */
@@ -113,21 +114,20 @@
   left: 0;
   height: 20px;
   position: absolute;
-  top: -20px;
+  top: -10px;
   width: 100%;
 }
-
 .list {
-  composes: list flex flex-row justify-between items-start ma0 ph0 pv3 from '@nudj/tachyons/css/tachyons.css';
+  composes: list flex flex-row flex-wrap justify-between items-center ma0 ph0 pv3 from '@nudj/tachyons/css/tachyons.css';
 }
 .relatedJob {
-  composes: pa4 from '@nudj/tachyons/css/tachyons.css';
+  composes: pa4 ma0 tl-ns tc from '@nudj/tachyons/css/tachyons.css';
 }
 .jobTitle {
-  composes: jan-bold f3 navy-blue tl ma0 pa0 from '@nudj/tachyons/css/tachyons.css';
+  composes: jan-bold f3 navy-blue tl-ns tc ma0 pb3-ns pb4 from '@nudj/tachyons/css/tachyons.css';
 }
 .bodyLinks {
-  composes: jan-bold f5 link mid-red dim tl pt2 from '@nudj/tachyons/css/tachyons.css';
+  composes: jan-bold f5 link mid-red tl-ns tc dim pa0-ns pt3 ma0 from '@nudj/tachyons/css/tachyons.css';
 }
 .breakLine {
   composes: ba light-gray from '@nudj/tachyons/css/tachyons.css';

@@ -45,7 +45,6 @@ const Component = (props) => {
             <h2 className={style.infoBody}>{get(props, 'job.remuneration')}</h2>
           </div>
         </section>
-        <hr className={style.breakLine} />
         <section className={style.description}>
           <div className={style.whyOdd}>
             <h3 className={style.awesomeTitle}>Why is this job so hot right now?</h3>
@@ -58,7 +57,6 @@ const Component = (props) => {
             <a href={get(props, 'job.url', '#job-url')} className={style.bodyLinks}>View full job post ></a>
           </div>
         </section>
-        <hr className={style.breakLine} />
         <section className={style.actions}>
           <form className={style.actionOdd} action={`/${get(props, 'company.slug')}/${get(props, 'job.slug')}${referral ? `+${referral.id}` : ''}/apply`} method='POST'>
             <input type='hidden' name='_csrf' value={props.csrfToken} />

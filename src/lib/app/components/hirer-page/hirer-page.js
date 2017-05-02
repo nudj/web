@@ -108,7 +108,7 @@ const Component = (props) => (
           <small className={style.pricingSmall}>So, sign up for beta access today!</small>
         </div>
         <div className={style.cta}>
-          <Link to='/signup' className={style.signup}>Sign up</Link>
+          <Link to='/request' className={style.signup}>Request access</Link>
           <span className={style.or}>or</span>
           <Link to='/' id='open-intercom' className={style.contact}>Get in touch</Link>
         </div>

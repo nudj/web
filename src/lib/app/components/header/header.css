@@ -1,5 +1,5 @@
 .nav {
-  composes: jan-regular flex flex-row justify-between items-center w-100 mw8 center pa3-ns pa2 pl3 from '@nudj/tachyons/css/tachyons.css';
+  composes: jan-regular flex flex-row justify-between items-center w-100 mw8 center pa3-ns pl3 from '@nudj/tachyons/css/tachyons.css';
 }
 .left {
   composes: flex justify-between from '@nudj/tachyons/css/tachyons.css';
@@ -29,8 +29,8 @@
 
 .navBarConstant,
 .navBarConstantIsActive {
-  composes: fixed flex dn-l justify-between items-center top-0 left-0 w-100 pv2 pl3 pr2 bg-charcoal z-5 from '@nudj/tachyons/css/tachyons.css';
-  box-shadow: 0 -1000px 0 1000px #2d2926;
+  composes: fixed flex dn-l justify-between items-center top-0 left-0 w-100 pv2 pl3 pr2 bg-navy z-5 from '@nudj/tachyons/css/tachyons.css';
+  box-shadow: 0 -1000px 0 1000px #081f2c;
   transition: transform 0.275s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
@@ -88,9 +88,9 @@
 
 .mobileMenu,
 .mobileMenuIsActive {
-  composes: fixed flex flex-column justify-center items-center top-0 left-0 w-100 h-100 dn-l tc bg-charcoal z-4 from '@nudj/tachyons/css/tachyons.css';
+  composes: fixed flex flex-column justify-center items-center top-0 left-0 w-100 h-100 dn-l tc bg-navy z-4 from '@nudj/tachyons/css/tachyons.css';
   /* reusable elements */
-  box-shadow: 1000px 0 0 1000px #2d2926;
+  box-shadow: 1000px 0 0 1000px #081f2c;
   transition: transform 0.275s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 

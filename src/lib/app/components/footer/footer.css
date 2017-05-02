@@ -17,7 +17,7 @@
   composes: list flex flex-row flex-wrap justify-between items-stretch-ns items-center tc ma0 pv4-ns pa0 from '@nudj/tachyons/css/tachyons.css';
 }
 .link {
-  composes: justify-center items-center w-25-ns w-100 tc ph1 pv1-ns pv2 from '@nudj/tachyons/css/tachyons.css';
+  composes: justify-center items-center w-25-ns w-100 tc ph1 pv1-ns pv3 from '@nudj/tachyons/css/tachyons.css';
 }
 .release,
 .roadmap,

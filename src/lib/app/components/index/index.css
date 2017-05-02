@@ -16,7 +16,8 @@ body {
   composes: flex flex-column justify-between relative from '@nudj/tachyons/css/tachyons.css';
 }
 .header {
-  composes: relative w-100 h4 from '@nudj/tachyons/css/tachyons.css';
+  composes: absolute w-100 h4 from '@nudj/tachyons/css/tachyons.css';
+  /* make position relative once nav colour changes have been applied */
   top: 0;
   left: 0;
   z-index: 999;
