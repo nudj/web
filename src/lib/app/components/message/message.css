@@ -15,5 +15,5 @@
 }
 
 .successContent {
-  composes: w-100 from from '@nudj/tachyons/css/tachyons.css';
+  composes: w-100 tc from from '@nudj/tachyons/css/tachyons.css';
 }
