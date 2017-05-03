@@ -13,12 +13,15 @@ function messageAlreadyApplied (props) {
 
 function messageNudjLink (props) {
   let message
-  if (
-    get(props, 'referrer.email') &&
-    get(props, 'person.email') &&
-    get(props, 'referrer.email') === get(props, 'person.email')
-  ) {
-    message = (<NudjSuccess {...props} />)
+
+  const isReferrerByProps = get(props, 'referrer.email') && get(props, 'person.email') && get(props, 'referrer.email') === get(props, 'person.email')
+  const isReferrerByMessage = props.message && props.message.type === 'error' && props.message.code === 403 && props.message.message === 'Already referred'
+
+  if (isReferrerByProps || isReferrerByMessage) {
+    message = (<div className={style.successContent}>
+      <p>You've already nudj'd this job. Below is your unique link.</p>
+      <NudjSuccess {...props} />
+    </div>)
   }
   return message
 }
@@ -53,7 +56,10 @@ function messageWrapper (props, message) {
     return (<div />)
   }
 
-  const messageType = outputMessage && outputMessage.type ? outputMessage.type : 'primary'
+  // Fill this in later, there's an issue that when you return a react component
+  // it has a type property which is not what we're after here
+  // const messageType = outputMessage && outputMessage.type ? outputMessage.type : 'primary'
+  const messageType = 'primary'
 
   if (outputMessage.message) {
     outputMessage = outputMessage.message
@@ -61,7 +67,7 @@ function messageWrapper (props, message) {
 
   return (<div className={style.wrapper}>
     <div className={style[messageType]}>
-      <div className={style.copy}>{outputMessage}</div>
+      <div className={style.content}>{outputMessage}</div>
     </div>
   </div>)
 }

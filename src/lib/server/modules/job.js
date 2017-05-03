@@ -173,6 +173,7 @@ function apply (data) {
 module.exports.get = function (companySlug, jobSlugRefId, loggedInPerson) {
   return fetchBaseData(companySlug, jobSlugRefId, loggedInPerson)
   .then(ensureValidReferralUrl)
+  .then(fetchExisting('referral'))
   .then(fetchReferrer)
   .then(fetchExisting('application'))
 }

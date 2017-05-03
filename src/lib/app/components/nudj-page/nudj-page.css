@@ -12,10 +12,10 @@
   }
 }
 .box {
-  composes: mw7 w-100 center tc ph2 from '@nudj/tachyons/css/tachyons.css';
+  composes: mw7 w-100 center ph2 from '@nudj/tachyons/css/tachyons.css';
 }
 .heading {
-  composes: jan-bold royal-blue f2 mw7 w-100 center pv4 from '@nudj/tachyons/css/tachyons.css';
+  composes: jan-bold royal-blue tc f2 mw7 w-100 center pv4 from '@nudj/tachyons/css/tachyons.css';
 }
 .tip {
   composes: pa5-ns pa4 mt2 tc from '@nudj/tachyons/css/tachyons.css';

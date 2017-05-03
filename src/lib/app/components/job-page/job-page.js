@@ -3,20 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import get from 'lodash/get'
 import { Helmet } from 'react-helmet'
-import NudjSuccess from '../nudj-success'
 import style from './job-page.css'
-
-function renderLinkMessage (props) {
-  let message
-  if (
-    get(props, 'referrer.email') &&
-    get(props, 'person.email') &&
-    get(props, 'referrer.email') === get(props, 'person.email')
-  ) {
-    message = <NudjSuccess {...props} />
-  }
-  return message
-}
 
 const Component = (props) => {
   const referral = get(props, 'referral')
@@ -37,7 +24,6 @@ const Component = (props) => {
         <meta property='og:image' content={image} />
       </Helmet>
       <div className={style.job}>
-        {renderLinkMessage(props)}
         <h1 className={style.title}>{get(props, 'job.title')} <br className={style.break} />@ <a href={get(props, 'company.url', '#company-url')} className={style.brandName}>{get(props, 'company.name')}</a></h1>
         <section className={style.info}>
           <div className={style.infoContainerWithSeparator}>

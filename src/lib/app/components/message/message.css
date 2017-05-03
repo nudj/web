@@ -7,9 +7,13 @@
 .warning,
 .error,
 .success {
-  composes: flex items-center justify-center pa3 bg-mid-red white from '@nudj/tachyons/css/tachyons.css';
+  composes: bg-mid-red white from '@nudj/tachyons/css/tachyons.css';
 }
 
-.copy {
-  composes: jan-regular f6 f5-ns lh-title from '@nudj/tachyons/css/tachyons.css';
+.content {
+  composes: jan-regular f6 f5-ns mw8 flex items-center justify-center center pv2 ph2 ph6-l from '@nudj/tachyons/css/tachyons.css';
+}
+
+.successContent {
+  composes: w-100 from from '@nudj/tachyons/css/tachyons.css';
 }
