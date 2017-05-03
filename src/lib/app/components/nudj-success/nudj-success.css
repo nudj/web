@@ -5,13 +5,13 @@
   composes: mv3 dib w-100 flex flex-row flex-wrap justify-center items-center from '@nudj/tachyons/css/tachyons.css';
 }
 .actions {
-  composes: dn-ns di list flex justify-center items-center mv3 pa0 from '@nudj/tachyons/css/tachyons.css';
+  composes: dn-ns di list flex justify-center items-center ma0 pa3 from '@nudj/tachyons/css/tachyons.css';
 }
 .linkContainer {
-  composes: lh-copy dib f5 input-reset blue ba br2 bw1 b--light-gray pv3 lh-solid w-100 w-60-m w-70-l tc from '@nudj/tachyons/css/tachyons.css';
+  composes: jan-light lh-copy dib-ns dn f5 input-reset royal-blue ba br2 bw1 b--royal-blue-tint-4 pv3 lh-solid w-100 w-60-m w-70-l tc from '@nudj/tachyons/css/tachyons.css';
 }
 .copyLink {
-  composes: jan dib f5 button-reset pv3 bn-ns ba br-pill bw1-ns b--white tc dim white pointer w-100 w-25-m w-20-l ma3-ns mt1 from '@nudj/tachyons/css/tachyons.css';
+  composes: jan-bold dib f5 pv3 br-pill bg-white bw1 b--royal-blue tc dim royal-blue pointer w-100 w-25-m w-20-l ma3-ns mt1 from '@nudj/tachyons/css/tachyons.css';
 }
 .socialAction {
   composes: ma3 from '@nudj/tachyons/css/tachyons.css';

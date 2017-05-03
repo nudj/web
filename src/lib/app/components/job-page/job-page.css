@@ -9,7 +9,7 @@
   composes: dib-ns dn from '@nudj/tachyons/css/tachyons.css';
 }
 .job {
-  composes: flex flex-column jusitfy-center items-center w-100 mw8 center pb5-ns pb0 from '@nudj/tachyons/css/tachyons.css';
+  composes: flex flex-column jusitfy-center items-center w-100 mw8 center pb5-ns pb4 from '@nudj/tachyons/css/tachyons.css';
 }
 .info {
   composes: relative flex flex-row flex-wrap justify-center item-center w-100 mb5-ns mt4-ns mv2 from '@nudj/tachyons/css/tachyons.css';
@@ -123,10 +123,10 @@
   width: 100%;
 }
 .list {
-  composes: list flex flex-row flex-wrap justify-between items-center ma0 ph0 pv3 from '@nudj/tachyons/css/tachyons.css';
+  composes: list flex flex-row justify-between items-center mw8 w-100 center ma0 ph0 pv3 from '@nudj/tachyons/css/tachyons.css';
 }
 .relatedJob {
-  composes: pa4 ma0 tl-ns tc from '@nudj/tachyons/css/tachyons.css';
+  composes: pa4 ma0 tl-ns tc mw6 w-100 center from '@nudj/tachyons/css/tachyons.css';
 }
 .jobTitle {
   composes: jan-bold f3 navy-blue tl-ns tc ma0 pb3-ns pb4 from '@nudj/tachyons/css/tachyons.css';
