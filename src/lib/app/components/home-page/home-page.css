@@ -36,7 +36,7 @@
   }
 }
 .story {
-  composes: list pa0 ma0 flex flex-column justify-center items-center from '@nudj/tachyons/css/tachyons.css';
+  composes: list pa0 ma0 flex flex-column justify-center items-center overflow-hidden from '@nudj/tachyons/css/tachyons.css';
 }
 .notHappy {
   composes: flex flex-column justify-end-ns justify-center items-center pt6-l pb4-l pt0-m pt6 pb2 from '@nudj/tachyons/css/tachyons.css';
@@ -59,7 +59,7 @@
   }
 }
 .unknown {
-  composes: flex flex-row flex-wrap justify-end items-center w-100 from '@nudj/tachyons/css/tachyons.css';
+  composes: flex flex-row flex-wrap justify-end items-center w-100 mw9 from '@nudj/tachyons/css/tachyons.css';
 }
 @media screen and (min-width: 60em) {
   .unknown {
@@ -98,7 +98,7 @@
   }
 }
 .friends {
-  composes: flex flex-row flex-wrap justify-start items-center w-100 from '@nudj/tachyons/css/tachyons.css';
+  composes: flex flex-row flex-wrap justify-start items-center w-100 mw9 from '@nudj/tachyons/css/tachyons.css';
 }
 @media screen and (min-width: 60em) {
   .friends {
@@ -134,7 +134,7 @@
   }
 }
 .simpleNudj {
-  composes: relative flex flex-column justify-center items-center from '@nudj/tachyons/css/tachyons.css';
+  composes: relative flex flex-column justify-center items-center w-100 mw9 from '@nudj/tachyons/css/tachyons.css';
 }
 .nudjTitle {
   composes: jan-bold f2 tc royal-blue ma0 ph7-l ph4-m ph4 from '@nudj/tachyons/css/tachyons.css';

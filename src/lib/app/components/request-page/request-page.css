@@ -11,7 +11,7 @@
   composes: jan-bold f2-l f3 royal-blue ma0 mb4 from '@nudj/tachyons/css/tachyons.css';
 }
 .subtitle {
-  composes: jan-light f3-l f4 charcoal ma0 center from '@nudj/tachyons/css/tachyons.css';
+  composes: jan-light f3-l f4 charcoal ma0 pa2 center from '@nudj/tachyons/css/tachyons.css';
 }
 .fieldSet {
   composes: relative bn pa0 pt5 pb6 ph3 ph0-ns ma0 tl from '@nudj/tachyons/css/tachyons.css';
