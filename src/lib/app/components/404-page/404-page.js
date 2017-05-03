@@ -10,8 +10,8 @@ export default (props) => (
     <small className={style.error}>Error code: 404</small>
     <p className={style.copy}>Here are some helpful links instead:</p>
     <div className={style.pages}>
-      <Link className={style.links} to='/'>Home</Link>
-      <Link className={style.links} to='' id='open-intercom'>Contact us</Link>
+      <a className={style.links} href='/'>Home</a>
+      <a className={style.links} href='' id='open-intercom'>Contact us</a>
     </div>
   </div>
 )

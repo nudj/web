@@ -51,9 +51,9 @@ const Component = (props) => (
       <h2 className={style.signupTitle}>What are you waiting for?</h2>
       <p className={style.signupSubtitle}>We're all tired of recruiter spam, so we promise to only send you the stuff we know you'll care about (and you can opt-out anytime).</p>
       <div className={style.cta}>
-        <Link to='/signup' className={style.signupButton}>Sign up</Link>
+        <a href='/signup' className={style.signupButton}>Sign up</a>
         <span className={style.or}>or</span>
-        <Link to='/' id='open-intercom' className={style.contact}>Get in touch</Link>
+        <a href='/' id='open-intercom' className={style.contact}>Get in touch</a>
       </div>
     </section>
   </div>
