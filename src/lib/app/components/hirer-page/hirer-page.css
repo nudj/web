@@ -16,7 +16,7 @@
 /* Section: Hero */
 
 .hero {
-  composes: relative pv6 bg-mid-red from '@nudj/tachyons/css/tachyons.css';
+  composes: relative pb6 bg-mid-red from '@nudj/tachyons/css/tachyons.css';
 }
 .hero::after {
   background: url(/assets/images/hirer-page/fist-bump-group.svg) no-repeat center;
