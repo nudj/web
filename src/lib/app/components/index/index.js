@@ -29,9 +29,9 @@ const Index = () => {
         <link rel='stylesheet' href='/assets/css/app.css' />
       </Helmet>
       <header className={style.header}>
+        <Route path='*' component={Message} />
         <Route path='*' component={Header} />
       </header>
-      <Route path='*' component={Message} />
       <div className={style.content}>
         <Route path='*' component={Page} />
       </div>
