@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import style from './hirer-page.css'
 
 const Component = (props) => (
@@ -108,9 +108,9 @@ const Component = (props) => (
           <small className={style.pricingSmall}>So, sign up for beta access today!</small>
         </div>
         <div className={style.cta}>
-          <Link to='/request' className={style.signup}>Request access</Link>
+          <a href='/request' className={style.signup}>Request access</a>
           <span className={style.or}>or</span>
-          <Link to='/' id='open-intercom' className={style.contact}>Get in touch</Link>
+          <a href='/' id='open-intercom' className={style.contact}>Get in touch</a>
         </div>
       </div>
     </section>

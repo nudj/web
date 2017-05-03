@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import get from 'lodash/get'
 import { Helmet } from 'react-helmet'
 import style from './job-page.css'
@@ -97,7 +97,7 @@ const Component = (props) => {
         <ul className={style.list}>
           {get(props, 'job.related', []).map((related) => <li className={style.relatedJob} key={related.title.split(' ').join('-')}>
             <p className={style.jobTitle}>{related.title} @ <span className={style.red}>{related.companyName}</span></p>
-            <Link className={style.bodyLinks} to={related.url}>View job ></Link>
+            <a className={style.bodyLinks} href={related.url}>View job ></a>
           </li>)}
         </ul>
       </section>

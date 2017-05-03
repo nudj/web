@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import style from './header.css'
 
 const lightLogoPages = ['/hiring']
@@ -125,9 +125,9 @@ class Component extends React.Component {
     const baseStyleName = this.state.navBarConstantStyle
     const baseStyle = style[baseStyleName]
     return (<div className={baseStyle}>
-      <Link className={style.homeSmall} to='/' onClick={this.onClickLink.bind(this)}>
+      <a className={style.homeSmall} href='/' onClick={this.onClickLink.bind(this)}>
         <img className={style.brandLightSmall} src='/assets/images/nudj-logo-light-small.svg' alt='Nudj' />
-      </Link>
+      </a>
       {this.renderBurgerLight()}
     </div>)
   }
@@ -136,8 +136,8 @@ class Component extends React.Component {
     const linkStyle = mobile ? style.linkMobile : style.link
     const requestStyle = mobile ? style.requestMobile : style.request
     const about = (<a href='http://help.nudj.co' className={linkStyle} onClick={this.onClickLink.bind(this)} key='0'>About</a>)
-    const companies = (<Link to='/hiring' className={linkStyle} onClick={this.onClickLink.bind(this)} key='1'>Companies</Link>)
-    const getInTouch = (<Link to='' id='open-intercom' className={requestStyle} onClick={this.onClickLink.bind(this)} key='2'>Get in touch</Link>)
+    const companies = (<a href='/hiring' className={linkStyle} onClick={this.onClickLink.bind(this)} key='1'>Companies</a>)
+    const getInTouch = (<a href='' id='open-intercom' className={requestStyle} onClick={this.onClickLink.bind(this)} key='2'>Get in touch</a>)
 
     const defaultNav = [about, companies, getInTouch]
 
@@ -152,9 +152,9 @@ class Component extends React.Component {
       <div className={baseStyle}>
         <nav className={style.nav}>
           <div className={style.left}>
-            <Link className={style.home} to='/' onClick={this.onClickLink.bind(this)}>
+            <a className={style.home} href='/' onClick={this.onClickLink.bind(this)}>
               {this.renderBrandLogo(false)}
-            </Link>
+            </a>
           </div>
           {this.renderNavBarConstant()}
           {this.renderMobileMenu()}

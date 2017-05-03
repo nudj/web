@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import style from './footer.css'
 
 export default (props) => (
@@ -7,15 +6,15 @@ export default (props) => (
     <div className={style.container}>
       <ul className={style.links}>
         <li className={style.link}>
-          <Link className={style.release} to='//headwayapp.co/nudj-updates' target='_blank'>Release Notes</Link>
+          <a className={style.release} href='//headwayapp.co/nudj-updates' target='_blank'>Release Notes</a>
           <p className={style.label}><small>Discover what we've just shipped.</small></p>
         </li>
         <li className={style.link}>
-          <Link className={style.roadmap} to='//nudj.canny.io/product-roadmap' target='_blank'>Product Roadmap</Link>
+          <a className={style.roadmap} href='//nudj.canny.io/product-roadmap' target='_blank'>Product Roadmap</a>
           <p className={style.label}><small>Help us decide what to build next.</small></p>
         </li>
         <li className={style.link}>
-          <Link className={style.hiring} to='/nudj/full-stack-software-engineer'>We're Hiring!</Link>
+          <a className={style.hiring} href='/nudj/full-stack-software-engineer'>We're Hiring!</a>
           <p className={style.label}><small>Join our team &amp; build something awesome.</small></p>
         </li>
         <li className={style.link}>
