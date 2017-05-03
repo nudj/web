@@ -1,6 +1,5 @@
 .page {
-  composes: flex flex-column justify-center items-center pv7-ns pv5 from '@nudj/tachyons/css/tachyons.css';
-  /* remove padding once nav is changed to absolute */
+  composes: flex flex-column justify-center items-center from '@nudj/tachyons/css/tachyons.css';
   background: url(/assets/images/img-paper-planes-together.svg) no-repeat center;
   background-size: contain;
   min-height: 960px;
@@ -18,7 +17,7 @@
   composes: jan-bold royal-blue tc f2 mw7 w-100 center pv4 from '@nudj/tachyons/css/tachyons.css';
 }
 .tip {
-  composes: pa5-ns pa4 mt2 tc from '@nudj/tachyons/css/tachyons.css';
+  composes: pa5 mt2 tc from '@nudj/tachyons/css/tachyons.css';
   background: url(/assets/images/grey-wobbly-box.svg) no-repeat center;
 }
 @media screen and (max-width: 30em) {
