@@ -6,20 +6,12 @@ import { createStore, combineReducers } from 'redux'
 import { Helmet } from 'react-helmet'
 
 import App from './components/index'
-import { urlReducer } from './reducers/url'
-import { errorReducer } from './reducers/error'
-import { userReducer } from './reducers/user'
-import { messageReducer } from './reducers/message'
 import { pageReducer } from './reducers/page'
 
 export default (data) => {
   const store = createStore(
     combineReducers({
-      url: urlReducer,
-      error: errorReducer,
-      user: userReducer,
-      page: pageReducer,
-      message: messageReducer
+      page: pageReducer
     }),
     data
   )

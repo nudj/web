@@ -8,21 +8,13 @@ import createHistory from 'history/createBrowserHistory'
 import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux'
 
 import App from './components/index'
-import { errorReducer } from './reducers/error'
-import { userReducer } from './reducers/user'
-import { messageReducer } from './reducers/message'
 import { pageReducer } from './reducers/page'
 
 const history = createHistory()
-console.log('history', history)
-console.log('history.location', history.location)
 const middleware = routerMiddleware(history)
 const store = createStore(
   combineReducers({
-    error: errorReducer,
-    user: userReducer,
     page: pageReducer,
-    message: messageReducer,
     router: routerReducer
   }),
   data,

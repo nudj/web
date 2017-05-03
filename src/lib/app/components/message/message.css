@@ -1,21 +1,19 @@
 .wrapper {
-  composes: w-100 flex-none from 'tachyons/css/tachyons.css';
+  composes: w-100 flex-none from '@nudj/tachyons/css/tachyons.css';
 }
-.primary {
-  composes: flex items-center justify-center pa3 bg-near-black white from 'tachyons/css/tachyons.css';
-}
-.info {
-  composes: flex items-center justify-center pa3 bg-dark-blue white from 'tachyons/css/tachyons.css';
-}
-.warning {
-  composes: flex items-center justify-center pa3 bg-gold white from 'tachyons/css/tachyons.css';
-}
-.error {
-  composes: flex items-center justify-center pa3 bg-dark-red white from 'tachyons/css/tachyons.css';
-}
+
+.primary,
+.info,
+.warning,
+.error,
 .success {
-  composes: flex items-center justify-center pa3 bg-green white from 'tachyons/css/tachyons.css';
+  composes: bg-mid-red white from '@nudj/tachyons/css/tachyons.css';
 }
-.copy {
-  composes: f6 f5-ns lh-title from 'tachyons/css/tachyons.css';
+
+.content {
+  composes: jan-regular f6 f5-ns mw8 flex items-center justify-center center pv2 ph2 ph6-l from '@nudj/tachyons/css/tachyons.css';
+}
+
+.successContent {
+  composes: w-100 from from '@nudj/tachyons/css/tachyons.css';
 }

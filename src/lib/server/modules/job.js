@@ -1,5 +1,6 @@
 let isURL = require('validator/lib/isURL')
 let logger = require('../lib/logger')
+let intercom = require('../lib/intercom')
 let fetch = require('../lib/fetch')
 
 function promiseMap (promiseObj) {
@@ -54,9 +55,13 @@ function fetchReferrer (data) {
 
 function fetchExisting (type) {
   return (data) => {
-    let job = data.job
-    let person = data.person
-    data[type] = fetch(`${type}s/first?jobId=${job.id}&personId=${person.id}`)
+    const job = data.job
+    const person = data.person
+
+    if (job && person) {
+      data[type] = fetch(`${type}s/first?jobId=${job.id}&personId=${person.id}`)
+    }
+
     return promiseMap(data)
   }
 }
@@ -161,6 +166,13 @@ function apply (data) {
       logger.log('error', application)
       throw new Error()
     }
+    intercom.updateUser({
+      email: data.person.email,
+      name: `${data.person.firstName} ${data.person.lastName}`,
+      custom_attributes: {
+        profile_url: data.person.url
+      }
+    })
     return application
   })
   return promiseMap(data)
@@ -169,7 +181,9 @@ function apply (data) {
 module.exports.get = function (companySlug, jobSlugRefId, loggedInPerson) {
   return fetchBaseData(companySlug, jobSlugRefId, loggedInPerson)
   .then(ensureValidReferralUrl)
+  .then(fetchExisting('referral'))
   .then(fetchReferrer)
+  .then(fetchExisting('application'))
 }
 
 module.exports.nudj = function (companySlug, jobSlugRefId, loggedInPerson) {
