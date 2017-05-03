@@ -32,7 +32,7 @@
   bottom: -70px;
 }
 .heroTitle {
-  composes: w-100 mw8 center pv6 jan-bold f1-l f2 tc white ma0 pa0 from '@nudj/tachyons/css/tachyons.css';
+  composes: w-100 mw8 center pv6 jan-bold f1-l f3 tc white ma0 pa0 from '@nudj/tachyons/css/tachyons.css';
 }
 
 /* Section: How */
@@ -175,6 +175,11 @@
   composes: db w-33-ns w-100 tc pa4-ns pa2 from '@nudj/tachyons/css/tachyons.css';
   max-width: 300px;
 }
+@media screen and (max-width: 30em) {
+  .brand {
+    max-width: 250px;
+  }
+}
 
 /* Section: Pricing */
 
@@ -190,7 +195,7 @@
   transform: translateX(-50%);
   max-width: none;
   display: block;
-  height: 10px;
+  height: 15  px;
   top: -10px;
 }
 .pricingTitle,
@@ -200,6 +205,7 @@
 .pricingBox {
   composes: pa5-ns pa4 mt2 tc from '@nudj/tachyons/css/tachyons.css';
   background: url(/assets/images/blue-wobbly-box.svg) no-repeat center;
+  background-size: contain;
 }
 @media screen and (max-width: 30em) {
   .pricingBox {

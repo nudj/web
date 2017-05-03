@@ -15,10 +15,10 @@
   composes: flex-l justify-end-l items-stretch-l flex-auto-l from '@nudj/tachyons/css/tachyons.css';
 }
 .link {
-  composes: f6 f5-l pa3 ma0 no-underline underline-hover dim royal-blue link dib-l dn-m dn tc from '@nudj/tachyons/css/tachyons.css';
+  composes: f6 f5-l pa3 ma0 no-underline underline-hover dim royal-blue dib-l dn-m dn tc from '@nudj/tachyons/css/tachyons.css';
 }
 .linkMobile {
-  composes: f6 f5-l pa3 mh-auto mb3 w5 no-underline underline-hover dim white link db tc from '@nudj/tachyons/css/tachyons.css';
+  composes: f6 f5-l pa3 mh-auto mb3 w5 no-underline underline-hover dim white db tc from '@nudj/tachyons/css/tachyons.css';
 }
 .request {
   composes: f6 pv3 ph4 ml3 link dim white ba bw1 b--royal-blue bg-royal-blue br-pill dib-l dn-m dn from '@nudj/tachyons/css/tachyons.css';

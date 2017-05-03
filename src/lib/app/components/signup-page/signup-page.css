@@ -22,10 +22,10 @@
   /* break this out into a reusable module */
   background-image: url('/assets/images/bg-wiggle-light-grey.svg');
   background-repeat: no-repeat;
-  background-size: 110% auto;
+  background-size: 100% auto;
   content: '';
   left: 0;
-  height: 20px;
+  height: 10px;
   position: absolute;
   top: -10px;
   width: 100%;

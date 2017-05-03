@@ -179,7 +179,7 @@
   composes: relative flex flex-column justify-between items-center bg-light-grey-tint-4 pv5-ns pv4 from '@nudj/tachyons/css/tachyons.css';
 }
 .how::before {
-  background: url(/assets/images/home-page/fist-shadows.svg) no-repeat;
+  background: url(/assets/images/bg-wiggle-light-grey.svg) repeat-x;
   content: '';
   position: absolute;
   width: 100%;
@@ -187,15 +187,8 @@
   transform: translateX(-50%);
   max-width: none;
   display: block;
-  height: 100px;
-  top: -50px;
-  background-size: 105% 100%;
-}
-@media screen and (max-width: 30em) {
-  .how::before {
-    background: url(/assets/images/home-page/fist-shadows-mobile.svg) no-repeat;
-    top: -10px;
-  }
+  height: 10px;
+  top: -10px;
 }
 .bodyTitle {
   composes: jan-bold f2 royal-blue ma0 pt2-ns pb4-ns pt4 pb2 from '@nudj/tachyons/css/tachyons.css';
@@ -209,11 +202,11 @@
 }
 .stepOne,
 .stepThree {
-  composes: pb4-ns pt0-ns pv3 ph3 w-20-ns w-100 from '@nudj/tachyons/css/tachyons.css';
+  composes: pb4-ns pt0-ns pv3 ph3 w-20-l w-50-m w-100 from '@nudj/tachyons/css/tachyons.css';
 }
 .stepTwo,
 .stepFour {
-  composes: pt4-ns pb0-ns pv3 ph3 w-20-ns w-100 from '@nudj/tachyons/css/tachyons.css';
+  composes: pt4-ns pb0-ns pv3 ph3 w-20-l w-50-m w-100 from '@nudj/tachyons/css/tachyons.css';
 }
 .stepImage {
   composes: mw-100-ns from '@nudj/tachyons/css/tachyons.css';
@@ -238,7 +231,7 @@
   transform: translateX(-50%);
   max-width: none;
   display: block;
-  height: 10px;
+  height: 15px;
   top: -10px;
 }
 .signupTitle {
