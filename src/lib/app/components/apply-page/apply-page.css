@@ -5,7 +5,7 @@
   composes: w-100 pa0-ns ph-2 tc from '@nudj/tachyons/css/tachyons.css';
 }
 .formHeader {
-  composes: pb0 pv5 center bb b--near-white bw1 tc mw6 from '@nudj/tachyons/css/tachyons.css';
+  composes: pb0 pv5 center bb b--near-white bw1 tc mw9 from '@nudj/tachyons/css/tachyons.css';
 }
 .title {
   composes: jan-bold f2-l f3 royal-blue ma0 mb4 from '@nudj/tachyons/css/tachyons.css';
