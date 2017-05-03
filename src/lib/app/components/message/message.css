@@ -11,5 +11,5 @@
 }
 
 .copy {
-  composes: jan-reg f6 f5-ns lh-title from '@nudj/tachyons/css/tachyons.css';
+  composes: jan-regular f6 f5-ns lh-title from '@nudj/tachyons/css/tachyons.css';
 }

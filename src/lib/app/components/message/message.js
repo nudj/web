@@ -18,9 +18,22 @@ function messageNudjLink (props) {
     get(props, 'person.email') &&
     get(props, 'referrer.email') === get(props, 'person.email')
   ) {
-    message = <NudjSuccess {...props} />
+    message = (<NudjSuccess {...props} />)
   }
   return message
+}
+
+function messageJobPage (props) {
+  const alreadyApplied = messageAlreadyApplied(props)
+  const alreadyReferred = messageNudjLink(props)
+
+  if (alreadyReferred) {
+    return alreadyReferred
+  } else if (alreadyApplied) {
+    return alreadyApplied
+  } else {
+    return null
+  }
 }
 
 function messageRequestPageAlreadyRequested (props) {
@@ -42,6 +55,10 @@ function messageWrapper (props, message) {
 
   const messageType = outputMessage && outputMessage.type ? outputMessage.type : 'primary'
 
+  if (outputMessage.message) {
+    outputMessage = outputMessage.message
+  }
+
   return (<div className={style.wrapper}>
     <div className={style[messageType]}>
       <div className={style.copy}>{outputMessage}</div>
@@ -54,7 +71,7 @@ const Component = (props) => {
     <Switch>
       <Route exact path='/request' render={() => messageWrapper(props, messageRequestPageAlreadyRequested(props))} />
       <Route exact path='/signup' render={() => messageWrapper(props, messageSignupPageAlreadySignedup(props))} />
-      <Route exact path='/:companySlug/:jobSlugId' render={() => messageWrapper(props, messageAlreadyApplied(props))} />
+      <Route exact path='/:companySlug/:jobSlugId' render={() => messageWrapper(props, messageJobPage(props))} />
       <Route exact path='/:companySlug/:jobSlugId/nudj' render={() => messageWrapper(props, messageNudjLink(props))} />
       <Route render={() => messageWrapper(props)} />
     </Switch>
