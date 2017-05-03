@@ -1,5 +1,6 @@
 let isURL = require('validator/lib/isURL')
 let logger = require('../lib/logger')
+let intercom = require('../lib/intercom')
 let fetch = require('../lib/fetch')
 
 function promiseMap (promiseObj) {
@@ -161,6 +162,13 @@ function apply (data) {
       logger.log('error', application)
       throw new Error()
     }
+    intercom.updateUser({
+      email: data.person.email,
+      name: `${data.person.firstName} ${data.person.lastName}`,
+      custom_attributes: {
+        profile_url: data.person.url
+      }
+    })
     return application
   })
   return promiseMap(data)
