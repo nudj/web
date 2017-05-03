@@ -132,6 +132,17 @@ dummyData.people = dummyData.people.concat([
     type: 'external',
     company: 'nudj',
     status: 'user'
+  },
+  {
+    id: '25',
+    firstName: 'David',
+    lastName: 'Platt',
+    email: 'david@nudj.com',
+    url: 'http://not-a-real-person.com',
+    title: 'Senior Fake User',
+    type: 'external',
+    company: 'nudj',
+    status: 'user'
   }
 ])
 

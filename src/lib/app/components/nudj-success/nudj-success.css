@@ -8,10 +8,10 @@
   composes: dn-ns di list flex justify-center items-center mv3 pa0 from '@nudj/tachyons/css/tachyons.css';
 }
 .linkContainer {
-  composes: lh-copy dib f5 input-reset blue ba br2 bw1 b--light-gray bg-white pv3 lh-solid w-100 w-60-m w-70-l tc from '@nudj/tachyons/css/tachyons.css';
+  composes: lh-copy dib f5 input-reset blue ba br2 bw1 b--light-gray pv3 lh-solid w-100 w-60-m w-70-l tc from '@nudj/tachyons/css/tachyons.css';
 }
 .copyLink {
-  composes: dib f5 button-reset pv3 bn-ns ba br2 bw1-ns b--navy tc bg-navy dim white pointer w-100 w-25-m w-20-l ma3-ns mt1 from '@nudj/tachyons/css/tachyons.css';
+  composes: jan dib f5 button-reset pv3 bn-ns ba br-pill bw1-ns b--white tc dim white pointer w-100 w-25-m w-20-l ma3-ns mt1 from '@nudj/tachyons/css/tachyons.css';
 }
 .socialAction {
   composes: ma3 from '@nudj/tachyons/css/tachyons.css';

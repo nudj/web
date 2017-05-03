@@ -11,6 +11,7 @@ let router = express.Router()
 
 function spoofLoggedIn (req, res, next) {
   req.session.person = {
+    id: '25',
     firstName: 'David',
     lastName: 'Platt',
     email: 'david@nudj.com'

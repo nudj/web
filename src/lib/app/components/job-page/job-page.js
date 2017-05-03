@@ -22,6 +22,10 @@ const Component = (props) => {
   const referral = get(props, 'referral')
   const title = `${get(props, 'company.name')} - ${get(props, 'job.title')}`
   const image = get(props, 'company.logo')
+  const application = get(props, 'application')
+
+  const applyForJobButton = application ? (<button className={style.applied} disabled>You've already applied</button>) : (<button className={style.apply}>Apply for job</button>)
+
   return (
     <div className={style.body}>
       <Helmet>
@@ -62,7 +66,7 @@ const Component = (props) => {
             <input type='hidden' name='_csrf' value={props.csrfToken} />
             <h2 className={style.actionTitle}>Interested?</h2>
             <p className={style.actionCopy}>It only takes <strong className={style.strong}>a few seconds to apply</strong> &amp; you don’t even need a CV! Just enter a few details and we'll take care of the rest.</p>
-            <button className={style.apply}>Apply for job</button>
+            {applyForJobButton}
           </form>
           <form className={style.actionEven} action={`/${get(props, 'company.slug')}/${get(props, 'job.slug')}${referral ? `+${referral.id}` : ''}/nudj`} method='POST'>
             <input type='hidden' name='_csrf' value={props.csrfToken} />

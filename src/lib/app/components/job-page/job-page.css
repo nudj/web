@@ -95,6 +95,11 @@
   /* Where 140px is the button min-width @ scale */
   min-width: calc(140px * 2);
 }
+.applied {
+  composes: jan-bold f5 dib ph4 pv3 mv3 link br-pill ba bw1 white bg-royal-blue o-50 b--royal-blue from '@nudj/tachyons/css/tachyons.css';
+  /* Where 140px is the button min-width @ scale */
+  min-width: calc(140px * 2);
+}
 .nudj {
   composes: jan-bold f5 dib ph4 pv3 mv3 dim pointer link br-pill ba bw1 royal-blue bg-white b--royal-blue from '@nudj/tachyons/css/tachyons.css';
   /* Where 140px is the button min-width @ scale */
