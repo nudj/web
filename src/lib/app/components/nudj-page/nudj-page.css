@@ -1,27 +1,36 @@
 .page {
-  composes: flex min-vh-100 justify-center items-center pt3 pt4-ns pb2 pb4-ns ph3 ph0-ns from 'tachyons/css/tachyons.css';
+  composes: flex flex-column justify-center items-center pv7-ns pv5 from '@nudj/tachyons/css/tachyons.css';
+  /* remove padding once nav is changed to absolute */
+  background: url(/assets/images/img-paper-planes-together.svg) no-repeat center;
+  background-size: contain;
+  min-height: 960px;
+}
+@media screen and (max-width: 30em) {
+  .page {
+    background: url(/assets/images/img-paper-planes-together-mobile.svg) no-repeat;
+    background-size: contain;
+  }
 }
 .box {
-  composes: mw7 w-100 center tc ph2 pv4 pv0-ns from 'tachyons/css/tachyons.css';
-}
-.continue {
-  composes: mt5 db from 'tachyons/css/tachyons.css';
+  composes: mw7 w-100 center ph2 from '@nudj/tachyons/css/tachyons.css';
 }
 .heading {
-  composes: f3 fw5 mw6 mv4 center from 'tachyons/css/tachyons.css';
+  composes: jan-bold royal-blue tc f2 mw7 w-100 center pv4 from '@nudj/tachyons/css/tachyons.css';
 }
 .tip {
-  composes: mw6 center bg-white br2 pa1 pa2-ns mv4 mh2 ba bw1 b--black-10 from 'tachyons/css/tachyons.css';
+  composes: pa5-ns pa4 mt2 tc from '@nudj/tachyons/css/tachyons.css';
+  background: url(/assets/images/grey-wobbly-box.svg) no-repeat center;
+}
+@media screen and (max-width: 30em) {
+  .tip {
+    background: url(/assets/images/grey-wobble-box-mobile.svg) no-repeat;
+    background-size: contain;
+    background-position: 50% 50%;
+  }
 }
 .tipTitle {
-  composes: f4 ma0 pa2 from 'tachyons/css/tachyons.css';
-}
-.tipBreak {
-  composes: mw5 bb bw1 b--black-10 from 'tachyons/css/tachyons.css';
+  composes: jan-bold tc royal-blue f4 mw6 w-100 center pv2 ph4-ns ph2 ma0 from '@nudj/tachyons/css/tachyons.css';
 }
 .tipBody {
-  composes: pa2 f6 f5-ns lh-copy measure mv0 from 'tachyons/css/tachyons.css';
-}
-.breakLine {
-  composes: ba bw1 light-gray mh1 mh0-ns from 'tachyons/css/tachyons.css';
+  composes: jan-light tc charcoal f5 lh-copy mw6 w-100 center pv2 ph4-ns ma0 from '@nudj/tachyons/css/tachyons.css';
 }

@@ -1,72 +1,253 @@
+/* Global */
+
 .body {
-  composes: sans-serif from 'tachyons/css/tachyons.css';
+  composes: jan-bold relative pa0 ma0 from '@nudj/tachyons/css/tachyons.css';
+  margin-top: -100px;
 }
-.background {
-  composes: cover bg-center flex from 'tachyons/css/tachyons.css';
-  background-image: url(/assets/images/person-2.jpg);
-  min-height: calc(100vh - 70px);
+.red {
+  composes: mid-red from '@nudj/tachyons/css/tachyons.css';
 }
+.standardBreak {
+  composes: dib-l dn from '@nudj/tachyons/css/tachyons.css';
+}
+.oppositeBreak {
+  composes: dib-l dib-m dn from '@nudj/tachyons/css/tachyons.css';
+}
+
+/* Section: Hero + Story */
+
 .hero {
-  composes: flex flex-column justify-between items-stretch flex-auto from 'tachyons/css/tachyons.css';
-  background-color: rgba(255, 255, 255, 0.7);
+  composes: relative pt7-ns pt5 bg-white from '@nudj/tachyons/css/tachyons.css';
+  background: url(/assets/images/home-page/clouds.svg) no-repeat;
+  background-position: 50% 5%;
 }
-.heroBody {
-  composes: flex flex-column justify-center items-center flex-auto from 'tachyons/css/tachyons.css';
+@media screen and (min-width: 30em) and (max-width: 60em) {
+  .hero {
+    background: url(/assets/images/home-page/clouds.svg) no-repeat;
+    background-size: contain;
+    background-position: 100% 5%;
+  }
 }
-.outcomes {
-  composes: flex flex-row flex-wrap mw8 pv5 pv0-ns ph3 ph0-ns from 'tachyons/css/tachyons.css';
+@media screen and (max-width: 30em) {
+  .hero {
+    background: url(/assets/images/home-page/clouds-small.svg) no-repeat;
+    background-size: contain;
+    background-position: 50% 3%;
+  }
 }
-.outcome {
-  composes: w-50-ns w-100 pa4-ns ph2 pv3 pv2-ns from 'tachyons/css/tachyons.css';
+.story {
+  composes: list pa0 ma0 flex flex-column justify-center items-center from '@nudj/tachyons/css/tachyons.css';
 }
-.outcomeImage {
-  composes: f2 tc from 'tachyons/css/tachyons.css';
+.notHappy {
+  composes: flex flex-column justify-end-ns justify-center items-center pt6-l pb4-l pt0-m pt6 pb2 from '@nudj/tachyons/css/tachyons.css';
 }
-.outcomeText {
-  composes: f3-l f4 fw6 tc lh-subtitle from 'tachyons/css/tachyons.css';
+.heroTitle,
+.unknownTitle,
+.friendsTitle,
+.nudjTitle {
+  composes: jan-bold f2-l f3 royal-blue ma0 from '@nudj/tachyons/css/tachyons.css';
 }
-.heroFooter {
-  composes: flex flex-column justify-center items-center pb4 flex-none from 'tachyons/css/tachyons.css';
+.heroTitle {
+  composes: tc pb5-ns pb6 ph3 mw8 w-100 center from '@nudj/tachyons/css/tachyons.css';
 }
-.indicator {
-  composes: f2 tc from 'tachyons/css/tachyons.css';
+.heroImage {
+  composes: tc mw-100 ph0-ns ph4 from '@nudj/tachyons/css/tachyons.css';
 }
-.backgroundFooter {
-  composes: bg-navy white from 'tachyons/css/tachyons.css';
+@media screen and (max-width: 30em) {
+  .heroImage {
+    max-width: 200%;
+  }
 }
-.sectionMedium{
-  composes: flex flex-column items-center justify-center mw8 w-100 center pv4 pv5-l ph3 from 'tachyons/css/tachyons.css';
+.unknown {
+  composes: flex flex-row flex-wrap justify-end items-center w-100 from '@nudj/tachyons/css/tachyons.css';
 }
-.howItWorks {
-  composes: justify-center items-center w-100 mw6 center from 'tachyons/css/tachyons.css';
+@media screen and (min-width: 60em) {
+  .unknown {
+    background: url(/assets/images/home-page/hidden-img.svg) no-repeat;
+    height: 450px;
+    width: 100%;
+    background-position: 50%;
+  }
+  .unknownTitle {
+    text-align: left;
+    width: 50%;
+    padding-right: 8rem;
+  }
 }
-.title {
-  composes: f3 f1-l fw6 tc ma0 pa2 from 'tachyons/css/tachyons.css';
+@media screen and (min-width: 30em) and (max-width: 60em) {
+  .unknown {
+    background: url(/assets/images/home-page/hard-to-find-cropped.svg) no-repeat bottom;
+    height: 400px;
+    background-size: 65%;
+    text-align: center;
+  }
+  .unknownTitle {
+    composes: w-100 ph4 tc from '@nudj/tachyons/css/tachyons.css';
+    padding-bottom: 250px;
+  }
 }
-.subtitle {
-  composes: f4 f3-l lh-subtitle pb4 pb5-ns ph5-ns ph2 ma0 tc from 'tachyons/css/tachyons.css';
+@media screen and (max-width: 30em) {
+  .unknown {
+    background: url(/assets/images/home-page/hard-to-find-cropped.svg) no-repeat bottom;
+    height: 450px;
+    background-size: contain;
+  }
+  .unknownTitle {
+    composes: w-100 ph3 tc from '@nudj/tachyons/css/tachyons.css';
+    padding-bottom: 200px;
+  }
 }
-.number {
-  composes: bold light-red f2 fw6 lh-title tc mb0 from 'tachyons/css/tachyons.css';
+.friends {
+  composes: flex flex-row flex-wrap justify-start items-center w-100 from '@nudj/tachyons/css/tachyons.css';
 }
-.step {
-  composes: f5 f4-ns fw4 tc mb4 from 'tachyons/css/tachyons.css';
+@media screen and (min-width: 60em) {
+  .friends {
+    background: url(/assets/images/home-page/pointing-hands.svg) no-repeat;
+    height: 400px;
+    background-position: 110% 100%;
+  }
+  .friendsTitle {
+    text-align: left;
+    width: 50%;
+    padding-left: 8rem;
+  }
 }
-.everyone {
-  composes: f2 flex justify-center items-center tc from 'tachyons/css/tachyons.css';
+@media screen and (min-width: 30em) and (max-width: 60em) {
+  .friends {
+    background: url(/assets/images/home-page/pointing-hands.svg) no-repeat bottom right;
+    height: 350px;
+    background-size: 75%;
+  }
+  .friendsTitle {
+    composes: w-100 ph4 tc from '@nudj/tachyons/css/tachyons.css';
+    padding-bottom: 200px;
+  }
 }
-.link {
-  composes: f4 f3-ns fw4 light-red dim no-underline from 'tachyons/css/tachyons.css';
+@media screen and (max-width: 30em) {
+  .friends {
+    background: url(/assets/images/home-page/pointing-mobile.svg) no-repeat bottom;
+    height: 400px;
+  }
+  .friendsTitle {
+    composes: w-100 ph3 tc from '@nudj/tachyons/css/tachyons.css';
+    padding-bottom: 200px;
+  }
 }
-.buttons {
-  composes: tc pa3 from 'tachyons/css/tachyons.css';
+.simpleNudj {
+  composes: relative flex flex-column justify-center items-center from '@nudj/tachyons/css/tachyons.css';
 }
-.buttonLink {
-  composes: f5 dib ph3 pv3 grow pointer no-underline link br2 ba bw1 white b--light-red from 'tachyons/css/tachyons.css';
+.nudjTitle {
+  composes: jan-bold f2 tc royal-blue ma0 ph7-l ph4-m ph4 from '@nudj/tachyons/css/tachyons.css';
 }
-.spacer {
-  composes: pv3 pa3-ns db dib-ns from 'tachyons/css/tachyons.css';
+@media screen and (min-width: 60em) {
+  .simpleNudj {
+    background: url(/assets/images/home-page/fist-bump.svg) no-repeat center;
+    height: 500px;
+    background-position: 100% 80%;
+  }
+  .nudjTitle {
+    padding-bottom: 200px;
+  }
 }
-.button {
-  composes: f5 dib ph3 pv3 grow pointer no-underline link white br2 ba bw1 bg-light-red b--light-red from 'tachyons/css/tachyons.css';
+@media screen and (min-width: 30em) and (max-width: 60em) {
+  .simpleNudj {
+    background: url(/assets/images/home-page/fist-bump.svg) no-repeat center;
+    height: 250px;
+    background-size: contain;
+    background-position: 100% 70%;
+  }
+  .nudjTitle {
+    padding-bottom: 150px;
+  }
+}
+@media screen and (max-width: 30em) {
+  .simpleNudj {
+    background: url(/assets/images/home-page/fist-bump-mobile.svg) no-repeat bottom;
+    height: 400px;
+    background-position: 100% 80%;
+  }
+  .nudjTitle {
+    padding-bottom: 100px;
+  }
+}
+
+/* Section: How nudj Works */
+
+.how {
+  composes: relative flex flex-column justify-between items-center bg-light-grey-tint-4 pv5-ns pv4 from '@nudj/tachyons/css/tachyons.css';
+}
+.how::before {
+  background: url(/assets/images/bg-wiggle-light-grey.svg) repeat-x;
+  content: '';
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: none;
+  display: block;
+  height: 15 px;
+  top: -10px;
+}
+.bodyTitle {
+  composes: jan-bold f2 royal-blue ma0 pt2-ns pb4-ns pt4 pb2 from '@nudj/tachyons/css/tachyons.css';
+}
+.howUnderline {
+  background: url(/assets/images/how-nudj-works-underline.svg) no-repeat;
+  background-position: 85% 100%;
+}
+.steps {
+  composes: list flex flex-row flex-wrap justify-center items-center tc ma0 pa0 from '@nudj/tachyons/css/tachyons.css';
+}
+.stepOne,
+.stepThree {
+  composes: pb4-ns pt0-ns pv3 ph3 w-20-l w-50-m w-100 from '@nudj/tachyons/css/tachyons.css';
+}
+.stepTwo,
+.stepFour {
+  composes: pt4-ns pb0-ns pv3 ph3 w-20-l w-50-m w-100 from '@nudj/tachyons/css/tachyons.css';
+}
+.stepImage {
+  composes: mw-100-ns from '@nudj/tachyons/css/tachyons.css';
+}
+.stepTitle {
+  composes: jan-bold f3 royal-blue ma0 pv3 tc from '@nudj/tachyons/css/tachyons.css';
+}
+.stepBody {
+  composes: jan-thin f6 charcoal ph0-ns ph2 from '@nudj/tachyons/css/tachyons.css';
+}
+/* Section: Sign up */
+
+.signup {
+  composes: relative flex flex-column justify-between items-center bg-mid-red pv5-ns pv4 from '@nudj/tachyons/css/tachyons.css';
+}
+.signup::before {
+  background: url(/assets/images/bg-wiggle-mid-red.svg) repeat-x;
+  content: '';
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: none;
+  display: block;
+  height: 15px;
+  top: -10px;
+}
+.signupTitle {
+  composes: flex justify-center items-center jan-bold f2-l f3 white tc ma0 ph2 pv4 mw7 w-100 center from '@nudj/tachyons/css/tachyons.css';
+}
+.signupSubtitle {
+  composes: flex justify-center items-center jan-light f3-l f4 white tc ma0 ph3 pv2 mw7 w-100 center from '@nudj/tachyons/css/tachyons.css';
+}
+.cta {
+  composes: pv4 tc db mw5 w-100 center from '@nudj/tachyons/css/tachyons.css';
+}
+.signupButton {
+  composes: jan-bold f5 link no-underline ph5 pv3 bg-royal-blue br-pill white dim db ma3 from '@nudj/tachyons/css/tachyons.css';
+}
+.or {
+  composes: jan-thin db f6 pv3 ph6 tc white w-100 from '@nudj/tachyons/css/tachyons.css';
+  background: url(/assets/images/cta-separator-line.svg) no-repeat center;
+}
+.contact {
+  composes: jan-bold f5 link no-underline ph5 pv3 bg-white hover-bg-white-50 br-pill royal-blue db ma3 from '@nudj/tachyons/css/tachyons.css';
 }

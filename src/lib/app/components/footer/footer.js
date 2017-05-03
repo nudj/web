@@ -19,11 +19,14 @@ export default (props) => (
           <p className={style.label}><small>Join our team &amp; build something awesome.</small></p>
         </li>
         <li className={style.link}>
-          <Link className={style.terms} to='//www.iubenda.com/privacy-policy/8051143' target='_blank'>Terms &amp; Privacy</Link>
-          <p className={style.label}><small>The legal stuff, including &#x1F36A; policy.</small></p>
+          <a className={style.terms} href='http://help.nudj.co/privacy-and-terms' target='_blank'>Terms &amp; Privacy</a>
+          <p className={style.label}><small>The legal stuff, including cookie policy.</small></p>
         </li>
       </ul>
-      <small className={style.copyright}>&#169; 2017 <strong>nudj</strong>, All Rights Reserved</small>
+      <div className={style.icon}>
+        <img className={style.logo} src='/assets/images/nudj-logo-light.svg' />
+        <small className={style.copyright}>&#169; 2017 <strong>nudj</strong>, All Rights Reserved</small>
+      </div>
     </div>
   </div>
 )

@@ -9,7 +9,17 @@ let job = require('../modules/job')
 let build = require('../build').default
 let router = express.Router()
 
-function ensureLoggedIn (req, res, next) {
+function spoofLoggedIn (req, res, next) {
+  req.session.person = {
+    id: '25',
+    firstName: 'David',
+    lastName: 'Platt',
+    email: 'david@nudj.com'
+  }
+  return next()
+}
+
+function doEnsureLoggedIn (req, res, next) {
   if (req.session.logout) {
     let url = req.originalUrl.split('/')
     url.pop()
@@ -19,6 +29,9 @@ function ensureLoggedIn (req, res, next) {
   }
   delete req.session.logout
 }
+
+const spoofUser = process.env.SPOOF_USER === 'true'
+const ensureLoggedIn = spoofUser ? spoofLoggedIn : doEnsureLoggedIn
 
 function getRenderDataBuilder (req) {
   return (data) => {

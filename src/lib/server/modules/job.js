@@ -55,9 +55,13 @@ function fetchReferrer (data) {
 
 function fetchExisting (type) {
   return (data) => {
-    let job = data.job
-    let person = data.person
-    data[type] = fetch(`${type}s/first?jobId=${job.id}&personId=${person.id}`)
+    const job = data.job
+    const person = data.person
+
+    if (job && person) {
+      data[type] = fetch(`${type}s/first?jobId=${job.id}&personId=${person.id}`)
+    }
+
     return promiseMap(data)
   }
 }
@@ -177,7 +181,9 @@ function apply (data) {
 module.exports.get = function (companySlug, jobSlugRefId, loggedInPerson) {
   return fetchBaseData(companySlug, jobSlugRefId, loggedInPerson)
   .then(ensureValidReferralUrl)
+  .then(fetchExisting('referral'))
   .then(fetchReferrer)
+  .then(fetchExisting('application'))
 }
 
 module.exports.nudj = function (companySlug, jobSlugRefId, loggedInPerson) {
