@@ -103,6 +103,14 @@ class Component extends React.Component {
     return this.renderBurger(baseStyleName)
   }
 
+  renderDesktopBurger () {
+    if (lightLogoPages.includes(this.props.location.pathname)) {
+      return this.renderBurgerLight()
+    } else {
+      return this.renderBurgerDark()
+    }
+  }
+
   renderMobileMenu () {
     const baseStyleName = this.state.mobileMenuStyle
     const baseStyle = style[baseStyleName]
@@ -137,20 +145,25 @@ class Component extends React.Component {
   }
 
   render () {
+    const baseStyleName = lightLogoPages.includes(this.props.location.pathname) ? 'navContainer' : 'navContainerDark'
+    const baseStyle = style[baseStyleName]
+
     return (
-      <nav className={style.nav}>
-        <div className={style.left}>
-          <Link className={style.home} to='/' onClick={this.onClickLink.bind(this)}>
-            {this.renderBrandLogo(false)}
-          </Link>
-        </div>
-        {this.renderNavBarConstant()}
-        {this.renderMobileMenu()}
-        <div className={style.right}>
-          {this.renderBurgerDark()}
-          {this.renderNavLinks()}
-        </div>
-      </nav>
+      <div className={baseStyle}>
+        <nav className={style.nav}>
+          <div className={style.left}>
+            <Link className={style.home} to='/' onClick={this.onClickLink.bind(this)}>
+              {this.renderBrandLogo(false)}
+            </Link>
+          </div>
+          {this.renderNavBarConstant()}
+          {this.renderMobileMenu()}
+          <div className={style.right}>
+            {this.renderDesktopBurger()}
+            {this.renderNavLinks()}
+          </div>
+        </nav>
+      </div>
     )
   }
 }

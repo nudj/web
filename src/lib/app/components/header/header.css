@@ -1,6 +1,11 @@
+.navContainer {
+  composes: bg-mid-red from '@nudj/tachyons/css/tachyons.css';
+}
+
 .nav {
   composes: jan-regular flex flex-row justify-between items-center w-100 mw8 center pa3-ns pl3 from '@nudj/tachyons/css/tachyons.css';
 }
+
 .left {
   composes: flex justify-between from '@nudj/tachyons/css/tachyons.css';
 }
