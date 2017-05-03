@@ -1,6 +1,7 @@
 let express = require('express')
 let passport = require('passport')
 let fetch = require('../lib/fetch')
+let intercom = require('../lib/intercom')
 let logger = require('../lib/logger')
 
 function cacheReturnTo (req, res, next) {
@@ -25,6 +26,17 @@ router.get('/callback',
   (req, res, next) => {
     if (!req.user) {
       throw new Error('user null')
+    }
+
+    if (req.session._intercom_visitor_id) {
+      intercom.convertVisitorToUser({
+        'user_id': req.session._intercom_visitor_id
+      }, {
+        email: req.user._json.email
+      })
+      .catch((error) => {
+        logger.log('Unable to convert visitor to user', req.session._intercom_visitor_id, req.user._json.email, error)
+      })
     }
 
     fetch(`people/first?email=${req.user._json.email}`)
