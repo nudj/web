@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import style from './500-page.css'
 
 export default (props) => (

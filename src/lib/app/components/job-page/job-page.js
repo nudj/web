@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import get from 'lodash/get'
 import { Helmet } from 'react-helmet'
 import style from './job-page.css'
