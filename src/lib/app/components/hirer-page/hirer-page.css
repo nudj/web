@@ -31,8 +31,25 @@
   height: 120px;
   bottom: -70px;
 }
+@media screen and (min-width: 85em) {
+  .hero::after {
+    background: url(/assets/images/fist-bump-left.svg), url(/assets/images/fist-bump-right.svg);
+    background-repeat: no-repeat, no-repeat;
+    background-position: 0% 0%, 100% 0%;
+    content: '';
+    position: absolute;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: none;
+    display: block;
+    z-index: 99;
+    height: 120px;
+    bottom: -70px;
+  }
+}
 .heroTitle {
-  composes: w-100 mw8 center pv6 jan-bold f1-l f3 tc white ma0 pa0 from '@nudj/tachyons/css/tachyons.css';
+  composes: w-100 mw8 center pv6 jan-bold f1-l f2 tc white ma0 ph2 from '@nudj/tachyons/css/tachyons.css';
 }
 
 /* Section: How */

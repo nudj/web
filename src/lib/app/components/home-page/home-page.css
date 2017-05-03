@@ -136,7 +136,6 @@
 }
 .simpleNudj {
   composes: relative flex flex-column justify-center items-center from '@nudj/tachyons/css/tachyons.css';
-  background: url(/assets/images/grouped-fist-bump-accent.svg) no-repeat center;
 }
 .nudjTitle {
   composes: jan-bold f2 tc royal-blue ma0 ph7-l ph4-m ph4 from '@nudj/tachyons/css/tachyons.css';
@@ -187,7 +186,7 @@
   transform: translateX(-50%);
   max-width: none;
   display: block;
-  height: 10px;
+  height: 15 px;
   top: -10px;
 }
 .bodyTitle {

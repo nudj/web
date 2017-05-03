@@ -5,7 +5,7 @@
   composes: flex justify-between from '@nudj/tachyons/css/tachyons.css';
 }
 .home {
-  composes: dib link dim from '@nudj/tachyons/css/tachyons.css';
+  composes: dib dim from '@nudj/tachyons/css/tachyons.css';
 }
 .brand,
 .brandDark {
