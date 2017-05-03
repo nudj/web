@@ -1,31 +1,13 @@
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import style from './index.css'
 import Header from '../header'
 import Message from '../message'
-import HomePage from '../home-page'
-import RequestPage from '../request-page'
-import SignupPage from '../signup-page'
-import HirerPage from '../hirer-page'
-import JobPage from '../job-page'
-import ApplyPage from '../apply-page'
-import NudjPage from '../nudj-page'
-import PageNotFound from '../404-page'
+import Page from '../page'
 import Footer from '../footer'
 
-const Status = ({ code, children }) => (
-  <Route render={({ staticContext }) => {
-    if (staticContext) {
-      staticContext.status = code
-    }
-    return children
-  }} />
-)
-
-const Index = (props) => {
-  let { page: data } = props
-  data = data || {}
+const Index = () => {
   return (
     <div className={style.body}>
       <Helmet>
@@ -51,20 +33,7 @@ const Index = (props) => {
       </header>
       <Route path='*' component={Message} />
       <div className={style.content}>
-        <Switch>
-          <Route exact path='/' component={HomePage} />
-          <Route exact path='/hiring' component={HirerPage} />
-          <Route exact path='/request' component={RequestPage} />
-          <Route exact path='/signup' component={SignupPage} />
-          <Route exact path='/:companySlug/:jobSlugId' component={JobPage} />
-          <Route exact path='/:companySlug/:jobSlugId/apply' component={ApplyPage} />
-          <Route exact path='/:companySlug/:jobSlugId/nudj' component={NudjPage} />
-          <Route render={(props) => (
-            <Status code={404}>
-              <PageNotFound {...props} {...data} />
-            </Status>
-          )} />
-        </Switch>
+        <Route path='*' component={Page} />
       </div>
       <footer className={style.footer}>
         <Footer />

@@ -108,7 +108,7 @@ function getRenderer (req, res, next) {
     if (staticContext.url) {
       res.redirect(staticContext.url)
     } else {
-      let status = get(data, 'error.code', staticContext.status || 200)
+      let status = get(data, 'page.error.code', staticContext.status || 200)
       res.status(status).render('app', {
         data: JSON.stringify(data),
         html: staticContext.html,
