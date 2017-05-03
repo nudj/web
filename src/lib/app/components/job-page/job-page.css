@@ -1,6 +1,5 @@
 .body {
-  composes: pt6 ma0 min-vh-100 from '@nudj/tachyons/css/tachyons.css';
-  /* remove padding when nav is fixed to include correct background colour depending on page */
+  composes: pa0 ma0 min-vh-100 from '@nudj/tachyons/css/tachyons.css';
 }
 .red {
   composes: mid-red from '@nudj/tachyons/css/tachyons.css';

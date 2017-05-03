@@ -2,7 +2,7 @@
 
 .body {
   composes: jan-bold relative pa0 ma0 from '@nudj/tachyons/css/tachyons.css';
-  /* add margin-top off -100px once nav is back to relative */
+  margin-top: -100px;
 }
 .red {
   composes: mid-red from '@nudj/tachyons/css/tachyons.css';
@@ -32,8 +32,7 @@
   .hero {
     background: url(/assets/images/home-page/clouds-small.svg) no-repeat;
     background-size: contain;
-    background-position: 50% 4.5%;
-    /* put background-position to : 50% 3%; once nav has been fixed */
+    background-position: 50% 3%;
   }
 }
 .story {
