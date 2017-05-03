@@ -66,11 +66,20 @@ function convert (visitor, user) {
 function convertVisitorToUser (visitor, user) {
   logger.log('info', 'convertVisitorToUser', visitor, user)
   return convert(visitor, user)
-    .then((user) => logAndReturn(user, 'Visitor converted to user', visitor, user))
+    .then(() => logger.log('info', 'Visitor converted to user', visitor, user))
     .catch((error) => logger.log('error', 'Intercom', 'convertVisitorToUser', visitor, user, error))
+}
+
+function updateUser (patch) {
+  logger.log('info', 'updateUser', patch)
+  return intercom.users
+    .update(patch)
+    .then(() => logger.log('info', 'User updated', patch))
+    .catch((error) => logger.log('error', 'Intercom', 'updateUser', patch, error))
 }
 
 module.exports = {
   createUniqueLeadAndTag,
-  convertVisitorToUser
+  convertVisitorToUser,
+  updateUser
 }
