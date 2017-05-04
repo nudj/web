@@ -8,7 +8,7 @@ const Component = (props) => (
     <section className={style.hero}>
       <ul className={style.story}>
         <li className={style.notHappy}>
-          <h1 className={style.heroTitle}>The best people are always busy in <br className={style.oppositeBreak} />their jobs, but they aren't always happy.</h1>
+          <h1 className={style.heroTitle}>The best people are always busy in <br className={style.oppositeBreak} />their jobs, but they are not always happy.</h1>
           <img className={style.heroImage} src='/assets/images/home-page/unhappy-img.svg' />
         </li>
         <li className={style.unknown}>
@@ -49,7 +49,7 @@ const Component = (props) => (
     </section>
     <section className={style.signup}>
       <h2 className={style.signupTitle}>What are you waiting for?</h2>
-      <p className={style.signupSubtitle}>We're all tired of recruiter spam, so we promise to only send you the stuff we know you'll care about (and you can opt-out anytime).</p>
+      <p className={style.signupSubtitle}>We're all tired of recruiter spam, so we promise to only send you the stuff we know you'll care about (and you can opt out anytime).</p>
       <div className={style.cta}>
         <a href='/signup' className={style.signupButton}>Sign up</a>
         <span className={style.or}>or</span>
