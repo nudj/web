@@ -1,5 +1,6 @@
 let express = require('express')
 let get = require('lodash/get')
+let getTime = require('date-fns/get_time')
 let _ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn()
 
 let logger = require('../lib/logger')
@@ -122,10 +123,14 @@ function getRenderer (req, res, next) {
       res.redirect(staticContext.url)
     } else {
       let status = get(data, 'page.error.code', staticContext.status || 200)
+      let person = get(data, 'page.person')
       res.status(status).render('app', {
         data: JSON.stringify(data),
         html: staticContext.html,
-        helmet: staticContext.helmet
+        helmet: staticContext.helmet,
+        fullname: person ? `'${person.firstName} ${person.lastName}'` : 'undefined',
+        email: person ? `'${person.email}'` : 'undefined',
+        created_at: person ? getTime(person.created) / 1000 : 'undefined'
       })
     }
   }
