@@ -12,7 +12,7 @@ const Component = (props) => (
       <div className={style.flexColumn}>
         <div className={style.header}>
           <h2 className={style.bodyTitle}><span className={style.howUnderline}>How nudj works</span></h2>
-          <p className={style.bodySubtitle}>Ask for, track and reward referrals inside and outside your company.</p>
+          <p className={style.bodySubtitle}>Easily ask for, track and reward referrals inside and outside your company.</p>
         </div>
         <ul className={style.steps}>
           <li className={style.step}>
