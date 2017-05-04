@@ -5,18 +5,9 @@ DEVURL:=
 CWD=$(shell pwd)
 BIN:=./node_modules/.bin
 
-.PHONY: build buildDev run dev packClient packServer pack test tdd
+.PHONY: build dev packClient packServer pack test tdd
 
 build:
-	@docker build \
-		-t $(IMAGE) \
-		--build-arg NPM_TOKEN=${NPM_TOKEN} \
-		.
-
-push:
-	@docker push $(IMAGE):latest
-
-buildDev:
 	@docker build \
 		-t $(IMAGEDEV) \
 		--build-arg NPM_TOKEN=${NPM_TOKEN} \
