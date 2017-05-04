@@ -43,7 +43,7 @@ const Component = (props) => (
         <li className={style.stepFour}>
           <img className={style.stepImage} src='/assets/images/home-page/3-fist-img.svg' />
           <h3 className={style.stepTitle}>Step Four</h3>
-          <p className={style.stepBody}>If they get hired then everyone gets rewarded - Everyone's a winner, baby.</p>
+          <p className={style.stepBody}>If they get hired then everyone gets rewarded - Everyone's a winner.</p>
         </li>
       </ul>
     </section>
