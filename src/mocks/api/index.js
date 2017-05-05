@@ -27,63 +27,69 @@ let dummyData = dummy({
 })
 dummyData.companies = dummyData.companies.concat([
   {
-    'id': '99',
-    'industry': ['IT', 'Mining', 'Healthcare'],
-    'location': 'London',
-    'logo': 'https://slack-imgs.com/?c=1&url=https%3A%2F%2Fs-media-cache-ak0.pinimg.com%2Foriginals%2F2a%2F89%2Fde%2F2a89dee5376d13e8d378e797d4e7e5fc.gif',
-    'name': 'Fake Company',
-    'slug': 'fake-company',
-    'url': 'http://omg.fake-company.com',
-    'description': 'OMG this job is SO hot right now. Ut nec massa vitae dui ullamcorper malesuada nec in neque. Suspendisse nec sapien faucibus, mollis metus ac, tempus eros. Praesent at nisl consequat ligula auctor eleifend nec sit amet eros. Fusce consequat, ante ac maximus auctor, felis justo vestibulum elit, congue congue ipsum ligula et lacus. Vivamus est risus, viverra quis iaculis et, eleifend eget est.'
+    id: '99',
+    created: '1986-07-06T07:34:54.000+00:00',
+    modified: '2000-01-17T02:51:58.000+00:00',
+    industry: ['IT', 'Mining', 'Healthcare'],
+    location: 'London',
+    logo: 'https://slack-imgs.com/?c=1&url=https%3A%2F%2Fs-media-cache-ak0.pinimg.com%2Foriginals%2F2a%2F89%2Fde%2F2a89dee5376d13e8d378e797d4e7e5fc.gif',
+    name: 'Fake Company',
+    slug: 'fake-company',
+    url: 'http://omg.fake-company.com',
+    description: 'OMG this job is SO hot right now. Ut nec massa vitae dui ullamcorper malesuada nec in neque. Suspendisse nec sapien faucibus, mollis metus ac, tempus eros. Praesent at nisl consequat ligula auctor eleifend nec sit amet eros. Fusce consequat, ante ac maximus auctor, felis justo vestibulum elit, congue congue ipsum ligula et lacus. Vivamus est risus, viverra quis iaculis et, eleifend eget est.'
   }
 ])
 dummyData.jobs = dummyData.jobs.concat([
   {
-    'id': '99',
-    'title': 'Senior Full-Stack Software Engineer',
-    'slug': 'senior-full-stack-software-engineer-2',
-    'url': 'https://bulb.workable.com/j/389500EB72',
-    'status': 'Open',
-    'bonus': 1000,
-    'description': '5+ years software engineering experience, using Node (6+), ES6 (Babel) and TypeScript. You should also be familiar with Git, Github, PRs, Code Reviews - please send us a link to your Github profile.',
-    'type': 'Permanent',
-    'remuneration': 'Competitive + Options',
-    'tags': [
+    id: '99',
+    created: '1986-07-06T07:34:54.000+00:00',
+    modified: '2000-01-17T02:51:58.000+00:00',
+    title: 'Senior Full-Stack Software Engineer',
+    slug: 'senior-full-stack-software-engineer-2',
+    url: 'https://bulb.workable.com/j/389500EB72',
+    status: 'Open',
+    bonus: 1000,
+    description: '5+ years software engineering experience, using Node (6+), ES6 (Babel) and TypeScript. You should also be familiar with Git, Github, PRs, Code Reviews - please send us a link to your Github profile.',
+    type: 'Permanent',
+    remuneration: 'Competitive + Options',
+    tags: [
       'Software',
       'Developer',
       'Full-Stack'
     ],
-    'location': 'London',
-    'companyId': '2',
-    'related': [
+    location: 'London',
+    companyId: '2',
+    related: [
       {
-        'url': '/bulb/operations-strategy-analyst',
-        'title': 'Operations Strategy Analyst',
-        'location': 'London'
+        url: '/bulb/operations-strategy-analyst',
+        title: 'Operations Strategy Analyst',
+        location: 'London'
       }
     ]
   },
   {
-    'id': '100',
-    'title': 'Senior Fake Test Job',
-    'slug': 'senior-fake-test-job',
-    'url': 'https://fake.com',
-    'status': 'Open',
-    'bonus': 1000,
-    'description': 'Fake job! vitae sodales velit ligula quis ligula. Sed et tincidunt nisi. Ut nec massa vitae dui ullamcorper malesuada nec in neque. Suspendisse nec sapien faucibus, mollis metus ac, tempus eros. Praesent at nisl consequat ligula auctor eleifend nec sit amet eros. Fusce consequat, ante ac maximus auctor, felis justo vestibulum elit, congue congue ipsum ligula et lacus. Vivamus est risus, viverra quis iaculis et, eleifend eget est.',
-    'type': 'Permanent',
-    'remuneration': 'Competitive + Options',
-    'tags': [
+    id: '100',
+    created: '1986-07-06T07:34:54.000+00:00',
+    modified: '2000-01-17T02:51:58.000+00:00',
+    title: 'Senior Fake Test Job',
+    slug: 'senior-fake-test-job',
+    url: 'https://fake.com',
+    status: 'Open',
+    bonus: 1000,
+    description: 'Fake job! vitae sodales velit ligula quis ligula. Sed et tincidunt nisi. Ut nec massa vitae dui ullamcorper malesuada nec in neque. Suspendisse nec sapien faucibus, mollis metus ac, tempus eros. Praesent at nisl consequat ligula auctor eleifend nec sit amet eros. Fusce consequat, ante ac maximus auctor, felis justo vestibulum elit, congue congue ipsum ligula et lacus. Vivamus est risus, viverra quis iaculis et, eleifend eget est.',
+    type: 'Permanent',
+    remuneration: 'Competitive + Options',
+    tags: [
       'Fake',
       'Job'
     ],
-    'location': 'London',
-    'companyId': '99',
-    'related': [
+    location: 'London',
+    companyId: '99',
+    related: [
       {
-        'url': '/bulb/operations-strategy-analyst',
-        'title': 'Operations Strategy Analyst',
-        'location': 'London'
+        url: '/bulb/operations-strategy-analyst',
+        title: 'Operations Strategy Analyst',
+        location: 'London'
       }
     ]
   }
@@ -91,6 +97,8 @@ dummyData.jobs = dummyData.jobs.concat([
 dummyData.people = dummyData.people.concat([
   {
     id: '21',
+    created: '1986-07-06T07:34:54.000+00:00',
+    modified: '2000-01-17T02:51:58.000+00:00',
     firstName: 'Nick',
     lastName: 'Collings',
     email: 'nick@nudj.co',
@@ -102,6 +110,8 @@ dummyData.people = dummyData.people.concat([
   },
   {
     id: '22',
+    created: '1986-07-06T07:34:54.000+00:00',
+    modified: '2000-01-17T02:51:58.000+00:00',
     firstName: 'Robyn',
     lastName: 'McGirl',
     email: 'robyn@nudj.co',
@@ -113,6 +123,8 @@ dummyData.people = dummyData.people.concat([
   },
   {
     id: '23',
+    created: '1986-07-06T07:34:54.000+00:00',
+    modified: '2000-01-17T02:51:58.000+00:00',
     firstName: 'Jamie',
     lastName: 'Gunson',
     email: 'jamie@nudj.co',
@@ -124,6 +136,8 @@ dummyData.people = dummyData.people.concat([
   },
   {
     id: '24',
+    created: '1986-07-06T07:34:54.000+00:00',
+    modified: '2000-01-17T02:51:58.000+00:00',
     firstName: 'Matt',
     lastName: 'Ellis',
     email: 'matt@nudj.co',
@@ -135,6 +149,8 @@ dummyData.people = dummyData.people.concat([
   },
   {
     id: '25',
+    created: '1986-07-06T07:34:54.000+00:00',
+    modified: '2000-01-17T02:51:58.000+00:00',
     firstName: 'David',
     lastName: 'Platt',
     email: 'david@nudj.com',
