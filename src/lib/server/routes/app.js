@@ -128,6 +128,7 @@ function getRenderer (req, res, next) {
         data: JSON.stringify(data),
         html: staticContext.html,
         helmet: staticContext.helmet,
+        intercom_app_id: `'${process.env.INTERCOM_APP_ID}'`,
         fullname: person ? `'${person.firstName} ${person.lastName}'` : 'undefined',
         email: person ? `'${person.email}'` : 'undefined',
         created_at: person ? getTime(person.created) / 1000 : 'undefined'
