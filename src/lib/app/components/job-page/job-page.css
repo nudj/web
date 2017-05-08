@@ -51,6 +51,7 @@
 }
 .infoContainerWithSeparator:after {
   /* break this out into a reusable module */
+  display: none;
   background: url('/assets/images/grey-vertical-separator.svg') no-repeat center;
   content: '';
   height: 100%;
@@ -58,6 +59,11 @@
   position: absolute;
   top: 0;
   width: 10px;
+}
+@media screen and (min-width: 30em) {
+  .infoContainerWithSeparator:after {
+    display: block;
+  }
 }
 .infoTitle {
   composes: jan-thin charcoal tc f6 pa0 pb2 ma0 from '@nudj/tachyons/css/tachyons.css';
@@ -122,16 +128,16 @@
   width: 100%;
 }
 .list {
-  composes: list flex flex-row justify-between items-center mw8 w-100 center ma0 ph0 pv3 from '@nudj/tachyons/css/tachyons.css';
+  composes: list flex flex-column flex-row-l justify-between items-center mw8 w-100 center ma0 ph0 pv3 from '@nudj/tachyons/css/tachyons.css';
 }
 .relatedJob {
-  composes: pa4 ma0 tl-ns tc mw6 w-100 center from '@nudj/tachyons/css/tachyons.css';
+  composes: pa4 ma0 tl tc-ns tl-l mw6 w-100 center from '@nudj/tachyons/css/tachyons.css';
 }
 .jobTitle {
-  composes: jan-bold f3 navy-blue tl-ns tc ma0 pb3-ns pb4 from '@nudj/tachyons/css/tachyons.css';
+  composes: jan-bold f3 navy-blue tl tc-ns tl-l ma0 pb3-ns pb4 from '@nudj/tachyons/css/tachyons.css';
 }
 .bodyLinks {
-  composes: jan-bold f5 link mid-red tl-ns tc dim pa0-ns pt3 ma0 from '@nudj/tachyons/css/tachyons.css';
+  composes: jan-bold f5 link mid-red tl tc-ns tl-l dim pa0-ns pt3 ma0 from '@nudj/tachyons/css/tachyons.css';
 }
 .breakLine {
   composes: ba light-gray from '@nudj/tachyons/css/tachyons.css';
