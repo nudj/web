@@ -47,7 +47,7 @@ const Component = (props) => (
             <img className={style.stepImageBottom} src='/assets/images/hirer-page/paperwork.svg' />
             <div className={style.stepDescriptionBottom}>
               <h2 className={style.stepTitle}><span className={style.red}>5.</span><br className={style.break} /> Say goodbye to paperwork</h2>
-              <p className={style.stepCopy}>We'll automatically identify the people most likely to put you in touch with awesome talent, whether they’re in your network or ours.</p>
+              <p className={style.stepCopy}>We’ll then handle all the admin and payments so you don’t have to. One less thing for you to worry about.</p>
             </div>
           </li>
         </ul>
