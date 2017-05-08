@@ -15,23 +15,24 @@ function elementFromString (string) {
 
 function onFormSubmit (eventType, props) {
   return (event) => {
-    if (!event.target.querySelector('#visitorId')) {
-      event.preventDefault()
+    let target = event.target
+    event.preventDefault()
+    if (!target.querySelector('#visitorId')) {
       const string = `<input id='visitorId' type='hidden' name='_intercom_visitor_id' value='${Intercom('getVisitorId')}' />`
-      event.target.appendChild(elementFromString(string))
-      event.target.submit()
-    } else {
-      let meta = {
-        jobTitle: get(props, 'job.title'),
-        company: get(props, 'company.name'),
-        referrerName: get(props, 'referrer.name'),
-        referrerId: get(props, 'referrer.id')
-      }
-      if (eventType === 'new-application') {
-        meta.profileUrl = get(props, 'person.url')
-      }
-      Intercom('trackEvent', eventType, meta)
+      target.appendChild(elementFromString(string))
     }
+    let meta = {
+      jobTitle: get(props, 'job.title'),
+      company: get(props, 'company.name'),
+      referrerName: get(props, 'referrer.name'),
+      referrerId: get(props, 'referrer.id')
+    }
+    if (eventType === 'new-application') {
+      meta.profileUrl = get(props, 'person.url')
+    }
+    Intercom('trackEvent', eventType, meta)
+    target.submit()
+    return false
   }
 }
 
