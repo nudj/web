@@ -1,16 +1,14 @@
-import css, { mixins, variables } from '../../lib/css'
+import css, { merge, mixins, variables } from '../../lib/css'
 
 const styles = {
-  body: mixins.flexColumn(),
+  body: merge({
+    fontFamily: [mixins.headings.p]
+  }, mixins.flexColumn()),
   header: {
     zIndex: variables.zIndicies.header
   },
   content: mixins.flexColumn(),
-  footer: {
-    position: 'relative',
-    margin: '20px 0 0 0', // this needs to move into background squiggle
-    '::before': mixins.beforeBackgroundSquiggle('bg-wiggle-charcoal.svg')
-  }
+  footer: mixins.beforeBackgroundSquiggle('bg-wiggle-charcoal.svg')
 }
 
 export default css(styles)

@@ -10,7 +10,7 @@ export const breakpoints = {
 
 export const colours = {
   beige: '#efebd3',
-  charcol: '#2d2926',
+  charcoal: '#2d2926',
   darkPink: '#ef6079',
   lightGrey: '#d0d0ce',
   lightYellow: '#f7ea48',
@@ -87,15 +87,29 @@ export const fonts = {
 }
 
 export const fontSizes = {
-  f1: '23px',
-  f2: '21px',
-  f3: '15px',
-  f4: '13px',
-  f5: '12px',
-  f6: '9px',
-  f7: '8px',
-  f8: '7px',
-  f9: '6px'
+  f1: '46px',
+  f2: '42px',
+  f3: '30px',
+  f4: '26px',
+  f5: '24px',
+  f6: '18px',
+  f7: '16px',
+  f8: '14px',
+  f9: '12px'
+}
+
+export const sizes = {
+  buttonMinWidth: '200px',
+  contentMaxWidth: '980px',
+  columnWidth: '80',
+  paddingWidth: '20'
+}
+
+export const padding = {
+  a: (sizes.paddingWidth * 4) + 'px',
+  b: (sizes.paddingWidth * 3) + 'px',
+  c: (sizes.paddingWidth * 2) + 'px',
+  d: sizes.paddingWidth + 'px'
 }
 
 export const transitions = {
@@ -106,5 +120,6 @@ export const transitions = {
 }
 
 export const zIndicies = {
-  header: '999'
+  header: '998',
+  mobileMenu: '999'
 }

@@ -4,13 +4,6 @@ import { withRouter, Switch, Route } from 'react-router-dom'
 import get from 'lodash/get'
 
 import HomePage from '../home-page'
-import RequestPage from '../request-page'
-import SignupPage from '../signup-page'
-import HirerPage from '../hirer-page'
-import JobPage from '../job-page'
-import ApplyPage from '../apply-page'
-import NudjPage from '../nudj-page'
-import PageNotFound from '../404-page'
 
 const Status = ({ code, children }) => (
   <Route render={({ staticContext }) => {
@@ -23,9 +16,7 @@ const Status = ({ code, children }) => (
 
 const Component = (props) => {
   return get(props, 'error') ? (
-    <Status code={get(props, 'error.code')}>
-      <PageNotFound {...props} />
-    </Status>
+    <Status code={get(props, 'error.code')} />
   ) : (
     <Switch>
       <Route exact path='/' component={HomePage} />
@@ -36,9 +27,7 @@ const Component = (props) => {
       <Route exact path='/jobs/:companySlugJobSlugRefId/apply' component={ApplyPage} />
       <Route exact path='/jobs/:companySlugJobSlugRefId/nudj' component={NudjPage} />
       <Route render={(props) => (
-        <Status code={404}>
-          <PageNotFound {...props} />
-        </Status>
+        <Status code={404} />
       )} />
     </Switch>
   )
