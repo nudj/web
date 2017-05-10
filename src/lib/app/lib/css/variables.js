@@ -11,8 +11,10 @@ export const breakpoints = {
 export const colours = {
   beige: '#efebd3',
   charcoal: '#2d2926',
+  charcoalTint2: '#817f7d',
   darkPink: '#ef6079',
   lightGrey: '#d0d0ce',
+  lighterGrey: '#f7f7f6',
   lightYellow: '#f7ea48',
   midRed: '#e35205',
   navy: '#081f2c',
@@ -106,10 +108,12 @@ export const sizes = {
 }
 
 export const padding = {
-  a: (sizes.paddingWidth * 4) + 'px',
-  b: (sizes.paddingWidth * 3) + 'px',
+  a: (sizes.paddingWidth * 8) + 'px',
+  b: (sizes.paddingWidth * 4) + 'px',
   c: (sizes.paddingWidth * 2) + 'px',
-  d: sizes.paddingWidth + 'px'
+  d: sizes.paddingWidth + 'px',
+  e: (sizes.paddingWidth * 0.5) + 'px',
+  f: (sizes.paddingWidth * 0.25) + 'px'
 }
 
 export const transitions = {
@@ -120,6 +124,7 @@ export const transitions = {
 }
 
 export const zIndicies = {
-  header: '998',
-  mobileMenu: '999'
+  header: '997',
+  mobileMenu: '998',
+  mobileMenuConstant: '999'
 }

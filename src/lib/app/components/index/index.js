@@ -27,6 +27,7 @@ const Index = () => {
         <meta property='og:image' content='http://nudjcms.s3.amazonaws.com/assets/images/social/nudj-card-og.jpg' />
         <link rel='icon' href='/assets/images/nudj-square.ico' type='image/x-icon' />
         <link rel='stylesheet' href='/assets/css/normalize.css' />
+        <link rel='stylesheet' href='/assets/css/hamburgers.css' />
         <link rel='stylesheet' href='/assets/css/app.css' />
       </Helmet>
       <header className={style.header}>

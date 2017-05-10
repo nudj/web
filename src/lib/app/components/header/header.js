@@ -73,22 +73,29 @@ class Component extends React.Component {
 
   renderBrandLogo () {
     if (lightLogoPages.includes(this.props.location.pathname)) {
-      return (<img className={style.brand} src='/assets/images/nudj-logo-light.svg' alt='Nudj' />)
+      return (<img className={style.homeButtonImage} src='/assets/images/nudj-logo-light.svg' alt='Nudj' />)
     } else {
-      return (<img className={style.brandDark} src='/assets/images/nudj-logo-dark.svg' alt='Nudj' />)
+      return (<img className={style.homeButtonImage} src='/assets/images/nudj-logo-dark.svg' alt='Nudj' />)
     }
   }
 
   renderBurger (baseStyleName) {
     const baseStyle = style[baseStyleName]
+    let burgerClass = 'hamburger hamburger--elastic'
+
+    if (this.state.burgerActive) {
+      burgerClass += ' is-active'
+    }
 
     return (
       <div className={style.hamburgerHolder}>
-        <button className={baseStyle} type='button' onClick={this.onClickBurger.bind(this)}>
-          <span className={style.hamburgerBox}>
-            <span className={style.hamburgerInner} />
-          </span>
-        </button>
+        <span className={baseStyle}>
+          <button className={burgerClass} type='button' onClick={this.onClickBurger.bind(this)}>
+            <span className='hamburger-box'>
+              <span className='hamburger-inner' />
+            </span>
+          </button>
+        </span>
       </div>
     )
   }
@@ -151,14 +158,14 @@ class Component extends React.Component {
     return (
       <div className={baseStyle}>
         <nav className={style.nav}>
-          <div className={style.left}>
-            <a className={style.home} href='/' onClick={this.onClickLink.bind(this)}>
+          <div className={style.navLeft}>
+            <a className={style.homeButton} href='/' onClick={this.onClickLink.bind(this)}>
               {this.renderBrandLogo(false)}
             </a>
           </div>
           {this.renderNavBarConstant()}
           {this.renderMobileMenu()}
-          <div className={style.right}>
+          <div className={style.navRight}>
             {this.renderDesktopBurger()}
             {this.renderNavLinks()}
           </div>

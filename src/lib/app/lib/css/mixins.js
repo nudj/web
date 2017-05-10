@@ -90,13 +90,20 @@ export const headings = {
     [breakpoints.ns]: {
       fontSize: variables.fontSizes.f7
     }
+  },
+  p2: {
+    fontFamily: [fonts.jan.regular],
+    fontSize: variables.fontSizes.f7,
+    [breakpoints.ns]: {
+      fontSize: variables.fontSizes.f8
+    }
   }
 }
 
 // Layout
 export function basicContainer (properties) {
   const basicContainerBasic = {
-    padding: '0 20px',
+    padding: `0 ${variables.padding.d}`,
     position: 'relative',
     [breakpoints.ns]: {
       margin: '0 auto',
@@ -108,8 +115,9 @@ export function basicContainer (properties) {
 
 export function flexColumn (properties) {
   const flexColumnBasic = {
+    alignItems: 'center',
     display: 'flex', // flex
-    flex: '1 1 auto', // flex-auto
+    flex: '1 1 auto', // flex-auto // ????
     flexDirection: 'column', // flex-column
     justifyContent: 'center' // justify-center
   }
@@ -122,7 +130,7 @@ export function button (properties) {
     borderRadius: '9999px',
     display: 'inline-block',
     minWidth: variables.sizes.buttonMinWidth,
-    padding: '20px 40px',
+    padding: `${variables.padding.d} ${variables.padding.c}`,
     textAlign: 'center'
   }
   return merge({}, deLink(buttonBasic), headings.h6, properties || {})
@@ -174,24 +182,53 @@ export function makePsuedoElement (properties) {
   return merge({}, psuedoBasic, properties || {})
 }
 
+export function afterUnderlineSquiggle (image, xOffset, properties) {
+  const after = makePsuedoElement({
+    backgroundImage: linkImage(image),
+    backgroundPosition: `0% ${xOffset}`,
+    backgroundRepeat: 'no-repeat',
+    bottom: `calc(${variables.padding.e} * -1)`,
+    height: variables.padding.e,
+    left: '0',
+    position: 'absolute',
+    width: '100%'
+  })
+
+  const main = {
+    position: 'relative',
+    '::after': after
+  }
+
+  return merge({}, main, properties || {})
+}
+
 export function beforeBackgroundSquiggle (image, properties) {
   const before = makePsuedoElement({
     backgroundImage: linkImage(image),
     backgroundPosition: 'top center',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
-    height: '20px', // Move these numbers somewhere else
+    height: variables.padding.d,
     left: '-10%',
     position: 'absolute',
-    top: '-20px',
+    top: `calc(${variables.padding.d} * -1)`,
     width: '120%'
   })
 
   const main = {
     position: 'relative',
-    // margin: '20px 0 0 0',
     '::before': before
   }
 
   return merge({}, main, properties || {})
+}
+
+export function makeTransition (transition = {
+  details: variables.transitions.bouncey,
+  properties: ['all']
+}, properties) {
+  const transitionBase = {
+    transition: `${transition.properties.join(' ')} ${transition.details.length} ${transition.details.easing}`
+  }
+  return merge({}, transitionBase, properties)
 }
