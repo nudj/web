@@ -17,6 +17,7 @@ export const colours = {
   lighterGrey: '#f7f7f6',
   lightYellow: '#f7ea48',
   midRed: '#e35205',
+  moonGrey: '#ccc',
   navy: '#081f2c',
   navyBlue: '#002051',
   royalBlue: '#002d72',
@@ -104,7 +105,10 @@ export const sizes = {
   buttonMinWidth: '200px',
   contentMaxWidth: '980px',
   columnWidth: '80',
-  paddingWidth: '20'
+  formsMaxWidth: '512px',
+  paddingWidth: '20',
+  radioButtonBorderSize: '20px',
+  radioButtonBorderWidth: '2px'
 }
 
 export const padding = {

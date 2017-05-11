@@ -23,7 +23,7 @@ const navBarConstantBase = {
   display: 'flex',
   justifyContent: 'space-between',
   left: '0',
-  padding: variables.padding.d,
+  padding: `${variables.padding.e} ${variables.padding.d}`,
   position: 'fixed',
   top: '0',
   width: '100%', // ?
@@ -38,21 +38,14 @@ const navBarConstant = mixins.makeTransition({
   details: variables.transitions.bouncey
 }, navBarConstantBase)
 
-const innerBurgerColour = {
-  color: variables.colours.white
+const innerBurger = {
+  height: `calc(${variables.padding.d} * 0.1)`,
+  width: variables.padding.d
 }
 
-const innerBurgerLight = {
-  '.hamburger-inner': innerBurgerColour,
-  '.hamburger-inner:after': innerBurgerColour,
-  '.hamburger-inner:before': innerBurgerColour
-}
-
-const baseBurger = {
-  '.hamburger': {
-    outline: 'none'
-  }
-}
+const innerBurgerColour = merge({
+  backgroundColor: variables.colours.white
+}, innerBurger)
 
 const styles = {
   navContainer: {
@@ -136,10 +129,30 @@ const styles = {
       display: 'none'
     }
   },
-  hamburger: baseBurger,
-  hamburgerIsActive: baseBurger,
-  hamburgerLight: merge({}, baseBurger, innerBurgerLight),
-  hamburgerIsActiveLight: merge({}, baseBurger, innerBurgerLight)
+  burger: mixins.deButton({
+    outline: 'none',
+    padding: '0'
+  }),
+  burgerBox: {
+    height: variables.padding.d,
+    width: variables.padding.d
+  },
+  hamburger: merge({
+    ':after': innerBurger,
+    ':before': innerBurger
+  }, innerBurger),
+  hamburgerIsActive: merge({
+    ':after': innerBurger,
+    ':before': innerBurger
+  }, innerBurger),
+  hamburgerLight: merge({
+    ':after': innerBurgerColour,
+    ':before': innerBurgerColour
+  }, innerBurgerColour),
+  hamburgerIsActiveLight: merge({
+    ':after': innerBurgerColour,
+    ':before': innerBurgerColour
+  }, innerBurgerColour)
 }
 
 export default css(styles)

@@ -35,12 +35,12 @@ const styles = {
   roadmap: titles('20%'),
   hiring: titles('40%'),
   terms: titles('60%'),
-  label: {
+  label: merge({
     display: 'none',
     [mixins.breakpoints.l]: {
       display: 'block'
     }
-  }
+  }, mixins.headings.p2)
 }
 
 export default css(styles)

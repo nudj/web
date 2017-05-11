@@ -19,7 +19,7 @@ const body = merge({
 
 const howStep = mixins.flexColumn({
   padding: `0 ${variables.padding.d} ${variables.padding.c} ${variables.padding.d}`,
-  textAlign: 'center', // This needs to be in flexColumn ?
+  textAlign: 'center',
   [mixins.breakpoints.ns]: {
     width: '50%'
   },
@@ -127,9 +127,7 @@ const styles = {
   }),
   unknownTitle: title,
   friendsTitle: title,
-  how: mixins.flexColumn(mixins.beforeBackgroundSquiggle('bg-wiggle-light-grey.svg', {
-    backgroundColor: variables.colours.lighterGrey
-  })), // align-items
+  how: mixins.makeGreyBackground(),
   nudjTitle: title,
   bodyTitle: merge({
     padding: `${variables.padding.c} 0`
@@ -159,9 +157,7 @@ const styles = {
     backgroundColor: variables.colours.midRed,
     paddingBottom: variables.padding.b
   }),
-  signupContainer: mixins.basicContainer(mixins.flexColumn({
-    alignItems: 'center'
-  })),
+  signupContainer: mixins.basicContainer(mixins.flexColumn()),
   signupTitle: merge({}, title, {
     color: variables.colours.white
   }),

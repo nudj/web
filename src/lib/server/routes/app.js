@@ -126,6 +126,7 @@ function getRenderer (req, res, next) {
       let person = get(data, 'page.person')
       res.status(status).render('app', {
         data: JSON.stringify(data),
+        css: staticContext.css,
         html: staticContext.html,
         helmet: staticContext.helmet,
         intercom_app_id: `'${process.env.INTERCOM_APP_ID}'`,

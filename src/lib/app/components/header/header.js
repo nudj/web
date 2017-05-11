@@ -89,13 +89,11 @@ class Component extends React.Component {
 
     return (
       <div className={style.hamburgerHolder}>
-        <span className={baseStyle}>
-          <button className={burgerClass} type='button' onClick={this.onClickBurger.bind(this)}>
-            <span className='hamburger-box'>
-              <span className='hamburger-inner' />
-            </span>
-          </button>
-        </span>
+        <button className={`${burgerClass} ${style.burger}`} type='button' onClick={this.onClickBurger.bind(this)}>
+          <span className={`hamburger-box ${style.burgerBox}`}>
+            <span className={`hamburger-inner ${baseStyle}`} />
+          </span>
+        </button>
       </div>
     )
   }
