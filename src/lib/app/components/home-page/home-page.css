@@ -50,6 +50,11 @@
 .heroTitle {
   composes: tc pb5-ns pb6 ph3 mw8 w-100 center from '@nudj/tachyons/css/tachyons.css';
 }
+.typeout {
+  composes: dib from '@nudj/tachyons/css/tachyons.css';
+  min-width: 10rem;
+  color: #e35205;
+}
 .heroImage {
   composes: tc mw-100 ph0-ns ph4 from '@nudj/tachyons/css/tachyons.css';
 }
