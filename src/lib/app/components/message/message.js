@@ -77,8 +77,8 @@ const Component = (props) => {
     <Switch>
       <Route exact path='/request' render={() => messageWrapper(props, messageRequestPageAlreadyRequested(props))} />
       <Route exact path='/signup' render={() => messageWrapper(props, messageSignupPageAlreadySignedup(props))} />
-      <Route exact path='/jobs/:companySlugJobSlugId' render={() => messageWrapper(props, messageJobPage(props))} />
-      <Route exact path='/jobs/:companySlugJobSlugId/nudj' render={() => messageWrapper(props, messageNudjLink(props))} />
+      <Route exact path='/jobs/:companySlugJobSlugRefId' render={() => messageWrapper(props, messageJobPage(props))} />
+      <Route exact path='/jobs/:companySlugJobSlugRefId/nudj' render={() => messageWrapper(props, messageNudjLink(props))} />
       <Route render={() => messageWrapper(props)} />
     </Switch>
   )

@@ -32,9 +32,9 @@ const Component = (props) => {
       <Route exact path='/hiring' component={HirerPage} />
       <Route exact path='/request' component={RequestPage} />
       <Route exact path='/signup' component={SignupPage} />
-      <Route exact path='/jobs/:companySlugJobSlugId' component={JobPage} />
-      <Route exact path='/jobs/:companySlugJobSlugId/apply' component={ApplyPage} />
-      <Route exact path='/jobs/:companySlugJobSlugId/nudj' component={NudjPage} />
+      <Route exact path='/jobs/:companySlugJobSlugRefId' component={JobPage} />
+      <Route exact path='/jobs/:companySlugJobSlugRefId/apply' component={ApplyPage} />
+      <Route exact path='/jobs/:companySlugJobSlugRefId/nudj' component={NudjPage} />
       <Route render={(props) => (
         <Status code={404}>
           <PageNotFound {...props} />
