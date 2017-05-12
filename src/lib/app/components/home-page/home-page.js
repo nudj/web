@@ -1,14 +1,22 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import TypeOut from 'react-typeout'
 import style from './home-page.css'
 
-const Component = (props) => (
+const words = [
+  'developers',
+  'designers',
+  'marketers',
+  'product managers'
+]
+
+const HomePage = () => (
   <div className={style.body}>
     <section className={style.hero}>
       <ul className={style.story}>
         <li className={style.notHappy}>
-          <h1 className={style.heroTitle}>The best people are always busy in <br className={style.oppositeBreak} />their jobs, but they are not always happy.</h1>
+          <h1 className={style.heroTitle}>The best <TypeOut words={words} className={style.typeout} pauseSpeed={5000} /> are always busy,<br className={style.oppositeBreak} />but they are not always happy.</h1>
           <img className={style.heroImage} src='/assets/images/home-page/unhappy-img.svg' />
         </li>
         <li className={style.unknown}>
@@ -61,4 +69,4 @@ const Component = (props) => (
 
 const mapStateToProps = (state, props) => Object.assign({}, state.page, props)
 const mapDispatchToProps = (dispatch, ownProps) => ({})
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Component))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HomePage))
