@@ -5,9 +5,10 @@ import TypeOut from 'react-typeout'
 import style from './home-page.css'
 
 const words = [
+  'developers',
   'designers',
-  'engineers',
-  'clowns'
+  'marketers',
+  'product managers'
 ]
 
 const HomePage = () => (
@@ -15,7 +16,7 @@ const HomePage = () => (
     <section className={style.hero}>
       <ul className={style.story}>
         <li className={style.notHappy}>
-          <h1 className={style.heroTitle}>The best <TypeOut words={words} className={style.typeout} /> are always busy in <br className={style.oppositeBreak} />their jobs, but they are not always happy.</h1>
+          <h1 className={style.heroTitle}>The best <TypeOut words={words} className={style.typeout} pauseSpeed={5000} /> are always busy,<br className={style.oppositeBreak} />but they are not always happy.</h1>
           <img className={style.heroImage} src='/assets/images/home-page/unhappy-img.svg' />
         </li>
         <li className={style.unknown}>
