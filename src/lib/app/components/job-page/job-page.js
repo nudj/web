@@ -79,13 +79,13 @@ const Component = (props) => {
           </div>
         </section>
         <section className={style.actions}>
-          <form className={style.actionOdd} action={`/${get(props, 'company.slug')}/${get(props, 'job.slug')}${referral ? `+${referral.id}` : ''}/apply`} method='POST' onSubmit={onFormSubmit('new-application', props)}>
+          <form className={style.actionOdd} action={`/jobs/${get(props, 'company.slug')}+${get(props, 'job.slug')}${referral ? `+${referral.id}` : ''}/apply`} method='POST' onSubmit={onFormSubmit('new-application', props)}>
             <input type='hidden' name='_csrf' value={props.csrfToken} />
             <h2 className={style.actionTitle}>Interested?</h2>
             <p className={style.actionCopy}>It only takes <strong className={style.strong}>a few seconds to apply</strong> &amp; you don’t even need a CV! Just enter a few details and we'll take care of the rest.</p>
             {applyForJobButton}
           </form>
-          <form className={style.actionEven} action={`/${get(props, 'company.slug')}/${get(props, 'job.slug')}${referral ? `+${referral.id}` : ''}/nudj`} method='POST' onSubmit={onFormSubmit('new-referral', props)}>
+          <form className={style.actionEven} action={`/jobs/${get(props, 'company.slug')}+${get(props, 'job.slug')}${referral ? `+${referral.id}` : ''}/nudj`} method='POST' onSubmit={onFormSubmit('new-referral', props)}>
             <input type='hidden' name='_csrf' value={props.csrfToken} />
             <h2 className={style.actionTitle}>Know someone perfect?</h2>
             <p className={style.actionCopy}>We’ll <strong className={style.strong}>give you £{get(props, 'job.bonus')} if they get the job.</strong> Simply sign up &amp; we'll give you a unique link to this page, which you can share.</p>

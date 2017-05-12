@@ -18,9 +18,12 @@ function promiseMap (promiseObj) {
   })
 }
 
-function fetchBaseData (companySlug, jobSlugRefId, loggedInPerson) {
-  let jobSlug = jobSlugRefId.split('+')[0]
-  let refId = jobSlugRefId.split('+')[1]
+function fetchBaseData (params, loggedInPerson) {
+  let {
+    companySlug,
+    jobSlug,
+    refId
+  } = params
   let requests = {
     company: fetch(`companies/${companySlug}`),
     job: fetch(`jobs/${jobSlug}`),
@@ -178,16 +181,29 @@ function apply (data) {
   return promiseMap(data)
 }
 
-module.exports.get = function (companySlug, jobSlugRefId, loggedInPerson) {
-  return fetchBaseData(companySlug, jobSlugRefId, loggedInPerson)
+function extractParams (companySlugJobSlugRefId) {
+  const [
+    companySlug,
+    jobSlug,
+    refId
+  ] = companySlugJobSlugRefId.split('+')
+  return {
+    companySlug,
+    jobSlug,
+    refId
+  }
+}
+
+module.exports.get = function (companySlugJobSlugRefId, loggedInPerson) {
+  return fetchBaseData(extractParams(companySlugJobSlugRefId), loggedInPerson)
   .then(ensureValidReferralUrl)
   .then(fetchExisting('referral'))
   .then(fetchReferrer)
   .then(fetchExisting('application'))
 }
 
-module.exports.nudj = function (companySlug, jobSlugRefId, loggedInPerson) {
-  return fetchBaseData(companySlug, jobSlugRefId, loggedInPerson)
+module.exports.nudj = function (companySlugJobSlugRefId, loggedInPerson) {
+  return fetchBaseData(extractParams(companySlugJobSlugRefId), loggedInPerson)
   .then(ensureValidReferralUrl)
   .then(fetchReferrer)
   .then(fetchExisting('referral'))
@@ -195,8 +211,8 @@ module.exports.nudj = function (companySlug, jobSlugRefId, loggedInPerson) {
   .then(nudj)
 }
 
-module.exports.apply = function (companySlug, jobSlugRefId, loggedInPerson, personUpdate) {
-  return fetchBaseData(companySlug, jobSlugRefId, loggedInPerson)
+module.exports.apply = function (companySlugJobSlugRefId, loggedInPerson, personUpdate) {
+  return fetchBaseData(extractParams(companySlugJobSlugRefId), loggedInPerson)
   .then(ensureValidReferralUrl)
   .then(fetchReferrer)
   .then(fetchExisting('application'))
