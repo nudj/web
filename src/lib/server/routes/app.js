@@ -68,7 +68,7 @@ function getErrorHandler (req, res, next) {
             message: error.message
           }
           let destination = req.originalUrl.split('/')
-          logger.log('error', error.message, req.method, req.params.companySlug, req.params.jobSlugRefId, destination.pop(), error)
+          logger.log('error', error.message, req.method, req.params.companySlugJobSlugRefId, destination.pop(), error)
           destination = destination.join('/')
           res.redirect(destination)
           break
@@ -139,7 +139,7 @@ function getRenderer (req, res, next) {
 
 function jobHandler (req, res, next) {
   job
-    .get(req.params.companySlug, req.params.jobSlugRefId, req.session.person)
+    .get(req.params.companySlugJobSlugRefId, req.session.person)
     .then(getRenderDataBuilder(req, res, next))
     .then(getRenderer(req, res, next))
     .catch(getErrorHandler(req, res, next))
@@ -147,7 +147,7 @@ function jobHandler (req, res, next) {
 
 let nudjHandler = (req, res, next) => {
   job
-    .nudj(req.params.companySlug, req.params.jobSlugRefId, req.session.person)
+    .nudj(req.params.companySlugJobSlugRefId, req.session.person)
     .then(getRenderDataBuilder(req, res, next))
     .then(getRenderer(req, res, next))
     .catch(getErrorHandler(req, res, next))
@@ -155,7 +155,7 @@ let nudjHandler = (req, res, next) => {
 
 function applyHandler (req, res, next) {
   job
-    .apply(req.params.companySlug, req.params.jobSlugRefId, req.session.person, req.body)
+    .apply(req.params.companySlugJobSlugRefId, req.session.person, req.body)
     .then(getRenderDataBuilder(req, res, next))
     .then(getRenderer(req, res, next))
     .catch(getErrorHandler(req, res, next))
@@ -179,11 +179,12 @@ function signupHandler (req, res, next) {
 
 router.post('/request', requestHandler)
 router.post('/signup', signupHandler)
-router.get('/:companySlug/:jobSlugRefId', jobHandler)
-router.get('/:companySlug/:jobSlugRefId/nudj', ensureLoggedIn, nudjHandler)
-router.post('/:companySlug/:jobSlugRefId/nudj', ensureLoggedIn, nudjHandler)
-router.get('/:companySlug/:jobSlugRefId/apply', ensureLoggedIn, applyHandler)
-router.post('/:companySlug/:jobSlugRefId/apply', ensureLoggedIn, applyHandler)
+router.get('/jobs/:companySlugJobSlugRefId', jobHandler)
+router.get('/jobs/:companySlugJobSlugRefId/nudj', ensureLoggedIn, nudjHandler)
+router.post('/jobs/:companySlugJobSlugRefId/nudj', ensureLoggedIn, nudjHandler)
+router.get('/jobs/:companySlugJobSlugRefId/apply', ensureLoggedIn, applyHandler)
+router.post('/jobs/:companySlugJobSlugRefId/apply', ensureLoggedIn, applyHandler)
+router.get('/:companySlug/:jobSlugRefId', (req, res) => res.redirect(301, `/jobs/${req.params.companySlug}+${req.params.jobSlugRefId}`))
 router.get('*', (req, res) => {
   let data = getRenderDataBuilder(req)({})
   getRenderer(req, res)(data)
