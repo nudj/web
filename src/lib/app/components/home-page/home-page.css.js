@@ -95,7 +95,7 @@ const styles = {
     textAlign: 'center'
   }),
   unknown: {
-    ':after': unknownImageMobile,
+    '::after': unknownImageMobile,
     [mixins.breakpoints.l]: {
       backgroundImage: mixins.linkImage('home-page/hidden-img.svg'),
       backgroundPosition: 'center center',
@@ -106,7 +106,7 @@ const styles = {
     // paddingLeft: '50%'
   }),
   friends: {
-    ':after': merge({
+    '::after': merge({
       marginLeft: variables.padding.d
     }, friendsImageMobile)
   },
@@ -114,14 +114,14 @@ const styles = {
     // paddingRight: '50%'
   }),
   simpleNudj: {
-    ':after': simpleNudjImageMobile
+    '::after': simpleNudjImageMobile
   },
   simpleNudjContainer: mixins.basicContainer({
     textAlign: 'center'
   }),
   heroTitle: merge({}, title, {
     padding: `${variables.padding.b} ${variables.padding.d} 0 ${variables.padding.d}`,
-    ':after': merge({
+    '::after': merge({
       marginLeft: `-${variables.padding.d}`
     }, notHappyImageMobile)
   }),
@@ -179,11 +179,9 @@ const styles = {
     padding: (variables.padding.c + ' ' + variables.padding.a),
     textAlign: 'center'
   }, mixins.headings.h4Light),
-  signupButton: mixins.buttonPrimary({
-    minWidth: '280px'
-  }),
+  signupButton: mixins.buttonPrimary(),
   contact: mixins.buttonSecondary({
-    minWidth: '280px'
+    borderColor: variables.colours.white
   }),
   highlight: {
     color: variables.colours.midRed

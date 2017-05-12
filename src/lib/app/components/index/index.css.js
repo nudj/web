@@ -13,7 +13,8 @@ const styles = {
     zIndex: variables.zIndicies.header
   },
   content: mixins.flexColumn({
-    alignItems: 'stretch'
+    alignItems: 'stretch',
+    minHeight: 'calc(100vh - 400px)'
   }),
   footer: mixins.beforeBackgroundSquiggle('bg-wiggle-charcoal.svg')
 }

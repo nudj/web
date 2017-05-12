@@ -106,6 +106,8 @@ export const sizes = {
   contentMaxWidth: '980px',
   columnWidth: '80',
   formsMaxWidth: '512px',
+  formsInputBorderWidth: '1px',
+  formsInputBorderRadius: '2px',
   paddingWidth: '20',
   radioButtonBorderSize: '20px',
   radioButtonBorderWidth: '2px'

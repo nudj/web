@@ -34,12 +34,6 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    new ExtractTextPlugin({
-      filename: './lib/server/assets/css/app.css',
-      allChunks: true
-    })
-  ],
   resolve: {
     plugins: [
       new DirectoryNamedWebpackPlugin()

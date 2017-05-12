@@ -2,7 +2,9 @@ import css, { merge, mixins, variables } from '../../lib/css'
 
 function titles (xOffset = '0%') {
   const properties = merge(mixins.deLink({
-    color: variables.colours.white
+    color: variables.colours.white,
+    display: 'inline-block',
+    margin: `0 0 ${variables.padding.d} 0`
   }), mixins.headings.h4)
 
   return mixins.afterUnderlineSquiggle('table-line-1.svg', xOffset, properties)
@@ -24,12 +26,23 @@ const styles = {
     color: variables.colours.charcoalTint2,
     padding: `${variables.padding.d} 0 0 0`
   }, mixins.headings.p2),
-  links: mixins.flexColumn(mixins.deList({
-    padding: `0 0 ${variables.padding.c} 0`
+  links: mixins.basicContainer(mixins.deList({
+    padding: `0 0 ${variables.padding.c} 0`,
+    textAlign: 'center',
+    [mixins.breakpoints.l]: {
+      alignItems: 'flex-start',
+      display: 'flex',
+      justifyContent: 'center'
+    }
   })),
   link: {
     color: variables.colours.white,
-    padding: `0 0 ${variables.padding.d} 0`
+    padding: `0 0 ${variables.padding.d} 0`,
+    [mixins.breakpoints.l]: {
+      flexBasis: '0',
+      flexGrow: '1',
+      padding: `0 ${variables.padding.d} ${variables.padding.d} ${variables.padding.d}`
+    }
   },
   release: titles(),
   roadmap: titles('20%'),
@@ -40,7 +53,7 @@ const styles = {
     [mixins.breakpoints.l]: {
       display: 'block'
     }
-  }, mixins.headings.p2)
+  }, mixins.headings.p)
 }
 
 export default css(styles)

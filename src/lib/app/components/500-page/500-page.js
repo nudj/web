@@ -8,7 +8,7 @@ export default (props) => (
     </div>
     <p className={style.header}>Dang-it!</p>
     <p className={style.copy}>That wasn't supposed to happen.</p>
-    <small className={style.error}>Error code: 500</small>
+    <p className={style.error}>Error code: 500</p>
     <p className={style.copy}>An error has occurred and we're working to fix the problem! We’ll be up and running again shortly.</p>
     <p classname={style.copy}>If you need immediate help, then please <a className={style.link} href='' id='open-intercom'>contact us</a>.</p>
   </div>

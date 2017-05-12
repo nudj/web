@@ -18,13 +18,22 @@ const styles = {
   fieldWrapShortEven: mixins.forms.fieldWrapShortEven,
   fieldLabel: mixins.forms.label,
   fieldInput: mixins.forms.inputText,
+  invalidInput: mixins.forms.inputText,
   fieldButtons: mixins.forms.buttonsHolder,
   fieldSubmit: mixins.buttonPrimary(),
-  okHand: {
-    left: `calc(${variables.padding.a} * -1)`,
-    position: 'relative',
-    paddingTop: variables.padding.c,
-    top: variables.padding.b
+  fingersCrossed: {
+    left: '50%',
+    margin: '0 auto',
+    position: 'relative'
+  },
+  thumbsUp: {
+    left: '50%',
+    margin: '0 auto',
+    padding: `0 0 ${variables.padding.c} 0`,
+    position: 'relative'
+  },
+  companyName: {
+    color: variables.colours.midRed
   }
 }
 

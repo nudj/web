@@ -1,5 +1,3 @@
-// import { merge } from '../css'
-
 import { default as merge } from 'lodash/merge'
 
 import * as variables from './variables'
@@ -27,7 +25,8 @@ function createFontFamily (name, properties) {
 function createFont (name, font) {
   const fontFamilies = {}
   for (let variation in font) {
-    fontFamilies[variation] = createFontFamily(name, font[variation])
+    const newName = `${name}-${variation}`
+    fontFamilies[variation] = createFontFamily(newName, font[variation])
   }
   return fontFamilies
 }
@@ -36,7 +35,7 @@ const fonts = {
   jan: createFont('jan', variables.fonts.jan)
 }
 
-export const headings = {
+const headings = {
   h1: {
     fontFamily: [fonts.jan.bold],
     fontSize: variables.fontSizes.f2,
@@ -68,6 +67,7 @@ export const headings = {
   h4Light: {
     fontFamily: [fonts.jan.light],
     fontSize: variables.fontSizes.f5,
+    fontWeight: 'normal',
     [breakpoints.ns]: {
       fontSize: variables.fontSizes.f4
     }
@@ -87,20 +87,34 @@ export const headings = {
     }
   },
   p: {
-    fontFamily: [fonts.jan.regular],
+    fontFamily: [fonts.jan.light],
     fontSize: variables.fontSizes.f6,
+    fontWeight: 'normal',
     [breakpoints.ns]: {
       fontSize: variables.fontSizes.f7
     }
   },
   p2: {
-    fontFamily: [fonts.jan.regular],
+    fontFamily: [fonts.jan.light],
     fontSize: variables.fontSizes.f7,
+    fontWeight: 'normal',
     [breakpoints.ns]: {
       fontSize: variables.fontSizes.f8
     }
   }
 }
+
+headings.pBold = merge({}, headings.p, {
+  fontFamily: [fonts.jan.bold],
+  fontWeight: 'bold'
+})
+
+headings.p2Bold = merge({}, headings.p2, {
+  fontFamily: [fonts.jan.bold],
+  fontWeight: 'bold'
+})
+
+export { headings }
 
 // Layout
 export function basicContainer (properties) {
@@ -139,12 +153,13 @@ export function flexColumn (properties) {
 export function button (properties) {
   const buttonBasic = {
     borderRadius: '9999px',
+    cursor: 'pointer',
     display: 'inline-block',
-    minWidth: variables.sizes.buttonMinWidth,
+    minWidth: `calc(${variables.padding.d} * 10)`,
     padding: `${variables.padding.d} ${variables.padding.c}`,
     textAlign: 'center'
   }
-  return merge({}, deLink(buttonBasic), headings.h6, properties || {})
+  return merge({}, deLink(), buttonBasic, headings.h6, properties || {})
 }
 
 export function buttonPrimary (properties) {
@@ -159,6 +174,7 @@ export function buttonPrimary (properties) {
 export function buttonSecondary (properties) {
   const buttonSecondary = {
     backgroundColor: variables.colours.white,
+    border: `1px solid ${variables.colours.royalBlue}`,
     color: variables.colours.royalBlue
   }
   return merge({}, button(buttonSecondary), properties || {})
@@ -202,24 +218,39 @@ export function makePsuedoElement (properties) {
   return merge({}, psuedoBasic, properties || {})
 }
 
-export function afterUnderlineSquiggle (image, xOffset, properties) {
-  const after = makePsuedoElement({
+function underlineSquiggle (psuedoElementName, image, xOffset, properties) {
+  const psuedoElementProperties = {
     backgroundImage: linkImage(image),
     backgroundPosition: `0% ${xOffset}`,
     backgroundRepeat: 'no-repeat',
-    bottom: `calc(${variables.padding.e} * -1)`,
     height: variables.padding.e,
     left: '0',
     position: 'absolute',
     width: '100%'
-  })
+  }
+
+  if (psuedoElementName === '::after') {
+    psuedoElementProperties.bottom = `calc(${variables.padding.e} * -1)`
+  } else {
+    psuedoElementProperties.top = `calc(${variables.padding.e} * -1)`
+  }
+
+  const psuedoElement = makePsuedoElement(psuedoElementProperties)
 
   const main = {
     position: 'relative',
-    '::after': after
+    [psuedoElementName]: psuedoElement
   }
 
   return merge({}, main, properties || {})
+}
+
+export function afterUnderlineSquiggle (image, xOffset, properties) {
+  return underlineSquiggle('::after', image, xOffset, properties)
+}
+
+export function beforeUnderlineSquiggle (image, xOffset, properties) {
+  return underlineSquiggle('::before', image, xOffset, properties)
 }
 
 export function beforeBackgroundSquiggle (image, properties) {
@@ -272,7 +303,12 @@ export const typography = {
     color: variables.colours.charcoal,
     margin: `0 0 ${variables.padding.c} 0`,
     textAlign: 'center'
-  }, headings.h4Light)
+  }, headings.h4Light),
+  copy: merge({
+    color: variables.colours.charcoal,
+    margin: `0 0 ${variables.padding.d} 0`,
+    textAlign: 'center'
+  }, headings.p)
 }
 
 // Form-related
@@ -308,7 +344,8 @@ export const forms = {
   fieldWrap: fieldWrap,
   fieldWrapContainer: basicContainerSmaller({
     display: 'flex',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    paddingBottom: variables.padding.c
   }),
   fieldWrapShortEven: merge({
     [breakpoints.ns]: merge({
@@ -337,11 +374,14 @@ export const forms = {
   // Helpers
   helperText: merge({
     color: variables.colours.charcoalTint2,
-    textAlign: 'center'
+    textAlign: 'center',
+    margin: `0 0 ${variables.padding.d} 0`
   }, headings.p),
   // Inputs
   inputText: merge({
     backgroundColor: variables.colours.white,
+    border: `${variables.sizes.formsInputBorderWidth} solid ${variables.colours.moonGrey}`,
+    borderRadius: variables.sizes.formsInputBorderRadius,
     color: variables.colours.royalBlue,
     padding: variables.padding.d,
     width: '100%',

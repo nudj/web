@@ -16,7 +16,9 @@ const Status = ({ code, children }) => (
 
 const Component = (props) => {
   return get(props, 'error') ? (
-    <Status code={get(props, 'error.code')} />
+    <Status code={get(props, 'error.code')}>
+      <PageNotFound {...props} />
+    </Status>
   ) : (
     <Switch>
       <Route exact path='/' component={HomePage} />
@@ -27,7 +29,9 @@ const Component = (props) => {
       <Route exact path='/jobs/:companySlugJobSlugRefId/apply' component={ApplyPage} />
       <Route exact path='/jobs/:companySlugJobSlugRefId/nudj' component={NudjPage} />
       <Route render={(props) => (
-        <Status code={404} />
+        <Status code={404}>
+          <PageNotFound {...props} />
+        </Status>
       )} />
     </Switch>
   )

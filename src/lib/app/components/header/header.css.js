@@ -109,6 +109,8 @@ const styles = {
   }), mixins.headings.h6),
   request: mixins.buttonPrimary({
     display: 'none',
+    marginLeft: variables.padding.d,
+    minWidth: 'inherit',
     [mixins.breakpoints.l]: {
       display: 'block'
     }
@@ -138,20 +140,20 @@ const styles = {
     width: variables.padding.d
   },
   hamburger: merge({
-    ':after': innerBurger,
-    ':before': innerBurger
+    '::after': innerBurger,
+    '::before': innerBurger
   }, innerBurger),
   hamburgerIsActive: merge({
-    ':after': innerBurger,
-    ':before': innerBurger
+    '::after': innerBurger,
+    '::before': innerBurger
   }, innerBurger),
   hamburgerLight: merge({
-    ':after': innerBurgerColour,
-    ':before': innerBurgerColour
+    '::after': innerBurgerColour,
+    '::before': innerBurgerColour
   }, innerBurgerColour),
   hamburgerIsActiveLight: merge({
-    ':after': innerBurgerColour,
-    ':before': innerBurgerColour
+    '::after': innerBurgerColour,
+    '::before': innerBurgerColour
   }, innerBurgerColour)
 }
 
