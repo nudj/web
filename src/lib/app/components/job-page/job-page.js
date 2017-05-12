@@ -98,7 +98,7 @@ const Component = (props) => {
         <ul className={style.list}>
           {get(props, 'job.related', []).map((related) => <li className={style.relatedJob} key={related.title.split(' ').join('-')}>
             <p className={style.jobTitle}>{related.title} @ <span className={style.red}>{related.companyName}</span></p>
-            <a className={style.bodyLinks} href={related.url}>View job ></a>
+            <a className={style.bodyLinks} href={`/jobs/${related.companySlug}+${related.slug}`}>View job ></a>
           </li>)}
         </ul>
       </section>

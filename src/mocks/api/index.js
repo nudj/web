@@ -61,7 +61,8 @@ dummyData.jobs = dummyData.jobs.concat([
     companyId: '2',
     related: [
       {
-        url: '/bulb/operations-strategy-analyst',
+        companySlug: 'bulb',
+        slug: 'operations-strategy-analyst',
         title: 'Operations Strategy Analyst',
         location: 'London'
       }
@@ -87,7 +88,8 @@ dummyData.jobs = dummyData.jobs.concat([
     companyId: '99',
     related: [
       {
-        url: '/bulb/operations-strategy-analyst',
+        companySlug: 'bulb',
+        slug: 'operations-strategy-analyst',
         title: 'Operations Strategy Analyst',
         location: 'London'
       }
