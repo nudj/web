@@ -68,6 +68,7 @@ const styles = {
     marginTop: `calc(${variables.padding.b} * -1)`
   },
   story: mixins.deList(),
+  // Not happy
   hero: {
     backgroundImage: mixins.linkImage('home-page/clouds-small.svg'),
     backgroundRepeat: 'no-repeat',
@@ -87,36 +88,14 @@ const styles = {
   notHappy: {
     position: 'relative',
     [mixins.breakpoints.l]: {
-      minHeight: '500px' // ?
+      backgroundImage: mixins.linkImage('home-page/unhappy-img.svg'),
+      backgroundPosition: 'bottom center',
+      backgroundRepeat: 'no-repeat',
+      paddingBottom: '400px' // random number?
     }
   },
   notHappyContainer: mixins.basicContainer({
     padding: 0,
-    textAlign: 'center'
-  }),
-  unknown: {
-    '::after': unknownImageMobile,
-    [mixins.breakpoints.l]: {
-      backgroundImage: mixins.linkImage('home-page/hidden-img.svg'),
-      backgroundPosition: 'center center',
-      backgroundSize: '100%'
-    }
-  },
-  unknownContainer: mixins.basicContainer({
-    // paddingLeft: '50%'
-  }),
-  friends: {
-    '::after': merge({
-      marginLeft: variables.padding.d
-    }, friendsImageMobile)
-  },
-  friendsContainer: mixins.basicContainer({
-    // paddingRight: '50%'
-  }),
-  simpleNudj: {
-    '::after': simpleNudjImageMobile
-  },
-  simpleNudjContainer: mixins.basicContainer({
     textAlign: 'center'
   }),
   heroTitle: merge({}, title, {
@@ -125,8 +104,55 @@ const styles = {
       marginLeft: `-${variables.padding.d}`
     }, notHappyImageMobile)
   }),
-  unknownTitle: title,
-  friendsTitle: title,
+  // Unknown
+  unknown: {
+    '::after': unknownImageMobile,
+    [mixins.breakpoints.l]: {
+      backgroundImage: mixins.linkImage('home-page/hidden-img.svg'),
+      backgroundPosition: 'center center',
+      backgroundRepeat: 'no-repeat',
+      padding: `calc(${variables.padding.d} * 10) 0`
+    }
+  },
+  unknownContainer: mixins.basicContainer(),
+  unknownTitle: merge({}, title, {
+    [mixins.breakpoints.l]: {
+      paddingLeft: `calc(50% + ${variables.padding.d})`,
+      textAlign: 'left'
+    }
+  }),
+  // Their friends...
+  friends: {
+    '::after': merge({
+      marginLeft: variables.padding.d
+    }, friendsImageMobile),
+    [mixins.breakpoints.l]: {
+      backgroundImage: mixins.linkImage('home-page/pointing-hands.svg'),
+      backgroundPosition: 'center right',
+      backgroundRepeat: 'no-repeat',
+      padding: `calc(${variables.padding.d} * 10) 0`
+    }
+  },
+  friendsContainer: mixins.basicContainer(),
+  friendsTitle: merge({}, title, {
+    [mixins.breakpoints.l]: {
+      padding: `0 calc(50% + ${variables.padding.d}) 0 0`,
+      textAlign: 'left'
+    }
+  }),
+  // Simple nudj
+  simpleNudj: {
+    '::after': simpleNudjImageMobile,
+    [mixins.breakpoints.l]: {
+      backgroundImage: mixins.linkImage('home-page/fist-bump.svg'),
+      backgroundPosition: `center calc(100% - ${variables.padding.b})`,
+      backgroundRepeat: 'no-repeat',
+      padding: `0 0 calc(${variables.padding.d} * 18) 0`
+    }
+  },
+  simpleNudjContainer: mixins.basicContainer({
+    textAlign: 'center'
+  }),
   how: mixins.makeGreyBackground(),
   nudjTitle: title,
   bodyTitle: merge({
@@ -139,6 +165,10 @@ const styles = {
       display: 'flex',
       flexWrap: 'wrap',
       justifyContent: 'center'
+    },
+    [mixins.breakpoints.l]: {
+      // Might need to be wider?
+      maxWidth: variables.breakpoints.large
     }
   }),
   stepOne: howStep,
