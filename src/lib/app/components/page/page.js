@@ -4,6 +4,13 @@ import { withRouter, Switch, Route } from 'react-router-dom'
 import get from 'lodash/get'
 
 import HomePage from '../home-page'
+import RequestPage from '../request-page'
+import SignupPage from '../signup-page'
+import HirerPage from '../hirer-page'
+import JobPage from '../job-page'
+import ApplyPage from '../apply-page'
+import NudjPage from '../nudj-page'
+import PageNotFound from '../404-page'
 
 const Status = ({ code, children }) => (
   <Route render={({ staticContext }) => {

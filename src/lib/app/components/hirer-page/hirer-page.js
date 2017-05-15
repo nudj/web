@@ -52,43 +52,41 @@ const Component = (props) => (
       </ul>
     </section>
     <section className={style.compare}>
-<<<<<<< HEAD
-      <div className={style.flexColumn}>
-        <div className={style.header}>
-          <h2 className={style.bodyTitle}><span className={style.compareUnderline}>How we compare</span></h2>
-          <p className={style.bodySubtitle}>Anyone can say they're the best, so we'll just let the numbers do the talking.</p>
-        </div>
-        <table className={style.table}>
-          <thead>
-            <tr className={style.tableHeaderRow}>
-              <th className={style.tableHeaderFirst} />
-              <th className={style.tableHeader}>Recruiter</th>
-              <th className={style.tableHeader}>Job Boards</th>
-              <th className={style.tableHeader}>nudj<span className={style.red}>*</span></th>
-            </tr>
-          </thead>
-          <tbody className={style.tableBody}>
-            <tr className={style.tableRow}>
-              <td className={style.tableLeft}>Cost of Hire</td>
-              <td className={style.tableItem}>£5,000</td>
-              <td className={style.tableItem}>£250</td>
-              <td className={style.tableItemNudj}>£750</td>
-            </tr>
-            <tr className={style.tableRow}>
-              <td className={style.tableLeft}>Time to Hire</td>
-              <td className={style.tableItem}>55 Days</td>
-              <td className={style.tableItem}>56 Days</td>
-              <td className={style.tableItemNudj}>20 Days</td>
-            </tr>
-            <tr className={style.tableRow}>
-              <td className={style.tableLeftFinal}>Fill Rate</td>
-              <td className={style.tableItem}>18%</td>
-              <td className={style.tableItem}>15%</td>
-              <td className={style.tableItemNudj}>56%</td>
-            </tr>
-          </tbody>
-        </table>
-        <p className={style.bodyNudj}>*based on tests with these lovely people.</p>
+      <div className={style.header}>
+        <h2 className={style.bodyTitle}><span className={style.compareUnderline}>How we compare</span></h2>
+        <p className={style.bodySubtitle}>Anyone can say they're the best, so we'll just let the numbers do the talking.</p>
+      </div>
+      <table className={style.table}>
+        <thead>
+          <tr className={style.tableHeaderRow}>
+            <th className={style.tableHeaderFirst} />
+            <th className={style.tableHeader}>Recruiter</th>
+            <th className={style.tableHeader}>Job Boards</th>
+            <th className={style.tableHeader}>nudj<span className={style.red}>*</span></th>
+          </tr>
+        </thead>
+        <tbody className={style.tableBody}>
+          <tr className={style.tableRow}>
+            <td className={style.tableLeft}>Cost of Hire</td>
+            <td className={style.tableItem}>£5,000</td>
+            <td className={style.tableItem}>£250</td>
+            <td className={style.tableItemNudj}>£750</td>
+          </tr>
+          <tr className={style.tableRow}>
+            <td className={style.tableLeft}>Time to Hire</td>
+            <td className={style.tableItem}>55 Days</td>
+            <td className={style.tableItem}>56 Days</td>
+            <td className={style.tableItemNudj}>20 Days</td>
+          </tr>
+          <tr className={style.tableRow}>
+            <td className={style.tableLeftFinal}>Fill Rate</td>
+            <td className={style.tableItem}>18%</td>
+            <td className={style.tableItem}>15%</td>
+            <td className={style.tableItemNudj}>56%</td>
+          </tr>
+        </tbody>
+      </table>
+      <p className={style.bodyNudj}>*based on tests with these lovely people.</p>
     </section>
     <section className={style.clients}>
       <div className={style.logoWrapper}>

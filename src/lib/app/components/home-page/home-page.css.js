@@ -59,6 +59,7 @@ const styles = {
     marginTop: `calc(${variables.padding.b} * -1)`
   },
   story: mixins.deList(),
+  typeout: mixins.textHighlight(),
   // Not happy
   hero: {
     backgroundImage: mixins.linkImage('home-page/clouds-small.svg'),
