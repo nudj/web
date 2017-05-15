@@ -44,14 +44,14 @@ const unknownImageRatio = 150 / 248
 const unknownImageMobile = homeImages(unknownImagePath, unknownImageRatio)
 
 const friendsImagePath = 'home-page/pointing-hands.svg'
-const friendsImageRatio = 312 / 807
-const friendsImageZoomMobile = 1.25
+const friendsImageRatio = 387 / 1846
+const friendsImageZoomMobile = 2.5
 const friendsImagePosition = 'bottom left'
 const friendsImageMobile = homeImages(friendsImagePath, friendsImageRatio, friendsImageZoomMobile, friendsImagePosition)
 
 const simpleNudjImagePath = 'home-page/fist-bump.svg'
-const simpleNudjImageRatio = 32 / 300
-const simpleNudjImageZoomMobile = 2
+const simpleNudjImageRatio = 167 / 2441
+const simpleNudjImageZoomMobile = 2.5
 const simpleNudjImageMobile = homeImages(simpleNudjImagePath, simpleNudjImageRatio, simpleNudjImageZoomMobile)
 
 const styles = {
@@ -63,17 +63,12 @@ const styles = {
   hero: {
     backgroundImage: mixins.linkImage('home-page/clouds-small.svg'),
     backgroundRepeat: 'no-repeat',
-    backgroundSize: 'contain',
-    backgroundPosition: '50% 3%',
-    padding: `${variables.padding.b} 0 ${variables.padding.c} 0`, // ?
+    backgroundSize: 'auto',
+    backgroundPosition: 'top center',
+    padding: `${variables.padding.b} 0 ${variables.padding.c} 0`,
     [mixins.breakpoints.ns]: {
-      backgroundPosition: '100% 5%',
-      paddingTop: '290px' // ? padding
-    },
-    [mixins.breakpoints.l]: {
       backgroundImage: mixins.linkImage('home-page/clouds.svg'),
-      backgroundSize: 'auto',
-      backgroundPosition: 'top center'
+      paddingTop: '290px'
     }
   },
   notHappy: {
@@ -114,15 +109,24 @@ const styles = {
   }),
   // Their friends...
   friends: {
-    '::after': merge({
-      marginLeft: variables.padding.d
-    }, friendsImageMobile),
+    position: 'relative',
     [mixins.breakpoints.l]: {
-      backgroundImage: mixins.linkImage('home-page/pointing-hands.svg'),
-      backgroundPosition: 'center right',
-      backgroundRepeat: 'no-repeat',
       padding: `calc(${variables.padding.d} * 10) 0`
-    }
+    },
+    '::after': merge({}, friendsImageMobile, {
+      marginLeft: '25vw',
+      [mixins.breakpoints.l]: {
+        backgroundPosition: 'left center',
+        backgroundSize: 'auto',
+        display: 'block',
+        height: '100%',
+        left: '50%',
+        margin: '0',
+        position: 'absolute',
+        top: '0',
+        width: '50%'
+      }
+    })
   },
   friendsContainer: mixins.basicContainer(),
   friendsTitle: merge({}, title, {
@@ -133,6 +137,7 @@ const styles = {
   }),
   // Simple nudj
   simpleNudj: {
+    paddingBottom: variables.padding.b,
     '::after': simpleNudjImageMobile,
     [mixins.breakpoints.l]: {
       backgroundImage: mixins.linkImage('home-page/fist-bump.svg'),
@@ -197,8 +202,8 @@ const styles = {
   highlight: mixins.textHighlight(),
   oppositeBreak: {
     display: 'none',
-    [mixins.breakpoints.m]: {
-      display: 'inline-block'
+    [mixins.breakpoints.l]: {
+      display: 'block'
     }
   },
   standardBreak: {

@@ -29,7 +29,7 @@ const styles = {
   links: mixins.basicContainer(mixins.deList({
     padding: `0 0 ${variables.padding.c} 0`,
     textAlign: 'center',
-    [mixins.breakpoints.m]: {
+    [mixins.breakpoints.ns]: {
       alignItems: 'flex-start',
       display: 'flex',
       flexWrap: 'wrap',
@@ -42,7 +42,7 @@ const styles = {
   link: {
     color: variables.colours.white,
     padding: `0 0 ${variables.padding.d} 0`,
-    [mixins.breakpoints.m]: {
+    [mixins.breakpoints.ns]: {
       padding: `0 ${variables.padding.d} ${variables.padding.d} ${variables.padding.d}`,
       width: '50%'
     },
@@ -58,7 +58,7 @@ const styles = {
   terms: titles('60%'),
   label: merge({
     display: 'none',
-    [mixins.breakpoints.m]: {
+    [mixins.breakpoints.ns]: {
       display: 'block'
     }
   }, mixins.headings.p)

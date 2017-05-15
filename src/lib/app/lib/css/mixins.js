@@ -5,7 +5,6 @@ import * as variables from './variables'
 // Breakpoints
 export const breakpoints = {
   ns: `@media screen and (min-width: ${variables.breakpoints.medium})`,
-  m: `@media screen and (min-width: ${variables.breakpoints.medium})`,
   l: `@media screen and (min-width: ${variables.breakpoints.large})`
 }
 

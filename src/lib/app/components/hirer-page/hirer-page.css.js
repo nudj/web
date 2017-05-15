@@ -213,7 +213,7 @@ const styles = {
     padding: `${variables.padding.c} 0 ${variables.padding.b} 0`
   }),
   logoWrapper: mixins.basicContainer({
-    [mixins.breakpoints.m]: {
+    [mixins.breakpoints.ns]: {
       alignItems: 'center',
       display: 'flex',
       justifyContent: 'space-around'
@@ -223,7 +223,7 @@ const styles = {
     display: 'block',
     maxWidth: '250px', // ?
     width: '100%',
-    [mixins.breakpoints.m]: {
+    [mixins.breakpoints.ns]: {
       maxWidth: 'none',
       padding: `0 ${variables.padding.d}`,
       width: '33.3%'
