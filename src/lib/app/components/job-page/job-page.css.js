@@ -74,9 +74,7 @@ const styles = {
   content: {
     width: '100%'
   },
-  red: {
-    color: variables.colours.midRed
-  },
+  red: mixins.textHighlight(),
   break: {
     display: 'none',
     [mixins.breakpoints.ns]: {
@@ -99,9 +97,7 @@ const styles = {
     margin: '0',
     padding: `0 0 ${variables.padding.b} 0`
   }),
-  brandName: {
-    color: variables.colours.midRed
-  },
+  brandName: mixins.textHighlight(),
   infoContainer: infoContainer,
   infoContainerWithSeparator: merge({}, mixins.afterUnderlineSquiggle('grey-wiggle-line.svg'), {
     '::after': {
@@ -134,9 +130,7 @@ const styles = {
   actionOdd: infoCellOdd,
   whyEven: infoCellEven,
   actionEven: infoCellEven,
-  link: merge({
-    color: variables.colours.midRed
-  }, copy),
+  link: mixins.textHighlight(copy),
   apply: mixins.buttonPrimary(),
   applied: {},
   nudj: mixins.buttonSecondary({
@@ -164,8 +158,7 @@ const styles = {
     }
   },
   jobTitle: titles,
-  bodyLinks: merge({}, copy, mixins.headings.pBold, {
-    color: variables.colours.midRed,
+  bodyLinks: merge({}, copy, mixins.headings.pBold, mixins.textHighlight(), {
     textDecoration: 'none'
   }),
   breakLine: {}

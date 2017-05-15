@@ -101,6 +101,14 @@ const headings = {
     [breakpoints.ns]: {
       fontSize: variables.fontSizes.f8
     }
+  },
+  small: {
+    fontFamily: [fonts.jan.light],
+    fontSize: variables.fontSizes.f9,
+    fontWeight: 'normal',
+    [breakpoints.ns]: {
+      fontSize: variables.fontSizes.f9
+    }
   }
 }
 
@@ -178,6 +186,12 @@ export function buttonSecondary (properties) {
     color: variables.colours.royalBlue
   }
   return merge({}, button(buttonSecondary), properties || {})
+}
+
+export function buttonSecondaryBorderless (properties = {}) {
+  return buttonSecondary(merge({
+    borderColor: variables.colours.white
+  }, properties))
 }
 
 // Utility
@@ -292,8 +306,66 @@ export function makeGreyBackground (properties = {}) {
   return merge({}, greyBackgroundBase, properties)
 }
 
+export function makeOrangeBackground (properties = {}) {
+  const orangeBackgroundBase = flexColumn(beforeBackgroundSquiggle('bg-wiggle-mid-red.svg', {
+    backgroundColor: variables.colours.midRed
+  }))
+
+  return merge({}, orangeBackgroundBase, properties)
+}
+
+function makeWobbleBox (image) {
+  return {
+    backgroundImage: linkImage(image),
+    backgroundPosition: 'center center',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'contain',
+    margin: `${variables.padding.d} 0 0 0`,
+    padding: variables.padding.c,
+    textAlign: 'center'
+  }
+}
+
+export function makeRoyalBlueWobbleBox (properties = {}) {
+  return merge(makeWobbleBox('blue-wobbly-box.svg'), properties)
+}
+
+export function makeGreyWobbleBox (properties = {}) {
+  return merge(makeWobbleBox('grey-wobble-box-mobile.svg'), properties)
+}
+
+export function makeOr (properties = {}) {
+  return merge({
+    backgroundImage: linkImage('cta-separator-line.svg'),
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    color: variables.colours.white,
+    display: 'block',
+    padding: (variables.padding.c + ' ' + variables.padding.a),
+    textAlign: 'center'
+  }, headings.p, properties)
+}
+
+function subtitleUnderline (image, backgroundColour) {
+  return {
+    backgroundImage: linkImage('table-line-1.svg'),
+    backgroundPosition: 'bottom center',
+    backgroundRepeat: 'no-repeat',
+    display: 'inline-block',
+    marginBottom: `calc(${variables.padding.d} - 2px)`,
+    paddingBottom: '2px',
+    textAlign: 'center',
+    textShadow: `-2px 0px ${backgroundColour}, -2px 2px ${backgroundColour}, 2px -2px ${backgroundColour}, 2px 2px ${backgroundColour}`
+  }
+}
+
+export function makeOrangeSubtitleUnderline (properties = {}) {
+  const underline = subtitleUnderline('table-line-1.svg', variables.colours.white)
+  return merge(underline, properties)
+}
+
 // Generic typography
-export const typography = {
+const typography = {
   title: merge({
     color: variables.colours.royalBlue,
     padding: `0 0 ${variables.padding.d} 0`,
@@ -309,6 +381,18 @@ export const typography = {
     margin: `0 0 ${variables.padding.d} 0`,
     textAlign: 'center'
   }, headings.p)
+}
+
+typography.titleWhite = merge({}, typography.title, {
+  color: variables.colours.white
+})
+
+export { typography }
+
+export function textHighlight (properties = {}) {
+  return merge({}, {
+    color: variables.colours.midRed
+  }, properties)
 }
 
 // Form-related

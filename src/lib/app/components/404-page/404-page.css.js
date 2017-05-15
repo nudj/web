@@ -14,10 +14,9 @@ const styles = {
     padding: `${variables.padding.d} 0`,
     textAlign: 'center'
   },
-  links: merge({
-    color: variables.colours.midRed,
+  links: merge(mixins.textHighlight({
     margin: variables.padding.e
-  }, mixins.headings.pBold)
+  }), mixins.headings.pBold)
 }
 
 export default css(styles)

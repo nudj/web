@@ -16,15 +16,7 @@ const styles = {
   }),
   box: mixins.basicContainerSmaller(),
   heading: merge({}, mixins.typography.title),
-  tip: {
-    backgroundImage: mixins.linkImage('grey-wobble-box-mobile.svg'),
-    backgroundPosition: 'center center',
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'contain',
-    margin: `${variables.padding.d} 0 0 0`,
-    padding: variables.padding.c,
-    textAlign: 'center'
-  },
+  tip: mixins.makeGreyWobbleBox(),
   tipTitle: merge({}, mixins.typography.subtitle, {
     marginBottom: variables.padding.e
   }),

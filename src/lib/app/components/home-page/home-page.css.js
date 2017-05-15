@@ -1,21 +1,12 @@
 import css, { merge, mixins, variables } from '../../lib/css'
 
-const title = merge({
-  color: variables.colours.royalBlue,
-  margin: '0',
-  padding: `${variables.padding.c} 0 ${variables.padding.d} 0`,
-  textAlign: 'center'
-}, mixins.headings.h2)
+const title = merge({}, mixins.typography.title, {
+  padding: `${variables.padding.c} 0 ${variables.padding.d} 0`
+})
 
 const subtitle = merge({
-  color: variables.colours.royalBlue,
-  margin: '0'
-}, mixins.headings.h4) // ??
-
-const body = merge({
-  color: variables.colours.charcoal,
-  margin: '0'
-}, mixins.headings.p)
+  color: variables.colours.royalBlue
+}, mixins.headings.h4)
 
 const howStep = mixins.flexColumn({
   padding: `0 ${variables.padding.d} ${variables.padding.c} ${variables.padding.d}`,
@@ -181,7 +172,7 @@ const styles = {
   stepTitle: merge({
     padding: `${variables.padding.d} 0 ${variables.padding.f} 0`
   }, subtitle),
-  stepBody: body,
+  stepBody: mixins.typography.copy,
   basicContainer: mixins.basicContainer(),
   signup: mixins.beforeBackgroundSquiggle('bg-wiggle-mid-red.svg', {
     backgroundColor: variables.colours.midRed,
@@ -200,22 +191,10 @@ const styles = {
   cta: mixins.flexColumn({
     padding: `0 ${variables.padding.c}`
   }),
-  or: merge({
-    backgroundImage: mixins.linkImage('cta-separator-line.svg'),
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    color: variables.colours.white,
-    display: 'block',
-    padding: (variables.padding.c + ' ' + variables.padding.a),
-    textAlign: 'center'
-  }, mixins.headings.h4Light),
+  or: mixins.makeOr(),
   signupButton: mixins.buttonPrimary(),
-  contact: mixins.buttonSecondary({
-    borderColor: variables.colours.white
-  }),
-  highlight: {
-    color: variables.colours.midRed
-  },
+  contact: mixins.buttonSecondaryBorderless(),
+  highlight: mixins.textHighlight(),
   oppositeBreak: {
     display: 'none',
     [mixins.breakpoints.m]: {

@@ -32,9 +32,7 @@ const styles = {
     padding: `0 0 ${variables.padding.c} 0`,
     position: 'relative'
   },
-  companyName: {
-    color: variables.colours.midRed
-  }
+  companyName: mixins.textHighlight()
 }
 
 export default css(styles)
