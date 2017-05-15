@@ -17,7 +17,7 @@ const styles = {
   content: merge(mixins.basicContainer({
     padding: `${variables.padding.e} ${variables.padding.c}`,
     [mixins.breakpoints.ns]: {
-      padding: `${variables.padding.e} 0`,
+      padding: `${variables.padding.e} 0`
     }
   }), mixins.headings.p),
   successContent: {
