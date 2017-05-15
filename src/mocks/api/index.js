@@ -91,7 +91,8 @@ dummyData.jobs = dummyData.jobs.concat([
         companySlug: 'bulb',
         slug: 'operations-strategy-analyst',
         title: 'Operations Strategy Analyst',
-        location: 'London'
+        location: 'London',
+        companyName: 'Fake Company'
       }
     ]
   }
