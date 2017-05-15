@@ -102,12 +102,13 @@ export const fontSizes = {
 }
 
 export const sizes = {
+  buttonBorderWidth: '2px',
   buttonMinWidth: '200px',
   contentMaxWidth: '980px',
   columnWidth: '80',
   formsMaxWidth: '512px',
   formsInputBorderWidth: '1px',
-  formsInputBorderRadius: '2px',
+  formsInputBorderRadius: '4px',
   paddingWidth: '20',
   radioButtonBorderSize: '20px',
   radioButtonBorderWidth: '2px'

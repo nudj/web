@@ -33,6 +33,24 @@ const navBarConstantBase = {
   }
 }
 
+const link = merge({}, mixins.deLink({
+  color: variables.colours.royalBlue,
+  display: 'none',
+  padding: variables.padding.d,
+  [mixins.breakpoints.l]: {
+    display: 'block'
+  }
+}), mixins.headings.h6)
+
+const request = mixins.buttonPrimary({
+  display: 'none',
+  marginLeft: variables.padding.d,
+  minWidth: 'inherit',
+  [mixins.breakpoints.l]: {
+    display: 'block'
+  }
+})
+
 const navBarConstant = mixins.makeTransition({
   properties: ['transform'],
   details: variables.transitions.bouncey
@@ -99,22 +117,11 @@ const styles = {
     pointerEvents: 'all',
     transform: 'translate3d(0, 0, 0)'
   }, navBarConstant),
-  link: merge({}, mixins.deLink({
-    color: variables.colours.royalBlue,
-    display: 'none',
-    padding: variables.padding.d,
-    [mixins.breakpoints.l]: {
-      display: 'block'
-    }
-  }), mixins.headings.h6),
-  request: mixins.buttonPrimary({
-    display: 'none',
-    marginLeft: variables.padding.d,
-    minWidth: 'inherit',
-    [mixins.breakpoints.l]: {
-      display: 'block'
-    }
+  link: link,
+  linkLight: merge({}, link, {
+    color: variables.colours.white
   }),
+  request: request,
   linkMobile: merge({}, mixins.deLink({
     color: variables.colours.white,
     display: 'inline-block',

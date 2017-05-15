@@ -182,7 +182,7 @@ export function buttonPrimary (properties) {
 export function buttonSecondary (properties) {
   const buttonSecondary = {
     backgroundColor: variables.colours.white,
-    border: `1px solid ${variables.colours.royalBlue}`,
+    border: `${variables.sizes.buttonBorderWidth} solid ${variables.colours.royalBlue}`,
     color: variables.colours.royalBlue
   }
   return merge({}, button(buttonSecondary), properties || {})
@@ -191,6 +191,14 @@ export function buttonSecondary (properties) {
 export function buttonSecondaryBorderless (properties = {}) {
   return buttonSecondary(merge({
     borderColor: variables.colours.white
+  }, properties))
+}
+
+export function buttonSecondaryTransparent (properties = {}) {
+  return buttonSecondary(merge({
+    backgroundColor: 'none',
+    borderColor: variables.colours.white,
+    color: variables.colours.white
   }, properties))
 }
 
@@ -364,6 +372,16 @@ export function makeOrangeSubtitleUnderline (properties = {}) {
   return merge(underline, properties)
 }
 
+export function makeOrangeSubtitleUnderlineOnGrey (properties = {}) {
+  const underline = subtitleUnderline('table-line-1.svg', variables.colours.lighterGrey)
+  return merge(underline, properties)
+}
+
+export function makeOrangeSubtitleUnderlineOnDarkGrey (properties = {}) {
+  const underline = subtitleUnderline('table-line-1.svg', variables.colours.charcoal)
+  return merge(underline, properties)
+}
+
 // Generic typography
 const typography = {
   title: merge({
@@ -416,7 +434,7 @@ const formRadioPrettyLabelChecked = makePsuedoElement({
   width: formRadioPrettyLabelCheckedSize
 })
 
-export const forms = {
+const forms = {
   // Containers
   buttonsHolder: {
     textAlign: 'center'
@@ -455,12 +473,6 @@ export const forms = {
       width: '50%'
     }
   },
-  // Helpers
-  helperText: merge({
-    color: variables.colours.charcoalTint2,
-    textAlign: 'center',
-    margin: `0 0 ${variables.padding.d} 0`
-  }, headings.p),
   // Inputs
   inputText: merge({
     backgroundColor: variables.colours.white,
@@ -500,3 +512,7 @@ export const forms = {
     cursor: 'pointer'
   }, headings.p2)
 }
+
+forms.helperText = merge({}, forms.label)
+
+export { forms }

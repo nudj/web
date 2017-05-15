@@ -31,16 +31,7 @@ const subtitleWhite = merge({}, subtitle, {
   color: variables.colours.white
 })
 
-const subtitleUnderline = {
-  backgroundImage: mixins.linkImage('table-line-1.svg'),
-  backgroundPosition: 'bottom center',
-  backgroundRepeat: 'no-repeat',
-  display: 'inline-block',
-  marginBottom: `calc(${variables.padding.d} - 2px)`,
-  paddingBottom: '2px',
-  textAlign: 'center',
-  textShadow: `-2px 0px ${variables.colours.white}, -2px 2px ${variables.colours.white}, 2px -2px ${variables.colours.white}, 2px 2px ${variables.colours.white}`
-}
+const subtitleUnderline = mixins.makeOrangeSubtitleUnderline()
 
 const stepContainer = mixins.basicContainer({
   padding: `${variables.padding.c} ${variables.padding.d} 0 ${variables.padding.d}`,
@@ -99,9 +90,10 @@ const tableUnderline = mixins.afterUnderlineSquiggle('table-line-1.svg', '0%', {
 })
 
 const tableHeaderFirst = merge({}, tableCellBold, tableUnderline)
-const tableCellLeft = merge({}, tableCell, tableUnderline, {
+const tableCellLeftFinal = merge({}, tableCell, {
   textAlign: 'left'
 })
+const tableCellLeft = merge({}, tableCellLeftFinal, tableUnderline)
 
 const styles = {
   body: {
@@ -210,10 +202,11 @@ const styles = {
   },
   tableRow: {},
   tableLeft: tableCellLeft,
+  tableLeftFinal: tableCellLeftFinal,
   tableItem: tableCell,
   tableItemNudj: tableCellBold,
   bodyNudj: merge(mixins.textHighlight({
-    padding: `${variables.padding.c} 0`,
+    padding: `${variables.padding.d} 0`,
     textAlign: 'center'
   }), mixins.headings.small),
   clients: mixins.makeGreyBackground({
@@ -231,12 +224,13 @@ const styles = {
     maxWidth: '250px', // ?
     width: '100%',
     [mixins.breakpoints.m]: {
-      maxWidth: 'auto',
+      maxWidth: 'none',
+      padding: `0 ${variables.padding.d}`,
       width: '33.3%'
     }
   },
   pricing: mixins.makeOrangeBackground({
-    padding: `${variables.padding.c} 0`
+    padding: `${variables.padding.b} 0 ${variables.padding.c} 0`
   }),
   pricingContainer: mixins.flexColumn(mixins.basicContainer({
     textAlign: 'center',
@@ -253,7 +247,7 @@ const styles = {
   }),
   or: mixins.makeOr(),
   signup: mixins.buttonPrimary(),
-  contact: mixins.buttonSecondaryBorderless()
+  contact: mixins.buttonSecondaryTransparent()
 }
 
 export default css(styles)

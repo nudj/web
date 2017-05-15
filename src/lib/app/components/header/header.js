@@ -138,8 +138,15 @@ class Component extends React.Component {
   }
 
   renderNavLinks (mobile = false) {
-    const linkStyle = mobile ? style.linkMobile : style.link
+    let linkStyleName = mobile ? 'linkMobile' : 'link'
+
+    if (lightLogoPages.includes(this.props.location.pathname) && !mobile) {
+      linkStyleName += 'Light'
+    }
+
+    const linkStyle = style[linkStyleName]
     const requestStyle = mobile ? style.requestMobile : style.request
+
     const about = (<a href='http://help.nudj.co' className={linkStyle} onClick={this.onClickLink.bind(this)} key='0'>About</a>)
     const companies = (<a href='/hiring' className={linkStyle} onClick={this.onClickLink.bind(this)} key='1'>Companies</a>)
     const getInTouch = (<a href='' id='open-intercom' className={requestStyle} onClick={this.onClickLink.bind(this)} key='2'>Get in touch</a>)

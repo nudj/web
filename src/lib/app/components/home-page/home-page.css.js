@@ -178,7 +178,7 @@ const styles = {
     backgroundColor: variables.colours.midRed,
     paddingBottom: variables.padding.b
   }),
-  signupContainer: mixins.basicContainer(mixins.flexColumn()),
+  signupContainer: mixins.basicContainerSmaller(mixins.flexColumn()),
   signupTitle: merge({}, title, {
     color: variables.colours.white
   }),

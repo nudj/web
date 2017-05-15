@@ -7,7 +7,7 @@ function titles (xOffset = '0%') {
     margin: `0 0 ${variables.padding.d} 0`
   }), mixins.headings.h4)
 
-  return mixins.afterUnderlineSquiggle('table-line-1.svg', xOffset, properties)
+  return mixins.makeOrangeSubtitleUnderlineOnDarkGrey(properties)
 }
 
 const styles = {
@@ -29,19 +29,27 @@ const styles = {
   links: mixins.basicContainer(mixins.deList({
     padding: `0 0 ${variables.padding.c} 0`,
     textAlign: 'center',
-    [mixins.breakpoints.l]: {
+    [mixins.breakpoints.m]: {
       alignItems: 'flex-start',
       display: 'flex',
+      flexWrap: 'wrap',
       justifyContent: 'center'
+    },
+    [mixins.breakpoints.l]: {
+      flexWrap: 'no-wrap'
     }
   })),
   link: {
     color: variables.colours.white,
     padding: `0 0 ${variables.padding.d} 0`,
+    [mixins.breakpoints.m]: {
+      padding: `0 ${variables.padding.d} ${variables.padding.d} ${variables.padding.d}`,
+      width: '50%'
+    },
     [mixins.breakpoints.l]: {
       flexBasis: '0',
       flexGrow: '1',
-      padding: `0 ${variables.padding.d} ${variables.padding.d} ${variables.padding.d}`
+      width: 'auto'
     }
   },
   release: titles(),
@@ -50,7 +58,7 @@ const styles = {
   terms: titles('60%'),
   label: merge({
     display: 'none',
-    [mixins.breakpoints.l]: {
+    [mixins.breakpoints.m]: {
       display: 'block'
     }
   }, mixins.headings.p)

@@ -82,7 +82,7 @@ const styles = {
     }
   },
   job: mixins.basicContainer({
-    paddingTop: variables.padding.c
+    paddingTop: variables.padding.b
   }),
   info: merge({},
     mixins.afterUnderlineSquiggle('grey-wiggle-line.svg'),
@@ -97,7 +97,9 @@ const styles = {
     margin: '0',
     padding: `0 0 ${variables.padding.b} 0`
   }),
-  brandName: mixins.textHighlight(),
+  brandName: mixins.textHighlight({
+    textDecoration: 'none'
+  }),
   infoContainer: infoContainer,
   infoContainerWithSeparator: merge({}, mixins.afterUnderlineSquiggle('grey-wiggle-line.svg'), {
     '::after': {
@@ -133,16 +135,12 @@ const styles = {
   link: mixins.textHighlight(copy),
   apply: mixins.buttonPrimary(),
   applied: {},
-  nudj: mixins.buttonSecondary({
-    border: `1px solid ${variables.colours.royalBlue}`
-  }),
+  nudj: mixins.buttonSecondary(),
   related: merge(mixins.makeGreyBackground(), {
     padding: `${variables.padding.c} 0 0 0`,
     width: '100%'
   }),
-  relatedTitle: merge({}, mixins.typography.title, mixins.afterUnderlineSquiggle('table-line-1.svg'), {
-    margin: '0'
-  }),
+  relatedTitle: merge({}, mixins.typography.title, mixins.makeOrangeSubtitleUnderlineOnGrey()),
   list: mixins.deList(mixins.basicContainer({
     padding: `${variables.padding.b} ${variables.padding.c} ${variables.padding.c} ${variables.padding.c}`,
     [mixins.breakpoints.l]: {
