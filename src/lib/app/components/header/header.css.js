@@ -27,7 +27,18 @@ const navBarConstantBase = {
   position: 'fixed',
   top: '0',
   width: '100%', // ?
-  zIndex: variables.zIndicies.mobileMenuConstant,   // ?
+  zIndex: variables.zIndicies.mobileMenuConstant,
+  '::after': mixins.makePsuedoElement({
+    backgroundImage: mixins.linkImage('bg-wiggle-top-navy.svg'),
+    backgroundPosition: 'bottom center',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    bottom: '-3px',
+    height: variables.padding.e,
+    left: '-10%',
+    position: 'absolute',
+    width: '120%'
+  }),
   [mixins.breakpoints.l]: {
     display: 'none'
   }
@@ -128,7 +139,7 @@ const styles = {
   }, mobileMenu),
   navBarConstant: merge({
     pointerEvents: 'all',
-    transform: 'translate3d(0, -100%, 0)'
+    transform: `translate3d(0, calc(-100% - ${variables.padding.e}), 0)`
   }, navBarConstant),
   navBarConstantIsActive: merge({
     pointerEvents: 'all',

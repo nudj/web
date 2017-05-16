@@ -46,7 +46,6 @@ class Component extends React.Component {
     return (
       <div className={style.content}>
         <div className={style.formHeader}>
-          <img className={style.fingersCrossed} src='/assets/images/fingers-crossed.svg' alt='Fingers crossed' />
           <h1 className={style.title}>Great job, you've applied!</h1>
           <p className={style.subtitle}>Someone from our team will be in touch shortly. In the meantime, sit back, relax and give yourself a pat on the back.</p>
           <p className={style.subtitle}>If you'd like to hear about other awesome jobs on our platform then <a href='' className={style.link} id='open-intercom'>get in touch</a>.</p>
