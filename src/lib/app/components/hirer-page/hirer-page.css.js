@@ -74,9 +74,9 @@ const tableCell = merge({
   color: variables.colours.royalBlue,
   padding: `${variables.padding.d} 0`,
   textAlign: 'center'
-}, mixins.headings.p2)
+}, mixins.headings.p)
 
-const tableCellBold = merge({}, tableCell, mixins.headings.p2Bold)
+const tableCellBold = merge({}, tableCell, mixins.headings.pBold)
 
 const tableUnderline = mixins.afterUnderlineSquiggle('table-line-1.svg', '0%', {
   '::after': {
@@ -247,7 +247,7 @@ const styles = {
   }),
   or: mixins.makeOr(),
   signup: mixins.buttonPrimary(),
-  contact: mixins.buttonSecondaryTransparent()
+  contact: mixins.buttonSecondaryBorderless()
 }
 
 export default css(styles)
