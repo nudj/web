@@ -36,7 +36,7 @@ const navBarConstantBase = {
 const link = merge({}, mixins.deLink({
   color: variables.colours.royalBlue,
   display: 'none',
-  padding: variables.padding.d,
+  padding: `calc(${variables.padding.e} * 1.5) ${variables.padding.d}`,
   [mixins.breakpoints.l]: {
     display: 'block'
   }
@@ -56,14 +56,31 @@ const navBarConstant = mixins.makeTransition({
   details: variables.transitions.bouncey
 }, navBarConstantBase)
 
+const burgerLineOffset = 2
+
 const innerBurger = {
-  height: `calc(${variables.padding.d} * 0.1)`,
-  width: variables.padding.d
+  borderRadius: variables.sizes.magicBorderRadius,
+  height: `calc(${variables.padding.d} * 0.15)`,
+  transform: `translate3d(0, ${burgerLineOffset}px, 0)`,
+  width: `calc(${variables.padding.e} * 2.5)`
 }
 
+const innerBurgerAfter = merge({}, innerBurger, {
+  transform: `translate3d(0, -${burgerLineOffset * 2}px, 0)`
+})
+
+const innerBurgerBefore = merge({}, innerBurger, {
+  transform: `translate3d(0, -${burgerLineOffset}px, 0)`
+})
+
 const innerBurgerColour = merge({
-  backgroundColor: variables.colours.white
+  backgroundColor: variables.colours.white,
+  transform: `translate3d(0, ${burgerLineOffset}px, 0)`
 }, innerBurger)
+
+const innerBurgerColourAfter = merge({}, innerBurgerColour, innerBurgerAfter)
+
+const innerBurgerColourBefore = merge({}, innerBurgerColour, innerBurgerBefore)
 
 const styles = {
   navContainer: {
@@ -140,23 +157,26 @@ const styles = {
   },
   burger: mixins.deButton({
     outline: 'none',
-    padding: '0'
+    padding: '0',
+    ':hover': {
+      opacity: '1'
+    }
   }),
   burgerBox: {
     height: variables.padding.d,
-    width: variables.padding.d
+    width: `calc(${variables.padding.e} * 2.5)`
   },
   hamburger: merge({
-    '::after': innerBurger,
-    '::before': innerBurger
+    '::after': innerBurgerAfter,
+    '::before': innerBurgerBefore
   }, innerBurger),
   hamburgerIsActive: merge({
     '::after': innerBurger,
     '::before': innerBurger
   }, innerBurger),
   hamburgerLight: merge({
-    '::after': innerBurgerColour,
-    '::before': innerBurgerColour
+    '::after': innerBurgerColourAfter,
+    '::before': innerBurgerColourBefore
   }, innerBurgerColour),
   hamburgerIsActiveLight: merge({
     '::after': innerBurgerColour,

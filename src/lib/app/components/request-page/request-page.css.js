@@ -23,7 +23,6 @@ const styles = {
   okHand: {
     left: `calc(${variables.padding.a} * -1)`,
     position: 'relative',
-    paddingTop: variables.padding.c,
     top: variables.padding.b
   }
 }

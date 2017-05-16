@@ -9,6 +9,7 @@ const baseLinkContainer = merge({
   overflow: 'hidden',
   padding: variables.padding.e,
   textAlign: 'left',
+  textOverflow: 'ellipsis',
   width: '100%',
   whiteSpace: 'nowrap',
   [mixins.breakpoints.ns]: {
@@ -29,13 +30,13 @@ const styles = {
     alignItems: 'center',
     display: 'flex',
     justifyContent: 'center',
-    padding: `${variables.padding.d} 0`
+    padding: `${variables.padding.e} 0`
   },
   actions: {
     display: 'none' // Temporary
   },
   linkContainer: merge({}, baseLinkContainer, {
-    borderColor: variables.colours.royalBlue,
+    borderColor: variables.colours.royalBlueTint4,
     color: variables.colours.royalBlue
   }),
   linkContainerClear: merge({}, baseLinkContainer, {

@@ -136,6 +136,15 @@ export function basicContainer (properties) {
   return merge({}, basicContainerBasic, properties || {})
 }
 
+export function basicContainerMedium (properties) {
+  return merge({}, basicContainer(properties), {
+    [breakpoints.ns]: {
+      margin: '0 auto',
+      maxWidth: variables.sizes.contentMediumMaxWidth
+    }
+  })
+}
+
 export function basicContainerSmaller (properties) {
   return merge({}, basicContainer(properties), {
     [breakpoints.ns]: {
@@ -159,11 +168,11 @@ export function flexColumn (properties) {
 // Buttons
 export function button (properties) {
   const buttonBasic = {
-    borderRadius: '9999px',
+    borderRadius: variables.sizes.magicBorderRadius,
     cursor: 'pointer',
     display: 'inline-block',
     minWidth: `calc(${variables.padding.d} * 10)`,
-    padding: `${variables.padding.d} ${variables.padding.c}`,
+    padding: `calc(${variables.padding.e} * 1.5) ${variables.padding.c}`,
     textAlign: 'center'
   }
   return merge({}, deLink(), buttonBasic, headings.h6, properties || {})
@@ -176,6 +185,14 @@ export function buttonPrimary (properties) {
     color: variables.colours.white
   }
   return merge({}, button(buttonPrimary), properties || {})
+}
+
+export function buttonPrimaryDisabled (properties = {}) {
+  const button = buttonPrimary({
+    cursor: 'default',
+    opacity: '0.5'
+  })
+  return merge(button, properties)
 }
 
 export function buttonSecondary (properties) {
@@ -393,11 +410,19 @@ const typography = {
     margin: `0 0 ${variables.padding.c} 0`,
     textAlign: 'center'
   }, headings.h4Light),
+  h3: merge({
+    color: variables.colours.royalBlue,
+    margin: '0',
+    padding: `0 0 ${variables.padding.d} 0`
+  }, headings.h3),
   copy: merge({
     color: variables.colours.charcoal,
     margin: `0 0 ${variables.padding.d} 0`,
     textAlign: 'center'
-  }, headings.p)
+  }, headings.p),
+  copyLink: deLink({
+    color: variables.colours.midRed
+  })
 }
 
 typography.titleWhite = merge({}, typography.title, {
@@ -422,7 +447,7 @@ const fieldWrapShort = {
   width: '50%'
 }
 
-const formRadioPrettyLabelCheckedSize = `calc(${variables.sizes.radioButtonBorderSize} - ${variables.sizes.radioButtonBorderWidth} * 2)`
+const formRadioPrettyLabelCheckedSize = `calc(${variables.sizes.radioButtonBorderSize} - ${variables.sizes.radioButtonBorderWidth} * 4)`
 const formRadioPrettyLabelChecked = makePsuedoElement({
   backgroundColor: variables.colours.midRed,
   borderRadius: '100%',

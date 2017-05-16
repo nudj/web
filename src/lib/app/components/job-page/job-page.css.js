@@ -23,12 +23,6 @@ const infoCopy = merge({
   textAlign: 'center'
 }, mixins.headings.p)
 
-const titles = merge({
-  color: variables.colours.royalBlue,
-  margin: '0',
-  padding: `0 0 ${variables.padding.d} 0`
-}, mixins.headings.h3)
-
 const copy = merge({
   color: variables.colours.charcoal,
   margin: '0',
@@ -119,8 +113,8 @@ const styles = {
   }, infoContainer),
   infoTitle: infoCopy,
   infoBody: infoTitle,
-  actionTitle: titles,
-  awesomeTitle: titles,
+  actionTitle: mixins.typography.h3,
+  awesomeTitle: mixins.typography.h3,
   actionCopy: copy,
   awesomeCopy: copy,
   strong: merge({}, copy, mixins.headings.p.bold),
@@ -134,7 +128,7 @@ const styles = {
   actionEven: infoCellEven,
   link: mixins.textHighlight(copy),
   apply: mixins.buttonPrimary(),
-  applied: {},
+  applied: mixins.buttonPrimaryDisabled(),
   nudj: mixins.buttonSecondary(),
   related: merge(mixins.makeGreyBackground(), {
     padding: `${variables.padding.c} 0 0 0`,
@@ -142,10 +136,10 @@ const styles = {
   }),
   relatedTitle: merge({}, mixins.typography.title, mixins.makeOrangeSubtitleUnderlineOnGrey()),
   list: mixins.deList(mixins.basicContainer({
-    padding: `${variables.padding.b} ${variables.padding.c} ${variables.padding.c} ${variables.padding.c}`,
+    padding: variables.padding.c,
     [mixins.breakpoints.l]: {
       display: 'flex',
-      padding: `${variables.padding.b} 0 ${variables.padding.c} 0`
+      padding: `${variables.padding.c} 0`
     }
   })),
   relatedJob: {
@@ -155,7 +149,7 @@ const styles = {
       flexGrow: '1'
     }
   },
-  jobTitle: titles,
+  jobTitle: mixins.typography.h3,
   bodyLinks: merge({}, copy, mixins.headings.pBold, mixins.textHighlight(), {
     textDecoration: 'none'
   }),

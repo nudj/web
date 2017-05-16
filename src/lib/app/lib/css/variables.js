@@ -21,6 +21,7 @@ export const colours = {
   navy: '#081f2c',
   navyBlue: '#002051',
   royalBlue: '#002d72',
+  royalBlueTint4: '#6681aa',
   white: '#fff'
 }
 
@@ -105,10 +106,12 @@ export const sizes = {
   buttonBorderWidth: '2px',
   buttonMinWidth: '200px',
   contentMaxWidth: '980px',
+  contentMediumMaxWidth: '720px',
   columnWidth: '80',
   formsMaxWidth: '512px',
   formsInputBorderWidth: '1px',
   formsInputBorderRadius: '4px',
+  magicBorderRadius: '9999px',
   paddingWidth: '20',
   radioButtonBorderSize: '20px',
   radioButtonBorderWidth: '2px'

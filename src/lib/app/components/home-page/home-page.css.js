@@ -15,7 +15,14 @@ const howStep = mixins.flexColumn({
     width: '50%'
   },
   [mixins.breakpoints.l]: {
+    justifyContent: 'flex-start',
     width: '25%'
+  }
+})
+
+const howStepEven = merge({}, howStep, {
+  [mixins.breakpoints.l]: {
+    paddingTop: `calc(${variables.padding.d} + ${variables.padding.e})`
   }
 })
 
@@ -87,9 +94,13 @@ const styles = {
   }),
   heroTitle: merge({}, title, {
     padding: `${variables.padding.b} ${variables.padding.d} 0 ${variables.padding.d}`,
+    textShadow: `-2px -2px ${variables.colours.white}, -2px 2px ${variables.colours.white}, 2px -2px ${variables.colours.white}, 2px 2px ${variables.colours.white}`,
     '::after': merge({
       marginLeft: `-${variables.padding.d}`
-    }, notHappyImageMobile)
+    }, notHappyImageMobile),
+    [mixins.breakpoints.ns]: {
+      padding: `${variables.padding.b} ${variables.padding.c} 0 ${variables.padding.c}`
+    }
   }),
   // Unknown
   unknown: {
@@ -152,9 +163,10 @@ const styles = {
   }),
   how: mixins.makeGreyBackground(),
   nudjTitle: title,
-  bodyTitle: merge({
-    padding: `${variables.padding.c} 0`
-  }, subtitle),
+  bodyTitle: merge({}, title, mixins.makeOrangeSubtitleUnderlineOnGrey({
+    marginBottom: variables.padding.c,
+    paddingTop: variables.padding.c
+  })),
   howUnderline: {},
   steps: mixins.deList({
     padding: `0 0 ${variables.padding.c} 0`,
@@ -164,14 +176,13 @@ const styles = {
       justifyContent: 'center'
     },
     [mixins.breakpoints.l]: {
-      // Might need to be wider?
-      maxWidth: variables.breakpoints.large
+      maxWidth: `calc(${variables.breakpoints.large} + ${variables.padding.b} + ${variables.padding.c})`
     }
   }),
   stepOne: howStep,
-  stepTwo: howStep,
+  stepTwo: howStepEven,
   stepThree: howStep,
-  stepFour: howStep,
+  stepFour: howStepEven,
   stepImage: {
     display: 'block'
   },
@@ -184,11 +195,11 @@ const styles = {
     backgroundColor: variables.colours.midRed,
     paddingBottom: variables.padding.b
   }),
-  signupContainer: mixins.basicContainerSmaller(mixins.flexColumn()),
+  signupContainer: mixins.basicContainer(mixins.flexColumn()),
   signupTitle: merge({}, title, {
     color: variables.colours.white
   }),
-  signupSubtitle: merge({}, mixins.headings.p2, {
+  signupSubtitle: merge({}, mixins.basicContainerSmaller(), mixins.headings.p, {
     color: variables.colours.white,
     margin: '0',
     padding: `0 0 ${variables.padding.c} 0`,

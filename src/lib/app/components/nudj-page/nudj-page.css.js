@@ -14,10 +14,10 @@ const styles = {
       backgroundSize: 'cover'
     }
   }),
-  box: mixins.basicContainerSmaller(),
+  box: mixins.basicContainerMedium(),
   heading: merge({}, mixins.typography.title),
-  tip: mixins.makeGreyWobbleBox(),
-  tipTitle: merge({}, mixins.typography.subtitle, {
+  tip: mixins.basicContainerSmaller(mixins.makeGreyWobbleBox()),
+  tipTitle: merge({}, mixins.typography.h3, {
     marginBottom: variables.padding.e
   }),
   tipBody: merge({

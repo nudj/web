@@ -49,6 +49,7 @@ const styles = {
     [mixins.breakpoints.l]: {
       flexBasis: '0',
       flexGrow: '1',
+      padding: `0 ${variables.padding.e} ${variables.padding.d} ${variables.padding.e}`,
       width: 'auto'
     }
   },

@@ -5,10 +5,11 @@ import TypeOut from 'react-typeout'
 import style from './home-page.css'
 
 const words = [
-  'developers',
   'designers',
+  'product managers',
   'marketers',
-  'product managers'
+  'sales people',
+  'developers'
 ]
 
 const HomePage = () => (
@@ -17,7 +18,7 @@ const HomePage = () => (
       <ul className={style.story}>
         <li className={style.notHappy}>
           <div className={style.notHappyContainer}>
-            <h1 className={style.heroTitle}>The best <TypeOut words={words} className={style.typeout} pauseSpeed={5000} /> are always busy,<br className={style.oppositeBreak} />but they are not always happy.</h1>
+            <h1 className={style.heroTitle}>The best <TypeOut words={words} className={style.typeout} pauseSpeed={5000} /> are always busy,<br className={style.oppositeBreak} /> but they aren't always happy.</h1>
           </div>
         </li>
         <li className={style.unknown}>

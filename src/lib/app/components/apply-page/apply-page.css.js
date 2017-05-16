@@ -21,13 +21,17 @@ const styles = {
   invalidInput: mixins.forms.inputText,
   fieldButtons: mixins.forms.buttonsHolder,
   fieldSubmit: mixins.buttonPrimary(),
+  link: mixins.typography.copyLink,
   fingersCrossed: {
-    left: '50%',
+    left: '25%',
     margin: '0 auto',
-    position: 'relative'
+    position: 'relative',
+    [mixins.breakpoints.l]: {
+      left: '50%'
+    }
   },
   thumbsUp: {
-    left: '50%',
+    left: '-100%',
     margin: '0 auto',
     padding: `0 0 ${variables.padding.c} 0`,
     position: 'relative'
