@@ -26,6 +26,7 @@
     "@nudj/dummy": "0.6.0",
     "@nudj/schemas": "0.12.0",
     "@nudj/tachyons": "^0.1.5",
+    "aphrodite": "^1.2.1",
     "body-parser": "^1.16.1",
     "classnames": "^2.2.5",
     "connect-ensure-login": "^0.1.1",

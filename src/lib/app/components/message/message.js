@@ -2,8 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Switch, Route, withRouter } from 'react-router-dom'
 import get from 'lodash/get'
-import style from './message.css'
+import getStyle from './message.css'
 import NudjSuccess from '../nudj-success'
+
+let style
 
 function messageAlreadyApplied (props) {
   // Say you've already applied if you've already applied
@@ -73,6 +75,7 @@ function messageWrapper (props, message) {
 }
 
 const Component = (props) => {
+  style = getStyle()
   return (
     <Switch>
       <Route exact path='/request' render={() => messageWrapper(props, messageRequestPageAlreadyRequested(props))} />

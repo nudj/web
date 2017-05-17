@@ -1,9 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import style from './request-page.css'
+import getStyle from './request-page.css'
 
 const Component = (props) => {
+  const style = getStyle()
   let html
   if (props.success) {
     html = (
