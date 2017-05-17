@@ -46,7 +46,7 @@ class Component extends React.Component {
   renderSuccess () {
     return (
       <div className={this.style.content}>
-        <div className={this.style.formHeader}>
+        <div className={this.style.formHeaderSuccess}>
           <h1 className={this.style.title}>Great job, you've applied!</h1>
           <p className={this.style.subtitle}>Someone from our team will be in touch shortly. In the meantime, sit back, relax and give yourself a pat on the back.</p>
           <p className={this.style.subtitle}>If you'd like to hear about other awesome jobs on our platform then <a href='' className={this.style.link} id='open-intercom'>get in touch</a>.</p>

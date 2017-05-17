@@ -7,6 +7,10 @@ const styles = {
   },
   formHeader: mixins.basicContainerSmaller({
     paddingBottom: variables.padding.c,
+    paddingTop: variables.padding.a
+  }),
+  formHeaderSuccess: mixins.basicContainerSmaller({
+    paddingBottom: variables.padding.c,
     paddingTop: variables.padding.a,
     '::after': mixins.makePsuedoElement({
       backgroundImage: mixins.linkImage('thumbs-up.svg'),

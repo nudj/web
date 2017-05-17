@@ -15,7 +15,9 @@ const styles = {
   error: alert,
   success: alert,
   content: merge(mixins.basicContainer({
+    color: variables.colours.white,
     padding: `${variables.padding.e} ${variables.padding.c}`,
+    textAlign: 'center',
     [mixins.breakpoints.ns]: {
       padding: `${variables.padding.e} 0`
     }
