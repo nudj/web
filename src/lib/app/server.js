@@ -4,7 +4,7 @@ import { StaticRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { createStore, combineReducers } from 'redux'
 import { Helmet } from 'react-helmet'
-import { StyleSheetServer } from 'aphrodite'
+import { StyleSheetServer } from 'aphrodite/no-important'
 
 import { pageReducer } from './reducers/page'
 

@@ -6,7 +6,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import createHistory from 'history/createBrowserHistory'
 import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux'
-import { StyleSheet } from 'aphrodite'
+import { StyleSheet } from 'aphrodite/no-important'
 
 import App from './components/index'
 import { pageReducer } from './reducers/page'
