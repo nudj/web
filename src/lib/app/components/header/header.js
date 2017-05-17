@@ -1,7 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import style from './header.css'
+import getStyle from './header.css'
+
+let style
 
 const lightLogoPages = ['/hiring']
 const offsetTrigger = 100
@@ -73,20 +75,25 @@ class Component extends React.Component {
 
   renderBrandLogo () {
     if (lightLogoPages.includes(this.props.location.pathname)) {
-      return (<img className={style.brand} src='/assets/images/nudj-logo-light.svg' alt='Nudj' />)
+      return (<img className={style.homeButtonImage} src='/assets/images/nudj-logo-light.svg' alt='Nudj' />)
     } else {
-      return (<img className={style.brandDark} src='/assets/images/nudj-logo-dark.svg' alt='Nudj' />)
+      return (<img className={style.homeButtonImage} src='/assets/images/nudj-logo-dark.svg' alt='Nudj' />)
     }
   }
 
   renderBurger (baseStyleName) {
     const baseStyle = style[baseStyleName]
+    let burgerClass = 'hamburger hamburger--elastic'
+
+    if (this.state.burgerActive) {
+      burgerClass += ' is-active'
+    }
 
     return (
       <div className={style.hamburgerHolder}>
-        <button className={baseStyle} type='button' onClick={this.onClickBurger.bind(this)}>
-          <span className={style.hamburgerBox}>
-            <span className={style.hamburgerInner} />
+        <button className={`${burgerClass} ${style.burger}`} type='button' onClick={this.onClickBurger.bind(this)}>
+          <span className={`hamburger-box ${style.burgerBox}`}>
+            <span className={`hamburger-inner ${baseStyle}`} />
           </span>
         </button>
       </div>
@@ -133,8 +140,15 @@ class Component extends React.Component {
   }
 
   renderNavLinks (mobile = false) {
-    const linkStyle = mobile ? style.linkMobile : style.link
+    let linkStyleName = mobile ? 'linkMobile' : 'link'
+
+    if (lightLogoPages.includes(this.props.location.pathname) && !mobile) {
+      linkStyleName += 'Light'
+    }
+
+    const linkStyle = style[linkStyleName]
     const requestStyle = mobile ? style.requestMobile : style.request
+
     const about = (<a href='http://help.nudj.co' className={linkStyle} onClick={this.onClickLink.bind(this)} key='0'>About</a>)
     const companies = (<a href='/hiring' className={linkStyle} onClick={this.onClickLink.bind(this)} key='1'>Companies</a>)
     const getInTouch = (<a href='' id='open-intercom' className={requestStyle} onClick={this.onClickLink.bind(this)} key='2'>Get in touch</a>)
@@ -145,20 +159,21 @@ class Component extends React.Component {
   }
 
   render () {
+    style = getStyle()
     const baseStyleName = lightLogoPages.includes(this.props.location.pathname) ? 'navContainer' : 'navContainerDark'
     const baseStyle = style[baseStyleName]
 
     return (
       <div className={baseStyle}>
         <nav className={style.nav}>
-          <div className={style.left}>
-            <a className={style.home} href='/' onClick={this.onClickLink.bind(this)}>
+          <div className={style.navLeft}>
+            <a className={style.homeButton} href='/' onClick={this.onClickLink.bind(this)}>
               {this.renderBrandLogo(false)}
             </a>
           </div>
           {this.renderNavBarConstant()}
           {this.renderMobileMenu()}
-          <div className={style.right}>
+          <div className={style.navRight}>
             {this.renderDesktopBurger()}
             {this.renderNavLinks()}
           </div>

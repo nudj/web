@@ -24,22 +24,9 @@ module.exports = {
         query: {
           presets: ['react']
         }
-      },
-      {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: 'css-loader?modules&sourceMap&-url'
-        })
       }
     ]
   },
-  plugins: [
-    new ExtractTextPlugin({
-      filename: './lib/server/assets/css/app.css',
-      allChunks: true
-    })
-  ],
   resolve: {
     plugins: [
       new DirectoryNamedWebpackPlugin()

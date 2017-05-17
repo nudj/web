@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import style from './apply-page.css'
+import getStyle from './apply-page.css'
 
 class Component extends React.Component {
   constructor (props) {
@@ -11,6 +11,7 @@ class Component extends React.Component {
     const person = props.person
 
     this.state = {form, person}
+    this.style = getStyle()
   }
 
   handleFieldChange (event) {
@@ -28,12 +29,12 @@ class Component extends React.Component {
   }
 
   renderField ({id, label, type, invalidMessage, required, value, disabled = false, wrapperClass = 'fieldWrap'}, state) {
-    const styleWrapperClass = style[wrapperClass]
+    const styleWrapperClass = this.style[wrapperClass]
     const renderValue = this.state[id] || value || ''
     return (
       <div className={styleWrapperClass}>
-        <label className={style.fieldLabel} htmlFor={id}>{label}</label>
-        <input className={state.invalid ? style.invalidInput : style.fieldInput}
+        <label className={this.style.fieldLabel} htmlFor={id}>{label}</label>
+        <input className={state.invalid ? this.style.invalidInput : this.style.fieldInput}
           id={id} name={id} type={type}
           required={!!required} disabled={!!disabled}
           value={renderValue}
@@ -44,13 +45,12 @@ class Component extends React.Component {
 
   renderSuccess () {
     return (
-      <div className={style.content}>
-        <div className={style.formHeader}>
-          <img className={style.fingersCrossed} src='/assets/images/fingers-crossed.svg' alt='Fingers crossed' />
-          <h1 className={style.title}>Great job, you've applied!</h1>
-          <p className={style.subtitle}>Someone from our team will be in touch shortly. In the meantime, sit back, relax and give yourself a pat on the back.</p>
-          <p className={style.subtitle}>If you'd like to hear about other awesome jobs on our platform then <a href='' className={style.link} id='open-intercom'>get in touch</a>.</p>
-          <img className={style.thumbsUp} src='/assets/images/thumbs-up.svg' alt='Thumbs up' />
+      <div className={this.style.content}>
+        <div className={this.style.formHeaderSuccess}>
+          <h1 className={this.style.title}>Great job, you've applied!</h1>
+          <p className={this.style.subtitle}>Someone from our team will be in touch shortly. In the meantime, sit back, relax and give yourself a pat on the back.</p>
+          <p className={this.style.subtitle}>If you'd like to hear about other awesome jobs on our platform then <a href='' className={this.style.link} id='open-intercom'>get in touch</a>.</p>
+          <img className={this.style.thumbsUp} src='/assets/images/thumbs-up.svg' alt='Thumbs up' />
         </div>
       </div>
     )
@@ -98,20 +98,20 @@ class Component extends React.Component {
     }, this.state.form.url)
 
     return (
-      <form className={style.content} method='POST'>
+      <form className={this.style.content} method='POST'>
         <input type='hidden' name='_csrf' value={this.props.csrfToken} />
-        <div className={style.formHeader}>
-          <h1 className={style.title}>Complete your application for <span className={style.jobTitle}>{this.props.job.title}</span> @ <span className={style.companyName}>{this.props.company.name}</span></h1>
+        <div className={this.style.formHeader}>
+          <h1 className={this.style.title}>Complete your application for <span className={this.style.jobTitle}>{this.props.job.title}</span> @ <span className={this.style.companyName}>{this.props.company.name}</span></h1>
         </div>
-        <fieldset className={style.fieldSet} id='apply'>
-          <div className={style.fieldWrapContainer}>
+        <fieldset className={this.style.fieldSet} id='apply'>
+          <div className={this.style.fieldWrapContainer}>
             {firstName}
             {lastName}
             {email}
             {url}
           </div>
-          <div className={style.fieldButtons}>
-            <input className={style.fieldSubmit} type='submit' value='Apply' />
+          <div className={this.style.fieldButtons}>
+            <input className={this.style.fieldSubmit} type='submit' value='Apply' />
           </div>
         </fieldset>
       </form>
@@ -119,8 +119,9 @@ class Component extends React.Component {
   }
 
   render () {
+    this.style = getStyle()
     return (
-      <div className={style.body}>
+      <div className={this.style.body}>
         {this.isProfileComplete() ? this.renderSuccess() : this.renderForm()}
       </div>
     )

@@ -1,13 +1,14 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
-import style from './index.css'
+import getStyle from './index.css'
 import Header from '../header'
 import Message from '../message'
 import Page from '../page'
 import Footer from '../footer'
 
 const Index = () => {
+  const style = getStyle()
   return (
     <div className={style.body}>
       <Helmet>
@@ -26,7 +27,9 @@ const Index = () => {
         <meta property='twitter:image' content='http://nudjcms.s3.amazonaws.com/assets/images/social/nudj-card-og.jpg' />
         <meta property='og:image' content='http://nudjcms.s3.amazonaws.com/assets/images/social/nudj-card-og.jpg' />
         <link rel='icon' href='/assets/images/nudj-square.ico' type='image/x-icon' />
-        <link rel='stylesheet' href='/assets/css/app.css' />
+        <link rel='stylesheet' href='/assets/css/normalize.css' />
+        <link rel='stylesheet' href='/assets/css/reset.css' />
+        <link rel='stylesheet' href='/assets/css/hamburgers.css' />
       </Helmet>
       <header className={style.header}>
         <Route path='*' component={Message} />

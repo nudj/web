@@ -13,6 +13,7 @@
       created_at: <%= created_at %>
     }
     var data = <%= data %>
+    var cssRenderedClassNames = <%= JSON.stringify(css.renderedClassNames) %>
   </script>
   <script>
     (function(){var b=window,a=b.Intercom;if("function"===typeof a)a("reattach_activator"),a("update",intercomSettings);else{var a=document,c=function(){c.c(arguments)};c.q=[];c.c=function(a){c.q.push(a)};b.Intercom=c;b=a.createElement("script");b.type="text/javascript";b.async=!0;b.src="https://widget.intercom.io/widget/fwqdxwzg";a=a.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a)}})()
@@ -24,6 +25,7 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-WT43QJJ');
   </script>
+  <style data-aphrodite><%= css.content %></style>
 </head>
 <body>
   <div id="app"><%= html %></div>

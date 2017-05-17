@@ -3,9 +3,10 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import NudjSuccess from '../nudj-success'
 
-import style from './nudj-page.css'
+import getStyle from './nudj-page.css'
 
 const Component = (props) => {
+  const style = getStyle()
   return (
     <div className={style.page}>
       <div className={style.box}>
