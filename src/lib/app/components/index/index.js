@@ -1,13 +1,14 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
-import style from './index.css'
+import getStyle from './index.css'
 import Header from '../header'
 import Message from '../message'
 import Page from '../page'
 import Footer from '../footer'
 
 const Index = () => {
+  const style = getStyle()
   return (
     <div className={style.body}>
       <Helmet>

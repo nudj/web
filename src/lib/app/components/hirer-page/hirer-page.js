@@ -1,10 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import style from './hirer-page.css'
+import getStyle from './hirer-page.css'
 
-const Component = (props) => (
-  <div className={style.body}>
+const Component = (props) => {
+  const style = getStyle()
+  return (<div className={style.body}>
     <section className={style.hero}>
       <h1 className={style.heroTitle}>The best jobs aren’t advertised. <br className={style.standardBreak} />The best talent isn’t looking. <br className={style.standardBreak} />Maybe they just need a nudj.</h1>
     </section>
@@ -110,8 +111,8 @@ const Component = (props) => (
         </div>
       </div>
     </section>
-  </div>
-)
+  </div>)
+}
 
 const mapStateToProps = (state, props) => Object.assign({}, state.page, props)
 const mapDispatchToProps = (dispatch, ownProps) => ({})

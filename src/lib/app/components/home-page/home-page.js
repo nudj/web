@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import TypeOut from 'react-typeout'
-import style from './home-page.css'
+import getStyle from './home-page.css'
 
 const words = [
   'designers',
@@ -12,8 +12,9 @@ const words = [
   'developers'
 ]
 
-const HomePage = () => (
-  <div className={style.body}>
+const HomePage = () => {
+  const style = getStyle()
+  return (<div className={style.body}>
     <section className={style.hero}>
       <ul className={style.story}>
         <li className={style.notHappy}>
@@ -74,8 +75,8 @@ const HomePage = () => (
         </div>
       </div>
     </section>
-  </div>
-)
+  </div>)
+}
 
 const mapStateToProps = (state, props) => Object.assign({}, state.page, props)
 const mapDispatchToProps = (dispatch, ownProps) => ({})

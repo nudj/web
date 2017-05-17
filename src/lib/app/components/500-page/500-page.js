@@ -1,8 +1,9 @@
 import React from 'react'
-import style from './500-page.css'
+import getStyle from './500-page.css'
 
-export default (props) => (
-  <div className={style.content}>
+export default (props) => {
+  const style = getStyle()
+  return (<div className={style.content}>
     <div className={style.gif}>
       <img src='https://media.giphy.com/media/ZeB4HcMpsyDo4/giphy.gif' width='320' height='202' />
     </div>
@@ -11,5 +12,5 @@ export default (props) => (
     <p className={style.error}>Error code: 500</p>
     <p className={style.copy}>An error has occurred and we're working to fix the problem! We’ll be up and running again shortly.</p>
     <p classname={style.copy}>If you need immediate help, then please <a className={style.link} href='' id='open-intercom'>contact us</a>.</p>
-  </div>
-)
+  </div>)
+}

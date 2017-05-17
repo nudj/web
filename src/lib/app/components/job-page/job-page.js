@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import get from 'lodash/get'
 import { Helmet } from 'react-helmet'
-import style from './job-page.css'
+import getStyle from './job-page.css'
 
 function elementFromString (string) {
   var div = document.createElement('div')
@@ -37,6 +37,7 @@ function onFormSubmit (eventType, props) {
 }
 
 const Component = (props) => {
+  const style = getStyle()
   const referral = get(props, 'referral')
   const title = `${get(props, 'company.name')} - ${get(props, 'job.title')}`
   const image = get(props, 'company.logo')

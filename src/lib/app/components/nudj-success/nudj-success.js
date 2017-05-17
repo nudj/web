@@ -1,8 +1,9 @@
 import React from 'react'
 import get from 'lodash/get'
-import style from './nudj-success.css'
+import getStyle from './nudj-success.css'
 
 export default (props) => {
+  const style = getStyle()
   let link = `${get(props, 'url.protocol')}://${get(props, 'url.hostname')}/jobs/${get(props, 'company.slug')}+${get(props, 'job.slug')}+${get(props, 'referral.id')}`
 
   const isNudj = (/\/nudj(\/?)$/).test(props.location.pathname)

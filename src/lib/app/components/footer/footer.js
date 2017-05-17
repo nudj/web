@@ -1,8 +1,9 @@
 import React from 'react'
-import style from './footer.css'
+import getStyle from './footer.css'
 
-export default (props) => (
-  <div className={style.background}>
+export default (props) => {
+  const style = getStyle()
+  return (<div className={style.background}>
     <div className={style.container}>
       <ul className={style.links}>
         <li className={style.link}>
@@ -27,5 +28,5 @@ export default (props) => (
         <span className={style.copyright}>&#169; 2017 <strong>nudj</strong>, All Rights Reserved</span>
       </div>
     </div>
-  </div>
-)
+  </div>)
+}

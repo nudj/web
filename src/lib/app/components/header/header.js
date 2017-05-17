@@ -1,7 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import style from './header.css'
+import getStyle from './header.css'
+
+let style
 
 const lightLogoPages = ['/hiring']
 const offsetTrigger = 100
@@ -157,6 +159,7 @@ class Component extends React.Component {
   }
 
   render () {
+    style = getStyle()
     const baseStyleName = lightLogoPages.includes(this.props.location.pathname) ? 'navContainer' : 'navContainerDark'
     const baseStyle = style[baseStyleName]
 
