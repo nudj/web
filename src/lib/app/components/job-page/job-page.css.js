@@ -58,14 +58,6 @@ const infoCellOdd = merge({}, infoCells, {
   }
 })
 
-const firstRelatedJob = {
-  padding: `0 0 ${variables.padding.c} 0`,
-  [mixins.breakpoints.l]: {
-    flexBasis: '0',
-    flexGrow: '1'
-  }
-}
-
 const styles = {
   body: mixins.flexColumn({
     textAlign: 'center',
@@ -150,12 +142,17 @@ const styles = {
       padding: `${variables.padding.c} 0`
     }
   })),
-  firstRelatedJob: firstRelatedJob,
-  relatedJob: merge({}, firstRelatedJob, {
+  relatedJob: {
+    padding: `0 0 ${variables.padding.c} 0`,
     [mixins.breakpoints.l]: {
-      paddingLeft: variables.padding.c
+      flexBasis: '0',
+      flexGrow: '1',
+      padding: `0 0 ${variables.padding.c} ${variables.padding.d}`,
+      ':first-child': {
+        paddingLeft: '0'
+      }
     }
-  }),
+  },
   jobTitle: mixins.typography.h3,
   bodyLinks: merge({}, copy, mixins.headings.pBold, mixins.textHighlight(), {
     textDecoration: 'none'

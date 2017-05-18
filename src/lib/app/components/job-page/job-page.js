@@ -36,19 +36,6 @@ function onFormSubmit (eventType, props) {
   }
 }
 
-function renderRelatedJobs (relatedJobs, style) {
-  const relatedJobsElements = []
-
-  relatedJobs.forEach((related, index) => {
-    const jobStyle = index ? style.relatedJob : style.firstRelatedJob
-    relatedJobsElements.push((<li className={jobStyle} key={related.title.split(' ').join('-')}>
-      <p className={style.jobTitle}>{related.title} @ <span className={style.red}>{related.companyName}</span></p>
-      <a className={style.bodyLinks} href={`/jobs/${related.companySlug}+${related.slug}`}>View job ></a>
-    </li>))
-  })
-  return (relatedJobsElements)
-}
-
 const Component = (props) => {
   const style = getStyle()
   const referral = get(props, 'referral')
@@ -110,7 +97,10 @@ const Component = (props) => {
       <section className={style.related}>
         <h2 className={style.relatedTitle}>Other positions</h2>
         <ul className={style.list}>
-          {renderRelatedJobs(get(props, 'job.related', []), style)}
+          {get(props, 'job.related', []).map((related) => <li className={style.relatedJob} key={related.title.split(' ').join('-')}>
+            <p className={style.jobTitle}>{related.title} @ <span className={style.red}>{related.companyName}</span></p>
+            <a className={style.bodyLinks} href={`/jobs/${related.companySlug}+${related.slug}`}>View job ></a>
+          </li>)}
         </ul>
       </section>
     </div>
