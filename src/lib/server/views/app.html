@@ -7,11 +7,20 @@
   <script>
     var intercomSettings = {
       app_id: <%= intercom_app_id %>,
-      custom_launcher_selector:"#open-intercom",
-      name: <%= fullname %>,
-      email: <%= email %>,
-      created_at: <%= created_at %>
+      custom_launcher_selector: "#open-intercom"
     }
+    <% if (fullname) { %>
+    intercomSettings.name = <%= fullname %>
+    <% } %>
+    <% if (!fullname && email) { %>
+    intercomSettings.name = <%= email %>
+    <% } %>
+    <% if (email) { %>
+    intercomSettings.email = <%= email %>
+    <% } %>
+    <% if (created_at) { %>
+    intercomSettings.created_at = <%= created_at %>
+    <% } %>
     var data = <%= data %>
     var cssRenderedClassNames = <%= JSON.stringify(css.renderedClassNames) %>
   </script>

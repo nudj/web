@@ -146,7 +146,11 @@ const styles = {
     padding: `0 0 ${variables.padding.c} 0`,
     [mixins.breakpoints.l]: {
       flexBasis: '0',
-      flexGrow: '1'
+      flexGrow: '1',
+      padding: `0 0 ${variables.padding.c} ${variables.padding.d}`,
+      ':first-child': {
+        paddingLeft: '0'
+      }
     }
   },
   jobTitle: mixins.typography.h3,
