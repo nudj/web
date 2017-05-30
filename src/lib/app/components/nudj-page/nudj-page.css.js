@@ -1,19 +1,5 @@
 import css, { merge, mixins, variables } from '../../lib/css'
 
-// {
-//   backgroundImage: mixins.linkImage('img-paper-planes-together-mobile.svg'),
-//   backgroundPosition: 'center center',
-//   backgroundRepeat: 'no-repeat',
-//   backgroundSize: 'contain',
-//   [mixins.breakpoints.ns]: {
-//     backgroundImage: mixins.linkImage('img-paper-planes-together.svg')
-//   },
-//   [mixins.breakpoints.l]: {
-//     backgroundPosition: 'top center',
-//     backgroundSize: 'cover'
-//   }
-// }
-
 const topHeight = '422px'
 const topWidth = '268px'
 
