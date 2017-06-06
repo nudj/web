@@ -5,7 +5,8 @@ export const assets = {
 
 export const breakpoints = {
   medium: '30em',
-  large: '60em'
+  large: '60em',
+  xl: '90em'
 }
 
 export const colours = {
