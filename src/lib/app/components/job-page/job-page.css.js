@@ -1,135 +1,77 @@
 import css, { merge, mixins, variables } from '../../lib/css'
 
-const infoContainer = {
-  padding: `${variables.padding.d} 0`,
-  position: 'relative',
-  textAlign: 'center',
-  width: '100%',
-  [mixins.breakpoints.ns]: {
-    width: '50%'
+const buttonMargins = {
+  margin: `0 0 ${variables.padding.e}`,
+  [mixins.breakpoints.l]: {
+    margin: `0 0 ${variables.padding.d} 0`
   }
 }
-
-const infoTitle = merge({
-  color: variables.colours.charcoal,
-  margin: '0',
-  padding: '0'
-}, mixins.headings.h4Light)
-
-const infoCopy = merge({
-  color: variables.colours.charcoal,
-  margin: '0',
-  padding: `0 0 ${variables.padding.e} 0`,
-  textAlign: 'center'
-}, mixins.headings.p)
-
-const copy = merge({
-  color: variables.colours.charcoal,
-  margin: '0',
-  padding: `0 0 ${variables.padding.d} 0`
-}, mixins.headings.p)
-
-const infoRows = {
-  display: 'flex',
-  padding: `0 0 ${variables.padding.c} 0`,
-  flexWrap: 'wrap',
-  [mixins.breakpoints.ns]: {
-    flexWrap: 'nowrap'
-  }
-}
-
-const infoCells = {
-  padding: `0 0 ${variables.padding.c} 0`,
-  width: '100%',
-  [mixins.breakpoints.ns]: {
-    width: '50%'
-  }
-}
-
-const infoCellEven = merge({}, infoCells, {
-  [mixins.breakpoints.ns]: {
-    paddingLeft: variables.padding.d
-  }
-})
-
-const infoCellOdd = merge({}, infoCells, {
-  [mixins.breakpoints.ns]: {
-    paddingRight: variables.padding.d
-  }
-})
 
 const styles = {
-  body: mixins.flexColumn({
+  navContainer: {
+    backgroundColor: 'blue'
+  },
+  navContainerDark: {
+    backgroundColor: 'blue'
+  },
+  job: {
+    backgroundColour: variables.colours.darkPink,
+    padding: `${variables.padding.b} 0 ${variables.padding.a} 0`,
+    position: 'relative'
+  },
+  jobHeader: mixins.basicContainer(),
+  jobHeaderTitle: merge({}, mixins.typography.titleWhite, {
+    margin: `0 0 ${variables.padding.b} 0`,
+    [mixins.breakpoints.l]: {
+      textAlign: 'inherit'
+    }
+  }),
+  jobHeaderSubtitle: merge({}, mixins.typography.subtitle, {
+    color: variables.colours.white,
+    margin: `0 0 ${variables.padding.d} 0`,
+    [mixins.breakpoints.l]: {
+      textAlign: 'inherit'
+    }
+  }),
+  jobHeaderDescription: merge({}, mixins.typography.copy, {
+    color: variables.colours.white,
+    margin: `0 0 ${variables.padding.b} 0`,
+    [mixins.breakpoints.l]: {
+      textAlign: 'inherit'
+    }
+  }),
+  actions: mixins.basicContainer({
+    [mixins.breakpoints.l]: {
+      display: 'flex'
+    }
+  }),
+  action: {
     textAlign: 'center',
-    [mixins.breakpoints.ns]: {
-      textAlign: 'inherit' // 'left' ?
-    }
-  }),
-  content: {
-    width: '100%'
-  },
-  red: mixins.textHighlight(),
-  break: {
-    display: 'none',
-    [mixins.breakpoints.ns]: {
-      display: 'inline-block'
-    }
-  },
-  job: mixins.basicContainer({
-    paddingTop: variables.padding.b
-  }),
-  info: merge({},
-    mixins.afterUnderlineSquiggle('grey-wiggle-line.svg'),
-    mixins.beforeUnderlineSquiggle('grey-wiggle-line.svg'),
-    {
-      [mixins.breakpoints.ns]: {
-        display: 'flex'
+    [mixins.breakpoints.l]: {
+      margin: `0 ${variables.padding.d} 0 0`,
+      textAlign: 'inherit',
+      ':last-child': {
+        margin: '0'
       }
     }
-  ),
-  title: merge({}, mixins.typography.title, {
-    margin: '0',
-    padding: `0 0 ${variables.padding.b} 0`
-  }),
-  brandName: mixins.textHighlight({
-    textDecoration: 'none'
-  }),
-  infoContainer: infoContainer,
-  infoContainerWithSeparator: merge({}, mixins.afterUnderlineSquiggle('grey-wiggle-line.svg'), {
-    '::after': {
-      left: '25%',
-      width: '50%',
-      [mixins.breakpoints.ns]: {
-        backgroundImage: mixins.linkImage('grey-vertical-separator.svg'),
-        bottom: 'auto',
-        left: 'auto',
-        height: '100%',
-        right: variables.padding.e,
-        position: 'absolute',
-        top: variables.padding.d,
-        width: variables.padding.e
-      }
+  },
+  actionCopy: merge({}, mixins.typography.copy, {
+    color: variables.colours.white,
+    margin: `0 0 ${variables.padding.c}`,
+    [mixins.breakpoints.l]: {
+      margin: '0',
+      textAlign: 'inherit'
     }
-  }, infoContainer),
-  infoTitle: infoCopy,
-  infoBody: infoTitle,
-  actionTitle: mixins.typography.h3,
-  awesomeTitle: mixins.typography.h3,
-  actionCopy: copy,
-  awesomeCopy: copy,
-  strong: merge({}, copy, mixins.headings.p.bold),
-  actions: infoRows,
-  description: merge({}, infoRows, {
-    paddingTop: variables.padding.b
   }),
-  whyOdd: infoCellOdd,
-  actionOdd: infoCellOdd,
-  whyEven: infoCellEven,
-  actionEven: infoCellEven,
-  link: mixins.textHighlight(copy),
-  apply: mixins.buttonPrimary(),
-  applied: mixins.buttonPrimaryDisabled(),
-  nudj: mixins.buttonSecondary(),
+  applied: mixins.buttonPrimaryDisabled(merge({
+    backgroundColour: variables.colours.royalBlue,
+    color: variables.colours.white
+  }, buttonMargins)),
+  apply: mixins.buttonPrimary(merge({
+    backgroundColour: variables.colours.royalBlue,
+    color: variables.colours.white
+  }, buttonMargins)),
+  nudj: mixins.buttonSecondaryTransparent(buttonMargins),
   related: merge(mixins.makeGreyBackground(), {
     padding: `${variables.padding.c} 0 0 0`,
     width: '100%'
@@ -154,10 +96,48 @@ const styles = {
     }
   },
   jobTitle: mixins.typography.h3,
-  bodyLinks: merge({}, copy, mixins.headings.pBold, mixins.textHighlight(), {
+  bodyLinks: merge({}, mixins.typography.copy, mixins.headings.pBold, mixins.textHighlight(), {
     textDecoration: 'none'
   }),
-  breakLine: {}
+  strong: mixins.headings.pBold,
+  red: {}
 }
 
-export default css(styles)
+const getStyle = css(styles)
+
+// Override the colours -- fallback on what's there if the colour isn't defined
+const setStyles = (backgroundColour, textColour, textHighlightColour) => {
+  const colouredStyles = {
+    job: {
+      backgroundColor: variables.colours[backgroundColour] || styles.job.backgroundColor
+    },
+    jobHeaderTitle: {
+      color: variables.colours[textColour] || styles.jobHeaderTitle.color
+    },
+    jobHeaderSubtitle: {
+      color: variables.colours[textColour] || styles.jobHeaderSubtitle.color
+    },
+    jobHeaderDescription: {
+      color: variables.colours[textColour] || styles.jobHeaderTitle.color
+    },
+    apply: {
+      backgroundColor: variables.colours[textHighlightColour] || styles.apply.backgroundColor,
+      color: variables.colours[textColour] || styles.apply.color
+    },
+    applied: {
+      backgroundColor: variables.colours[textHighlightColour] || styles.applied.backgroundColor,
+      color: variables.colours[textColour] || styles.applied.color
+    },
+    nudj: {
+      borderColor: variables.colours[textColour] || styles.applied.borderColor,
+      color: variables.colours[textColour] || styles.applied.color
+    },
+    actionCopy: {
+      color: variables.colours[textColour] || styles.actionCopy.color
+    }
+  }
+
+  merge(styles, colouredStyles)
+}
+
+export {getStyle, setStyles}
