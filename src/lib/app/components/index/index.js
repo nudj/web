@@ -2,7 +2,6 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import getStyle from './index.css'
-import Header from '../header'
 import Message from '../message'
 import Page from '../page'
 import Footer from '../footer'
@@ -33,7 +32,6 @@ const Index = () => {
       </Helmet>
       <header className={style.header}>
         <Route path='*' component={Message} />
-        <Route path='*' component={Header} />
       </header>
       <div className={style.content}>
         <Route path='*' component={Page} />

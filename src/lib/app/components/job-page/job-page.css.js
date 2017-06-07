@@ -16,7 +16,7 @@ const styles = {
   },
   job: {
     backgroundColour: variables.colours.darkPink,
-    padding: `${variables.padding.b} 0 ${variables.padding.a} 0`,
+    padding: `${variables.padding.a} 0`,
     position: 'relative'
   },
   jobHeader: mixins.basicContainer(),

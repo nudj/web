@@ -213,7 +213,7 @@ export function buttonSecondaryBorderless (properties = {}) {
 
 export function buttonSecondaryTransparent (properties = {}) {
   return buttonSecondary(merge({
-    backgroundColor: 'none',
+    backgroundColor: 'transparent',
     borderColor: variables.colours.white,
     color: variables.colours.white
   }, properties))

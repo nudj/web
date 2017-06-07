@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import getStyle from './request-page.css'
 
+import Header from '../header'
+
 const Component = (props) => {
   const style = getStyle()
   let html
@@ -52,6 +54,7 @@ const Component = (props) => {
   }
   return (
     <div className={style.body}>
+      <Header />
       {html}
     </div>
   )

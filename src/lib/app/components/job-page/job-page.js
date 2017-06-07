@@ -5,7 +5,9 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import get from 'lodash/get'
 import { Helmet } from 'react-helmet'
-import {getStyle, setStyles} from './job-page.css'
+import { getStyle, setStyles } from './job-page.css'
+
+import Header from '../header'
 
 function elementFromString (string) {
   var div = document.createElement('div')
@@ -48,9 +50,9 @@ const Component = (props) => {
   const prismic = {
     title: `Like Harry Potter after the golden snitch, ${companyName} are seeking a ${jobTitle}.`,
     description: 'They’re based in {{job.location}} and the salary is {{job.salary}}. Also they need someone with {{job.experience}} experience and a track record of {{job.requirements}}.',
-    colourPrimary: 'lightYellow',
-    colourText: 'darkPink',
-    colourTextHighlight: 'midRed'
+    colourPrimary: 'darkPink',
+    colourText: 'white',
+    colourTextHighlight: 'royalBlue'
   }
 
   setStyles(prismic.colourPrimary, prismic.colourText, prismic.colourTextHighlight)
@@ -62,6 +64,10 @@ const Component = (props) => {
 
   return (
     <div className={style.body}>
+      <Header
+        backgroundColour={prismic.colourPrimary}
+        textColour={prismic.colourText}
+        textHighlightColour={prismic.colourTextHighlight} />
       <Helmet>
         <title>{pageTitle}</title>
         <meta name='title' content={pageTitle} />
