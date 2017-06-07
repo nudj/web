@@ -52,6 +52,8 @@ dummyData.jobs = dummyData.jobs.concat([
     description: '5+ years software engineering experience, using Node (6+), ES6 (Babel) and TypeScript. You should also be familiar with Git, Github, PRs, Code Reviews - please send us a link to your Github profile.',
     type: 'Permanent',
     remuneration: 'Competitive + Options',
+    experience: '16 billion years',
+    requirements: 'building large-scale web-based applications in 🐔, 💅🏼 and 💩.',
     tags: [
       'Software',
       'Developer',
@@ -80,6 +82,8 @@ dummyData.jobs = dummyData.jobs.concat([
     description: 'Fake job! vitae sodales velit ligula quis ligula. Sed et tincidunt nisi. Ut nec massa vitae dui ullamcorper malesuada nec in neque. Suspendisse nec sapien faucibus, mollis metus ac, tempus eros. Praesent at nisl consequat ligula auctor eleifend nec sit amet eros. Fusce consequat, ante ac maximus auctor, felis justo vestibulum elit, congue congue ipsum ligula et lacus. Vivamus est risus, viverra quis iaculis et, eleifend eget est.',
     type: 'Permanent',
     remuneration: 'Competitive + Options',
+    experience: '300+ years',
+    requirements: 'building large-scale web-based applications in 🐔, 💅🏼 and 💩.',
     tags: [
       'Fake',
       'Job'

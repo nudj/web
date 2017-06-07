@@ -8,6 +8,7 @@ import { Helmet } from 'react-helmet'
 import { getStyle, setStyles } from './job-page.css'
 
 import Header from '../header'
+import { render } from '../../../lib/templater'
 
 function elementFromString (string) {
   var div = document.createElement('div')
@@ -48,11 +49,11 @@ const Component = (props) => {
   const pageTitle = `${companyName} - ${jobTitle}`
 
   const prismic = {
-    title: `Like Harry Potter after the golden snitch, ${companyName} are seeking a ${jobTitle}.`,
-    description: 'They’re based in {{job.location}} and the salary is {{job.salary}}. Also they need someone with {{job.experience}} experience and a track record of {{job.requirements}}.',
-    colourPrimary: 'darkPink',
-    colourText: 'white',
-    colourTextHighlight: 'royalBlue'
+    title: `Like Harry Potter after the golden snitch, {{company.name}} are seeking a {{job.title}}.`,
+    description: 'They’re based in {{job.location}} and the salary is {{job.remuneration}}. Also they need someone with {{job.experience}} experience and a track record of {{job.requirements}}.',
+    colourPrimary: 'lightGrey',
+    colourText: 'charcoal',
+    colourTextHighlight: 'darkPink'
   }
 
   setStyles(prismic.colourPrimary, prismic.colourText, prismic.colourTextHighlight)
@@ -61,6 +62,24 @@ const Component = (props) => {
   const applyForJobButton = application ? (<button className={style.applied} disabled>You've already applied</button>) : (<button className={style.apply}>Apply for job</button>)
 
   const uniqueLink = `/jobs/${get(props, 'company.slug', '')}+${get(props, 'job.slug', '')}${referral ? `+${referral.id}` : ''}`
+
+  const data = {
+    job: get(props, 'job'),
+    company: get(props, 'company')
+  }
+
+  const title = render({
+    template: prismic.title,
+    data: data,
+    tagify: (contents, ok, index) => {
+      return <span className={style.jobHeaderTitleHighlight} key={`chunk${index}`}>{contents}</span>
+    }
+  })
+
+  const description = render({
+    template: prismic.description,
+    data: data
+  })
 
   return (
     <div className={style.body}>
@@ -78,9 +97,9 @@ const Component = (props) => {
       </Helmet>
       <div className={style.job}>
         <div className={style.jobHeader}>
-          <h1 className={style.jobHeaderTitle}>{prismic.title}</h1>
+          <h1 className={style.jobHeaderTitle}>{title}</h1>
           <h3 className={style.jobHeaderSubtitle}>What else you need to know…</h3>
-          <p className={style.jobHeaderDescription}>{prismic.description}</p>
+          <p className={style.jobHeaderDescription}>{description}</p>
         </div>
         <section className={style.actions}>
           <form className={style.action} action={`${uniqueLink}/apply`} method='POST' onSubmit={onFormSubmit('new-application', props)}>

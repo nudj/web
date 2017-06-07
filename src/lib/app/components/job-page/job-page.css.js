@@ -26,6 +26,10 @@ const styles = {
       textAlign: 'inherit'
     }
   }),
+  jobHeaderTitleHighlight: {
+    color: variables.colours.royalBlue,
+    whiteSpace: 'nowrap' // don't wrap highlighted portions?
+  },
   jobHeaderSubtitle: merge({}, mixins.typography.subtitle, {
     color: variables.colours.white,
     margin: `0 0 ${variables.padding.d} 0`,
@@ -113,6 +117,9 @@ const setStyles = (backgroundColour, textColour, textHighlightColour) => {
     },
     jobHeaderTitle: {
       color: variables.colours[textColour] || styles.jobHeaderTitle.color
+    },
+    jobHeaderTitleHighlight: {
+      color: variables.colours[textHighlightColour] || styles.jobHeaderTitleHighlight.color
     },
     jobHeaderSubtitle: {
       color: variables.colours[textColour] || styles.jobHeaderSubtitle.color
