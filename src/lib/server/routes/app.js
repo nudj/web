@@ -152,7 +152,7 @@ function getRandomInt (min, max) {
 function jobPrismicTemplate (data) {
   const prismicQuery = {
     'document.type': 'jobdescription',
-    'document.tags': []
+    'document.tags': ['default']
   }
 
   if (data.job.templateTags && data.job.templateTags.length) {
