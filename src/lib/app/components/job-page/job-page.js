@@ -88,7 +88,13 @@ const Component = (props) => {
   const title = render({
     template: template.title,
     data: data,
-    tagify: (contents, ok, index) => {
+    tagify: (contents, ok, index, chunk) => {
+      if (chunk === 'company.name' && data && data.company.url) {
+        return <a className={style.jobHeaderTitleHighlightLink} key={`chunk${index}`} href={data.company.url} target='_blank'>{contents}</a>
+      } else if (chunk === 'job.title' && data && data.job.url) {
+        return <a className={style.jobHeaderTitleHighlightLink} key={`chunk${index}`} href={data.job.url} target='_blank'>{contents}</a>
+      }
+
       return <span className={style.jobHeaderTitleHighlight} key={`chunk${index}`}>{contents}</span>
     }
   })

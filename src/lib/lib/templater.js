@@ -8,8 +8,9 @@ const applyTags = (para, data, tagify, chunkify, indexStart) => {
   let order = para.match(/\{\{.*?\}\}|((?!(\{\{.*?\}\}))[^])+/g) || []
   let chunks = order.map((chunk, index) => {
     if (tags.includes(chunk)) {
-      let value = get(data, stripDelims(chunk))
-      return tagify(value !== undefined ? value : chunk, value !== undefined, indexStart + index)
+      const cleanChunk = stripDelims(chunk)
+      const value = get(data, cleanChunk)
+      return tagify(value !== undefined ? value : chunk, value !== undefined, indexStart + index, cleanChunk)
     } else {
       return chunkify(chunk, indexStart + index)
     }

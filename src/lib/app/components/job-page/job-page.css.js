@@ -32,6 +32,12 @@ const styles = {
       whiteSpace: 'nowrap'
     }
   },
+  jobHeaderTitleHighlightLink: {
+    color: variables.colours.royalBlue,
+    [mixins.breakpoints.l]: {
+      whiteSpace: 'nowrap'
+    }
+  },
   jobHeaderSubtitle: merge({}, mixins.headings.h4, {
     color: variables.colours.white,
     margin: `0 0 ${variables.padding.d} 0`,
@@ -135,6 +141,9 @@ const setStyles = (backgroundColour, textColour, textHighlightColour) => {
       color: variables.colours[textColour] || styles.jobHeaderTitle.color
     },
     jobHeaderTitleHighlight: {
+      color: variables.colours[textHighlightColour] || styles.jobHeaderTitleHighlight.color
+    },
+    jobHeaderTitleHighlightLink: {
       color: variables.colours[textHighlightColour] || styles.jobHeaderTitleHighlight.color
     },
     jobHeaderSubtitle: {
