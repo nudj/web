@@ -52,12 +52,12 @@ const Component = (props) => {
       </form>
     )
   }
-  return (
+  return (<div className={style.bodyContainer}>
+    <Header />
     <div className={style.body}>
-      <Header />
       {html}
     </div>
-  )
+  </div>)
 }
 
 const mapStateToProps = (state, props) => Object.assign({}, state.page, props)

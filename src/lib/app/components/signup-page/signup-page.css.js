@@ -1,6 +1,7 @@
 import css, { mixins, variables } from '../../lib/css'
 
 const styles = {
+  bodyContainer: {},
   body: mixins.flexColumn(),
   content: {
     width: '100%'
