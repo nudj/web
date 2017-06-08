@@ -85,7 +85,7 @@ dummyData.jobs = dummyData.jobs.concat([
     remuneration: 'Competitive + Options',
     experience: '300+ years',
     requirements: 'building large-scale web-based applications in 🐔, 💅🏼 and 💩.',
-    templateTags: ['film'],
+    templateTags: ['food', 'film'],
     tags: [
       'Fake',
       'Job'

@@ -156,7 +156,7 @@ function jobPrismicTemplate (data) {
   }
 
   if (data.job.templateTags && data.job.templateTags.length) {
-    prismicQuery['document.tags'].push(...data.job.templateTags)
+    prismicQuery['document.tags'] = [].concat(...data.job.templateTags)
   }
 
   data.template = prismic.fetchContent(prismicQuery)

@@ -27,9 +27,18 @@ class PrismicApi {
     // throw new Error(error)
   }
 
+  predicatesOperator (key) {
+    switch (key) {
+      case 'document.tags':
+        return Prismic.Predicates.any
+      default:
+        return Prismic.Predicates.at
+    }
+  }
+
   queryDocuments ({api, documentQuery}) {
     // An empty query SHOULD return all the documents // need to make sure this still happens // ?
-    const prismicQuery = Object.keys(documentQuery).map(key => Prismic.Predicates.at(key, documentQuery[key]))
+    const prismicQuery = Object.keys(documentQuery).map(key => this.predicatesOperator(key)(key, documentQuery[key]))
     // calling api.query('') will return all documents
     return api.query(prismicQuery)
   }
