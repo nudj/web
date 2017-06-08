@@ -7,6 +7,13 @@ const buttonMargins = {
   }
 }
 
+const jobHeaderTitleHighlight = {
+  color: variables.colours.royalBlue,
+  [mixins.breakpoints.l]: {
+    whiteSpace: 'nowrap'
+  }
+}
+
 const styles = {
   navContainer: {
     backgroundColor: 'blue'
@@ -26,18 +33,10 @@ const styles = {
       textAlign: 'inherit'
     }
   }),
-  jobHeaderTitleHighlight: {
-    color: variables.colours.royalBlue,
-    [mixins.breakpoints.l]: {
-      whiteSpace: 'nowrap'
-    }
-  },
-  jobHeaderTitleHighlightLink: {
-    color: variables.colours.royalBlue,
-    [mixins.breakpoints.l]: {
-      whiteSpace: 'nowrap'
-    }
-  },
+  jobHeaderTitleHighlight: jobHeaderTitleHighlight,
+  jobHeaderTitleHighlightLink: merge({}, jobHeaderTitleHighlight, {
+    textDecorationSkip: 'ink'
+  }),
   jobHeaderSubtitle: merge({}, mixins.headings.h4, {
     color: variables.colours.white,
     margin: `0 0 ${variables.padding.d} 0`,
