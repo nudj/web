@@ -9,7 +9,7 @@ import { getStyle, setStyles } from './job-page.css'
 
 import Header from '../header'
 import { render } from '../../../lib/templater'
-import { PrismicReact } from '../../../lib/prismic'
+import PrismicReact from '../../../lib/prismic/react'
 
 function elementFromString (string) {
   var div = document.createElement('div')

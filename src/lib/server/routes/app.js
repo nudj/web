@@ -14,8 +14,7 @@ const { promiseMap } = require('../lib')
 
 const accessToken = process.env.PRISMICIO_ACCESS_TOKEN
 const repo = process.env.PRISMICIO_REPO
-const PrismicApi = require('../../lib/prismic').PrismicApi
-const prismic = new PrismicApi({accessToken, repo})
+const prismic = require('../../lib/prismic/api')({accessToken, repo})
 
 function spoofLoggedIn (req, res, next) {
   req.session.person = {

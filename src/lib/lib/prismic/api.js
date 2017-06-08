@@ -44,4 +44,4 @@ class PrismicApi {
   }
 }
 
-module.exports = PrismicApi
+module.exports = (...args) => new PrismicApi(...args)
