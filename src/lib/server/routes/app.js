@@ -148,12 +148,15 @@ function getRenderer (req, res, next) {
 function jobHandler (req, res, next) {
   const prismicQuery = {
     'document.type': 'jobdescription',
-    'document.tags': ['food']
+    'document.tags': []
   }
 
   job
     .get(req.params.companySlugJobSlugRefId, req.session.person)
     .then(data => {
+      if (data.job.templateTags && data.job.templateTags.length) {
+        prismicQuery['document.tags'].push(...data.job.templateTags)
+      }
       data.template = prismic.fetchContent(prismicQuery, true)
       return promiseMap(data)
     })

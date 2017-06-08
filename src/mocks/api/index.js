@@ -54,6 +54,7 @@ dummyData.jobs = dummyData.jobs.concat([
     remuneration: 'Competitive + Options',
     experience: '16 billion years',
     requirements: 'building large-scale web-based applications in 🐔, 💅🏼 and 💩.',
+    templateTags: ['food'],
     tags: [
       'Software',
       'Developer',
@@ -84,6 +85,7 @@ dummyData.jobs = dummyData.jobs.concat([
     remuneration: 'Competitive + Options',
     experience: '300+ years',
     requirements: 'building large-scale web-based applications in 🐔, 💅🏼 and 💩.',
+    templateTags: ['film'],
     tags: [
       'Fake',
       'Job'
