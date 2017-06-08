@@ -82,7 +82,7 @@ class Component extends React.Component {
 
   renderBrandLogo (colour) {
     const logo = nudjLogo(colour || this.state.colours.textColour)
-    return (<div dangerouslySetInnerHTML={{ __html: logo }} />)
+    return logo
   }
 
   renderBurger (coloured = false) {
