@@ -17,6 +17,15 @@ function elementFromString (string) {
   return div.childNodes[0]
 }
 
+function determineArticle (subject) {
+  const consonantSound = /^one(![ir])/i
+  const vowelSound = /^[aeio]|^u([aeiou]|[^n][^aeiou]|ni[^dmnl]|nil[^l])/i
+  if (!consonantSound.test(subject) && vowelSound.test(subject)) {
+    return 'an'
+  }
+  return 'a'
+}
+
 function onFormSubmit (eventType, props) {
   return (event) => {
     let target = event.target
@@ -71,6 +80,10 @@ const Component = (props) => {
     job: get(props, 'job'),
     company: get(props, 'company')
   }
+
+  // Double check if we need to modify the article for the job title in template.title
+  const jobTitleArticle = determineArticle(data.job.title)
+  template.title = template.title.replace(/an?\s\{\{job.title\}\}/g, `${jobTitleArticle} {{job.title}}`)
 
   const title = render({
     template: template.title,
