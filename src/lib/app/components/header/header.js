@@ -1,11 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import getStyle from './header.css'
 
-let style
+import { getStyle, setStyles } from './header.css'
+import nudjLogo from './nudj-logo'
 
-const lightLogoPages = ['/hiring']
+import get from 'lodash/get'
+
 const offsetTrigger = 100
 
 class Component extends React.Component {
@@ -17,7 +18,13 @@ class Component extends React.Component {
     const mobileMenuStyle = 'mobileMenu'
     const navBarConstantStyle = 'navBarConstant'
 
-    this.state = {burgerActive, burgerStyle, mobileMenuStyle, navBarConstantStyle}
+    const colours = {
+      backgroundColour: get(props, 'backgroundColour'),
+      textColour: get(props, 'textColour'),
+      textHighlightColour: get(props, 'textHighlightColour')
+    }
+
+    this.state = {burgerActive, burgerStyle, mobileMenuStyle, navBarConstantStyle, colours}
   }
 
   componentDidMount () {
@@ -73,54 +80,34 @@ class Component extends React.Component {
     this.setState({navBarConstantStyle})
   }
 
-  renderBrandLogo () {
-    if (lightLogoPages.includes(this.props.location.pathname)) {
-      return (<img className={style.homeButtonImage} src='/assets/images/nudj-logo-light.svg' alt='Nudj' />)
-    } else {
-      return (<img className={style.homeButtonImage} src='/assets/images/nudj-logo-dark.svg' alt='Nudj' />)
-    }
+  renderBrandLogo (colour) {
+    const logo = nudjLogo(colour || this.state.colours.textColour)
+    return logo
   }
 
-  renderBurger (baseStyleName) {
-    const baseStyle = style[baseStyleName]
+  renderBurger (coloured = false) {
     let burgerClass = 'hamburger hamburger--elastic'
 
     if (this.state.burgerActive) {
       burgerClass += ' is-active'
     }
 
+    const burgerColour = coloured ? this.style.burgerColoured : this.style.burgerColourDefault
+
     return (
-      <div className={style.hamburgerHolder}>
-        <button className={`${burgerClass} ${style.burger}`} type='button' onClick={this.onClickBurger.bind(this)}>
-          <span className={`hamburger-box ${style.burgerBox}`}>
-            <span className={`hamburger-inner ${baseStyle}`} />
+      <div className={this.style.hamburgerHolder}>
+        <button className={`${burgerClass} ${this.style.burger}`} type='button' onClick={this.onClickBurger.bind(this)}>
+          <span className={`hamburger-box ${this.style.burgerBox}`}>
+            <span className={`hamburger-inner ${burgerColour} ${this.style.burgerPosition}`} />
           </span>
         </button>
       </div>
     )
   }
 
-  renderBurgerDark () {
-    const baseStyleName = this.state.burgerStyle
-    return this.renderBurger(baseStyleName)
-  }
-
-  renderBurgerLight () {
-    const baseStyleName = this.state.burgerStyle + 'Light'
-    return this.renderBurger(baseStyleName)
-  }
-
-  renderDesktopBurger () {
-    if (lightLogoPages.includes(this.props.location.pathname)) {
-      return this.renderBurgerLight()
-    } else {
-      return this.renderBurgerDark()
-    }
-  }
-
   renderMobileMenu () {
     const baseStyleName = this.state.mobileMenuStyle
-    const baseStyle = style[baseStyleName]
+    const baseStyle = this.style[baseStyleName]
     return (
       <nav className={baseStyle}>
         {this.renderNavLinks(true)}
@@ -130,24 +117,20 @@ class Component extends React.Component {
 
   renderNavBarConstant () {
     const baseStyleName = this.state.navBarConstantStyle
-    const baseStyle = style[baseStyleName]
+    const baseStyle = this.style[baseStyleName]
     return (<div className={baseStyle}>
-      <a className={style.homeSmall} href='/' onClick={this.onClickLink.bind(this)}>
-        <img className={style.brandLightSmall} src='/assets/images/nudj-logo-light-small.svg' alt='Nudj' />
+      <a className={this.style.homeSmall} href='/' onClick={this.onClickLink.bind(this)}>
+        <img className={this.style.brandSmall} src='/assets/images/nudj-logo-light-small.svg' alt='Nudj' />
       </a>
-      {this.renderBurgerLight()}
+      {this.renderBurger()}
     </div>)
   }
 
   renderNavLinks (mobile = false) {
-    let linkStyleName = mobile ? 'linkMobile' : 'link'
+    const linkStyleName = mobile ? 'linkMobile' : 'link'
 
-    if (lightLogoPages.includes(this.props.location.pathname) && !mobile) {
-      linkStyleName += 'Light'
-    }
-
-    const linkStyle = style[linkStyleName]
-    const requestStyle = mobile ? style.requestMobile : style.request
+    const linkStyle = this.style[linkStyleName]
+    const requestStyle = mobile ? this.style.requestMobile : this.style.request
 
     const about = (<a href='http://help.nudj.co' className={linkStyle} onClick={this.onClickLink.bind(this)} key='0'>About</a>)
     const companies = (<a href='/hiring' className={linkStyle} onClick={this.onClickLink.bind(this)} key='1'>Companies</a>)
@@ -159,22 +142,21 @@ class Component extends React.Component {
   }
 
   render () {
-    style = getStyle()
-    const baseStyleName = lightLogoPages.includes(this.props.location.pathname) ? 'navContainer' : 'navContainerDark'
-    const baseStyle = style[baseStyleName]
+    setStyles(this.state.colours.backgroundColour, this.state.colours.textColour, this.state.colours.textHighlightColour)
+    this.style = getStyle()
 
     return (
-      <div className={baseStyle}>
-        <nav className={style.nav}>
-          <div className={style.navLeft}>
-            <a className={style.homeButton} href='/' onClick={this.onClickLink.bind(this)}>
-              {this.renderBrandLogo(false)}
+      <div className={this.style.navContainer}>
+        <nav className={this.style.nav}>
+          <div className={this.style.navLeft}>
+            <a className={this.style.homeButton} href='/' onClick={this.onClickLink.bind(this)}>
+              {this.renderBrandLogo()}
             </a>
           </div>
           {this.renderNavBarConstant()}
           {this.renderMobileMenu()}
-          <div className={style.navRight}>
-            {this.renderDesktopBurger()}
+          <div className={this.style.navRight}>
+            {this.renderBurger(true)}
             {this.renderNavLinks()}
           </div>
         </nav>

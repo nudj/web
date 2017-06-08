@@ -5,9 +5,12 @@ import NudjSuccess from '../nudj-success'
 
 import getStyle from './nudj-page.css'
 
+import Header from '../header'
+
 const Component = (props) => {
   const style = getStyle()
-  return (
+  return (<div className={style.pageContainer}>
+    <Header />
     <div className={style.page}>
       <div className={style.box}>
         <h1 className={style.heading}>Awesomesauce! Here's your special link to share with your friends</h1>
@@ -18,7 +21,7 @@ const Component = (props) => {
         </div>
       </div>
     </div>
-  )
+  </div>)
 }
 
 const mapStateToProps = (state, props) => Object.assign({}, state.page, props)

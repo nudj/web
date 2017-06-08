@@ -3,9 +3,15 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import getStyle from './hirer-page.css'
 
+import Header from '../header'
+
 const Component = (props) => {
   const style = getStyle()
   return (<div className={style.body}>
+    <Header
+      backgroundColour='midRed'
+      textColour='white'
+      textHighlightColour='royalBlue' />
     <section className={style.hero}>
       <h1 className={style.heroTitle}>The best jobs aren’t advertised. <br className={style.standardBreak} />The best talent isn’t looking. <br className={style.standardBreak} />Maybe they just need a nudj.</h1>
     </section>

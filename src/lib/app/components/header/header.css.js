@@ -84,20 +84,22 @@ const innerBurgerBefore = merge({}, innerBurger, {
   transform: `translate3d(0, -${burgerLineOffset}px, 0)`
 })
 
-const innerBurgerColour = merge({
-  backgroundColor: variables.colours.white,
+const innerBurgerMiddle = merge({}, innerBurger, {
   transform: `translate3d(0, ${burgerLineOffset}px, 0)`
-}, innerBurger)
+})
 
-const innerBurgerColourAfter = merge({}, innerBurgerColour, innerBurgerAfter)
+const innerBurgerColour = {
+  backgroundColor: variables.colours.white
+}
 
-const innerBurgerColourBefore = merge({}, innerBurgerColour, innerBurgerBefore)
+const innerBurgerAltColour = {
+  backgroundColor: variables.colours.navy
+}
 
 const styles = {
   navContainer: {
-    backgroundColor: variables.colours.midRed
+    backgroundColor: 'transparent'
   },
-  navContainerDark: {},
   nav: {
     alignItems: 'center',
     display: 'flex',
@@ -119,13 +121,14 @@ const styles = {
     }
   },
   homeButton: {
-    display: 'block'
+    display: 'block',
+    width: `calc(${variables.padding.c} + ${variables.padding.d})`
   },
   homeButtonImage: {
     display: 'block',
     height: variables.padding.b
   },
-  brandLightSmall: {
+  brandSmall: {
     display: 'block',
     height: variables.padding.c
   },
@@ -180,19 +183,56 @@ const styles = {
   hamburger: merge({
     '::after': innerBurgerAfter,
     '::before': innerBurgerBefore
-  }, innerBurger),
+  }, innerBurgerMiddle),
   hamburgerIsActive: merge({
     '::after': innerBurger,
     '::before': innerBurger
-  }, innerBurger),
-  hamburgerLight: merge({
-    '::after': innerBurgerColourAfter,
-    '::before': innerBurgerColourBefore
-  }, innerBurgerColour),
-  hamburgerIsActiveLight: merge({
+  }, innerBurgerMiddle),
+  burgerPosition: merge({
+    '::after': innerBurgerAfter,
+    '::before': innerBurgerBefore
+  }, innerBurgerMiddle),
+  burgerColourDefault: merge({}, {
     '::after': innerBurgerColour,
     '::before': innerBurgerColour
-  }, innerBurgerColour)
+  }, innerBurgerColour),
+  burgerColoured: merge({}, {
+    '::after': merge({}, innerBurgerAltColour),
+    '::before': merge({}, innerBurgerAltColour)
+  }, merge({}, innerBurgerAltColour))
 }
 
-export default css(styles)
+let colouredStyles = {}
+
+const setStyles = (backgroundColor, textColour, textHighlightColour) => {
+  const burgerColour = {
+    backgroundColor: variables.colours[textColour] || styles.burgerColoured.backgroundColor
+  }
+
+  colouredStyles = {
+    navContainer: {
+      backgroundColor: variables.colours[backgroundColor] || styles.navContainer.backgroundColor
+    },
+    request: {
+      backgroundColor: variables.colours[textHighlightColour] || styles.request.backgroundColor,
+      borderColor: variables.colours[textHighlightColour] || styles.request.borderColor,
+      color: variables.colours[textColour] || styles.request.color
+    },
+    link: {
+      color: variables.colours[textColour] || styles.link.color
+    },
+    burgerColoured: merge({}, burgerColour, {
+      '::after': burgerColour,
+      '::before': burgerColour
+    })
+  }
+}
+
+const getStyle = () => {
+  const compiledStyles = merge({}, styles, colouredStyles)
+  return css(compiledStyles)()
+}
+
+export { getStyle, setStyles }
+
+export default getStyle

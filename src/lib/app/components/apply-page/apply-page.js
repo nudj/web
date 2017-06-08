@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import getStyle from './apply-page.css'
 
+import Header from '../header'
+
 class Component extends React.Component {
   constructor (props) {
     super(props)
@@ -120,11 +122,12 @@ class Component extends React.Component {
 
   render () {
     this.style = getStyle()
-    return (
+    return (<div className={this.style.bodyContainer}>
+      <Header />
       <div className={this.style.body}>
         {this.isProfileComplete() ? this.renderSuccess() : this.renderForm()}
       </div>
-    )
+    </div>)
   }
 }
 
