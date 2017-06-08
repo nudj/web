@@ -215,6 +215,7 @@ const setStyles = (backgroundColor, textColour, textHighlightColour) => {
     },
     request: {
       backgroundColor: variables.colours[textHighlightColour] || styles.request.backgroundColor,
+      borderColor: variables.colours[textHighlightColour] || styles.request.borderColor,
       color: variables.colours[textColour] || styles.request.color
     },
     link: {

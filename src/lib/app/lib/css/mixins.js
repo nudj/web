@@ -169,11 +169,14 @@ export function flexColumn (properties) {
 // Buttons
 export function button (properties) {
   const buttonBasic = {
+    borderColor: 'transparent',
     borderRadius: variables.sizes.magicBorderRadius,
+    borderStyle: 'solid',
+    borderWidth: variables.sizes.buttonBorderWidth,
     cursor: 'pointer',
     display: 'inline-block',
     minWidth: `calc(${variables.padding.d} * 10)`,
-    padding: `calc(${variables.padding.e} * 1.5) ${variables.padding.c}`,
+    padding: `calc((${variables.padding.e} * 1.5) - ${variables.sizes.buttonBorderWidth}) calc(${variables.padding.c} - ${variables.sizes.buttonBorderWidth})`,
     textAlign: 'center'
   }
   return merge({}, deLink(), buttonBasic, headings.h6, properties || {})
@@ -182,7 +185,7 @@ export function button (properties) {
 export function buttonPrimary (properties) {
   const buttonPrimary = {
     backgroundColor: variables.colours.royalBlue,
-    border: 'none',
+    borderColor: variables.colours.royalBlue,
     color: variables.colours.white
   }
   return merge({}, button(buttonPrimary), properties || {})
@@ -199,7 +202,7 @@ export function buttonPrimaryDisabled (properties = {}) {
 export function buttonSecondary (properties) {
   const buttonSecondary = {
     backgroundColor: variables.colours.white,
-    border: `${variables.sizes.buttonBorderWidth} solid ${variables.colours.royalBlue}`,
+    borderColor: variables.colours.royalBlue,
     color: variables.colours.royalBlue
   }
   return merge({}, button(buttonSecondary), properties || {})

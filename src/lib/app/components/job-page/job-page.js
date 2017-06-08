@@ -9,6 +9,7 @@ import { getStyle, setStyles } from './job-page.css'
 
 import Header from '../header'
 import { render } from '../../../lib/templater'
+import { PrismicReact } from '../../../lib/prismic'
 
 function elementFromString (string) {
   var div = document.createElement('div')
@@ -48,15 +49,18 @@ const Component = (props) => {
 
   const pageTitle = `${companyName} - ${jobTitle}`
 
-  const prismic = {
-    title: `Like Harry Potter after the golden snitch, {{company.name}} are seeking a {{job.title}}.`,
-    description: 'They’re based in {{job.location}} and the salary is {{job.remuneration}}. Also they need someone with {{job.experience}} experience and a track record of {{job.requirements}}.',
-    colourPrimary: 'lightGrey',
-    colourText: 'charcoal',
-    colourTextHighlight: 'darkPink'
+  const rawTemplate = get(props, 'template')
+  const templateContent = new PrismicReact(rawTemplate)
+
+  const template = {
+    title: templateContent.fragmentToText({fragment: 'jobdescription.title'}),
+    description: templateContent.fragmentToText({fragment: 'jobdescription.description'}),
+    colourPrimary: templateContent.fragmentToText({fragment: 'jobdescription.colourprimary'}),
+    colourText: templateContent.fragmentToText({fragment: 'jobdescription.colourtext'}),
+    colourTextHighlight: templateContent.fragmentToText({fragment: 'jobdescription.colourtexthighlight'})
   }
 
-  setStyles(prismic.colourPrimary, prismic.colourText, prismic.colourTextHighlight)
+  setStyles(template.colourPrimary, template.colourText, template.colourTextHighlight)
   const style = getStyle()
 
   const applyForJobButton = application ? (<button className={style.applied} disabled>You've already applied</button>) : (<button className={style.apply}>Apply for job</button>)
@@ -69,7 +73,7 @@ const Component = (props) => {
   }
 
   const title = render({
-    template: prismic.title,
+    template: template.title,
     data: data,
     tagify: (contents, ok, index) => {
       return <span className={style.jobHeaderTitleHighlight} key={`chunk${index}`}>{contents}</span>
@@ -77,16 +81,16 @@ const Component = (props) => {
   })
 
   const description = render({
-    template: prismic.description,
+    template: template.description,
     data: data
   })
 
   return (
     <div className={style.body}>
       <Header
-        backgroundColour={prismic.colourPrimary}
-        textColour={prismic.colourText}
-        textHighlightColour={prismic.colourTextHighlight} />
+        backgroundColour={template.colourPrimary}
+        textColour={template.colourText}
+        textHighlightColour={template.colourTextHighlight} />
       <Helmet>
         <title>{pageTitle}</title>
         <meta name='title' content={pageTitle} />
@@ -110,7 +114,7 @@ const Component = (props) => {
           <form className={style.action} action={`${uniqueLink}/nudj`} method='POST' onSubmit={onFormSubmit('new-referral', props)}>
             <input type='hidden' name='_csrf' value={props.csrfToken} />
             <button className={style.nudj}>Send to a friend</button>
-            <p className={style.actionCopy}>We’ll <strong className={style.strong}>give you £{get(props, 'job.bonus')} if they get the job.</strong> Simply sign up &amp; we'll give you a unique link to this page, which you can share.</p>
+            <p className={style.actionCopy}>We’ll <strong className={style.strong}>give you £{get(props, 'job.bonus')} if they get the job.</strong></p>
           </form>
         </section>
       </div>

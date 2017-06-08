@@ -10,6 +10,13 @@ let job = require('../modules/job')
 let build = require('../build').default
 let router = express.Router()
 
+const { promiseMap } = require('../lib')
+
+const accessToken = process.env.PRISMICIO_ACCESS_TOKEN
+const repo = process.env.PRISMICIO_REPO
+const PrismicApi = require('../../lib/prismic').PrismicApi
+const prismic = new PrismicApi({accessToken, repo})
+
 function spoofLoggedIn (req, res, next) {
   req.session.person = {
     id: '25',
@@ -139,8 +146,17 @@ function getRenderer (req, res, next) {
 }
 
 function jobHandler (req, res, next) {
+  const prismicQuery = {
+    'document.type': 'jobdescription',
+    'document.tags': ['food']
+  }
+
   job
     .get(req.params.companySlugJobSlugRefId, req.session.person)
+    .then(data => {
+      data.template = prismic.fetchContent(prismicQuery, true)
+      return promiseMap(data)
+    })
     .then(getRenderDataBuilder(req, res, next))
     .then(getRenderer(req, res, next))
     .catch(getErrorHandler(req, res, next))

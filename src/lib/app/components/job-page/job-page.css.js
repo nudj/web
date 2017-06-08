@@ -15,7 +15,7 @@ const styles = {
     backgroundColor: 'blue'
   },
   job: {
-    backgroundColour: variables.colours.darkPink,
+    backgroundColor: variables.colours.darkPink,
     padding: `${variables.padding.a} 0`,
     position: 'relative'
   },
@@ -54,7 +54,9 @@ const styles = {
     [mixins.breakpoints.l]: {
       margin: `0 ${variables.padding.d} 0 0`,
       textAlign: 'inherit',
+      width: `calc(33.3% - ${variables.padding.d})`,
       ':last-child': {
+        flexGrow: '1',
         margin: '0'
       }
     }
@@ -111,6 +113,18 @@ const getStyle = css(styles)
 
 // Override the colours -- fallback on what's there if the colour isn't defined
 const setStyles = (backgroundColour, textColour, textHighlightColour) => {
+  if (backgroundColour === 'undefined') {
+    backgroundColour = undefined
+  }
+
+  if (textColour === 'undefined') {
+    textColour = undefined
+  }
+
+  if (textHighlightColour === 'undefined') {
+    textHighlightColour = undefined
+  }
+
   const colouredStyles = {
     job: {
       backgroundColor: variables.colours[backgroundColour] || styles.job.backgroundColor
@@ -129,15 +143,17 @@ const setStyles = (backgroundColour, textColour, textHighlightColour) => {
     },
     apply: {
       backgroundColor: variables.colours[textHighlightColour] || styles.apply.backgroundColor,
+      borderColor: variables.colours[textHighlightColour] || styles.apply.borderColor,
       color: variables.colours[textColour] || styles.apply.color
     },
     applied: {
       backgroundColor: variables.colours[textHighlightColour] || styles.applied.backgroundColor,
+      borderColor: variables.colours[textHighlightColour] || styles.apply.borderColor,
       color: variables.colours[textColour] || styles.applied.color
     },
     nudj: {
-      borderColor: variables.colours[textColour] || styles.applied.borderColor,
-      color: variables.colours[textColour] || styles.applied.color
+      borderColor: variables.colours[textColour] || styles.nudj.borderColor,
+      color: variables.colours[textColour] || styles.nudj.color
     },
     actionCopy: {
       color: variables.colours[textColour] || styles.actionCopy.color
