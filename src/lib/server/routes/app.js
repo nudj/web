@@ -145,21 +145,33 @@ function getRenderer (req, res, next) {
   }
 }
 
-function jobHandler (req, res, next) {
+function getRandomInt (min, max) {
+  return Math.floor(Math.random() * (max - min)) + min
+}
+
+function jobPrismicTemplate (data) {
   const prismicQuery = {
     'document.type': 'jobdescription',
     'document.tags': []
   }
 
+  if (data.job.templateTags && data.job.templateTags.length) {
+    prismicQuery['document.tags'].push(...data.job.templateTags)
+  }
+
+  data.template = prismic.fetchContent(prismicQuery)
+    .then(results => {
+      const index = getRandomInt(0, results.length)
+      return results[index]
+    })
+
+  return promiseMap(data)
+}
+
+function jobHandler (req, res, next) {
   job
     .get(req.params.companySlugJobSlugRefId, req.session.person)
-    .then(data => {
-      if (data.job.templateTags && data.job.templateTags.length) {
-        prismicQuery['document.tags'].push(...data.job.templateTags)
-      }
-      data.template = prismic.fetchContent(prismicQuery, true)
-      return promiseMap(data)
-    })
+    .then(jobPrismicTemplate)
     .then(getRenderDataBuilder(req, res, next))
     .then(getRenderer(req, res, next))
     .catch(getErrorHandler(req, res, next))
