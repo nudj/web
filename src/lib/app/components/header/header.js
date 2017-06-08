@@ -21,7 +21,8 @@ class Component extends React.Component {
     const colours = {
       backgroundColour: get(props, 'backgroundColour'),
       textColour: get(props, 'textColour'),
-      textHighlightColour: get(props, 'textHighlightColour')
+      textHighlightColour: get(props, 'textHighlightColour'),
+      buttonTextColour: get(props, 'buttonTextColour')
     }
 
     this.state = {burgerActive, burgerStyle, mobileMenuStyle, navBarConstantStyle, colours}
@@ -142,7 +143,7 @@ class Component extends React.Component {
   }
 
   render () {
-    setStyles(this.state.colours.backgroundColour, this.state.colours.textColour, this.state.colours.textHighlightColour)
+    setStyles(this.state.colours.backgroundColour, this.state.colours.textColour, this.state.colours.textHighlightColour, this.state.colours.buttonTextColour)
     this.style = getStyle()
 
     return (

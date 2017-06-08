@@ -204,19 +204,35 @@ const styles = {
 
 let colouredStyles = {}
 
-const setStyles = (backgroundColor, textColour, textHighlightColour) => {
+const setStyles = (backgroundColour, textColour, textHighlightColour, buttonTextColour) => {
+  if (backgroundColour === 'undefined') {
+    backgroundColour = undefined
+  }
+
+  if (textColour === 'undefined') {
+    textColour = undefined
+  }
+
+  if (textHighlightColour === 'undefined') {
+    textHighlightColour = undefined
+  }
+
+  if (buttonTextColour === 'undefined') {
+    buttonTextColour = undefined
+  }
+
   const burgerColour = {
     backgroundColor: variables.colours[textColour] || styles.burgerColoured.backgroundColor
   }
 
   colouredStyles = {
     navContainer: {
-      backgroundColor: variables.colours[backgroundColor] || styles.navContainer.backgroundColor
+      backgroundColor: variables.colours[backgroundColour] || styles.navContainer.backgroundColor
     },
     request: {
       backgroundColor: variables.colours[textHighlightColour] || styles.request.backgroundColor,
       borderColor: variables.colours[textHighlightColour] || styles.request.borderColor,
-      color: variables.colours[textColour] || styles.request.color
+      color: variables.colours[buttonTextColour] || variables.colours[textColour] || styles.request.color
     },
     link: {
       color: variables.colours[textColour] || styles.link.color

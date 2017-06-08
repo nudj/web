@@ -66,10 +66,11 @@ const Component = (props) => {
     description: templateContent.fragmentToText({fragment: 'jobdescription.description'}),
     colourPrimary: templateContent.fragmentToText({fragment: 'jobdescription.colourprimary'}),
     colourText: templateContent.fragmentToText({fragment: 'jobdescription.colourtext'}),
-    colourTextHighlight: templateContent.fragmentToText({fragment: 'jobdescription.colourtexthighlight'})
+    colourTextHighlight: templateContent.fragmentToText({fragment: 'jobdescription.colourtexthighlight'}),
+    colourButtonText: templateContent.fragmentToText({fragment: 'jobdescription.colourbuttontext'})
   }
 
-  setStyles(template.colourPrimary, template.colourText, template.colourTextHighlight)
+  setStyles(template.colourPrimary, template.colourText, template.colourTextHighlight, template.colourButtonText)
   const style = getStyle()
 
   const applyForJobButton = application ? (<button className={style.applied} disabled>You've already applied</button>) : (<button className={style.apply}>Apply for job</button>)
@@ -109,7 +110,8 @@ const Component = (props) => {
       <Header
         backgroundColour={template.colourPrimary}
         textColour={template.colourText}
-        textHighlightColour={template.colourTextHighlight} />
+        textHighlightColour={template.colourTextHighlight}
+        buttonTextColour={template.colourButtonText} />
       <Helmet>
         <title>{pageTitle}</title>
         <meta name='title' content={pageTitle} />

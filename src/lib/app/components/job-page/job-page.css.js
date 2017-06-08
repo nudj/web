@@ -35,7 +35,7 @@ const styles = {
   }),
   jobHeaderTitleHighlight: jobHeaderTitleHighlight,
   jobHeaderTitleHighlightLink: merge({}, jobHeaderTitleHighlight, {
-    textDecorationSkip: 'ink'
+    textDecoration: 'none'
   }),
   jobHeaderSubtitle: merge({}, mixins.headings.h4, {
     color: variables.colours.white,
@@ -119,7 +119,7 @@ const styles = {
 const getStyle = css(styles)
 
 // Override the colours -- fallback on what's there if the colour isn't defined
-const setStyles = (backgroundColour, textColour, textHighlightColour) => {
+const setStyles = (backgroundColour, textColour, textHighlightColour, buttonTextColour) => {
   if (backgroundColour === 'undefined') {
     backgroundColour = undefined
   }
@@ -130,6 +130,10 @@ const setStyles = (backgroundColour, textColour, textHighlightColour) => {
 
   if (textHighlightColour === 'undefined') {
     textHighlightColour = undefined
+  }
+
+  if (buttonTextColour === 'undefined') {
+    buttonTextColour = undefined
   }
 
   const colouredStyles = {
@@ -143,7 +147,7 @@ const setStyles = (backgroundColour, textColour, textHighlightColour) => {
       color: variables.colours[textHighlightColour] || styles.jobHeaderTitleHighlight.color
     },
     jobHeaderTitleHighlightLink: {
-      color: variables.colours[textHighlightColour] || styles.jobHeaderTitleHighlight.color
+      color: variables.colours[textHighlightColour] || styles.jobHeaderTitleHighlightLink.color
     },
     jobHeaderSubtitle: {
       color: variables.colours[textColour] || styles.jobHeaderSubtitle.color
@@ -154,12 +158,12 @@ const setStyles = (backgroundColour, textColour, textHighlightColour) => {
     apply: {
       backgroundColor: variables.colours[textHighlightColour] || styles.apply.backgroundColor,
       borderColor: variables.colours[textHighlightColour] || styles.apply.borderColor,
-      color: variables.colours[textColour] || styles.apply.color
+      color: variables.colours[buttonTextColour] || variables.colours[textColour] || styles.apply.color
     },
     applied: {
       backgroundColor: variables.colours[textHighlightColour] || styles.applied.backgroundColor,
       borderColor: variables.colours[textHighlightColour] || styles.apply.borderColor,
-      color: variables.colours[textColour] || styles.applied.color
+      color: variables.colours[buttonTextColour] || variables.colours[textColour] || styles.applied.color
     },
     nudj: {
       borderColor: variables.colours[textColour] || styles.nudj.borderColor,
