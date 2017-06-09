@@ -12,10 +12,9 @@ const styles = {
     position: 'relative',
     zIndex: variables.zIndicies.header
   },
-  content: mixins.flexColumn({
-    alignItems: 'stretch',
-    minHeight: 'calc(100vh - 400px)'
-  }),
+  content: {
+    minHeight: 'calc(100vh - 320px)'
+  },
   footer: mixins.beforeBackgroundSquiggle('bg-wiggle-charcoal.svg')
 }
 

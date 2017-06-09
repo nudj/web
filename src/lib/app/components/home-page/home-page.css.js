@@ -65,6 +65,10 @@ const styles = {
   body: {
     marginTop: `calc(${variables.padding.b} * -1)`
   },
+  header: {
+    position: 'relative',
+    top: variables.padding.b
+  },
   story: mixins.deList(),
   typeout: mixins.textHighlight(),
   // Not happy

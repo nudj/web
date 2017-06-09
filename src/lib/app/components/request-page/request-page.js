@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import getStyle from './request-page.css'
 
+import Header from '../header'
+
 const Component = (props) => {
   const style = getStyle()
   let html
@@ -50,11 +52,12 @@ const Component = (props) => {
       </form>
     )
   }
-  return (
+  return (<div className={style.bodyContainer}>
+    <Header />
     <div className={style.body}>
       {html}
     </div>
-  )
+  </div>)
 }
 
 const mapStateToProps = (state, props) => Object.assign({}, state.page, props)

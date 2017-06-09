@@ -10,6 +10,12 @@ let job = require('../modules/job')
 let build = require('../build').default
 let router = express.Router()
 
+const { promiseMap } = require('../lib')
+
+const accessToken = process.env.PRISMICIO_ACCESS_TOKEN
+const repo = process.env.PRISMICIO_REPO
+const prismic = require('../../lib/prismic/api')({accessToken, repo})
+
 function spoofLoggedIn (req, res, next) {
   req.session.person = {
     id: '25',
@@ -138,9 +144,33 @@ function getRenderer (req, res, next) {
   }
 }
 
+function getRandomInt (min, max) {
+  return Math.floor(Math.random() * (max - min)) + min
+}
+
+function jobPrismicTemplate (data) {
+  const prismicQuery = {
+    'document.type': 'jobdescription',
+    'document.tags': ['default']
+  }
+
+  if (data.job.templateTags && data.job.templateTags.length) {
+    prismicQuery['document.tags'] = [].concat(...data.job.templateTags)
+  }
+
+  data.template = prismic.fetchContent(prismicQuery)
+    .then(results => {
+      const index = getRandomInt(0, results.length)
+      return results[index]
+    })
+
+  return promiseMap(data)
+}
+
 function jobHandler (req, res, next) {
   job
     .get(req.params.companySlugJobSlugRefId, req.session.person)
+    .then(jobPrismicTemplate)
     .then(getRenderDataBuilder(req, res, next))
     .then(getRenderer(req, res, next))
     .catch(getErrorHandler(req, res, next))

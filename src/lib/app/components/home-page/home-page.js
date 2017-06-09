@@ -4,6 +4,8 @@ import { withRouter } from 'react-router-dom'
 import TypeOut from 'react-typeout'
 import getStyle from './home-page.css'
 
+import Header from '../header'
+
 const words = [
   'designers',
   'product managers',
@@ -15,6 +17,9 @@ const words = [
 const HomePage = () => {
   const style = getStyle()
   return (<div className={style.body}>
+    <div className={style.header}>
+      <Header />
+    </div>
     <section className={style.hero}>
       <ul className={style.story}>
         <li className={style.notHappy}>
