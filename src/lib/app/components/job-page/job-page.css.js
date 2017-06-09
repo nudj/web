@@ -40,6 +40,7 @@ const styles = {
   jobHeaderSubtitle: merge({}, mixins.headings.h4, {
     color: variables.colours.white,
     margin: `0 0 ${variables.padding.d} 0`,
+    textAlign: 'center',
     [mixins.breakpoints.l]: {
       textAlign: 'inherit'
     }
