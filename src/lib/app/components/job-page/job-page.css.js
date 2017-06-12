@@ -23,8 +23,11 @@ const styles = {
   },
   job: {
     backgroundColor: variables.colours.darkPink,
-    padding: `${variables.padding.a} 0`,
-    position: 'relative'
+    padding: `${variables.padding.b} 0`,
+    position: 'relative',
+    [mixins.breakpoints.l]: {
+      padding: `${variables.padding.a} 0`
+    }
   },
   jobHeader: mixins.basicContainer(),
   jobHeaderTitle: merge({}, mixins.typography.titleWhite, {
