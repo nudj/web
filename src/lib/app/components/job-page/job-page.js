@@ -130,7 +130,7 @@ const Component = (props) => {
           <form className={style.action} action={`${uniqueLink}/apply`} method='POST' onSubmit={onFormSubmit('new-application', props)}>
             <input type='hidden' name='_csrf' value={props.csrfToken} />
             {applyForJobButton}
-            <p className={style.actionCopy}>It only takes a <strong className={style.strong}>few seconds</strong> to apply!</p>
+            <p className={style.actionCopy}>It only takes <strong className={style.strong}>a few seconds</strong> to apply!</p>
           </form>
           <form className={style.action} action={`${uniqueLink}/nudj`} method='POST' onSubmit={onFormSubmit('new-referral', props)}>
             <input type='hidden' name='_csrf' value={props.csrfToken} />
