@@ -73,7 +73,7 @@ const Component = (props) => {
   setStyles(template.colourPrimary, template.colourText, template.colourTextHighlight, template.colourButtonText)
   const style = getStyle()
 
-  const applyForJobButton = application ? (<button className={style.applied} disabled>You've already applied</button>) : (<button className={style.apply}>Apply for job</button>)
+  const applyForJobButton = application ? (<button className={style.applied} disabled>We'll be in touch soon</button>) : (<button className={style.apply}>Find out more</button>)
 
   const uniqueLink = `/jobs/${get(props, 'company.slug', '')}+${get(props, 'job.slug', '')}${referral ? `+${referral.id}` : ''}`
 
