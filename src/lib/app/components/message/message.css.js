@@ -1,7 +1,7 @@
 import css, { merge, mixins, variables } from '../../lib/css'
 
 const alert = {
-  backgroundColor: variables.colours.midRed,
+  backgroundColor: variables.colours.navy,
   colour: variables.colours.white
 }
 
