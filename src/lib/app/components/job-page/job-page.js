@@ -4,10 +4,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import get from 'lodash/get'
+import merge from 'lodash/merge'
 import { Helmet } from 'react-helmet'
 import { getStyle, setStyles } from './job-page.css'
 
+import Message from '../message'
 import Header from '../header'
+import NudjSuccess from '../nudj-success'
+
 import { render } from '../../../lib/templater'
 import PrismicReact from '../../../lib/prismic/react'
 
@@ -105,8 +109,34 @@ const Component = (props) => {
     data: data
   })
 
+  let bannerMessage = get(props, 'message')
+  const isReferrerByProps = get(props, 'referrer.email') && get(props, 'person.email') && get(props, 'referrer.email') === get(props, 'person.email')
+  const isReferrerByMessage = bannerMessage && bannerMessage.type === 'error' && bannerMessage.code === 403 && bannerMessage.message === 'Already referred'
+
+  if (application) {
+    bannerMessage = 'You\'ve already applied for this job'
+  } else if (isReferrerByProps || isReferrerByMessage) {
+    const successProps = merge({
+      backgroundColour: template.colourPrimary,
+      textColour: template.colourText,
+      textHighlightColour: template.colourTextHighlight,
+      buttonTextColour: template.colourButtonText
+    }, props)
+    bannerMessage = (<div>
+      <p>You've already nudj'd this job. Below is your unique link.</p>
+      <NudjSuccess {...successProps} />
+    </div>)
+  }
+
   return (
     <div className={style.body}>
+      <Message
+        message={bannerMessage}
+        messageType='jobs'
+        backgroundColour={template.colourPrimary}
+        textColour={template.colourText}
+        textHighlightColour={template.colourTextHighlight}
+        buttonTextColour={template.colourButtonText} />
       <Header
         backgroundColour={template.colourPrimary}
         textColour={template.colourText}

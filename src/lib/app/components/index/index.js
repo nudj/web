@@ -2,7 +2,6 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import getStyle from './index.css'
-import Message from '../message'
 import Page from '../page'
 import Footer from '../footer'
 
@@ -30,9 +29,6 @@ const Index = () => {
         <link rel='stylesheet' href='/assets/css/reset.css' />
         <link rel='stylesheet' href='/assets/css/hamburgers.css' />
       </Helmet>
-      <header className={style.header}>
-        <Route path='*' component={Message} />
-      </header>
       <div className={style.content}>
         <Route path='*' component={Page} />
       </div>
