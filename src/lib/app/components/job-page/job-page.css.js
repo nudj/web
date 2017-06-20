@@ -117,7 +117,11 @@ const styles = {
     textDecoration: 'none'
   }),
   strong: mixins.headings.pBold,
-  red: {}
+  blockLink: {
+    display: 'block',
+    textDecoration: 'none'
+  },
+  relatedCompany: mixins.textHighlight()
 }
 
 const getStyle = css(styles)
