@@ -60,6 +60,10 @@ const styles = {
     }
   }),
   heading: merge({}, mixins.typography.title),
+  success: merge({
+    padding: `${variables.padding.c} 0`,
+    textAlign: 'center'
+  }, mixins.headings.p),
   tip: mixins.basicContainerSmaller(mixins.makeGreyWobbleBox({
     [mixins.breakpoints.l]: {
       margin: `${variables.padding.c} auto`

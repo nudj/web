@@ -122,10 +122,7 @@ const Component = (props) => {
       textHighlightColour: template.colourTextHighlight,
       buttonTextColour: template.colourButtonText
     }, props)
-    bannerMessage = (<div>
-      <p>You've already nudj'd this job. Below is your unique link.</p>
-      <NudjSuccess {...successProps} />
-    </div>)
+    bannerMessage = (<NudjSuccess {...successProps} />)
   }
 
   return (

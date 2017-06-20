@@ -1,15 +1,55 @@
 import css, { merge, mixins, variables } from '../../lib/css'
 
+const sharingIcons = {
+  display: 'block',
+  fill: variables.colours.royalBlue,
+  height: variables.sizes.mobileActionButtonsHeight
+}
+
 const styles = {
-  container: {}, // ?
-  link: {
-    alignItems: 'center',
-    display: 'flex',
-    justifyContent: 'center',
-    padding: `${variables.padding.e} 0`
+  container: merge({}, mixins.headings.small, {
+    [mixins.breakpoints.ns]: merge({}, mixins.headings.p[mixins.breakpoints.ns])
+  }),
+  mobileMessage: {
+    color: variables.colours.royalBlue,
+    display: 'block',
+    [mixins.breakpoints.ns]: {
+      display: 'none'
+    }
+  },
+  message: {
+    color: variables.colours.royalBlue,
+    display: 'none',
+    [mixins.breakpoints.ns]: {
+      display: 'block'
+    }
   },
   actions: {
-    display: 'none' // Temporary
+    alignItems: 'center',
+    display: 'flex',
+    justifyContent: 'space-around',
+    padding: `${variables.padding.e} 0 0 0`,
+    [mixins.breakpoints.ns]: {
+      display: 'none'
+    }
+  },
+  actionLink: {
+    padding: variables.padding.e,
+    textDecoration: 'none'
+  },
+  actionTitle: {
+    color: variables.colours.royalBlue,
+    display: 'block',
+    padding: `${variables.padding.e} 0 0 0`
+  },
+  link: {
+    display: 'none',
+    padding: `${variables.padding.e} 0`,
+    [mixins.breakpoints.ns]: {
+      alignItems: 'center',
+      display: 'flex',
+      justifyContent: 'center'
+    }
   },
   linkContainer: merge({
     borderColor: variables.colours.royalBlueTint4,
@@ -17,29 +57,30 @@ const styles = {
     borderStyle: 'solid',
     borderWidth: variables.sizes.formsInputBorderWidth,
     color: variables.colours.royalBlue,
-    display: 'none',
+    display: 'block',
     flexGrow: '1',
     overflow: 'hidden',
     padding: variables.padding.e,
     textAlign: 'left',
     textOverflow: 'ellipsis',
-    width: '100%',
-    whiteSpace: 'nowrap',
-    [mixins.breakpoints.ns]: {
-      display: 'block',
-      width: 'auto'
-    }
+    width: 'auto',
+    whiteSpace: 'nowrap'
   }, mixins.headings.p),
   copyLink: mixins.buttonSecondary({
-    [mixins.breakpoints.ns]: {
-      marginLeft: variables.padding.d
-    }
+    display: 'block',
+    marginLeft: variables.padding.d
   }),
-  socialAction: {},
-  waLink: {},
-  fbmLink: {},
-  liLink: {},
-  gLink: {},
+  copyLinkIcon: {
+    cursor: 'pointer',
+    display: 'block',
+    height: variables.sizes.mobileActionButtonsHeight,
+    stroke: variables.colours.royalBlue
+  },
+  socialAction: sharingIcons,
+  waLink: sharingIcons,
+  fbmLink: sharingIcons,
+  liLink: sharingIcons,
+  gLink: sharingIcons,
   linkText: {}
 }
 
@@ -66,6 +107,24 @@ const setStyles = (backgroundColour, textColour, textHighlightColour, buttonText
     linkContainer: {
       borderColor: variables.colours[textColour] || styles.linkContainer.borderColor,
       color: variables.colours[textColour] || styles.linkContainer.color
+    },
+    mobileMessage: {
+      color: variables.colours[textColour] || styles.mobileMessage.color
+    },
+    message: {
+      color: variables.colours[textColour] || styles.message.color
+    },
+    actionTitle: {
+      color: variables.colours[textColour] || styles.actionTitle.color
+    },
+    waLink: {
+      fill: variables.colours[textColour] || styles.waLink.fill
+    },
+    fbmLink: {
+      fill: variables.colours[textColour] || styles.fbmLink.fill
+    },
+    copyLinkIcon: {
+      stroke: variables.colours[textColour] || styles.copyLinkIcon.stroke
     },
     copyLink: {
       backgroundColor: variables.colours[textHighlightColour] || styles.copyLink.backgroundColor,
