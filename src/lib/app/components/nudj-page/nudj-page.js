@@ -2,14 +2,17 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import NudjSuccess from '../nudj-success'
+import get from 'lodash/get'
 
 import getStyle from './nudj-page.css'
 
 import Header from '../header'
+import Message from '../message'
 
 const Component = (props) => {
   const style = getStyle()
   return (<div className={style.pageContainer}>
+    <Message message={get(props, 'message')} />
     <Header />
     <div className={style.page}>
       <div className={style.box}>

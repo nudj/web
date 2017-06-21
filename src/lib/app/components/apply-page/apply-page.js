@@ -2,8 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import getStyle from './apply-page.css'
+import get from 'lodash/get'
 
 import Header from '../header'
+import Message from '../message'
 
 class Component extends React.Component {
   constructor (props) {
@@ -123,6 +125,7 @@ class Component extends React.Component {
   render () {
     this.style = getStyle()
     return (<div className={this.style.bodyContainer}>
+      <Message message={get(this.props, 'message')} />
       <Header />
       <div className={this.style.body}>
         {this.isProfileComplete() ? this.renderSuccess() : this.renderForm()}
