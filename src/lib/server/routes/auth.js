@@ -35,7 +35,7 @@ router.get('/callback',
       throw new Error('user null')
     }
 
-    const {firstName, lastName} = getNames(req.user._json)
+    const {firstName, lastName} = req.user._json.user_metadata ? getNames(req.user._json.user_metadata) : getNames(req.user._json)
     const email = req.user._json.email
 
     if (req.session._intercom_visitor_id) {
