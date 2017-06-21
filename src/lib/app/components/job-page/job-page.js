@@ -173,8 +173,10 @@ const Component = (props) => {
         <h2 className={style.relatedTitle}>Other positions</h2>
         <ul className={style.list}>
           {get(props, 'job.related', []).map((related) => <li className={style.relatedJob} key={related.title.split(' ').join('-')}>
-            <p className={style.jobTitle}>{related.title} @ <span className={style.red}>{related.companyName}</span></p>
-            <a className={style.bodyLinks} href={`/jobs/${related.companySlug}+${related.slug}`}>View job ></a>
+            <a className={style.blockLink} href={`/jobs/${related.companySlug}+${related.slug}`}>
+              <p className={style.jobTitle}>{related.title} @ <span className={style.relatedCompany}>{related.companyName}</span></p>
+              <span className={style.bodyLinks}>View job ></span>
+            </a>
           </li>)}
         </ul>
       </section>
