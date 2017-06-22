@@ -18,6 +18,14 @@ function getNames (user) {
   return {firstName, lastName}
 }
 
+function getUserInfo (user) {
+  const email = user.email
+  const {firstName, lastName} = user.user_metadata ? getNames(user.user_metadata) : getNames(user)
+  const url = user.html_url || user.publicProfileUrl || user.url
+
+  return {email, firstName, lastName, url}
+}
+
 let router = express.Router()
 
 // Perform session logout and redirect to last known page or homepage
@@ -35,8 +43,7 @@ router.get('/callback',
       throw new Error('user null')
     }
 
-    const {firstName, lastName} = req.user._json.user_metadata ? getNames(req.user._json.user_metadata) : getNames(req.user._json)
-    const email = req.user._json.email
+    const {email, firstName, lastName, url} = getUserInfo(req.user._json)
 
     if (req.session._intercom_visitor_id) {
       intercom.convertVisitorToUser({
@@ -55,7 +62,7 @@ router.get('/callback',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({email, firstName, lastName})
+          body: JSON.stringify({email, firstName, lastName, url})
         })
       } else {
         return person
