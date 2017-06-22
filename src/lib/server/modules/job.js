@@ -1,4 +1,3 @@
-let isURL = require('validator/lib/isURL')
 let logger = require('../lib/logger')
 let intercom = require('../lib/intercom')
 let fetch = require('../lib/fetch')
@@ -99,60 +98,6 @@ function nudj (data) {
   return promiseMap(data)
 }
 
-function validatePersonFields (personData) {
-  personData = Object.assign({
-    email: undefined,
-    firstName: undefined,
-    lastName: undefined,
-    url: undefined
-  }, personData)
-  let anyInvalid = false
-  let fields = Object.keys(personData).reduce((fields, field) => {
-    let value = personData[field]
-    let invalid
-    switch (field) {
-      case 'firstName':
-      case 'lastName':
-        invalid = !(!!value && typeof value === 'string' && !!value.length)
-        break
-      case 'url':
-        invalid = !(!!value && typeof value === 'string' && !!value.length && isURL(value))
-        break
-    }
-    fields[field] = {
-      value,
-      invalid
-    }
-    if (invalid) {
-      anyInvalid = true
-    }
-    return fields
-  }, {})
-  return {
-    invalid: anyInvalid,
-    fields
-  }
-}
-
-function updatePerson (data, personUpdate) {
-  let person = data.person
-  return fetch(`people/${person.id}`, {
-    method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(personUpdate)
-  })
-  .then((person) => {
-    if (person.error) {
-      logger.log('error', 'Person update failed', person)
-      throw new Error('Person update failed')
-    }
-    data.person = person
-    return data
-  })
-}
-
 function apply (data) {
   data.application = fetch(`applications`, {
     method: 'POST',
@@ -217,28 +162,5 @@ module.exports.apply = function (companySlugJobSlugRefId, loggedInPerson, person
   .then(fetchReferrer)
   .then(fetchExisting('application'))
   .then(ensureDoesNotExist('application'))
-  .then((data) => {
-    let personValidity
-    if (personUpdate.url !== undefined) {
-      // form submitted
-      personValidity = validatePersonFields(personUpdate)
-      if (personValidity.invalid) {
-        data.form = personValidity.fields
-        logger.log('error', 'Invalid data', personUpdate)
-        return data
-      } else {
-        return updatePerson(data, personUpdate).then(apply)
-      }
-    } else {
-      // page accessed
-      personValidity = validatePersonFields(data.person)
-      if (personValidity.invalid) {
-        data.form = personValidity.fields
-        logger.log('error', 'Incomplete data', personUpdate)
-        return data
-      } else {
-        return apply(data)
-      }
-    }
-  })
+  .then(apply)
 }
