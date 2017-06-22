@@ -22,17 +22,6 @@ const styles = {
       position: 'absolute',
       right: '50%',
       width: '50vw'
-    }),
-    '::before': mixins.makePsuedoElement({
-      backgroundImage: mixins.linkImage('fingers-crossed.svg'),
-      backgroundPosition: 'top left',
-      backgroundRepeat: 'no-repeat',
-      height: '100%',
-      left: '50%',
-      pointerEvents: 'none',
-      position: 'absolute',
-      top: '0',
-      width: '50vw'
     })
   }),
   title: mixins.typography.title,
