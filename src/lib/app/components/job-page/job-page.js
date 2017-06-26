@@ -113,9 +113,7 @@ const Component = (props) => {
   const isReferrerByProps = get(props, 'referrer.email') && get(props, 'person.email') && get(props, 'referrer.email') === get(props, 'person.email')
   const isReferrerByMessage = bannerMessage && bannerMessage.type === 'error' && bannerMessage.code === 403 && bannerMessage.message === 'Already referred'
 
-  if (application) {
-    bannerMessage = 'You\'ve already applied for this job'
-  } else if (isReferrerByProps || isReferrerByMessage) {
+  if (isReferrerByProps || isReferrerByMessage) {
     const successProps = merge({
       backgroundColour: template.colourTextHighlight,
       textColour: template.colourButtonText || template.colourText,
