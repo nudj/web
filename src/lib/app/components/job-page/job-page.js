@@ -113,6 +113,8 @@ const Component = (props) => {
   const isReferrerByProps = get(props, 'referrer.email') && get(props, 'person.email') && get(props, 'referrer.email') === get(props, 'person.email')
   const isReferrerByMessage = bannerMessage && bannerMessage.type === 'error' && bannerMessage.code === 403 && bannerMessage.message === 'Already referred'
 
+  let nudjButton = (<button className={style.nudj}>Send to a friend</button>)
+
   if (isReferrerByProps || isReferrerByMessage) {
     const successProps = merge({
       backgroundColour: template.colourTextHighlight,
@@ -121,6 +123,7 @@ const Component = (props) => {
       buttonTextColour: template.colourButtonText
     }, props)
     bannerMessage = (<NudjSuccess {...successProps} />)
+    nudjButton = (<button className={style.nudjd}>You've already shared this job</button>)
   }
 
   return (
@@ -159,7 +162,7 @@ const Component = (props) => {
           </form>
           <form className={style.action} action={`${uniqueLink}/nudj`} method='POST' onSubmit={onFormSubmit('new-referral', props)}>
             <input type='hidden' name='_csrf' value={props.csrfToken} />
-            <button className={style.nudj}>Send to a friend</button>
+            {nudjButton}
             <p className={style.actionCopy}>We’ll give you <strong className={style.strong}>£{get(props, 'job.bonus')}</strong> if they get the job.</p>
           </form>
         </section>
