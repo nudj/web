@@ -119,8 +119,8 @@ const Component = (props) => {
     const successProps = merge({
       backgroundColour: template.colourTextHighlight,
       textColour: template.colourButtonText || template.colourText,
-      textHighlightColour: template.colourTextHighlight,
-      buttonTextColour: template.colourButtonText
+      textHighlightColour: template.colourPrimary,
+      buttonTextColour: template.colourTextHighlight
     }, props)
     bannerMessage = (<NudjSuccess {...successProps} />)
     nudjButton = (<button className={style.nudjd}>You've already shared this job</button>)
