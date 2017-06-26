@@ -113,6 +113,7 @@ export const sizes = {
   formsInputBorderWidth: '1px',
   formsInputBorderRadius: '4px',
   magicBorderRadius: '9999px',
+  mobileActionButtonsHeight: '24px',
   paddingWidth: '20',
   radioButtonBorderSize: '20px',
   radioButtonBorderWidth: '2px'

@@ -11,6 +11,21 @@ function cacheReturnTo (req, res, next) {
   next()
 }
 
+function getNames (user) {
+  const name = user.name ? user.name.split(' ') : ['', '']
+  const firstName = user.firstName || user.given_name || name[0]
+  const lastName = user.lastName || user.family_name || name[1]
+  return {firstName, lastName}
+}
+
+function getUserInfo (user) {
+  const email = user.email
+  const {firstName, lastName} = user.user_metadata ? getNames(user.user_metadata) : getNames(user)
+  const url = user.html_url || user.publicProfileUrl || user.url
+
+  return {email, firstName, lastName, url}
+}
+
 let router = express.Router()
 
 // Perform session logout and redirect to last known page or homepage
@@ -28,18 +43,18 @@ router.get('/callback',
       throw new Error('user null')
     }
 
+    const {email, firstName, lastName, url} = getUserInfo(req.user._json)
+
     if (req.session._intercom_visitor_id) {
       intercom.convertVisitorToUser({
         'user_id': req.session._intercom_visitor_id
-      }, {
-        email: req.user._json.email
-      })
+      }, {email})
       .catch((error) => {
-        logger.log('Unable to convert visitor to user', req.session._intercom_visitor_id, req.user._json.email, error)
+        logger.log('Unable to convert visitor to user', req.session._intercom_visitor_id, email, error)
       })
     }
 
-    fetch(`people/first?email=${req.user._json.email}`)
+    fetch(`people/first?email=${email}`)
     .then((person) => {
       if (!person) {
         return fetch(`people`, {
@@ -47,9 +62,7 @@ router.get('/callback',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({
-            email: req.user._json.email
-          })
+          body: JSON.stringify({email, firstName, lastName, url})
         })
       } else {
         return person

@@ -4,10 +4,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import get from 'lodash/get'
+import merge from 'lodash/merge'
 import { Helmet } from 'react-helmet'
 import { getStyle, setStyles } from './job-page.css'
 
+import Message from '../message'
 import Header from '../header'
+import NudjSuccess from '../nudj-success'
+
 import { render } from '../../../lib/templater'
 import PrismicReact from '../../../lib/prismic/react'
 
@@ -105,8 +109,31 @@ const Component = (props) => {
     data: data
   })
 
+  let bannerMessage = get(props, 'message')
+  const isReferrerByProps = get(props, 'referrer.email') && get(props, 'person.email') && get(props, 'referrer.email') === get(props, 'person.email')
+  const isReferrerByMessage = bannerMessage && bannerMessage.type === 'error' && bannerMessage.code === 403 && bannerMessage.message === 'Already referred'
+
+  if (application) {
+    bannerMessage = 'You\'ve already applied for this job'
+  } else if (isReferrerByProps || isReferrerByMessage) {
+    const successProps = merge({
+      backgroundColour: template.colourPrimary,
+      textColour: template.colourText,
+      textHighlightColour: template.colourTextHighlight,
+      buttonTextColour: template.colourButtonText
+    }, props)
+    bannerMessage = (<NudjSuccess {...successProps} />)
+  }
+
   return (
     <div className={style.body}>
+      <Message
+        message={bannerMessage}
+        messageType='jobs'
+        backgroundColour={template.colourPrimary}
+        textColour={template.colourText}
+        textHighlightColour={template.colourTextHighlight}
+        buttonTextColour={template.colourButtonText} />
       <Header
         backgroundColour={template.colourPrimary}
         textColour={template.colourText}
@@ -130,7 +157,7 @@ const Component = (props) => {
           <form className={style.action} action={`${uniqueLink}/apply`} method='POST' onSubmit={onFormSubmit('new-application', props)}>
             <input type='hidden' name='_csrf' value={props.csrfToken} />
             {applyForJobButton}
-            <p className={style.actionCopy}>It only takes <strong className={style.strong}>a few seconds</strong> to apply!</p>
+            <p className={style.actionCopy}>Sign up &amp; we'll get back to you!</p>
           </form>
           <form className={style.action} action={`${uniqueLink}/nudj`} method='POST' onSubmit={onFormSubmit('new-referral', props)}>
             <input type='hidden' name='_csrf' value={props.csrfToken} />
@@ -143,8 +170,10 @@ const Component = (props) => {
         <h2 className={style.relatedTitle}>Other positions</h2>
         <ul className={style.list}>
           {get(props, 'job.related', []).map((related) => <li className={style.relatedJob} key={related.title.split(' ').join('-')}>
-            <p className={style.jobTitle}>{related.title} @ <span className={style.red}>{related.companyName}</span></p>
-            <a className={style.bodyLinks} href={`/jobs/${related.companySlug}+${related.slug}`}>View job ></a>
+            <a className={style.blockLink} href={`/jobs/${related.companySlug}+${related.slug}`}>
+              <p className={style.jobTitle}>{related.title} @ <span className={style.relatedCompany}>{related.companyName}</span></p>
+              <span className={style.bodyLinks}>View job ></span>
+            </a>
           </li>)}
         </ul>
       </section>

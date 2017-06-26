@@ -78,18 +78,6 @@ function getErrorHandler (req, res, next) {
           destination = destination.join('/')
           res.redirect(destination)
           break
-        // renders with message
-        case 'Invalid url':
-          errorMessage = {
-            code: 400,
-            error: 'error',
-            message: 'Form submission data invalid'
-          }
-          data = getRenderDataBuilder(req)({
-            message: errorMessage
-          })
-          getRenderer(req, res, next)(data)
-          break
         // full page errors
         default:
           logger.log('error', error.message, error)

@@ -2,8 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import getStyle from './signup-page.css'
+import get from 'lodash/get'
 
 import Header from '../header'
+import Message from '../message'
 
 const Component = (props) => {
   const style = getStyle()
@@ -88,6 +90,7 @@ const Component = (props) => {
     )
   }
   return (<div className={style.bodyContainer}>
+    <Message message={get(props, 'message')} />
     <Header />
     <div className={style.body}>
       {html}
