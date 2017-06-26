@@ -117,8 +117,8 @@ const Component = (props) => {
     bannerMessage = 'You\'ve already applied for this job'
   } else if (isReferrerByProps || isReferrerByMessage) {
     const successProps = merge({
-      backgroundColour: template.colourPrimary,
-      textColour: template.colourText,
+      backgroundColour: template.colourTextHighlight,
+      textColour: template.colourButtonText || template.colourText,
       textHighlightColour: template.colourTextHighlight,
       buttonTextColour: template.colourButtonText
     }, props)
@@ -130,8 +130,8 @@ const Component = (props) => {
       <Message
         message={bannerMessage}
         messageType='jobs'
-        backgroundColour={template.colourPrimary}
-        textColour={template.colourText}
+        backgroundColour={template.colourTextHighlight}
+        textColour={template.colourButtonText || template.colourText}
         textHighlightColour={template.colourTextHighlight}
         buttonTextColour={template.colourButtonText} />
       <Header
