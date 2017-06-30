@@ -113,16 +113,17 @@ const Component = (props) => {
   const isReferrerByProps = get(props, 'referrer.email') && get(props, 'person.email') && get(props, 'referrer.email') === get(props, 'person.email')
   const isReferrerByMessage = bannerMessage && bannerMessage.type === 'error' && bannerMessage.code === 403 && bannerMessage.message === 'Already referred'
 
-  if (application) {
-    bannerMessage = 'You\'ve already applied for this job'
-  } else if (isReferrerByProps || isReferrerByMessage) {
+  let nudjButton = (<button className={style.nudj}>Send to a friend</button>)
+
+  if (isReferrerByProps || isReferrerByMessage) {
     const successProps = merge({
-      backgroundColour: template.colourPrimary,
-      textColour: template.colourText,
-      textHighlightColour: template.colourTextHighlight,
-      buttonTextColour: template.colourButtonText
+      backgroundColour: template.colourTextHighlight,
+      textColour: template.colourButtonText || template.colourText,
+      textHighlightColour: template.colourPrimary,
+      buttonTextColour: template.colourTextHighlight
     }, props)
     bannerMessage = (<NudjSuccess {...successProps} />)
+    nudjButton = (<button className={style.nudjd}>You've already shared this job</button>)
   }
 
   return (
@@ -130,8 +131,8 @@ const Component = (props) => {
       <Message
         message={bannerMessage}
         messageType='jobs'
-        backgroundColour={template.colourPrimary}
-        textColour={template.colourText}
+        backgroundColour={template.colourTextHighlight}
+        textColour={template.colourButtonText || template.colourText}
         textHighlightColour={template.colourTextHighlight}
         buttonTextColour={template.colourButtonText} />
       <Header
@@ -157,11 +158,11 @@ const Component = (props) => {
           <form className={style.action} action={`${uniqueLink}/apply`} method='POST' onSubmit={onFormSubmit('new-application', props)}>
             <input type='hidden' name='_csrf' value={props.csrfToken} />
             {applyForJobButton}
-            <p className={style.actionCopy}>Sign up &amp; we'll get back to you!</p>
+            <p className={style.actionCopy}>Sign up &amp; we'll send you some info!</p>
           </form>
           <form className={style.action} action={`${uniqueLink}/nudj`} method='POST' onSubmit={onFormSubmit('new-referral', props)}>
             <input type='hidden' name='_csrf' value={props.csrfToken} />
-            <button className={style.nudj}>Send to a friend</button>
+            {nudjButton}
             <p className={style.actionCopy}>We’ll give you <strong className={style.strong}>£{get(props, 'job.bonus')}</strong> if they get the job.</p>
           </form>
         </section>

@@ -27,7 +27,7 @@ function fetchBaseData (params, loggedInPerson) {
     company: fetch(`companies/${companySlug}`),
     job: fetch(`jobs/${jobSlug}`),
     person: loggedInPerson,
-    referral: refId && fetch(`referrals/${refId}`)
+    referral: (refId && fetch(`referrals/${refId}`)) || null
   }
   return promiseMap(requests)
 }
@@ -53,6 +53,12 @@ function fetchReferrer (data) {
     data.referrer = fetch(`people/${referral.personId}`)
   }
   return promiseMap(data)
+}
+
+function makeReferralParentReferral (data) {
+  data.parentReferral = data.referral
+  delete data.referral
+  return data
 }
 
 function fetchExisting (type) {
@@ -151,6 +157,7 @@ module.exports.nudj = function (companySlugJobSlugRefId, loggedInPerson) {
   return fetchBaseData(extractParams(companySlugJobSlugRefId), loggedInPerson)
   .then(ensureValidReferralUrl)
   .then(fetchReferrer)
+  .then(makeReferralParentReferral)
   .then(fetchExisting('referral'))
   .then(ensureDoesNotExist('referral'))
   .then(nudj)

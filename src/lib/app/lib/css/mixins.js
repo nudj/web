@@ -191,11 +191,16 @@ export function buttonPrimary (properties) {
   return merge({}, button(buttonPrimary), properties || {})
 }
 
-export function buttonPrimaryDisabled (properties = {}) {
-  const button = buttonPrimary({
+export function disabled (properties = {}) {
+  const disabled = {
     cursor: 'default',
     opacity: '0.5'
-  })
+  }
+  return merge(disabled, properties)
+}
+
+export function buttonPrimaryDisabled (properties = {}) {
+  const button = buttonPrimary(disabled())
   return merge(button, properties)
 }
 

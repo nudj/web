@@ -89,6 +89,7 @@ const styles = {
     color: variables.colours.white
   }, buttonMargins)),
   nudj: mixins.buttonSecondaryTransparent(buttonMargins),
+  nudjd: merge({}, mixins.buttonSecondaryTransparent(buttonMargins), mixins.disabled()),
   related: merge(mixins.makeGreyBackground(), {
     padding: `${variables.padding.c} 0 0 0`,
     width: '100%'

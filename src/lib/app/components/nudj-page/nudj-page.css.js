@@ -54,7 +54,7 @@ const styles = {
     '::after': bottomPlane
   }),
   box: mixins.basicContainerMedium({
-    paddingBottom: variables.padding.c,
+    padding: `${variables.padding.a} ${variables.padding.d} ${variables.padding.c} ${variables.padding.d}`,
     [mixins.breakpoints.l]: {
       paddingBottom: variables.padding.b
     }
