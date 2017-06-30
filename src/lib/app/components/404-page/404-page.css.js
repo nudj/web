@@ -2,6 +2,7 @@ import css, { merge, mixins, variables } from '../../lib/css'
 
 const styles = {
   content: mixins.basicContainerSmaller({
+    paddingTop: variables.padding.b,
     paddingBottom: variables.padding.b,
     textAlign: 'center'
   }),
