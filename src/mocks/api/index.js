@@ -9,7 +9,14 @@ let dummyData = dummy({
     count: 5
   },
   jobs: {
-    schema: schemas.job,
+    schema: Object.assign(schemas.job, {
+      relatedJobs: {
+        example: {
+          fn: 'choice',
+          args: [[ ['99'], ['100'] ]]
+        }
+      }
+    }),
     count: 5
   },
   people: {
@@ -62,14 +69,7 @@ dummyData.jobs = dummyData.jobs.concat([
     ],
     location: 'London',
     companyId: '2',
-    related: [
-      {
-        companySlug: 'bulb',
-        slug: 'operations-strategy-analyst',
-        title: 'Operations Strategy Analyst',
-        location: 'London'
-      }
-    ]
+    relatedJobs: [ '100' ]
   },
   {
     id: '100',
@@ -92,15 +92,7 @@ dummyData.jobs = dummyData.jobs.concat([
     ],
     location: 'London',
     companyId: '99',
-    related: [
-      {
-        companySlug: 'bulb',
-        slug: 'operations-strategy-analyst',
-        title: 'Operations Strategy Analyst',
-        location: 'London',
-        companyName: 'Fake Company'
-      }
-    ]
+    relatedJobs: [ '99' ]
   }
 ])
 dummyData.people = dummyData.people.concat([
@@ -170,6 +162,56 @@ dummyData.people = dummyData.people.concat([
     status: 'user'
   }
 ])
+dummyData.externalMessages = [{
+  hirerId: '21',
+  jobId: '1',
+  personId: '23',
+  sentMessage: {
+    composeMessage: "Hi {{recipient.firstname}},\n\nI hope this finds you well?\n\nI'm in need of a little favour and wondered whether you might be able to help. We're hiring at the moment and are looking for a new {{job.title}}. This is a really critical role for us, so it's important we find the right person. \n\nI really value your opinion so was wondering whether you know anyone in your network who it would be worth speaking to? They don't have to necessarily be actively looking for a job but would love to have a conversation with anyone who is even tentatively interested in finding out more. \n\nWe are using nudj to help it make it as easy for you as possible to refer. All you need to do is forward the job link below and we can track the referral. If they are successful we can reward you. \n\n{{job.link}}\n\nLet me know if you need any more info, absolutely no pressure but any help would be appreciated. \n\nKind Regards,\n{{sender.firstname}}",
+    selectStyle: {
+      type: 'professional',
+      title: 'Professional',
+      message: 'Stay classy.'
+    },
+    selectLength: {
+      type: 'long',
+      title: 'A bit more detail',
+      message: 'For when you need to add extra info.'
+    },
+    sendMessage: {
+      type: 'gmail',
+      title: 'Send it via Gmail',
+      message: 'This will open another window, for you to copy the message, so you can paste into the app of your choice.'
+    }
+  }
+}]
+dummyData.referrals = [
+  {
+    id: '1',
+    created: '1986-07-06T07:34:54.000+00:00',
+    modified: '2000-01-17T02:51:58.000+00:00',
+    jobId: '1',
+    personId: '23'
+  },
+  {
+    id: '2',
+    created: '1986-07-06T07:34:54.000+00:00',
+    modified: '2000-01-17T02:51:58.000+00:00',
+    jobId: '1',
+    personId: '22',
+    parent: '1'
+  }
+]
+dummyData.applications = [
+  {
+    id: '1',
+    created: '1986-07-06T07:34:54.000+00:00',
+    modified: '2000-01-17T02:51:58.000+00:00',
+    jobId: '1',
+    personId: '24',
+    referralId: '2'
+  }
+]
 
 let server = jsonServer.create()
 let router = jsonServer.router(dummyData)

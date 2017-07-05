@@ -1,7 +1,5 @@
 IMAGE:=nudj/web
 IMAGEDEV:=nudj/web-dev
-DEVURL:=
-
 CWD=$(shell pwd)
 BIN:=./node_modules/.bin
 
@@ -36,6 +34,7 @@ dev:
 		--name dev-container \
 		-p 0.0.0.0:80:80 \
 		-p 0.0.0.0:81:81 \
+		-p 0.0.0.0:82:82 \
 		--add-host api:127.0.0.1 \
 		-v $(CWD)/src/lib:/usr/src/lib \
 		-v $(CWD)/src/mocks:/usr/src/mocks \
@@ -44,7 +43,7 @@ dev:
 		$(IMAGEDEV) \
 		/bin/sh -c 'ln -s /tmp/node_modules ./node_modules && $(BIN)/nodemon \
 			--config ./nodemon.json \
-			-e js,html,css \
+			-e js,html,css,graphql \
 			--quiet \
 			--watch ./ \
 			--delay 250ms \
@@ -65,6 +64,7 @@ test:
 	@docker run --rm -it \
 		--name test-container \
 		-v $(CWD)/src/lib:/usr/src/lib \
+		-v $(CWD)/src/mocks:/usr/src/mocks \
 		-v $(CWD)/src/test:/usr/src/test \
 		$(IMAGEDEV)
 

@@ -8,3 +8,4 @@ db.json
 .cache/*
 !.cache/readme.md
 !.cache/.npmrc
+parsedSchema.json
