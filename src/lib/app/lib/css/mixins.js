@@ -549,3 +549,15 @@ const forms = {
 forms.helperText = merge({}, forms.label)
 
 export { forms }
+
+const appear = merge({}, makeTransition(), {
+  opacity: '1',
+  transform: 'translate3d(0, 0, 0)'
+})
+
+const disappear = merge({}, makeTransition(), {
+  opacity: '0',
+  transform: 'translate3d(0, 200px, 0)'
+})
+
+export { appear, disappear }

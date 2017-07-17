@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import TypeOut from 'react-typeout'
 import getStyle from './home-page.css'
+import AnimateAppearance from '../animate-appearance/animate-appearance'
 
 import Header from '../header'
 
@@ -29,17 +30,17 @@ const HomePage = () => {
         </li>
         <li className={style.unknown}>
           <div className={style.unknownContainer}>
-            <h1 className={style.unknownTitle}>They're often hard to find and are unknown to most.</h1>
+            <AnimateAppearance><h1 className={style.unknownTitle}>They're often hard to find and are unknown to most.</h1></AnimateAppearance>
           </div>
         </li>
         <li className={style.friends}>
           <div className={style.friendsContainer}>
-            <h1 className={style.friendsTitle}>Their friends know who they are, but have no way to help... <br className={style.standardBreak} /><span className={style.highlight}>until now.</span></h1>
+            <AnimateAppearance><h1 className={style.friendsTitle}>Their friends know who they are, but have no way to help... <br className={style.standardBreak} /><span className={style.highlight}>until now.</span></h1></AnimateAppearance>
           </div>
         </li>
         <li className={style.simpleNudj}>
           <div className={style.simpleNudjContainer}>
-            <h1 className={style.nudjTitle}>With a simple nudj, you can help them access the best jobs and get rewarded in the process.</h1>
+            <AnimateAppearance><h1 className={style.nudjTitle}>With a simple nudj, you can help them access the best jobs and get rewarded in the process.</h1></AnimateAppearance>
           </div>
         </li>
       </ul>
@@ -49,23 +50,23 @@ const HomePage = () => {
       <ul className={style.steps}>
         <li className={style.stepOne}>
           <img className={style.stepImage} src='/assets/images/home-page/post-jobs-img.svg' />
-          <h3 className={style.stepTitle}>Step One</h3>
-          <p className={style.stepBody}>Great companies post their jobs.</p>
+          <AnimateAppearance><h3 className={style.stepTitle}>Step One</h3></AnimateAppearance>
+          <AnimateAppearance><p className={style.stepBody}>Great companies post their jobs.</p></AnimateAppearance>
         </li>
         <li className={style.stepTwo}>
           <img className={style.stepImage} src='/assets/images/home-page/ask-people-img.svg' />
-          <h3 className={style.stepTitle}>Step Two</h3>
-          <p className={style.stepBody}>They then ask the people they rate to recommend their talented friends...</p>
+          <AnimateAppearance><h3 className={style.stepTitle}>Step Two</h3></AnimateAppearance>
+          <AnimateAppearance><p className={style.stepBody}>They then ask the people they rate to recommend their talented friends...</p></AnimateAppearance>
         </li>
         <li className={style.stepThree}>
           <img className={style.stepImage} src='/assets/images/home-page/apply-button-img.svg' />
-          <h3 className={style.stepTitle}>Step Three</h3>
-          <p className={style.stepBody}>...who can apply in a matter of seconds & get direct access to the company.</p>
+          <AnimateAppearance><h3 className={style.stepTitle}>Step Three</h3></AnimateAppearance>
+          <AnimateAppearance><p className={style.stepBody}>...who can apply in a matter of seconds & get direct access to the company.</p></AnimateAppearance>
         </li>
         <li className={style.stepFour}>
           <img className={style.stepImage} src='/assets/images/home-page/3-fist-img.svg' />
-          <h3 className={style.stepTitle}>Step Four</h3>
-          <p className={style.stepBody}>If they get hired then everyone gets rewarded - Everyone's a winner.</p>
+          <AnimateAppearance><h3 className={style.stepTitle}>Step Four</h3></AnimateAppearance>
+          <AnimateAppearance><p className={style.stepBody}>If they get hired then everyone gets rewarded - Everyone's a winner.</p></AnimateAppearance>
         </li>
       </ul>
     </section>
