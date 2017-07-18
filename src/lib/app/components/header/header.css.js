@@ -13,7 +13,7 @@ const mobileMenuBase = mixins.flexColumn({
 
 const mobileMenu = mixins.makeTransition({
   properties: ['transform'],
-  details: variables.transitions.bouncey
+  details: variables.transitions.bouncy
 }, mobileMenuBase)
 
 const navBarConstantBase = {
@@ -64,7 +64,7 @@ const request = mixins.buttonPrimary({
 
 const navBarConstant = mixins.makeTransition({
   properties: ['transform'],
-  details: variables.transitions.bouncey
+  details: variables.transitions.bouncy
 }, navBarConstantBase)
 
 const burgerLineOffset = 2
@@ -96,6 +96,15 @@ const innerBurgerAltColour = {
   backgroundColor: variables.colours.navy
 }
 
+const navIntroAnimations = {
+  animationDelay: variables.transitions.mediumEasy.length,
+  animationDuration: variables.transitions.mediumEasy.length,
+  animationFillMode: 'both',
+  animationIterationCount: '1',
+  animationName: mixins.animations.appearTop,
+  animationTimingFunction: variables.transitions.mediumEasy.easing
+}
+
 const styles = {
   navContainer: {
     backgroundColor: 'transparent'
@@ -111,15 +120,15 @@ const styles = {
       maxWidth: variables.sizes.contentMaxWidth
     }
   },
-  navLeft: {
+  navLeft: merge({
     flexShrink: '0'
-  },
-  navRight: {
+  }, navIntroAnimations),
+  navRight: merge({
     [mixins.breakpoints.l]: {
       display: 'flex',
       justifyContent: 'flex-end'
     }
-  },
+  }, navIntroAnimations),
   homeButton: {
     display: 'block',
     width: `calc(${variables.padding.c} + ${variables.padding.d})`

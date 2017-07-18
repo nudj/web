@@ -322,7 +322,7 @@ export function beforeBackgroundSquiggle (image, properties) {
 }
 
 export function makeTransition (transition = {
-  details: variables.transitions.bouncey,
+  details: variables.transitions.bouncy,
   properties: ['all']
 }, properties) {
   const transitionBase = {
@@ -550,14 +550,53 @@ forms.helperText = merge({}, forms.label)
 
 export { forms }
 
-const appear = merge({}, makeTransition(), {
-  opacity: '1',
-  transform: 'translate3d(0, 0, 0)'
-})
+const quickAppear = {
+  details: variables.transitions.slowBouncy,
+  properties: ['all']
+}
 
-const disappear = merge({}, makeTransition(), {
-  opacity: '0',
-  transform: 'translate3d(0, 200px, 0)'
-})
+const appear = function () {
+  return merge({}, makeTransition(quickAppear), {
+    opacity: '1',
+    transform: 'translate3d(0, 0, 0)'
+  })
+}
 
-export { appear, disappear }
+const disappear = function (direction = 'right') {
+  const full = variables.animationInformation.genericFullOffset
+  let xy = `${full}%, 0`
+
+  switch (direction) {
+    case 'bottom':
+      xy = `0, ${full}%`
+      break
+    case 'left':
+      xy = `${full * -1}%, 0`
+      break
+    case 'top':
+      xy = `0, ${full * -1}%`
+      break
+    default:
+      break
+  }
+
+  return merge({}, makeTransition(quickAppear), {
+    opacity: '0',
+    transform: `translate3d(${xy}, 0)`
+  })
+}
+
+const animations = {
+  appearTop: {
+    '0%': {
+      opacity: '0',
+      transform: 'translate3d(0, -100%, 0)'
+    },
+    '100%': {
+      opacity: '1',
+      transform: 'translate3d(0, 0, 0)'
+    }
+  }
+}
+
+export { appear, disappear, animations }

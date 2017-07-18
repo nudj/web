@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
+import get from 'lodash/get'
+
 import getStyle from './animate-appearance.css'
 
 class Component extends React.Component {
@@ -15,6 +17,7 @@ class Component extends React.Component {
 
   componentDidMount () {
     window.addEventListener('scroll', this.handleScroll.bind(this))
+    window.requestAnimationFrame(() => this.handleScroll())
   }
 
   componentWillUnmount () {
@@ -54,8 +57,13 @@ class Component extends React.Component {
   }
 
   render () {
-    const className = this.state.visible ? this.style.appear : this.style.disappear
-    return (<div className={className} ref='wrapper'>{this.props.children}</div>)
+    const disappearDirection = get(this.props, 'from', 'default')
+    const disappearClass = this.style[`${disappearDirection}Disappear`]
+    const visibleClass = this.state.visible ? this.style.appear : disappearClass
+
+    const inheritedClass = get(this.props, 'className', {})
+
+    return (<div className={`${visibleClass} ${inheritedClass}`} ref='wrapper'>{this.props.children}</div>)
   }
 }
 

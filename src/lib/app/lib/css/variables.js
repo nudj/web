@@ -129,10 +129,34 @@ export const padding = {
 }
 
 export const transitions = {
-  bouncey: {
+  bouncy: {
     easing: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
     length: '0.275s'
+  },
+  mediumBouncy: {
+    easing: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+    length: '0.5s'
+  },
+  slowBouncy: {
+    easing: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+    length: '0.75s'
+  },
+  easy: {
+    easing: 'cubic-bezier(0.41, 0, 0.5, 1)',
+    length: '0.275s'
+  },
+  mediumEasy: {
+    easing: 'cubic-bezier(0.41, 0, 0.5, 1)',
+    length: '0.5s'
+  },
+  slowEasy: {
+    easing: 'cubic-bezier(0.41, 0, 0.5, 1)',
+    length: '0.75s'
   }
+}
+
+export const animationInformation = {
+  genericFullOffset: 25
 }
 
 export const zIndicies = {
