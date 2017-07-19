@@ -109,6 +109,7 @@ export const sizes = {
   contentMaxWidth: '980px',
   contentMediumMaxWidth: '720px',
   columnWidth: '80',
+  copyLineHeight: '1.5rem',
   formsMaxWidth: '512px',
   formsInputBorderWidth: '1px',
   formsInputBorderRadius: '4px',

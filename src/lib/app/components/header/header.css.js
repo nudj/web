@@ -1,6 +1,7 @@
 import css, { merge, mixins, variables } from '../../lib/css'
 
 const mobileMenuBase = mixins.flexColumn({
+  alignItems: 'stretch',
   backgroundColor: variables.colours.navy,
   boxShadow: `1000px 0 0 1000px ${variables.colours.navy}`,
   height: '100%',
@@ -23,7 +24,7 @@ const navBarConstantBase = {
   display: 'flex',
   justifyContent: 'space-between',
   left: '0',
-  padding: `${variables.padding.e} ${variables.padding.d}`,
+  padding: `${variables.padding.e} calc(${variables.padding.d} + ${variables.padding.e})`,
   position: 'fixed',
   top: '0',
   width: '100%', // ?
@@ -164,13 +165,14 @@ const styles = {
   request: request,
   linkMobile: merge({}, mixins.deLink({
     color: variables.colours.white,
-    display: 'inline-block',
-    marginBottom: variables.padding.d,
-    padding: variables.padding.d,
-    textAlign: 'center'
-  }), mixins.headings.h6),
+    display: 'block',
+    padding: `${variables.padding.e} ${variables.padding.c}`,
+    textAlign: 'right'
+  }), mixins.headings.h2),
   requestMobile: mixins.buttonPrimary({
+    alignSelf: 'flex-end',
     display: 'inline-block',
+    margin: `calc(${variables.padding.d} + ${variables.padding.e}) calc(${variables.padding.d} + ${variables.padding.e}) 0 calc(${variables.padding.d} + ${variables.padding.e})`,
     textAlign: 'center'
   }),
   hamburgerHolder: {

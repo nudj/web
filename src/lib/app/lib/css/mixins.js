@@ -90,6 +90,7 @@ const headings = {
     fontFamily: [fonts.jan.light],
     fontSize: variables.fontSizes.f6,
     fontWeight: 'normal',
+    lineHeight: variables.sizes.copyLineHeight,
     [breakpoints.ns]: {
       fontSize: variables.fontSizes.f7
     }
@@ -98,6 +99,7 @@ const headings = {
     fontFamily: [fonts.jan.light],
     fontSize: variables.fontSizes.f7,
     fontWeight: 'normal',
+    lineHeight: variables.sizes.copyLineHeight,
     [breakpoints.ns]: {
       fontSize: variables.fontSizes.f8
     }
