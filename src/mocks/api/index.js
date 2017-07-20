@@ -1,7 +1,6 @@
 let mock = require('@nudj/api/mock')
 let dummy = require('@nudj/dummy')
 let schemas = require('@nudj/schemas')
-let jsonServer = require('json-server')
 let find = require('lodash/find')
 
 let dummyData = dummy({
