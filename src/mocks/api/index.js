@@ -171,7 +171,7 @@ dummyData.people = dummyData.people.concat([
   }
 ])
 
-const server = mock.rest({
+let server = mock.rest({
   data: dummyData,
   addCustomHandlers: (server) => {
     server.get('/companies/:cid', (req, res, next) => {
@@ -225,6 +225,9 @@ const server = mock.rest({
     })
     return server
   }
+})
+server = mock.gql({
+  data: dummyData
 })
 
 module.exports = server
