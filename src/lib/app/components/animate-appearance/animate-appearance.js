@@ -42,8 +42,9 @@ class Component extends React.Component {
     const { top } = element.getBoundingClientRect()
 
     const currentlyVisible = this.state.visible
-    // Should make the offset number customisable
-    const visible = (top <= viewportHeight * 0.75)
+    // Should make the offset number customisable?
+    const fromBottom = Math.min(viewportHeight * 0.25, 250)
+    const visible = (top <= viewportHeight - fromBottom)
 
     if (visible === currentlyVisible) {
       return this.resetHandleScroll()
