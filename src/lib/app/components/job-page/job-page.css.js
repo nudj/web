@@ -99,7 +99,8 @@ const styles = {
     padding: variables.padding.c,
     [mixins.breakpoints.l]: {
       display: 'flex',
-      padding: `${variables.padding.c} 0`
+      padding: `${variables.padding.c} 0`,
+      width: '100%'
     }
   })),
   relatedJob: {
@@ -107,6 +108,7 @@ const styles = {
     [mixins.breakpoints.l]: {
       flexBasis: '0',
       flexGrow: '1',
+      maxWidth: '25%',
       padding: `0 0 ${variables.padding.c} ${variables.padding.d}`,
       ':first-child': {
         paddingLeft: '0'
