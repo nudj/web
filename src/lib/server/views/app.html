@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html class="nojs">
 <head>
   <%= helmet.title.toString() %>
   <%= helmet.meta.toString() %>
   <%= helmet.link.toString() %>
   <script>
+    // mimic modernizr behaviour for script
+    var html = document.querySelector('html')
+    if (html.classList) {
+      html.classList.remove('nojs')
+      html.classList.add('js')
+    }
     var intercomSettings = {
       app_id: <%= intercom_app_id %>,
       custom_launcher_selector: "#open-intercom"

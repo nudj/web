@@ -230,6 +230,12 @@ export function buttonSecondaryTransparent (properties = {}) {
 }
 
 // Utility
+export function jsonly (properties = {}) {
+  return {
+    '^.js': merge({}, properties)
+  }
+}
+
 export function deButton (properties) {
   const deButtonBasic = {
     background: 'none',
@@ -558,10 +564,10 @@ const quickAppear = {
 }
 
 const appear = function () {
-  return merge({}, makeTransition(quickAppear), {
+  return jsonly(merge({}, makeTransition(quickAppear), {
     opacity: '1',
     transform: 'translate3d(0, 0, 0)'
-  })
+  }))
 }
 
 const disappear = function (direction = 'right') {
@@ -582,10 +588,10 @@ const disappear = function (direction = 'right') {
       break
   }
 
-  return merge({}, makeTransition(quickAppear), {
+  return jsonly(merge({}, makeTransition(quickAppear), {
     opacity: '0',
     transform: `translate3d(${xy}, 0)`
-  })
+  }))
 }
 
 const animations = {
