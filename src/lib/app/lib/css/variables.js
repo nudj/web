@@ -160,6 +160,15 @@ export const animationInformation = {
   genericFullOffset: 25
 }
 
+export const buttonHoverOptionSVGs = [
+  'cta-1',
+  'cta-2',
+  'cta-3',
+  'cta-4',
+  'cta-5',
+  'cta-6'
+]
+
 export const zIndicies = {
   header: '997',
   mobileMenu: '998',

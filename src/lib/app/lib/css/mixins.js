@@ -2,6 +2,10 @@ import { default as merge } from 'lodash/merge'
 
 import * as variables from './variables'
 
+function getRandomInt (min, max) {
+  return Math.floor(Math.random() * (max - min)) + min
+}
+
 // Breakpoints
 export const breakpoints = {
   ns: `@media screen and (min-width: ${variables.breakpoints.medium})`,
@@ -184,13 +188,91 @@ export function button (properties) {
   return merge({}, deLink(), buttonBasic, headings.h6, properties || {})
 }
 
+function buttonPrimaryHover () {
+  const index = getRandomInt(1, variables.buttonHoverOptionSVGs.length)
+  const base = variables.buttonHoverOptionSVGs[index - 1]
+  const left = linkImage(`${base}-left.svg`)
+  const right = linkImage(`${base}-right.svg`)
+
+  const xOffset = variables.padding.c
+
+  const baseStyles = {
+    backgroundRepeat: 'no-repeat',
+    height: `calc(100% + ${xOffset})`,
+    pointerEvents: 'none',
+    position: 'absolute',
+    top: `calc(${xOffset} * -0.5)`,
+    width: `calc(${xOffset} * 2)`
+  }
+
+  const invisible = {
+    opacity: '0',
+    transform: 'scale3d(0.5, 0.5, 1)'
+  }
+
+  const visible = {
+    opacity: '1',
+    transform: 'scale3d(1.05, 1.05, 1)'
+  }
+
+  const transition = {
+    details: variables.transitions.bouncy,
+    properties: ['all']
+  }
+
+  const before = makePsuedoElement(merge({}, baseStyles, makeTransition(transition, invisible), {
+    backgroundImage: left,
+    backgroundPosition: 'left center',
+    left: `calc(${xOffset} * -0.5)`,
+    transformOrigin: 'center right'
+  }))
+
+  const after = makePsuedoElement(merge({}, baseStyles, makeTransition(transition, invisible), {
+    backgroundImage: right,
+    backgroundPosition: 'right center',
+    right: `calc(${xOffset} * -0.5)`,
+    transformOrigin: 'center left'
+  }))
+
+  return merge({
+    [breakpoints.l]: {
+      '::after': after,
+      '::before': before,
+      ':hover': {
+        '::after': visible,
+        '::before': visible
+      }
+    }
+  }, buttonHoverPop())
+}
+
+function buttonHoverPop () {
+  const base = {
+    [breakpoints.l]: {
+      transform: 'scale3d(1, 1, 1)',
+      ':hover': {
+        transform: 'scale3d(1.05, 1.05, 1)'
+      }
+    }
+  }
+
+  const transition = {
+    details: variables.transitions.bouncy,
+    properties: ['all']
+  }
+
+  return makeTransition(transition, base)
+}
+
 export function buttonPrimary (properties) {
   const buttonPrimary = {
     backgroundColor: variables.colours.royalBlue,
     borderColor: variables.colours.royalBlue,
-    color: variables.colours.white
+    color: variables.colours.white,
+    position: 'relative'
   }
-  return merge({}, button(buttonPrimary), properties || {})
+
+  return merge({}, button(buttonPrimary), buttonPrimaryHover(), properties || {})
 }
 
 export function disabled (properties = {}) {
@@ -212,7 +294,7 @@ export function buttonSecondary (properties) {
     borderColor: variables.colours.royalBlue,
     color: variables.colours.royalBlue
   }
-  return merge({}, button(buttonSecondary), properties || {})
+  return merge({}, button(buttonSecondary), buttonHoverPop(), properties || {})
 }
 
 export function buttonSecondaryBorderless (properties = {}) {
