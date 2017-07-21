@@ -40,7 +40,7 @@
   <div id="app"><%= html %></div>
   <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.0/clipboard.min.js"></script>
   <script>
-    const copyButtons = document.querySelectorAll('[data-clipboard-text]')
+    var copyButtons = document.querySelectorAll('[data-clipboard-text]')
 
     function restoreTitle (target, original) {
       setTimeout(function () {
@@ -49,14 +49,14 @@
     }
 
     function changeTitle (event, newText) {
-      const target = event.trigger.querySelector('[data-clipboard-label]') || event.trigger
-      const original = target.innerText.toString()
+      var target = event.trigger.querySelector('[data-clipboard-label]') || event.trigger
+      var original = target.innerText.toString()
       target.innerText = newText
       restoreTitle(target, original)
     }
 
     if (copyButtons && copyButtons.length) {
-      const clipboard = new Clipboard('[data-clipboard-text]')
+      var clipboard = new Clipboard('[data-clipboard-text]')
       clipboard.on('success', function (event) {
         changeTitle(event, 'Copied!')
       })

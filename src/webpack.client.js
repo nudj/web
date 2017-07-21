@@ -21,6 +21,7 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
+          plugins: ["transform-object-assign"],
           presets: [
             'react',
             ["env", {
