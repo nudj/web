@@ -1,6 +1,7 @@
 import css, { merge, mixins, variables } from '../../lib/css'
 
 const mobileMenuBase = mixins.flexColumn({
+  alignItems: 'stretch',
   backgroundColor: variables.colours.navy,
   boxShadow: `1000px 0 0 1000px ${variables.colours.navy}`,
   height: '100%',
@@ -13,7 +14,7 @@ const mobileMenuBase = mixins.flexColumn({
 
 const mobileMenu = mixins.makeTransition({
   properties: ['transform'],
-  details: variables.transitions.bouncey
+  details: variables.transitions.bouncy
 }, mobileMenuBase)
 
 const navBarConstantBase = {
@@ -23,7 +24,7 @@ const navBarConstantBase = {
   display: 'flex',
   justifyContent: 'space-between',
   left: '0',
-  padding: `${variables.padding.e} ${variables.padding.d}`,
+  padding: `${variables.padding.e} calc(${variables.padding.d} + ${variables.padding.e})`,
   position: 'fixed',
   top: '0',
   width: '100%', // ?
@@ -64,7 +65,7 @@ const request = mixins.buttonPrimary({
 
 const navBarConstant = mixins.makeTransition({
   properties: ['transform'],
-  details: variables.transitions.bouncey
+  details: variables.transitions.bouncy
 }, navBarConstantBase)
 
 const burgerLineOffset = 2
@@ -96,6 +97,15 @@ const innerBurgerAltColour = {
   backgroundColor: variables.colours.navy
 }
 
+const navIntroAnimations = {
+  animationDelay: variables.transitions.mediumEasy.length,
+  animationDuration: variables.transitions.mediumEasy.length,
+  animationFillMode: 'both',
+  animationIterationCount: '1',
+  animationName: mixins.animations.appearTop,
+  animationTimingFunction: variables.transitions.mediumEasy.easing
+}
+
 const styles = {
   navContainer: {
     backgroundColor: 'transparent'
@@ -111,15 +121,15 @@ const styles = {
       maxWidth: variables.sizes.contentMaxWidth
     }
   },
-  navLeft: {
+  navLeft: merge({
     flexShrink: '0'
-  },
-  navRight: {
+  }, navIntroAnimations),
+  navRight: merge({
     [mixins.breakpoints.l]: {
       display: 'flex',
       justifyContent: 'flex-end'
     }
-  },
+  }, navIntroAnimations),
   homeButton: {
     display: 'block',
     width: `calc(${variables.padding.c} + ${variables.padding.d})`
@@ -155,13 +165,14 @@ const styles = {
   request: request,
   linkMobile: merge({}, mixins.deLink({
     color: variables.colours.white,
-    display: 'inline-block',
-    marginBottom: variables.padding.d,
-    padding: variables.padding.d,
-    textAlign: 'center'
-  }), mixins.headings.h6),
+    display: 'block',
+    padding: `${variables.padding.e} ${variables.padding.c}`,
+    textAlign: 'right'
+  }), mixins.headings.h2),
   requestMobile: mixins.buttonPrimary({
+    alignSelf: 'flex-end',
     display: 'inline-block',
+    margin: `calc(${variables.padding.d} + ${variables.padding.e}) calc(${variables.padding.d} + ${variables.padding.e}) 0 calc(${variables.padding.d} + ${variables.padding.e})`,
     textAlign: 'center'
   }),
   hamburgerHolder: {

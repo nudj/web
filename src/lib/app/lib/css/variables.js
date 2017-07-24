@@ -109,6 +109,7 @@ export const sizes = {
   contentMaxWidth: '980px',
   contentMediumMaxWidth: '720px',
   columnWidth: '80',
+  copyLineHeight: '1.5rem',
   formsMaxWidth: '512px',
   formsInputBorderWidth: '1px',
   formsInputBorderRadius: '4px',
@@ -129,11 +130,44 @@ export const padding = {
 }
 
 export const transitions = {
-  bouncey: {
+  bouncy: {
     easing: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
     length: '0.275s'
+  },
+  mediumBouncy: {
+    easing: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+    length: '0.5s'
+  },
+  slowBouncy: {
+    easing: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+    length: '0.75s'
+  },
+  easy: {
+    easing: 'cubic-bezier(0.41, 0, 0.5, 1)',
+    length: '0.275s'
+  },
+  mediumEasy: {
+    easing: 'cubic-bezier(0.41, 0, 0.5, 1)',
+    length: '0.5s'
+  },
+  slowEasy: {
+    easing: 'cubic-bezier(0.41, 0, 0.5, 1)',
+    length: '0.75s'
   }
 }
+
+export const animationInformation = {
+  genericFullOffset: 25
+}
+
+export const buttonHoverOptionSVGs = [
+  'cta-1',
+  'cta-2',
+  'cta-3',
+  'cta-4',
+  'cta-5',
+  'cta-6'
+]
 
 export const zIndicies = {
   header: '997',
