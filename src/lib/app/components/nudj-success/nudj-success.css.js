@@ -44,32 +44,22 @@ const styles = {
   },
   link: {
     display: 'none',
-    padding: `${variables.padding.e} 0`,
-    [mixins.breakpoints.ns]: {
-      alignItems: 'center',
-      display: 'flex',
-      justifyContent: 'center'
-    }
+    padding: `${variables.padding.d} 0`,
+    [mixins.breakpoints.ns]: mixins.flexColumn()
   },
-  linkContainer: merge({
-    borderColor: variables.colours.royalBlueTint4,
+  linkContainer: merge({}, mixins.headings.p, {
+    backgroundColor: variables.colours.lighterGrey,
+    borderColor: 'transparent',
     borderRadius: variables.sizes.formsInputBorderRadius,
-    borderStyle: 'solid',
-    borderWidth: variables.sizes.formsInputBorderWidth,
-    color: variables.colours.royalBlue,
-    display: 'block',
-    flexGrow: '1',
-    overflow: 'hidden',
+    color: variables.colours.charcoal,
+    fontFamily: 'monospace',
+    margin: `0 0 ${variables.padding.c} 0`,
     padding: variables.padding.e,
-    textAlign: 'left',
     textOverflow: 'ellipsis',
-    width: 'auto',
+    width: 'auto', // ?
     whiteSpace: 'nowrap'
-  }, mixins.headings.p),
-  copyLink: mixins.buttonSecondary({
-    display: 'block',
-    marginLeft: variables.padding.d
   }),
+  copyLink: mixins.buttonPrimary(),
   copyLinkIcon: {
     cursor: 'pointer',
     display: 'block',

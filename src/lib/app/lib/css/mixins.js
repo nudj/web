@@ -469,6 +469,13 @@ export function makeOr (properties = {}) {
   }, headings.p, properties)
 }
 
+export function makeOrDark (properties = {}) {
+  return makeOr(merge({
+    backgroundImage: linkImage('cta-separator-line-charcoal.svg'),
+    color: variables.colours.charcoal
+  }, properties))
+}
+
 function subtitleUnderline (image, backgroundColour) {
   return {
     backgroundImage: linkImage('table-line-1.svg'),
@@ -497,6 +504,19 @@ export function makeOrangeSubtitleUnderlineOnDarkGrey (properties = {}) {
   return merge(underline, properties)
 }
 
+export function underlineHoverTransition (properties = {}) {
+  const backgroundImage = properties.backgroundImage
+  return merge({}, properties, {
+    [breakpoints.ns]: {
+      backgroundImage: 'none',
+      ':hover': { backgroundImage }
+    }
+  }, makeTransition({
+    details: variables.transitions.mediumBouncy,
+    properties: ['all']
+  }))
+}
+
 // Generic typography
 const typography = {
   title: merge({
@@ -523,6 +543,10 @@ const typography = {
     color: variables.colours.midRed
   })
 }
+
+typography.titleCharcoal = merge({}, typography.title, {
+  color: variables.colours.charcoal
+})
 
 typography.titleWhite = merge({}, typography.title, {
   color: variables.colours.white
