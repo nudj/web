@@ -99,6 +99,7 @@ const styles = {
     padding: variables.padding.c,
     [mixins.breakpoints.l]: {
       display: 'flex',
+      justifyContent: 'center',
       padding: `${variables.padding.c} 0`,
       width: '100%'
     }

@@ -43,7 +43,7 @@ class Component extends React.Component {
 
     const currentlyVisible = this.state.visible
     // Should make the offset number customisable?
-    const fromBottom = Math.min(viewportHeight * 0.25, 250)
+    const fromBottom = Math.min(viewportHeight * 0.25, 150)
     const visible = (top <= viewportHeight - fromBottom)
 
     if (visible === currentlyVisible) {
