@@ -1,34 +1,48 @@
 import css, { merge, mixins, variables } from '../../lib/css'
 
-function titles (xOffset = '0%') {
-  const properties = merge(mixins.deLink({
-    color: variables.colours.white,
-    display: 'inline-block',
-    margin: `0 0 ${variables.padding.d} 0`
-  }), mixins.headings.h4)
-
-  return mixins.makeOrangeSubtitleUnderlineOnDarkGrey(properties)
-}
+const titles = mixins.underlineHoverTransition(mixins.makeOrangeSubtitleUnderlineOnDarkGrey(merge(mixins.deLink({
+  color: variables.colours.white,
+  display: 'inline-block',
+  margin: `0 0 ${variables.padding.d} 0`
+}), mixins.headings.h4, {
+  [mixins.breakpoints.l]: {
+    fontSize: mixins.headings.h6[mixins.breakpoints.ns].fontSize,
+    margin: `0 0 ${variables.padding.f} 0`
+  }
+})))
 
 const styles = {
   background: {
     backgroundColor: variables.colours.charcoal
   },
   container: mixins.basicContainer({
-    padding: `${variables.padding.c} ${variables.padding.d}`
+    padding: `${variables.padding.c} ${variables.padding.d} 0 ${variables.padding.d}`,
+    [mixins.breakpoints.l]: {
+      display: 'flex'
+    }
   }),
-  icon: mixins.flexColumn(),
+  icon: mixins.flexColumn({
+    [mixins.breakpoints.l]: {
+      alignItems: 'flex-end'
+    }
+  }),
   logo: {
     display: 'block',
     height: variables.padding.b
   },
-  copyright: merge({
+  copyright: mixins.basicContainer(merge({
     color: variables.colours.charcoalTint2,
-    padding: `${variables.padding.d} 0 0 0`
-  }, mixins.headings.p2),
+    display: 'block',
+    padding: `${variables.padding.d} ${variables.padding.d} ${variables.padding.c} ${variables.padding.d}`,
+    textAlign: 'center',
+    [mixins.breakpoints.l]: {
+      textAlign: 'left'
+    }
+  }, mixins.headings.small)),
   links: mixins.basicContainer(mixins.deList({
     padding: `0 0 ${variables.padding.c} 0`,
     textAlign: 'center',
+    width: '100%',
     [mixins.breakpoints.ns]: {
       alignItems: 'flex-start',
       display: 'flex',
@@ -36,7 +50,9 @@ const styles = {
       justifyContent: 'center'
     },
     [mixins.breakpoints.l]: {
-      flexWrap: 'no-wrap'
+      margin: '0',
+      padding: '0',
+      width: '50%'
     }
   })),
   link: {
@@ -47,22 +63,27 @@ const styles = {
       width: '50%'
     },
     [mixins.breakpoints.l]: {
-      flexBasis: '0',
-      flexGrow: '1',
-      padding: `0 ${variables.padding.e} ${variables.padding.d} ${variables.padding.e}`,
-      width: 'auto'
+      padding: `0 ${variables.padding.d} ${variables.padding.d} 0`,
+      textAlign: 'left',
+      width: '50%',
+      ':nth-child(even)': {
+        padding: `0 0 ${variables.padding.d} 0`
+      }
     }
   },
-  release: titles(),
-  roadmap: titles('20%'),
-  hiring: titles('40%'),
-  terms: titles('60%'),
-  label: merge({
+  release: titles,
+  roadmap: titles,
+  hiring: titles,
+  terms: titles,
+  label: merge({}, mixins.headings.p, {
     display: 'none',
     [mixins.breakpoints.ns]: {
       display: 'block'
+    },
+    [mixins.breakpoints.l]: {
+      fontSize: mixins.headings.p2[mixins.breakpoints.ns].fontSize
     }
-  }, mixins.headings.p)
+  })
 }
 
 export default css(styles)

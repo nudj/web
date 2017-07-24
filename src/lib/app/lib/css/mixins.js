@@ -497,6 +497,19 @@ export function makeOrangeSubtitleUnderlineOnDarkGrey (properties = {}) {
   return merge(underline, properties)
 }
 
+export function underlineHoverTransition (properties = {}) {
+  const backgroundImage = properties.backgroundImage
+  return merge({}, properties, {
+    [breakpoints.ns]: {
+      backgroundImage: 'none',
+      ':hover': { backgroundImage }
+    }
+  }, makeTransition({
+    details: variables.transitions.mediumBouncy,
+    properties: ['all']
+  }))
+}
+
 // Generic typography
 const typography = {
   title: merge({
