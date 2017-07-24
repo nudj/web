@@ -8,7 +8,7 @@ const buttonMargins = {
 }
 
 const jobHeaderTitleHighlight = {
-  color: variables.colours.royalBlue,
+  color: variables.colours.midRed,
   [mixins.breakpoints.l]: {
     whiteSpace: 'nowrap'
   }
@@ -22,15 +22,15 @@ const styles = {
     backgroundColor: 'blue'
   },
   job: {
-    backgroundColor: variables.colours.darkPink,
+    backgroundColor: variables.colours.white,
     padding: `${variables.padding.b} 0`,
     position: 'relative',
     [mixins.breakpoints.l]: {
-      padding: `${variables.padding.a} 0`
+      padding: `${variables.padding.a} 0 ${variables.padding.b} 0`
     }
   },
   jobHeader: mixins.basicContainer(),
-  jobHeaderTitle: merge({}, mixins.typography.titleWhite, {
+  jobHeaderTitle: merge({}, mixins.typography.titleCharcoal, {
     margin: `0 0 ${variables.padding.b} 0`,
     [mixins.breakpoints.l]: {
       textAlign: 'inherit'
@@ -41,7 +41,7 @@ const styles = {
     textDecoration: 'none'
   }),
   jobHeaderSubtitle: merge({}, mixins.headings.h4, {
-    color: variables.colours.white,
+    color: variables.colours.midRed,
     margin: `0 0 ${variables.padding.d} 0`,
     textAlign: 'center',
     [mixins.breakpoints.l]: {
@@ -49,47 +49,26 @@ const styles = {
     }
   }),
   jobHeaderDescription: merge({}, mixins.typography.copy, {
-    color: variables.colours.white,
     margin: `0 0 ${variables.padding.b} 0`,
     [mixins.breakpoints.l]: {
       textAlign: 'inherit'
     }
   }),
-  actions: mixins.basicContainer({
-    [mixins.breakpoints.l]: {
-      display: 'flex'
-    }
+  actions: mixins.flexColumn({
+    padding: `0 ${variables.padding.c}`
   }),
-  action: {
-    textAlign: 'center',
-    [mixins.breakpoints.l]: {
-      margin: `0 ${variables.padding.d} 0 0`,
-      textAlign: 'inherit',
-      width: `calc(33.3% - ${variables.padding.d})`,
-      ':last-child': {
-        flexGrow: '1',
-        margin: '0'
-      }
-    }
-  },
+  or: mixins.makeOrDark(),
+  action: mixins.flexColumn(),
   actionCopy: merge({}, mixins.typography.copy, {
-    color: variables.colours.white,
     margin: `0 0 ${variables.padding.c}`,
     [mixins.breakpoints.l]: {
       margin: '0',
       textAlign: 'inherit'
     }
   }),
-  applied: mixins.buttonPrimaryDisabled(merge({
-    backgroundColour: variables.colours.royalBlue,
-    color: variables.colours.white
-  }, buttonMargins)),
-  apply: mixins.buttonPrimary(merge({
-    backgroundColour: variables.colours.royalBlue,
-    color: variables.colours.white
-  }, buttonMargins)),
-  nudj: mixins.buttonSecondaryTransparent(buttonMargins),
-  nudjd: merge({}, mixins.buttonSecondaryTransparent(buttonMargins), mixins.disabled()),
+  applied: mixins.buttonPrimaryDisabled(buttonMargins),
+  apply: mixins.buttonPrimary(buttonMargins),
+  nudj: mixins.buttonPrimary(buttonMargins),
   related: merge(mixins.makeGreyBackground(), {
     padding: `${variables.padding.c} 0 0 0`,
     width: '100%'
@@ -130,59 +109,20 @@ const styles = {
 
 const getStyle = css(styles)
 
-// Override the colours -- fallback on what's there if the colour isn't defined
-const setStyles = (backgroundColour, textColour, textHighlightColour, buttonTextColour) => {
-  if (backgroundColour === 'undefined') {
-    backgroundColour = undefined
-  }
-
-  if (textColour === 'undefined') {
-    textColour = undefined
-  }
-
-  if (textHighlightColour === 'undefined') {
-    textHighlightColour = undefined
-  }
-
-  if (buttonTextColour === 'undefined') {
-    buttonTextColour = undefined
+const setStyles = (highlightColour) => {
+  if (highlightColour === 'undefined') {
+    highlightColour = undefined
   }
 
   const colouredStyles = {
-    job: {
-      backgroundColor: variables.colours[backgroundColour] || styles.job.backgroundColor
-    },
-    jobHeaderTitle: {
-      color: variables.colours[textColour] || styles.jobHeaderTitle.color
-    },
     jobHeaderTitleHighlight: {
-      color: variables.colours[textHighlightColour] || styles.jobHeaderTitleHighlight.color
+      color: variables.colours[highlightColour] || styles.jobHeaderTitleHighlight.color
     },
     jobHeaderTitleHighlightLink: {
-      color: variables.colours[textHighlightColour] || styles.jobHeaderTitleHighlightLink.color
+      color: variables.colours[highlightColour] || styles.jobHeaderTitleHighlightLink.color
     },
     jobHeaderSubtitle: {
-      color: variables.colours[textColour] || styles.jobHeaderSubtitle.color
-    },
-    jobHeaderDescription: {
-      color: variables.colours[textColour] || styles.jobHeaderTitle.color
-    },
-    apply: {
-      backgroundColor: variables.colours[textHighlightColour] || styles.apply.backgroundColor,
-      borderColor: variables.colours[textHighlightColour] || styles.apply.borderColor,
-      color: variables.colours[buttonTextColour] || variables.colours[textColour] || styles.apply.color
-    },
-    applied: {
-      backgroundColor: variables.colours[textHighlightColour] || styles.applied.backgroundColor,
-      borderColor: variables.colours[textHighlightColour] || styles.apply.borderColor,
-      color: variables.colours[buttonTextColour] || variables.colours[textColour] || styles.applied.color
-    },
-    nudj: {
-      borderColor: variables.colours[textColour] || styles.nudj.borderColor,
-      color: variables.colours[textColour] || styles.nudj.color
-    },
-    actionCopy: {
-      color: variables.colours[textColour] || styles.actionCopy.color
+      color: variables.colours[highlightColour] || styles.jobHeaderSubtitle.color
     }
   }
 

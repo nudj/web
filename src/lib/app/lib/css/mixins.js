@@ -469,6 +469,13 @@ export function makeOr (properties = {}) {
   }, headings.p, properties)
 }
 
+export function makeOrDark (properties = {}) {
+  return makeOr(merge({
+    backgroundImage: linkImage('cta-separator-line-charcoal.svg'),
+    color: variables.colours.charcoal
+  }, properties))
+}
+
 function subtitleUnderline (image, backgroundColour) {
   return {
     backgroundImage: linkImage('table-line-1.svg'),
@@ -536,6 +543,10 @@ const typography = {
     color: variables.colours.midRed
   })
 }
+
+typography.titleCharcoal = merge({}, typography.title, {
+  color: variables.colours.charcoal
+})
 
 typography.titleWhite = merge({}, typography.title, {
   color: variables.colours.white

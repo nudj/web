@@ -16,7 +16,6 @@ export default (props) => {
   return (
     <div className={style.container}>
       <p className={style.mobileMessage}>Share your link by selecting an option below.</p>
-      <p className={style.message}>You've already nudj'd this job. Below is your unique link.</p>
       <div className={style.actions}>
         <a href={`fb-messenger://share/?link=${link}`} className={style.actionLink}>
           <div className={style.fbmLink}>
