@@ -22,6 +22,11 @@ const heroFisting = merge({
   })
 })
 
+const heroSubtitle = merge({
+  color: variables.colours.royalBlue,
+  padding: `0 0 ${variables.padding.d} 0`
+}, mixins.headings.h2)
+
 const subtitle = merge({
   color: variables.colours.royalBlue,
   padding: `0 0 ${variables.padding.d} 0`
@@ -121,7 +126,7 @@ const styles = {
       padding: `${variables.padding.b} 0 0 0`
     }
   },
-  bodyTitle: merge({}, subtitle, subtitleUnderline),
+  bodyTitle: merge({}, heroSubtitle, subtitleUnderline),
   pricingTitle: subtitleWhite,
   howUnderline: {},
   bodySubtitle: merge({}, stepCopy, {

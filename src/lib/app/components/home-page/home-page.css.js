@@ -187,6 +187,11 @@ const styles = {
   stepTwo: howStepEven,
   stepThree: howStep,
   stepFour: howStepEven,
+  stepAnimationContainer: mixins.flexColumn({
+    [mixins.breakpoints.l]: {
+      justifyContent: 'flex-start'
+    }
+  }),
   stepImage: {
     display: 'block'
   },
