@@ -100,6 +100,10 @@ dummyData.jobs = dummyData.jobs.concat([
         location: 'London',
         companyName: 'Fake Company'
       }
+    ],
+    relatedJobs: [
+      '1',
+      '2'
     ]
   }
 ])

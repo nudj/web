@@ -1,6 +1,7 @@
-let logger = require('../lib/logger')
-let intercom = require('../lib/intercom')
-let fetch = require('../lib/fetch')
+const logger = require('../lib/logger')
+const intercom = require('../lib/intercom')
+const request = require('../lib/request')
+const { merge } = require('@nudj/library')
 
 function promiseMap (promiseObj) {
   let promiseArr = []
@@ -17,19 +18,56 @@ function promiseMap (promiseObj) {
   })
 }
 
-function fetchBaseData (params, loggedInPerson) {
+function fetchBaseData (params, person) {
   let {
     companySlug,
     jobSlug,
     refId
   } = params
-  let requests = {
-    company: fetch(`companies/${companySlug}`),
-    job: fetch(`jobs/${jobSlug}`),
-    person: loggedInPerson,
-    referral: (refId && fetch(`referrals/${refId}`)) || null
-  }
-  return promiseMap(requests)
+  return request(`
+    query {
+      company: companyByFilters(filters: {
+        slug: "${companySlug}"
+      }) {
+        name
+      }
+      job: jobByFilters(filters: {
+        slug: "${jobSlug}"
+      }) {
+        id
+        created
+        modified
+        title
+        slug
+        url
+        status
+        bonus
+        description
+        type
+        remuneration
+        tags
+        location
+        relatedJobs {
+          id
+          title
+          slug
+          company {
+            name
+            slug
+          }
+        }
+      }
+      ${refId ? `referral(id: "${refId}") {
+        id
+      }` : ''}
+    }
+  `)
+  .then(data => merge({
+    company: null,
+    job: null,
+    referral: null,
+    person
+  }, data))
 }
 
 function ensureValidReferralUrl (data) {
@@ -50,7 +88,7 @@ function ensureValidReferralUrl (data) {
 function fetchReferrer (data) {
   let referral = data.referral
   if (referral) {
-    data.referrer = fetch(`people/${referral.personId}`)
+    data.referrer = request(`people/${referral.personId}`)
   }
   return promiseMap(data)
 }
@@ -67,7 +105,7 @@ function fetchExisting (type) {
     const person = data.person
 
     if (job && person) {
-      data[type] = fetch(`${type}s/first?jobId=${job.id}&personId=${person.id}`)
+      data[type] = request(`${type}s/first?jobId=${job.id}&personId=${person.id}`)
     }
 
     return promiseMap(data)
@@ -84,7 +122,7 @@ function ensureDoesNotExist (type) {
 }
 
 function nudj (data) {
-  data.referral = fetch(`referrals`, {
+  data.referral = request(`referrals`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -105,7 +143,7 @@ function nudj (data) {
 }
 
 function apply (data) {
-  data.application = fetch(`applications`, {
+  data.application = request(`applications`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -145,12 +183,64 @@ function extractParams (companySlugJobSlugRefId) {
   }
 }
 
-module.exports.get = function (companySlugJobSlugRefId, loggedInPerson) {
-  return fetchBaseData(extractParams(companySlugJobSlugRefId), loggedInPerson)
-  .then(ensureValidReferralUrl)
-  .then(fetchExisting('referral'))
-  .then(fetchReferrer)
-  .then(fetchExisting('application'))
+module.exports.get = function (companySlugJobSlugRefId, person) {
+  let {
+    companySlug,
+    jobSlug,
+    refId
+  } = extractParams(companySlugJobSlugRefId)
+  return request(`
+    query {
+      company: companyByFilters(filters: {
+        slug: "${companySlug}"
+      }) {
+        id
+      }
+      job: jobByFilters(filters: {
+        slug: "${jobSlug}"
+      }) {
+        id
+        created
+        modified
+        title
+        slug
+        url
+        status
+        bonus
+        description
+        type
+        remuneration
+        tags
+        location
+        company {
+          name
+        }
+        relatedJobs {
+          id
+          title
+          slug
+          company {
+            name
+            slug
+          }
+        }
+      }
+      ${refId ? `referral(id: "${refId}") {
+        id
+      }` : ''}
+    }
+  `)
+  .then(data => merge({
+    company: null,
+    job: null,
+    referral: null,
+    person
+  }, data))
+  // return fetchBaseData(extractParams(companySlugJobSlugRefId), loggedInPerson)
+  // .then(ensureValidReferralUrl)
+  // .then(fetchExisting('referral'))
+  // .then(fetchReferrer)
+  // .then(fetchExisting('application'))
 }
 
 module.exports.nudj = function (companySlugJobSlugRefId, loggedInPerson) {

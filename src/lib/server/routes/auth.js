@@ -1,6 +1,6 @@
 let express = require('express')
 let passport = require('passport')
-let fetch = require('../lib/fetch')
+let request = require('../lib/request')
 let intercom = require('../lib/intercom')
 let logger = require('../lib/logger')
 
@@ -54,10 +54,16 @@ router.get('/callback',
       })
     }
 
-    fetch(`people/first?email=${email}`)
-    .then((person) => {
-      if (!person) {
-        return fetch(`people`, {
+    request(`
+      query {
+        personByFilters(filters: {
+          email: "${email}"
+        })
+      }
+    `)
+    .then((data) => {
+      if (!data || !data.person) {
+        return request(`people`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -65,7 +71,7 @@ router.get('/callback',
           body: JSON.stringify({email, firstName, lastName, url})
         })
       } else {
-        return person
+        return data.person
       }
     })
     .then((person) => {
