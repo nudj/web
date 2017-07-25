@@ -184,20 +184,26 @@ function extractParams (companySlugJobSlugRefId) {
 }
 
 module.exports.get = function (companySlugJobSlugRefId, person) {
-  let {
-    companySlug,
-    jobSlug,
-    refId
-  } = extractParams(companySlugJobSlugRefId)
+  // let {
+  //   companySlug,
+  //   jobSlug,
+  //   refId
+  // } = extractParams(companySlugJobSlugRefId)
   return request(`
-    query {
+    query GetJobAndReferral ($companySlug: String!, $jobSlug: String!${'' && `, $refId: ID!`}) {
       company: companyByFilters(filters: {
-        slug: "${companySlug}"
+        slug: $companySlug
       }) {
         id
       }
+      ${'' && `referral(id: $refId) {
+        id
+        job {
+          id
+        }
+      }`}
       job: jobByFilters(filters: {
-        slug: "${jobSlug}"
+        slug: $jobSlug
       }) {
         id
         created
@@ -213,7 +219,11 @@ module.exports.get = function (companySlugJobSlugRefId, person) {
         tags
         location
         company {
+          id
           name
+          logo
+          slug
+          url
         }
         relatedJobs {
           id
@@ -225,11 +235,8 @@ module.exports.get = function (companySlugJobSlugRefId, person) {
           }
         }
       }
-      ${refId ? `referral(id: "${refId}") {
-        id
-      }` : ''}
     }
-  `)
+  `, extractParams(companySlugJobSlugRefId))
   .then(data => merge({
     company: null,
     job: null,
