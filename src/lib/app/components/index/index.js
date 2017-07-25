@@ -25,9 +25,7 @@ const Index = () => {
         <meta property='twitter:image' content='https://assets.nudj.co/assets/images/social/nudj-card-og.jpg' />
         <meta property='og:image' content='https://assets.nudj.co/assets/images/social/nudj-card-og.jpg' />
         <link rel='icon' href='/assets/images/nudj-square.ico' type='image/x-icon' />
-        <link rel='stylesheet' href='/assets/css/normalize.css' />
-        <link rel='stylesheet' href='/assets/css/reset.css' />
-        <link rel='stylesheet' href='/assets/css/hamburgers.css' />
+        <link rel='stylesheet' href='/assets/css/libs.min.css' />
       </Helmet>
       <div className={style.content}>
         <Route path='*' component={Page} />
