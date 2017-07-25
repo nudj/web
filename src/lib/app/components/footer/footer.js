@@ -25,8 +25,8 @@ export default (props) => {
       </ul>
       <div className={style.icon}>
         <img className={style.logo} src='/assets/images/nudj-logo-light.svg' />
-        <span className={style.copyright}>&#169; 2017 <strong>nudj</strong>, All Rights Reserved</span>
       </div>
     </div>
+    <span className={style.copyright}>&#169; 2017 <strong>nudj</strong>, All Rights Reserved</span>
   </div>)
 }

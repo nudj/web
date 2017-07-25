@@ -46,7 +46,7 @@ const navBarConstantBase = {
 }
 
 const link = merge({}, mixins.deLink({
-  color: variables.colours.royalBlue,
+  color: variables.colours.charcoal,
   display: 'none',
   padding: `calc(${variables.padding.e} * 1.5) ${variables.padding.d}`,
   [mixins.breakpoints.l]: {

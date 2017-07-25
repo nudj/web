@@ -22,8 +22,8 @@ const Index = () => {
         <meta property='twitter:card' content='nudj - A better job is just a nudj away.' />
         <meta property='twitter:title' content='nudj - A better job is just a nudj away.' />
         <meta property='og:site_name' content='nudj - A better job is just a nudj away.' />
-        <meta property='twitter:image' content='http://nudjcms.s3.amazonaws.com/assets/images/social/nudj-card-og.jpg' />
-        <meta property='og:image' content='http://nudjcms.s3.amazonaws.com/assets/images/social/nudj-card-og.jpg' />
+        <meta property='twitter:image' content='https://assets.nudj.co/assets/images/social/nudj-card-og.jpg' />
+        <meta property='og:image' content='https://assets.nudj.co/assets/images/social/nudj-card-og.jpg' />
         <link rel='icon' href='/assets/images/nudj-square.ico' type='image/x-icon' />
         <link rel='stylesheet' href='/assets/css/normalize.css' />
         <link rel='stylesheet' href='/assets/css/reset.css' />

@@ -4,11 +4,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import get from 'lodash/get'
-import merge from 'lodash/merge'
 import { Helmet } from 'react-helmet'
 import { getStyle, setStyles } from './job-page.css'
 
-import Message from '../message'
 import Header from '../header'
 import NudjSuccess from '../nudj-success'
 
@@ -68,13 +66,10 @@ const Component = (props) => {
   const template = {
     title: templateContent.fragmentToText({fragment: 'jobdescription.title'}),
     description: templateContent.fragmentToText({fragment: 'jobdescription.description'}),
-    colourPrimary: templateContent.fragmentToText({fragment: 'jobdescription.colourprimary'}),
-    colourText: templateContent.fragmentToText({fragment: 'jobdescription.colourtext'}),
-    colourTextHighlight: templateContent.fragmentToText({fragment: 'jobdescription.colourtexthighlight'}),
-    colourButtonText: templateContent.fragmentToText({fragment: 'jobdescription.colourbuttontext'})
+    colourPrimary: templateContent.fragmentToText({fragment: 'jobdescription.colourprimary'})
   }
 
-  setStyles(template.colourPrimary, template.colourText, template.colourTextHighlight, template.colourButtonText)
+  setStyles()
   const style = getStyle()
 
   const applyForJobButton = application ? (<button className={style.applied} disabled>We'll be in touch soon</button>) : (<button className={style.apply}>Find out more</button>)
@@ -109,37 +104,41 @@ const Component = (props) => {
     data: data
   })
 
-  let bannerMessage = get(props, 'message')
+  const bannerMessage = get(props, 'message')
   const isReferrerByProps = get(props, 'referrer.email') && get(props, 'person.email') && get(props, 'referrer.email') === get(props, 'person.email')
   const isReferrerByMessage = bannerMessage && bannerMessage.type === 'error' && bannerMessage.code === 403 && bannerMessage.message === 'Already referred'
 
-  let nudjButton = (<button className={style.nudj}>Send to a friend</button>)
+  const actions = []
+  const apply = (<form className={style.action} action={`${uniqueLink}/apply`} method='POST' onSubmit={onFormSubmit('new-application', props)}>
+    <input type='hidden' name='_csrf' value={props.csrfToken} />
+    {applyForJobButton}
+    <p className={style.actionCopy}>Sign up &amp; we'll send you some info!</p>
+  </form>)
+
+  actions.push(apply)
+
+  const nudjCopy = (<p className={style.actionCopy}>We’ll give you <strong className={style.strong}>£{get(props, 'job.bonus')}</strong> if they get the job.</p>)
 
   if (isReferrerByProps || isReferrerByMessage) {
-    const successProps = merge({
-      backgroundColour: template.colourTextHighlight,
-      textColour: template.colourButtonText || template.colourText,
-      textHighlightColour: template.colourPrimary,
-      buttonTextColour: template.colourTextHighlight
-    }, props)
-    bannerMessage = (<NudjSuccess {...successProps} />)
-    nudjButton = (<button className={style.nudjd}>You've already shared this job</button>)
+    const nudjLink = (<NudjSuccess {...props} />)
+    const nudjd = (<div className={style.action}>
+      {nudjLink}
+      {nudjCopy}
+    </div>)
+    actions.unshift(nudjd)
+  } else {
+    const nudjButton = (<button className={style.nudj}>Send to a friend</button>)
+    const nudjForm = (<form className={style.action} action={`${uniqueLink}/nudj`} method='POST' onSubmit={onFormSubmit('new-referral', props)}>
+      <input type='hidden' name='_csrf' value={props.csrfToken} />
+      {nudjButton}
+      {nudjCopy}
+    </form>)
+    actions.push(nudjForm)
   }
 
   return (
     <div className={style.body}>
-      <Message
-        message={bannerMessage}
-        messageType='jobs'
-        backgroundColour={template.colourTextHighlight}
-        textColour={template.colourButtonText || template.colourText}
-        textHighlightColour={template.colourTextHighlight}
-        buttonTextColour={template.colourButtonText} />
-      <Header
-        backgroundColour={template.colourPrimary}
-        textColour={template.colourText}
-        textHighlightColour={template.colourTextHighlight}
-        buttonTextColour={template.colourButtonText} />
+      <Header />
       <Helmet>
         <title>{pageTitle}</title>
         <meta name='title' content={pageTitle} />
@@ -155,16 +154,9 @@ const Component = (props) => {
           <p className={style.jobHeaderDescription}>{description}</p>
         </div>
         <section className={style.actions}>
-          <form className={style.action} action={`${uniqueLink}/apply`} method='POST' onSubmit={onFormSubmit('new-application', props)}>
-            <input type='hidden' name='_csrf' value={props.csrfToken} />
-            {applyForJobButton}
-            <p className={style.actionCopy}>Sign up &amp; we'll send you some info!</p>
-          </form>
-          <form className={style.action} action={`${uniqueLink}/nudj`} method='POST' onSubmit={onFormSubmit('new-referral', props)}>
-            <input type='hidden' name='_csrf' value={props.csrfToken} />
-            {nudjButton}
-            <p className={style.actionCopy}>We’ll give you <strong className={style.strong}>£{get(props, 'job.bonus')}</strong> if they get the job.</p>
-          </form>
+          {actions[0]}
+          <span className={style.or}>or</span>
+          {actions[1]}
         </section>
       </div>
       <section className={style.related}>
