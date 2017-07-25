@@ -55,12 +55,19 @@ router.get('/callback',
     }
 
     request(`
-      query {
-        personByFilters(filters: {
-          email: "${email}"
-        })
+      query GetPersonByEmail ($email: String) {
+        person: personByFilters(filters: {
+          email: $email
+        }) {
+          email
+          url
+          firstName
+          lastName
+        }
       }
-    `)
+    `, {
+      email
+    })
     .then((data) => {
       if (!data || !data.person) {
         return request(`people`, {

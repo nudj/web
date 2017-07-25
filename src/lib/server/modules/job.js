@@ -2,6 +2,7 @@ const logger = require('../lib/logger')
 const intercom = require('../lib/intercom')
 const request = require('../lib/request')
 const { merge } = require('@nudj/library')
+const queries = require('./queries-mutations')
 
 function promiseMap (promiseObj) {
   let promiseArr = []
@@ -77,8 +78,8 @@ function ensureValidReferralUrl (data) {
   if (
     !company ||
     !job ||
-    company.id !== job.companyId ||
-    (referral && referral.jobId !== job.id)
+    company.id !== job.company.id ||
+    (referral && referral.job.id !== job.id)
   ) {
     throw new Error('Not found')
   }
@@ -184,65 +185,18 @@ function extractParams (companySlugJobSlugRefId) {
 }
 
 module.exports.get = function (companySlugJobSlugRefId, person) {
-  // let {
-  //   companySlug,
-  //   jobSlug,
-  //   refId
-  // } = extractParams(companySlugJobSlugRefId)
-  return request(`
-    query GetJobAndReferral ($companySlug: String!, $jobSlug: String!${'' && `, $refId: ID!`}) {
-      company: companyByFilters(filters: {
-        slug: $companySlug
-      }) {
-        id
-      }
-      ${'' && `referral(id: $refId) {
-        id
-        job {
-          id
-        }
-      }`}
-      job: jobByFilters(filters: {
-        slug: $jobSlug
-      }) {
-        id
-        created
-        modified
-        title
-        slug
-        url
-        status
-        bonus
-        description
-        type
-        remuneration
-        tags
-        location
-        company {
-          id
-          name
-          logo
-          slug
-          url
-        }
-        relatedJobs {
-          id
-          title
-          slug
-          company {
-            name
-            slug
-          }
-        }
-      }
-    }
-  `, extractParams(companySlugJobSlugRefId))
-  .then(data => merge({
-    company: null,
-    job: null,
-    referral: null,
+  let variables = Object.assign({
+    personId: person && person.id
+  }, extractParams(companySlugJobSlugRefId))
+  return request(
+    variables.refId ? queries.GetCompanyJobAndReferral : queries.GetCompanyAndJob,
+    variables
+  )
+  .then(ensureValidReferralUrl)
+  .then(data => ({
+    job: data.job,
     person
-  }, data))
+  }))
   // return fetchBaseData(extractParams(companySlugJobSlugRefId), loggedInPerson)
   // .then(ensureValidReferralUrl)
   // .then(fetchExisting('referral'))

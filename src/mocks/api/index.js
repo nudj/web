@@ -3,29 +3,39 @@ let dummy = require('@nudj/dummy')
 let schemas = require('@nudj/schemas')
 let find = require('lodash/find')
 
-let dummyData = dummy({
-  companies: {
-    schema: schemas.company,
-    count: 5
-  },
-  jobs: {
-    schema: schemas.job,
-    count: 5
-  },
-  people: {
-    schema: schemas.people,
-    count: 5
-  },
-  referrals: {
-    schema: schemas.referrals,
-    count: 5
-  },
-  applications: {
-    schema: schemas.applications,
-    count: 5
-  }
-})
-dummyData.companies = dummyData.companies.concat([
+// let data = dummy({
+//   companies: {
+//     schema: schemas.company,
+//     count: 5
+//   },
+//   jobs: {
+//     schema: schemas.job,
+//     count: 5
+//   },
+//   people: {
+//     schema: schemas.people,
+//     count: 5
+//   },
+//   referrals: {
+//     schema: schemas.referrals,
+//     count: 5
+//   },
+//   applications: {
+//     schema: schemas.applications,
+//     count: 5
+//   }
+// })
+let data = {
+  companies: [],
+  jobs: [],
+  people: [],
+  referrals: [],
+  applications: [],
+  hirers: [],
+  externalMessages: [],
+  recommendations: []
+}
+data.companies = data.companies.concat([
   {
     id: '99',
     created: '1986-07-06T07:34:54.000+00:00',
@@ -39,7 +49,7 @@ dummyData.companies = dummyData.companies.concat([
     description: 'OMG this job is SO hot right now. Ut nec massa vitae dui ullamcorper malesuada nec in neque. Suspendisse nec sapien faucibus, mollis metus ac, tempus eros. Praesent at nisl consequat ligula auctor eleifend nec sit amet eros. Fusce consequat, ante ac maximus auctor, felis justo vestibulum elit, congue congue ipsum ligula et lacus. Vivamus est risus, viverra quis iaculis et, eleifend eget est.'
   }
 ])
-dummyData.jobs = dummyData.jobs.concat([
+data.jobs = data.jobs.concat([
   {
     id: '99',
     created: '1986-07-06T07:34:54.000+00:00',
@@ -61,14 +71,9 @@ dummyData.jobs = dummyData.jobs.concat([
       'Full-Stack'
     ],
     location: 'London',
-    companyId: '2',
-    related: [
-      {
-        companySlug: 'bulb',
-        slug: 'operations-strategy-analyst',
-        title: 'Operations Strategy Analyst',
-        location: 'London'
-      }
+    company: '99',
+    relatedJobs: [
+      '100'
     ]
   },
   {
@@ -91,23 +96,13 @@ dummyData.jobs = dummyData.jobs.concat([
       'Job'
     ],
     location: 'London',
-    companyId: '99',
-    related: [
-      {
-        companySlug: 'bulb',
-        slug: 'operations-strategy-analyst',
-        title: 'Operations Strategy Analyst',
-        location: 'London',
-        companyName: 'Fake Company'
-      }
-    ],
+    company: '99',
     relatedJobs: [
-      '1',
-      '2'
+      '99'
     ]
   }
 ])
-dummyData.people = dummyData.people.concat([
+data.people = data.people.concat([
   {
     id: '21',
     created: '1986-07-06T07:34:54.000+00:00',
@@ -174,13 +169,33 @@ dummyData.people = dummyData.people.concat([
     status: 'user'
   }
 ])
+data.referrals = data.referrals.concat([
+  {
+    id: '1',
+    job: '99',
+    person: '21',
+    referral: null,
+    created: '2017-06-08T11:38:19.485+00:00',
+    modified: '2017-06-08T11:38:19.485+00:00'
+  }
+])
+data.applications = data.applications.concat([
+  {
+    id: '1',
+    job: '99',
+    person: '22',
+    referral: '1',
+    created: '2017-06-08T11:38:19.485+00:00',
+    modified: '2017-06-08T11:38:19.485+00:00'
+  }
+])
 
 let server = mock.rest({
-  data: dummyData,
+  data,
   addCustomHandlers: (server) => {
     server.get('/companies/:cid', (req, res, next) => {
       if (!req.params.cid.match(/^\d+$/)) {
-        let company = find(dummyData.companies, {
+        let company = find(data.companies, {
           slug: req.params.cid
         })
         if (company) {
@@ -198,7 +213,7 @@ let server = mock.rest({
     })
     server.get('/jobs/:jid', (req, res, next) => {
       if (!req.params.jid.match(/^\d+$/)) {
-        let job = find(dummyData.jobs, {
+        let job = find(data.jobs, {
           slug: req.params.jid
         })
         if (job) {
@@ -216,7 +231,7 @@ let server = mock.rest({
     })
     server.get('/:type/first', (req, res, next) => {
       let type = req.params.type
-      let match = find(dummyData[type], req.query)
+      let match = find(data[type], req.query)
       if (match) {
         res.json(match)
       } else {
@@ -231,7 +246,7 @@ let server = mock.rest({
   }
 })
 server = mock.gql({
-  data: dummyData
+  data: data
 })
 
 module.exports = server
