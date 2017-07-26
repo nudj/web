@@ -1,6 +1,59 @@
 module.exports = {
   GetJobForPerson: `
-    query GetCompanyAndJob ($jobSlug: String!, $personId: ID) {
+    query GetJobForPerson ($jobSlug: String!, $personId: ID) {
+      job: jobByFilters(filters: {
+        slug: $jobSlug
+      }) {
+        id
+        created
+        modified
+        title
+        slug
+        url
+        status
+        bonus
+        description
+        type
+        remuneration
+        tags
+        location
+        application: applicationByFilters(filters: {
+          person: $personId
+        }) {
+          id
+        }
+        referral: referralByFilters(filters: {
+          person: $personId
+        }) {
+          id
+        }
+        company {
+          id
+          name
+          logo
+          slug
+          url
+        }
+        relatedJobs {
+          id
+          title
+          slug
+          company {
+            name
+            slug
+          }
+        }
+      }
+    }
+  `,
+  GetReferralAndJobForPerson: `
+    query GetReferralAndJobForPerson ($refId: ID, $jobSlug: String!, $personId: ID) {
+      referral(id: $refId) {
+        id
+        job {
+          id
+        }
+      }
       job: jobByFilters(filters: {
         slug: $jobSlug
       }) {
@@ -64,7 +117,7 @@ module.exports = {
     }
   `,
   GetCompanyJobAndReferral: `
-    query GetCompanyJobAndReferral ($companySlug: String!, $jobSlug: String!, $refId: ID!) {
+    query GetCompanyJobAndReferral ($companySlug: String!, $jobSlug: String!, $refId: ID) {
       company: companyByFilters(filters: {
         slug: $companySlug
       }) {

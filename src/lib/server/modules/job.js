@@ -192,20 +192,24 @@ function apply (data) {
 }
 
 module.exports.get = function (params) {
-  return ensureValidReferralUrlNew(params).then(() => request(queries.GetJobForPerson, params))
+  return ensureValidReferralUrlNew(params).then(() => request(
+    params.refId ? queries.GetReferralAndJobForPerson : queries.GetJobForPerson,
+    params
+  ))
 }
 
-module.exports.nudj = function (params, person) {
-  return fetchBaseData(params, person)
-  .then(ensureValidReferralUrl)
-  .then(fetchReferrer)
-  .then(makeReferralParentReferral)
-  .then(fetchExisting('referral'))
-  .then(ensureDoesNotExist('referral'))
-  .then(nudj)
+module.exports.nudj = function (params) {
+  return ensureValidReferralUrlNew(params).then(() => request(mutations.CreateReferralForPerson, params))
+  // return fetchBaseData(params, person)
+  // .then(ensureValidReferralUrl)
+  // .then(fetchReferrer)
+  // .then(makeReferralParentReferral)
+  // .then(fetchExisting('referral'))
+  // .then(ensureDoesNotExist('referral'))
+  // .then(nudj)
 }
 
-module.exports.apply = function (params, person, personUpdate) {
+module.exports.apply = function (params, personUpdate) {
   return fetchBaseData(params, person)
   .then(ensureValidReferralUrl)
   .then(fetchReferrer)
