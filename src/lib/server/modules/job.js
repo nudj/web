@@ -87,10 +87,8 @@ function ensureValidReferralUrl (data) {
 }
 
 function ensureValidReferralUrlNew (params) {
-  return request(
-    params.refId ? queries.GetCompanyJobAndReferral : queries.GetCompanyAndJob,
-    params
-  ).then(data => {
+  return request(queries.GetCompanyJobAndReferral, params)
+  .then(data => {
     let company = data.company
     let job = data.job
     let referral = data.referral
@@ -192,10 +190,7 @@ function apply (data) {
 }
 
 module.exports.get = function (params) {
-  return ensureValidReferralUrlNew(params).then(() => request(
-    params.refId ? queries.GetReferralAndJobForPerson : queries.GetJobForPerson,
-    params
-  ))
+  return ensureValidReferralUrlNew(params).then(() => request(queries.GetReferralAndJobForPerson, params))
 }
 
 module.exports.nudj = function (params) {

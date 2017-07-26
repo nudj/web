@@ -154,11 +154,11 @@ function jobPrismicTemplate (data) {
   return promiseMap(data)
 }
 
-function prepareParams (personId, companySlugJobSlugRefId) {
+function prepareParams (personId = null, companySlugJobSlugRefId) {
   const [
     companySlug,
     jobSlug,
-    refId
+    refId = null
   ] = companySlugJobSlugRefId.split('+')
   return {
     personId,

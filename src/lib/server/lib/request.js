@@ -11,7 +11,7 @@ function request (query, variables) {
   })
   .then(data => {
     if (data.errors) {
-      data.errors.forEach(error => logger.log('error', error.message, `request - http://api:81/`, query, variables))
+      data.errors.forEach(error => logger.log('error', error.message, query, variables))
       throw new Error('Something went wrong')
     }
     return data
