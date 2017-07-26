@@ -86,6 +86,26 @@ function ensureValidReferralUrl (data) {
   return data
 }
 
+function ensureValidReferralUrlNew (params) {
+  return request(
+    params.refId ? queries.GetCompanyJobAndReferral : queries.GetCompanyAndJob,
+    params
+  ).then(data => {
+    let company = data.company
+    let job = data.job
+    let referral = data.referral
+    if (
+      !company ||
+      !job ||
+      company.id !== job.company.id ||
+      (referral && referral.job.id !== job.id)
+    ) {
+      throw new Error('Not found')
+    }
+    return data
+  })
+}
+
 function fetchReferrer (data) {
   let referral = data.referral
   if (referral) {
@@ -171,41 +191,12 @@ function apply (data) {
   return promiseMap(data)
 }
 
-function extractParams (companySlugJobSlugRefId) {
-  const [
-    companySlug,
-    jobSlug,
-    refId
-  ] = companySlugJobSlugRefId.split('+')
-  return {
-    companySlug,
-    jobSlug,
-    refId
-  }
+module.exports.get = function (params) {
+  return ensureValidReferralUrlNew(params).then(() => request(queries.GetJobForPerson, params))
 }
 
-module.exports.get = function (companySlugJobSlugRefId, person) {
-  let variables = Object.assign({
-    personId: person && person.id
-  }, extractParams(companySlugJobSlugRefId))
-  return request(
-    variables.refId ? queries.GetCompanyJobAndReferral : queries.GetCompanyAndJob,
-    variables
-  )
-  .then(ensureValidReferralUrl)
-  .then(data => ({
-    job: data.job,
-    person
-  }))
-  // return fetchBaseData(extractParams(companySlugJobSlugRefId), loggedInPerson)
-  // .then(ensureValidReferralUrl)
-  // .then(fetchExisting('referral'))
-  // .then(fetchReferrer)
-  // .then(fetchExisting('application'))
-}
-
-module.exports.nudj = function (companySlugJobSlugRefId, loggedInPerson) {
-  return fetchBaseData(extractParams(companySlugJobSlugRefId), loggedInPerson)
+module.exports.nudj = function (params, person) {
+  return fetchBaseData(params, person)
   .then(ensureValidReferralUrl)
   .then(fetchReferrer)
   .then(makeReferralParentReferral)
@@ -214,8 +205,8 @@ module.exports.nudj = function (companySlugJobSlugRefId, loggedInPerson) {
   .then(nudj)
 }
 
-module.exports.apply = function (companySlugJobSlugRefId, loggedInPerson, personUpdate) {
-  return fetchBaseData(extractParams(companySlugJobSlugRefId), loggedInPerson)
+module.exports.apply = function (params, person, personUpdate) {
+  return fetchBaseData(params, person)
   .then(ensureValidReferralUrl)
   .then(fetchReferrer)
   .then(fetchExisting('application'))
