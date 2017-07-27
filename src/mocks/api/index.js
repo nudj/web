@@ -1,30 +1,6 @@
 let mock = require('@nudj/api/mock')
-let dummy = require('@nudj/dummy')
-let schemas = require('@nudj/schemas')
 let find = require('lodash/find')
 
-// let data = dummy({
-//   companies: {
-//     schema: schemas.company,
-//     count: 5
-//   },
-//   jobs: {
-//     schema: schemas.job,
-//     count: 5
-//   },
-//   people: {
-//     schema: schemas.people,
-//     count: 5
-//   },
-//   referrals: {
-//     schema: schemas.referrals,
-//     count: 5
-//   },
-//   applications: {
-//     schema: schemas.applications,
-//     count: 5
-//   }
-// })
 let data = {
   companies: [],
   jobs: [],
