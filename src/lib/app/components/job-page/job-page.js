@@ -56,7 +56,7 @@ const Component = (props) => {
   const companyName = get(props, 'job.company.name', '')
   const jobTitle = get(props, 'job.title', '')
   const image = get(props, 'job.company.logo')
-  const application = get(props, 'application')
+  const application = get(props, 'job.application')
 
   const pageTitle = `${companyName} - ${jobTitle}`
 

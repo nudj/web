@@ -19,9 +19,9 @@ const prismic = require('../../lib/prismic/api')({accessToken, repo})
 function spoofLoggedIn (req, res, next) {
   req.session.person = {
     id: '21',
+    email: 'nick@nudj.co',
     firstName: 'David',
-    lastName: 'Platt',
-    email: 'nick@nudj.co'
+    lastName: 'Platt'
   }
   return next()
 }

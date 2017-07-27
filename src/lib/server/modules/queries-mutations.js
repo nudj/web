@@ -58,6 +58,11 @@ const fragments = {
         }
       }
     }
+  `,
+  Application: `
+    fragment Application on Application {
+      id
+    }
   `
 }
 
@@ -114,5 +119,21 @@ module.exports = {
       }
     }
     ${fragments.Referral}
+  `,
+  CreateApplicationForPerson: `
+    mutation CreateApplicationForPerson (
+      $referral: ID = null
+      $job: ID!
+      $person: ID!
+    ) {
+      application: createApplication(input: {
+        referral: $referral
+        job: $job
+        person: $person
+      }) {
+        ...Application
+      }
+    }
+    ${fragments.Application}
   `
 }
