@@ -105,7 +105,7 @@ const Component = (props) => {
   })
 
   const bannerMessage = get(props, 'message')
-  const isReferrerByProps = get(props, 'referrer.email') && get(props, 'person.email') && get(props, 'referrer.email') === get(props, 'person.email')
+  const isReferrerByProps = !!get(props, 'job.referral')
   const isReferrerByMessage = bannerMessage && bannerMessage.type === 'error' && bannerMessage.code === 403 && bannerMessage.message === 'Already referred'
 
   const actions = []
@@ -120,7 +120,7 @@ const Component = (props) => {
   const nudjCopy = (<p className={style.actionCopy}>We’ll give you <strong className={style.strong}>£{get(props, 'job.bonus')}</strong> if they get the job.</p>)
 
   if (isReferrerByProps || isReferrerByMessage) {
-    const nudjLink = (<NudjSuccess {...props} />)
+    const nudjLink = (<NudjSuccess {...props} referral={get(props, 'job.referral')} />)
     const nudjd = (<div className={style.action}>
       {nudjLink}
       {nudjCopy}

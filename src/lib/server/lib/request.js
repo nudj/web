@@ -12,14 +12,9 @@ function request (query, variables) {
   .then(data => {
     if (data.errors) {
       data.errors.forEach(error => logger.log('error', error.message, query, variables))
-      throw new Error('Something went wrong')
+      throw new Error(data.errors[0].message)
     }
-    return data
-  })
-  .then(data => data.data)
-  .catch((error) => {
-    logger.log('error', error.message, `request`, query, variables)
-    throw new Error('Something went wrong')
+    return data.data
   })
 }
 

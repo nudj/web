@@ -18,10 +18,10 @@ const prismic = require('../../lib/prismic/api')({accessToken, repo})
 
 function spoofLoggedIn (req, res, next) {
   req.session.person = {
-    id: '25',
+    id: '21',
     firstName: 'David',
     lastName: 'Platt',
-    email: 'david@nudj.com'
+    email: 'nick@nudj.co'
   }
   return next()
 }
@@ -168,7 +168,6 @@ function prepareParams (personId = null, companySlugJobSlugRefId) {
   }
 }
 
-
 function jobHandler (req, res, next) {
   job
     .get(prepareParams(req.session.person && req.session.person.id, req.params.companySlugJobSlugRefId))
@@ -181,6 +180,10 @@ function jobHandler (req, res, next) {
 let nudjHandler = (req, res, next) => {
   job
     .nudj(prepareParams(req.session.person && req.session.person.id, req.params.companySlugJobSlugRefId))
+    .then((data) => {
+      if (data.errors) throw new Error(data.errors[0].message)
+      return data
+    })
     .then(getRenderDataBuilder(req, res, next))
     .then(getRenderer(req, res, next))
     .catch(getErrorHandler(req, res, next))

@@ -59,6 +59,7 @@ router.get('/callback',
         person: personByFilters(filters: {
           email: $email
         }) {
+          id
           email
           url
           firstName

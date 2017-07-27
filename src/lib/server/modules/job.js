@@ -112,12 +112,6 @@ function fetchReferrer (data) {
   return promiseMap(data)
 }
 
-function makeReferralParentReferral (data) {
-  data.parentReferral = data.referral
-  delete data.referral
-  return data
-}
-
 function fetchExisting (type) {
   return (data) => {
     const job = data.job
@@ -138,27 +132,6 @@ function ensureDoesNotExist (type) {
     }
     return Promise.resolve(data)
   }
-}
-
-function nudj (data) {
-  data.referral = request(`referrals`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      jobId: data.job.id,
-      personId: data.person.id,
-      referralId: data.parentReferral ? data.parentReferral.id : null
-    })
-  }).then((referral) => {
-    if (referral.error) {
-      logger.log('error', referral)
-      throw new Error()
-    }
-    return referral
-  })
-  return promiseMap(data)
 }
 
 function apply (data) {
@@ -194,14 +167,11 @@ module.exports.get = function (params) {
 }
 
 module.exports.nudj = function (params) {
-  return ensureValidReferralUrlNew(params).then(() => request(mutations.CreateReferralForPerson, params))
-  // return fetchBaseData(params, person)
-  // .then(ensureValidReferralUrl)
-  // .then(fetchReferrer)
-  // .then(makeReferralParentReferral)
-  // .then(fetchExisting('referral'))
-  // .then(ensureDoesNotExist('referral'))
-  // .then(nudj)
+  return ensureValidReferralUrlNew(params).then(data => request(queries.CreateReferralForPerson, {
+    parent: params.refId,
+    job: data.job.id,
+    person: params.personId
+  }))
 }
 
 module.exports.apply = function (params, personUpdate) {

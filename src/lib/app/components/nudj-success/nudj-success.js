@@ -11,7 +11,7 @@ export default (props) => {
   setStyles(backgroundColour, textColour, textHighlightColour, buttonTextColour)
   const style = getStyle()
 
-  let link = `${get(props, 'url.protocol')}://${get(props, 'url.hostname')}/jobs/${get(props, 'company.slug')}+${get(props, 'job.slug')}+${get(props, 'referral.id')}`
+  let link = `${get(props, 'url.protocol')}://${get(props, 'url.hostname')}/jobs/${get(props, 'referral.job.company.slug')}+${get(props, 'referral.job.slug')}+${get(props, 'referral.id')}`
 
   return (
     <div className={style.container}>
