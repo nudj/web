@@ -117,7 +117,7 @@ const Component = (props) => {
 
   actions.push(apply)
 
-  const nudjCopy = (<p className={style.actionCopy}>We’ll give you <strong className={style.strong}>£{get(props, 'job.bonus')}</strong> if they get the job.</p>)
+  const nudjCopy = (<p className={style.actionCopy}>We’ll give you <strong className={style.strong}>{get(props, 'job.bonus')}</strong> if they get the job.</p>)
 
   if (isReferrerByProps || isReferrerByMessage) {
     const nudjLink = (<NudjSuccess {...props} />)
