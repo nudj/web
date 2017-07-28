@@ -2,7 +2,7 @@ let libRequest = require('@nudj/library/lib/request')
 let logger = require('./logger')
 
 function request (query, variables) {
-  return libRequest(`http://api:81/`, {
+  return libRequest(`http://api:82/`, {
     method: 'post',
     data: {
       query,
