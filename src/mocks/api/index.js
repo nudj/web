@@ -37,6 +37,18 @@ dummyData.companies = dummyData.companies.concat([
     slug: 'fake-company',
     url: 'http://omg.fake-company.com',
     description: 'OMG this job is SO hot right now. Ut nec massa vitae dui ullamcorper malesuada nec in neque. Suspendisse nec sapien faucibus, mollis metus ac, tempus eros. Praesent at nisl consequat ligula auctor eleifend nec sit amet eros. Fusce consequat, ante ac maximus auctor, felis justo vestibulum elit, congue congue ipsum ligula et lacus. Vivamus est risus, viverra quis iaculis et, eleifend eget est.'
+  },
+  {
+    id: '100',
+    created: '1986-07-06T07:34:54.000+00:00',
+    modified: '2000-01-17T02:51:58.000+00:00',
+    industry: ['Dollar', 'Means', 'Nothing'],
+    location: 'Chicago, Bitch',
+    logo: 'https://68.media.tumblr.com/23f73d0a9a8b9b72eb87dad9f67629df/tumblr_n215bstSum1qdewlro2_r1_250.gif',
+    name: 'sales-i',
+    slug: 'sales-i',
+    url: 'http://omg.fake-company.com',
+    description: 'OMG this job is SO hot right now. Ut nec massa vitae dui ullamcorper malesuada nec in neque. Suspendisse nec sapien faucibus, mollis metus ac, tempus eros. Praesent at nisl consequat ligula auctor eleifend nec sit amet eros. Fusce consequat, ante ac maximus auctor, felis justo vestibulum elit, congue congue ipsum ligula et lacus. Vivamus est risus, viverra quis iaculis et, eleifend eget est.'
   }
 ])
 dummyData.jobs = dummyData.jobs.concat([
@@ -101,6 +113,29 @@ dummyData.jobs = dummyData.jobs.concat([
         companyName: 'Fake Company'
       }
     ]
+  },
+  {
+    id: '101',
+    title: 'Marketing Coordinator',
+    slug: 'marketing-coordinator',
+    url: 'https://www.linkedin.com/jobs/view/400601679/',
+    status: 'Published',
+    bonus: 1000,
+    description: 'Sales-i’s cloud based, sales performance software help good sales people become great ones. This fast growing tech company needs a marketeer to join the Chicago team. Help woo new clients and show some love to their existing ones. To do so you’ll be diving into the world of digital, print and creative thinking. You’ll have a few years of B2B marketing under your belt, be a master of crafting engaging content and know your way around the go-to marketing tools. Rumour has it they are moving downtown, so don’t worry, you won’t need to schlep out to the ‘burbs.',
+    type: 'Permanent',
+    remuneration: 'competitive',
+    experience: '3 years',
+    tags: [
+      'developer',
+      'front-end',
+      'software',
+      'node.js'
+    ],
+    location: 'Chicago, IL',
+    companyId: '100',
+    related: [],
+    templateTags: ['film'],
+    created: '2017-07-27T12:00:00.000+00:00'
   }
 ])
 dummyData.people = dummyData.people.concat([
