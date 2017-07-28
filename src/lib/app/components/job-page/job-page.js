@@ -117,7 +117,16 @@ const Component = (props) => {
 
   actions.push(apply)
 
-  const nudjCopy = (<p className={style.actionCopy}>We’ll give you <strong className={style.strong}>£{get(props, 'job.bonus')}</strong> if they get the job.</p>)
+  // AWFUL HACK AHEAD
+  const companySlug = get(props, 'company.slug')
+  const jobSlug = get(props, 'job.slug')
+  const dollarJobs = ['marketing-coordinator'] // add jobs with bonuses in dollars to this array
+  const bonusCurrency = (companySlug === 'sales-i' && dollarJobs.includes(jobSlug)) ? '$' : '£'
+  // END AWFUL HACK
+
+  const bonusAmount = get(props, 'job.bonus')
+
+  const nudjCopy = (<p className={style.actionCopy}>We’ll give you <strong className={style.strong}>{bonusCurrency}{bonusAmount}</strong> if they get the job.</p>)
 
   if (isReferrerByProps || isReferrerByMessage) {
     const nudjLink = (<NudjSuccess {...props} />)
