@@ -1,4 +1,13 @@
 const fragments = {
+  Person: `
+    fragment Person on Person {
+      id
+      email
+      url
+      firstName
+      lastName
+    }
+  `,
   Job: `
     fragment Job on Job {
       id
@@ -67,6 +76,34 @@ const fragments = {
 }
 
 module.exports = {
+  GetPersonByEmail: `
+    query GetPersonByEmail ($email: String) {
+      person: personByFilters(filters: {
+        email: $email
+      }) {
+        ...Person
+      }
+    }
+    ${fragments.Person}
+  `,
+  CreatePerson: `
+    mutation CreatePerson (
+      $email: String!
+      $firstName: String!
+      $lastName: String!
+      $url: String!
+    ) {
+      person: createPerson(input: {
+        email: $email
+        firstName: $firstName
+        lastName: $lastName
+        url: $url
+      }) {
+        ...Person
+      }
+    }
+    ${fragments.Person}
+  `,
   GetReferralAndJobForPerson: `
     query GetReferralAndJobForPerson ($refId: ID, $jobSlug: String!, $personId: ID) {
       referral(id: $refId) {

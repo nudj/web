@@ -1,8 +1,9 @@
-let express = require('express')
-let passport = require('passport')
-let request = require('../lib/request')
-let intercom = require('../lib/intercom')
-let logger = require('../lib/logger')
+const express = require('express')
+const passport = require('passport')
+const request = require('../lib/request')
+const intercom = require('../lib/intercom')
+const logger = require('../lib/logger')
+const queries = require('../lib/queries-mutations')
 
 function cacheReturnTo (req, res, next) {
   if (!req.session.returnTo) {
@@ -36,6 +37,14 @@ router.get('/logout', (req, res, next) => {
   res.redirect(req.get('Referrer') || '/')
 })
 
+function checkForErrors (data) {
+  if (data.errors) {
+    logger.log('error', data.errors[0].message, data.errors[0])
+    throw new Error('Unable to login')
+  }
+  return data
+}
+
 router.get('/callback',
   passport.authenticate('auth0', { failureRedirect: '/login' }),
   (req, res, next) => {
@@ -54,41 +63,18 @@ router.get('/callback',
       })
     }
 
-    request(`
-      query GetPersonByEmail ($email: String) {
-        person: personByFilters(filters: {
-          email: $email
-        }) {
-          id
-          email
-          url
-          firstName
-          lastName
-        }
-      }
-    `, {
-      email
-    })
+    request(queries.GetPersonByEmail, {email})
+    .then(checkForErrors)
     .then((data) => {
       if (!data || !data.person) {
-        return request(`people`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({email, firstName, lastName, url})
-        })
-      } else {
-        return data.person
+        return request(queries.CreatePerson, {email, firstName, lastName, url})
       }
+      return data
     })
-    .then((person) => {
-      if (person.error) {
-        throw new Error('Unable to login')
-      } else {
-        req.session.person = person
-        res.redirect(req.session.returnTo || '/')
-      }
+    .then(checkForErrors)
+    .then(data => {
+      req.session.person = data.person
+      res.redirect(req.session.returnTo || '/')
     })
     .catch((error) => {
       logger.log('error', error)

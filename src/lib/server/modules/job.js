@@ -1,5 +1,5 @@
 const request = require('../lib/request')
-const queries = require('./queries-mutations')
+const queries = require('../lib/queries-mutations')
 
 function ensureValidReferralUrl (params) {
   return request(queries.GetCompanyJobAndReferral, params)
