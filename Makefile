@@ -14,6 +14,12 @@ build:
 		-f $(CWD)/Dockerfile.dev \
 		.
 
+buildLatest:
+	@docker build \
+		-t $(IMAGE) \
+		--build-arg NPM_TOKEN=${NPM_TOKEN} \
+		.
+
 cache:
 	-@docker rm -f dev-cache 2> /dev/null || true
 	@docker run --rm -it \

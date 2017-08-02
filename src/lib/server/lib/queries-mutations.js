@@ -25,12 +25,12 @@ const fragments = {
       location
       application: applicationByFilters(filters: {
         person: $personId
-      }) {
+      }) @include(if: $loggedIn) {
         id
       }
       referral: referralByFilters(filters: {
         person: $personId
-      }) {
+      }) @include(if: $loggedIn) {
         id
         job {
           slug
@@ -105,7 +105,7 @@ module.exports = {
     ${fragments.Person}
   `,
   GetReferralAndJobForPerson: `
-    query GetReferralAndJobForPerson ($refId: ID, $jobSlug: String!, $personId: ID) {
+    query GetReferralAndJobForPerson ($refId: ID, $jobSlug: String!, $personId: ID, $loggedIn: Boolean!) {
       referral(id: $refId) {
         ...Referral
       }
