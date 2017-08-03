@@ -18,10 +18,10 @@ const prismic = require('../../lib/prismic/api')({accessToken, repo})
 
 function spoofLoggedIn (req, res, next) {
   req.session.person = {
-    id: '25',
+    id: '21',
+    email: 'nick@nudj.co',
     firstName: 'David',
-    lastName: 'Platt',
-    email: 'david@nudj.com'
+    lastName: 'Platt'
   }
   return next()
 }
@@ -43,7 +43,6 @@ const ensureLoggedIn = spoofUser ? spoofLoggedIn : doEnsureLoggedIn
 function getRenderDataBuilder (req) {
   return (data) => {
     data.csrfToken = req.csrfToken()
-    req.session.person = data.person || req.session.person
     data.person = req.session.person
     if (req.session.message) {
       data.message = req.session.message
@@ -155,9 +154,24 @@ function jobPrismicTemplate (data) {
   return promiseMap(data)
 }
 
+function prepareParams (personId, companySlugJobSlugRefId) {
+  const [
+    companySlug,
+    jobSlug,
+    refId
+  ] = companySlugJobSlugRefId.split('+')
+  return {
+    loggedIn: !!personId,
+    personId,
+    companySlug,
+    jobSlug,
+    refId
+  }
+}
+
 function jobHandler (req, res, next) {
   job
-    .get(req.params.companySlugJobSlugRefId, req.session.person)
+    .get(prepareParams(req.session.person && req.session.person.id, req.params.companySlugJobSlugRefId))
     .then(jobPrismicTemplate)
     .then(getRenderDataBuilder(req, res, next))
     .then(getRenderer(req, res, next))
@@ -166,7 +180,11 @@ function jobHandler (req, res, next) {
 
 let nudjHandler = (req, res, next) => {
   job
-    .nudj(req.params.companySlugJobSlugRefId, req.session.person)
+    .nudj(prepareParams(req.session.person && req.session.person.id, req.params.companySlugJobSlugRefId))
+    .then((data) => {
+      if (data.errors) throw new Error(data.errors[0].message)
+      return data
+    })
     .then(getRenderDataBuilder(req, res, next))
     .then(getRenderer(req, res, next))
     .catch(getErrorHandler(req, res, next))
@@ -174,7 +192,7 @@ let nudjHandler = (req, res, next) => {
 
 function applyHandler (req, res, next) {
   job
-    .apply(req.params.companySlugJobSlugRefId, req.session.person, req.body)
+    .apply(prepareParams(req.session.person && req.session.person.id, req.params.companySlugJobSlugRefId), req.body)
     .then(getRenderDataBuilder(req, res, next))
     .then(getRenderer(req, res, next))
     .catch(getErrorHandler(req, res, next))

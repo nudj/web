@@ -38,7 +38,7 @@ function onFormSubmit (eventType, props) {
     }
     let meta = {
       jobTitle: get(props, 'job.title'),
-      company: get(props, 'company.name'),
+      company: get(props, 'job.company.name'),
       referrerName: get(props, 'referrer.name'),
       referrerId: get(props, 'referrer.id')
     }
@@ -53,10 +53,10 @@ function onFormSubmit (eventType, props) {
 
 const Component = (props) => {
   const referral = get(props, 'referral')
-  const companyName = get(props, 'company.name', '')
+  const companyName = get(props, 'job.company.name', '')
   const jobTitle = get(props, 'job.title', '')
-  const image = get(props, 'company.logo')
-  const application = get(props, 'application')
+  const image = get(props, 'job.company.logo')
+  const application = get(props, 'job.application')
 
   const pageTitle = `${companyName} - ${jobTitle}`
 
@@ -74,11 +74,11 @@ const Component = (props) => {
 
   const applyForJobButton = application ? (<button className={style.applied} disabled>We'll be in touch soon</button>) : (<button className={style.apply}>Find out more</button>)
 
-  const uniqueLink = `/jobs/${get(props, 'company.slug', '')}+${get(props, 'job.slug', '')}${referral ? `+${referral.id}` : ''}`
+  const uniqueLink = `/jobs/${get(props, 'job.company.slug', '')}+${get(props, 'job.slug', '')}${referral ? `+${referral.id}` : ''}`
 
   const data = {
     job: get(props, 'job'),
-    company: get(props, 'company')
+    company: get(props, 'job.company')
   }
 
   // Double check if we need to modify the article for the job title in template.title
@@ -89,8 +89,8 @@ const Component = (props) => {
     template: template.title,
     data: data,
     tagify: (contents, ok, index, chunk) => {
-      if (chunk === 'company.name' && data && data.company.url) {
-        return <a className={style.jobHeaderTitleHighlightLink} key={`chunk${index}`} href={data.company.url} target='_blank'>{contents}</a>
+      if (chunk === 'job.company.name' && data && data.job.company.url) {
+        return <a className={style.jobHeaderTitleHighlightLink} key={`chunk${index}`} href={data.job.company.url} target='_blank'>{contents}</a>
       } else if (chunk === 'job.title' && data && data.job.url) {
         return <a className={style.jobHeaderTitleHighlightLink} key={`chunk${index}`} href={data.job.url} target='_blank'>{contents}</a>
       }
@@ -105,7 +105,7 @@ const Component = (props) => {
   })
 
   const bannerMessage = get(props, 'message')
-  const isReferrerByProps = get(props, 'referrer.email') && get(props, 'person.email') && get(props, 'referrer.email') === get(props, 'person.email')
+  const isReferrerByProps = !!get(props, 'job.referral')
   const isReferrerByMessage = bannerMessage && bannerMessage.type === 'error' && bannerMessage.code === 403 && bannerMessage.message === 'Already referred'
 
   const actions = []
@@ -129,7 +129,7 @@ const Component = (props) => {
   const nudjCopy = (<p className={style.actionCopy}>We’ll give you <strong className={style.strong}>{bonusCurrency}{bonusAmount}</strong> if they get the job.</p>)
 
   if (isReferrerByProps || isReferrerByMessage) {
-    const nudjLink = (<NudjSuccess {...props} />)
+    const nudjLink = (<NudjSuccess {...props} referral={get(props, 'job.referral')} />)
     const nudjd = (<div className={style.action}>
       {nudjLink}
       {nudjCopy}
@@ -171,9 +171,9 @@ const Component = (props) => {
       <section className={style.related}>
         <h2 className={style.relatedTitle}>Other positions</h2>
         <ul className={style.list}>
-          {get(props, 'job.related', []).map((related) => <li className={style.relatedJob} key={related.title.split(' ').join('-')}>
-            <a className={style.blockLink} href={`/jobs/${related.companySlug}+${related.slug}`}>
-              <p className={style.jobTitle}>{related.title} @ <span className={style.relatedCompany}>{related.companyName}</span></p>
+          {get(props, 'job.relatedJobs', []).map((related) => <li className={style.relatedJob} key={related.title.split(' ').join('-')}>
+            <a className={style.blockLink} href={`/jobs/${related.company.slug}+${related.slug}`}>
+              <p className={style.jobTitle}>{related.title} @ <span className={style.relatedCompany}>{related.company.name}</span></p>
               <span className={style.bodyLinks}>View job ></span>
             </a>
           </li>)}
