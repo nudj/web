@@ -44,7 +44,7 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   // start mock api
   let mockApi = require('../../mocks/api')
-  mockApi.listen(81, () => logger.log('info', 'Mock API running'))
+  mockApi.listen(81, 82, () => logger.log('info', 'Mock GQL API running'))
 }
 
 app.engine('html', cons.lodash)
