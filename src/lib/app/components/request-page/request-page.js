@@ -22,7 +22,7 @@ const Component = (props) => {
     )
   } else {
     html = (
-      <form className={style.content} action='/signup' method='post'>
+      <form className={style.content} action='/request' method='post'>
         <input type='hidden' name='_csrf' value={props.csrfToken} />
         <div className={style.formHeader}>
           <h1 className={style.title}>Great jobs come to those who... nudj</h1>
