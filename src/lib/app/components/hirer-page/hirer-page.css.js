@@ -75,11 +75,14 @@ const stepImage = {
   }
 }
 
-const tableCell = merge({
+const tableCell = merge({}, mixins.headings.p, {
   color: variables.colours.royalBlue,
   padding: `${variables.padding.d} 0`,
-  textAlign: 'center'
-}, mixins.headings.p)
+  textAlign: 'center',
+  [mixins.breakpoints.s]: { // max-width override
+    fontSize: mixins.headings.p2.fontSize
+  }
+})
 
 const tableCellBold = merge({}, tableCell, mixins.headings.pBold)
 
