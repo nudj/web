@@ -65,8 +65,10 @@ const styles = {
     textAlign: 'center'
   }, mixins.headings.p),
   tip: mixins.basicContainerSmaller(mixins.makeGreyWobbleBox({
-    [mixins.breakpoints.l]: {
-      margin: `${variables.padding.c} auto`
+    padding: '50px',
+    [mixins.breakpoints.ns]: {
+      padding: '100px',
+      margin: `${variables.padding.b} auto`
     }
   })),
   tipTitle: merge({}, mixins.typography.h3, {
