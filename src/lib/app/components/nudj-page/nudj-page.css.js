@@ -65,6 +65,7 @@ const styles = {
     textAlign: 'center'
   }, mixins.headings.p),
   tip: mixins.basicContainerSmaller(mixins.makeGreyWobbleBox({
+    zIndex: '1', // Be above the plane
     [mixins.breakpoints.l]: {
       margin: `${variables.padding.c} auto`
     }
