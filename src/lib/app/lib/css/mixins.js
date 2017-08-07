@@ -8,6 +8,8 @@ function getRandomInt (min, max) {
 
 // Breakpoints
 export const breakpoints = {
+  // Using max-width is counter to the progressive-enhancement ideals, please use sparingly
+  s: `@media screen and (max-width: ${variables.breakpoints.medium})`,
   ns: `@media screen and (min-width: ${variables.breakpoints.medium})`,
   l: `@media screen and (min-width: ${variables.breakpoints.large})`,
   xl: `@media screen and (min-width: ${variables.breakpoints.xl})`
@@ -182,6 +184,7 @@ export function button (properties) {
     cursor: 'pointer',
     display: 'inline-block',
     minWidth: `calc(${variables.padding.d} * 10)`,
+    outline: 'none',
     padding: `calc((${variables.padding.e} * 1.5) - ${variables.sizes.buttonBorderWidth}) calc(${variables.padding.c} - ${variables.sizes.buttonBorderWidth})`,
     textAlign: 'center'
   }
@@ -241,6 +244,14 @@ function buttonPrimaryHover () {
       ':hover': {
         '::after': visible,
         '::before': visible
+      },
+      ':disabled:hover': {
+        '::after': {
+          display: 'none'
+        },
+        '::before': {
+          display: 'none'
+        }
       }
     }
   }, buttonHoverPop())
@@ -252,6 +263,9 @@ function buttonHoverPop () {
       transform: 'scale3d(1, 1, 1)',
       ':hover': {
         transform: 'scale3d(1.05, 1.05, 1)'
+      },
+      ':disabled:hover': {
+        transform: 'scale3d(1, 1, 1)'
       }
     }
   }

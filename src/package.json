@@ -23,7 +23,7 @@
     ]
   },
   "dependencies": {
-    "@nudj/api": "1.7.0",
+    "@nudj/api": "1.7.1",
     "@nudj/dummy": "0.6.0",
     "@nudj/library": "0.3.0",
     "@nudj/schemas": "0.12.0",
