@@ -22,6 +22,7 @@ const fragments = {
       type
       remuneration
       tags
+      templateTags
       location
       application: applicationByFilters(filters: {
         person: $personId
