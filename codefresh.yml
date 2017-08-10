@@ -42,7 +42,7 @@ steps:
     title: Push Release
     type: push
     candidate: '${{build}}'
-    tag: 2.0.1
+    tag: 2.0.2
     credentials:
       username: '${{dockerUsername}}'
       password: '${{dockerPassword}}'
