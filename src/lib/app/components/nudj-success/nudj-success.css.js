@@ -13,6 +13,7 @@ const styles = {
   mobileMessage: {
     color: variables.colours.royalBlue,
     display: 'block',
+    textAlign: 'center',
     [mixins.breakpoints.ns]: {
       display: 'none'
     }
@@ -34,7 +35,8 @@ const styles = {
     }
   },
   actionLink: {
-    padding: variables.padding.e,
+    padding: variables.padding.d,
+    textAlign: 'center',
     textDecoration: 'none'
   },
   actionTitle: {
