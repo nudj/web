@@ -12,11 +12,11 @@ build:
 		.
 
 ssh:
-	-@docker rm -f dev-container 2> /dev/null || true
+	-@docker rm -f web-dev 2> /dev/null || true
 	@docker run --rm -it \
 		--add-host api:127.0.0.1 \
 		--env-file $(CWD)/.env \
-		--name dev-container \
+		--name web-dev \
 		-e NPM_TOKEN=${NPM_TOKEN} \
 		-p 0.0.0.0:80:80 \
 		-p 0.0.0.0:81:81 \
@@ -32,3 +32,12 @@ ssh:
 		-v $(CWD)/src/webpack.server.js:/usr/src/webpack.server.js \
 		$(IMAGEDEV) \
 		/bin/zsh
+
+test:
+	-@docker rm -f web-test 2> /dev/null || true
+	@docker run --rm -it \
+		--name web-test \
+		-v $(CWD)/src/lib:/usr/src/lib \
+		-v $(CWD)/src/mocks:/usr/src/mocks \
+		-v $(CWD)/src/test:/usr/src/test \
+		$(IMAGEDEV)
