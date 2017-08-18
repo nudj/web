@@ -11,11 +11,16 @@ Nudj website
 1. Docker
 1. Make
 
-### Development
+### Outside container
 
-1. `make build` to build the app image
-  1. `make run` to run the app
-1. `make buildDev` to build the development image
-  1. `make dev` to run the app with file watchers
-  1. `make test` to run the tests one time
-  1. `make tdd` to run the tdd watcher
+1. `make build` to build the image
+1. `make ssh` to ssh into container
+1. `make test` to run the tests
+
+### Development (Inside container)
+
+1. `run` to run the app
+1. `dev` to run the app with a watcher
+1. `test` to run the tests
+1. `tdd` to run the tests with a watcher
+1. `exit` to leave the container and close the ssh session
