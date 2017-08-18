@@ -2,7 +2,7 @@ IMAGE:=nudj/web
 IMAGEDEV:=nudj/web-dev
 CWD=$(shell pwd)
 
-.PHONY: build dev
+.PHONY: build ssh test
 
 build:
 	@docker build \
