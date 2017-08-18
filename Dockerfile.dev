@@ -1,12 +1,8 @@
 FROM node:6.11.1-alpine
 ARG NPM_TOKEN
-COPY src/package.json src/.npmrc /tmp/
-COPY .cache /tmp/node_modules
-RUN cd /tmp && npm i && mkdir -p /usr/src
+RUN mkdir -p /usr/src && apk update && apk add zsh make
 WORKDIR /usr/src
-COPY src/lib /usr/src/lib
-COPY src/mocks /usr/src/mocks
-COPY src/test /usr/src/test
-COPY src/nodemon.json src/package.json src/webpack.client.js src/webpack.server.js /usr/src/
+COPY src /usr/src
+RUN npm i
 EXPOSE 80 81 82
-CMD ln -s /tmp/node_modules ./node_modules && echo '127.0.0.1 api' >> /etc/hosts && ./node_modules/.bin/standard && ./node_modules/.bin/mocha --recursive test
+CMD ./node_modules/.bin/standard && ./node_modules/.bin/mocha --recursive test

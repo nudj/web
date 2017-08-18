@@ -1,11 +1,8 @@
 IMAGE:=nudj/web
 IMAGEDEV:=nudj/web-dev
-DEVURL:=
-
 CWD=$(shell pwd)
-BIN:=./node_modules/.bin
 
-.PHONY: build dev packClient packServer pack test tdd
+.PHONY: build dev
 
 build:
 	@docker build \
@@ -14,77 +11,33 @@ build:
 		-f $(CWD)/Dockerfile.dev \
 		.
 
-buildLatest:
-	@docker build \
-		-t $(IMAGE) \
-		--build-arg NPM_TOKEN=${NPM_TOKEN} \
-		.
-
-cache:
-	-@docker rm -f dev-cache 2> /dev/null || true
+ssh:
+	-@docker rm -f web-dev 2> /dev/null || true
 	@docker run --rm -it \
-		--name dev-cache \
-		-v $(CWD)/.cache:/usr/src/.cache \
-		$(IMAGEDEV) \
-		/bin/sh -c 'rm -rf .cache/* && cp -R /tmp/node_modules/. .cache/'
-
-run:
-	@docker run -it --rm \
-		--name web \
-		-p 0.0.0.0:4000:80 \
-		$(IMAGE)
-	@echo 'App running on http://localhost:4000/'
-
-dev:
-	-@docker rm -f dev-container 2> /dev/null || true
-	@echo 'App=http://localhost:80/, GQL=http://localhost:81/, API=http://localhost:82/'
-	@docker run --rm -it \
-		--name dev-container \
+		--add-host api:127.0.0.1 \
+		--env-file $(CWD)/.env \
+		--name web-dev \
+		-e NPM_TOKEN=${NPM_TOKEN} \
 		-p 0.0.0.0:80:80 \
 		-p 0.0.0.0:81:81 \
 		-p 0.0.0.0:82:82 \
-		--add-host api:127.0.0.1 \
+		-v $(CWD)/.zshrc:/root/.zshrc \
 		-v $(CWD)/src/lib:/usr/src/lib \
 		-v $(CWD)/src/mocks:/usr/src/mocks \
+		-v $(CWD)/src/test:/usr/src/test \
+		-v $(CWD)/src/.npmrc:/usr/src/.npmrc \
+		-v $(CWD)/src/nodemon.json:/usr/src/nodemon.json \
 		-v $(CWD)/src/package.json:/usr/src/package.json \
-		--env-file $(CWD)/.env \
+		-v $(CWD)/src/webpack.client.js:/usr/src/webpack.client.js \
+		-v $(CWD)/src/webpack.server.js:/usr/src/webpack.server.js \
 		$(IMAGEDEV) \
-		/bin/sh -c 'ln -s /tmp/node_modules ./node_modules && $(BIN)/nodemon \
-			--config ./nodemon.json \
-			-e js,html,css \
-			--quiet \
-			--watch ./ \
-			--delay 250ms \
-			-x "printf \"\n\nBuilding...\n\" && ./node_modules/.bin/webpack --config ./webpack.client.js --bail --hide-modules && ./node_modules/.bin/webpack --config ./webpack.server.js --bail --hide-modules && node ."'
-
-packClient:
-	@docker exec -i dev-container \
-		$(BIN)/webpack --config ./src/webpack.client.js --bail --hide-modules
-
-packServer:
-	@docker exec -i dev-container \
-		$(BIN)/webpack --config ./src/webpack.server.js --bail --hide-modules
-
-pack: packClient packServer
+		/bin/zsh
 
 test:
-	-@docker rm -f test-container 2> /dev/null || true
+	-@docker rm -f web-test 2> /dev/null || true
 	@docker run --rm -it \
-		--name test-container \
+		--name web-test \
 		-v $(CWD)/src/lib:/usr/src/lib \
 		-v $(CWD)/src/mocks:/usr/src/mocks \
 		-v $(CWD)/src/test:/usr/src/test \
 		$(IMAGEDEV)
-
-tdd:
-	-@docker rm -f test-container 2> /dev/null || true
-	@docker run --rm -it \
-		--name test-container \
-		-v $(CWD)/src/lib:/usr/src/lib \
-		-v $(CWD)/src/test:/usr/src/test \
-		$(IMAGEDEV) \
-		/bin/sh -c 'ln -s /tmp/node_modules ./node_modules && $(BIN)/nodemon \
-			--quiet \
-			--watch ./ \
-			--delay 250ms \
-			-x "$(BIN)/mocha test/*.js || exit 1"'
