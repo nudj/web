@@ -183,16 +183,16 @@ data.people = data.people.concat([
     status: 'user'
   }
 ])
-data.referrals = data.referrals.concat([
-  {
-    id: '1',
-    job: '100',
-    person: '21',
-    parent: null,
-    created: '2017-06-08T11:38:19.485+00:00',
-    modified: '2017-06-08T11:38:19.485+00:00'
-  }
-])
+// data.referrals = data.referrals.concat([
+//   {
+//     id: '1',
+//     job: '100',
+//     person: '21',
+//     parent: null,
+//     created: '2017-06-08T11:38:19.485+00:00',
+//     modified: '2017-06-08T11:38:19.485+00:00'
+//   }
+// ])
 data.applications = data.applications.concat([
   {
     id: '1',
@@ -207,7 +207,9 @@ data.employees = data.employees.concat([
   {
     id: '1',
     person: '21',
-    company: '99'
+    company: '99',
+    created: '2017-06-08T11:38:19.485+00:00',
+    modified: '2017-06-08T11:38:19.485+00:00'
   }
 ])
 data.surveys = data.surveys.concat([
@@ -231,6 +233,18 @@ data.tokens = data.tokens.concat([
     created: '2017-06-08T11:38:19.485+00:00',
     modified: '2017-06-08T11:38:19.485+00:00',
     id: '1'
+  },
+  {
+    data: {
+      employee: '1',
+      survey: '1',
+      typeformToken: 'Who cares?'
+    },
+    token: 'NICEFATHASH2',
+    type: 'SHARE_COMPANY_JOBS',
+    created: '2017-06-08T11:38:19.485+00:00',
+    modified: '2017-06-08T11:38:19.485+00:00',
+    id: '2'
   }
 ])
 

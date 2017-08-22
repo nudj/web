@@ -58,7 +58,7 @@ app.use('/assets', express.static(path.join(__dirname, 'assets')))
 app.use(session(sessionOpts))
 app.use(passport.initialize())
 app.use(passport.session())
-app.use(tokenRoutes)
+app.use(tokenRoutes.api)
 app.use(csrf({}))
 app.use((req, res, next) => {
   if (req.body && req.body._csrf) {
@@ -78,6 +78,7 @@ app.use((req, res, next) => {
 })
 
 app.use(authRoutes)
+app.use(tokenRoutes.application)
 app.use(appRoutes)
 
 app.use((req, res) => {

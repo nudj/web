@@ -1,13 +1,11 @@
 let express = require('express')
-let get = require('lodash/get')
-let getTime = require('date-fns/get_time')
 let _ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn()
 
+const {getRenderer, getRenderDataBuilder} = require('../lib/render')
 let logger = require('../lib/logger')
 let request = require('../modules/request')
 let signup = require('../modules/signup')
 let job = require('../modules/job')
-let build = require('../build').default
 let router = express.Router()
 
 const { promiseMap } = require('../lib')
@@ -39,25 +37,6 @@ function doEnsureLoggedIn (req, res, next) {
 
 const spoofUser = process.env.SPOOF_USER === 'true'
 const ensureLoggedIn = spoofUser ? spoofLoggedIn : doEnsureLoggedIn
-
-function getRenderDataBuilder (req) {
-  return (data) => {
-    data.csrfToken = req.csrfToken()
-    data.person = req.session.person
-    if (req.session.message) {
-      data.message = req.session.message
-      delete req.session.message
-    }
-    data.url = {
-      protocol: req.protocol,
-      hostname: req.hostname,
-      originalUrl: req.originalUrl
-    }
-    return {
-      page: data
-    }
-  }
-}
 
 function getErrorHandler (req, res, next) {
   return (error) => {
@@ -103,30 +82,6 @@ function getErrorHandler (req, res, next) {
     } catch (error) {
       logger.log('error', error)
       next(error)
-    }
-  }
-}
-
-function getRenderer (req, res, next) {
-  return (data) => {
-    delete req.session.logout
-    delete req.session.returnTo
-    let staticContext = build(data)
-    if (staticContext.url) {
-      res.redirect(staticContext.url)
-    } else {
-      let status = get(data, 'page.error.code', staticContext.status || 200)
-      let person = get(data, 'page.person')
-      res.status(status).render('app', {
-        data: JSON.stringify(data),
-        css: staticContext.css,
-        html: staticContext.html,
-        helmet: staticContext.helmet,
-        intercom_app_id: `'${process.env.INTERCOM_APP_ID}'`,
-        fullname: person && person.firstName && person.lastName && `'${person.firstName} ${person.lastName}'`,
-        email: person && `'${person.email}'`,
-        created_at: person && (getTime(person.created) / 1000)
-      })
     }
   }
 }

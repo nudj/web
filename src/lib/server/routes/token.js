@@ -1,28 +1,110 @@
 const express = require('express')
 const get = require('lodash/get')
-const router = express.Router()
+const routerApi = express.Router()
+const routerApplication = express.Router()
 
+const {getRenderer, getRenderDataBuilder} = require('../lib/render')
 const logger = require('../lib/logger')
+const { promiseMap } = require('../lib')
+
+const employees = require('../modules/employees')
+const job = require('../modules/job')
 const tokens = require('../modules/tokens')
 
 const commonErrors = {
   'badRequest': {
+    code: 400,
     message: 'Bad request',
-    status: 400
+    type: 'error'
   },
   'notFound': {
+    code: 404,
     message: 'Token could not be found',
-    status: 404
+    type: 'error'
   }
 }
 
+// Just handles API errors
 function errorHandler (req, res, next) {
   return (error) => {
     const message = error.message || error
-    const status = error.status || 500
+    const status = error.code || 500
     logger.log('error', message, error)
     res.status(status).send(message)
   }
+}
+
+function referEachJob (jobs, company, person) {
+  const companySlug = company.slug
+  const personId = person.id
+
+  const referrals = jobs.map(singleJob => {
+    const jobSlug = singleJob.slug
+    return job.nudj({companySlug, jobSlug, personId})
+      .catch(error => {
+        console.log('there was an error', error)
+        return Promise.resolve(error)
+      })
+  })
+
+  return Promise.all(referrals)
+    .then(referralResults => [].concat.apply([], referralResults || []).map(result => result.referral))
+}
+
+function shareCompanyJobsHandler (data) {
+  // From the token data we have survey, employee, and typeformToken
+  const token = data.token
+  const {employee} = token.data
+  // const {employee, survey, typeformToken} = token.data
+
+  // Get the employee
+  // Get the person from the employee
+  // Get the company from the employee
+  return employees.get(data, employee)
+    .then(data => {
+      const company = data.employee.company
+      // Get the jobs from the company
+      return job.getAllByCompany(data, company.id)
+    })
+    .then(data => {
+      // For each job, create a referral link
+      const {company, person} = data.employee
+      const jobs = data.jobs
+      data.referrals = referEachJob(jobs, company, person)
+      return promiseMap(data)
+    })
+    .then(data => {
+      data.jobs.forEach(job => {
+        const referral = data.referrals.find(referral => referral.job.slug === job.slug)
+        job.referral = referral
+      })
+      return data
+    })
+
+  // Get the survey UUID from the survey
+  // return promiseMap(data)
+}
+
+function subTokenHandler (data) {
+  const tokenType = data.token.type
+  switch (tokenType) {
+    case 'SHARE_COMPANY_JOBS':
+      return shareCompanyJobsHandler(data)
+    default:
+      return Promise.reject(commonErrors.badRequest)
+  }
+}
+
+function tokenHandler (req, res, next) {
+  tokens.get({}, req.params.token)
+    .then(data => data.token ? data : Promise.reject(commonErrors.notFound))
+    .then(data => subTokenHandler(data))
+    .then(getRenderDataBuilder(req, res, next))
+    .then(getRenderer(req, res, next))
+    .catch(error => {
+      const data = getRenderDataBuilder(req)({error})
+      getRenderer(req, res, next)(data)
+    })
 }
 
 function typeformSurveryResponseHanlder (req, res, next) {
@@ -52,6 +134,10 @@ function typeformSurveryResponseHanlder (req, res, next) {
     .catch(error => errorHandler(req, res, next)(error))
 }
 
-router.post('/token/typeform-survey-response', typeformSurveryResponseHanlder)
+routerApi.post('/token/typeform-survey-response', typeformSurveryResponseHanlder)
+routerApplication.get('/token/:token', tokenHandler)
 
-module.exports = router
+module.exports = {
+  api: routerApi,
+  application: routerApplication
+}

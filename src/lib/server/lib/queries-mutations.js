@@ -81,6 +81,23 @@ const fragments = {
       type
       data
     }
+  `,
+  Employee: `
+    fragment Employee on Employee {
+      id
+      company {
+        id
+        name
+        slug
+      }
+      person {
+        id
+        email
+        url
+        firstName
+        lastName
+      }
+    }
   `
 }
 
@@ -210,5 +227,27 @@ module.exports = {
       }
     }
     ${fragments.Token}
+  `,
+  GetEmployee: `
+    query GetEmployee (
+      $id: ID!
+    ) {
+      employee(id: $id) {
+        ...Employee
+      }
+    }
+    ${fragments.Employee}
+  `,
+  GetJobsForCompany: `
+    query GetJobsForCompany (
+      $company: ID!
+    ) {
+      job:jobs(filters: { company: $company })
+      {
+        id
+        slug
+        title
+      }
+    }
   `
 }

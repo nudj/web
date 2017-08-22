@@ -1,5 +1,6 @@
 const request = require('../lib/request')
 const queries = require('../lib/queries-mutations')
+const { promiseMap } = require('../lib')
 
 function ensureValidReferralUrl (params) {
   return request(queries.GetCompanyJobAndReferral, params)
@@ -22,6 +23,12 @@ function ensureValidReferralUrl (params) {
 module.exports.get = function (params) {
   return ensureValidReferralUrl(params)
   .then(() => request(queries.GetReferralAndJobForPerson, params))
+}
+
+module.exports.getAllByCompany = function (data, company) {
+  data.jobs = request(queries.GetJobsForCompany, {company})
+    .then(data => data.job)
+  return promiseMap(data)
 }
 
 module.exports.nudj = function (params) {
