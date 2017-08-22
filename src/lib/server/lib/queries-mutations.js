@@ -73,6 +73,14 @@ const fragments = {
     fragment Application on Application {
       id
     }
+  `,
+  Token: `
+    fragment Token on Token {
+      id
+      token
+      type
+      data
+    }
   `
 }
 
@@ -173,5 +181,34 @@ module.exports = {
       }
     }
     ${fragments.Application}
+  `,
+  GetToken: `
+    query GetToken (
+      $token: String!
+    ) {
+      token:tokenByFilters(filters: {
+        token: $token
+      }
+    ) {
+        ...Token
+      }
+    }
+    ${fragments.Token}
+  `,
+  CreateToken: `
+    mutation CreateToken (
+      $token: String!
+      $type: TokenType!
+      $data: Data
+    ) {
+      token: createToken(input: {
+        token: $token
+        type: $type
+        data: $data
+      }) {
+        ...Token
+      }
+    }
+    ${fragments.Token}
   `
 }

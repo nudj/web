@@ -9,7 +9,10 @@ let data = {
   applications: [],
   hirers: [],
   externalMessages: [],
-  recommendations: []
+  recommendations: [],
+  employees: [],
+  surveys: [],
+  tokens: []
 }
 data.companies = data.companies.concat([
   {
@@ -198,6 +201,36 @@ data.applications = data.applications.concat([
     referral: '1',
     created: '2017-06-08T11:38:19.485+00:00',
     modified: '2017-06-08T11:38:19.485+00:00'
+  }
+])
+data.employees = data.employees.concat([
+  {
+    id: '1',
+    person: '21',
+    company: '99'
+  }
+])
+data.surveys = data.surveys.concat([
+  {
+    id: '1',
+    created: '2017-06-08T11:38:19.485+00:00',
+    modified: '2017-06-08T11:38:19.485+00:00',
+    company: '99',
+    link: 'https://nudj.typeform.com/to/gfAnDV',
+    uuid: 'gfAnDV'
+  }
+])
+data.tokens = data.tokens.concat([
+  {
+    data: {
+      employee: '1',
+      survey: '1'
+    },
+    token: 'NICEFATHASH',
+    type: 'SURVEY_TYPEFORM_COMPLETE',
+    created: '2017-06-08T11:38:19.485+00:00',
+    modified: '2017-06-08T11:38:19.485+00:00',
+    id: '1'
   }
 ])
 
