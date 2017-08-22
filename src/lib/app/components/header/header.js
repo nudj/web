@@ -134,7 +134,7 @@ class Component extends React.Component {
     const requestStyle = mobile ? this.style.requestMobile : this.style.request
 
     const help = (<a href='http://help.nudj.co' className={linkStyle} onClick={this.onClickLink.bind(this)} key='0'>Help</a>)
-    const blog = (<a href='blog.nudj.co' className={linkStyle} onClick={this.onClickLink.bind(this)} key='1'>Blog</a>)
+    const blog = (<a href='http://blog.nudj.co' className={linkStyle} onClick={this.onClickLink.bind(this)} key='1'>Blog</a>)
     const companies = (<a href='/hiring' className={linkStyle} onClick={this.onClickLink.bind(this)} key='2'>Companies</a>)
     const getInTouch = (<a href='' id='open-intercom' className={requestStyle} onClick={this.onClickLink.bind(this)} key='3'>Get in touch</a>)
 
