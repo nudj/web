@@ -106,6 +106,7 @@ function tokenHandler (req, res, next) {
     .then(getRenderDataBuilder(req, res, next))
     .then(getRenderer(req, res, next))
     .catch(error => {
+      console.log('Error:', error)
       const data = getRenderDataBuilder(req)({error})
       getRenderer(req, res, next)(data)
     })

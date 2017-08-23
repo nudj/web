@@ -17,12 +17,20 @@ const Component = (props) => {
   const companySlug = get(company, 'slug')
   const jobs = get(props, 'jobs')
 
-  // const tokenType = get(props, 'token.type')
-
   const jobsList = jobs.map((job, index) => {
     const jobSlug = get(job, 'slug')
     const referralId = get(job, 'referral.id')
-    return (<li className={style.jobsListItem} key={index}>{makeLink(companySlug, jobSlug, referralId)}</li>)
+    const jobTitle = get(job, 'title')
+    const link = makeLink(companySlug, jobSlug, referralId)
+    return (
+      <li className={style.jobsListItem} key={index}>
+        <h4 className={style.jobsListItemTitle}>{jobTitle}</h4>
+        <div className={style.linkContainer}>{link}</div>
+        <div className={style.buttonContainer}>
+          <button id='copy' className={style.shareLinkButton} data-clipboard-text={link}>Copy</button>
+        </div>
+      </li>
+    )
   })
 
   return (
