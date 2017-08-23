@@ -40,10 +40,14 @@ function referEachJob (jobs, company, person) {
 
   const referrals = jobs.map(singleJob => {
     const jobSlug = singleJob.slug
+    const jobId = singleJob.id
     return job.nudj({companySlug, jobSlug, personId})
       .catch(error => {
-        console.log('there was an error', error)
-        return Promise.resolve(error)
+        if (error.message !== 'Already referred') {
+          return Promise.reject(error)
+        }
+        return job.getNudjByJobAndPerson(jobId, personId)
+          .then(referral => Promise.resolve({ referral }))
       })
   })
 

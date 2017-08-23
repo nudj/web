@@ -249,5 +249,19 @@ module.exports = {
         title
       }
     }
+  `,
+  GetReferralByJobAndPerson: `
+    query GetReferralByJobAndPerson (
+      $job: ID!
+      $person: ID!
+    ) {
+      referral:referralByFilters(filters: {
+        job: $job
+        person: $person
+      }) {
+        ...Referral
+      }
+    }
+    ${fragments.Referral}
   `
 }

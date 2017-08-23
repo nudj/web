@@ -31,6 +31,11 @@ module.exports.getAllByCompany = function (data, company) {
   return promiseMap(data)
 }
 
+module.exports.getNudjByJobAndPerson = function (job, person) {
+  return request(queries.GetReferralByJobAndPerson, {job, person})
+    .then(data => data.referral)
+}
+
 module.exports.nudj = function (params) {
   return ensureValidReferralUrl(params)
   .then(data => request(queries.CreateReferralForPerson, {
