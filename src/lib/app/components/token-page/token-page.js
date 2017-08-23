@@ -22,18 +22,18 @@ const Component = (props) => {
   const jobsList = jobs.map((job, index) => {
     const jobSlug = get(job, 'slug')
     const referralId = get(job, 'referral.id')
-    return (<li key={index}>{makeLink(companySlug, jobSlug, referralId)}</li>)
+    return (<li className={style.jobsListItem} key={index}>{makeLink(companySlug, jobSlug, referralId)}</li>)
   })
 
   return (
-    <div>
+    <div className={style.body}>
       <Header />
       <div className={style.token}>
-        <div className={style.jobHeader}>
-          <h1 className={style.jobHeaderTitle}>Ready to share your company's jobs?</h1>
-          <p className={style.jobHeaderDescription}>A description of what this screen is for - thanking them for completing the survey and then getting them to share.</p>
+        <div className={style.tokenHeader}>
+          <h1 className={style.tokenHeaderTitle}>Ready to share your company's jobs?</h1>
+          <p className={style.tokenHeaderDescription}>A description of what this screen is for - thanking them for completing the survey and then getting them to share.</p>
         </div>
-        <ul>
+        <ul className={style.jobsList}>
           {jobsList}
         </ul>
       </div>
