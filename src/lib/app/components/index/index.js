@@ -11,17 +11,17 @@ const Index = () => {
     <div className={style.body}>
       <Helmet>
         <meta charSet='utf-8' />
-        <title>Nudj - Stop looking. Start hiring.</title>
+        <title>nudj - Connecting Great People With Awesome Companies</title>
         <meta name='viewport' content='width=device-width, initial-scale=1' />
-        <meta name='description' content='With your help, nudj connects the best companies with the best people, without any of the faff.' />
-        <meta name='title' content='nudj - A better job is just a nudj away.' />
-        <meta property='og:description' content='With your help, we connect the best companies with the best people, without any of the faff.' />
-        <meta property='twitter:description' content='With your help, we connect the best companies with the best people, without any of the faff.' />
+        <meta name='description' content='We make it effortless for the best businesses to engage with the best talent, utilising connections they both have.' />
+        <meta name='title' content='nudj - Connecting great people with awesome companies.' />
+        <meta property='og:description' content='We make it effortless for the best businesses to engage with the best talent, utilising connections they both have.' />
+        <meta property='twitter:description' content='We make it effortless for the best businesses to engage with the best talent, utilising connections they both have.' />
         <meta property='og:type' content='article' />
-        <meta property='og:title' content='nudj - A better job is just a nudj away.' />
-        <meta property='twitter:card' content='nudj - A better job is just a nudj away.' />
-        <meta property='twitter:title' content='nudj - A better job is just a nudj away.' />
-        <meta property='og:site_name' content='nudj - A better job is just a nudj away.' />
+        <meta property='og:title' content='nudj - Connecting great people with awesome companies.' />
+        <meta property='twitter:card' content='nudj - Connecting great people with awesome companies.' />
+        <meta property='twitter:title' content='nudj - Connecting great people with awesome companies.' />
+        <meta property='og:site_name' content='nudj - Connecting great people with awesome companies.' />
         <meta property='twitter:image' content='https://assets.nudj.co/assets/images/social/nudj-card-og.jpg' />
         <meta property='og:image' content='https://assets.nudj.co/assets/images/social/nudj-card-og.jpg' />
         <link rel='icon' href='/assets/images/nudj-square.ico' type='image/x-icon' />
