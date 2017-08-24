@@ -98,8 +98,7 @@ function shareCompanyJobsHandler (data) {
       return data
     })
 
-  // Get the survey UUID from the survey
-  // return promiseMap(data)
+  // TODO Get the survey UUID from the survey
 }
 
 function subTokenHandler (data) {

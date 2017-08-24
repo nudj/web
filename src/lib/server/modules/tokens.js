@@ -1,7 +1,8 @@
 const createHash = require('hash-generator')
+const { promiseMap } = require('@nudj/library')
+
 const request = require('../lib/request')
 const queries = require('../lib/queries-mutations')
-const { promiseMap } = require('../lib')
 
 const hashLength = 16
 

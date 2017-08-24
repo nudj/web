@@ -1,6 +1,7 @@
+const { promiseMap } = require('@nudj/library')
+
 const request = require('../lib/request')
 const queries = require('../lib/queries-mutations')
-const { promiseMap } = require('../lib')
 
 function ensureValidReferralUrl (params) {
   return request(queries.GetCompanyJobAndReferral, params)
