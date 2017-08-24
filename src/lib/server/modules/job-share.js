@@ -1,23 +1,31 @@
 let Mailgun = require('mailgun-js')
 let logger = require('../lib/logger')
-// let intercom = require('../lib/intercom')
+let intercom = require('../lib/intercom')
 var mailgun = Mailgun({
   apiKey: process.env.MAILGUN_API_KEY,
   domain: process.env.MAILGUN_DOMAIN
 })
 
-module.exports.send = (firstName, lastName, email, link) => {
-  logger.log('info', 'Sending email', firstName, lastName, email, link)
-  // intercom.createUniqueLeadAndTag({
-  //   name: `${firstName} ${lastName}`,
-  //   email,
-  //   companies: [
-  //     {
-  //       company_id: companyName.toLowerCase().split(' ').join('-'),
-  //       name: companyName
-  //     }
-  //   ]
-  // }, 'hirer')
+module.exports.send = (firstName, lastName, email, link, surveyLink, companyName) => {
+  logger.log('info', 'Sending email', firstName, lastName, email, link, surveyLink, companyName)
+  intercom.createUniqueUserAndTag({
+    name: `${firstName} ${lastName}`,
+    email,
+    companies: [
+      {
+        company_id: companyName.toLowerCase().split(' ').join('-'),
+        name: companyName
+      }
+    ]
+  }, 'team-member')
+    .then(() => intercom.logEvent({
+      event_name: 'completed survey',
+      email: email,
+      metadata: {
+        survey: surveyLink,
+        job_share_link: link
+      }
+    }))
   return mailgun
     .messages()
     .send({

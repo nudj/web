@@ -98,6 +98,18 @@ const fragments = {
         lastName
       }
     }
+  `,
+  Survey: `
+    fragment Survey on Survey {
+      id
+      company {
+        id
+        name
+        slug
+      }
+      link
+      uuid
+    }
   `
 }
 
@@ -237,6 +249,16 @@ module.exports = {
       }
     }
     ${fragments.Employee}
+  `,
+  GetSurvey: `
+    query GetSurvey (
+      $id: ID!
+    ) {
+      survey(id: $id) {
+        ...Survey
+      }
+    }
+    ${fragments.Survey}
   `,
   GetJobsForCompany: `
     query GetJobsForCompany (

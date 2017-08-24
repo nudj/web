@@ -11,6 +11,7 @@ const employees = require('../modules/employees')
 const job = require('../modules/job')
 const tokens = require('../modules/tokens')
 const jobShare = require('../modules/job-share')
+const surveys = require('../modules/surveys')
 
 const commonErrors = {
   'badRequest': {
@@ -133,13 +134,16 @@ function typeformSurveryResponseHanlder (req, res, next) {
       return tokens.post(data, type, tokenData)
     })
     .then(data => employees.get(data, get(data.token, 'data.employee')))
+    .then(data => surveys.get(data, get(data.token, 'data.survey')))
     .then(data => {
       const firstName = get(data.employee, 'person.firstName', '')
       const lastName = get(data.employee, 'person.lastName', '')
       const email = get(data.employee, 'person.email', '')
+      const companyName = get(data.employee, 'company.name')
       const token = get(data.newToken, 'token')
       const link = `https://nudj.co/token/${token}`
-      return jobShare.send(firstName, lastName, email, link)
+      const surveyLink = get(data.survey, 'link')
+      return jobShare.send(firstName, lastName, email, link, surveyLink, companyName)
         .then(() => Promise.resolve(data))
     })
     .then(data => {

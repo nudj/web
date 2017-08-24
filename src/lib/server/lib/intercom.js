@@ -3,6 +3,7 @@ let logger = require('./logger')
 let intercom = new Intercom.Client({
   token: process.env.INTERCOM_ACCESS_TOKEN
 })
+const format = require('date-fns/format')
 
 function getBody (response) {
   if (response.status !== 200) {
@@ -22,8 +23,20 @@ function fetchLeadBy (filter) {
     .then(getFirstFromResult)
 }
 
+function fetchUserBy (filter) {
+  return intercom.users
+    .listBy(filter)
+    .then(getBody)
+}
+
 function createLead (data) {
   return intercom.leads
+    .create(data)
+    .then(getBody)
+}
+
+function createUser (data) {
+  return intercom.users
     .create(data)
     .then(getBody)
 }
@@ -54,6 +67,15 @@ function createUniqueLeadAndTag (data, tag) {
     .catch((error) => logger.log('error', 'Intercom', 'createUniqueLeadAndTag', data, tag, error))
 }
 
+function createUniqueUserAndTag (data, tag) {
+  logger.log('info', 'createUniqueUserAndTag', data, tag)
+  return fetchUserBy({ email: data.email })
+    .then((user) => user || createUser(data))
+    .then((user) => tagUser(user, tag))
+    .then((user) => logAndReturn(user, 'User created and tagged', data, tag))
+    .catch((error) => logger.log('error', 'Intercom', 'createUniqueUserAndTag', data, tag, error))
+}
+
 function convert (visitor, user) {
   return intercom.visitors
     .convert({
@@ -78,8 +100,23 @@ function updateUser (patch) {
     .catch((error) => logger.log('error', 'Intercom', 'updateUser', patch, error))
 }
 
+const getTimestampInSeconds = () => format(new Date(), 'X')
+
+function logEvent ({ event_name, email, metadata }) {
+  logger.log('info', 'logEvent', event_name, email, metadata)
+  return intercom.events.create({
+    created_at: getTimestampInSeconds(),
+    event_name,
+    email,
+    metadata
+  })
+  .catch((error) => logger.log('error', 'Intercom', 'logEvent', event_name, email, metadata, error))
+}
+
 module.exports = {
   createUniqueLeadAndTag,
+  createUniqueUserAndTag,
+  logEvent,
   convertVisitorToUser,
   updateUser
 }
