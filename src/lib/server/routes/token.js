@@ -10,6 +10,7 @@ const { promiseMap } = require('../lib')
 const employees = require('../modules/employees')
 const job = require('../modules/job')
 const tokens = require('../modules/tokens')
+const jobShare = require('../modules/job-share')
 
 const commonErrors = {
   'badRequest': {
@@ -106,7 +107,7 @@ function tokenHandler (req, res, next) {
     .then(getRenderDataBuilder(req, res, next))
     .then(getRenderer(req, res, next))
     .catch(error => {
-      console.log('Error:', error)
+      logger.log('error', error)
       const data = getRenderDataBuilder(req)({error})
       getRenderer(req, res, next)(data)
     })
@@ -125,14 +126,23 @@ function typeformSurveryResponseHanlder (req, res, next) {
     .then(data => {
       // Create token of type `SHARE_COMPANY_JOBS` containing: survey, employee, and typeform API token
       const typeformToken = get(req.body, 'form_response.token', '')
-      const employee = data.token.employee
-      const survey = data.token.survey
+      const employee = get(data.token, 'data.employee')
+      const survey = get(data.token, 'data.survey')
       const tokenData = {employee, survey, typeformToken}
       const type = 'SHARE_COMPANY_JOBS'
       return tokens.post(data, type, tokenData)
     })
+    .then(data => employees.get(data, get(data.token, 'data.employee')))
     .then(data => {
-      console.log('data.newToken', data.newToken)
+      const firstName = get(data.employee, 'person.firstName', '')
+      const lastName = get(data.employee, 'person.lastName', '')
+      const email = get(data.employee, 'person.email', '')
+      const token = get(data.newToken, 'token')
+      const link = `https://nudj.co/token/${token}`
+      return jobShare.send(firstName, lastName, email, link)
+        .then(() => Promise.resolve(data))
+    })
+    .then(data => {
       res.setHeader('Content-Type', 'application/json')
       res.send(JSON.stringify({ 'token': data.newToken.token }))
     })
