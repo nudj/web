@@ -5,6 +5,11 @@ let intercom = new Intercom.Client({
 })
 const format = require('date-fns/format')
 
+function userHasTag (user, name) {
+  const tagsList = user.tags.tags || []
+  return tagsList.find(tag => tag.name === name)
+}
+
 function getBody (response) {
   if (response.status !== 200) {
     throw new Error(`Intercom gone done broke: ${response.status}`)
@@ -70,8 +75,12 @@ function createUniqueLeadAndTag (data, tag) {
 function createUniqueUserAndTag (data, tag) {
   logger.log('info', 'createUniqueUserAndTag', data, tag)
   return fetchUserBy({ email: data.email })
+    .catch((error) => {
+      logger.log('error', 'Intercom', 'fetchUserBy', data, tag, error)
+      return null
+    })
     .then((user) => user || createUser(data))
-    .then((user) => tagUser(user, tag))
+    .then((user) => userHasTag(user, tag) ? user : tagUser(user, tag))
     .then((user) => logAndReturn(user, 'User created and tagged', data, tag))
     .catch((error) => logger.log('error', 'Intercom', 'createUniqueUserAndTag', data, tag, error))
 }

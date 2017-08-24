@@ -6,9 +6,8 @@ var mailgun = Mailgun({
   domain: process.env.MAILGUN_DOMAIN
 })
 
-module.exports.send = (firstName, lastName, email, link, surveyLink, companyName) => {
-  logger.log('info', 'Sending email', firstName, lastName, email, link, surveyLink, companyName)
-  intercom.createUniqueUserAndTag({
+function recordEvent (firstName, lastName, email, companyName, metadata, eventName) {
+  return intercom.createUniqueUserAndTag({
     name: `${firstName} ${lastName}`,
     email,
     companies: [
@@ -19,13 +18,20 @@ module.exports.send = (firstName, lastName, email, link, surveyLink, companyName
     ]
   }, 'team-member')
     .then(() => intercom.logEvent({
-      event_name: 'completed survey',
+      event_name: eventName,
       email: email,
-      metadata: {
-        survey: surveyLink,
-        job_share_link: link
-      }
+      metadata: metadata
     }))
+}
+
+module.exports.send = (firstName, lastName, email, link, surveyLink, companyName) => {
+  logger.log('info', 'Sending email', firstName, lastName, email, link, surveyLink, companyName)
+  const metadata = {
+    survey: surveyLink,
+    job_share_link: link
+  }
+  const eventName = 'completed survey'
+  recordEvent(firstName, lastName, email, companyName, metadata, eventName)
   return mailgun
     .messages()
     .send({
@@ -55,4 +61,12 @@ module.exports.send = (firstName, lastName, email, link, surveyLink, companyName
         success: true
       }
     })
+}
+
+module.exports.viewed = (firstName, lastName, email, companyName, link) => {
+  const metadata = {
+    job_share_link: link
+  }
+  const eventName = 'viewed job share page'
+  return recordEvent(firstName, lastName, email, companyName, metadata, eventName)
 }

@@ -26,6 +26,10 @@ const commonErrors = {
   }
 }
 
+function generateLinkFromToken (token) {
+  return `https://nudj.co/token/${token}`
+}
+
 // Just handles API errors
 function errorHandler (req, res, next) {
   return (error) => {
@@ -86,6 +90,13 @@ function shareCompanyJobsHandler (data) {
       })
       return data
     })
+    .then(data => {
+      const {firstName, lastName, email} = data.employee.person
+      const companyName = get(data.employee, 'company.name')
+      const link = generateLinkFromToken(data.token.token)
+      jobShare.viewed(firstName, lastName, email, companyName, link)
+      return data
+    })
 
   // Get the survey UUID from the survey
   // return promiseMap(data)
@@ -141,7 +152,7 @@ function typeformSurveryResponseHanlder (req, res, next) {
       const email = get(data.employee, 'person.email', '')
       const companyName = get(data.employee, 'company.name')
       const token = get(data.newToken, 'token')
-      const link = `https://nudj.co/token/${token}`
+      const link = generateLinkFromToken(token)
       const surveyLink = get(data.survey, 'link')
       return jobShare.send(firstName, lastName, email, link, surveyLink, companyName)
         .then(() => Promise.resolve(data))
