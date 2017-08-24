@@ -30,7 +30,6 @@ ssh:
 		-v $(CWD)/src/package.json:/usr/src/package.json \
 		-v $(CWD)/src/webpack.client.js:/usr/src/webpack.client.js \
 		-v $(CWD)/src/webpack.server.js:/usr/src/webpack.server.js \
-		-v /Users/timrobinson/Desktop/Coding_Projects/Tests/sandbox/nudj/api:/usr/src/api \
 		$(IMAGEDEV) \
 		/bin/zsh
 
