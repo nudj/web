@@ -18,6 +18,7 @@ export const breakpoints = {
 export const cardStyle = {
   background: variables.colours.white,
   borderRadius: variables.sizes.formsInputBorderRadius,
+  boxShadow: `${variables.sizes.genericBoxShadow} ${variables.colours.charcoal}`,
   padding: variables.padding.d
 }
 

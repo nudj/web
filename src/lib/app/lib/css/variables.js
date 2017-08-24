@@ -113,6 +113,7 @@ export const sizes = {
   formsMaxWidth: '512px',
   formsInputBorderWidth: '1px',
   formsInputBorderRadius: '4px',
+  genericBoxShadow: '0 0.5px 0.5px 0',
   magicBorderRadius: '9999px',
   mobileActionButtonsHeight: '24px',
   paddingWidth: '20',
