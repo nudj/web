@@ -1,3 +1,5 @@
+const { promiseMap } = require('@nudj/library')
+
 const request = require('../lib/request')
 const queries = require('../lib/queries-mutations')
 
@@ -22,6 +24,17 @@ function ensureValidReferralUrl (params) {
 module.exports.get = function (params) {
   return ensureValidReferralUrl(params)
   .then(() => request(queries.GetReferralAndJobForPerson, params))
+}
+
+module.exports.getAllByCompany = function (data, company) {
+  data.jobs = request(queries.GetJobsForCompany, {company})
+    .then(data => data.job)
+  return promiseMap(data)
+}
+
+module.exports.getNudjByJobAndPerson = function (job, person) {
+  return request(queries.GetReferralByJobAndPerson, {job, person})
+    .then(data => data.referral)
 }
 
 module.exports.nudj = function (params) {

@@ -15,6 +15,13 @@ export const breakpoints = {
   xl: `@media screen and (min-width: ${variables.breakpoints.xl})`
 }
 
+export const cardStyle = {
+  background: variables.colours.white,
+  borderRadius: variables.sizes.formsInputBorderRadius,
+  boxShadow: `${variables.sizes.genericBoxShadow} ${variables.colours.charcoal}`,
+  padding: variables.padding.d
+}
+
 // Fonts
 function createFontFamily (name, properties) {
   const fontFamily = name
