@@ -75,34 +75,6 @@ const stepImage = {
   }
 }
 
-const tableCell = merge({}, mixins.headings.p, {
-  color: variables.colours.royalBlue,
-  padding: `${variables.padding.d} 0`,
-  textAlign: 'center',
-  [mixins.breakpoints.s]: { // max-width override
-    fontSize: mixins.headings.p2.fontSize
-  }
-})
-
-const tableCellBold = merge({}, tableCell, mixins.headings.pBold)
-
-const tableUnderline = mixins.afterUnderlineSquiggle('table-line-1.svg', '0%', {
-  '::after': {
-    bottom: '-6px',
-    height: '12px',
-    width: `calc(100vw - ${variables.padding.d} * 2)`,
-    [mixins.breakpoints.l]: {
-      width: variables.sizes.contentMaxWidth
-    }
-  }
-})
-
-const tableHeaderFirst = merge({}, tableCellBold, tableUnderline)
-const tableCellLeftFinal = merge({}, tableCell, {
-  textAlign: 'left'
-})
-const tableCellLeft = merge({}, tableCellLeftFinal, tableUnderline)
-
 const styles = {
   body: {
     position: 'relative' // ?
@@ -198,21 +170,16 @@ const styles = {
     textAlign: 'center'
   },
   compareUnderline: {},
-  table: {
-    borderCollapse: 'collapse',
-    width: '100%'
-  },
-  tableHeaderRow: {},
-  tableHeaderFirst: tableHeaderFirst,
-  tableHeader: tableCellBold,
-  tableBody: {
-    position: 'relative'
-  },
-  tableRow: {},
-  tableLeft: tableCellLeft,
-  tableLeftFinal: tableCellLeftFinal,
-  tableItem: tableCell,
-  tableItemNudj: tableCellBold,
+  table: mixins.basicTable.table,
+  tableHeaderRow: mixins.basicTable.tableHeaderRow,
+  tableHeaderFirst: mixins.basicTable.tableHeaderFirst,
+  tableHeader: mixins.basicTable.tableHeader,
+  tableBody: mixins.basicTable.tableBody,
+  tableRow: mixins.basicTable.tableRow,
+  tableLeft: mixins.basicTable.tableCellLeft,
+  tableLeftFinal: mixins.basicTable.tableCellLeftFinal,
+  tableItem: mixins.basicTable.tableCell,
+  tableItemNudj: mixins.basicTable.tableCellBold,
   bodyNudj: merge(mixins.textHighlight({
     padding: `${variables.padding.d} 0`,
     textAlign: 'center'

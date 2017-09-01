@@ -685,6 +685,56 @@ forms.helperText = merge({}, forms.label)
 
 export { forms }
 
+// Table
+
+const tableCell = merge({}, headings.p, {
+  color: variables.colours.royalBlue,
+  padding: `${variables.padding.d} 0`,
+  textAlign: 'center',
+  [breakpoints.s]: { // max-width override
+    fontSize: headings.p2.fontSize
+  }
+})
+
+const tableCellBold = merge({}, tableCell, headings.pBold)
+
+const tableUnderline = afterUnderlineSquiggle('table-line-1.svg', '0%', {
+  '::after': {
+    bottom: '-6px',
+    height: '12px',
+    width: `calc(100vw - ${variables.padding.d} * 2)`,
+    [breakpoints.l]: {
+      width: variables.sizes.contentMaxWidth
+    }
+  }
+})
+
+const tableHeaderFirst = merge({}, tableCellBold, tableUnderline)
+const tableCellLeftFinal = merge({}, tableCell, {
+  textAlign: 'left'
+})
+const tableCellLeft = merge({}, tableCellLeftFinal, tableUnderline)
+
+const basicTable = {
+  table: {
+    borderCollapse: 'collapse',
+    width: '100%'
+  },
+  tableHeaderRow: {},
+  tableHeaderFirst: tableHeaderFirst,
+  tableHeader: tableCellBold,
+  tableBody: {
+    position: 'relative'
+  },
+  tableRow: {},
+  tableCell,
+  tableCellBold,
+  tableCellLeft,
+  tableCellLeftFinal
+}
+
+export {basicTable}
+
 const quickAppear = {
   details: variables.transitions.slowBouncy,
   properties: ['all']

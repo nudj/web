@@ -110,6 +110,18 @@ const fragments = {
       link
       uuid
     }
+  `,
+  EmployeeSurvey: `
+    fragment EmployeeSurvey on EmployeeSurvey {
+      id
+      employee {
+        ...Employee
+      }
+      survey {
+        ...Survey
+      }
+      typeformToken
+    }
   `
 }
 
@@ -285,5 +297,35 @@ module.exports = {
       }
     }
     ${fragments.Referral}
+  `,
+  GetEmployeeSurvey: `
+    query GetEmployeeSurvey (
+      $id: ID!
+    ) {
+      employeeSurvey(id: $id) {
+        ...EmployeeSurvey
+      }
+    }
+    ${fragments.EmployeeSurvey}
+    ${fragments.Employee}
+    ${fragments.Survey}
+  `,
+  CreateEmployeeSurvey: `
+    mutation CreateEmployeeSurvey (
+      $employee: ID!
+      $survey: ID!
+      $typeformToken: String!
+    ) {
+      employeeSurvey: createEmployeeSurvey(input: {
+        employee: $employee
+        survey: $survey
+        typeformToken: $typeformToken
+      }) {
+        ...EmployeeSurvey
+      }
+    }
+    ${fragments.EmployeeSurvey}
+    ${fragments.Employee}
+    ${fragments.Survey}
   `
 }
