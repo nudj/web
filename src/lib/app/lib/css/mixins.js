@@ -735,6 +735,22 @@ const basicTable = {
 
 export {basicTable}
 
+const linkContainer = merge({}, headings.p, {
+  backgroundColor: variables.colours.lighterGrey,
+  borderColor: 'transparent',
+  borderRadius: variables.sizes.formsInputBorderRadius,
+  color: variables.colours.charcoal,
+  fontFamily: 'monospace',
+  margin: `0 0 ${variables.padding.c} 0`,
+  overflow: 'hidden',
+  padding: variables.padding.e,
+  textOverflow: 'ellipsis',
+  width: '100%',
+  whiteSpace: 'nowrap'
+})
+
+export {linkContainer}
+
 const quickAppear = {
   details: variables.transitions.slowBouncy,
   properties: ['all']

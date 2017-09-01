@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom'
 import get from 'lodash/get'
 
 import Header from '../header'
+import NudjSuccess from '../nudj-success'
 import { getStyle } from './token-page.css'
 
 class TokenPage extends React.Component {
@@ -54,12 +55,19 @@ class TokenPage extends React.Component {
       const referralId = get(job, 'referral.id')
       const jobTitle = get(job, 'title')
       const link = this.makeLink(companySlug, jobSlug, referralId)
+
+      const referral = get(job, 'referral')
+      const url = get(this.props, 'url')
+      const mobileOnly = true
+      const copyProps = {referral, url, mobileOnly}
+
       return (
         <li className={this.style.jobsListItem} key={index}>
           <h4 className={this.style.jobsListItemTitle}>{jobTitle}</h4>
+          <NudjSuccess {...copyProps} />
           <div className={this.style.linkContainer}>{link}</div>
           <div className={this.style.buttonContainer}>
-            <button id='copy' className={this.style.shareLinkButton} data-clipboard-text={link}>Copy</button>
+            <button className={this.style.shareLinkButton} data-clipboard-text={link}>Copy</button>
           </div>
         </li>
       )
@@ -72,8 +80,10 @@ class TokenPage extends React.Component {
         <Header />
         <div className={this.style.token}>
           <div className={this.style.tokenHeader}>
-            <h1 className={this.style.tokenHeaderTitle}>Ready to share your company's jobs?</h1>
-            <p className={this.style.tokenHeaderDescription}>A description of what this screen is for - thanking them for completing the survey and then getting them to share.</p>
+            <div className={this.style.tokenHeaderContent}>
+              <h1 className={this.style.tokenHeaderTitle}>Ready to share your company's jobs?</h1>
+              <p className={this.style.tokenHeaderDescription}>A description of what this screen is for - thanking them for completing the survey and then getting them to share.</p>
+            </div>
           </div>
           <ul className={this.style.jobsList}>
             {jobsList}
