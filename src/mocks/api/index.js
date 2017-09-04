@@ -12,7 +12,8 @@ let data = {
   recommendations: [],
   employees: [],
   surveys: [],
-  tokens: []
+  tokens: [],
+  employeeSurveys: []
 }
 data.companies = data.companies.concat([
   {
@@ -218,14 +219,14 @@ data.applications = data.applications.concat([
 ])
 data.employees = data.employees.concat([
   {
-    id: '1',
+    id: 'employee1',
     person: '21',
     company: '99',
     created: '2017-06-08T11:38:19.485+00:00',
     modified: '2017-06-08T11:38:19.485+00:00'
   },
   {
-    id: '2',
+    id: 'employee2',
     person: '26',
     company: '99',
     created: '2017-06-08T11:38:19.485+00:00',
@@ -234,7 +235,7 @@ data.employees = data.employees.concat([
 ])
 data.surveys = data.surveys.concat([
   {
-    id: '1',
+    id: 'survey1',
     created: '2017-06-08T11:38:19.485+00:00',
     modified: '2017-06-08T11:38:19.485+00:00',
     company: '99',
@@ -245,8 +246,7 @@ data.surveys = data.surveys.concat([
 data.tokens = data.tokens.concat([
   {
     data: {
-      employee: '1',
-      survey: '1'
+      employeeSurvey: 'employeeSurvey1'
     },
     token: 'NICEFATHASH',
     type: 'SURVEY_TYPEFORM_COMPLETE',
@@ -256,9 +256,7 @@ data.tokens = data.tokens.concat([
   },
   {
     data: {
-      employee: '1',
-      survey: '1',
-      typeformToken: 'Who cares?'
+      employeeSurvey: 'employeeSurvey2'
     },
     token: 'NICEFATHASH2',
     type: 'SHARE_COMPANY_JOBS',
@@ -268,15 +266,26 @@ data.tokens = data.tokens.concat([
   },
   {
     data: {
-      employee: '2',
-      survey: '1',
-      typeformToken: 'Who cares?'
+      employeeSurvey: 'employeeSurvey2'
     },
     token: 'NICEFATHASH3',
     type: 'SHARE_COMPANY_JOBS',
     created: '2017-06-08T11:38:19.485+00:00',
     modified: '2017-06-08T11:38:19.485+00:00',
     id: '3'
+  }
+])
+data.employeeSurveys = data.employeeSurveys.concat([
+  {
+    id: 'employeeSurvey1',
+    employee: 'employee1',
+    survey: 'survey1'
+  },
+  {
+    id: 'employeeSurvey2',
+    employee: 'employee2',
+    survey: 'survey1',
+    typeformToken: '17df26f9c987c7eb3e50325caa60c913'
   }
 ])
 

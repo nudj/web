@@ -7,7 +7,7 @@ const {getRenderer, getRenderDataBuilder} = require('../lib/render')
 const logger = require('../lib/logger')
 const { promiseMap } = require('../lib')
 
-const employees = require('../modules/employees')
+const employeeSurveys = require('../modules/employee-surveys')
 const job = require('../modules/job')
 const tokens = require('../modules/tokens')
 const jobShare = require('../modules/job-share')
@@ -64,15 +64,21 @@ function referEachJob (jobs, company, person) {
 function shareCompanyJobsHandler (data) {
   // From the token data we have survey, employee, and typeformToken
   const token = data.token
-  const {employee} = token.data
-  // const {employee, survey, typeformToken} = token.data
+  const employeeSurvey = token.data.employeeSurvey
 
+  // Get the employeeSurveyComplete
   // Get the employee
   // Get the person from the employee
   // Get the company from the employee
-  return employees.get(data, employee)
+  return employeeSurveys.get(data, employeeSurvey)
     .then(data => {
-      const company = data.employee.company
+      const {employee, survey, typeformToken} = data.employeeSurvey
+      const company = employee.company
+
+      data.employee = employee
+      data.survey = survey
+      data.typeformToken = typeformToken
+
       // Get the jobs from the company
       return job.getAllByCompany(data, company.id)
     })
@@ -97,8 +103,26 @@ function shareCompanyJobsHandler (data) {
       jobShare.viewed(firstName, lastName, email, companyName, link)
       return data
     })
+    .then(data => surveys.getResults(data, data.survey.uuid, data.typeformToken))
+    .then(data => {
+      const questions = get(data.surveyResults, 'questions', [])
+      const responses = get(data.surveyResults, 'responses', []).pop()
+      data.typeformResults = questions.map(question => {
+        const questionId = get(question, 'id', '')
 
-  // TODO Get the survey UUID from the survey
+        // Don't include hidden items eg: token
+        if (questionId.indexOf('hidden_') === 0) {
+          return null
+        }
+
+        return {
+          id: questionId,
+          question: get(question, 'question'),
+          answer: get(responses, `answers[${questionId}]`)
+        }
+      }).filter(result => result)
+      return data
+    })
 }
 
 function subTokenHandler (data) {
@@ -134,25 +158,30 @@ function typeformSurveryResponseHanlder (req, res, next) {
   tokens.get({}, token)
     .then(data => data.token ? data : Promise.reject(commonErrors.notFound))
     .then(data => data.token.type === 'SURVEY_TYPEFORM_COMPLETE' ? data : Promise.reject(commonErrors.badRequest))
+    .then(data => employeeSurveys.get(data, get(data.token, 'data.employeeSurvey')))
     .then(data => {
-      // Create token of type `SHARE_COMPANY_JOBS` containing: survey, employee, and typeform API token
       const typeformToken = get(req.body, 'form_response.token', '')
-      const employee = get(data.token, 'data.employee')
-      const survey = get(data.token, 'data.survey')
-      const tokenData = {employee, survey, typeformToken}
+      const {employee, survey} = data.employeeSurvey
+      // containing: survey, employee, and typeform API token
+      return employeeSurveys.post(data, employee.id, survey.id, typeformToken)
+    })
+    .then(data => {
+      // Create token of type `SHARE_COMPANY_JOBS`
       const type = 'SHARE_COMPANY_JOBS'
+      const tokenData = {
+        employeeSurvey: data.newEmployeeSurvey.id
+      }
       return tokens.post(data, type, tokenData)
     })
-    .then(data => employees.get(data, get(data.token, 'data.employee')))
-    .then(data => surveys.get(data, get(data.token, 'data.survey')))
     .then(data => {
-      const firstName = get(data.employee, 'person.firstName', '')
-      const lastName = get(data.employee, 'person.lastName', '')
-      const email = get(data.employee, 'person.email', '')
-      const companyName = get(data.employee, 'company.name')
+      const {employee, survey} = data.employeeSurvey
+      const firstName = get(employee, 'person.firstName', '')
+      const lastName = get(employee, 'person.lastName', '')
+      const email = get(employee, 'person.email', '')
+      const companyName = get(employee, 'company.name')
       const token = get(data.newToken, 'token')
       const link = generateLinkFromToken(token)
-      const surveyLink = get(data.survey, 'link')
+      const surveyLink = get(survey, 'link')
       return jobShare.send(firstName, lastName, email, link, surveyLink, companyName)
         .then(() => Promise.resolve(data))
     })

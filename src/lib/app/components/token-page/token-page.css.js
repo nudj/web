@@ -6,6 +6,12 @@ const listStyle = {
   margin: 0
 }
 
+const leftAlign = {
+  [mixins.breakpoints.l]: {
+    textAlign: 'inherit'
+  }
+}
+
 const styles = {
   token: {
     backgroundColor: variables.colours.white,
@@ -15,50 +21,92 @@ const styles = {
       padding: `${variables.padding.a} 0 ${variables.padding.b} 0`
     }
   },
-  tokenHeader: mixins.basicContainer(),
-  tokenHeaderTitle: merge({}, mixins.typography.titleCharcoal, {
-    margin: `0 0 ${variables.padding.b} 0`,
-    [mixins.breakpoints.l]: {
-      textAlign: 'inherit'
-    }
-  }),
-  tokenHeaderDescription: merge({}, mixins.typography.copy, {
-    margin: `0 0 ${variables.padding.b} 0`,
-    [mixins.breakpoints.l]: {
-      textAlign: 'inherit'
-    }
-  }),
-  shareLinkButton: mixins.buttonPrimary(),
-  linkContainer: {
-    backgroundColor: variables.colours.lighterGrey,
-    borderColor: 'transparent',
-    flex: 2,
-    borderRadius: variables.sizes.formsInputBorderRadius,
-    color: variables.colours.charcoal,
-    fontFamily: 'monospace',
-    padding: variables.padding.e,
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap'
+  tokenHeader: {
+    position: 'relative'
   },
-  jobsList: mixins.deList(),
+  tokenHeaderContent: mixins.basicContainer(),
+  tokenHeaderTitle: merge({}, mixins.typography.titleCharcoal, leftAlign, {
+    margin: `0 0 ${variables.padding.b} 0`
+  }),
+  tokenHeaderDescription: merge({}, mixins.typography.copy, leftAlign, {
+    margin: `0 0 ${variables.padding.b} 0`
+  }),
+  tokenContent: mixins.basicContainer(),
+  tokenTitle: merge({}, mixins.typography.subtitle, leftAlign),
+  tokenCopy: merge({}, mixins.typography.copy, leftAlign),
+  shareLinkButton: mixins.buttonPrimary(),
+  linkContainer: merge({}, mixins.linkContainer, {
+    display: 'none',
+    flex: '2',
+    margin: '0',
+    [mixins.breakpoints.l]: {
+      display: 'block'
+    }
+  }),
+  jobsList: mixins.basicContainer(mixins.deList({
+    padding: `0 0 ${variables.padding.b} 0`
+  })),
+  jobsListNudjSuccess: {
+    [mixins.breakpoints.l]: {
+      display: 'none'
+    }
+  },
   jobsListItem: merge(listStyle, mixins.cardStyle, {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    position: 'relative',
-    padding: variables.padding.d,
-    margin: `${variables.padding.e} ${variables.padding.a} ${variables.padding.d}`,
-    minHeight: variables.padding.e
+    margin: variables.padding.d,
+    paddingTop: variables.padding.c,
+    [mixins.breakpoints.l]: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      position: 'relative',
+      padding: variables.padding.d,
+      margin: `${variables.padding.e} 0 ${variables.padding.d} 0`,
+      minHeight: variables.padding.e
+    }
   }),
   jobsListItemTitle: merge({}, mixins.headings.h6, {
-    flex: 3
+    padding: `0 0 ${variables.padding.d} 0`,
+    textAlign: 'center',
+    [mixins.breakpoints.l]: {
+      flex: '2',
+      padding: '0',
+      textAlign: 'left'
+    }
   }),
   buttonContainer: {
-    flex: 1,
+    alignItems: 'center',
+    display: 'none',
+    flex: '1',
     margin: `0 ${variables.padding.d}`,
     textAlign: 'center',
-    alignItems: 'center'
+    [mixins.breakpoints.l]: {
+      display: 'block'
+    }
+  },
+  getSurveyResults: mixins.buttonSecondary(),
+  table: merge({}, mixins.basicTable.table, {
+    overflow: 'hidden',
+    tableLayout: 'fixed'
+  }),
+  tableHeaderRow: mixins.basicTable.tableHeaderRow,
+  tableHeader: merge({}, mixins.basicTable.tableHeader, {
+    fontWeight: 'bold',
+    textAlign: 'left'
+  }),
+  tableHeaderFirst: merge({}, mixins.basicTable.tableHeaderFirst, {
+    width: variables.padding.c
+  }),
+  tableBody: mixins.basicTable.tableBody,
+  tableRow: mixins.basicTable.tableRow,
+  tableCell: merge({}, mixins.basicTable.tableCell, {
+    textAlign: 'left'
+  }),
+  tableCellEvenRow: merge({}, mixins.basicTable.tableCell, {
+    backgroundColor: variables.colours.lighterGrey,
+    textAlign: 'left'
+  }),
+  tableCellFirst: {
+    padding: `${variables.padding.d} ${variables.padding.e}`
   }
 }
 const getStyle = css(styles)
