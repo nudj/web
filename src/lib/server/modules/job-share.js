@@ -35,22 +35,20 @@ module.exports.send = (firstName, lastName, email, link, surveyLink, companyName
   return mailgun
     .messages()
     .send({
-      from: 'hello@nudj.co',
+      from: 'The nudj team <hello@nudj.co>',
       to: email,
-      subject: 'Ready to share your company\'s jobs?',
+      subject: `Thanks for completing the survey ${firstName}, now it's time to share!`,
       html: `
         <html>
         <body>
-          <br/>
           <p>Hi ${firstName},</p>
-          <p>A description of what this screen is for - thanking them for completing the survey and then getting them to share.</p>
+          <br />
+          <p>Thanks for completing the survey!</p>
+          <p>Your unique and trackable links for your company's jobs for you to share with those you recommended, can be found <strong><a href='${link}'>here</a>.</strong></p>
+          <p>These will ensure that if someone you recommend is successful then you'll get the bonus on offer. It will also ensure that if anyone you send them to refers a new hire, then you'll both get rewarded!</p>
           <br/>
-          <p>
-            <a href='${link}'>${link}</a>
-          </p>
-          <br/>
-          <p>Love<br/> from Nudj.</p>
-          <br/>
+          <p>Happy sharing!</p>
+          <p>The nudj team (on behalf of ${companyName})</p>
         </body>
         </html>
       `
