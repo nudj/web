@@ -82,7 +82,7 @@ class TokenPage extends React.Component {
           <div className={this.style.tokenHeader}>
             <div className={this.style.tokenHeaderContent}>
               <h1 className={this.style.tokenHeaderTitle}>Ready to share your company's jobs?</h1>
-              <p className={this.style.tokenHeaderDescription}>A description of what this screen is for - thanking them for completing the survey and then getting them to share.</p>
+              <p className={this.style.tokenHeaderDescription}>Thanks completing the survey! Now share your company's jobs with the people you recommended.</p>
             </div>
           </div>
           <ul className={this.style.jobsList}>
@@ -90,7 +90,7 @@ class TokenPage extends React.Component {
           </ul>
           <div className={this.style.tokenContent}>
             <h3 className={this.style.tokenTitle}>Can't remember who you recommended?</h3>
-            <p className={this.style.tokenCopy}>Easily view your survey results to job your memory</p>
+            <p className={this.style.tokenCopy}>View your survey results to jog your memory.</p>
             {this.renderTypeformResults(typeformResults)}
           </div>
         </div>
