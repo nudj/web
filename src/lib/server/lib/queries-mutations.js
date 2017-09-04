@@ -141,7 +141,7 @@ module.exports = {
       $email: String!
       $firstName: String!
       $lastName: String!
-      $url: String!
+      $url: String
     ) {
       person: createPerson(input: {
         email: $email
