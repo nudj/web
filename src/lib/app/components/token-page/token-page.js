@@ -82,7 +82,7 @@ class TokenPage extends React.Component {
           <div className={this.style.tokenHeader}>
             <div className={this.style.tokenHeaderContent}>
               <h1 className={this.style.tokenHeaderTitle}>Ready to share your company's jobs?</h1>
-              <p className={this.style.tokenHeaderDescription}>Thanks completing the survey! Now share your company's jobs with the people you recommended.</p>
+              <p className={this.style.tokenHeaderDescription}>Thanks for completing the survey! Now share your company's jobs with the people you recommended.</p>
             </div>
           </div>
           <ul className={this.style.jobsList}>
