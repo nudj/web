@@ -161,15 +161,13 @@ function typeformSurveryResponseHanlder (req, res, next) {
     .then(data => employeeSurveys.get(data, get(data.token, 'data.employeeSurvey')))
     .then(data => {
       const typeformToken = get(req.body, 'form_response.token', '')
-      const {employee, survey} = data.employeeSurvey
-      // containing: survey, employee, and typeform API token
-      return employeeSurveys.post(data, employee.id, survey.id, typeformToken)
+      return employeeSurveys.patch(data, data.employeeSurvey.id, { typeformToken })
     })
     .then(data => {
       // Create token of type `SHARE_COMPANY_JOBS`
       const type = 'SHARE_COMPANY_JOBS'
       const tokenData = {
-        employeeSurvey: data.newEmployeeSurvey.id
+        employeeSurvey: data.employeeSurvey.id
       }
       return tokens.post(data, type, tokenData)
     })

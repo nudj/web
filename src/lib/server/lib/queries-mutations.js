@@ -327,5 +327,21 @@ module.exports = {
     ${fragments.EmployeeSurvey}
     ${fragments.Employee}
     ${fragments.Survey}
+  `,
+  UpdateEmployeeSurvey: `
+    mutation UpdateEmployeeSurvey (
+      $id: ID!
+      $input: EmployeeSurveyUpdateInput!
+    ) {
+      employeeSurvey: updateEmployeeSurvey(
+        id: $id,
+        input: $input
+      ) {
+        ...EmployeeSurvey
+      }
+    }
+    ${fragments.EmployeeSurvey}
+    ${fragments.Employee}
+    ${fragments.Survey}
   `
 }
