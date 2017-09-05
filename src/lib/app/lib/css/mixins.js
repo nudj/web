@@ -15,6 +15,13 @@ export const breakpoints = {
   xl: `@media screen and (min-width: ${variables.breakpoints.xl})`
 }
 
+export const cardStyle = {
+  background: variables.colours.white,
+  borderRadius: variables.sizes.formsInputBorderRadius,
+  boxShadow: `${variables.sizes.genericBoxShadow} ${variables.colours.charcoal}`,
+  padding: variables.padding.d
+}
+
 // Fonts
 function createFontFamily (name, properties) {
   const fontFamily = name
@@ -677,6 +684,72 @@ const forms = {
 forms.helperText = merge({}, forms.label)
 
 export { forms }
+
+// Table
+
+const tableCell = merge({}, headings.p, {
+  color: variables.colours.royalBlue,
+  padding: `${variables.padding.d} 0`,
+  textAlign: 'center',
+  [breakpoints.s]: { // max-width override
+    fontSize: headings.p2.fontSize
+  }
+})
+
+const tableCellBold = merge({}, tableCell, headings.pBold)
+
+const tableUnderline = afterUnderlineSquiggle('table-line-1.svg', '0%', {
+  '::after': {
+    bottom: '-6px',
+    height: '12px',
+    width: `calc(100vw - ${variables.padding.d} * 2)`,
+    [breakpoints.l]: {
+      width: variables.sizes.contentMaxWidth
+    }
+  }
+})
+
+const tableHeaderFirst = merge({}, tableCellBold, tableUnderline)
+const tableCellLeftFinal = merge({}, tableCell, {
+  textAlign: 'left'
+})
+const tableCellLeft = merge({}, tableCellLeftFinal, tableUnderline)
+
+const basicTable = {
+  table: {
+    borderCollapse: 'collapse',
+    width: '100%'
+  },
+  tableHeaderRow: {},
+  tableHeaderFirst: tableHeaderFirst,
+  tableHeader: tableCellBold,
+  tableBody: {
+    position: 'relative'
+  },
+  tableRow: {},
+  tableCell,
+  tableCellBold,
+  tableCellLeft,
+  tableCellLeftFinal
+}
+
+export {basicTable}
+
+const linkContainer = merge({}, headings.p, {
+  backgroundColor: variables.colours.lighterGrey,
+  borderColor: 'transparent',
+  borderRadius: variables.sizes.formsInputBorderRadius,
+  color: variables.colours.charcoal,
+  fontFamily: 'monospace',
+  margin: `0 0 ${variables.padding.c} 0`,
+  overflow: 'hidden',
+  padding: variables.padding.e,
+  textOverflow: 'ellipsis',
+  width: '100%',
+  whiteSpace: 'nowrap'
+})
+
+export {linkContainer}
 
 const quickAppear = {
   details: variables.transitions.slowBouncy,

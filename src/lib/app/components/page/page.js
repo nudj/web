@@ -11,6 +11,7 @@ import JobPage from '../job-page'
 import ApplyPage from '../apply-page'
 import NudjPage from '../nudj-page'
 import PageNotFound from '../404-page'
+import Token from '../token-page'
 
 const Status = ({ code, children }) => (
   <Route render={({ staticContext }) => {
@@ -35,6 +36,7 @@ const Component = (props) => {
       <Route exact path='/jobs/:companySlugJobSlugRefId' component={JobPage} />
       <Route exact path='/jobs/:companySlugJobSlugRefId/apply' component={ApplyPage} />
       <Route exact path='/jobs/:companySlugJobSlugRefId/nudj' component={NudjPage} />
+      <Route exact path='/token/:token' component={Token} />
       <Route render={(props) => (
         <Status code={404}>
           <PageNotFound {...props} />

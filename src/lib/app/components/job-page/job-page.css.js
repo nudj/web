@@ -55,7 +55,10 @@ const styles = {
     }
   }),
   actions: mixins.flexColumn({
-    padding: `0 ${variables.padding.c}`
+    padding: `0 ${variables.padding.d}`,
+    [mixins.breakpoints.ns]: {
+      padding: `0 ${variables.padding.c}`
+    }
   }),
   or: mixins.makeOrDark(),
   action: mixins.flexColumn(),

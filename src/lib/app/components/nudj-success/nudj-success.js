@@ -12,9 +12,10 @@ export default (props) => {
   const style = getStyle()
 
   let link = `${get(props, 'url.protocol')}://${get(props, 'url.hostname')}/jobs/${get(props, 'referral.job.company.slug')}+${get(props, 'referral.job.slug')}+${get(props, 'referral.id')}`
+  const mobileOnly = get(props, 'mobileOnly', false)
 
   return (
-    <div className={style.container}>
+    <div className={mobileOnly ? style.containerMobileOnly : style.container}>
       <p className={style.mobileMessage}>Share your link by selecting an option below.</p>
       <div className={style.actions}>
         <a href={`fb-messenger://share/?link=${link}`} className={style.actionLink}>

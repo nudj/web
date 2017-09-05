@@ -9,7 +9,11 @@ let data = {
   applications: [],
   hirers: [],
   externalMessages: [],
-  recommendations: []
+  recommendations: [],
+  employees: [],
+  surveys: [],
+  tokens: [],
+  employeeSurveys: []
 }
 data.companies = data.companies.concat([
   {
@@ -178,6 +182,19 @@ data.people = data.people.concat([
     type: 'external',
     company: 'nudj',
     status: 'user'
+  },
+  {
+    id: '26',
+    created: '1986-07-06T07:34:54.000+00:00',
+    modified: '2000-01-17T02:51:58.000+00:00',
+    firstName: 'Tim',
+    lastName: 'Robinson',
+    email: 'tim@nudj.co',
+    url: 'http://test.com/',
+    title: 'Junior Fake User',
+    type: 'external',
+    company: 'nudj',
+    status: 'user'
   }
 ])
 data.referrals = data.referrals.concat([
@@ -198,6 +215,77 @@ data.applications = data.applications.concat([
     referral: '1',
     created: '2017-06-08T11:38:19.485+00:00',
     modified: '2017-06-08T11:38:19.485+00:00'
+  }
+])
+data.employees = data.employees.concat([
+  {
+    id: 'employee1',
+    person: '21',
+    company: '99',
+    created: '2017-06-08T11:38:19.485+00:00',
+    modified: '2017-06-08T11:38:19.485+00:00'
+  },
+  {
+    id: 'employee2',
+    person: '26',
+    company: '99',
+    created: '2017-06-08T11:38:19.485+00:00',
+    modified: '2017-06-08T11:38:19.485+00:00'
+  }
+])
+data.surveys = data.surveys.concat([
+  {
+    id: 'survey1',
+    created: '2017-06-08T11:38:19.485+00:00',
+    modified: '2017-06-08T11:38:19.485+00:00',
+    company: '99',
+    link: 'https://nudj.typeform.com/to/gfAnDV',
+    uuid: 'gfAnDV'
+  }
+])
+data.tokens = data.tokens.concat([
+  {
+    data: {
+      employeeSurvey: 'employeeSurvey1'
+    },
+    token: 'NICEFATHASH',
+    type: 'SURVEY_TYPEFORM_COMPLETE',
+    created: '2017-06-08T11:38:19.485+00:00',
+    modified: '2017-06-08T11:38:19.485+00:00',
+    id: '1'
+  },
+  {
+    data: {
+      employeeSurvey: 'employeeSurvey2'
+    },
+    token: 'NICEFATHASH2',
+    type: 'SHARE_COMPANY_JOBS',
+    created: '2017-06-08T11:38:19.485+00:00',
+    modified: '2017-06-08T11:38:19.485+00:00',
+    id: '2'
+  },
+  {
+    data: {
+      employeeSurvey: 'employeeSurvey2'
+    },
+    token: 'NICEFATHASH3',
+    type: 'SHARE_COMPANY_JOBS',
+    created: '2017-06-08T11:38:19.485+00:00',
+    modified: '2017-06-08T11:38:19.485+00:00',
+    id: '3'
+  }
+])
+data.employeeSurveys = data.employeeSurveys.concat([
+  {
+    id: 'employeeSurvey1',
+    employee: 'employee1',
+    survey: 'survey1'
+  },
+  {
+    id: 'employeeSurvey2',
+    employee: 'employee2',
+    survey: 'survey1',
+    typeformToken: '17df26f9c987c7eb3e50325caa60c913'
   }
 ])
 

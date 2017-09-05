@@ -18,4 +18,9 @@ function request (query, variables) {
   })
 }
 
+function openRequest (url, options) {
+  return libRequest(url, options)
+}
+
 module.exports = request
+module.exports.openRequest = openRequest

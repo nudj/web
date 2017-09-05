@@ -13,6 +13,7 @@ let RedisStore = require('connect-redis')(session)
 
 let authRoutes = require('./routes/auth')
 let appRoutes = require('./routes/app')
+let tokenRoutes = require('./routes/token')
 
 let strategy = new Auth0Strategy({
   domain: process.env.AUTH0_DOMAIN,
@@ -57,6 +58,7 @@ app.use('/assets', express.static(path.join(__dirname, 'assets')))
 app.use(session(sessionOpts))
 app.use(passport.initialize())
 app.use(passport.session())
+app.use(tokenRoutes.api)
 app.use(csrf({}))
 app.use((req, res, next) => {
   if (req.body && req.body._csrf) {
@@ -76,6 +78,7 @@ app.use((req, res, next) => {
 })
 
 app.use(authRoutes)
+app.use(tokenRoutes.application)
 app.use(appRoutes)
 
 app.use((req, res) => {

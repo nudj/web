@@ -13,6 +13,7 @@ const styles = {
   mobileMessage: {
     color: variables.colours.royalBlue,
     display: 'block',
+    textAlign: 'center',
     [mixins.breakpoints.ns]: {
       display: 'none'
     }
@@ -34,7 +35,8 @@ const styles = {
     }
   },
   actionLink: {
-    padding: variables.padding.e,
+    padding: variables.padding.d,
+    textAlign: 'center',
     textDecoration: 'none'
   },
   actionTitle: {
@@ -47,18 +49,7 @@ const styles = {
     padding: `${variables.padding.d} 0`,
     [mixins.breakpoints.ns]: mixins.flexColumn()
   },
-  linkContainer: merge({}, mixins.headings.p, {
-    backgroundColor: variables.colours.lighterGrey,
-    borderColor: 'transparent',
-    borderRadius: variables.sizes.formsInputBorderRadius,
-    color: variables.colours.charcoal,
-    fontFamily: 'monospace',
-    margin: `0 0 ${variables.padding.c} 0`,
-    padding: variables.padding.e,
-    textOverflow: 'ellipsis',
-    width: 'auto', // ?
-    whiteSpace: 'nowrap'
-  }),
+  linkContainer: mixins.linkContainer,
   copyLink: mixins.buttonPrimary(),
   copyLinkIcon: {
     cursor: 'pointer',
@@ -73,6 +64,12 @@ const styles = {
   gLink: sharingIcons,
   linkText: {}
 }
+
+styles.containerMobileOnly = merge({}, styles.container, {
+  [mixins.breakpoints.l]: {
+    display: 'none'
+  }
+})
 
 let colouredStyles = {}
 
