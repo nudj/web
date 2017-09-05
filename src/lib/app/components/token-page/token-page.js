@@ -17,8 +17,8 @@ class TokenPage extends React.Component {
     this.state = {tokenType}
   }
 
-  makeLink (companySlug, jobSlug, referralId) {
-    return `https://nudj.co/jobs/${companySlug}+${jobSlug}+${referralId}`
+  makeLink (hostname, companySlug, jobSlug, referralId) {
+    return `https://${hostname}/jobs/${companySlug}+${jobSlug}+${referralId}`
   }
 
   renderTypeformResults (typeformResults) {
@@ -49,12 +49,13 @@ class TokenPage extends React.Component {
     const company = get(this.props, 'employee.company')
     const companySlug = get(company, 'slug')
     const jobs = get(this.props, 'jobs')
+    const hostname = get(this.props, 'url.hostname')
 
     const jobsList = jobs.map((job, index) => {
       const jobSlug = get(job, 'slug')
       const referralId = get(job, 'referral.id')
       const jobTitle = get(job, 'title')
-      const link = this.makeLink(companySlug, jobSlug, referralId)
+      const link = this.makeLink(hostname, companySlug, jobSlug, referralId)
 
       const referral = get(job, 'referral')
       const url = get(this.props, 'url')

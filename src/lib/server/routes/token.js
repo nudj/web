@@ -27,7 +27,7 @@ const commonErrors = {
 }
 
 function generateLinkFromToken (token) {
-  return `https://nudj.co/token/${token}`
+  return `https://${process.env.DOMAIN}/token/${token}`
 }
 
 // Just handles API errors

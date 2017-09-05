@@ -27,16 +27,6 @@ function getUserInfo (user) {
   return {email, firstName, lastName, url}
 }
 
-let router = express.Router()
-
-// Perform session logout and redirect to last known page or homepage
-router.get('/logout', (req, res, next) => {
-  req.logout()
-  delete req.session.person
-  req.session.logout = true
-  res.redirect(req.get('Referrer') || '/')
-})
-
 function checkForErrors (data) {
   if (data.errors) {
     logger.log('error', data.errors[0].message, data.errors[0])
@@ -44,6 +34,22 @@ function checkForErrors (data) {
   }
   return data
 }
+
+let router = express.Router()
+
+// Perform session logout and redirect to last known page or homepage
+router.get('/logout', cacheReturnTo, (req, res, next) => {
+  req.logOut()
+  delete req.session.person
+  req.session.logout = true
+  res.clearCookie('connect.sid', {path: '/'})
+  res.redirect(`https://${process.env.AUTH0_DOMAIN}/v2/logout?returnTo=${encodeURIComponent(`http://${process.env.DOMAIN}/loggedout`)}&client_id=${process.env.AUTH0_CLIENT_ID}`)
+})
+
+router.get('/loggedout', (req, res, next) => {
+  const returnTo = req.session.returnTo
+  req.session.destroy(() => res.redirect(returnTo || '/'))
+})
 
 router.get('/callback',
   passport.authenticate('auth0', { failureRedirect: '/login' }),
