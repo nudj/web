@@ -8,6 +8,11 @@ function createEmployeeSurvey (employee, survey, typeformToken) {
     .then(data => data.employeeSurvey)
 }
 
+function updateEmployeeSurvey ({ id, input }) {
+  return request(queries.UpdateEmployeeSurvey, { id, input })
+    .then(data => data.employeeSurvey)
+}
+
 function fetchEmployeeSurvey (id) {
   return request(queries.GetEmployeeSurvey, { id })
     .then(data => data.employeeSurvey)
@@ -20,5 +25,10 @@ module.exports.get = function (data, id) {
 
 module.exports.post = function (data, employee, survey, typeformToken) {
   data.newEmployeeSurvey = createEmployeeSurvey(employee, survey, typeformToken)
+  return promiseMap(data)
+}
+
+module.exports.patch = function (data, id, input) {
+  data.employeeSurvey = updateEmployeeSurvey({ id, input })
   return promiseMap(data)
 }
