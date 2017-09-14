@@ -29,14 +29,15 @@ ssh:
 		-p 0.0.0.0:81:81 \
 		-p 0.0.0.0:82:82 \
 		-v $(CWD)/.zshrc:/root/.zshrc \
-		-v $(CWD)/src/lib:/usr/src/lib \
-		-v $(CWD)/src/mocks:/usr/src/mocks \
+		-v $(CWD)/src/app:/usr/src/app \
 		-v $(CWD)/src/test:/usr/src/test \
 		-v $(CWD)/src/.npmrc:/usr/src/.npmrc \
 		-v $(CWD)/src/nodemon.json:/usr/src/nodemon.json \
 		-v $(CWD)/src/package.json:/usr/src/package.json \
-		-v $(CWD)/src/webpack.client.js:/usr/src/webpack.client.js \
-		-v $(CWD)/src/webpack.server.js:/usr/src/webpack.server.js \
+		-v $(CWD)/src/webpack.config.js:/usr/src/webpack.config.js \
+		-v $(CWD)/src/webpack.dll.js:/usr/src/webpack.dll.js \
+		-v $(CWD)/../framework/src:/usr/src/framework \
+		-v $(CWD)/../api/src:/usr/src/api \
 		$(IMAGEDEV) \
 		/bin/zsh
 
@@ -44,7 +45,8 @@ test:
 	-@docker rm -f web-test 2> /dev/null || true
 	@docker run --rm -it \
 		--name web-test \
-		-v $(CWD)/src/lib:/usr/src/lib \
-		-v $(CWD)/src/mocks:/usr/src/mocks \
+		-v $(CWD)/src/app:/usr/src/app \
 		-v $(CWD)/src/test:/usr/src/test \
-		$(IMAGEDEV)
+		-v $(CWD)/src/package.json:/usr/src/package.json \
+		$(IMAGEDEV) \
+		/bin/sh -c './node_modules/.bin/standard && ./node_modules/.bin/mocha --recursive test'
