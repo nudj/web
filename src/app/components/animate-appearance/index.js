@@ -16,7 +16,7 @@ class AnimateAppearance extends React.Component {
   componentDidMount () {
     window.addEventListener('resize', this.handleScroll)
     window.addEventListener('scroll', this.handleScroll)
-    window.requestAnimationFrame(() => this.handleScroll())
+    window.requestAnimationFrame(this.handleScroll)
   }
 
   componentWillUnmount () {
