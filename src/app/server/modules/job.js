@@ -1,5 +1,3 @@
-const { promiseMap } = require('@nudj/library')
-
 const request = require('../lib/request')
 const queries = require('../lib/queries-mutations')
 
@@ -64,6 +62,6 @@ module.exports.getReferral = function ({ job, person }) {
   return request(queries.GetReferral, { job, person })
 }
 
-module.exports.apply = function ({ parent, job, person }) {
+module.exports.apply = function ({ referral, job, person }) {
   return request(queries.CreateApplicationForPerson, { referral, job, person })
 }
