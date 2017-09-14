@@ -30,6 +30,7 @@
     "@nudj/library": "1.0.0",
     "@nudj/schemas": "0.12.0",
     "aphrodite": "^1.2.1",
+    "babel-register": "^6.26.0",
     "body-parser": "^1.16.1",
     "classnames": "^2.2.5",
     "connect-ensure-login": "^0.1.1",
