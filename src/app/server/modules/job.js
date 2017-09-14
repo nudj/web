@@ -3,8 +3,16 @@ const { promiseMap } = require('@nudj/library')
 const request = require('../lib/request')
 const queries = require('../lib/queries-mutations')
 
-function ensureValidReferralUrl (params) {
-  return request(queries.GetCompanyJobAndReferral, params)
+function ensureValidReferralUrl ({
+  companySlug,
+  jobSlug,
+  refId
+}) {
+  return request(queries.GetCompanyJobAndReferral, {
+    companySlug,
+    jobSlug,
+    refId
+  })
   .then(data => {
     let company = data.company
     let job = data.job
@@ -22,43 +30,40 @@ function ensureValidReferralUrl (params) {
 }
 module.exports.ensureValidReferralUrl = ensureValidReferralUrl
 
-module.exports.get = function (params) {
-  return request(queries.GetReferralAndJobForPerson, params)
+module.exports.get = function ({
+  companySlug,
+  jobSlug,
+  refId,
+  personId,
+  loggedIn
+}) {
+  return request(queries.GetReferralAndJobForPerson, {
+    companySlug,
+    jobSlug,
+    refId,
+    personId,
+    loggedIn
+  })
 }
 
-module.exports.getAllByCompany = function (data, company) {
-  data.jobs = request(queries.GetJobsForCompany, {company})
+module.exports.getAllByCompany = function ({ company }) {
+  return request(queries.GetJobsForCompany, { company })
     .then(data => data.job)
-  return promiseMap(data)
 }
 
-module.exports.getNudjByJobAndPerson = function (params) {
-  return request(queries.GetReferralByJobAndPerson, {
-    job: params.job,
-    person: params.person
-  })
-  .then(data => data.referral)
+module.exports.getNudjByJobAndPerson = function ({ job, person }) {
+  return request(queries.GetReferralByJobAndPerson, { job, person })
+    .then(data => data.referral)
 }
 
-module.exports.nudj = function (params) {
-  return request(queries.CreateReferralForPerson, {
-    parent: params.parent,
-    job: params.job,
-    person: params.person
-  })
+module.exports.nudj = function ({ parent, job, person }) {
+  return request(queries.CreateReferralForPerson, { parent, job, person })
 }
 
-module.exports.getReferral = function (params) {
-  return request(queries.GetReferral, {
-    job: params.job,
-    person: params.person
-  })
+module.exports.getReferral = function ({ job, person }) {
+  return request(queries.GetReferral, { job, person })
 }
 
-module.exports.apply = function (params) {
-  return request(queries.CreateApplicationForPerson, {
-    referral: params.referral,
-    job: params.job,
-    person: params.person
-  })
+module.exports.apply = function ({ parent, job, person }) {
+  return request(queries.CreateApplicationForPerson, { referral, job, person })
 }

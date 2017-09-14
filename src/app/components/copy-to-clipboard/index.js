@@ -1,6 +1,7 @@
 const React = require('react')
 const get = require('lodash/get')
 const omit = require('lodash/omit')
+const mapKeys = require('lodash/mapKeys')
 const ClipboardButton = require('react-clipboard.js')
 
 class CopyToClipboard extends React.Component {
@@ -34,11 +35,15 @@ class CopyToClipboard extends React.Component {
     this.setState(change)
   }
   render () {
-    let filteredProps = omit(this.props, [
+    const filteredProps = omit(this.props, [
       'children',
       'onSuccess'
     ])
-    return <ClipboardButton {...filteredProps} onSuccess={this.onSuccess}>{get(this.state, 'text')}</ClipboardButton>
+    const mappedProps = mapKeys(filteredProps, (value, key) => {
+      return `button-${key}`
+    })
+    console.log(mappedProps)
+    return <ClipboardButton {...mappedProps} onSuccess={this.onSuccess}>{get(this.state, 'text')}</ClipboardButton>
   }
 }
 

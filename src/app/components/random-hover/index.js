@@ -18,12 +18,12 @@ class RandomHover extends React.Component {
   }
   componentDidMount () {
     this.setState({
-      className: this.style[`style${getRandomInt(1, buttonHoverOptionSVGs.length)}`]
+      className: this.style[`style${getRandomInt(1, buttonHoverOptionSVGs.length - 1)}`]
     })
   }
   onMouseLeave (event) {
     this.setState({
-      className: this.style[`style${getRandomInt(1, buttonHoverOptionSVGs.length)}`]
+      className: this.style[`style${getRandomInt(1, buttonHoverOptionSVGs.length - 1)}`]
     })
     this.props.onMouseLeave && this.props.onMouseLeave(event)
   }

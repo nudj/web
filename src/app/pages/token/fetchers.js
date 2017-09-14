@@ -65,7 +65,7 @@ function shareCompanyJobsHandler (data) {
       data.typeformToken = typeformToken
 
       // Get the jobs from the company
-      return job.getAllByCompany(data, company.id)
+      return job.getAllByCompany({ company: company.id })
     })
     .then(data => {
       // For each job, create a referral link
