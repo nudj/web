@@ -5,6 +5,7 @@ const get = require('lodash/get')
 const Page = require('../../components/page')
 const Header = require('../../components/header')
 const Message = require('../../components/message')
+const RandomHover = require('../../components/random-hover')
 
 const Request = (props) => {
   const style = getStyle()
@@ -47,7 +48,7 @@ const Request = (props) => {
             </div>
           </div>
           <div className={style.fieldButtons}>
-            <input className={style.fieldSubmit} type='submit' value='Request access' />
+            <RandomHover><input className={style.fieldSubmit} type='submit' value='Request access' /></RandomHover>
           </div>
         </fieldset>
       </form>

@@ -9,6 +9,7 @@ const { getStyle, setStyles } = require('./style.css')
 const Page = require('../../components/page')
 const Header = require('../../components/header')
 const NudjSuccess = require('../../components/nudj-success')
+const RandomHover = require('../../components/random-hover')
 
 const { render } = require('../../lib/templater')
 const PrismicReact = require('../../lib/prismic/react')
@@ -73,7 +74,7 @@ const Job = (props) => {
   setStyles()
   const style = getStyle()
 
-  const applyForJobButton = application ? (<button className={style.applied} disabled>We'll be in touch soon</button>) : (<button className={style.apply}>Find out more</button>)
+  const applyForJobButton = application ? (<button className={style.applied} disabled>We'll be in touch soon</button>) : (<RandomHover><button className={style.apply}>Find out more</button></RandomHover>)
 
   const uniqueLink = `/jobs/${get(props, 'job.company.slug', '')}+${get(props, 'job.slug', '')}${referral ? `+${referral.id}` : ''}`
 
@@ -136,7 +137,7 @@ const Job = (props) => {
     </div>)
     actions.unshift(nudjd)
   } else {
-    const nudjButton = (<button className={style.nudj}>Send to a friend</button>)
+    const nudjButton = (<RandomHover><button className={style.nudj}>Send to a friend</button></RandomHover>)
     const nudjForm = (<form className={style.action} action={`${uniqueLink}/nudj`} method='POST' onSubmit={onFormSubmit('new-referral', props)}>
       <input type='hidden' name='_csrf' value={props.csrfToken} />
       {nudjButton}

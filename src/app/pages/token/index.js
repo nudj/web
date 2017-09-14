@@ -5,6 +5,7 @@ const Page = require('../../components/page')
 const Header = require('../../components/header')
 const NudjSuccess = require('../../components/nudj-success')
 const CopyToClipboard = require('../../components/copy-to-clipboard')
+const RandomHover = require('../../components/random-hover')
 const { getStyle } = require('./style.css')
 
 const makeLink = (hostname, companySlug, jobSlug, referralId) => {
@@ -60,7 +61,7 @@ const TokenPage = (props) => {
         <NudjSuccess {...copyProps} />
         <div className={style.linkContainer}>{link}</div>
         <div className={style.buttonContainer}>
-          <CopyToClipboard className={style.shareLinkButton} data-clipboard-text={link}>Copy</CopyToClipboard>
+          <RandomHover><CopyToClipboard className={style.shareLinkButton} data-clipboard-text={link}>Copy</CopyToClipboard></RandomHover>
         </div>
       </li>
     )

@@ -2,10 +2,6 @@ const { merge } = require('@nudj/library')
 
 const variables = require('./variables')
 
-function getRandomInt (min, max) {
-  return Math.floor(Math.random() * (max - min)) + min
-}
-
 // Breakpoints
 const breakpoints = {
   // Using max-width is counter to the progressive-enhancement ideals, please use sparingly
@@ -204,8 +200,7 @@ const button = (properties) => {
 module.exports.button = button
 
 function buttonPrimaryHover () {
-  const index = getRandomInt(1, variables.buttonHoverOptionSVGs.length)
-  const base = variables.buttonHoverOptionSVGs[index - 1]
+  const base = variables.buttonHoverOptionSVGs[1]
   const left = linkImage(`${base}-left.svg`)
   const right = linkImage(`${base}-right.svg`)
 

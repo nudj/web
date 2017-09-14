@@ -6,6 +6,7 @@ const getStyle = require('./style.css')
 const Page = require('../../components/page')
 const AnimateAppearance = require('../../components/animate-appearance')
 const Header = require('../../components/header')
+const RandomHover = require('../../components/random-hover')
 
 const words = [
   'designers',
@@ -91,7 +92,7 @@ const HomePage = (props) => {
           </AnimateAppearance>
           <AnimateAppearance from='bottom'>
             <div className={style.cta}>
-              <Link to='/signup' className={style.signupButton}>Sign up</Link>
+              <RandomHover><Link to='/signup' className={style.signupButton}>Sign up</Link></RandomHover>
               <span className={style.or}>or</span>
               <a href='/' id='open-intercom' className={style.contact}>Get in touch</a>
             </div>

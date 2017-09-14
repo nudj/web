@@ -5,6 +5,7 @@ const getStyle = require('./style.css')
 const Page = require('../../components/page')
 const Header = require('../../components/header')
 const Message = require('../../components/message')
+const RandomHover = require('../../components/random-hover')
 
 const SignUp = (props) => {
   const style = getStyle()
@@ -82,7 +83,7 @@ const SignUp = (props) => {
             </div>
           </div>
           <div className={style.fieldButtons}>
-            <input className={style.fieldSubmit} type='submit' value='Sign up' />
+            <RandomHover><input className={style.fieldSubmit} type='submit' value='Sign up' /></RandomHover>
           </div>
         </fieldset>
       </form>

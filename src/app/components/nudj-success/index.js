@@ -3,6 +3,7 @@ const get = require('lodash/get')
 
 const { getStyle, setStyles } = require('./nudj-success.css')
 const CopyToClipboard = require('../copy-to-clipboard')
+const RandomHover = require('../random-hover')
 
 const NudjSuccess = (props) => {
   const backgroundColour = get(props, 'backgroundColour')
@@ -47,7 +48,7 @@ const NudjSuccess = (props) => {
       </div>
       <div className={style.link}>
         <div className={style.linkContainer}>{link}</div>
-        <CopyToClipboard id='copy' className={style.copyLink} data-clipboard-text={link}>Copy link</CopyToClipboard>
+        <RandomHover><CopyToClipboard id='copy' className={style.copyLink} data-clipboard-text={link}>Copy link</CopyToClipboard></RandomHover>
       </div>
     </div>
   )

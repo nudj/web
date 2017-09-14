@@ -1,4 +1,5 @@
-const { css, mixins, variables } = require('../../lib/css')
+const { css } = require('@nudj/framework/css')
+const { mixins, variables } = require('../../lib/css')
 
 const styles = {
   bodyContainer: {},

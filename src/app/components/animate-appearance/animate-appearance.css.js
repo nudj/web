@@ -1,4 +1,5 @@
-const { css, mixins } = require('../../lib/css')
+const { css } = require('@nudj/framework/css')
+const { mixins } = require('../../lib/css')
 
 const styles = {
   appear: mixins.appear(),

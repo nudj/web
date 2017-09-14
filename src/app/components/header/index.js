@@ -4,6 +4,7 @@ const { Link } = require('react-router-dom')
 
 const { getStyle, setStyles } = require('./header.css')
 const nudjLogo = require('./nudj-logo')
+const RandomHover = require('../random-hover')
 
 const offsetTrigger = 100
 
@@ -139,7 +140,7 @@ class Header extends React.Component {
     const help = (<a href='http://help.nudj.co' className={linkStyle} onClick={this.onClickLink} key='0'>Help</a>)
     const blog = (<a href='http://blog.nudj.co' className={linkStyle} onClick={this.onClickLink} key='1'>Blog</a>)
     const companies = (<Link to='/hiring' className={linkStyle} onClick={this.onClickLink} key='2'>Companies</Link>)
-    const getInTouch = (<a href='' id='open-intercom' className={requestStyle} onClick={this.onClickLink} key='3'>Get in touch</a>)
+    const getInTouch = (<RandomHover key='3'><a href='' id='open-intercom' className={requestStyle} onClick={this.onClickLink}>Get in touch</a></RandomHover>)
 
     const defaultNav = [help, blog, companies, getInTouch]
 

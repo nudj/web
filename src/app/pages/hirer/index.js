@@ -5,6 +5,7 @@ const getStyle = require('./style.css')
 const Page = require('../../components/page')
 const Header = require('../../components/header')
 const AnimateAppearance = require('../../components/animate-appearance')
+const RandomHover = require('../../components/random-hover')
 
 const Hirer = (props) => {
   const style = getStyle()
@@ -140,7 +141,7 @@ const Hirer = (props) => {
           </AnimateAppearance>
           <div className={style.cta}>
             <AnimateAppearance from='bottom'>
-              <Link to='/request' className={style.signup}>Request access</Link>
+              <RandomHover><Link to='/request' className={style.signup}>Request access</Link></RandomHover>
               <span className={style.or}>or</span>
               <a href='/' id='open-intercom' className={style.contact}>Get in touch</a>
             </AnimateAppearance>
