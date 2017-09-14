@@ -1,4 +1,3 @@
-require('aphrodite')
 require('classnames')
 require('date-fns/format')
 require('date-fns/get_time')
