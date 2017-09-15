@@ -26,19 +26,19 @@ const styles = {
     position: 'relative'
   },
   tokenHeaderContent: mixins.basicContainer(),
-  tokenHeaderTitle: merge({}, mixins.typography.titleCharcoal, centerAlign),
-  tokenHeaderDescription: merge({}, mixins.typography.copy, centerAlign, {
+  tokenHeaderTitle: merge(mixins.typography.titleCharcoal, centerAlign),
+  tokenHeaderDescription: merge(mixins.typography.copy, centerAlign, {
     margin: `0 0 ${variables.padding.c} 0`
   }),
   tokenContent: mixins.basicContainer(),
-  tokenTitle: merge({}, mixins.typography.subtitle, centerAlign, {
+  tokenTitle: merge(mixins.typography.subtitle, centerAlign, {
     margin: `0 0 ${variables.padding.e} 0`
   }),
-  tokenCopy: merge({}, mixins.typography.copy, centerAlign, {
+  tokenCopy: merge(mixins.typography.copy, centerAlign, {
     margin: `0 0 ${variables.padding.c} 0`
   }),
   shareLinkButton: mixins.buttonPrimary(),
-  linkContainer: merge({}, mixins.linkContainer, {
+  linkContainer: merge(mixins.linkContainer, {
     display: 'none',
     flex: '2',
     margin: '0',
@@ -67,7 +67,7 @@ const styles = {
       minHeight: variables.padding.e
     }
   }),
-  jobsListItemTitle: merge({}, mixins.headings.h6, {
+  jobsListItemTitle: merge(mixins.headings.h6, {
     padding: `0 0 ${variables.padding.d} 0`,
     textAlign: 'center',
     [mixins.breakpoints.l]: {
@@ -87,24 +87,24 @@ const styles = {
     }
   },
   getSurveyResults: mixins.buttonSecondary(),
-  table: merge({}, mixins.basicTable.table, {
+  table: merge(mixins.basicTable.table, {
     overflow: 'hidden',
     tableLayout: 'fixed'
   }),
   tableHeaderRow: mixins.basicTable.tableHeaderRow,
-  tableHeader: merge({}, mixins.basicTable.tableHeader, {
+  tableHeader: merge(mixins.basicTable.tableHeader, {
     fontWeight: 'bold',
     textAlign: 'left'
   }),
-  tableHeaderFirst: merge({}, mixins.basicTable.tableHeaderFirst, {
+  tableHeaderFirst: merge(mixins.basicTable.tableHeaderFirst, {
     width: variables.padding.c
   }),
   tableBody: mixins.basicTable.tableBody,
   tableRow: mixins.basicTable.tableRow,
-  tableCell: merge({}, mixins.basicTable.tableCell, {
+  tableCell: merge(mixins.basicTable.tableCell, {
     textAlign: 'left'
   }),
-  tableCellEvenRow: merge({}, mixins.basicTable.tableCell, {
+  tableCellEvenRow: merge(mixins.basicTable.tableCell, {
     backgroundColor: variables.colours.lighterGrey,
     textAlign: 'left'
   }),
