@@ -46,7 +46,7 @@ module.exports.get = function ({
 
 module.exports.getAllByCompany = function ({ company }) {
   return request(queries.GetJobsForCompany, { company })
-    .then(data => data.job)
+    .then(data => data.jobs)
 }
 
 module.exports.getNudjByJobAndPerson = function ({ job, person }) {

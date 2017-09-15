@@ -1,4 +1,5 @@
 const {
+  merge,
   promiseMap
 } = require('@nudj/library')
 const get = require('lodash/get')
@@ -65,7 +66,7 @@ function shareCompanyJobsHandler (data) {
       data.typeformToken = typeformToken
 
       // Get the jobs from the company
-      return job.getAllByCompany({ company: company.id })
+      return job.getAllByCompany({ company: company.id }).then(jobs => merge(data, { jobs }))
     })
     .then(data => {
       // For each job, create a referral link

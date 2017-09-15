@@ -243,7 +243,7 @@ data.surveys = data.surveys.concat([
 data.tokens = data.tokens.concat([
   {
     data: {
-      employeeSurvey: 'employeeSurvey1'
+      employeeSurvey: 'employeeSurvey2'
     },
     token: 'NICEFATHASH',
     type: 'SURVEY_TYPEFORM_COMPLETE',

@@ -292,7 +292,7 @@ module.exports = {
     query GetJobsForCompany (
       $company: ID!
     ) {
-      job:jobs(filters: { company: $company })
+      jobs:jobs(filters: { company: $company })
       {
         id
         slug
