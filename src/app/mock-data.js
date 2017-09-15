@@ -186,7 +186,7 @@ data.people = data.people.concat([
     modified: '2000-01-17T02:51:58.000+00:00',
     firstName: 'Tim',
     lastName: 'Robinson',
-    email: 'tim@nudj.co',
+    email: 'jamie@nudj.co',
     url: 'http://test.com/',
     title: 'Junior Fake User',
     type: 'external',
@@ -243,7 +243,7 @@ data.surveys = data.surveys.concat([
 data.tokens = data.tokens.concat([
   {
     data: {
-      employeeSurvey: 'employeeSurvey1'
+      employeeSurvey: 'employeeSurvey2'
     },
     token: 'NICEFATHASH',
     type: 'SURVEY_TYPEFORM_COMPLETE',

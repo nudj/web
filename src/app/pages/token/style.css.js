@@ -7,34 +7,36 @@ const listStyle = {
   margin: 0
 }
 
-const leftAlign = {
+const centerAlign = {
   [mixins.breakpoints.l]: {
-    textAlign: 'inherit'
+    textAlign: 'center'
   }
 }
 
 const styles = {
   token: {
     backgroundColor: variables.colours.white,
-    padding: `${variables.padding.b} 0`,
+    padding: `${variables.padding.c} 0`,
     position: 'relative',
     [mixins.breakpoints.l]: {
-      padding: `${variables.padding.a} 0 ${variables.padding.b} 0`
+      padding: `${variables.padding.b} 0 ${variables.padding.b} 0`
     }
   },
   tokenHeader: {
     position: 'relative'
   },
   tokenHeaderContent: mixins.basicContainer(),
-  tokenHeaderTitle: merge({}, mixins.typography.titleCharcoal, leftAlign, {
-    margin: `0 0 ${variables.padding.b} 0`
-  }),
-  tokenHeaderDescription: merge({}, mixins.typography.copy, leftAlign, {
-    margin: `0 0 ${variables.padding.b} 0`
+  tokenHeaderTitle: merge({}, mixins.typography.titleCharcoal, centerAlign),
+  tokenHeaderDescription: merge({}, mixins.typography.copy, centerAlign, {
+    margin: `0 0 ${variables.padding.c} 0`
   }),
   tokenContent: mixins.basicContainer(),
-  tokenTitle: merge({}, mixins.typography.subtitle, leftAlign),
-  tokenCopy: merge({}, mixins.typography.copy, leftAlign),
+  tokenTitle: merge({}, mixins.typography.subtitle, centerAlign, {
+    margin: `0 0 ${variables.padding.e} 0`
+  }),
+  tokenCopy: merge({}, mixins.typography.copy, centerAlign, {
+    margin: `0 0 ${variables.padding.c} 0`
+  }),
   shareLinkButton: mixins.buttonPrimary(),
   linkContainer: merge({}, mixins.linkContainer, {
     display: 'none',
