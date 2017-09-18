@@ -1,19 +1,22 @@
+source /root/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 PROMPT='web» '
 
 alias run="node ."
-alias dev='./node_modules/.bin/nodemon \
-			--config ./nodemon.json \
-			-e js,html,css \
-			--quiet \
-			--watch ./ \
-			--delay 250ms \
-			-x "printf \"\n\nBuilding...\n\" && ./node_modules/.bin/webpack --config ./webpack.client.js --bail --hide-modules && ./node_modules/.bin/webpack --config ./webpack.server.js --bail --hide-modules && node ."'
+alias dev='./node_modules/.bin/webpack --config ./webpack.dll.js --bail --hide-modules && \
+	./node_modules/.bin/nodemon \
+		--config ./nodemon.json \
+		-e js,html,css \
+		--quiet \
+		--watch ./ \
+		--delay 250ms \
+		-x "printf \"\n\nBuilding...\n\" && ./node_modules/.bin/webpack --config ./webpack.config.js --bail --hide-modules && node ."'
 alias test="./node_modules/.bin/standard && ./node_modules/.bin/mocha --recursive test"
 alias tdd='./node_modules/.bin/nodemon \
 	--quiet \
 	--watch ./ \
 	--delay 250ms \
-	-x "./node_modules/.bin/mocha test/*.js || exit 1"'
+	-x "./node_modules/.bin/standard && ./node_modules/.bin/mocha --recursive test || exit 1"'
 
 alias ll="ls -la"
 alias d="docker"
@@ -30,3 +33,12 @@ bindkey "^X\\x7f" backward-kill-line
 
 # adds redo
 bindkey "^X^_" redo
+
+# history substring search
+zle -N history-substring-search-up
+zle -N history-substring-search-down
+bindkey "^[OA" history-substring-search-up
+bindkey "^[OB" history-substring-search-down
+
+source /root/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /root/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
