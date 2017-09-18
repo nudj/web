@@ -9,6 +9,14 @@ const Footer = (props) => {
     <div className={style.container}>
       <ul className={style.links}>
         <li className={style.link}>
+          <a className={style.help} href='http://help.nudj.co/' target='_blank'>Help Centre</a>
+          <p className={style.label}>Learn how to how to hire and get hired with nudj.</p>
+        </li>
+        <li className={style.link}>
+          <a className={style.blog} href='http://blog.nudj.co' target='_blank'>Blog</a>
+          <p className={style.label}>Musings, observations and ideas from the makers of nudj.</p>
+        </li>
+        <li className={style.link}>
           <a className={style.release} href='//headwayapp.co/nudj-updates' target='_blank'>Release Notes</a>
           <p className={style.label}>Discover what we've just shipped.</p>
         </li>
