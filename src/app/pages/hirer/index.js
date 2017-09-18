@@ -143,7 +143,7 @@ const Hirer = (props) => {
             <AnimateAppearance from='bottom'>
               <RandomHover><Link to='/request' className={style.signup}>Request access</Link></RandomHover>
               <span className={style.or}>or</span>
-              <a href='/' id='open-intercom' className={style.contact}>Get in touch</a>
+              <a href='mailto:hello@nudj.co' id='open-intercom' className={style.contact}>Get in touch</a>
             </AnimateAppearance>
           </div>
         </div>

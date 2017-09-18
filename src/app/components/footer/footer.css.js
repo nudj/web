@@ -72,6 +72,8 @@ const styles = {
       }
     }
   },
+  help: titles,
+  blog: titles,
   release: titles,
   roadmap: titles,
   hiring: titles,

@@ -31,6 +31,7 @@ steps:
       branch:
         only:
           - develop
+          - master
 
   push_latest:
     title: Push Latest
@@ -49,7 +50,7 @@ steps:
     title: Push Release
     type: push
     candidate: '${{build}}'
-    tag: 2.2.0
+    tag: 3.0.1
     credentials:
       username: '${{dockerUsername}}'
       password: '${{dockerPassword}}'
