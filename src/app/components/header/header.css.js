@@ -25,7 +25,7 @@ const navBarConstantBase = {
   display: 'flex',
   justifyContent: 'space-between',
   left: '0',
-  padding: `${variables.padding.e} calc(${variables.padding.d} + ${variables.padding.e})`,
+  padding: `${variables.padding.e} ${variables.padding.d} ${variables.padding.e} calc(${variables.padding.d} + ${variables.padding.e})`,
   position: 'fixed',
   top: '0',
   width: '100%', // ?
@@ -91,11 +91,11 @@ const innerBurgerMiddle = merge({}, innerBurger, {
 })
 
 const innerBurgerColour = {
-  backgroundColor: variables.colours.white
+  backgroundColor: `${variables.colours.white} !important`
 }
 
 const innerBurgerAltColour = {
-  backgroundColor: variables.colours.navy
+  backgroundColor: `${variables.colours.navy} !important`
 }
 
 // Commenting this out for now while we wait for a fix to Aphrodite
@@ -184,10 +184,11 @@ const styles = {
     }
   },
   burger: mixins.deButton({
+    opacity: '1 !important',
     outline: 'none',
     padding: '0',
     ':hover': {
-      opacity: '1'
+      opacity: '1 !important'
     }
   }),
   burgerBox: {
@@ -236,7 +237,7 @@ const setStyles = (backgroundColour, textColour, textHighlightColour, buttonText
   }
 
   const burgerColour = {
-    backgroundColor: variables.colours[textColour] || styles.burgerColoured.backgroundColor
+    backgroundColor: variables.colours[textColour] ? `${variables.colours[textColour]} !important` : styles.burgerColoured.backgroundColor
   }
 
   colouredStyles = {
