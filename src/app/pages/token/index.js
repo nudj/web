@@ -74,7 +74,7 @@ const TokenPage = (props) => {
         <div className={style.tokenHeader}>
           <div className={style.tokenHeaderContent}>
             <h1 className={style.tokenHeaderTitle}>Ready to share your company's jobs?</h1>
-            <p className={style.tokenHeaderDescription}>Thanks for completing the survey! Now share your company's jobs with the people you recommended. These links are unique to you and will ensure your get rewarded should anyone your refer get a job.</p>
+            <p className={style.tokenHeaderDescription}>Thanks for completing the survey! Now share your company's jobs with the people you recommended. These links are unique to you and will ensure you get rewarded should anyone your refer get a job.</p>
           </div>
         </div>
         <ul className={style.jobsList}>
