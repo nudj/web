@@ -19,6 +19,7 @@ const checkApplySecret = (req, res, next) => {
 
 const deleteApplySecret = (req, res, next) => {
   delete req.session.applySecret
+  delete req.session.returnTo
   next()
 }
 
