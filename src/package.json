@@ -50,7 +50,7 @@
     "react-redux": "^5.0.3",
     "react-router-dom": "^4.0.0",
     "react-router-redux": "next",
-    "react-typeout": "^0.6.3",
+    "react-typeout": "^0.6.4",
     "redux": "^3.6.0",
     "validator": "^7.0.0",
     "winston": "^2.3.1"
