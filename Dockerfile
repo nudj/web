@@ -1,5 +1,6 @@
 FROM node:6.11.1
 ARG NPM_TOKEN
+ARG ENVIRONMENT=local
 RUN mkdir -p /usr/src
 WORKDIR /usr/src
 COPY src /usr/src
