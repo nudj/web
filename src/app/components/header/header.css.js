@@ -91,11 +91,11 @@ const innerBurgerMiddle = merge({}, innerBurger, {
 })
 
 const innerBurgerColour = {
-  backgroundColor: `${variables.colours.white} !important`
+  backgroundColor: `${variables.colours.white}`
 }
 
 const innerBurgerAltColour = {
-  backgroundColor: `${variables.colours.navy} !important`
+  backgroundColor: `${variables.colours.navy}`
 }
 
 // Commenting this out for now while we wait for a fix to Aphrodite
@@ -184,11 +184,11 @@ const styles = {
     }
   },
   burger: mixins.deButton({
-    opacity: '1 !important',
+    opacity: '1',
     outline: 'none',
     padding: '0',
     ':hover': {
-      opacity: '1 !important'
+      opacity: '1'
     }
   }),
   burgerBox: {
@@ -237,7 +237,7 @@ const setStyles = (backgroundColour, textColour, textHighlightColour, buttonText
   }
 
   const burgerColour = {
-    backgroundColor: variables.colours[textColour] ? `${variables.colours[textColour]} !important` : styles.burgerColoured.backgroundColor
+    backgroundColor: variables.colours[textColour] ? `${variables.colours[textColour]}` : styles.burgerColoured.backgroundColor
   }
 
   colouredStyles = {

@@ -17,7 +17,7 @@ const post = ({
     refId
   })
   .then(valid => job.apply({
-    referral: params.refId,
+    referral: refId,
     job: valid.job.id,
     person: data.person.id
   }))
