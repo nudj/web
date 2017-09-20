@@ -1,7 +1,28 @@
-var path = require('path')
-var webpack = require('webpack')
+const path = require('path')
+const webpack = require('webpack')
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 
 process.noDeprecation = true
+
+const environment = process.env.ENVIRONMENT
+
+let plugins = [
+  new webpack.DllReferencePlugin({
+    context: '.',
+    manifest: require('./vendors-manifest.json')
+  })
+]
+console.log('Building for environment:', environment)
+if (environment === 'production') {
+  plugins = plugins.concat([
+    new UglifyJSPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify(environment)
+      }
+    })
+  ])
+}
 
 module.exports = {
   cache: true,
@@ -36,12 +57,7 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    new webpack.DllReferencePlugin({
-      context: '.',
-      manifest: require('./vendors-manifest.json')
-    })
-  ],
+  plugins,
   stats: {
     colors: true,
     cached: false,
