@@ -1,5 +1,4 @@
 const {
-  merge,
   promiseMap
 } = require('@nudj/library')
 
