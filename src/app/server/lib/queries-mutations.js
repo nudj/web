@@ -8,6 +8,15 @@ const fragments = {
       lastName
     }
   `,
+  Company: `
+    fragment Company on Company {
+      id
+      name
+      logo
+      slug
+      url
+    }
+  `,
   Job: `
     fragment Job on Job {
       id
@@ -121,6 +130,32 @@ const fragments = {
         ...Survey
       }
       typeformToken
+    }
+  `,
+  Hirer: `
+    fragment Hirer on Hirer {
+      id
+      company {
+        ...Company
+      }
+      person {
+        ...Person
+      }
+    }
+  `,
+  Task: `
+    fragment Task on Task {
+      id
+      company {
+        ...Company
+      }
+      hirer {
+        ...Hirer
+      }
+      type
+      completed {
+        ...Hirer
+      }
     }
   `
 }
@@ -359,5 +394,69 @@ module.exports = {
     ${fragments.EmployeeSurvey}
     ${fragments.Employee}
     ${fragments.Survey}
+  `,
+  GetIncompleteTasks: `
+    query GetIncompleteTasks (
+      $company: ID,
+      $hirer: ID,
+      $type: TaskType!
+    ) {
+      tasks:tasks(filters: {
+        company: $company,
+        hirer: $hirer,
+        type: $type
+        completed: null
+      })
+      {
+        ...Task
+      }
+    }
+    ${fragments.Task}
+    ${fragments.Company}
+    ${fragments.Hirer}
+    ${fragments.Person}
+  `,
+  UpdateTask: `
+    mutation UpdateTask (
+      $id: ID!
+      $input: TaskUpdateInput!
+    ) {
+      task: updateTask(
+        id: $id,
+        input: $input
+      ) {
+        ...Task
+      }
+    }
+    ${fragments.Task}
+    ${fragments.Company}
+    ${fragments.Hirer}
+    ${fragments.Person}
+  `,
+  GetHirer: `
+    query GetHirer (
+      $id: ID!
+    ) {
+      hirer(id: $id) {
+        ...Hirer
+      }
+    }
+    ${fragments.Hirer}
+    ${fragments.Person}
+    ${fragments.Company}
+  `,
+  GetHirerFromPerson: `
+    query GetHirerFromPerson (
+      $person: ID!
+    ) {
+      hirer:hirerByFilters(filters: {
+        person: $person
+      }) {
+        ...Hirer
+      }
+    }
+    ${fragments.Hirer}
+    ${fragments.Person}
+    ${fragments.Company}
   `
 }
