@@ -1,4 +1,4 @@
-const express = require('express')
+const createRouter = require('@nudj/framework/router')
 const createHash = require('hash-generator')
 
 const fetchers = require('./fetchers')
@@ -27,17 +27,17 @@ const Router = ({
   ensureLoggedIn,
   respondWith
 }) => {
-  const router = express.Router()
+  const router = createRouter()
 
-  router.get('/jobs/:companySlugJobSlugRefId/apply', (req, res) => {
+  router.getHandlers('/jobs/:companySlugJobSlugRefId/apply', (req, res) => {
     req.session.notification = {
       type: 'error',
       message: 'No direct access to this url allowed, please apply using the button below'
     }
     res.redirect(`/jobs/${req.params.companySlugJobSlugRefId}`)
   })
-  router.post('/jobs/:companySlugJobSlugRefId/apply', cacheApplySecret, ensureLoggedIn, deleteApplySecret, respondWith(fetchers.post))
-  router.get('/jobs/:companySlugJobSlugRefId/apply/:secret', checkApplySecret, ensureLoggedIn, deleteApplySecret, respondWith(fetchers.post))
+  router.postHandlers('/jobs/:companySlugJobSlugRefId/apply', cacheApplySecret, ensureLoggedIn, deleteApplySecret, respondWith(fetchers.post))
+  router.getHandlers('/jobs/:companySlugJobSlugRefId/apply/:secret', checkApplySecret, ensureLoggedIn, deleteApplySecret, respondWith(fetchers.post))
 
   return router
 }

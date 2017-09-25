@@ -12,7 +12,6 @@ const NudjSuccess = require('../../components/nudj-success')
 const RandomHover = require('../../components/random-hover')
 
 const { render } = require('../../lib/templater')
-const PrismicReact = require('../../lib/prismic/react')
 
 function elementFromString (string) {
   var div = document.createElement('div')
@@ -59,17 +58,8 @@ const Job = (props) => {
   const jobTitle = get(props, 'job.title', '')
   const image = get(props, 'job.company.logo')
   const application = get(props, 'job.application')
-
+  const templates = get(props, 'templates')
   const pageTitle = `${companyName} - ${jobTitle}`
-
-  const rawTemplate = get(props, 'template')
-  const templateContent = new PrismicReact(rawTemplate)
-
-  const template = {
-    title: templateContent.fragmentToText({fragment: 'jobdescription.title'}),
-    description: templateContent.fragmentToText({fragment: 'jobdescription.description'}),
-    colourPrimary: templateContent.fragmentToText({fragment: 'jobdescription.colourprimary'})
-  }
 
   setStyles()
   const style = getStyle()
@@ -83,12 +73,12 @@ const Job = (props) => {
     company: get(props, 'job.company')
   }
 
-  // Double check if we need to modify the article for the job title in template.title
+  // Double check if we need to modify the article for the job title in templates.title
   const jobTitleArticle = determineArticle(data.job.title)
-  template.title = template.title.replace(/an?\s\{\{job.title\}\}/g, `${jobTitleArticle} {{job.title}}`)
+  templates.title = templates.title.replace(/an?\s\{\{job.title\}\}/g, `${jobTitleArticle} {{job.title}}`)
 
   const title = render({
-    template: template.title,
+    template: templates.title,
     data: data,
     tagify: (contents, ok, index, chunk) => {
       if (chunk === 'job.company.name' && data && data.job.company.url) {
@@ -101,7 +91,7 @@ const Job = (props) => {
   })
 
   const description = render({
-    template: template.description,
+    template: templates.description,
     data: data
   })
 
