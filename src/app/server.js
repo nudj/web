@@ -21,6 +21,8 @@ const expressRouters = {
   ],
   secure: [
     require('./server/routers/auth'),
+    require('./pages/home/router'),
+    require('./pages/hirer/router'),
     require('./pages/request/router'),
     require('./pages/signup/router'),
     require('./pages/job/router'),

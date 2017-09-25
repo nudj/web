@@ -1,9 +1,7 @@
 const { actionMapAssign } = require('@nudj/library')
 
-const accessToken = process.env.PRISMICIO_ACCESS_TOKEN
-const repo = process.env.PRISMICIO_REPO
-const prismic = require('../../lib/prismic/api')({accessToken, repo})
 const job = require('../../server/modules/job')
+const template = require('../../server/modules/template')
 
 const get = ({
   data,
@@ -31,30 +29,25 @@ const get = ({
   .then(data => actionMapAssign(
     data,
     {
-      template: data => jobPrismicTemplate(data.job)
+      templates: data => jobPrismicTemplate(data.job)
     }
   ))
 }
 
 function jobPrismicTemplate (job) {
-  const prismicQuery = {
-    'document.type': 'jobdescription',
-    'document.tags': ['default']
+  const type = 'jobdescription'
+  const keys = {
+    title: 'title',
+    description: 'description',
+    colourPrimary: 'colourprimary'
   }
+  let tags = ['default']
 
   if (job.templateTags && job.templateTags.length) {
-    prismicQuery['document.tags'] = [].concat(...job.templateTags)
+    tags = [].concat(...job.templateTags)
   }
 
-  return prismic.fetchContent(prismicQuery)
-    .then(results => {
-      const index = getRandomInt(0, results.length)
-      return results[index]
-    })
-}
-
-function getRandomInt (min, max) {
-  return Math.floor(Math.random() * (max - min)) + min
+  return template.getRandom({ type, tags, keys })
 }
 
 module.exports = {
