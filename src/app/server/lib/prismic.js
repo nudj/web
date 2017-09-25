@@ -17,12 +17,7 @@ function fetchContent ({
   const request = Prismic.api(repoUrl, {accessToken: accessToken})
     .then(api => queryDocuments({api, query}))
     .then(response => response.results.map(doc => {
-      const {id, uid, type, href, tags, slugs, firstPublicationDate, lastPublicationDate, lang, alternateLanguages, data, rawJSON} = doc
-      const prismicDoc = new Prismic.Document(id, uid, type, href, tags, slugs, firstPublicationDate, lastPublicationDate, lang, alternateLanguages, data, rawJSON)
-
-      return mapValues(keys, value => {
-        return fragmentToText(doc.get(`${type}.${value}`))
-      })
+      return mapValues(keys, value => fragmentToText(doc.get(`${type}.${value}`)))
     }))
     .catch(error => handleErrors(error))
 

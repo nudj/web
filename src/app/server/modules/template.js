@@ -1,5 +1,3 @@
-const { promiseMap } = require('@nudj/library')
-
 const prismic = require('../lib/prismic')
 
 function getRandomInt (min, max) {
