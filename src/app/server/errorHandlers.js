@@ -23,14 +23,14 @@ const noDirectApply = (req, res, next, error) => {
     type: 'error',
     message: 'Unfortunately you can\'t access that URL directly, please select the apply button below.'
   }
-  res.redirect(`/jobs/${error.companySlugJobSlugRefId}`)
+  res.redirect(`/jobs/${error.data.companySlugJobSlugRefId}`)
 }
 const noDirectNudj = (req, res, next, error) => {
   req.session.notification = {
     type: 'error',
     message: 'Unfortunately you can\'t access that URL directly, please select the nudj button below.'
   }
-  res.redirect(`/jobs/${error.companySlugJobSlugRefId}`)
+  res.redirect(`/jobs/${error.data.companySlugJobSlugRefId}`)
 }
 
 module.exports = {

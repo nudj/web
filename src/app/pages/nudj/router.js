@@ -5,8 +5,7 @@ const fetchers = require('./fetchers')
 const { DataError } = require('../../lib/errors')
 
 const noDirectNudj = (req, res, next) => {
-  throw new DataError({
-    message: 'No direct nudj',
+  throw new DataError('No direct nudj', {
     companySlugJobSlugRefId: req.params.companySlugJobSlugRefId
   })
 }

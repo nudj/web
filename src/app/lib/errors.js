@@ -1,6 +1,7 @@
-function DataError (args) {
+function DataError (message, data) {
   this.name = 'DataError'
-  Object.assign(this, args)
+  this.message = message
+  this.data = data
 }
 DataError.prototype = Object.create(Error.prototype)
 DataError.prototype.constructor = DataError

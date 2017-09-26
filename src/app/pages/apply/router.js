@@ -5,8 +5,7 @@ const fetchers = require('./fetchers')
 const { DataError } = require('../../lib/errors')
 
 const noDirectApply = (req, res, next) => {
-  throw new DataError({
-    message: 'No direct apply',
+  throw new DataError('No direct apply', {
     companySlugJobSlugRefId: req.params.companySlugJobSlugRefId
   })
 }
