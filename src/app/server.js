@@ -10,7 +10,6 @@ require('babel-register')({
 })
 const path = require('path')
 const server = require('@nudj/framework/server')
-const logger = require('@nudj/framework/logger')
 const find = require('lodash/find')
 
 const App = require('./redux')
@@ -42,30 +41,7 @@ const spoofLoggedIn = (req, res, next) => {
   }
   next()
 }
-
-const errorAlreadyReferredApplied = (req, res, next, error) => {
-  req.session.notification = {
-    type: 'error',
-    message: error.message
-  }
-  let destination = req.originalUrl.split('/')
-  logger.log('error', error.message, req.method, req.params, destination.pop(), error)
-  destination = destination.join('/')
-  res.redirect(destination)
-}
-const errorInvalidToken = (req, res, next, error) => {
-  req.session.notification = {
-    type: 'error',
-    message: error.message
-  }
-  logger.log('error', error.message, req.method, req.params, error)
-  res.redirect('/')
-}
-const errorHandlers = {
-  'Already referred': errorAlreadyReferredApplied,
-  'Already applied': errorAlreadyReferredApplied,
-  'Invalid token': errorInvalidToken
-}
+const errorHandlers = require('./server/errorHandlers')
 
 server({
   App,
