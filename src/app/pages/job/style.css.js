@@ -15,10 +15,41 @@ const jobHeaderTitleHighlight = {
   }
 }
 
+const collapseBoxButtonLine = (image = 'cta-separator-line-1.svg') => {
+  return {
+    backgroundImage: mixins.linkImage(image),
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    backgroundSize: 'contain',
+    color: variables.colours.white,
+    display: 'inline-block',
+    flex: '1',
+    padding: (variables.padding.c + ' ' + variables.padding.a)
+  }
+}
+
 const linkyOrangeUnderline = {
   [mixins.breakpoints.l]: merge({}, mixins.makeOrangeSubtitleUnderline(), {
     margin: '0'
   })
+}
+
+const animateHeight = {
+  '0%': {
+    maxHeight: '0px'
+  },
+  '100%': {
+    maxHeight: '2000px' // High number for maxHeight rather than auto value allows for animated toggle
+  }
+}
+
+const animateOpacity = {
+  '0%': {
+    opacity: '0'
+  },
+  '100%': {
+    opacity: '1'
+  }
 }
 
 const styles = {
@@ -48,17 +79,12 @@ const styles = {
     textDecoration: 'none'
   }),
   jobHeaderSubtitle: merge({}, mixins.headings.h4, {
+    flex: '1',
     color: variables.colours.midRed,
     margin: `0 0 ${variables.padding.d} 0`,
-    textAlign: 'center',
+    textAlign: 'left',
     [mixins.breakpoints.l]: {
-      textAlign: 'inherit'
-    }
-  }),
-  jobHeaderDescription: merge({}, mixins.typography.copy, {
-    margin: `0 0 ${variables.padding.b} 0`,
-    [mixins.breakpoints.l]: {
-      textAlign: 'inherit'
+      textAlign: 'left'
     }
   }),
   actions: mixins.flexColumn({
@@ -105,6 +131,39 @@ const styles = {
     }
   },
   jobTitle: mixins.typography.h3,
+  jobDescriptionBox: merge(mixins.flexColumn(), {
+    display: 'flex',
+    oveflow: 'hidden',
+    animationName: [animateHeight, animateOpacity],
+    animationDuration: '3.5s, 2s',
+    animationIterationCount: '1'
+  }),
+  collapseBoxLineLeft: collapseBoxButtonLine('cta-separator-line-1.svg'),
+  collapseBoxLineRight: collapseBoxButtonLine('cta-separator-line-2.svg'),
+  jobDescriptionSection: {
+    width: '100%',
+    textAlign: 'center',
+    marginBottom: variables.padding.b,
+    display: 'flex'
+  },
+  hideDescriptionBox: merge(mixins.flexColumn(), {
+    oveflow: 'hidden',
+    display: 'none'
+  }),
+  jobAnswerColumn: merge(mixins.typography.copy, {
+    flex: '1',
+    textAlign: 'left'
+  }),
+  toggleButton: merge(mixins.typography.copy, mixins.headings.pBold, {
+    cursor: 'pointer',
+    padding: variables.padding.e
+  }),
+  toggleDescriptionContainer: {
+    marginBottom: variables.padding.c,
+    width: '100%',
+    alignItems: 'flex-end',
+    display: 'flex'
+  },
   bodyLinks: merge({}, mixins.typography.copy, mixins.headings.pBold, mixins.textHighlight(), {
     textDecoration: 'none'
   }),

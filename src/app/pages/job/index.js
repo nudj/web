@@ -10,6 +10,7 @@ const Page = require('../../components/page')
 const Header = require('../../components/header')
 const NudjSuccess = require('../../components/nudj-success')
 const RandomHover = require('../../components/random-hover')
+const { toggleDescription } = require('./actions')
 
 const { render } = require('../../lib/templater')
 
@@ -56,6 +57,9 @@ const Job = (props) => {
   const referral = get(props, 'referral')
   const companyName = get(props, 'job.company.name', '')
   const jobTitle = get(props, 'job.title', '')
+  const candidateDescription = get(props, 'job.candidateDescription', '')
+  const companyDescription = get(props, 'job.company.description', '')
+  const roleDescription = get(props, 'job.roleDescription', '')
   const image = get(props, 'job.company.logo')
   const application = get(props, 'job.application')
   const templates = get(props, 'templates')
@@ -64,7 +68,7 @@ const Job = (props) => {
   setStyles()
   const style = getStyle()
 
-  const applyForJobButton = application ? (<button className={style.applied} disabled>We'll be in touch soon</button>) : (<RandomHover><button className={style.apply}>Find out more</button></RandomHover>)
+  const applyForJobButton = application ? (<button className={style.applied} disabled>We'll be in touch soon</button>) : (<RandomHover><button className={style.apply}>Apply</button></RandomHover>)
 
   const uniqueLink = `/jobs/${get(props, 'job.company.slug', '')}+${get(props, 'job.slug', '')}${referral ? `+${referral.id}` : ''}`
 
@@ -88,11 +92,6 @@ const Job = (props) => {
       }
       return <span className={style.jobHeaderTitleHighlight} key={`chunk${index}`}>{contents}</span>
     }
-  })
-
-  const description = render({
-    template: templates.description,
-    data: data
   })
 
   const bannerMessage = get(props, 'message')
@@ -154,6 +153,27 @@ const Job = (props) => {
     )
   }
 
+  const toggleBox = () => props.dispatch(toggleDescription())
+  const toggledDisplay = props.jobPage.toggleDescription ? style.jobDescriptionBox : style.hideDescriptionBox
+  const toggleButtonText = props.jobPage.toggleDescription ? 'Less -' : 'Find out more +'
+
+  const jobDescription = (
+    <div className={toggledDisplay}>
+      <div className={style.jobDescriptionSection}>
+        <div className={style.jobHeaderSubtitle}>{`Who are ${companyName}?`}</div>
+        <div className={style.jobAnswerColumn}>{companyDescription}</div>
+      </div>
+      <div className={style.jobDescriptionSection}>
+        <div className={style.jobHeaderSubtitle}>{`What does a ${jobTitle} at ${companyName} do?`}</div>
+        <div className={style.jobAnswerColumn}>{roleDescription}</div>
+      </div>
+      <div className={style.jobDescriptionSection}>
+        <div className={style.jobHeaderSubtitle}>Does this sound like you?</div>
+        <div className={style.jobAnswerColumn}>{candidateDescription}</div>
+      </div>
+    </div>
+  )
+
   return (
     <Page {...props} className={style.body}>
       <Header />
@@ -168,8 +188,12 @@ const Job = (props) => {
       <div className={style.job}>
         <div className={style.jobHeader}>
           <h1 className={style.jobHeaderTitle}>{title}</h1>
-          <h3 className={style.jobHeaderSubtitle}>What else you need to know…</h3>
-          <p className={style.jobHeaderDescription}>{description}</p>
+          {jobDescription}
+          <div className={style.toggleDescriptionContainer}>
+            <div className={style.collapseBoxLineLeft} />
+            <span className={style.toggleButton} onClick={toggleBox}>{toggleButtonText}</span>
+            <div className={style.collapseBoxLineRight} />
+          </div>
         </div>
         <section className={style.actions}>
           {actions[0]}
