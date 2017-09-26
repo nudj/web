@@ -1,7 +1,7 @@
 FROM node:6.11.3-alpine
 ARG NPM_TOKEN
 ARG ENVIRONMENT=local
-RUN mkdir -p /usr/src
+RUN mkdir -p /usr/src && apk add --no-cache ca-certificates
 WORKDIR /usr/src
 COPY src /usr/src
 RUN npm i \
