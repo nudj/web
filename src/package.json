@@ -32,6 +32,7 @@
     "babel-preset-react": "^6.23.0",
     "classnames": "^2.2.5",
     "date-fns": "^1.28.4",
+    "envkey": "^1.0.0",
     "express": "^4.14.1",
     "font-awesome": "^4.7.0",
     "hamburgers": "^0.8.1",
