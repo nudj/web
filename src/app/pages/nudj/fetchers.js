@@ -4,21 +4,22 @@ const post = ({
   data,
   params
 }) => {
-  const companySlugJobSlugRefId = params.companySlugJobSlugRefId
+  const companySlugJobSlugReferralId = params.companySlugJobSlugReferralId
   const [
     companySlug,
     jobSlug,
-    refId
-  ] = companySlugJobSlugRefId.split('+')
+    referralId
+  ] = companySlugJobSlugReferralId.split('+')
 
   return job.ensureValidReferralUrl({
     companySlug,
     jobSlug,
-    refId
+    referralId,
+    withReferral: !!referralId
   })
   .then(valid => job.nudj({
-    parent: params.refId,
-    job: valid.job.id,
+    parent: params.referralId,
+    job: valid.company.job.id,
     person: data.person.id
   }))
 }

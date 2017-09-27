@@ -6,7 +6,7 @@ const { DataError } = require('../../lib/errors')
 
 const noDirectApply = (req, res, next) => {
   throw new DataError('No direct apply', {
-    companySlugJobSlugRefId: req.params.companySlugJobSlugRefId
+    companySlugJobSlugReferralId: req.params.companySlugJobSlugReferralId
   })
 }
 
@@ -36,9 +36,9 @@ const Router = ({
 }) => {
   const router = createRouter()
 
-  router.getHandlers('/jobs/:companySlugJobSlugRefId/apply', noDirectApply)
-  router.postHandlers('/jobs/:companySlugJobSlugRefId/apply', cacheApplySecret, ensureLoggedIn, deleteApplySecret, respondWith(fetchers.post))
-  router.getHandlers('/jobs/:companySlugJobSlugRefId/apply/:secret', checkApplySecret, ensureLoggedIn, deleteApplySecret, respondWith(fetchers.post))
+  router.getHandlers('/jobs/:companySlugJobSlugReferralId/apply', noDirectApply)
+  router.postHandlers('/jobs/:companySlugJobSlugReferralId/apply', cacheApplySecret, ensureLoggedIn, deleteApplySecret, respondWith(fetchers.post))
+  router.getHandlers('/jobs/:companySlugJobSlugReferralId/apply/:secret', checkApplySecret, ensureLoggedIn, deleteApplySecret, respondWith(fetchers.post))
 
   return router
 }

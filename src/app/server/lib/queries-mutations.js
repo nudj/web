@@ -190,13 +190,16 @@ module.exports = {
     ${fragments.Person}
   `,
   GetReferralAndJobForPerson: `
-    query GetReferralAndJobForPerson ($refId: ID, $jobSlug: String!, $personId: ID, $loggedIn: Boolean!) {
-      referral(id: $refId) {
+    query GetReferralAndJobForPerson (
+      $jobId: ID!,
+      $referralId: ID,
+      $personId: ID,
+      $loggedIn: Boolean!
+    ) {
+      referral(id: $referralId) {
         ...Referral
       }
-      job: jobByFilters(filters: {
-        slug: $jobSlug
-      }) {
+      job(id: $jobId) {
         ...Job
       }
     }
@@ -204,24 +207,23 @@ module.exports = {
     ${fragments.Job}
   `,
   GetCompanyJobAndReferral: `
-    query GetCompanyJobAndReferral ($companySlug: String!, $jobSlug: String!, $refId: ID) {
+    query GetCompanyJobAndReferral (
+      $companySlug: String!,
+      $jobSlug: String!,
+      $referralId: ID,
+      $withReferral: Boolean!
+    ) {
       company: companyByFilters(filters: {
         slug: $companySlug
       }) {
         id
-      }
-      job: jobByFilters(filters: {
-        slug: $jobSlug
-      }) {
-        id
-        company {
+        job: jobByFilters(filters: {
+          slug: $jobSlug
+        }) {
           id
-        }
-      }
-      referral(id: $refId) {
-        id
-        job {
-          id
+          referral: referralById(id: $referralId) @include(if: $withReferral) {
+            id
+          }
         }
       }
     }

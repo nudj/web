@@ -8,7 +8,7 @@ const Router = ({
 }) => {
   const router = createRouter()
 
-  router.getHandlers('/jobs/:companySlugJobSlugRefId', respondWith(fetchers.get))
+  router.getHandlers('/jobs/:companySlugJobSlugReferralId', respondWith(fetchers.get))
 
   return router
 }

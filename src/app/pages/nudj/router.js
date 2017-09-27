@@ -6,7 +6,7 @@ const { DataError } = require('../../lib/errors')
 
 const noDirectNudj = (req, res, next) => {
   throw new DataError('No direct nudj', {
-    companySlugJobSlugRefId: req.params.companySlugJobSlugRefId
+    companySlugJobSlugReferralId: req.params.companySlugJobSlugReferralId
   })
 }
 
@@ -35,9 +35,9 @@ const Router = ({
 }) => {
   const router = createRouter()
 
-  router.getHandlers('/jobs/:companySlugJobSlugRefId/nudj', noDirectNudj)
-  router.postHandlers('/jobs/:companySlugJobSlugRefId/nudj', cacheNudjSecret, ensureLoggedIn, deleteNudjSecret, respondWith(fetchers.post))
-  router.getHandlers('/jobs/:companySlugJobSlugRefId/nudj/:secret', checkNudjSecret, ensureLoggedIn, deleteNudjSecret, respondWith(fetchers.post))
+  router.getHandlers('/jobs/:companySlugJobSlugReferralId/nudj', noDirectNudj)
+  router.postHandlers('/jobs/:companySlugJobSlugReferralId/nudj', cacheNudjSecret, ensureLoggedIn, deleteNudjSecret, respondWith(fetchers.post))
+  router.getHandlers('/jobs/:companySlugJobSlugReferralId/nudj/:secret', checkNudjSecret, ensureLoggedIn, deleteNudjSecret, respondWith(fetchers.post))
 
   return router
 }

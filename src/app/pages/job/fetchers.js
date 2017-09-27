@@ -7,22 +7,22 @@ const get = ({
   data,
   params
 }) => {
-  const companySlugJobSlugRefId = params.companySlugJobSlugRefId
+  const companySlugJobSlugReferralId = params.companySlugJobSlugReferralId
   const [
     companySlug,
     jobSlug,
-    refId
-  ] = companySlugJobSlugRefId.split('+')
+    referralId
+  ] = companySlugJobSlugReferralId.split('+')
 
   return job.ensureValidReferralUrl({
     companySlug,
     jobSlug,
-    refId
+    referralId,
+    withReferral: !!referralId
   })
-  .then(() => job.get({
-    companySlug,
-    jobSlug,
-    refId,
+  .then(valid => job.get({
+    jobId: valid.company.job.id,
+    referralId,
     personId: data.person && data.person.id,
     loggedIn: !!data.person
   }))
