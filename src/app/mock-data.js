@@ -263,7 +263,8 @@ data.surveys = data.surveys.concat([
     modified: '2017-06-08T11:38:19.485+00:00',
     company: '99',
     link: 'https://nudj.typeform.com/to/gfAnDV',
-    uuid: 'gfAnDV'
+    uuid: 'gfAnDV',
+    type: 'EMPLOYEE_SURVEY'
   }
 ])
 data.tokens = data.tokens.concat([

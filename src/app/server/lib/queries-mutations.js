@@ -118,6 +118,7 @@ const fragments = {
       }
       link
       uuid
+      type
     }
   `,
   EmployeeSurvey: `
