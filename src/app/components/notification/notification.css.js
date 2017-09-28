@@ -3,21 +3,25 @@ const { mixins, variables } = require('../../lib/css')
 
 module.exports = css({
   notification: {
-    display: 'flex',
-    justifyContent: 'stretch',
     alignItems: 'center',
-    width: variables.sizing.overlayDialogWidth,
+    backgroundColor: variables.colors.lightGrey,
     borderRadius: variables.sizing.baseBorderRadius,
     boxShadow: `${variables.sizing.genericBoxShadow} ${variables.colors.genericBoxShadow}`,
-    backgroundColor: variables.colors.lightGrey,
-    left: '50%',
-    top: variables.sizing.notificationTop,
-    transition: 'transform 300ms ease-in-out, opacity 300ms ease-in-out',
-    transform: 'translateX(-50%) translateY(-200%)',
+    display: 'flex',
+    justifyContent: 'stretch',
     opacity: 0,
     overflow: 'hidden',
     position: 'fixed',
-    zIndex: 100
+    top: variables.sizing.notificationTop,
+    transform: `translate3d(${variables.padding.d}, -200%, 0)`,
+    transition: 'transform 300ms ease-in-out, opacity 300ms ease-in-out',
+    width: `calc(100% - ${variables.padding.c})`,
+    zIndex: 100,
+    [mixins.breakpoints.l]: {
+      left: '50%',
+      transform: 'translate3d(-50%, -200%, 0)',
+      width: variables.sizing.overlayDialogWidth
+    }
   },
   info: {
     backgroundColor: variables.colors.pink
@@ -57,7 +61,10 @@ module.exports = css({
     display: 'block'
   },
   visible: {
-    transform: 'translateX(-50%) translateY(-30%)',
-    opacity: 1
+    opacity: 1,
+    transform: `translate3d(${variables.padding.d}, 0, 0)`,
+    [mixins.breakpoints.l]: {
+      transform: 'translate3d(-50%, -30%, 0)'
+    }
   }
 })
