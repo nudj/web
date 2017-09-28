@@ -70,9 +70,8 @@ const styles = {
   or: mixins.makeOrDark(),
   action: mixins.flexColumn(),
   actionCopy: merge({}, mixins.typography.copy, {
-    margin: `0 0 ${variables.padding.c}`,
+    margin: '0',
     [mixins.breakpoints.l]: {
-      margin: '0',
       textAlign: 'inherit'
     }
   }),
