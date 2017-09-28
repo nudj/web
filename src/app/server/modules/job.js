@@ -1,39 +1,42 @@
 const request = require('../lib/request')
 const queries = require('../lib/queries-mutations')
 
-function ensureValidReferralUrl ({
+function getReferralForJobInCompany ({
   companySlug,
   jobSlug,
-  referralId,
-  withReferral
+  referralId
 }) {
-  return request(queries.GetCompanyJobAndReferral, {
+  return request(queries.getReferralForJobInCompany, {
     companySlug,
     jobSlug,
-    referralId,
-    withReferral
+    referralId
   })
-  .then(data => {
-    if (
-      !data.company ||
-      !data.company.job ||
-      (withReferral && !data.company.job.referral)
-    ) {
-      throw new Error('Not found')
-    }
-    return data
-  })
+  .then(data => data.company)
 }
-module.exports.ensureValidReferralUrl = ensureValidReferralUrl
+module.exports.getReferralForJobInCompany = getReferralForJobInCompany
+
+function getJobInCompany ({
+  companySlug,
+  jobSlug
+}) {
+  return request(queries.getJobInCompany, {
+    companySlug,
+    jobSlug
+  })
+  .then(data => data.company)
+}
+module.exports.getJobInCompany = getJobInCompany
 
 module.exports.get = function ({
-  jobId,
+  companySlug,
+  jobSlug,
   referralId,
   personId,
   loggedIn
 }) {
   return request(queries.GetReferralAndJobForPerson, {
-    jobId,
+    companySlug,
+    jobSlug,
     referralId,
     personId,
     loggedIn

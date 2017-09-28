@@ -1,5 +1,7 @@
-let libRequest = require('@nudj/library/lib/request')
-let logger = require('./logger')
+const libRequest = require('@nudj/library/lib/request')
+const get = require('lodash/get')
+
+const logger = require('./logger')
 
 function request (query, variables) {
   return libRequest(`http://api:82/`, {
@@ -15,6 +17,10 @@ function request (query, variables) {
       throw new Error(data.errors[0].message)
     }
     return data.data
+  })
+  .catch(error => {
+    get(error, 'response.data.errors', []).forEach(error => logger.log('error', error))
+    throw error
   })
 }
 

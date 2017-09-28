@@ -1,4 +1,5 @@
 const { actionMapAssign } = require('@nudj/library')
+const logger = require('@nudj/framework/logger')
 
 const job = require('../../server/modules/job')
 const template = require('../../server/modules/template')
@@ -7,31 +8,33 @@ const get = ({
   data,
   params
 }) => {
-  const companySlugJobSlugReferralId = params.companySlugJobSlugReferralId
   const [
     companySlug,
     jobSlug,
     referralId
-  ] = companySlugJobSlugReferralId.split('+')
+  ] = params.companySlugJobSlugReferralId.split('+')
 
-  return job.ensureValidReferralUrl({
+  return job.get({
     companySlug,
     jobSlug,
     referralId,
-    withReferral: !!referralId
-  })
-  .then(valid => job.get({
-    jobId: valid.company.job.id,
-    referralId,
     personId: data.person && data.person.id,
     loggedIn: !!data.person
-  }))
-  .then(data => actionMapAssign(
+  })
+  .then(result => actionMapAssign(
     data,
+    {
+      referral: result.referral,
+      job: result.company.job
+    },
     {
       templates: data => jobPrismicTemplate(data.job)
     }
   ))
+  .catch(error => {
+    logger.log('error', error.message, params, data)
+    throw error
+  })
 }
 
 function jobPrismicTemplate (job) {

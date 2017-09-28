@@ -1,27 +1,33 @@
+const { LogThenRedirect } = require('@nudj/framework/errors')
+
 const job = require('../../server/modules/job')
 
 const post = ({
   data,
   params
 }) => {
-  const companySlugJobSlugReferralId = params.companySlugJobSlugReferralId
   const [
     companySlug,
     jobSlug,
     referralId
-  ] = companySlugJobSlugReferralId.split('+')
+  ] = params.companySlugJobSlugReferralId.split('+')
 
-  return job.ensureValidReferralUrl({
-    companySlug,
-    jobSlug,
-    referralId,
-    withReferral: !!referralId
-  })
-  .then(valid => job.nudj({
+  return job.getJobInCompany({ companySlug, jobSlug })
+  .then(company => job.nudj({
     parent: params.referralId,
-    job: valid.company.job.id,
+    job: company.job.id,
     person: data.person.id
   }))
+  .catch(error => {
+    if (error.message === 'Already referred') {
+      throw new LogThenRedirect('You have already shared this job', `/jobs/${params.companySlugJobSlugReferralId}`, {
+        companySlug,
+        jobSlug,
+        referralId
+      }, data.person.email)
+    }
+    throw error
+  })
 }
 
 module.exports = {
