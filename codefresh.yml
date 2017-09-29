@@ -27,14 +27,14 @@ steps:
     dockerfile: Dockerfile
     build_arguments:
       - NPM_TOKEN=${{NPM_TOKEN}}
-      - ENVIRONMENT=dev
+      - NODE_ENV=development
     when:
       branch:
         only:
           - develop
 
   push_latest:
-    title: Push Latest
+    title: Push Dev
     type: push
     candidate: '${{build_latest}}'
     tag: latest
@@ -54,11 +54,11 @@ steps:
     dockerfile: Dockerfile
     build_arguments:
       - NPM_TOKEN=${{NPM_TOKEN}}
-      - ENVIRONMENT=production
-    when:
-      branch:
-        only:
-          - develop
+      - NODE_ENV=production
+    # when:
+    #   branch:
+    #     only:
+    #       - develop
 
   push_staging:
     title: Push Staging
@@ -68,10 +68,10 @@ steps:
     credentials:
       username: '${{dockerUsername}}'
       password: '${{dockerPassword}}'
-    when:
-      branch:
-        only:
-          - develop
+    # when:
+    #   branch:
+    #     only:
+    #       - develop
 
   build:
     title: Build
@@ -81,7 +81,7 @@ steps:
     dockerfile: Dockerfile
     build_arguments:
       - NPM_TOKEN=${{NPM_TOKEN}}
-      - ENVIRONMENT=production
+      - NODE_ENV=production
     when:
       branch:
         only:

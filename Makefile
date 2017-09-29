@@ -15,7 +15,7 @@ buildLocal:
 	@docker build \
 		-t $(IMAGE):local \
 		--build-arg NPM_TOKEN=${NPM_TOKEN} \
-		--build-arg ENVIRONMENT=production \
+		--build-arg NODE_ENV=production \
 		-f $(CWD)/Dockerfile \
 		.
 
