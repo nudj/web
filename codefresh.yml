@@ -28,51 +28,25 @@ steps:
           - develop
 
   build_latest:
-    title: Build Dev
+    title: Build Latest
     type: build
     image_name: nudj/web
     tag: latest
-    dockerfile: Dockerfile
-    build_arguments:
-      - NPM_TOKEN=${{NPM_TOKEN}}
-      - NODE_ENV=development
-    when:
-      branch:
-        only:
-          - develop
-
-  push_latest:
-    title: Push Dev
-    type: push
-    candidate: '${{build_latest}}'
-    tag: latest
-    credentials:
-      username: '${{dockerUsername}}'
-      password: '${{dockerPassword}}'
-    when:
-      branch:
-        only:
-          - develop
-
-  build_staging:
-    title: Build Staging
-    type: build
-    image_name: nudj/web
-    tag: staging
     dockerfile: Dockerfile
     build_arguments:
       - NPM_TOKEN=${{NPM_TOKEN}}
       - NODE_ENV=production
+      - DEBUG=true
     # when:
     #   branch:
     #     only:
     #       - develop
 
-  push_staging:
-    title: Push Staging
+  push_latest:
+    title: Push Latest
     type: push
-    candidate: '${{build_staging}}'
-    tag: staging
+    candidate: '${{build_latest}}'
+    tag: latest
     credentials:
       username: '${{dockerUsername}}'
       password: '${{dockerPassword}}'
