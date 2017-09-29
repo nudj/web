@@ -1,7 +1,8 @@
 const createHash = require('hash-generator')
 const {
   LogThenRedirect,
-  LogThenNotFound
+  LogThenNotFound,
+  LogThenError
 } = require('@nudj/framework/errors')
 
 const job = require('../modules/job')
@@ -25,16 +26,18 @@ const validateJobUrl = (req, res, next) => {
     companySlug,
     jobSlug
   })
-  request.then(company => {
+  request.then(data => {
     if (
-      !company ||
-      !company.job ||
-      (!!referralId && !company.job.referral)
+      !data.company ||
+      !data.company.job ||
+      (!!referralId && !data.referral) ||
+      (!!referralId && data.referral.job.id !== data.company.job.id)
     ) {
       return next(new LogThenNotFound('Invalid job url', req.originalUrl))
     }
     next()
   })
+  .catch(error => next(new LogThenError('Error validating url', error.message, req.params.companySlugJobSlugReferralId)))
 }
 
 const noDirectApplyNudj = (req, res, next) => {
@@ -48,6 +51,7 @@ const cacheApplyNudjSecret = (req, res, next) => {
 }
 
 const checkApplyNudjSecret = (req, res, next) => {
+  console.log(req.params.secret, req.session.applyNudjSecret)
   if (req.params.secret !== req.session.applyNudjSecret) {
     delete req.session.applyNudjSecret
     noDirectApplyNudj(req, res, next)
