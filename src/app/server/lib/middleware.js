@@ -6,7 +6,7 @@ const {
 
 const job = require('../modules/job')
 
-const validateJobUrl = ({ redirect }) => (req, res, next) => {
+const validateJobUrl = (req, res, next) => {
   const [
     companySlug,
     jobSlug,
@@ -14,11 +14,7 @@ const validateJobUrl = ({ redirect }) => (req, res, next) => {
   ] = req.params.companySlugJobSlugReferralId.split('+')
 
   if (!companySlug || !jobSlug) {
-    if (redirect) {
-      return next(new LogThenRedirect('Invalid job url', '/', req.originalUrl))
-    } else {
-      return next(new LogThenNotFound('Invalid job url', req.originalUrl))
-    }
+    return next(new LogThenNotFound('Invalid job url', req.originalUrl))
   }
 
   const request = referralId ? job.getReferralForJobInCompany({
@@ -35,11 +31,7 @@ const validateJobUrl = ({ redirect }) => (req, res, next) => {
       !company.job ||
       (!!referralId && !company.job.referral)
     ) {
-      if (redirect) {
-        return next(new LogThenRedirect('Invalid job url', '/', req.originalUrl))
-      } else {
-        return next(new LogThenNotFound('Invalid job url', req.originalUrl))
-      }
+      return next(new LogThenNotFound('Invalid job url', req.originalUrl))
     }
     next()
   })

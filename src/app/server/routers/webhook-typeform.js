@@ -1,7 +1,7 @@
 const express = require('express')
 const get = require('lodash/get')
 
-const logger = require('../lib/logger')
+const logger = require('@nudj/framework/logger')
 
 const employeeSurveys = require('../modules/employee-surveys')
 const hirers = require('../modules/hirers')

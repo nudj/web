@@ -17,7 +17,6 @@ const words = [
 ]
 
 const HomePage = (props) => {
-  console.log('process.env.NODE_ENV', process.env.NODE_ENV)
   const style = getStyle()
   return (
     <Page {...props} className={style.body}>

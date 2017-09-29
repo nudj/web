@@ -15,9 +15,9 @@ const Router = ({
 }) => {
   const router = createRouter()
 
-  router.getHandlers('/jobs/:companySlugJobSlugReferralId/nudj', validateJobUrl({ redirect: true }), noDirectApplyNudj)
-  router.postHandlers('/jobs/:companySlugJobSlugReferralId/nudj', validateJobUrl({ redirect: true }), cacheApplyNudjSecret, ensureLoggedIn, deleteApplyNudjSecret, respondWith(fetchers.post))
-  router.getHandlers('/jobs/:companySlugJobSlugReferralId/nudj/:secret', validateJobUrl({ redirect: true }), checkApplyNudjSecret, ensureLoggedIn, deleteApplyNudjSecret, respondWith(fetchers.post))
+  router.getHandlers('/jobs/:companySlugJobSlugReferralId/nudj', validateJobUrl, noDirectApplyNudj)
+  router.postHandlers('/jobs/:companySlugJobSlugReferralId/nudj', validateJobUrl, cacheApplyNudjSecret, ensureLoggedIn, deleteApplyNudjSecret, respondWith(fetchers.post))
+  router.getHandlers('/jobs/:companySlugJobSlugReferralId/nudj/:secret', validateJobUrl, checkApplyNudjSecret, ensureLoggedIn, deleteApplyNudjSecret, respondWith(fetchers.post))
 
   return router
 }

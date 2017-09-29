@@ -4,19 +4,14 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 
 process.noDeprecation = true
 
-const environment = process.env.NODE_ENV
-console.log('Building for environment:', environment)
-
 let plugins = [
   new webpack.DllReferencePlugin({
     context: '.',
     manifest: require('./vendors-manifest.json')
   }),
-  new webpack.EnvironmentPlugin({
-    NODE_ENV: environment
-  })
+  new webpack.EnvironmentPlugin(['NODE_ENV'])
 ]
-if (environment === 'production') {
+if (process.env.DEBUG !== 'true') {
   plugins = plugins.concat([
     new UglifyJSPlugin()
   ])
