@@ -12,8 +12,8 @@ let plugins = [
     context: '.',
     manifest: require('./vendors-manifest.json')
   }),
-  new webpack.DefinePlugin({
-    'process.env.NODE_ENV': JSON.stringify(environment)
+  new webpack.EnvironmentPlugin({
+    NODE_ENV: environment
   })
 ]
 if (environment === 'production') {
