@@ -46,6 +46,33 @@ steps:
         only:
           - develop
 
+  build_staging:
+    title: Build Staging
+    type: build
+    image_name: nudj/web
+    tag: staging
+    dockerfile: Dockerfile
+    build_arguments:
+      - NPM_TOKEN=${{NPM_TOKEN}}
+      - ENVIRONMENT=production
+    when:
+      branch:
+        only:
+          - develop
+
+  push_staging:
+    title: Push Staging
+    type: push
+    candidate: '${{build_staging}}'
+    tag: staging
+    credentials:
+      username: '${{dockerUsername}}'
+      password: '${{dockerPassword}}'
+    when:
+      branch:
+        only:
+          - develop
+
   build:
     title: Build
     type: build
