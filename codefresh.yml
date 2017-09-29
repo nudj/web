@@ -10,6 +10,10 @@ steps:
     dockerfile: Dockerfile.dev
     build_arguments:
       - NPM_TOKEN=${{NPM_TOKEN}}
+    when:
+      branch:
+        only:
+          - develop
 
   test:
     title: Test
@@ -18,6 +22,10 @@ steps:
     commands:
       - ./node_modules/.bin/standard
       - ./node_modules/.bin/mocha --recursive test
+    when:
+      branch:
+        only:
+          - develop
 
   build_latest:
     title: Build Dev
