@@ -29,7 +29,6 @@ const expressRouters = {
     require('./pages/apply/router'),
     require('./pages/nudj/router'),
     require('./pages/token/router'),
-    require('./server/routers/job-redirects'),
     require('./server/routers/catch-all')
   ]
 }
