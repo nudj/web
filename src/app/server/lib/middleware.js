@@ -13,6 +13,14 @@ const validateJobUrl = ({ redirect }) => (req, res, next) => {
     referralId
   ] = req.params.companySlugJobSlugReferralId.split('+')
 
+  if (!companySlug || !jobSlug) {
+    if (redirect) {
+      return next(new LogThenRedirect('Invalid job url', '/', req.originalUrl))
+    } else {
+      return next(new LogThenNotFound('Invalid job url', req.originalUrl))
+    }
+  }
+
   const request = referralId ? job.getReferralForJobInCompany({
     companySlug,
     jobSlug,
@@ -21,7 +29,6 @@ const validateJobUrl = ({ redirect }) => (req, res, next) => {
     companySlug,
     jobSlug
   })
-
   request.then(company => {
     if (
       !company ||
@@ -39,7 +46,7 @@ const validateJobUrl = ({ redirect }) => (req, res, next) => {
 }
 
 const noDirectApplyNudj = (req, res, next) => {
-  throw new LogThenRedirect('Unfortunately, you can’t access that page. Expecting something else? Contact us.', `/jobs/${req.params.companySlugJobSlugReferralId}`, req.params.companySlugJobSlugReferralId)
+  next(new LogThenRedirect('Unfortunately, you can’t access that page. Expecting something else? Contact us.', `/jobs/${req.params.companySlugJobSlugReferralId}`, req.originalUrl))
 }
 
 const cacheApplyNudjSecret = (req, res, next) => {
