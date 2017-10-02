@@ -51,7 +51,6 @@ const cacheApplyNudjSecret = (req, res, next) => {
 }
 
 const checkApplyNudjSecret = (req, res, next) => {
-  console.log(req.params.secret, req.session.applyNudjSecret)
   if (req.params.secret !== req.session.applyNudjSecret) {
     delete req.session.applyNudjSecret
     noDirectApplyNudj(req, res, next)
