@@ -41,7 +41,7 @@ const validateJobUrl = (req, res, next) => {
 }
 
 const noDirectApplyNudj = (req, res, next) => {
-  next(new LogThenRedirect('Unfortunately, you can’t access that page. Expecting something else? Contact us.', `/jobs/${req.params.companySlugJobSlugReferralId}`, req.originalUrl))
+  next(new LogThenRedirect('Unfortunately, you can’t access that page.', `/jobs/${req.params.companySlugJobSlugReferralId}`, req.originalUrl))
 }
 
 const cacheApplyNudjSecret = (req, res, next) => {
