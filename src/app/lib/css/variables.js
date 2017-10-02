@@ -9,45 +9,28 @@ module.exports.breakpoints = {
   xl: '90em'
 }
 
-module.exports.colours = {
-  beige: '#efebd3',
-  charcoal: '#2d2926',
-  charcoalTint2: '#817f7d',
-  darkPink: '#ef6079',
-  lightGrey: '#d0d0ce',
-  lighterGrey: '#f7f7f6',
-  lightYellow: '#f7ea48',
-  midRed: '#e35205',
-  moonGrey: '#ccc',
-  navy: '#081f2c',
-  navyBlue: '#002051',
-  royalBlue: '#002d72',
-  royalBlueTint4: '#6681aa',
-  white: '#fff'
-}
-
-// TODO: Needs to be merged with colours above
 module.exports.colors = {
   beige: '#efebd3',
   charcoal: '#2d2926',
   charcoalTint2: '#817f7d',
   darkPink: '#8f3a49',
-  pink: '#ef6079',
   grey: '#ececeb',
+  green: '#7ac74f',
   lightGrey: '#d0d0ce',
   lighterGrey: '#f7f7f6',
+  lightPink: '#f5a0af',
   lightYellow: '#f7ea48',
   midRed: '#e35205',
   midGrey: '#ced2d5',
+  moonGrey: '#ccc',
   navy: '#081f2c',
   navyBlue: '#002051',
-  royalBlue: '#002d72',
-  royalBlueFade: '#6681aa',
-  lightPink: '#f5a0af',
-  white: '#fff',
   offWhite: '#fafafa',
   offGrey: '#f6f6f5',
-  green: '#7ac74f',
+  pink: '#ef6079',
+  royalBlue: '#002d72',
+  royalBlueFade: '#6681aa',
+  white: '#fff',
   //
   genericBoxShadow: 'rgba(0, 0, 0, 0.1)',
   genericOverlayCover: 'rgba(45, 41, 38, 0.4)',

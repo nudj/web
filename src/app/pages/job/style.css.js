@@ -9,7 +9,7 @@ const buttonMargins = {
 }
 
 const jobHeaderTitleHighlight = {
-  color: variables.colours.midRed,
+  color: variables.colors.midRed,
   [mixins.breakpoints.l]: {
     whiteSpace: 'nowrap'
   }
@@ -29,7 +29,7 @@ const styles = {
     backgroundColor: 'blue'
   },
   job: {
-    backgroundColor: variables.colours.white,
+    backgroundColor: variables.colors.white,
     padding: `${variables.padding.b} 0`,
     position: 'relative',
     [mixins.breakpoints.l]: {
@@ -49,7 +49,7 @@ const styles = {
   }),
   jobHeaderSubtitle: merge({}, mixins.headings.h4, {
     flex: '1',
-    color: variables.colours.midRed,
+    color: variables.colors.midRed,
     margin: `0 0 ${variables.padding.d} 0`,
     textAlign: 'left',
     [mixins.breakpoints.l]: {
@@ -162,13 +162,13 @@ const setStyles = (highlightColour) => {
 
   const colouredStyles = {
     jobHeaderTitleHighlight: {
-      color: variables.colours[highlightColour] || styles.jobHeaderTitleHighlight.color
+      color: variables.colors[highlightColour] || styles.jobHeaderTitleHighlight.color
     },
     jobHeaderTitleHighlightLink: {
-      color: variables.colours[highlightColour] || styles.jobHeaderTitleHighlightLink.color
+      color: variables.colors[highlightColour] || styles.jobHeaderTitleHighlightLink.color
     },
     jobHeaderSubtitle: {
-      color: variables.colours[highlightColour] || styles.jobHeaderSubtitle.color
+      color: variables.colors[highlightColour] || styles.jobHeaderSubtitle.color
     }
   }
 

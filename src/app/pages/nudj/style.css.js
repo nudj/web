@@ -75,7 +75,7 @@ const styles = {
     marginBottom: variables.padding.e
   }),
   tipBody: merge({
-    color: variables.colours.charcoal,
+    color: variables.colors.charcoal,
     textAlign: 'center'
   }, mixins.headings.p2)
 }

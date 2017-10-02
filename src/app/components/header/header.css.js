@@ -3,8 +3,8 @@ const { mixins, variables } = require('../../lib/css')
 
 const mobileMenuBase = mixins.flexColumn({
   alignItems: 'stretch',
-  backgroundColor: variables.colours.navy,
-  boxShadow: `1000px 0 0 1000px ${variables.colours.navy}`,
+  backgroundColor: variables.colors.navy,
+  boxShadow: `1000px 0 0 1000px ${variables.colors.navy}`,
   height: '100%',
   left: '0',
   position: 'fixed',
@@ -20,8 +20,8 @@ const mobileMenu = mixins.makeTransition({
 
 const navBarConstantBase = {
   alignItems: 'center',
-  backgroundColor: variables.colours.navy,
-  boxShadow: `0 -1000px 0 1000px ${variables.colours.navy}`,
+  backgroundColor: variables.colors.navy,
+  boxShadow: `0 -1000px 0 1000px ${variables.colors.navy}`,
   display: 'flex',
   justifyContent: 'space-between',
   left: '0',
@@ -47,7 +47,7 @@ const navBarConstantBase = {
 }
 
 const link = merge({}, mixins.deLink({
-  color: variables.colours.charcoal,
+  color: variables.colors.charcoal,
   display: 'none',
   padding: `calc(${variables.padding.e} * 1.5) ${variables.padding.d}`,
   [mixins.breakpoints.l]: {
@@ -91,11 +91,11 @@ const innerBurgerMiddle = merge({}, innerBurger, {
 })
 
 const innerBurgerColour = {
-  backgroundColor: `${variables.colours.white}`
+  backgroundColor: `${variables.colors.white}`
 }
 
 const innerBurgerAltColour = {
-  backgroundColor: `${variables.colours.navy}`
+  backgroundColor: `${variables.colors.navy}`
 }
 
 // Commenting this out for now while we wait for a fix to Aphrodite
@@ -163,11 +163,11 @@ const styles = {
   }, navBarConstant),
   link: link,
   linkLight: merge({}, link, {
-    color: variables.colours.white
+    color: variables.colors.white
   }),
   request: request,
   linkMobile: merge({}, mixins.deLink({
-    color: variables.colours.white,
+    color: variables.colors.white,
     display: 'block',
     padding: `${variables.padding.e} ${variables.padding.c}`,
     textAlign: 'right'
@@ -237,20 +237,20 @@ const setStyles = (backgroundColour, textColour, textHighlightColour, buttonText
   }
 
   const burgerColour = {
-    backgroundColor: variables.colours[textColour] ? `${variables.colours[textColour]}` : styles.burgerColoured.backgroundColor
+    backgroundColor: variables.colors[textColour] ? `${variables.colors[textColour]}` : styles.burgerColoured.backgroundColor
   }
 
   colouredStyles = {
     navContainer: {
-      backgroundColor: variables.colours[backgroundColour] || styles.navContainer.backgroundColor
+      backgroundColor: variables.colors[backgroundColour] || styles.navContainer.backgroundColor
     },
     request: {
-      backgroundColor: variables.colours[textHighlightColour] || styles.request.backgroundColor,
-      borderColor: variables.colours[textHighlightColour] || styles.request.borderColor,
-      color: variables.colours[buttonTextColour] || variables.colours[textColour] || styles.request.color
+      backgroundColor: variables.colors[textHighlightColour] || styles.request.backgroundColor,
+      borderColor: variables.colors[textHighlightColour] || styles.request.borderColor,
+      color: variables.colors[buttonTextColour] || variables.colors[textColour] || styles.request.color
     },
     link: {
-      color: variables.colours[textColour] || styles.link.color
+      color: variables.colors[textColour] || styles.link.color
     },
     burgerColoured: merge({}, burgerColour, {
       '::after': burgerColour,

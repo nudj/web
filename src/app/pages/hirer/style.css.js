@@ -6,7 +6,7 @@ const heroImagePosition = 'bottom center'
 const heroImageHeight = '168px'
 
 const heroFisting = merge({
-  backgroundColor: variables.colours.midRed,
+  backgroundColor: variables.colors.midRed,
   marginBottom: `calc(${heroImageHeight} * 0.5)`,
   padding: `${variables.padding.b} 0 ${variables.padding.a} 0`,
   position: 'relative',
@@ -24,17 +24,17 @@ const heroFisting = merge({
 })
 
 const heroSubtitle = merge({
-  color: variables.colours.royalBlue,
+  color: variables.colors.royalBlue,
   padding: `0 0 ${variables.padding.d} 0`
 }, mixins.headings.h2)
 
 const subtitle = merge({
-  color: variables.colours.royalBlue,
+  color: variables.colors.royalBlue,
   padding: `0 0 ${variables.padding.d} 0`
 }, mixins.headings.h4)
 
 const subtitleWhite = merge({}, subtitle, {
-  color: variables.colours.white
+  color: variables.colors.white
 })
 
 const subtitleUnderline = mixins.makeOrangeSubtitleUnderline()
@@ -64,7 +64,7 @@ const stepBottom = merge({
 }, stepContainer)
 
 const stepCopy = merge({
-  color: variables.colours.charcoal,
+  color: variables.colors.charcoal,
   padding: `0 0 ${variables.padding.d} 0`
 }, mixins.headings.p)
 
@@ -109,7 +109,7 @@ const styles = {
     textAlign: 'center'
   }),
   pricingSubtitle: merge({}, stepCopy, {
-    color: variables.colours.white,
+    color: variables.colors.white,
     textAlign: 'center'
   }),
   steps: mixins.deList({
@@ -216,7 +216,7 @@ const styles = {
   pricingBox: mixins.makeRoyalBlueWobbleBox(),
   price: subtitleWhite,
   pricingSmall: merge({
-    color: variables.colours.white,
+    color: variables.colors.white,
     textAlign: 'center'
   }, mixins.headings.small),
   cta: mixins.flexColumn({

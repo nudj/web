@@ -2,7 +2,7 @@ const { css, merge } = require('@nudj/framework/css')
 const { mixins, variables } = require('../../lib/css')
 
 const titles = mixins.underlineHoverTransition(mixins.makeOrangeSubtitleUnderlineOnDarkGrey(merge(mixins.deLink({
-  color: variables.colours.white,
+  color: variables.colors.white,
   display: 'inline-block',
   margin: `0 0 ${variables.padding.d} 0`
 }), mixins.headings.h4, {
@@ -14,7 +14,7 @@ const titles = mixins.underlineHoverTransition(mixins.makeOrangeSubtitleUnderlin
 
 const styles = {
   background: {
-    backgroundColor: variables.colours.charcoal
+    backgroundColor: variables.colors.charcoal
   },
   container: mixins.basicContainer({
     padding: `${variables.padding.c} ${variables.padding.d} 0 ${variables.padding.d}`,
@@ -32,7 +32,7 @@ const styles = {
     height: variables.padding.b
   },
   copyright: mixins.basicContainer(merge({
-    color: variables.colours.charcoalTint2,
+    color: variables.colors.charcoalTint2,
     display: 'block',
     padding: `${variables.padding.d} ${variables.padding.d} ${variables.padding.c} ${variables.padding.d}`,
     textAlign: 'center',
@@ -57,7 +57,7 @@ const styles = {
     }
   })),
   link: {
-    color: variables.colours.white,
+    color: variables.colors.white,
     padding: `0 0 ${variables.padding.d} 0`,
     [mixins.breakpoints.ns]: {
       padding: `0 ${variables.padding.d} ${variables.padding.d} ${variables.padding.d}`,
