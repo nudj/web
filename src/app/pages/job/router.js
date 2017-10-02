@@ -9,7 +9,7 @@ const Router = ({
 }) => {
   const router = createRouter()
 
-  router.getHandlers('/jobs/:companySlugJobSlugReferralId', validateJobUrl({ redirect: false }), respondWith(fetchers.get))
+  router.getHandlers('/jobs/:companySlugJobSlugReferralId', validateJobUrl, respondWith(fetchers.get))
 
   return router
 }

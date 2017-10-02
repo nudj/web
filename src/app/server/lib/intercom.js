@@ -1,5 +1,5 @@
 let Intercom = require('intercom-client')
-let logger = require('./logger')
+let logger = require('@nudj/framework/logger')
 let intercom = new Intercom.Client({
   token: process.env.INTERCOM_ACCESS_TOKEN
 })

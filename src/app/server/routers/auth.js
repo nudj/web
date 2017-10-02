@@ -2,7 +2,7 @@ const express = require('express')
 const passport = require('passport')
 const request = require('../lib/request')
 const intercom = require('../lib/intercom')
-const logger = require('../lib/logger')
+const logger = require('@nudj/framework/logger')
 const queries = require('../lib/queries-mutations')
 
 function cacheReturnTo (req, res, next) {

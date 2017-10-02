@@ -11,7 +11,6 @@ function getReferralForJobInCompany ({
     jobSlug,
     referralId
   })
-  .then(data => data.company)
 }
 module.exports.getReferralForJobInCompany = getReferralForJobInCompany
 
@@ -23,7 +22,6 @@ function getJobInCompany ({
     companySlug,
     jobSlug
   })
-  .then(data => data.company)
 }
 module.exports.getJobInCompany = getJobInCompany
 

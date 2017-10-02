@@ -20,14 +20,15 @@ steps:
       - ./node_modules/.bin/mocha --recursive test
 
   build_latest:
-    title: Build Dev
+    title: Build Latest
     type: build
     image_name: nudj/web
     tag: latest
     dockerfile: Dockerfile
     build_arguments:
       - NPM_TOKEN=${{NPM_TOKEN}}
-      - ENVIRONMENT=dev
+      - NODE_ENV=production
+      - DEBUG=true
     when:
       branch:
         only:
@@ -46,33 +47,6 @@ steps:
         only:
           - develop
 
-  build_staging:
-    title: Build Staging
-    type: build
-    image_name: nudj/web
-    tag: staging
-    dockerfile: Dockerfile
-    build_arguments:
-      - NPM_TOKEN=${{NPM_TOKEN}}
-      - ENVIRONMENT=production
-    when:
-      branch:
-        only:
-          - develop
-
-  push_staging:
-    title: Push Staging
-    type: push
-    candidate: '${{build_staging}}'
-    tag: staging
-    credentials:
-      username: '${{dockerUsername}}'
-      password: '${{dockerPassword}}'
-    when:
-      branch:
-        only:
-          - develop
-
   build:
     title: Build
     type: build
@@ -81,7 +55,7 @@ steps:
     dockerfile: Dockerfile
     build_arguments:
       - NPM_TOKEN=${{NPM_TOKEN}}
-      - ENVIRONMENT=production
+      - NODE_ENV=production
     when:
       branch:
         only:

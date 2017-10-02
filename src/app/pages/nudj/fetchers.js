@@ -13,9 +13,9 @@ const post = ({
   ] = params.companySlugJobSlugReferralId.split('+')
 
   return job.getJobInCompany({ companySlug, jobSlug })
-  .then(company => job.nudj({
+  .then(result => job.nudj({
     parent: params.referralId,
-    job: company.job.id,
+    job: result.company.job.id,
     person: data.person.id
   }))
   .catch(error => {

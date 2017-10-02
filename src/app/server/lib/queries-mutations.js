@@ -238,6 +238,12 @@ module.exports = {
       $jobSlug: String!,
       $referralId: ID
     ) {
+      referral(id: $referralId) {
+        id
+        job {
+          id
+        }
+      }
       company: companyByFilters(filters: {
         slug: $companySlug
       }) {
@@ -246,9 +252,6 @@ module.exports = {
           slug: $jobSlug
         }) {
           id
-          referral: referralById(id: $referralId) {
-            id
-          }
         }
       }
     }

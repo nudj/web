@@ -1,7 +1,7 @@
 const libRequest = require('@nudj/library/lib/request')
 const get = require('lodash/get')
 
-const logger = require('./logger')
+const logger = require('@nudj/framework/logger')
 
 function request (query, variables) {
   return libRequest(`http://api:82/`, {
