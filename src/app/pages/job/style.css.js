@@ -116,8 +116,12 @@ const styles = {
   jobDescriptionBox: merge(mixins.flexColumn(), {
     display: 'flex',
     overflow: 'hidden',
-    height: '0',
-    transition: 'all 1000ms ease-in-out'
+    height: 'auto',
+    transition: 'all 1000ms ease-in-out',
+    '^.js': {
+      opacity: '0',
+      height: '0'
+    }
   }),
   collapseBoxLineLeft: collapseBoxButtonLine('cta-separator-line-1.svg'),
   collapseBoxLineRight: collapseBoxButtonLine('cta-separator-line-2.svg'),
@@ -139,12 +143,15 @@ const styles = {
     padding: variables.padding.e
   }),
   toggleDescriptionButtonContainer: {
-    paddingBottom: variables.padding.c,
-    position: 'relative',
-    zIndex: '10',
-    width: '100%',
-    alignItems: 'flex-end',
-    display: 'flex'
+    display: 'none',
+    '^.js': {
+      display: 'flex',
+      paddingBottom: variables.padding.c,
+      position: 'relative',
+      zIndex: '10',
+      width: '100%',
+      alignItems: 'flex-end'
+    }
   },
   bodyLinks: merge({}, mixins.typography.copy, mixins.headings.pBold, mixins.textHighlight(), {
     textDecoration: 'none'
