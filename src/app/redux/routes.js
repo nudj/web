@@ -3,10 +3,10 @@ module.exports = {
   '/hiring': require('../pages/hirer'),
   '/request': require('../pages/request'),
   '/signup': require('../pages/signup'),
-  '/jobs/:companySlugJobSlugRefId': require('../pages/job'),
-  '/jobs/:companySlugJobSlugRefId/apply': require('../pages/apply'),
-  '/jobs/:companySlugJobSlugRefId/apply/:secret': require('../pages/apply'),
-  '/jobs/:companySlugJobSlugRefId/nudj': require('../pages/nudj'),
-  '/jobs/:companySlugJobSlugRefId/nudj/:secret': require('../pages/nudj'),
+  '/jobs/:companySlugJobSlugReferralId': require('../pages/job'),
+  '/jobs/:companySlugJobSlugReferralId/apply': require('../pages/apply'),
+  '/jobs/:companySlugJobSlugReferralId/apply/:secret': require('../pages/apply'),
+  '/jobs/:companySlugJobSlugReferralId/nudj': require('../pages/nudj'),
+  '/jobs/:companySlugJobSlugReferralId/nudj/:secret': require('../pages/nudj'),
   '/token/:token': require('../pages/token')
 }

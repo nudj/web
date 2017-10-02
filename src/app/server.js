@@ -1,3 +1,4 @@
+require('envkey')
 require('babel-register')({
   presets: ['react'],
   ignore: function (filename) {
@@ -9,7 +10,6 @@ require('babel-register')({
 })
 const path = require('path')
 const server = require('@nudj/framework/server')
-const logger = require('@nudj/framework/logger')
 const find = require('lodash/find')
 
 const App = require('./redux')
@@ -21,13 +21,14 @@ const expressRouters = {
   ],
   secure: [
     require('./server/routers/auth'),
+    require('./pages/home/router'),
+    require('./pages/hirer/router'),
     require('./pages/request/router'),
     require('./pages/signup/router'),
     require('./pages/job/router'),
     require('./pages/apply/router'),
     require('./pages/nudj/router'),
     require('./pages/token/router'),
-    require('./server/routers/job-redirects'),
     require('./server/routers/catch-all')
   ]
 }
@@ -39,30 +40,7 @@ const spoofLoggedIn = (req, res, next) => {
   }
   next()
 }
-
-const errorAlreadyReferredApplied = (req, res, next, error) => {
-  req.session.notification = {
-    type: 'error',
-    message: error.message
-  }
-  let destination = req.originalUrl.split('/')
-  logger.log('error', error.message, req.method, req.params, destination.pop(), error)
-  destination = destination.join('/')
-  res.redirect(destination)
-}
-const errorInvalidToken = (req, res, next, error) => {
-  req.session.notification = {
-    type: 'error',
-    message: error.message
-  }
-  logger.log('error', error.message, req.method, req.params, error)
-  res.redirect('/')
-}
-const errorHandlers = {
-  'Already referred': errorAlreadyReferredApplied,
-  'Already applied': errorAlreadyReferredApplied,
-  'Invalid token': errorInvalidToken
-}
+const errorHandlers = require('./server/errorHandlers')
 
 server({
   App,

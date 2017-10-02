@@ -8,6 +8,15 @@ const fragments = {
       lastName
     }
   `,
+  Company: `
+    fragment Company on Company {
+      id
+      name
+      logo
+      slug
+      url
+    }
+  `,
   Job: `
     fragment Job on Job {
       id
@@ -109,6 +118,7 @@ const fragments = {
       }
       link
       uuid
+      type
     }
   `,
   EmployeeSurvey: `
@@ -121,6 +131,32 @@ const fragments = {
         ...Survey
       }
       typeformToken
+    }
+  `,
+  Hirer: `
+    fragment Hirer on Hirer {
+      id
+      company {
+        ...Company
+      }
+      person {
+        ...Person
+      }
+    }
+  `,
+  Task: `
+    fragment Task on Task {
+      id
+      company {
+        ...Company
+      }
+      hirer {
+        ...Hirer
+      }
+      type
+      completed {
+        ...Hirer
+      }
     }
   `
 }
@@ -155,37 +191,66 @@ module.exports = {
     ${fragments.Person}
   `,
   GetReferralAndJobForPerson: `
-    query GetReferralAndJobForPerson ($refId: ID, $jobSlug: String!, $personId: ID, $loggedIn: Boolean!) {
-      referral(id: $refId) {
+    query GetReferralAndJobForPerson (
+      $companySlug: String!,
+      $jobSlug: String!,
+      $referralId: ID,
+      $personId: ID,
+      $loggedIn: Boolean!
+    ) {
+      referral(id: $referralId) {
         ...Referral
       }
-      job: jobByFilters(filters: {
-        slug: $jobSlug
+      company: companyByFilters(filters: {
+        slug: $companySlug
       }) {
-        ...Job
+        slug
+        job: jobByFilters(filters: {
+          slug: $jobSlug
+        }) {
+          ...Job
+        }
       }
     }
     ${fragments.Referral}
     ${fragments.Job}
   `,
-  GetCompanyJobAndReferral: `
-    query GetCompanyJobAndReferral ($companySlug: String!, $jobSlug: String!, $refId: ID) {
+  getJobInCompany: `
+    query getJobInCompany (
+      $companySlug: String!,
+      $jobSlug: String!
+    ) {
       company: companyByFilters(filters: {
         slug: $companySlug
       }) {
         id
-      }
-      job: jobByFilters(filters: {
-        slug: $jobSlug
-      }) {
-        id
-        company {
+        job: jobByFilters(filters: {
+          slug: $jobSlug
+        }) {
           id
         }
       }
-      referral(id: $refId) {
+    }
+  `,
+  getReferralForJobInCompany: `
+    query getReferralForJobInCompany (
+      $companySlug: String!,
+      $jobSlug: String!,
+      $referralId: ID
+    ) {
+      referral(id: $referralId) {
         id
         job {
+          id
+        }
+      }
+      company: companyByFilters(filters: {
+        slug: $companySlug
+      }) {
+        id
+        job: jobByFilters(filters: {
+          slug: $jobSlug
+        }) {
           id
         }
       }
@@ -359,5 +424,69 @@ module.exports = {
     ${fragments.EmployeeSurvey}
     ${fragments.Employee}
     ${fragments.Survey}
+  `,
+  GetIncompleteTasks: `
+    query GetIncompleteTasks (
+      $company: ID,
+      $hirer: ID,
+      $type: TaskType!
+    ) {
+      tasks:tasks(filters: {
+        company: $company,
+        hirer: $hirer,
+        type: $type
+        completed: null
+      })
+      {
+        ...Task
+      }
+    }
+    ${fragments.Task}
+    ${fragments.Company}
+    ${fragments.Hirer}
+    ${fragments.Person}
+  `,
+  UpdateTask: `
+    mutation UpdateTask (
+      $id: ID!
+      $input: TaskUpdateInput!
+    ) {
+      task: updateTask(
+        id: $id,
+        input: $input
+      ) {
+        ...Task
+      }
+    }
+    ${fragments.Task}
+    ${fragments.Company}
+    ${fragments.Hirer}
+    ${fragments.Person}
+  `,
+  GetHirer: `
+    query GetHirer (
+      $id: ID!
+    ) {
+      hirer(id: $id) {
+        ...Hirer
+      }
+    }
+    ${fragments.Hirer}
+    ${fragments.Person}
+    ${fragments.Company}
+  `,
+  GetHirerFromPerson: `
+    query GetHirerFromPerson (
+      $person: ID!
+    ) {
+      hirer:hirerByFilters(filters: {
+        person: $person
+      }) {
+        ...Hirer
+      }
+    }
+    ${fragments.Hirer}
+    ${fragments.Person}
+    ${fragments.Company}
   `
 }

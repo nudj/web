@@ -1,14 +1,15 @@
-const express = require('express')
+const createRouter = require('@nudj/framework/router')
 
 const fetchers = require('./fetchers')
+const { validateJobUrl } = require('../../server/lib/middleware')
 
 const Router = ({
   ensureLoggedIn,
   respondWith
 }) => {
-  const router = express.Router()
+  const router = createRouter()
 
-  router.get('/jobs/:companySlugJobSlugRefId', respondWith(fetchers.get))
+  router.getHandlers('/jobs/:companySlugJobSlugReferralId', validateJobUrl, respondWith(fetchers.get))
 
   return router
 }

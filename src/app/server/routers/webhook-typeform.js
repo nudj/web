@@ -1,11 +1,13 @@
 const express = require('express')
 const get = require('lodash/get')
 
-const logger = require('../lib/logger')
+const logger = require('@nudj/framework/logger')
 
 const employeeSurveys = require('../modules/employee-surveys')
-const tokens = require('../modules/tokens')
+const hirers = require('../modules/hirers')
 const jobShare = require('../modules/job-share')
+const tasks = require('../modules/tasks')
+const tokens = require('../modules/tokens')
 
 const commonErrors = {
   'badRequest': {
@@ -48,6 +50,16 @@ function typeformSurveryResponseHanlder (req, res, next) {
     .then(data => {
       const typeformToken = get(req.body, 'form_response.token', '')
       return employeeSurveys.patch(data, data.employeeSurvey.id, { typeformToken })
+    })
+    .then(data => {
+      const personId = get(data.employeeSurvey, 'employee.person.id')
+      return hirers.getByPerson(data, personId)
+    })
+    .then(data => {
+      const companyId = get(data.employeeSurvey, 'employee.company.id')
+      const hirerId = get(data, 'hirer.id', null)
+      const taskType = 'HIRER_SURVEY'
+      return tasks.completeTaskByType(data, companyId, hirerId, taskType)
     })
     .then(data => {
       // Create token of type `SHARE_COMPANY_JOBS`

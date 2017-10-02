@@ -3,25 +3,16 @@ const {
   promiseMap
 } = require('@nudj/library')
 const get = require('lodash/get')
+const {
+  LogThenRedirect,
+  LogThenError
+} = require('@nudj/framework/errors')
 
 const employeeSurveys = require('../../server/modules/employee-surveys')
 const job = require('../../server/modules/job')
 const tokens = require('../../server/modules/tokens')
 const jobShare = require('../../server/modules/job-share')
 const surveys = require('../../server/modules/surveys')
-
-const commonErrors = {
-  'badRequest': {
-    code: 400,
-    message: 'Bad request',
-    type: 'error'
-  },
-  'notFound': {
-    code: 404,
-    message: 'Invalid token',
-    type: 'error'
-  }
-}
 
 function generateLinkFromToken (token) {
   return `https://${process.env.DOMAIN}/token/${token}`
@@ -117,7 +108,7 @@ function subTokenHandler (data) {
     case 'SHARE_COMPANY_JOBS':
       return shareCompanyJobsHandler(data)
     default:
-      return Promise.reject(commonErrors.badRequest)
+      return Promise.reject(new LogThenError('Unexpected token type', data.token.type))
   }
 }
 
@@ -126,7 +117,7 @@ function token ({
   params
 }) {
   return tokens.get(data, params.token)
-    .then(data => data.token ? data : Promise.reject(commonErrors.notFound))
+    .then(data => data.token ? data : Promise.reject(new LogThenRedirect('Invalid token', '/', params.token)))
     .then(data => subTokenHandler(data))
 }
 

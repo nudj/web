@@ -9,6 +9,7 @@ const data = {
   recommendations: [],
   employees: [],
   surveys: [],
+  tasks: [],
   tokens: [],
   employeeSurveys: []
 }
@@ -112,6 +113,31 @@ data.jobs = data.jobs.concat([
     related: [],
     templateTags: ['film'],
     created: '2017-07-27T12:00:00.000+00:00'
+  },
+  {
+    id: '102',
+    created: '1986-07-06T07:34:54.000+00:00',
+    modified: '2000-01-17T02:51:58.000+00:00',
+    title: 'Senior Fake Test Job 2',
+    slug: 'senior-fake-test-job',
+    url: 'https://fake.com',
+    status: 'Open',
+    bonus: 1000,
+    description: 'Fake job! vitae sodales velit ligula quis ligula. Sed et tincidunt nisi. Ut nec massa vitae dui ullamcorper malesuada nec in neque. Suspendisse nec sapien faucibus, mollis metus ac, tempus eros. Praesent at nisl consequat ligula auctor eleifend nec sit amet eros. Fusce consequat, ante ac maximus auctor, felis justo vestibulum elit, congue congue ipsum ligula et lacus. Vivamus est risus, viverra quis iaculis et, eleifend eget est.',
+    type: 'Permanent',
+    remuneration: 'Competitive + Options',
+    experience: '300+ years',
+    requirements: 'building large-scale web-based applications in 🐔, 💅🏼 and 💩.',
+    templateTags: ['food', 'film'],
+    tags: [
+      'Fake',
+      'Job'
+    ],
+    location: 'London',
+    company: '100',
+    relatedJobs: [
+      '99'
+    ]
   }
 ])
 data.people = data.people.concat([
@@ -237,13 +263,14 @@ data.surveys = data.surveys.concat([
     modified: '2017-06-08T11:38:19.485+00:00',
     company: '99',
     link: 'https://nudj.typeform.com/to/gfAnDV',
-    uuid: 'gfAnDV'
+    uuid: 'gfAnDV',
+    type: 'EMPLOYEE_SURVEY'
   }
 ])
 data.tokens = data.tokens.concat([
   {
     data: {
-      employeeSurvey: 'employeeSurvey2'
+      employeeSurvey: 'employeeSurvey1'
     },
     token: 'NICEFATHASH',
     type: 'SURVEY_TYPEFORM_COMPLETE',
@@ -255,11 +282,21 @@ data.tokens = data.tokens.concat([
     data: {
       employeeSurvey: 'employeeSurvey2'
     },
+    token: 'NICEFATHASH1',
+    type: 'SURVEY_TYPEFORM_COMPLETE',
+    created: '2017-06-08T11:38:19.485+00:00',
+    modified: '2017-06-08T11:38:19.485+00:00',
+    id: '2'
+  },
+  {
+    data: {
+      employeeSurvey: 'employeeSurvey2'
+    },
     token: 'NICEFATHASH2',
     type: 'SHARE_COMPANY_JOBS',
     created: '2017-06-08T11:38:19.485+00:00',
     modified: '2017-06-08T11:38:19.485+00:00',
-    id: '2'
+    id: '3'
   },
   {
     data: {
@@ -269,7 +306,7 @@ data.tokens = data.tokens.concat([
     type: 'SHARE_COMPANY_JOBS',
     created: '2017-06-08T11:38:19.485+00:00',
     modified: '2017-06-08T11:38:19.485+00:00',
-    id: '3'
+    id: '4'
   }
 ])
 data.employeeSurveys = data.employeeSurveys.concat([
@@ -283,6 +320,29 @@ data.employeeSurveys = data.employeeSurveys.concat([
     employee: 'employee2',
     survey: 'survey1',
     typeformToken: '17df26f9c987c7eb3e50325caa60c913'
+  }
+])
+data.hirers = data.hirers.concat([
+  {
+    id: '1',
+    person: '21',
+    company: '99'
+  }
+])
+data.tasks = data.tasks.concat([
+  {
+    id: '1',
+    created: '2017-06-08T11:38:19.485+00:00',
+    modified: '2017-06-08T11:38:19.485+00:00',
+    hirer: '1',
+    type: 'HIRER_SURVEY'
+  },
+  {
+    id: '2',
+    created: '2017-06-08T11:38:19.485+00:00',
+    modified: '2017-06-08T11:38:19.485+00:00',
+    company: '99',
+    type: 'SHARE_JOBS'
   }
 ])
 

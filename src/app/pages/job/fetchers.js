@@ -1,60 +1,56 @@
 const { actionMapAssign } = require('@nudj/library')
+const logger = require('@nudj/framework/logger')
 
-const accessToken = process.env.PRISMICIO_ACCESS_TOKEN
-const repo = process.env.PRISMICIO_REPO
-const prismic = require('../../lib/prismic/api')({accessToken, repo})
 const job = require('../../server/modules/job')
+const template = require('../../server/modules/template')
 
 const get = ({
   data,
   params
 }) => {
-  const companySlugJobSlugRefId = params.companySlugJobSlugRefId
   const [
     companySlug,
     jobSlug,
-    refId
-  ] = companySlugJobSlugRefId.split('+')
+    referralId
+  ] = params.companySlugJobSlugReferralId.split('+')
 
-  return job.ensureValidReferralUrl({
+  return job.get({
     companySlug,
     jobSlug,
-    refId
-  })
-  .then(() => job.get({
-    companySlug,
-    jobSlug,
-    refId,
+    referralId,
     personId: data.person && data.person.id,
     loggedIn: !!data.person
-  }))
-  .then(data => actionMapAssign(
+  })
+  .then(result => actionMapAssign(
     data,
     {
-      template: data => jobPrismicTemplate(data.job)
+      referral: result.referral,
+      job: result.company.job
+    },
+    {
+      templates: data => jobPrismicTemplate(data.job)
     }
   ))
+  .catch(error => {
+    logger.log('error', error.message, params, data)
+    throw error
+  })
 }
 
 function jobPrismicTemplate (job) {
-  const prismicQuery = {
-    'document.type': 'jobdescription',
-    'document.tags': ['default']
+  const type = 'jobdescription'
+  const keys = {
+    title: 'title',
+    description: 'description',
+    colourPrimary: 'colourprimary'
   }
+  let tags = ['default']
 
   if (job.templateTags && job.templateTags.length) {
-    prismicQuery['document.tags'] = [].concat(...job.templateTags)
+    tags = [].concat(...job.templateTags)
   }
 
-  return prismic.fetchContent(prismicQuery)
-    .then(results => {
-      const index = getRandomInt(0, results.length)
-      return results[index]
-    })
-}
-
-function getRandomInt (min, max) {
-  return Math.floor(Math.random() * (max - min)) + min
+  return template.getRandom({ type, tags, keys })
 }
 
 module.exports = {

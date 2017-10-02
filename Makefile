@@ -2,7 +2,7 @@ IMAGE:=nudj/web
 IMAGEDEV:=nudj/web-dev
 CWD=$(shell pwd)
 
-.PHONY: build ssh test
+.PHONY: build buildLocal run ssh test
 
 build:
 	@docker build \
@@ -15,8 +15,19 @@ buildLocal:
 	@docker build \
 		-t $(IMAGE):local \
 		--build-arg NPM_TOKEN=${NPM_TOKEN} \
+		--build-arg NODE_ENV=production \
 		-f $(CWD)/Dockerfile \
 		.
+
+run:
+	-@docker rm -f web 2> /dev/null || true
+	@docker run --rm -it \
+		--name web \
+		--env-file $(CWD)/.env \
+		-p 0.0.0.0:80:80 \
+		-p 0.0.0.0:81:81 \
+		-p 0.0.0.0:82:82 \
+		$(IMAGE):local
 
 ssh:
 	-@docker rm -f web-dev 2> /dev/null || true
