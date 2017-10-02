@@ -2,15 +2,15 @@ const { merge } = require('@nudj/library')
 const camelCase = require('lodash/camelCase')
 
 const initialState = {
-  toggleDescription: false
+  showDescription: false
 }
 
-const toggleDescription = (state, action) => {
-  return merge(state, { toggleDescription: !state.toggleDescription })
+const toggleDescriptionBox = (state, action) => {
+  return merge(state, { showDescription: action.showing, transitionHeight: action.height })
 }
 
 const actions = {
-  toggleDescription
+  toggleDescriptionBox
 }
 
 const jobPageReducer = (state = initialState, action) => {

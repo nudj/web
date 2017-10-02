@@ -34,24 +34,6 @@ const linkyOrangeUnderline = {
   })
 }
 
-const animateHeight = {
-  '0%': {
-    maxHeight: '0px'
-  },
-  '100%': {
-    maxHeight: '2000px' // High number for maxHeight rather than auto value allows for animated toggle
-  }
-}
-
-const animateOpacity = {
-  '0%': {
-    opacity: '0'
-  },
-  '100%': {
-    opacity: '1'
-  }
-}
-
 const styles = {
   navContainer: {
     backgroundColor: 'blue'
@@ -133,10 +115,9 @@ const styles = {
   jobTitle: mixins.typography.h3,
   jobDescriptionBox: merge(mixins.flexColumn(), {
     display: 'flex',
-    oveflow: 'hidden',
-    animationName: [animateHeight, animateOpacity],
-    animationDuration: '3.5s, 2s',
-    animationIterationCount: '1'
+    overflow: 'hidden',
+    height: '0',
+    transition: 'all 1000ms ease-in-out'
   }),
   collapseBoxLineLeft: collapseBoxButtonLine('cta-separator-line-1.svg'),
   collapseBoxLineRight: collapseBoxButtonLine('cta-separator-line-2.svg'),
@@ -146,10 +127,9 @@ const styles = {
     marginBottom: variables.padding.b,
     display: 'flex'
   },
-  hideDescriptionBox: merge(mixins.flexColumn(), {
-    oveflow: 'hidden',
-    display: 'none'
-  }),
+  hidden: {
+    display: 'hidden'
+  },
   jobAnswerColumn: merge(mixins.typography.copy, {
     flex: '1',
     textAlign: 'left'
@@ -158,8 +138,10 @@ const styles = {
     cursor: 'pointer',
     padding: variables.padding.e
   }),
-  toggleDescriptionContainer: {
-    marginBottom: variables.padding.c,
+  toggleDescriptionButtonContainer: {
+    paddingBottom: variables.padding.c,
+    position: 'relative',
+    zIndex: '10',
     width: '100%',
     alignItems: 'flex-end',
     display: 'flex'

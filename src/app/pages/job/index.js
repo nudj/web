@@ -4,13 +4,13 @@ const React = require('react')
 const { Link } = require('react-router-dom')
 const get = require('lodash/get')
 const { Helmet } = require('react-helmet')
-const { getStyle, setStyles } = require('./style.css')
+const { getStyle } = require('./style.css')
 
 const Page = require('../../components/page')
 const Header = require('../../components/header')
 const NudjSuccess = require('../../components/nudj-success')
 const RandomHover = require('../../components/random-hover')
-const { toggleDescription } = require('./actions')
+const { toggleDescriptionBox } = require('./actions')
 
 const { render } = require('../../lib/templater')
 
@@ -65,7 +65,6 @@ const Job = (props) => {
   const templates = get(props, 'templates')
   const pageTitle = `${companyName} - ${jobTitle}`
 
-  setStyles()
   const style = getStyle()
 
   const applyForJobButton = application ? (<button className={style.applied} disabled>We'll be in touch soon</button>) : (<RandomHover><button className={style.apply}>Apply</button></RandomHover>)
@@ -153,23 +152,25 @@ const Job = (props) => {
     )
   }
 
-  const toggleBox = () => props.dispatch(toggleDescription())
-  const toggledDisplay = props.jobPage.toggleDescription ? style.jobDescriptionBox : style.hideDescriptionBox
-  const toggleButtonText = props.jobPage.toggleDescription ? 'Less -' : 'Find out more +'
-
-  const jobDescription = (
-    <div className={toggledDisplay}>
-      <div className={style.jobDescriptionSection}>
-        <div className={style.jobHeaderSubtitle}>{`Who are ${companyName}?`}</div>
-        <div className={style.jobAnswerColumn}>{companyDescription}</div>
-      </div>
-      <div className={style.jobDescriptionSection}>
-        <div className={style.jobHeaderSubtitle}>{`What does a ${jobTitle} at ${companyName} do?`}</div>
-        <div className={style.jobAnswerColumn}>{roleDescription}</div>
-      </div>
-      <div className={style.jobDescriptionSection}>
-        <div className={style.jobHeaderSubtitle}>Does this sound like you?</div>
-        <div className={style.jobAnswerColumn}>{candidateDescription}</div>
+  let descriptionElement
+  const toggleButtonText = props.jobPage.showDescription ? 'Less -' : 'Find out more +'
+  const transitionStyle = props.jobPage.showDescription ? { height: props.jobPage.transitionHeight, opacity: 1 } : { height: 0, opacity: 0 }
+  const toggleBox = () => props.dispatch(toggleDescriptionBox(descriptionElement.clientHeight))
+  const JobDescription = (
+    <div className={style.jobDescriptionBox} style={transitionStyle}>
+      <div ref={element => { descriptionElement = element }}>
+        <div className={style.jobDescriptionSection}>
+          <div className={style.jobHeaderSubtitle}>{`Who are ${companyName}?`}</div>
+          <div className={style.jobAnswerColumn}>{companyDescription}</div>
+        </div>
+        <div className={style.jobDescriptionSection}>
+          <div className={style.jobHeaderSubtitle}>{`What does a ${jobTitle} at ${companyName} do?`}</div>
+          <div className={style.jobAnswerColumn}>{roleDescription}</div>
+        </div>
+        <div className={style.jobDescriptionSection}>
+          <div className={style.jobHeaderSubtitle}>Does this sound like you?</div>
+          <div className={style.jobAnswerColumn}>{candidateDescription}</div>
+        </div>
       </div>
     </div>
   )
@@ -188,8 +189,8 @@ const Job = (props) => {
       <div className={style.job}>
         <div className={style.jobHeader}>
           <h1 className={style.jobHeaderTitle}>{title}</h1>
-          {jobDescription}
-          <div className={style.toggleDescriptionContainer}>
+          {JobDescription}
+          <div className={style.toggleDescriptionButtonContainer}>
             <div className={style.collapseBoxLineLeft} />
             <span className={style.toggleButton} onClick={toggleBox}>{toggleButtonText}</span>
             <div className={style.collapseBoxLineRight} />
