@@ -152,29 +152,35 @@ const Job = (props) => {
     )
   }
 
-  let descriptionElement
+  const toggleBox = () => props.dispatch(toggleDescriptionBox(descriptionElement.clientHeight))
   const toggleButtonText = props.jobPage.showDescription ? 'Less -' : 'Find out more +'
   const transitionStyle = props.jobPage.showDescription ? { height: props.jobPage.transitionHeight, opacity: 1 } : {}
-  const toggleBox = () => props.dispatch(toggleDescriptionBox(descriptionElement.clientHeight))
 
+  const descriptionSections = []
+  if (companyDescription) {
+    descriptionSections.push([`Who are ${companyName}?`, companyDescription])
+  }
+  if (roleDescription) {
+    descriptionSections.push([`What does a ${jobTitle} at ${companyName} do?`, roleDescription])
+  }
+  if (candidateDescription) {
+    descriptionSections.push(['Does this sound like you?', candidateDescription])
+  }
+
+  let descriptionElement
   const JobDescription = (
     <div className={style.jobDescriptionBox} style={transitionStyle}>
       <div ref={element => { descriptionElement = element }}>
-        <div className={style.jobDescriptionSection}>
-          <div className={style.jobHeaderSubtitle}>{`Who are ${companyName}?`}</div>
-          <div className={style.jobAnswerColumn}>{companyDescription}</div>
+        {descriptionSections.map(section => <div className={style.jobDescriptionSection} key={section[0].split(' ').join('-')}>
+          <div className={style.jobHeaderSubtitle}>{section[0]}</div>
+          <div className={style.jobAnswerColumn}>{section[1]}</div>
         </div>
-        <div className={style.jobDescriptionSection}>
-          <div className={style.jobHeaderSubtitle}>{`What does a ${jobTitle} at ${companyName} do?`}</div>
-          <div className={style.jobAnswerColumn}>{roleDescription}</div>
-        </div>
-        <div className={style.jobDescriptionSection}>
-          <div className={style.jobHeaderSubtitle}>Does this sound like you?</div>
-          <div className={style.jobAnswerColumn}>{candidateDescription}</div>
-        </div>
+        )}
       </div>
     </div>
   )
+
+  const toggleButtonContainerStyle = descriptionSections.length !== 0 ? style.toggleDescriptionButtonContainer : style.hidden
 
   return (
     <Page {...props} className={style.body}>
@@ -191,7 +197,7 @@ const Job = (props) => {
         <div className={style.jobHeader}>
           <h1 className={style.jobHeaderTitle}>{title}</h1>
           {JobDescription}
-          <div className={style.toggleDescriptionButtonContainer}>
+          <div className={toggleButtonContainerStyle}>
             <div className={style.collapseBoxLineLeft} />
             <span className={style.toggleButton} onClick={toggleBox}>{toggleButtonText}</span>
             <div className={style.collapseBoxLineRight} />

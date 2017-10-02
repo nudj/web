@@ -122,7 +122,7 @@ const styles = {
     }
   },
   hidden: {
-    display: 'hidden'
+    display: 'none'
   },
   jobAnswerColumn: merge(mixins.typography.copy, {
     flex: '1',
