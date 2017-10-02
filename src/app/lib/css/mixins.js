@@ -503,6 +503,19 @@ const makeOr = (properties = {}) => {
 }
 module.exports.makeOr = makeOr
 
+const collapseBoxTopLine = (image = 'cta-separator-line-1.svg', properties = {}) => {
+  return merge(makeOr(), {
+    backgroundImage: linkImage('cta-separator-line-mobile.svg'),
+    backgroundSize: 'contain',
+    flex: '1',
+    padding: `${variables.padding.c} 0`,
+    [breakpoints.ns]: {
+      backgroundImage: linkImage(image)
+    }
+  }, properties)
+}
+module.exports.collapseBoxTopLine = collapseBoxTopLine
+
 module.exports.makeOrDark = (properties = {}) => {
   return makeOr(merge({
     backgroundImage: linkImage('cta-separator-line-charcoal.svg'),

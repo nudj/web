@@ -15,19 +15,6 @@ const jobHeaderTitleHighlight = {
   }
 }
 
-const collapseBoxButtonLine = (image = 'cta-separator-line-1.svg') => {
-  return {
-    backgroundImage: mixins.linkImage(image),
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center',
-    backgroundSize: 'contain',
-    color: variables.colours.white,
-    display: 'inline-block',
-    flex: '1',
-    padding: (variables.padding.c + ' ' + variables.padding.a)
-  }
-}
-
 const linkyOrangeUnderline = {
   [mixins.breakpoints.l]: merge({}, mixins.makeOrangeSubtitleUnderline(), {
     margin: '0'
@@ -123,13 +110,16 @@ const styles = {
       height: '0'
     }
   }),
-  collapseBoxLineLeft: collapseBoxButtonLine('cta-separator-line-1.svg'),
-  collapseBoxLineRight: collapseBoxButtonLine('cta-separator-line-2.svg'),
+  collapseBoxLineLeft: mixins.collapseBoxTopLine('cta-separator-line-1.svg'),
+  collapseBoxLineRight: mixins.collapseBoxTopLine('cta-separator-line-2.svg'),
   jobDescriptionSection: {
     width: '100%',
     textAlign: 'center',
     marginBottom: variables.padding.b,
-    display: 'flex'
+    display: 'flex',
+    ':last-of-type': {
+      marginBottom: variables.padding.e
+    }
   },
   hidden: {
     display: 'hidden'
@@ -138,7 +128,7 @@ const styles = {
     flex: '1',
     textAlign: 'left'
   }),
-  toggleButton: merge(mixins.typography.copy, mixins.headings.pBold, {
+  toggleButton: merge(mixins.typography.copy, mixins.headings.h6, {
     cursor: 'pointer',
     padding: variables.padding.e
   }),
@@ -146,8 +136,7 @@ const styles = {
     display: 'none',
     '^.js': {
       display: 'flex',
-      paddingBottom: variables.padding.c,
-      position: 'relative',
+      paddingBottom: variables.padding.d,
       zIndex: '10',
       width: '100%',
       alignItems: 'flex-end'

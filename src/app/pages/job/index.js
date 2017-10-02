@@ -156,6 +156,7 @@ const Job = (props) => {
   const toggleButtonText = props.jobPage.showDescription ? 'Less -' : 'Find out more +'
   const transitionStyle = props.jobPage.showDescription ? { height: props.jobPage.transitionHeight, opacity: 1 } : {}
   const toggleBox = () => props.dispatch(toggleDescriptionBox(descriptionElement.clientHeight))
+
   const JobDescription = (
     <div className={style.jobDescriptionBox} style={transitionStyle}>
       <div ref={element => { descriptionElement = element }}>
