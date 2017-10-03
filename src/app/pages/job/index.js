@@ -4,7 +4,7 @@ const React = require('react')
 const { Link } = require('react-router-dom')
 const get = require('lodash/get')
 const { Helmet } = require('react-helmet')
-const { getStyle } = require('./style.css')
+const { getStyle, setStyles } = require('./style.css')
 
 const Page = require('../../components/page')
 const Header = require('../../components/header')
@@ -65,6 +65,7 @@ const Job = (props) => {
   const templates = get(props, 'templates')
   const pageTitle = `${companyName} - ${jobTitle}`
 
+  setStyles()
   const style = getStyle()
 
   const applyForJobButton = application ? (<button className={style.applied} disabled>We'll be in touch soon</button>) : (<RandomHover><button className={style.apply}>Apply</button></RandomHover>)
@@ -194,7 +195,7 @@ const Job = (props) => {
         <meta property='og:image' content={image} />
       </Helmet>
       <div className={style.job}>
-        <div className={style.jobHeader}>
+        <div className={style.jobContainer}>
           <h1 className={style.jobHeaderTitle}>{title}</h1>
           {JobDescription}
           <div className={toggleButtonContainerStyle}>

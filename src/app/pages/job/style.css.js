@@ -36,10 +36,11 @@ const styles = {
       padding: `${variables.padding.a} 0 ${variables.padding.b} 0`
     }
   },
-  jobHeader: mixins.basicContainer(),
+  jobContainer: mixins.basicContainer(),
   jobHeaderTitle: merge({}, mixins.typography.titleCharcoal, {
-    margin: `0 0 ${variables.padding.b} 0`,
+    margin: `0 0 ${variables.padding.de} 0`,
     [mixins.breakpoints.l]: {
+      margin: `0 0 ${variables.padding.b} 0`,
       textAlign: 'inherit'
     }
   }),
@@ -136,8 +137,7 @@ const styles = {
     display: 'none',
     '^.js': {
       display: 'flex',
-      paddingBottom: variables.padding.d,
-      zIndex: '10',
+      paddingBottom: variables.padding.c,
       width: '100%',
       alignItems: 'flex-end'
     }
