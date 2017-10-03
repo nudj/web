@@ -173,8 +173,8 @@ const Job = (props) => {
     <div className={style.jobDescriptionBox} style={transitionStyle}>
       <div ref={element => { descriptionElement = element }}>
         {descriptionSections.map(section => <div className={style.jobDescriptionSection} key={section[0].split(' ').join('-')}>
-          <div className={style.jobHeaderSubtitle}>{section[0]}</div>
-          <div className={style.jobAnswerColumn}>{section[1]}</div>
+          <div className={style.jobDescriptionSubtitle}>{section[0]}</div>
+          <div className={style.jobDescriptionText}>{section[1]}</div>
         </div>
         )}
       </div>
