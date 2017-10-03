@@ -146,6 +146,20 @@ const styles = {
       alignItems: 'flex-end'
     }
   },
+  jobDescriptionFallback: merge({}, mixins.typography.copy, {
+    margin: `0 0 ${variables.padding.b} 0`,
+    [mixins.breakpoints.l]: {
+      textAlign: 'inherit'
+    }
+  }),
+  jobDescriptionSubtitleFallback: merge({}, mixins.headings.h4, {
+    color: variables.colors.midRed,
+    margin: `${variables.padding.b} 0 ${variables.padding.d} 0`,
+    textAlign: 'center',
+    [mixins.breakpoints.l]: {
+      textAlign: 'inherit'
+    }
+  }),
   bodyLinks: merge({}, mixins.typography.copy, mixins.headings.pBold, mixins.textHighlight(), {
     textDecoration: 'none'
   }),

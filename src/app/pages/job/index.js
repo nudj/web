@@ -94,6 +94,11 @@ const Job = (props) => {
     }
   })
 
+  const description = render({
+    template: templates.description,
+    data: data
+  })
+
   const bannerMessage = get(props, 'message')
   const isReferrerByProps = !!get(props, 'job.referral')
   const isReferrerByMessage = bannerMessage && bannerMessage.type === 'error' && bannerMessage.code === 403 && bannerMessage.message === 'Already referred'
@@ -169,19 +174,35 @@ const Job = (props) => {
   }
 
   let descriptionElement
-  const JobDescription = (
-    <div className={style.jobDescriptionBox} style={transitionStyle}>
-      <div ref={element => { descriptionElement = element }}>
-        {descriptionSections.map(section => <div className={style.jobDescriptionSection} key={section[0].split(' ').join('-')}>
-          <div className={style.jobDescriptionSubtitle}>{section[0]}</div>
-          <div className={style.jobDescriptionText}>{section[1]}</div>
+  const fullJobDescription = (
+    <div className={style.jobContainer}>
+      <h1 className={style.jobHeaderTitle}>{title}</h1>
+      <div className={style.jobDescriptionBox} style={transitionStyle}>
+        <div ref={element => { descriptionElement = element }}>
+          {descriptionSections.map(section => <div className={style.jobDescriptionSection} key={section[0].split(' ').join('-')}>
+            <div className={style.jobDescriptionSubtitle}>{section[0]}</div>
+            <div className={style.jobDescriptionText}>{section[1]}</div>
+          </div>
+          )}
         </div>
-        )}
+      </div>
+      <div className={style.toggleDescriptionButtonContainer}>
+        <div className={style.collapseBoxLineLeft} />
+        <span className={style.toggleButton} onClick={toggleBox}>{toggleButtonText}</span>
+        <div className={style.collapseBoxLineRight} />
       </div>
     </div>
   )
 
-  const toggleButtonContainerStyle = descriptionSections.length !== 0 ? style.toggleDescriptionButtonContainer : style.hidden
+  const jobDescriptionFallback = (
+    <div className={style.jobContainer}>
+      <h1 className={style.jobHeaderTitle}>{title}</h1>
+      <h3 className={style.jobDescriptionSubtitleFallback}>What else you need to know…</h3>
+      <p className={style.jobDescriptionFallback}>{description}</p>
+    </div>
+  )
+
+  const jobDescription = descriptionSections.length > 1 ? fullJobDescription : jobDescriptionFallback
 
   return (
     <Page {...props} className={style.body}>
@@ -195,15 +216,7 @@ const Job = (props) => {
         <meta property='og:image' content={image} />
       </Helmet>
       <div className={style.job}>
-        <div className={style.jobContainer}>
-          <h1 className={style.jobHeaderTitle}>{title}</h1>
-          {JobDescription}
-          <div className={toggleButtonContainerStyle}>
-            <div className={style.collapseBoxLineLeft} />
-            <span className={style.toggleButton} onClick={toggleBox}>{toggleButtonText}</span>
-            <div className={style.collapseBoxLineRight} />
-          </div>
-        </div>
+        {jobDescription}
         <section className={style.actions}>
           {actions[0]}
           <span className={style.or}>or</span>
