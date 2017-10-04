@@ -10,8 +10,6 @@ class CollapseBox extends React.Component {
     super(props)
     this.style = getStyle()
     this.state = {
-      visible: props.isOpened,
-      transitionConfig: props.transitionConfig,
       js: false
     }
   }
@@ -22,18 +20,12 @@ class CollapseBox extends React.Component {
     })
   }
 
-  componentWillReceiveProps (props) {
-    if (props.isOpened !== this.state.visible) {
-      this.setState({ visible: props.isOpened })
-    }
-  }
-
   render () {
     const defaultConfig = { stiffness: 300, damping: 40 }
-    const config = merge(defaultConfig, get(this.state, 'transitionConfig', {}))
+    const config = merge(defaultConfig, get(this.props, 'transitionConfig', {}))
 
     const collapsibleDisplay = (
-      <Collapse isOpened={this.state.visible} springConfig={config}>
+      <Collapse isOpened={this.props.isOpened} springConfig={config}>
         {this.props.children}
       </Collapse>
     )
