@@ -6,7 +6,7 @@ const initialState = {
 }
 
 const toggleDescriptionBox = (state, action) => {
-  return merge(state, { showDescription: action.showing, transitionHeight: action.height })
+  return merge(state, { showDescription: action.showing })
 }
 
 const actions = {

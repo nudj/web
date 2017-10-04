@@ -108,12 +108,7 @@ const styles = {
   jobDescriptionBox: merge(mixins.flexColumn(), {
     display: 'flex',
     overflow: 'hidden',
-    height: 'auto',
-    transition: 'all 1000ms ease-in-out',
-    '^.js': {
-      opacity: '0',
-      height: '0'
-    }
+    height: 'auto'
   }),
   collapseBoxLineLeft: mixins.collapseBoxTopLine('cta-separator-line-1.svg'),
   collapseBoxLineRight: mixins.collapseBoxTopLine('cta-separator-line-2.svg'),

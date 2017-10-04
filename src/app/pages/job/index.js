@@ -10,6 +10,7 @@ const Page = require('../../components/page')
 const Header = require('../../components/header')
 const NudjSuccess = require('../../components/nudj-success')
 const RandomHover = require('../../components/random-hover')
+const CollapseBox = require('../../components/collapse-box')
 const { toggleDescriptionBox } = require('./actions')
 
 const { render } = require('../../lib/templater')
@@ -158,9 +159,8 @@ const Job = (props) => {
     )
   }
 
-  const toggleBox = () => props.dispatch(toggleDescriptionBox(descriptionElement.clientHeight))
+  const toggleBox = () => props.dispatch(toggleDescriptionBox())
   const toggleButtonText = props.jobPage.showDescription ? 'Less -' : 'Find out more +'
-  const transitionStyle = props.jobPage.showDescription ? { height: props.jobPage.transitionHeight, opacity: 1 } : {}
 
   const descriptionSections = []
   if (companyDescription) {
@@ -173,19 +173,17 @@ const Job = (props) => {
     descriptionSections.push(['Does this sound like you?', candidateDescription])
   }
 
-  let descriptionElement
   const fullJobDescription = (
     <div className={style.jobContainer}>
-      <h1 className={style.jobHeaderTitle}>{title}</h1>
-      <div className={style.jobDescriptionBox} style={transitionStyle}>
-        <div ref={element => { descriptionElement = element }}>
+      <CollapseBox isOpened={props.jobPage.showDescription}>
+        <div className={style.jobDescriptionBox}>
           {descriptionSections.map(section => <div className={style.jobDescriptionSection} key={section[0].split(' ').join('-')}>
             <div className={style.jobDescriptionSubtitle}>{section[0]}</div>
             <div className={style.jobDescriptionText}>{section[1]}</div>
           </div>
           )}
         </div>
-      </div>
+      </CollapseBox>
       <div className={style.toggleDescriptionButtonContainer}>
         <div className={style.collapseBoxLineLeft} />
         <span className={style.toggleButton} onClick={toggleBox}>{toggleButtonText}</span>
@@ -196,7 +194,6 @@ const Job = (props) => {
 
   const jobDescriptionFallback = (
     <div className={style.jobContainer}>
-      <h1 className={style.jobHeaderTitle}>{title}</h1>
       <h3 className={style.jobDescriptionSubtitleFallback}>What else you need to know…</h3>
       <p className={style.jobDescriptionFallback}>{description}</p>
     </div>
@@ -216,7 +213,10 @@ const Job = (props) => {
         <meta property='og:image' content={image} />
       </Helmet>
       <div className={style.job}>
-        {jobDescription}
+        <div className={style.jobContainer}>
+          <h1 className={style.jobHeaderTitle}>{title}</h1>
+          {jobDescription}
+        </div>
         <section className={style.actions}>
           {actions[0]}
           <span className={style.or}>or</span>
