@@ -199,6 +199,8 @@ const Job = (props) => {
     </div>
   )
 
+  // > 1 ensures that the fallback renders if no additional entries are provided
+  // To render the collapse box it needs to be > 1 because company.description will always be in there as 1 entry.
   const jobDescription = descriptionSections.length > 1 ? fullJobDescription : jobDescriptionFallback
 
   return (

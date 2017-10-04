@@ -1,6 +1,7 @@
 const React = require('react')
 const { Collapse } = require('react-collapse')
 const get = require('lodash/get')
+const { merge } = require('@nudj/library')
 
 const getStyle = require('./collapse-box.css')
 
@@ -29,7 +30,7 @@ class CollapseBox extends React.Component {
 
   render () {
     const defaultConfig = { stiffness: 300, damping: 40 }
-    const config = get(this.state, 'transitionConfig', defaultConfig)
+    const config = merge(defaultConfig, get(this.state, 'transitionConfig', {}))
 
     const collapsibleDisplay = (
       <Collapse isOpened={this.state.visible} springConfig={config}>
