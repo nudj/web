@@ -15,7 +15,7 @@ const centerAlign = {
 
 const styles = {
   token: {
-    backgroundColor: variables.colours.white,
+    backgroundColor: variables.colors.white,
     padding: `${variables.padding.c} 0`,
     position: 'relative',
     [mixins.breakpoints.l]: {
@@ -105,7 +105,7 @@ const styles = {
     textAlign: 'left'
   }),
   tableCellEvenRow: merge(mixins.basicTable.tableCell, {
-    backgroundColor: variables.colours.lighterGrey,
+    backgroundColor: variables.colors.lighterGrey,
     textAlign: 'left'
   }),
   tableCellFirst: {

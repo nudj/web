@@ -9,7 +9,7 @@ const buttonMargins = {
 }
 
 const jobHeaderTitleHighlight = {
-  color: variables.colours.midRed,
+  color: variables.colors.midRed,
   [mixins.breakpoints.l]: {
     whiteSpace: 'nowrap'
   }
@@ -29,17 +29,18 @@ const styles = {
     backgroundColor: 'blue'
   },
   job: {
-    backgroundColor: variables.colours.white,
+    backgroundColor: variables.colors.white,
     padding: `${variables.padding.b} 0`,
     position: 'relative',
     [mixins.breakpoints.l]: {
       padding: `${variables.padding.a} 0 ${variables.padding.b} 0`
     }
   },
-  jobHeader: mixins.basicContainer(),
+  jobContainer: mixins.basicContainer(),
   jobHeaderTitle: merge({}, mixins.typography.titleCharcoal, {
-    margin: `0 0 ${variables.padding.b} 0`,
-    [mixins.breakpoints.l]: {
+    margin: `0 0 ${variables.padding.c} 0`,
+    [mixins.breakpoints.ns]: {
+      margin: `0 0 ${variables.padding.c} 0`,
       textAlign: 'inherit'
     }
   }),
@@ -47,19 +48,18 @@ const styles = {
   jobHeaderTitleHighlightLink: merge({}, jobHeaderTitleHighlight, linkyOrangeUnderline, {
     textDecoration: 'none'
   }),
-  jobHeaderSubtitle: merge({}, mixins.headings.h4, {
-    color: variables.colours.midRed,
-    margin: `0 0 ${variables.padding.d} 0`,
-    textAlign: 'center',
-    [mixins.breakpoints.l]: {
-      textAlign: 'inherit'
+  jobDescriptionSubtitle: merge({}, mixins.headings.h4, {
+    flex: '1',
+    color: variables.colors.midRed,
+    padding: `0 ${variables.padding.de} ${variables.padding.d} 0`,
+    textAlign: 'left',
+    [mixins.breakpoints.ns]: {
+      textAlign: 'left'
     }
   }),
-  jobHeaderDescription: merge({}, mixins.typography.copy, {
-    margin: `0 0 ${variables.padding.b} 0`,
-    [mixins.breakpoints.l]: {
-      textAlign: 'inherit'
-    }
+  jobDescriptionText: merge(mixins.typography.copy, {
+    flex: '1',
+    textAlign: 'left'
   }),
   actions: mixins.flexColumn({
     padding: `0 ${variables.padding.d}`,
@@ -105,6 +105,56 @@ const styles = {
     }
   },
   jobTitle: mixins.typography.h3,
+  jobDescriptionBox: merge(mixins.flexColumn(), {
+    display: 'flex',
+    overflow: 'hidden',
+    height: 'auto'
+  }),
+  collapseBoxLineLeft: mixins.collapseBoxTopLine('cta-separator-line-1.svg'),
+  collapseBoxLineRight: mixins.collapseBoxTopLine('cta-separator-line-2.svg'),
+  jobDescriptionSection: {
+    width: '100%',
+    textAlign: 'center',
+    paddingBottom: variables.padding.c,
+    display: 'block',
+    ':last-of-type': {
+      paddingBottom: variables.padding.e
+    },
+    [mixins.breakpoints.ns]: {
+      paddingBottom: variables.padding.b,
+      display: 'flex'
+    }
+  },
+  hidden: {
+    display: 'none'
+  },
+  toggleButton: merge(mixins.typography.copy, mixins.headings.h6, {
+    cursor: 'pointer',
+    padding: variables.padding.e
+  }),
+  toggleDescriptionButtonContainer: {
+    display: 'none',
+    '^.js': {
+      display: 'flex',
+      paddingBottom: variables.padding.c,
+      width: '100%',
+      alignItems: 'flex-end'
+    }
+  },
+  jobDescriptionFallback: merge({}, mixins.typography.copy, {
+    margin: `0 0 ${variables.padding.b} 0`,
+    [mixins.breakpoints.l]: {
+      textAlign: 'inherit'
+    }
+  }),
+  jobDescriptionSubtitleFallback: merge({}, mixins.headings.h4, {
+    color: variables.colors.midRed,
+    margin: `${variables.padding.b} 0 ${variables.padding.d} 0`,
+    textAlign: 'center',
+    [mixins.breakpoints.l]: {
+      textAlign: 'inherit'
+    }
+  }),
   bodyLinks: merge({}, mixins.typography.copy, mixins.headings.pBold, mixins.textHighlight(), {
     textDecoration: 'none'
   }),
@@ -125,13 +175,13 @@ const setStyles = (highlightColour) => {
 
   const colouredStyles = {
     jobHeaderTitleHighlight: {
-      color: variables.colours[highlightColour] || styles.jobHeaderTitleHighlight.color
+      color: variables.colors[highlightColour] || styles.jobHeaderTitleHighlight.color
     },
     jobHeaderTitleHighlightLink: {
-      color: variables.colours[highlightColour] || styles.jobHeaderTitleHighlightLink.color
+      color: variables.colors[highlightColour] || styles.jobHeaderTitleHighlightLink.color
     },
-    jobHeaderSubtitle: {
-      color: variables.colours[highlightColour] || styles.jobHeaderSubtitle.color
+    jobDescriptionSubtitle: {
+      color: variables.colors[highlightColour] || styles.jobDescriptionSubtitle.color
     }
   }
 

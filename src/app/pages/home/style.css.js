@@ -6,7 +6,7 @@ const title = merge({}, mixins.typography.title, {
 })
 
 const subtitle = merge({
-  color: variables.colours.royalBlue
+  color: variables.colors.royalBlue
 }, mixins.headings.h4)
 
 const howStep = mixins.flexColumn({
@@ -99,7 +99,7 @@ const styles = {
   }),
   heroTitle: merge({}, title, {
     padding: `${variables.padding.b} ${variables.padding.d} 0 ${variables.padding.d}`,
-    textShadow: `-2px -2px ${variables.colours.white}, -2px 2px ${variables.colours.white}, 2px -2px ${variables.colours.white}, 2px 2px ${variables.colours.white}`,
+    textShadow: `-2px -2px ${variables.colors.white}, -2px 2px ${variables.colors.white}, 2px -2px ${variables.colors.white}, 2px 2px ${variables.colors.white}`,
     '::after': merge({
       marginLeft: `-${variables.padding.d}`
     }, notHappyImageMobile),
@@ -202,15 +202,15 @@ const styles = {
   stepBody: mixins.typography.copy,
   basicContainer: mixins.basicContainer(),
   signup: mixins.beforeBackgroundSquiggle('bg-wiggle-mid-red.svg', {
-    backgroundColor: variables.colours.midRed,
+    backgroundColor: variables.colors.midRed,
     paddingBottom: variables.padding.b
   }),
   signupContainer: mixins.basicContainer(mixins.flexColumn()),
   signupTitle: merge({}, title, {
-    color: variables.colours.white
+    color: variables.colors.white
   }),
   signupSubtitle: merge({}, mixins.basicContainerSmaller(), mixins.headings.p, {
-    color: variables.colours.white,
+    color: variables.colors.white,
     margin: '0',
     padding: `0 0 ${variables.padding.c} 0`,
     textAlign: 'center'

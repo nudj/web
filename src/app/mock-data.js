@@ -37,6 +37,22 @@ data.companies = data.companies.concat([
     slug: 'sales-i',
     url: 'http://omg.fake-company.com',
     description: 'OMG this job is SO hot right now. Ut nec massa vitae dui ullamcorper malesuada nec in neque. Suspendisse nec sapien faucibus, mollis metus ac, tempus eros. Praesent at nisl consequat ligula auctor eleifend nec sit amet eros. Fusce consequat, ante ac maximus auctor, felis justo vestibulum elit, congue congue ipsum ligula et lacus. Vivamus est risus, viverra quis iaculis et, eleifend eget est.'
+  },
+  {
+    industry: 'Recruitment',
+    location: 'London, UK',
+    logo: 'https://www.nudj.co/assets/images/nudj-logo.png',
+    name: 'Nudj',
+    slug: 'nudj',
+    size: 'SME',
+    url: 'https://www.nudj.co/',
+    description: 'Nudj is changing the way companies find and hire awesome people. This is an opportunity to join a small, but passionate team, who are on a mission to change hiring for good.',
+    facebook: 'https://twitter.com/nudjhq',
+    twitter: 'https://www.facebook.com/nudj.co',
+    linkedin: 'https://www.linkedin.com/company/the-nudge-app',
+    id: '101',
+    modified: '2017-09-25T09:40:09.948+00:00',
+    onboarded: false
   }
 ])
 data.jobs = data.jobs.concat([
@@ -50,6 +66,8 @@ data.jobs = data.jobs.concat([
     status: 'Open',
     bonus: 1000,
     description: '5+ years software engineering experience, using Node (6+), ES6 (Babel) and TypeScript. You should also be familiar with Git, Github, PRs, Code Reviews - please send us a link to your Github profile.',
+    roleDescription: 'Managing all the software, dropping the database, deleting important sections of code, force-pushing to master and of course spilling coffee on everyone\'s laptop.',
+    candidateDescription: '5+ years software engineering experience, using Node (6+), ES6 (Babel) and TypeScript. You should also be familiar with Git, Github, PRs, Code Reviews - please send us a link to your Github profile.',
     type: 'Permanent',
     remuneration: 'Competitive + Options',
     experience: '16 billion years',
@@ -76,6 +94,8 @@ data.jobs = data.jobs.concat([
     status: 'Open',
     bonus: 1000,
     description: 'Fake job! vitae sodales velit ligula quis ligula. Sed et tincidunt nisi. Ut nec massa vitae dui ullamcorper malesuada nec in neque. Suspendisse nec sapien faucibus, mollis metus ac, tempus eros. Praesent at nisl consequat ligula auctor eleifend nec sit amet eros. Fusce consequat, ante ac maximus auctor, felis justo vestibulum elit, congue congue ipsum ligula et lacus. Vivamus est risus, viverra quis iaculis et, eleifend eget est.',
+    roleDescription: 'Managing all the software, dropping the database, deleting important sections of code, force-pushing to master and of course spilling coffee on everyone\'s laptop.',
+    candidateDescription: '5+ years software engineering experience, using Node (6+), ES6 (Babel) and TypeScript. You should also be familiar with Git, Github, PRs, Code Reviews - please send us a link to your Github profile.',
     type: 'Permanent',
     remuneration: 'Competitive + Options',
     experience: '300+ years',
@@ -99,6 +119,8 @@ data.jobs = data.jobs.concat([
     status: 'Published',
     bonus: 1000,
     description: 'Sales-i’s cloud based, sales performance software help good sales people become great ones. This fast growing tech company needs a marketeer to join the Chicago team. Help woo new clients and show some love to their existing ones. To do so you’ll be diving into the world of digital, print and creative thinking. You’ll have a few years of B2B marketing under your belt, be a master of crafting engaging content and know your way around the go-to marketing tools. Rumour has it they are moving downtown, so don’t worry, you won’t need to schlep out to the ‘burbs.',
+    roleDescription: 'Managing all the software, dropping the database, deleting important sections of code, force-pushing to master and of course spilling coffee on everyone\'s laptop.',
+    candidateDescription: '5+ years software engineering experience, using Node (6+), ES6 (Babel) and TypeScript. You should also be familiar with Git, Github, PRs, Code Reviews - please send us a link to your Github profile.',
     type: 'Permanent',
     remuneration: 'competitive',
     experience: '3 years',
@@ -109,7 +131,7 @@ data.jobs = data.jobs.concat([
       'node.js'
     ],
     location: 'Chicago, IL',
-    companyId: '100',
+    company: '100',
     related: [],
     templateTags: ['film'],
     created: '2017-07-27T12:00:00.000+00:00'
@@ -118,11 +140,13 @@ data.jobs = data.jobs.concat([
     id: '102',
     created: '1986-07-06T07:34:54.000+00:00',
     modified: '2000-01-17T02:51:58.000+00:00',
-    title: 'Senior Fake Test Job 2',
-    slug: 'senior-fake-test-job',
+    title: 'Full Stack Software Engineer',
+    slug: 'full-stack-software-engineer',
     url: 'https://fake.com',
     status: 'Open',
     bonus: 1000,
+    roleDescription: 'Fake job! vitae sodales velit ligula quis ligula. Sed et tincidunt nisi. Ut nec massa vitae dui ullamcorper malesuada nec in neque. Suspendisse nec sapien faucibus, mollis metus ac, tempus eros. Praesent at nisl consequat ligula auctor eleifend nec sit amet eros. Fusce consequat, ante ac maximus auctor, felis justo vestibulum elit, congue congue ipsum ligula et lacus. Vivamus est risus, viverra quis iaculis et, eleifend eget est.',
+    candidateDescription: '5+ years software engineering experience, using Node (6+), ES6 (Babel) and TypeScript. You should also be familiar with Git, Github, PRs, Code Reviews - please send us a link to your Github profile.',
     description: 'Fake job! vitae sodales velit ligula quis ligula. Sed et tincidunt nisi. Ut nec massa vitae dui ullamcorper malesuada nec in neque. Suspendisse nec sapien faucibus, mollis metus ac, tempus eros. Praesent at nisl consequat ligula auctor eleifend nec sit amet eros. Fusce consequat, ante ac maximus auctor, felis justo vestibulum elit, congue congue ipsum ligula et lacus. Vivamus est risus, viverra quis iaculis et, eleifend eget est.',
     type: 'Permanent',
     remuneration: 'Competitive + Options',
@@ -134,7 +158,7 @@ data.jobs = data.jobs.concat([
       'Job'
     ],
     location: 'London',
-    company: '100',
+    company: '101',
     relatedJobs: [
       '99'
     ]

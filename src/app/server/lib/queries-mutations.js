@@ -28,6 +28,8 @@ const fragments = {
       status
       bonus
       description
+      roleDescription
+      candidateDescription
       type
       remuneration
       tags
@@ -54,6 +56,7 @@ const fragments = {
         name
         logo
         slug
+        description
         url
       }
       relatedJobs {
