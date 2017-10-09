@@ -37,6 +37,7 @@ class CopyToClipboard extends React.Component {
   render () {
     const filteredProps = omit(this.props, [
       'children',
+      'component',
       'onSuccess'
     ])
     const mappedProps = mapKeys(filteredProps, (value, key) => {
