@@ -52,7 +52,7 @@ ssh:
 		$(IMAGEDEV) \
 		/bin/zsh
 
-test:
+stan:
 	-@docker rm -f web-test 2> /dev/null || true
 	@docker run --rm -it \
 		--name web-test \
@@ -60,4 +60,25 @@ test:
 		-v $(CWD)/src/test:/usr/src/test \
 		-v $(CWD)/src/package.json:/usr/src/package.json \
 		$(IMAGEDEV) \
-		/bin/sh -c './node_modules/.bin/standard && ./node_modules/.bin/mocha --recursive test'
+		/bin/sh -c './node_modules/.bin/standard'
+
+unit:
+	-@docker rm -f web-test 2> /dev/null || true
+	@docker run --rm -it \
+		--name web-test \
+		-v $(CWD)/src/app:/usr/src/app \
+		-v $(CWD)/src/test:/usr/src/test \
+		-v $(CWD)/src/package.json:/usr/src/package.json \
+		$(IMAGEDEV) \
+		/bin/sh -c './node_modules/.bin/mocha --recursive test/unit'
+
+test: stan unit
+
+func:
+	-@docker rm -f web-func 2> /dev/null || true
+	@docker run --rm -it \
+		--name web-func \
+		--env-file $(CWD)/.env-func \
+		--network container:web-dev \
+		-v $(CWD)/src/test/func:/tests \
+		testcafe/testcafe 'chromium --no-sandbox,firefox' /tests/index.js
