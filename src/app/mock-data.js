@@ -22,6 +22,7 @@ data.companies = data.companies.concat([
     location: 'London',
     logo: 'https://slack-imgs.com/?c=1&url=https%3A%2F%2Fs-media-cache-ak0.pinimg.com%2Foriginals%2F2a%2F89%2Fde%2F2a89dee5376d13e8d378e797d4e7e5fc.gif',
     name: 'Fake Company',
+    mission: 'make America fake again',
     slug: 'fake-company',
     url: 'http://omg.fake-company.com',
     description: 'OMG this job is SO hot right now. Ut nec massa vitae dui ullamcorper malesuada nec in neque. Suspendisse nec sapien faucibus, mollis metus ac, tempus eros. Praesent at nisl consequat ligula auctor eleifend nec sit amet eros. Fusce consequat, ante ac maximus auctor, felis justo vestibulum elit, congue congue ipsum ligula et lacus. Vivamus est risus, viverra quis iaculis et, eleifend eget est.'
@@ -32,6 +33,7 @@ data.companies = data.companies.concat([
     modified: '2000-01-17T02:51:58.000+00:00',
     industry: 'Dollar',
     location: 'Chicago, Bitch',
+    mission: 'make a lot of dollar',
     logo: 'https://68.media.tumblr.com/23f73d0a9a8b9b72eb87dad9f67629df/tumblr_n215bstSum1qdewlro2_r1_250.gif',
     name: 'sales-i',
     slug: 'sales-i',
@@ -43,6 +45,7 @@ data.companies = data.companies.concat([
     location: 'London, UK',
     logo: 'https://www.nudj.co/assets/images/nudj-logo.png',
     name: 'Nudj',
+    mission: 'change the way companies hire',
     slug: 'nudj',
     size: 'SME',
     url: 'https://www.nudj.co/',

@@ -56,6 +56,7 @@ const fragments = {
         name
         logo
         industry
+        mission
         slug
         description
         url
