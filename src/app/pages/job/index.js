@@ -3,6 +3,7 @@
 const React = require('react')
 const { Link } = require('react-router-dom')
 const get = require('lodash/get')
+const { merge } = require('@nudj/library')
 const { Helmet } = require('react-helmet')
 const { getStyle, setStyles } = require('./style.css')
 
@@ -65,6 +66,7 @@ const Job = (props) => {
   const application = get(props, 'job.application')
   const templates = get(props, 'templates')
   const pageTitle = `${companyName} - ${jobTitle}`
+  const job = get(props, 'job', {})
 
   setStyles()
   const style = getStyle()
@@ -74,7 +76,9 @@ const Job = (props) => {
   const uniqueLink = `/jobs/${get(props, 'job.company.slug', '')}+${get(props, 'job.slug', '')}${referral ? `+${referral.id}` : ''}`
 
   const data = {
-    job: get(props, 'job'),
+    job: merge(job, {
+      tags: get(job, 'tags', []).shift() // Grab only first tag
+    }),
     company: get(props, 'job.company')
   }
 

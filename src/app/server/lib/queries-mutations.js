@@ -55,6 +55,7 @@ const fragments = {
         id
         name
         logo
+        industry
         slug
         description
         url
