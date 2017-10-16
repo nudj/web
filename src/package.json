@@ -23,7 +23,7 @@
     ]
   },
   "dependencies": {
-    "@nudj/api": "2.3.0",
+    "@nudj/api": "2.4.0",
     "@nudj/components": "0.1.3",
     "@nudj/framework": "4.1.1",
     "@nudj/library": "1.1.0",
