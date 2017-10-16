@@ -1,5 +1,5 @@
-// const peoplePage = require('../pages/people/actions')
+const jobPage = require('../pages/job/actions')
 
 module.exports = {
-  // peoplePage
+  jobPage
 }

@@ -37,12 +37,13 @@ class CopyToClipboard extends React.Component {
   render () {
     const filteredProps = omit(this.props, [
       'children',
+      'component',
       'onSuccess'
     ])
     const mappedProps = mapKeys(filteredProps, (value, key) => {
       return `button-${key}`
     })
-    return <ClipboardButton {...mappedProps} onSuccess={this.onSuccess}>{get(this.state, 'text')}</ClipboardButton>
+    return <ClipboardButton component={this.props.component} {...mappedProps} onSuccess={this.onSuccess}>{get(this.state, 'text')}</ClipboardButton>
   }
 }
 

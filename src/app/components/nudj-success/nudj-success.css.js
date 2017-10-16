@@ -3,7 +3,7 @@ const { mixins, variables } = require('../../lib/css')
 
 const sharingIcons = {
   display: 'block',
-  fill: variables.colours.royalBlue,
+  fill: variables.colors.royalBlue,
   height: variables.sizes.mobileActionButtonsHeight
 }
 
@@ -12,7 +12,7 @@ const styles = {
     [mixins.breakpoints.ns]: merge({}, mixins.headings.p[mixins.breakpoints.ns])
   }),
   mobileMessage: {
-    color: variables.colours.royalBlue,
+    color: variables.colors.royalBlue,
     display: 'block',
     textAlign: 'center',
     [mixins.breakpoints.ns]: {
@@ -20,7 +20,7 @@ const styles = {
     }
   },
   message: {
-    color: variables.colours.royalBlue,
+    color: variables.colors.royalBlue,
     display: 'none',
     [mixins.breakpoints.ns]: {
       display: 'block'
@@ -41,7 +41,7 @@ const styles = {
     textDecoration: 'none'
   },
   actionTitle: {
-    color: variables.colours.royalBlue,
+    color: variables.colors.royalBlue,
     display: 'block',
     padding: `${variables.padding.e} 0 0 0`
   },
@@ -56,7 +56,7 @@ const styles = {
     cursor: 'pointer',
     display: 'block',
     height: variables.sizes.mobileActionButtonsHeight,
-    stroke: variables.colours.royalBlue
+    stroke: variables.colors.royalBlue
   },
   socialAction: sharingIcons,
   waLink: sharingIcons,
@@ -93,31 +93,31 @@ const setStyles = (backgroundColour, textColour, textHighlightColour, buttonText
 
   colouredStyles = {
     linkContainer: {
-      borderColor: variables.colours[textColour] || styles.linkContainer.borderColor,
-      color: variables.colours[textColour] || styles.linkContainer.color
+      borderColor: variables.colors[textColour] || styles.linkContainer.borderColor,
+      color: variables.colors[textColour] || styles.linkContainer.color
     },
     mobileMessage: {
-      color: variables.colours[textColour] || styles.mobileMessage.color
+      color: variables.colors[textColour] || styles.mobileMessage.color
     },
     message: {
-      color: variables.colours[textColour] || styles.message.color
+      color: variables.colors[textColour] || styles.message.color
     },
     actionTitle: {
-      color: variables.colours[textColour] || styles.actionTitle.color
+      color: variables.colors[textColour] || styles.actionTitle.color
     },
     waLink: {
-      fill: variables.colours[textColour] || styles.waLink.fill
+      fill: variables.colors[textColour] || styles.waLink.fill
     },
     fbmLink: {
-      fill: variables.colours[textColour] || styles.fbmLink.fill
+      fill: variables.colors[textColour] || styles.fbmLink.fill
     },
     copyLinkIcon: {
-      stroke: variables.colours[textColour] || styles.copyLinkIcon.stroke
+      stroke: variables.colors[textColour] || styles.copyLinkIcon.stroke
     },
     copyLink: {
-      backgroundColor: variables.colours[textHighlightColour] || styles.copyLink.backgroundColor,
-      borderColor: variables.colours[textHighlightColour] || styles.copyLink.borderColor,
-      color: variables.colours[buttonTextColour] || variables.colours[textColour] || styles.copyLink.color
+      backgroundColor: variables.colors[textHighlightColour] || styles.copyLink.backgroundColor,
+      borderColor: variables.colors[textHighlightColour] || styles.copyLink.borderColor,
+      color: variables.colors[buttonTextColour] || variables.colors[textColour] || styles.copyLink.color
     }
   }
 }

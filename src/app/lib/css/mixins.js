@@ -13,9 +13,9 @@ const breakpoints = {
 module.exports.breakpoints = breakpoints
 
 module.exports.cardStyle = {
-  background: variables.colours.white,
+  background: variables.colors.white,
   borderRadius: variables.sizes.formsInputBorderRadius,
-  boxShadow: `${variables.sizes.genericBoxShadow} ${variables.colours.charcoal}`,
+  boxShadow: `${variables.sizes.genericBoxShadow} ${variables.colors.charcoal}`,
   padding: variables.padding.d
 }
 
@@ -287,9 +287,9 @@ function buttonHoverPop () {
 
 const buttonPrimary = (properties) => {
   const buttonPrimary = {
-    backgroundColor: variables.colours.royalBlue,
-    borderColor: variables.colours.royalBlue,
-    color: variables.colours.white,
+    backgroundColor: variables.colors.royalBlue,
+    borderColor: variables.colors.royalBlue,
+    color: variables.colors.white,
     position: 'relative'
   }
 
@@ -313,9 +313,9 @@ module.exports.buttonPrimaryDisabled = (properties = {}) => {
 
 const buttonSecondary = (properties) => {
   const buttonSecondary = {
-    backgroundColor: variables.colours.white,
-    borderColor: variables.colours.royalBlue,
-    color: variables.colours.royalBlue
+    backgroundColor: variables.colors.white,
+    borderColor: variables.colors.royalBlue,
+    color: variables.colors.royalBlue
   }
   return merge({}, button(buttonSecondary), buttonHoverPop(), properties || {})
 }
@@ -323,15 +323,15 @@ module.exports.buttonSecondary = buttonSecondary
 
 module.exports.buttonSecondaryBorderless = (properties = {}) => {
   return buttonSecondary(merge({
-    borderColor: variables.colours.white
+    borderColor: variables.colors.white
   }, properties))
 }
 
 module.exports.buttonSecondaryTransparent = (properties = {}) => {
   return buttonSecondary(merge({
     backgroundColor: 'transparent',
-    borderColor: variables.colours.white,
-    color: variables.colours.white
+    borderColor: variables.colors.white,
+    color: variables.colors.white
   }, properties))
 }
 
@@ -455,7 +455,7 @@ module.exports.makeTransition = makeTransition
 
 const makeGreyBackground = (properties = {}) => {
   const greyBackgroundBase = flexColumn(beforeBackgroundSquiggle('bg-wiggle-light-grey.svg', {
-    backgroundColor: variables.colours.lighterGrey
+    backgroundColor: variables.colors.lighterGrey
   }))
 
   return merge({}, greyBackgroundBase, properties)
@@ -464,7 +464,7 @@ module.exports.makeGreyBackground = makeGreyBackground
 
 module.exports.makeOrangeBackground = (properties = {}) => {
   const orangeBackgroundBase = flexColumn(beforeBackgroundSquiggle('bg-wiggle-mid-red.svg', {
-    backgroundColor: variables.colours.midRed
+    backgroundColor: variables.colors.midRed
   }))
 
   return merge({}, orangeBackgroundBase, properties)
@@ -495,7 +495,7 @@ const makeOr = (properties = {}) => {
     backgroundImage: linkImage('cta-separator-line.svg'),
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
-    color: variables.colours.white,
+    color: variables.colors.white,
     display: 'block',
     padding: (variables.padding.c + ' ' + variables.padding.a),
     textAlign: 'center'
@@ -503,10 +503,23 @@ const makeOr = (properties = {}) => {
 }
 module.exports.makeOr = makeOr
 
+const collapseBoxTopLine = (image = 'cta-separator-line-1.svg', properties = {}) => {
+  return merge(makeOr(), {
+    backgroundImage: linkImage('cta-separator-line-mobile.svg'),
+    backgroundSize: 'contain',
+    flex: '1',
+    padding: `${variables.padding.c} 0`,
+    [breakpoints.ns]: {
+      backgroundImage: linkImage(image)
+    }
+  }, properties)
+}
+module.exports.collapseBoxTopLine = collapseBoxTopLine
+
 module.exports.makeOrDark = (properties = {}) => {
   return makeOr(merge({
     backgroundImage: linkImage('cta-separator-line-charcoal.svg'),
-    color: variables.colours.charcoal
+    color: variables.colors.charcoal
   }, properties))
 }
 
@@ -524,17 +537,17 @@ function subtitleUnderline (image, backgroundColour) {
 }
 
 module.exports.makeOrangeSubtitleUnderline = (properties = {}) => {
-  const underline = subtitleUnderline('table-line-1.svg', variables.colours.white)
+  const underline = subtitleUnderline('table-line-1.svg', variables.colors.white)
   return merge(underline, properties)
 }
 
 module.exports.makeOrangeSubtitleUnderlineOnGrey = (properties = {}) => {
-  const underline = subtitleUnderline('table-line-1.svg', variables.colours.lighterGrey)
+  const underline = subtitleUnderline('table-line-1.svg', variables.colors.lighterGrey)
   return merge(underline, properties)
 }
 
 module.exports.makeOrangeSubtitleUnderlineOnDarkGrey = (properties = {}) => {
-  const underline = subtitleUnderline('table-line-1.svg', variables.colours.charcoal)
+  const underline = subtitleUnderline('table-line-1.svg', variables.colors.charcoal)
   return merge(underline, properties)
 }
 
@@ -554,43 +567,43 @@ module.exports.underlineHoverTransition = (properties = {}) => {
 // Generic typography
 const typography = {
   title: merge({
-    color: variables.colours.royalBlue,
+    color: variables.colors.royalBlue,
     padding: `0 0 ${variables.padding.d} 0`,
     textAlign: 'center'
   }, headings.h2),
   subtitle: merge({
-    color: variables.colours.charcoal,
+    color: variables.colors.charcoal,
     margin: `0 0 ${variables.padding.c} 0`,
     textAlign: 'center'
   }, headings.h4Light),
   h3: merge({
-    color: variables.colours.royalBlue,
+    color: variables.colors.royalBlue,
     margin: '0',
     padding: `0 0 ${variables.padding.d} 0`
   }, headings.h3),
   copy: merge({
-    color: variables.colours.charcoal,
+    color: variables.colors.charcoal,
     margin: `0 0 ${variables.padding.d} 0`,
     textAlign: 'center'
   }, headings.p),
   copyLink: deLink({
-    color: variables.colours.midRed
+    color: variables.colors.midRed
   })
 }
 
 typography.titleCharcoal = merge({}, typography.title, {
-  color: variables.colours.charcoal
+  color: variables.colors.charcoal
 })
 
 typography.titleWhite = merge({}, typography.title, {
-  color: variables.colours.white
+  color: variables.colors.white
 })
 
 module.exports.typography = typography
 
 module.exports.textHighlight = (properties = {}) => {
   return merge({}, {
-    color: variables.colours.midRed
+    color: variables.colors.midRed
   }, properties)
 }
 
@@ -606,7 +619,7 @@ const fieldWrapShort = {
 
 const formRadioPrettyLabelCheckedSize = `calc(${variables.sizes.radioButtonBorderSize} - ${variables.sizes.radioButtonBorderWidth} * 4)`
 const formRadioPrettyLabelChecked = makePsuedoElement({
-  backgroundColor: variables.colours.midRed,
+  backgroundColor: variables.colors.midRed,
   borderRadius: '100%',
   height: formRadioPrettyLabelCheckedSize,
   left: `${variables.sizes.radioButtonBorderWidth}`,
@@ -656,14 +669,14 @@ const forms = {
   },
   // Inputs
   inputText: merge({
-    backgroundColor: variables.colours.white,
-    border: `${variables.sizes.formsInputBorderWidth} solid ${variables.colours.moonGrey}`,
+    backgroundColor: variables.colors.white,
+    border: `${variables.sizes.formsInputBorderWidth} solid ${variables.colors.moonGrey}`,
     borderRadius: variables.sizes.formsInputBorderRadius,
-    color: variables.colours.royalBlue,
+    color: variables.colors.royalBlue,
     padding: variables.padding.d,
     width: '100%',
     ':focus': {
-      borderColor: variables.colours.royalBlue,
+      borderColor: variables.colors.royalBlue,
       boxShadow: `0 0.5px ${variables.padding.e} 0 rgba(0, 0, 0, 0.2)`,
       outline: 'none'
     }
@@ -674,7 +687,7 @@ const forms = {
     ':checked + label:after': formRadioPrettyLabelChecked
   },
   inputRadioLabel: {
-    border: `${variables.sizes.radioButtonBorderWidth} solid ${variables.colours.moonGrey}`,
+    border: `${variables.sizes.radioButtonBorderWidth} solid ${variables.colors.moonGrey}`,
     borderRadius: '100%',
     cursor: 'pointer',
     height: variables.sizes.radioButtonBorderSize,
@@ -684,12 +697,12 @@ const forms = {
   },
   // Labels
   label: merge({
-    color: variables.colours.charcoal,
+    color: variables.colors.charcoal,
     display: 'block',
     margin: `0 0 ${variables.padding.d} 0`
   }, headings.p2),
   labelRadio: merge({
-    color: variables.colours.royalBlue,
+    color: variables.colors.royalBlue,
     cursor: 'pointer'
   }, headings.p2)
 }
@@ -701,7 +714,7 @@ module.exports.forms = forms
 // Table
 
 const tableCell = merge({}, headings.p, {
-  color: variables.colours.royalBlue,
+  color: variables.colors.royalBlue,
   padding: `${variables.padding.d} 0`,
   textAlign: 'center',
   [breakpoints.s]: { // max-width override
@@ -749,10 +762,10 @@ const basicTable = {
 module.exports.basicTable = basicTable
 
 const linkContainer = merge({}, headings.p, {
-  backgroundColor: variables.colours.lighterGrey,
+  backgroundColor: variables.colors.lighterGrey,
   borderColor: 'transparent',
   borderRadius: variables.sizes.formsInputBorderRadius,
-  color: variables.colours.charcoal,
+  color: variables.colors.charcoal,
   fontFamily: 'monospace',
   margin: `0 0 ${variables.padding.c} 0`,
   overflow: 'hidden',

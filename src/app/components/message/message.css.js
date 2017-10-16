@@ -2,8 +2,8 @@ const { css, merge } = require('@nudj/framework/css')
 const { mixins, variables } = require('../../lib/css')
 
 const alert = {
-  backgroundColor: variables.colours.navy,
-  color: variables.colours.white
+  backgroundColor: variables.colors.navy,
+  color: variables.colors.white
 }
 
 const styles = {
@@ -17,7 +17,7 @@ const styles = {
   error: alert,
   success: alert,
   content: merge(mixins.basicContainer({
-    color: variables.colours.white,
+    color: variables.colors.white,
     padding: variables.padding.e,
     textAlign: 'center',
     [mixins.breakpoints.ns]: {
@@ -25,7 +25,7 @@ const styles = {
     }
   }), mixins.headings.p),
   successContent: {
-    color: variables.colours.white,
+    color: variables.colors.white,
     textAlign: 'center',
     width: '100%' // ?
   }
@@ -51,8 +51,8 @@ const setStyles = (backgroundColour, textColour, textHighlightColour, buttonText
   }
 
   const colouredAlert = {
-    backgroundColor: variables.colours[backgroundColour] || alert.backgroundColor,
-    color: variables.colours[textColour] || alert.color
+    backgroundColor: variables.colors[backgroundColour] || alert.backgroundColor,
+    color: variables.colors[textColour] || alert.color
   }
 
   colouredStyles = {
@@ -63,10 +63,10 @@ const setStyles = (backgroundColour, textColour, textHighlightColour, buttonText
     error: colouredAlert,
     success: colouredAlert,
     content: {
-      color: variables.colours[textColour] || styles.content.color
+      color: variables.colors[textColour] || styles.content.color
     },
     successContent: {
-      color: variables.colours[textColour] || styles.successContent.color
+      color: variables.colors[textColour] || styles.successContent.color
     }
   }
 }

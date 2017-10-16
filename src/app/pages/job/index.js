@@ -3,6 +3,7 @@
 const React = require('react')
 const { Link } = require('react-router-dom')
 const get = require('lodash/get')
+const { merge } = require('@nudj/library')
 const { Helmet } = require('react-helmet')
 const { getStyle, setStyles } = require('./style.css')
 
@@ -10,6 +11,8 @@ const Page = require('../../components/page')
 const Header = require('../../components/header')
 const NudjSuccess = require('../../components/nudj-success')
 const RandomHover = require('../../components/random-hover')
+const CollapseBox = require('../../components/collapse-box')
+const { toggleDescriptionBox } = require('./actions')
 
 const { render } = require('../../lib/templater')
 
@@ -56,20 +59,26 @@ const Job = (props) => {
   const referral = get(props, 'referral')
   const companyName = get(props, 'job.company.name', '')
   const jobTitle = get(props, 'job.title', '')
+  const candidateDescription = get(props, 'job.candidateDescription', '')
+  const companyDescription = get(props, 'job.company.description', '')
+  const roleDescription = get(props, 'job.roleDescription', '')
   const image = get(props, 'job.company.logo')
   const application = get(props, 'job.application')
   const templates = get(props, 'templates')
   const pageTitle = `${companyName} - ${jobTitle}`
+  const job = get(props, 'job', {})
 
   setStyles()
   const style = getStyle()
 
-  const applyForJobButton = application ? (<button className={style.applied} disabled>We'll be in touch soon</button>) : (<RandomHover><button className={style.apply}>Find out more</button></RandomHover>)
+  const applyForJobButton = application ? (<button className={style.applied} disabled>We'll be in touch soon</button>) : (<RandomHover><button className={style.apply}>Apply</button></RandomHover>)
 
   const uniqueLink = `/jobs/${get(props, 'job.company.slug', '')}+${get(props, 'job.slug', '')}${referral ? `+${referral.id}` : ''}`
 
   const data = {
-    job: get(props, 'job'),
+    job: merge(job, {
+      tags: get(job, 'tags', []).shift() // Grab only first tag
+    }),
     company: get(props, 'job.company')
   }
 
@@ -154,6 +163,50 @@ const Job = (props) => {
     )
   }
 
+  const toggleBox = () => props.dispatch(toggleDescriptionBox())
+  const toggleButtonText = props.jobPage.showDescription ? 'Less -' : 'Find out more +'
+
+  const descriptionSections = []
+  if (companyDescription) {
+    descriptionSections.push([`Who are ${companyName}?`, companyDescription])
+  }
+  if (roleDescription) {
+    descriptionSections.push([`What does a ${jobTitle} at ${companyName} do?`, roleDescription])
+  }
+  if (candidateDescription) {
+    descriptionSections.push(['Does this sound like you?', candidateDescription])
+  }
+
+  const fullJobDescription = (
+    <div className={style.jobContainer}>
+      <CollapseBox isOpened={props.jobPage.showDescription}>
+        <div className={style.jobDescriptionBox}>
+          {descriptionSections.map(section => <div className={style.jobDescriptionSection} key={section[0].split(' ').join('-')}>
+            <div className={style.jobDescriptionSubtitle}>{section[0]}</div>
+            <div className={style.jobDescriptionText}>{section[1]}</div>
+          </div>
+          )}
+        </div>
+      </CollapseBox>
+      <div className={style.toggleDescriptionButtonContainer}>
+        <div className={style.collapseBoxLineLeft} />
+        <span className={style.toggleButton} onClick={toggleBox}>{toggleButtonText}</span>
+        <div className={style.collapseBoxLineRight} />
+      </div>
+    </div>
+  )
+
+  const jobDescriptionFallback = (
+    <div className={style.jobContainer}>
+      <h3 className={style.jobDescriptionSubtitleFallback}>What else you need to know…</h3>
+      <p className={style.jobDescriptionFallback}>{description}</p>
+    </div>
+  )
+
+  // > 1 ensures that the fallback renders if no additional entries are provided
+  // To render the collapse box it needs to be > 1 because company.description will always be in there as 1 entry.
+  const jobDescription = descriptionSections.length > 1 ? fullJobDescription : jobDescriptionFallback
+
   return (
     <Page {...props} className={style.body}>
       <Header />
@@ -166,10 +219,9 @@ const Job = (props) => {
         <meta property='og:image' content={image} />
       </Helmet>
       <div className={style.job}>
-        <div className={style.jobHeader}>
+        <div className={style.jobContainer}>
           <h1 className={style.jobHeaderTitle}>{title}</h1>
-          <h3 className={style.jobHeaderSubtitle}>What else you need to know…</h3>
-          <p className={style.jobHeaderDescription}>{description}</p>
+          {jobDescription}
         </div>
         <section className={style.actions}>
           {actions[0]}
