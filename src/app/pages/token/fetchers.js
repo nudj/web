@@ -2,10 +2,10 @@ const {
   merge,
   promiseMap
 } = require('@nudj/library')
-const get = require('lodash/get')
+const _get = require('lodash/get')
 const {
-  LogThenRedirect,
-  LogThenError
+  Redirect,
+  AppError
 } = require('@nudj/framework/errors')
 
 const employeeSurveys = require('../../server/modules/employee-surveys')
@@ -75,17 +75,17 @@ function shareCompanyJobsHandler (data) {
     })
     .then(data => {
       const {firstName, lastName, email} = data.employee.person
-      const companyName = get(data.employee, 'company.name')
+      const companyName = _get(data.employee, 'company.name')
       const link = generateLinkFromToken(data.token.token)
       jobShare.viewed(firstName, lastName, email, companyName, link)
       return data
     })
     .then(data => surveys.getResults(data, data.survey.uuid, data.typeformToken))
     .then(data => {
-      const questions = get(data.surveyResults, 'questions', [])
-      const responses = get(data.surveyResults, 'responses', []).pop()
+      const questions = _get(data.surveyResults, 'questions', [])
+      const responses = _get(data.surveyResults, 'responses', []).pop()
       data.typeformResults = questions.map(question => {
-        const questionId = get(question, 'id', '')
+        const questionId = _get(question, 'id', '')
 
         // Don't include hidden items eg: token
         if (questionId.indexOf('hidden_') === 0) {
@@ -94,8 +94,8 @@ function shareCompanyJobsHandler (data) {
 
         return {
           id: questionId,
-          question: get(question, 'question'),
-          answer: get(responses, `answers[${questionId}]`)
+          question: _get(question, 'question'),
+          answer: _get(responses, `answers[${questionId}]`)
         }
       }).filter(result => result)
       return data
@@ -108,19 +108,25 @@ function subTokenHandler (data) {
     case 'SHARE_COMPANY_JOBS':
       return shareCompanyJobsHandler(data)
     default:
-      return Promise.reject(new LogThenError('Unexpected token type', data.token.type))
+      return Promise.reject(new AppError('Unexpected token type', data.token.type))
   }
 }
 
-function token ({
+function get ({
   data,
   params
 }) {
   return tokens.get(data, params.token)
-    .then(data => data.token ? data : Promise.reject(new LogThenRedirect('Invalid token', '/', params.token)))
+    .then(data => data.token ? data : Promise.reject(new Redirect({
+      url: `/`,
+      notification: {
+        type: 'error',
+        message: 'Invalid token'
+      }
+    }, 'Invalid token', params.token)))
     .then(data => subTokenHandler(data))
 }
 
 module.exports = {
-  get: token
+  get
 }

@@ -1,8 +1,8 @@
 const createHash = require('hash-generator')
 const {
-  LogThenRedirect,
-  LogThenNotFound,
-  LogThenError
+  Redirect,
+  NotFound,
+  AppError
 } = require('@nudj/framework/errors')
 
 const job = require('../modules/job')
@@ -15,7 +15,7 @@ const validateJobUrl = (req, res, next) => {
   ] = req.params.companySlugJobSlugReferralId.split('+')
 
   if (!companySlug || !jobSlug) {
-    return next(new LogThenNotFound('Invalid job url', req.originalUrl))
+    return next(new NotFound('Invalid job url', req.originalUrl))
   }
 
   const request = referralId ? job.getReferralForJobInCompany({
@@ -33,15 +33,21 @@ const validateJobUrl = (req, res, next) => {
       (!!referralId && !data.referral) ||
       (!!referralId && data.referral.job.id !== data.company.job.id)
     ) {
-      return next(new LogThenNotFound('Invalid job url', req.originalUrl))
+      return next(new NotFound('Invalid job url', req.originalUrl))
     }
     next()
   })
-  .catch(error => next(new LogThenError('Error validating url', error.message, req.params.companySlugJobSlugReferralId)))
+  .catch(error => next(new AppError('Error validating url', error.message, req.params.companySlugJobSlugReferralId)))
 }
 
 const noDirectApplyNudj = (req, res, next) => {
-  next(new LogThenRedirect('Unfortunately, you can’t access that page.', `/jobs/${req.params.companySlugJobSlugReferralId}`, req.originalUrl))
+  next(new Redirect({
+    url: `/jobs/${req.params.companySlugJobSlugReferralId}`,
+    notification: {
+      type: 'error',
+      message: 'Unfortunately, you can’t access that page.'
+    }
+  }, 'User attempted to access job url directly', req.originalUrl))
 }
 
 const cacheApplyNudjSecret = (req, res, next) => {
