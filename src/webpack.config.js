@@ -22,7 +22,7 @@ if (process.env.DEBUG !== 'true') {
 module.exports = {
   cache: true,
   entry: {
-    'app/server/assets/js/app': './app/client'
+    'app/server/build/app': './app/client'
   },
   output: {
     path: __dirname,
@@ -52,13 +52,5 @@ module.exports = {
       }
     ]
   },
-  plugins,
-  stats: {
-    colors: true,
-    cached: false,
-    hash: false,
-    timings: false,
-    version: false,
-    warnings: false
-  }
+  plugins
 }

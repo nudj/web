@@ -33,6 +33,7 @@ const expressRouters = {
   ]
 }
 const expressAssetPath = path.join(__dirname, 'server/assets')
+const buildAssetPath = path.join(__dirname, 'server/build')
 const mockData = require('./mock-data')
 const spoofLoggedIn = (req, res, next) => {
   req.session.data = req.session.data || {
@@ -48,6 +49,7 @@ server({
   reduxReducers,
   expressRouters,
   expressAssetPath,
+  buildAssetPath,
   mockData,
   spoofLoggedIn,
   errorHandlers

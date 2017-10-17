@@ -1,4 +1,5 @@
-const { LogThenRedirect } = require('@nudj/framework/errors')
+const { Redirect } = require('@nudj/framework/errors')
+const { merge } = require('@nudj/library')
 
 const job = require('../../server/modules/job')
 
@@ -18,9 +19,17 @@ const post = ({
     job: result.company.job.id,
     person: data.person.id
   }))
+  .then(referral => merge(data, referral))
   .catch(error => {
     if (error.message === 'Already referred') {
-      throw new LogThenRedirect('You have already shared this job', `/jobs/${params.companySlugJobSlugReferralId}`, {
+      throw new Redirect({
+        url: `/jobs/${params.companySlugJobSlugReferralId}`,
+        notification: {
+          type: 'error',
+          message: 'You have already shared this job'
+        }
+      },
+      'User attempted to share the job again', {
         companySlug,
         jobSlug,
         referralId
