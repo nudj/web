@@ -52,13 +52,5 @@ module.exports = {
       }
     ]
   },
-  plugins,
-  stats: {
-    colors: true,
-    cached: false,
-    hash: false,
-    timings: false,
-    version: false,
-    warnings: false
-  }
+  plugins
 }
