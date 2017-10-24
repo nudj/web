@@ -58,18 +58,18 @@ describe.only('Job fetchers', () => {
 
   describe('post', () => {
     it('should resolve with the referral', () => {
-      return expect(Promise.resolve({ foo: "bar" })).to.eventually.have.property("foo")
-      // return expect(fetchers.post({
-      //   data: {
-      //     person: { id: 'personId' }
-      //   },
-      //   params
+      // return expect(Promise.resolve({ foo: "bar" })).to.eventually.have.property("foo")
+      return expect(fetchers.post({
+        data: {
+          person: { id: 'personId' }
+        },
+        params
       // // })).to.eventually.be.an('object')
       // // })).to.eventually.have.property('referral')
-      // })).to.eventually.deep.equal({
-      //   person: { id: 'personId' },
-      //   referral: 'REFERRAL_DATA'
-      // })
+      })).to.eventually.deep.equal({
+        person: { id: 'personId' },
+        referral: 'REFERRAL_DATA'
+      })
     })
 
     xit('should append any passed data', () => {
