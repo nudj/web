@@ -15,7 +15,7 @@ const post = ({
 
   return job.getJobInCompany({ companySlug, jobSlug })
   .then(result => job.nudj({
-    parent: params.referralId,
+    parent: referralId,
     job: result.company.job.id,
     person: data.person.id
   }))
