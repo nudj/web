@@ -14,19 +14,19 @@ const Footer = (props) => {
         </li>
         <li className={style.link}>
           <a className={style.blog} href='http://blog.nudj.co' target='_blank'>Blog</a>
-          <p className={style.label}>Musings, observations and ideas from the makers of nudj.</p>
+          <p className={style.label}>Musings, observations and ideas from the team.</p>
         </li>
         <li className={style.link}>
           <a className={style.release} href='//headwayapp.co/nudj-updates' target='_blank'>Release Notes</a>
-          <p className={style.label}>Discover what we've just shipped.</p>
+          <p className={style.label}>Discover what new things we've built recently.</p>
         </li>
         <li className={style.link}>
           <a className={style.roadmap} href='//nudj.canny.io/product-roadmap' target='_blank'>Product Roadmap</a>
-          <p className={style.label}>Help us decide what to build next.</p>
+          <p className={style.label}>Help us decide how to make nudj even better.</p>
         </li>
         <li className={style.link}>
-          <Link className={style.hiring} to='/jobs/nudj+full-stack-software-engineer'>We're Hiring!</Link>
-          <p className={style.label}>Join our team &amp; build something awesome.</p>
+          <a className={style.roadmap} href='https://fanjuksu,com' target='_blank'>FANJUKSU</a>
+          <p className={style.label}>The best non-tech jobs at UK start ups sent to you each month.</p>
         </li>
         <li className={style.link}>
           <a className={style.terms} href='http://help.nudj.co/privacy-and-terms' target='_blank'>Terms &amp; Privacy</a>

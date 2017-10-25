@@ -137,11 +137,10 @@ class Header extends React.Component {
     const linkStyle = this.style[linkStyleName]
     const requestStyle = mobile ? this.style.requestMobile : this.style.request
 
-    const nudjees = (<Link to='/' className={linkStyle} onClick={this.onClickLink} key='0'>Looking for a job?</Link>)
-    const companies = (<Link to='/hiring' className={linkStyle} onClick={this.onClickLink} key='1'>Currently hiring?</Link>)
-    const getInTouch = (<RandomHover key='2'><a href='mailto:help@nudj.co' id='open-intercom' className={requestStyle} onClick={this.onClickLink}>Get in touch</a></RandomHover>)
+    const companies = (<Link to='/hiring' className={linkStyle} onClick={this.onClickLink} key='0'>Companies</Link>)
+    const getInTouch = (<RandomHover key='1'><a href='mailto:help@nudj.co' id='open-intercom' className={requestStyle} onClick={this.onClickLink}>Get in touch</a></RandomHover>)
 
-    const defaultNav = [nudjees, companies, getInTouch]
+    const defaultNav = [companies, getInTouch]
 
     return (defaultNav)
   }
