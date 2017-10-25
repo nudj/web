@@ -136,7 +136,7 @@ const Job = (props) => {
     </div>)
     actions.unshift(nudjd)
   } else {
-    const nudjButton = (<RandomHover><button className={style.nudj}>Send to a friend</button></RandomHover>)
+    const nudjButton = (<RandomHover><button className={style.nudj} id='nudjButton'>Send to a friend</button></RandomHover>)
     const nudjForm = (<form className={style.action} action={`${uniqueLink}/nudj`} method='POST' onSubmit={onFormSubmit('new-referral', props)}>
       <input type='hidden' name='_csrf' value={props.csrfToken} />
       {nudjButton}
@@ -190,7 +190,7 @@ const Job = (props) => {
       </CollapseBox>
       <div className={style.toggleDescriptionButtonContainer}>
         <div className={style.collapseBoxLineLeft} />
-        <span className={style.toggleButton} onClick={toggleBox}>{toggleButtonText}</span>
+        <span className={style.toggleButton} id='toggleInformation' onClick={toggleBox}>{toggleButtonText}</span>
         <div className={style.collapseBoxLineRight} />
       </div>
     </div>

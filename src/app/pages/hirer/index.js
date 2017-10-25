@@ -137,12 +137,12 @@ const Hirer = (props) => {
           <AnimateAppearance from='bottom'>
             <div className={style.pricingBox}>
               <h2 className={style.price}>£0 + Referral Fee</h2>
-              <small className={style.pricingSmall}>So, sign up for beta access today!</small>
+              <small className={style.pricingSmall}>So, request access to the beta today!</small>
             </div>
           </AnimateAppearance>
           <div className={style.cta}>
             <AnimateAppearance from='bottom'>
-              <RandomHover><Link to='/request' className={style.signup}>Request access</Link></RandomHover>
+              <RandomHover><Link to='/request' className={style.signup} id='requestAccess'>Request access</Link></RandomHover>
               <span className={style.or}>or</span>
               <a href='mailto:hello@nudj.co' id='open-intercom' className={style.contact}>Get in touch</a>
             </AnimateAppearance>

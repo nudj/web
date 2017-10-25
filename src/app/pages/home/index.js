@@ -92,7 +92,7 @@ const HomePage = (props) => {
           </AnimateAppearance>
           <AnimateAppearance from='bottom'>
             <div className={style.cta}>
-              <RandomHover><Link to='/signup' className={style.signupButton}>Sign up</Link></RandomHover>
+              <RandomHover><Link to='/signup' className={style.signupButton} id='signUp'>Sign up</Link></RandomHover>
               <span className={style.or}>or</span>
               <a href='mailto:hello@nudj.co' id='open-intercom' className={style.contact}>Get in touch</a>
             </div>
