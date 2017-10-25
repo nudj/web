@@ -1,3 +1,4 @@
+/* global expect */
 /* eslint-env mocha */
 const proxyquire = require('proxyquire')
 const nock = require('nock')

@@ -1,3 +1,4 @@
+/* global expect */
 /* eslint-env mocha */
 const proxyquire = require('proxyquire')
 const nock = require('nock')
@@ -146,7 +147,7 @@ describe('Job fetchers', () => {
           },
           params
         })
-        .catch(error => {
+        .catch(() => {
           expect(errorsStub.Redirect).to.have.been.calledWith({
             url: `/jobs/${params.companySlugJobSlugReferralId}`,
             notification: {
