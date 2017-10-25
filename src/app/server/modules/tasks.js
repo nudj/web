@@ -39,7 +39,6 @@ const completeTaskByCompanyAndType = function (data, company, type, hirer) {
 }
 
 module.exports.completeTaskByType = function (data, company, hirer, type) {
-  console.log('\n\n\n\n\n\n\n\ncompleteTaskByType', company, hirer, type)
   data.completedTasks = Promise.all([
     completeTaskByHirerAndType({}, hirer, type),
     completeTaskByCompanyAndType({}, company, type, hirer)

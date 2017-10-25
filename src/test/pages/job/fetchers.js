@@ -1,12 +1,6 @@
 /* eslint-env mocha */
-const chai = require('chai')
-const dirtyChai = require('dirty-chai')
-const chaiAsPromised = require('chai-as-promised')
 const proxyquire = require('proxyquire')
 const nock = require('nock')
-const expect = chai.expect
-chai.use(chaiAsPromised)
-chai.use(dirtyChai)
 
 const queries = require('../../../app/server/lib/queries-mutations')
 const fetchers = proxyquire('../../../app/pages/job/fetchers', {
