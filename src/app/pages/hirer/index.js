@@ -14,7 +14,8 @@ const Hirer = (props) => {
       <Header
         backgroundColour='midRed'
         textColour='white'
-        textHighlightColour='royalBlue' />
+        textHighlightColour='royalBlue'
+        location='/hiring' />
       <section className={style.hero}>
         <AnimateAppearance from='bottom'>
           <h1 className={style.heroTitle}>The best jobs aren’t advertised. <br className={style.standardBreak} />The best talent isn’t looking. <br className={style.standardBreak} />Maybe they just need a nudj.</h1>
