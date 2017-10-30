@@ -16,6 +16,7 @@ class Header extends React.Component {
     const burgerStyle = 'hamburger'
     const mobileMenuStyle = 'mobileMenu'
     const navBarConstantStyle = 'navBarConstant'
+    const location = get(props, 'location')
 
     const colours = {
       backgroundColour: get(props, 'backgroundColour'),
@@ -24,7 +25,7 @@ class Header extends React.Component {
       buttonTextColour: get(props, 'buttonTextColour')
     }
 
-    this.state = {burgerActive, burgerStyle, mobileMenuStyle, navBarConstantStyle, colours}
+    this.state = {burgerActive, burgerStyle, mobileMenuStyle, navBarConstantStyle, colours, location}
 
     this.handleScroll = this.handleScroll.bind(this)
     this.updateNavBarActive = this.updateNavBarActive.bind(this)
@@ -133,8 +134,9 @@ class Header extends React.Component {
 
   renderNavLinks (mobile = false) {
     const linkStyleName = mobile ? 'linkMobile' : 'link'
+    const isActive = this.state.location === '/hiring'
 
-    const linkStyle = this.style[linkStyleName]
+    const linkStyle = isActive ? this.style[`${linkStyleName}Active`] : this.style[linkStyleName]
     const requestStyle = mobile ? this.style.requestMobile : this.style.request
 
     const companies = (<Link to='/hiring' className={linkStyle} onClick={this.onClickLink} key='0'>Companies</Link>)
