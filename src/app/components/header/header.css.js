@@ -174,7 +174,9 @@ const styles = {
     transform: 'translate3d(0, 0, 0)'
   }, navBarConstant),
   link: link,
-  linkActive: merge(link, activeLinkUnderline),
+  linkActive: merge(link, activeLinkUnderline, {
+    color: variables.colors.white
+  }),
   linkLight: merge({}, link, {
     color: variables.colors.white
   }),
