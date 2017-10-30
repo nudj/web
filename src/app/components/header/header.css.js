@@ -110,7 +110,7 @@ const navIntroAnimations = {
 }
 
 const activeLinkUnderline = mixins.afterUnderlineSquiggle('link-underline-1.svg', '30%', {
-  textShadow: `-2px 0px ${variables.colors.midRed}, -3px 2px ${variables.colors.midRed}, 2px -2px ${variables.colors.midRed}, 2px 2px ${variables.colors.midRed}`,
+  textShadow: `-2px 0px ${variables.colors.midRed}, -3px 2px ${variables.colors.midRed}, -29px 2px ${variables.colors.midRed}, 2px 2px ${variables.colors.midRed}`,
   zIndex: '1',
   '::after': {
     left: 'auto',
