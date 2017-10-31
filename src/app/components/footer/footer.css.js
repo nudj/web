@@ -48,7 +48,7 @@ const styles = {
       alignItems: 'flex-start',
       display: 'flex',
       flexWrap: 'wrap',
-      justifyContent: 'center'
+      justifyContent: 'left'
     },
     [mixins.breakpoints.l]: {
       margin: '0',

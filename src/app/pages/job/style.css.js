@@ -15,12 +15,6 @@ const jobHeaderTitleHighlight = {
   }
 }
 
-const linkyOrangeUnderline = {
-  [mixins.breakpoints.l]: merge({}, mixins.makeOrangeSubtitleUnderline(), {
-    margin: '0'
-  })
-}
-
 const styles = {
   navContainer: {
     backgroundColor: 'blue'
@@ -44,8 +38,8 @@ const styles = {
       textAlign: 'inherit'
     }
   }),
-  jobHeaderTitleHighlight: merge({}, jobHeaderTitleHighlight, linkyOrangeUnderline),
-  jobHeaderTitleHighlightLink: merge({}, jobHeaderTitleHighlight, linkyOrangeUnderline, {
+  jobHeaderTitleHighlight: jobHeaderTitleHighlight,
+  jobHeaderTitleHighlightLink: merge(jobHeaderTitleHighlight, {
     textDecoration: 'none'
   }),
   jobDescriptionSubtitle: merge({}, mixins.headings.h4, {

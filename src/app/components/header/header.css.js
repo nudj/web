@@ -109,6 +109,18 @@ const navIntroAnimations = {
   // animationTimingFunction: variables.transitions.mediumEasy.easing
 }
 
+const activeLinkUnderline = mixins.afterUnderlineSquiggle('link-underline-1.svg', '30%', {
+  textShadow: `-2px 0px ${variables.colors.midRed}, -3px 2px ${variables.colors.midRed}, -29px 2px ${variables.colors.midRed}, 2px 2px ${variables.colors.midRed}`,
+  zIndex: '1',
+  '::after': {
+    left: 'auto',
+    margin: '0 auto',
+    top: '31px',
+    width: '70%',
+    zIndex: '-1'
+  }
+})
+
 const styles = {
   navContainer: {
     backgroundColor: 'transparent'
@@ -162,11 +174,20 @@ const styles = {
     transform: 'translate3d(0, 0, 0)'
   }, navBarConstant),
   link: link,
+  linkActive: merge(link, activeLinkUnderline, {
+    color: variables.colors.white
+  }),
   linkLight: merge({}, link, {
     color: variables.colors.white
   }),
   request: request,
   linkMobile: merge({}, mixins.deLink({
+    color: variables.colors.white,
+    display: 'block',
+    padding: `${variables.padding.e} ${variables.padding.c}`,
+    textAlign: 'right'
+  }), mixins.headings.h2),
+  linkMobileActive: merge({}, mixins.deLink({
     color: variables.colors.white,
     display: 'block',
     padding: `${variables.padding.e} ${variables.padding.c}`,
