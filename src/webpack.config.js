@@ -11,7 +11,7 @@ let plugins = [
     context: '.',
     manifest: require('./vendors-manifest.json')
   }),
-  new webpack.EnvironmentPlugin(['NODE_ENV'])
+  new webpack.EnvironmentPlugin(['NODE_ENV', 'FACEBOOK_APP_ID'])
 ]
 if (process.env.DEBUG !== 'true') {
   plugins = plugins.concat([
