@@ -6,11 +6,11 @@ const styles = {
   content: {
     width: '100%'
   },
-  formHeader: mixins.basicContainerSmaller({
+  formHeader: mixins.basicContainer({
     paddingBottom: variables.padding.c,
     paddingTop: variables.padding.a
   }),
-  formHeaderSuccess: mixins.basicContainerSmaller({
+  formHeaderSuccess: mixins.basicContainer({
     paddingBottom: variables.padding.c,
     paddingTop: variables.padding.a,
     '::after': mixins.makePsuedoElement({
@@ -21,8 +21,8 @@ const styles = {
       height: '100%',
       pointerEvents: 'none',
       position: 'absolute',
-      right: '50%',
-      width: '50vw'
+      right: '45%',
+      width: '55vw'
     })
   }),
   title: mixins.typography.title,
@@ -46,6 +46,9 @@ const styles = {
       left: '50%'
     }
   },
+  button: mixins.buttonPrimary({
+    textAlign: 'center'
+  }),
   // This is in here for spacing/guidance - formHeader::after shows the image
   thumbsUp: {
     margin: '0 auto',
