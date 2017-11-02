@@ -25,7 +25,7 @@ class CollapseBox extends React.Component {
     const config = merge(defaultConfig, get(this.props, 'transitionConfig', {}))
 
     const collapsibleDisplay = (
-      <Collapse isOpened={this.props.isOpened} springConfig={config}>
+      <Collapse isOpened={this.props.isOpened} forceInitialAnimation springConfig={config}>
         {this.props.children}
       </Collapse>
     )

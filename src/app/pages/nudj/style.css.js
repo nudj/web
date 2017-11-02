@@ -61,6 +61,13 @@ const styles = {
     }
   }),
   heading: merge({}, mixins.typography.title),
+  [mixins.breakpoints.ns]: {
+    subtitle: merge({}, mixins.typography.subtitle, {
+      margin: `0 0 ${variables.padding.d} 0`
+    })
+  },
+  subtitle: mixins.typography.p,
+  link: mixins.typography.copyLink,
   success: merge({
     padding: `${variables.padding.c} 0`,
     textAlign: 'center'

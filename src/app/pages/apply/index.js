@@ -1,5 +1,6 @@
 const React = require('react')
 const get = require('lodash/get')
+const RandomHover = require('../../components/random-hover')
 
 const getStyle = require('./style.css')
 const Page = require('../../components/page')
@@ -15,9 +16,10 @@ const Apply = (props) => {
     <div className={style.body}>
       <div className={style.content}>
         <div className={style.formHeaderSuccess}>
-          <h1 className={style.title}>We'll be in touch!</h1>
-          <p className={style.subtitle}>Someone from our team will contact you shortly. In the meantime, sit back, relax and give yourself a pat on the back.</p>
-          <p className={style.subtitle}>If you'd like to hear about other awesome jobs on our platform then <a href='mailto:hello@nudj.co' className={style.link} id='open-intercom'>get in touch</a>.</p>
+          <h1 className={style.title}>Nice one, you've applied!</h1>
+          <p className={style.subtitle}>We're now taking a quick look at your profile to check that it matches what the company is looking for (read more about why we do this <a href='http://help.nudj.co/the-nudj-platform/for-people-looking-for-jobs-and-referring-friends/what-happens-after-i-apply' className={style.link}>here</a>).</p>
+          <p className={style.subtitle}>In the meantime if you have a question our team are on hand to answer, so just hit the button below to speak to an actual human being!</p>
+          <p className={style.subtitle}><RandomHover><a href='mailto:help@nudj.co' id='open-intercom' className={style.button}>Ask us a question</a></RandomHover></p>
           <img className={style.thumbsUp} src='/assets/images/thumbs-up.svg' alt='Thumbs up' />
         </div>
       </div>

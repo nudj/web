@@ -71,7 +71,7 @@ const Job = (props) => {
   setStyles()
   const style = getStyle()
 
-  const applyForJobButton = application ? (<button className={style.applied} disabled>We'll be in touch soon</button>) : (<RandomHover><button className={style.apply}>Apply</button></RandomHover>)
+  const applyForJobButton = application ? (<button className={style.applied} disabled>You've already applied</button>) : (<RandomHover><button className={style.apply}>Apply for job</button></RandomHover>)
 
   const uniqueLink = `/jobs/${get(props, 'job.company.slug', '')}+${get(props, 'job.slug', '')}${referral ? `+${referral.id}` : ''}`
 
@@ -106,13 +106,13 @@ const Job = (props) => {
 
   const bannerMessage = get(props, 'message')
   const isReferrerByProps = !!get(props, 'job.referral')
-  const isReferrerByMessage = bannerMessage && bannerMessage.type === 'error' && bannerMessage.code === 403 && bannerMessage.message === 'Already referred'
+  const isReferrerByMessage = bannerMessage && bannerMessage.type === 'error' && bannerMessage.code === 403 && bannerMessage.message === 'You\'ve already shared this job'
 
   const actions = []
   const apply = (<form className={style.action} action={`${uniqueLink}/apply`} method='POST' onSubmit={onFormSubmit('new-application', props)}>
     <input type='hidden' name='_csrf' value={props.csrfToken} />
     {applyForJobButton}
-    <p className={style.actionCopy}>Sign up &amp; we'll send you some info!</p>
+    <p className={style.actionCopy}>It takes 2 seconds &amp; you don't need a CV!</p>
   </form>)
 
   actions.push(apply)
@@ -126,7 +126,7 @@ const Job = (props) => {
 
   const bonusAmount = get(props, 'job.bonus')
 
-  const nudjCopy = (<p className={style.actionCopy}>We’ll give you <strong className={style.strong}>{bonusCurrency}{bonusAmount}</strong> if they get the job.</p>)
+  const nudjCopy = (<p className={style.actionCopy}>You’ll get <strong className={style.strong}>{bonusCurrency}{bonusAmount}</strong> if they get the job.</p>)
 
   if (isReferrerByProps || isReferrerByMessage) {
     const nudjLink = (<NudjSuccess {...props} referral={get(props, 'job.referral')} />)
@@ -178,7 +178,7 @@ const Job = (props) => {
   }
 
   const fullJobDescription = (
-    <div className={style.jobContainer}>
+    <div className={style.jobDescriptionContainer}>
       <CollapseBox isOpened={props.jobPage.showDescription}>
         <div className={style.jobDescriptionBox}>
           {descriptionSections.map(section => <div className={style.jobDescriptionSection} key={section[0].split(' ').join('-')}>
@@ -197,7 +197,7 @@ const Job = (props) => {
   )
 
   const jobDescriptionFallback = (
-    <div className={style.jobContainer}>
+    <div className={style.jobDescriptionContainer}>
       <h3 className={style.jobDescriptionSubtitleFallback}>What else you need to know…</h3>
       <p className={style.jobDescriptionFallback}>{description}</p>
     </div>
@@ -224,9 +224,9 @@ const Job = (props) => {
           {jobDescription}
         </div>
         <section className={style.actions}>
-          {actions[0]}
-          <span className={style.or}>or</span>
           {actions[1]}
+          <span className={style.or}>or</span>
+          {actions[0]}
         </section>
       </div>
       {relatedJobsList}

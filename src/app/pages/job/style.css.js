@@ -33,10 +33,7 @@ const styles = {
   jobContainer: mixins.basicContainer(),
   jobHeaderTitle: merge({}, mixins.typography.titleCharcoal, {
     margin: `0 0 ${variables.padding.c} 0`,
-    [mixins.breakpoints.ns]: {
-      margin: `0 0 ${variables.padding.c} 0`,
-      textAlign: 'inherit'
-    }
+    textAlign: 'left'
   }),
   jobHeaderTitleHighlight: jobHeaderTitleHighlight,
   jobHeaderTitleHighlightLink: merge(jobHeaderTitleHighlight, {
@@ -45,12 +42,15 @@ const styles = {
   jobDescriptionSubtitle: merge({}, mixins.headings.h4, {
     flex: '1',
     color: variables.colors.midRed,
-    padding: `0 ${variables.padding.de} ${variables.padding.d} 0`,
+    padding: `0 ${variables.padding.d} ${variables.padding.d} 0`,
     textAlign: 'left',
     [mixins.breakpoints.ns]: {
       textAlign: 'left'
     }
   }),
+  jobDescptionContainer: {
+    margin: `none`
+  },
   jobDescriptionText: merge(mixins.typography.copy, {
     flex: '1',
     textAlign: 'left'
