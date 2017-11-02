@@ -1,9 +1,15 @@
 const express = require('express')
 const path = require('path')
+const messages = require('../modules/messages')
 
-function emailTrackingResponseHandler (req, res, next) {
-  console.log('Hitting this route with token', req.params.token)
-  res.sendFile(path.join(__dirname, 'tracker.png'))
+async function emailTrackingResponseHandler (req, res, next) {
+  const token = req.params.token
+  const message = await messages.getByPixelToken(token)
+  const readCount = message.readCount + 1
+  const id = message.id
+
+  await messages.updateReadCount(id, { readCount })
+  return res.sendFile(path.join(__dirname, 'tracker.png'))
 }
 
 const Router = ({

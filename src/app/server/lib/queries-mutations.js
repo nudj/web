@@ -138,6 +138,13 @@ const fragments = {
       typeformToken
     }
   `,
+  Message: `
+    fragment Message on Message {
+      id
+      pixelToken
+      readCount
+    }
+  `,
   Hirer: `
     fragment Hirer on Hirer {
       id
@@ -357,6 +364,29 @@ module.exports = {
       }
     }
     ${fragments.Survey}
+  `,
+  GetMessageByPixelToken: `
+    query GetMessageByPixelToken (
+      $pixelToken: String
+    ) {
+      message: messageByFilters(filters: {
+        pixelToken: $pixelToken
+      }) {
+        ...Message
+      }
+    }
+    ${fragments.Message}
+  `,
+  UpdateMessageReadCount: `
+    mutation UpdateMessage (
+      $id: ID!
+      $input: MessageUpdateInput!
+    ) {
+        message: updateMessage(id: $id, input: $input) {
+          ...Message
+        }
+    }
+    ${fragments.Message}
   `,
   GetJobsForCompany: `
     query GetJobsForCompany (
