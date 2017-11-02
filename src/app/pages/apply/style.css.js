@@ -10,9 +10,12 @@ const styles = {
     paddingBottom: variables.padding.c,
     paddingTop: variables.padding.a
   }),
-  formHeaderSuccess: mixins.basicContainer({
+  formHeaderSuccess: mixins.basicContainerMedium({
     paddingBottom: variables.padding.c,
-    paddingTop: variables.padding.a,
+    [mixins.breakpoints.ns]: {
+      paddingTop: variables.padding.a
+    },
+    paddingTop: variables.padding.c,
     '::after': mixins.makePsuedoElement({
       backgroundImage: mixins.linkImage('thumbs-up.svg'),
       backgroundPosition: 'bottom right',
@@ -26,7 +29,10 @@ const styles = {
     })
   }),
   title: mixins.typography.title,
-  subtitle: mixins.typography.subtitle,
+  [mixins.breakpoints.ns]: {
+    subtitle: mixins.typography.subtitle
+  },
+  subtitle: mixins.typography.p,
   fieldSet: mixins.forms.fieldSet,
   fieldWrapContainer: mixins.forms.fieldWrapContainer,
   fieldWrap: mixins.forms.fieldWrap,

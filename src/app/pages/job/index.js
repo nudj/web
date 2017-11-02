@@ -178,7 +178,7 @@ const Job = (props) => {
   }
 
   const fullJobDescription = (
-    <div className={style.jobContainer}>
+    <div className={style.jobDescriptionContainer}>
       <CollapseBox isOpened={props.jobPage.showDescription}>
         <div className={style.jobDescriptionBox}>
           {descriptionSections.map(section => <div className={style.jobDescriptionSection} key={section[0].split(' ').join('-')}>
@@ -197,7 +197,7 @@ const Job = (props) => {
   )
 
   const jobDescriptionFallback = (
-    <div className={style.jobContainer}>
+    <div className={style.jobDescriptionContainer}>
       <h3 className={style.jobDescriptionSubtitleFallback}>What else you need to know…</h3>
       <p className={style.jobDescriptionFallback}>{description}</p>
     </div>
