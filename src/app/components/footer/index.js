@@ -8,7 +8,7 @@ const Footer = (props) => {
     <div className={style.container}>
       <ul className={style.links}>
         <li className={style.link}>
-          <a className={style.roadmap} href='http://help.nudj.co/hiring-with-nudj/supercharge-your-referrals-with-nudj' target='_blank'>About</a>
+          <a className={style.about} href='http://help.nudj.co/hiring-with-nudj/supercharge-your-referrals-with-nudj' target='_blank'>About</a>
           <p className={style.label}>Learn more about why we started nudj.</p>
         </li>
         <li className={style.link}>

@@ -72,11 +72,11 @@ const styles = {
       }
     }
   },
-  help: titles,
+  about: titles,
   blog: titles,
+  help: titles,
   release: titles,
   roadmap: titles,
-  hiring: titles,
   terms: titles,
   label: merge({}, mixins.headings.p, {
     display: 'none',
