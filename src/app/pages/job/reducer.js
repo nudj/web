@@ -2,7 +2,7 @@ const { merge } = require('@nudj/library')
 const { TOGGLE_DESCRIPTION_BOX } = require('./actions')
 
 const initialState = {
-  showDescription: false
+  showDescription: true
 }
 
 const toggleDescriptionBox = (state, action) => {

@@ -6,6 +6,7 @@ const data = {
   applications: [],
   hirers: [],
   externalMessages: [],
+  messages: [],
   recommendations: [],
   employees: [],
   surveys: [],
@@ -13,6 +14,15 @@ const data = {
   tokens: [],
   employeeSurveys: []
 }
+data.messages = data.messages.concat([
+  {
+    id: '33',
+    providerId: '500',
+    conversation: '42',
+    pixelToken: 'uniquepixelhash',
+    readCount: 0
+  }
+])
 data.companies = data.companies.concat([
   {
     id: '99',

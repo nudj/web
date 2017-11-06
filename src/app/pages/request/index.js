@@ -48,7 +48,7 @@ const Request = (props) => {
             </div>
           </div>
           <div className={style.fieldButtons}>
-            <RandomHover><input className={style.fieldSubmit} type='submit' value='Request access' /></RandomHover>
+            <RandomHover><input className={style.fieldSubmit} id='requestAccess' type='submit' value='Request access' /></RandomHover>
           </div>
         </fieldset>
       </form>

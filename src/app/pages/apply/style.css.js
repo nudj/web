@@ -6,13 +6,16 @@ const styles = {
   content: {
     width: '100%'
   },
-  formHeader: mixins.basicContainerSmaller({
+  formHeader: mixins.basicContainer({
     paddingBottom: variables.padding.c,
     paddingTop: variables.padding.a
   }),
-  formHeaderSuccess: mixins.basicContainerSmaller({
+  formHeaderSuccess: mixins.basicContainerMedium({
     paddingBottom: variables.padding.c,
-    paddingTop: variables.padding.a,
+    [mixins.breakpoints.ns]: {
+      paddingTop: variables.padding.a
+    },
+    paddingTop: variables.padding.c,
     '::after': mixins.makePsuedoElement({
       backgroundImage: mixins.linkImage('thumbs-up.svg'),
       backgroundPosition: 'bottom right',
@@ -21,12 +24,15 @@ const styles = {
       height: '100%',
       pointerEvents: 'none',
       position: 'absolute',
-      right: '50%',
-      width: '50vw'
+      right: '45%',
+      width: '55vw'
     })
   }),
   title: mixins.typography.title,
-  subtitle: mixins.typography.subtitle,
+  [mixins.breakpoints.ns]: {
+    subtitle: mixins.typography.subtitle
+  },
+  subtitle: mixins.typography.p,
   fieldSet: mixins.forms.fieldSet,
   fieldWrapContainer: mixins.forms.fieldWrapContainer,
   fieldWrap: mixins.forms.fieldWrap,
@@ -46,6 +52,9 @@ const styles = {
       left: '50%'
     }
   },
+  button: mixins.buttonPrimary({
+    textAlign: 'center'
+  }),
   // This is in here for spacing/guidance - formHeader::after shows the image
   thumbsUp: {
     margin: '0 auto',

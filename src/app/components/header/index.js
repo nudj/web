@@ -102,7 +102,7 @@ class Header extends React.Component {
 
     return (
       <div className={this.style.hamburgerHolder}>
-        <button className={`${burgerClass} ${this.style.burger}`} type='button' onClick={this.onClickBurger}>
+        <button id='mobileMenu' className={`${burgerClass} ${this.style.burger}`} type='button' onClick={this.onClickBurger}>
           <span className={`hamburger-box ${this.style.burgerBox}`}>
             <span className={`hamburger-inner ${burgerColour} ${this.style.burgerPosition}`} />
           </span>
@@ -139,7 +139,7 @@ class Header extends React.Component {
     const linkStyle = isActive ? this.style[`${linkStyleName}Active`] : this.style[linkStyleName]
     const requestStyle = mobile ? this.style.requestMobile : this.style.request
 
-    const companies = (<Link to='/hiring' className={linkStyle} onClick={this.onClickLink} key='0'>Employers</Link>)
+    const companies = (<Link to='/hiring' className={linkStyle} id='hirerPage' onClick={this.onClickLink} key='0'>Employers</Link>)
     const getInTouch = (<RandomHover key='1'><a href='mailto:help@nudj.co' id='open-intercom' className={requestStyle} onClick={this.onClickLink}>Get in touch</a></RandomHover>)
 
     const defaultNav = [companies, getInTouch]

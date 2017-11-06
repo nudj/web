@@ -2,7 +2,7 @@ require('envkey')
 require('babel-register')({
   presets: ['react'],
   ignore: function (filename) {
-    if (filename.match(/@nudj/) || filename.match(/app/)) {
+    if (filename.match(/@nudj/) || filename.match(/app/) || filename.match(/framework/)) {
       return false
     }
     return true
@@ -17,7 +17,8 @@ const reduxRoutes = require('./redux/routes')
 const reduxReducers = require('./redux/reducers')
 const expressRouters = {
   insecure: [
-    require('./server/routers/webhook-typeform')
+    require('./server/routers/webhook-typeform'),
+    require('./server/routers/email-tracking')
   ],
   secure: [
     require('./server/routers/auth'),
