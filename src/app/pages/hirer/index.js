@@ -132,12 +132,12 @@ const Hirer = (props) => {
         <div className={style.pricingContainer}>
           <AnimateAppearance from='bottom'>
             <h2 className={style.pricingTitle}>How much does it cost?</h2>
-            <p className={style.pricingSubtitle}>We will be announcing our pricing very soon, but while we're still in beta it costs...</p>
+            <p className={style.pricingSubtitle}>A simple, one-off payment that is always less than a recruiter. 50% goes to the referrer. 50% to nudj.</p>
           </AnimateAppearance>
           <AnimateAppearance from='bottom'>
             <div className={style.pricingBox}>
-              <h2 className={style.price}>£0 + Referral Fee</h2>
-              <small className={style.pricingSmall}>So, request access to the beta today!</small>
+              <h2 className={style.price}>£2,000 per job*</h2>
+              <small className={style.pricingSmall}>*Payable within 30 days of making a hire.</small>
             </div>
           </AnimateAppearance>
           <div className={style.cta}>
