@@ -15,7 +15,7 @@ const Nudj = (props) => {
     <div className={style.page}>
       <div className={style.box}>
         <h1 className={style.heading}>We've created a unique link for you. Now share it!</h1>
-        <p className={style.subtitle}>This link will ensure that you get rewarded should anyone you refer get the job. Not sure how to share it? Read our handy guide <a href='http://help.nudj.co/the-nudj-platform/for-people-looking-for-jobs-and-referring-friends/how-can-i-share-my-referral-link' className={style.link}>here</a>.</p>
+        <p className={style.subtitle}>This link will ensure that you get rewarded should anyone you refer get the job. Not sure how to share it? Check out our handy guide <a href='http://help.nudj.co/the-nudj-platform/for-people-looking-for-jobs-and-referring-friends/how-can-i-share-my-referral-link' className={style.link}>here</a>.</p>
         <div className={style.success}>
           <NudjSuccess {...props} />
         </div>
