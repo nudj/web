@@ -61,12 +61,12 @@ const styles = {
     }
   }),
   heading: merge({}, mixins.typography.title),
-  [mixins.breakpoints.ns]: {
-    subtitle: merge({}, mixins.typography.subtitle, {
+  subtitle: merge({}, mixins.typography.copy, {
+    [mixins.breakpoints.ns]: {
+      fontSize: `${variables.fontSizes.f5}`,
       margin: `0 0 ${variables.padding.d} 0`
-    })
-  },
-  subtitle: mixins.typography.p,
+    }
+  }),
   link: mixins.typography.copyLink,
   success: merge({
     padding: `${variables.padding.c} 0`,
