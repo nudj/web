@@ -299,9 +299,18 @@ data.surveys = data.surveys.concat([
     created: '2017-06-08T11:38:19.485+00:00',
     modified: '2017-06-08T11:38:19.485+00:00',
     company: '99',
-    link: 'https://nudj.typeform.com/to/gfAnDV',
-    uuid: 'gfAnDV',
+    link: 'https://nudj.typeform.com/to/Yvnb4E',
+    uuid: 'Yvnb4E',
     type: 'EMPLOYEE_SURVEY'
+  },
+  {
+    id: 'survey2',
+    created: '2017-06-08T11:38:19.485+00:00',
+    modified: '2017-06-08T11:38:19.485+00:00',
+    company: '99',
+    link: 'https://nudj.typeform.com/to/ST7ltK',
+    uuid: 'ST7ltK',
+    type: 'HIRER_SURVEY'
   }
 ])
 data.tokens = data.tokens.concat([
@@ -324,6 +333,16 @@ data.tokens = data.tokens.concat([
     created: '2017-06-08T11:38:19.485+00:00',
     modified: '2017-06-08T11:38:19.485+00:00',
     id: '2'
+  },
+  {
+    data: {
+      employeeSurvey: 'employeeSurvey2'
+    },
+    token: 'r7cn4u29ypubdr3j',
+    type: 'SURVEY_TYPEFORM_COMPLETE',
+    created: '2017-06-08T11:38:19.485+00:00',
+    modified: '2017-06-08T11:38:19.485+00:00',
+    id: '12'
   },
   {
     data: {

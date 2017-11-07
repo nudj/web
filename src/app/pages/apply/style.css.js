@@ -1,4 +1,4 @@
-const { css } = require('@nudj/framework/css')
+const { css, merge } = require('@nudj/framework/css')
 const { mixins, variables } = require('../../lib/css')
 
 const styles = {
@@ -29,10 +29,12 @@ const styles = {
     })
   }),
   title: mixins.typography.title,
-  [mixins.breakpoints.ns]: {
-    subtitle: mixins.typography.subtitle
-  },
-  subtitle: mixins.typography.p,
+  subtitle: merge(mixins.typography.copy, {
+    [mixins.breakpoints.ns]: {
+      fontSize: `${variables.fontSizes.f5}`,
+      margin: `0 0 ${variables.padding.d} 0`
+    }
+  }),
   fieldSet: mixins.forms.fieldSet,
   fieldWrapContainer: mixins.forms.fieldWrapContainer,
   fieldWrap: mixins.forms.fieldWrap,
