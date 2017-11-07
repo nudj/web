@@ -132,7 +132,7 @@ const Hirer = (props) => {
         <div className={style.pricingContainer}>
           <AnimateAppearance from='bottom'>
             <h2 className={style.pricingTitle}>How much does it cost?</h2>
-            <p className={style.pricingSubtitle}>A simple, one-off payment that is always less than a recruiter. 50% goes to the referrer. 50% to nudj.</p>
+            <p className={style.pricingSubtitle}>A simple, one-off payment that is more than 50% less than a recruiter.</p>
           </AnimateAppearance>
           <AnimateAppearance from='bottom'>
             <div className={style.pricingBox}>
