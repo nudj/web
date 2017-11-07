@@ -5,9 +5,9 @@ const logger = require('@nudj/framework/logger')
 
 const employeeSurveys = require('../modules/employee-surveys')
 const hirers = require('../modules/hirers')
-const jobShare = require('../modules/job-share')
 const tasks = require('../modules/tasks')
 const tokens = require('../modules/tokens')
+const intercom = require('../lib/intercom')
 
 const commonErrors = {
   'badRequest': {
@@ -20,6 +20,24 @@ const commonErrors = {
     message: 'Token could not be found',
     type: 'error'
   }
+}
+
+function recordEvent (firstName, lastName, email, companyName, metadata, eventName) {
+  return intercom.createUniqueUserAndTag({
+    name: `${firstName} ${lastName}`,
+    email,
+    companies: [
+      {
+        company_id: companyName.toLowerCase().split(' ').join('-'),
+        name: companyName
+      }
+    ]
+  }, 'team-member')
+  .then(() => intercom.logEvent({
+    event_name: eventName,
+    email: email,
+    metadata: metadata
+  }))
 }
 
 function generateLinkFromToken (token) {
@@ -78,7 +96,12 @@ function typeformSurveryResponseHanlder (req, res, next) {
       const token = get(data.newToken, 'token')
       const link = generateLinkFromToken(token)
       const surveyLink = get(survey, 'link')
-      return jobShare.send(firstName, lastName, email, link, surveyLink, companyName)
+      const eventName = 'completed survey'
+      const metadata = {
+        survey: surveyLink,
+        job_share_link: link
+      }
+      return recordEvent(firstName, lastName, email, companyName, metadata, eventName)
         .then(() => Promise.resolve(data))
     })
     .then(data => {
