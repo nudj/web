@@ -121,7 +121,7 @@ const Job = (props) => {
   actions.push(apply)
 
   // AWFUL HACK AHEAD
-  const companySlug = get(props, 'company.slug')
+  const companySlug = get(props, 'job.company.slug')
   const jobSlug = get(props, 'job.slug')
   const dollarJobs = ['marketing-coordinator'] // add jobs with bonuses in dollars to this array
   const bonusCurrency = (companySlug === 'sales-i' && dollarJobs.includes(jobSlug)) ? '$' : '£'
