@@ -129,7 +129,7 @@ data.jobs = data.jobs.concat([
     title: 'Marketing Coordinator',
     slug: 'marketing-coordinator',
     url: 'https://www.linkedin.com/jobs/view/400601679/',
-    status: 'Published',
+    status: 'Open',
     bonus: 1000,
     description: 'Sales-i’s cloud based, sales performance software help good sales people become great ones. This fast growing tech company needs a marketeer to join the Chicago team. Help woo new clients and show some love to their existing ones. To do so you’ll be diving into the world of digital, print and creative thinking. You’ll have a few years of B2B marketing under your belt, be a master of crafting engaging content and know your way around the go-to marketing tools. Rumour has it they are moving downtown, so don’t worry, you won’t need to schlep out to the ‘burbs.',
     roleDescription: 'Managing all the software, dropping the database, deleting important sections of code, force-pushing to master and of course spilling coffee on everyone\'s laptop.',
@@ -145,9 +145,10 @@ data.jobs = data.jobs.concat([
     ],
     location: 'Chicago, IL',
     company: '100',
-    related: [],
+    relatedJobs: [],
     templateTags: ['film'],
-    created: '2017-07-27T12:00:00.000+00:00'
+    created: '2017-07-27T12:00:00.000+00:00',
+    modified: '2000-01-17T02:51:58.000+00:00'
   },
   {
     id: '102',
