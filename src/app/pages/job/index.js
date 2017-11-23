@@ -34,10 +34,10 @@ function determineArticle (subject) {
 function onFormSubmit (eventType, props) {
   return (event) => {
     const target = event.target
-    const Intercom = window.Intercom
+    const Intercom = window.Intercom || (() => {})
     event.preventDefault()
     if (!target.querySelector('#visitorId')) {
-      const string = `<input id='visitorId' type='hidden' name='_intercom_visitor_id' value='${Intercom && Intercom('getVisitorId')}' />`
+      const string = `<input id='visitorId' type='hidden' name='_intercom_visitor_id' value='${Intercom('getVisitorId')}' />`
       target.appendChild(elementFromString(string))
     }
     let meta = {
@@ -48,8 +48,11 @@ function onFormSubmit (eventType, props) {
     }
     if (eventType === 'new-application') {
       meta.profileUrl = get(props, 'person.url')
+      Intercom('update', {'lastJobAppliedFor': `${meta.jobTitle} at ${meta.company}`})
+    } else {
+      Intercom('update', {'lastJobReferredFor': `${meta.jobTitle} at ${meta.company}`})
     }
-    Intercom && Intercom('trackEvent', eventType, meta)
+    Intercom('trackEvent', eventType, meta)
     target.submit()
     return false
   }
