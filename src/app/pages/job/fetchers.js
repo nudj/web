@@ -3,41 +3,42 @@ const logger = require('@nudj/framework/logger')
 
 const job = require('../../server/modules/job')
 const template = require('../../server/modules/template')
+const queries = require('../../server/lib/queries-mutations')
 
-const get = ({
-  data,
-  params
-}) => {
+const debug = (title, ...args) =>
+  console.log(`\n\n\n\n\n ${title.toUpperCase()}`, ...args, '\n\n\n\n\n')
+
+const get = ({ params, session }) => {
+  const { data } = session
+
   const [
     companySlug,
     jobSlug,
     referralId
   ] = params.companySlugJobSlugReferralId.split('+')
 
-  return job.get({
+  const gql = queries.GetReferralAndJobForPerson
+
+  const variables = {
     companySlug,
     jobSlug,
     referralId,
-    personId: data.person && data.person.id,
-    loggedIn: !!data.person
-  })
-  .then(result => actionMapAssign(
-    data,
-    {
-      referral: result.referral,
-      job: result.company.job
-    },
-    {
-      templates: data => jobPrismicTemplate(data.job)
+    personId: data && data.person && data.person.id,
+    loggedIn: !!(data && data.person)
+  }
+
+  return {
+    gql,
+    variables,
+    transformData: async data => {
+      debug('data', data)
+      const templates = await jobPrismicTemplate(data.company.job)
+      return Object.assign({}, data, { templates })
     }
-  ))
-  .catch(error => {
-    logger.log('error', error.message, params, data)
-    throw error
-  })
+  }
 }
 
-function jobPrismicTemplate (job) {
+function jobPrismicTemplate(job) {
   const type = 'jobdescription'
   const keys = {
     title: 'title',
