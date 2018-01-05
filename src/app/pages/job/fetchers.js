@@ -5,9 +5,6 @@ const job = require('../../server/modules/job')
 const template = require('../../server/modules/template')
 const queries = require('../../server/lib/queries-mutations')
 
-const debug = (title, ...args) =>
-  console.log(`\n\n\n\n\n ${title.toUpperCase()}`, ...args, '\n\n\n\n\n')
-
 const get = ({ params, session }) => {
   const { data } = session
 
