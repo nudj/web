@@ -1,13 +1,6 @@
-const { Redirect } = require('@nudj/framework/errors')
-const { merge } = require('@nudj/library')
-
-const job = require('../../server/modules/job')
-const queries = require('../../server/lib/queries-mutations')
-
 const post = (props) => {
-  const { params, session, body } = props
-  const { jobId } = body
-  const { data } = session 
+  const { params, session } = props
+  const { data } = session
 
   const [
     companySlug,
@@ -15,8 +8,34 @@ const post = (props) => {
     referralId
   ] = params.companySlugJobSlugReferralId.split('+')
 
-  const gql = queries.CreateReferralForPerson
-  const variables = { job: jobId, referral: referralId, person: data.person.id }
+  const gql = `
+    mutation CreateReferralForPerson (
+      $companySlug: String!
+      $jobSlug: String!
+      $person: ID!
+      $parent: ID = null
+    ) {
+      company: companyByFilters(filters: {
+        slug: $companySlug
+      }) {
+        id
+        slug
+        job: jobByFilters(filters: {
+          slug: $jobSlug
+        }) {
+          id
+          slug
+          referral: createReferral(
+            person: $person,
+            parent: $parent
+          ) {
+            id
+          }
+        }
+      }
+    }
+  `
+  const variables = { companySlug, jobSlug, parent: referralId, person: data.person.id }
 
   return { gql, variables }
 }

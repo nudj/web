@@ -199,7 +199,7 @@ const Job = props => {
 
   if (isReferrerByProps || isReferrerByMessage) {
     const nudjLink = (
-      <NudjSuccess {...props} referral={get(job, 'referral')} />
+      <NudjSuccess {...props} />
     )
     const nudjd = (
       <div className={style.action}>

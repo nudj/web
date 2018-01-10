@@ -19,13 +19,15 @@ function request (query, variables) {
     return data.data
   })
   .catch(error => {
+    console.log(JSON.parse(get(error, 'response.config.data', '{}')).query)
+    console.log(JSON.stringify(JSON.parse(get(error, 'response.config.data', '{}')).variables, null, 2))
     get(error, 'response.data.errors', []).forEach(error => logger.log('error', error))
     throw error
   })
 }
 
 function openRequest (url, options) {
-  return libRequest(url, options)
+  return libRequest(url, options).catch(error => console.log(here, error))
 }
 
 module.exports = request
