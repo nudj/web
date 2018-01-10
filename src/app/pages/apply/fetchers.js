@@ -27,7 +27,7 @@ const post = (props) => {
           slug
           application: createApplication(
             person: $person,
-            referral: referral
+            referral: $referral
           ) {
             id
           }
