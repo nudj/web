@@ -16,13 +16,13 @@ const { toggleDescriptionBox } = require('./actions')
 
 const { render } = require('../../lib/templater')
 
-function elementFromString(string) {
+function elementFromString (string) {
   var div = document.createElement('div')
   div.innerHTML = string
   return div.childNodes[0]
 }
 
-function determineArticle(subject) {
+function determineArticle (subject) {
   const consonantSound = /^one(![ir])/i
   const vowelSound = /^[aeio]|^u([aeiou]|[^n][^aeiou]|ni[^dmnl]|nil[^l])/i
   if (!consonantSound.test(subject) && vowelSound.test(subject)) {
@@ -31,7 +31,9 @@ function determineArticle(subject) {
   return 'a'
 }
 
-function onFormSubmit(eventType, props) {
+function onFormSubmit (eventType, props) {
+  const company = get(props, 'company')
+  const job = get(company, 'job')
   return event => {
     const target = event.target
     const Intercom = window.Intercom || (() => {})
@@ -43,8 +45,8 @@ function onFormSubmit(eventType, props) {
       target.appendChild(elementFromString(string))
     }
     let meta = {
-      jobTitle: get(props, 'company.job.title'),
-      company: get(props, 'company.job.company.name'),
+      jobTitle: get(job, 'title'),
+      company: get(company, 'name'),
       referrerName: get(props, 'referrer.name'),
       referrerId: get(props, 'referrer.id')
     }
@@ -64,29 +66,19 @@ function onFormSubmit(eventType, props) {
   }
 }
 
-const debug = (title, ...args) =>
-  console.log(`\n\n\n\n\n ${title.toUpperCase()}`, ...args, '\n\n\n\n\n')
-
 const Job = props => {
-  debug('props', props)
-
+  const company = get(props, 'company', {})
+  const job = get(company, 'job', {})
   const referral = get(props, 'referral')
-  const companyName = get(props, 'company.job.company.name', '')
-  const jobTitle = get(props, 'company.job.title', '')
-  const candidateDescription = get(
-    props,
-    'company.job.candidateDescription',
-    ''
-  )
-  const companyDescription = get(props, 'company.job.company.description', '')
-  const roleDescription = get(props, 'company.job.roleDescription', '')
-  const image = get(props, 'company.job.company.logo')
-  const application = get(props, 'company.job.application')
+  const companyName = get(company, 'name', '')
+  const jobTitle = get(job, 'title', '')
+  const candidateDescription = get(job, 'candidateDescription', '')
+  const companyDescription = get(company, 'description', '')
+  const roleDescription = get(job, 'roleDescription', '')
+  const image = get(company, 'logo')
+  const application = get(job, 'application')
   const templates = get(props, 'templates')
   const pageTitle = `${companyName} - ${jobTitle}`
-  const job = get(props, 'company.job', {})
-
-  debug('props', props)
 
   setStyles()
   const style = getStyle()
@@ -101,17 +93,13 @@ const Job = props => {
     </RandomHover>
   )
 
-  const uniqueLink = `/jobs/${get(props, 'company.slug', '')}+${get(
-    props,
-    'company.job.slug',
-    ''
-  )}${referral ? `+${referral.id}` : ''}`
+  const uniqueLink = `/jobs/${get(company, 'slug', '')}+${get(job, 'slug', '')}${referral ? `+${referral.id}` : ''}`
 
   const data = {
     job: merge(job, {
       tags: get(job, 'tags', []).shift() // Grab only first tag
     }),
-    company: get(props, 'company')
+    company
   }
 
   // Double check if we need to modify the article for the job title in templates.title
@@ -125,13 +113,13 @@ const Job = props => {
     template: templates.title,
     data: data,
     tagify: (contents, ok, index, chunk) => {
-      if (chunk === 'job.company.name' && data && data.job.company.url) {
+      if (chunk === 'job.company.name' && data && data.company.url) {
         return (
           <a
             className={style.jobHeaderTitleHighlightLink}
             key={`chunk${index}`}
-            href={data.job.company.url}
-            target="_blank"
+            href={data.company.url}
+            target='_blank'
           >
             {contents}
           </a>
@@ -142,7 +130,7 @@ const Job = props => {
             className={style.jobHeaderTitleHighlightLink}
             key={`chunk${index}`}
             href={data.job.url}
-            target="_blank"
+            target='_blank'
           >
             {contents}
           </a>
@@ -162,25 +150,23 @@ const Job = props => {
   })
 
   const bannerMessage = get(props, 'message')
-  const isReferrerByProps = !!get(props, 'company.job.referral')
+  const isReferrerByProps = !!get(job, 'referral')
   const isReferrerByMessage =
     bannerMessage &&
     bannerMessage.type === 'error' &&
     bannerMessage.code === 403 &&
-    bannerMessage.message === "You've already shared this job"
-
-  debug('csrfToken', props.csrfToken)
+    bannerMessage.message === 'You\'ve already shared this job'
 
   const actions = []
   const apply = (
     <form
       className={style.action}
       action={`${uniqueLink}/apply`}
-      method="POST"
+      method='POST'
       onSubmit={onFormSubmit('new-application', props)}
     >
-      <input type="hidden" name="jobId" value={props.company.job.id} />
-      <input type="hidden" name="_csrf" value={props.csrfToken} />
+      <input type='hidden' name='jobId' value={get(job, 'id')} />
+      <input type='hidden' name='_csrf' value={get(props, 'csrfToken')} />
       {applyForJobButton}
       <p className={style.actionCopy}>
         It takes 2 seconds &amp; you don't need a CV!
@@ -191,14 +177,14 @@ const Job = props => {
   actions.push(apply)
 
   // AWFUL HACK AHEAD
-  const companySlug = get(props, 'company.job.company.slug')
-  const jobSlug = get(props, 'company.job.slug')
+  const companySlug = get(company, 'slug')
+  const jobSlug = get(job, 'slug')
   const dollarJobs = ['marketing-coordinator'] // add jobs with bonuses in dollars to this array
   const bonusCurrency =
     companySlug === 'sales-i' && dollarJobs.includes(jobSlug) ? '$' : '£'
   // END AWFUL HACK
 
-  const bonusAmount = get(props, 'company.job.bonus')
+  const bonusAmount = get(job, 'bonus')
 
   const nudjCopy = (
     <p className={style.actionCopy}>
@@ -213,7 +199,7 @@ const Job = props => {
 
   if (isReferrerByProps || isReferrerByMessage) {
     const nudjLink = (
-      <NudjSuccess {...props} referral={get(props, 'company.job.referral')} />
+      <NudjSuccess {...props} referral={get(job, 'referral')} />
     )
     const nudjd = (
       <div className={style.action}>
@@ -225,7 +211,7 @@ const Job = props => {
   } else {
     const nudjButton = (
       <RandomHover>
-        <button className={style.nudj} id="nudjButton">
+        <button className={style.nudj} id='nudjButton'>
           Send to a friend
         </button>
       </RandomHover>
@@ -234,11 +220,11 @@ const Job = props => {
       <form
         className={style.action}
         action={`${uniqueLink}/nudj`}
-        method="POST"
+        method='POST'
         onSubmit={onFormSubmit('new-referral', props)}
       >
-        <input type="hidden" name="jobId" value={props.company.job.id} />
-        <input type="hidden" name="_csrf" value={props.csrfToken} />
+        <input type='hidden' name='jobId' value={get(job, 'id')} />
+        <input type='hidden' name='_csrf' value={get(props, 'csrfToken')} />
         {nudjButton}
         {nudjCopy}
       </form>
@@ -246,7 +232,7 @@ const Job = props => {
     actions.push(nudjForm)
   }
 
-  const relatedJobs = get(props, 'company.job.relatedJobs', [])
+  const relatedJobs = get(job, 'relatedJobs', [])
   let relatedJobsList = ''
   if (relatedJobs.length) {
     relatedJobsList = (
@@ -318,7 +304,7 @@ const Job = props => {
         <div className={style.collapseBoxLineLeft} />
         <span
           className={style.toggleButton}
-          id="toggleInformation"
+          id='toggleInformation'
           onClick={toggleBox}
         >
           {toggleButtonText}
@@ -347,11 +333,11 @@ const Job = props => {
       <Header />
       <Helmet>
         <title>{pageTitle}</title>
-        <meta name="title" content={pageTitle} />
-        <meta property="og:title" content={pageTitle} />
-        <meta property="twitter:title" content={pageTitle} />
-        <meta property="twitter:image" content={image} />
-        <meta property="og:image" content={image} />
+        <meta name='title' content={pageTitle} />
+        <meta property='og:title' content={pageTitle} />
+        <meta property='twitter:title' content={pageTitle} />
+        <meta property='twitter:image' content={image} />
+        <meta property='og:image' content={image} />
       </Helmet>
       <div className={style.job}>
         <div className={style.jobContainer}>

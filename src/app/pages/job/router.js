@@ -5,11 +5,11 @@ const { validateJobUrl } = require('../../server/lib/middleware')
 
 const Router = ({
   ensureLoggedIn,
-  respondWith
+  respondWithGql
 }) => {
   const router = createRouter()
 
-  router.getHandlers('/jobs/:companySlugJobSlugReferralId', validateJobUrl, respondWith(fetchers.get))
+  router.getHandlers('/jobs/:companySlugJobSlugReferralId', validateJobUrl, respondWithGql(fetchers.get))
 
   return router
 }

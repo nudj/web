@@ -15,6 +15,7 @@ alias tdd='./node_modules/.bin/nodemon \
 	--delay 250ms \
 	-x "./node_modules/.bin/standard && ./node_modules/.bin/mocha --recursive test || exit 1"'
 
+alias idev="yank framework && yank components && yank api && yank library && dev"
 alias ll="ls -la"
 alias d="docker"
 alias dm="docker-machine"

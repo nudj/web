@@ -1,9 +1,4 @@
-const { actionMapAssign } = require('@nudj/library')
-const logger = require('@nudj/framework/logger')
-
-const job = require('../../server/modules/job')
 const template = require('../../server/modules/template')
-const queries = require('../../server/lib/queries-mutations')
 
 const get = ({ params, session }) => {
   const { data } = session
@@ -14,7 +9,81 @@ const get = ({ params, session }) => {
     referralId
   ] = params.companySlugJobSlugReferralId.split('+')
 
-  const gql = queries.GetReferralAndJobForPerson
+  const gql = `
+    query GetReferralAndJobForPerson (
+      $companySlug: String!,
+      $jobSlug: String!,
+      $referralId: ID,
+      $personId: ID,
+      $loggedIn: Boolean!
+    ) {
+      referral(id: $referralId) {
+        id
+        job {
+          slug
+          company {
+            slug
+          }
+        }
+      }
+      company: companyByFilters(filters: {
+        slug: $companySlug
+      }) {
+        id
+        name
+        logo
+        industry
+        mission
+        slug
+        description
+        url
+        job: jobByFilters(filters: {
+          slug: $jobSlug
+        }) {
+          id
+          created
+          modified
+          title
+          slug
+          url
+          status
+          bonus
+          description
+          roleDescription
+          candidateDescription
+          type
+          remuneration
+          templateTags
+          location
+          application: applicationByFilters(filters: {
+            person: $personId
+          }) @include(if: $loggedIn) {
+            id
+          }
+          referral: referralByFilters(filters: {
+            person: $personId
+          }) @include(if: $loggedIn) {
+            id
+            job {
+              slug
+              company {
+                slug
+              }
+            }
+          }
+          relatedJobs {
+            id
+            title
+            slug
+            company {
+              name
+              slug
+            }
+          }
+        }
+      }
+    }
+  `
 
   const variables = {
     companySlug,
@@ -28,7 +97,6 @@ const get = ({ params, session }) => {
     gql,
     variables,
     transformData: async data => {
-      debug('data', data)
       const templates = await jobPrismicTemplate(data.company.job)
       return Object.assign({}, data, { templates })
     }
