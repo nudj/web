@@ -99,7 +99,7 @@ const get = ({ params, session }) => {
   }
 }
 
-function jobPrismicTemplate(job) {
+function jobPrismicTemplate (job) {
   const type = 'jobdescription'
   const keys = {
     title: 'title',

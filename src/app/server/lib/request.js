@@ -27,7 +27,7 @@ function request (query, variables) {
 }
 
 function openRequest (url, options) {
-  return libRequest(url, options).catch(error => console.log(here, error))
+  return libRequest(url, options)
 }
 
 module.exports = request
