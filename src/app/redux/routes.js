@@ -7,6 +7,5 @@ module.exports = {
   '/jobs/:companySlugJobSlugReferralId/apply': require('../pages/apply'),
   '/jobs/:companySlugJobSlugReferralId/apply/:secret': require('../pages/apply'),
   '/jobs/:companySlugJobSlugReferralId/nudj': require('../pages/nudj'),
-  '/jobs/:companySlugJobSlugReferralId/nudj/:secret': require('../pages/nudj'),
-  '/token/:token': require('../pages/token')
+  '/jobs/:companySlugJobSlugReferralId/nudj/:secret': require('../pages/nudj')
 }

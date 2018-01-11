@@ -26,8 +26,6 @@ const post = ({ body }) => {
     role: body.role
   }
 
-  console.log({ gql, variables })
-
   return { gql, variables }
 }
 

@@ -18,7 +18,6 @@ const reduxRoutes = require('./redux/routes')
 const reduxReducers = require('./redux/reducers')
 const expressRouters = {
   insecure: [
-    require('./server/routers/webhook-typeform'),
     require('./server/routers/email-tracking')
   ],
   secure: [
@@ -30,7 +29,6 @@ const expressRouters = {
     require('./pages/job/router'),
     require('./pages/apply/router'),
     require('./pages/nudj/router'),
-    require('./pages/token/router'),
     require('./server/routers/catch-all')
   ]
 }
