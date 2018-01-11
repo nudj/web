@@ -19,6 +19,7 @@
       "app/server/assets",
       "app/server/build*",
       "app/node_modules",
+      "@nudj",
       "webpack*"
     ]
   },
