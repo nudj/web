@@ -84,12 +84,12 @@ const Job = props => {
   const style = getStyle()
 
   const applyForJobButton = application ? (
-    <button className={style.applied} disabled>
+    <button className={style.applied} disabled id='applyButton'>
       You've already applied
     </button>
   ) : (
     <RandomHover>
-      <button className={style.apply}>Apply for job</button>
+      <button className={style.apply} id='applyButton'>Apply for job</button>
     </RandomHover>
   )
 
