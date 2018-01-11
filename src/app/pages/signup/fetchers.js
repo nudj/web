@@ -1,17 +1,34 @@
-const signup = require('../../server/modules/signup')
-
 const post = ({ body }) => {
-  signup.send(
-    body.first_name,
-    body.last_name,
-    body.email,
-    body.job_title,
-    body.role
-  )
-
-  return {
-    transformData: () => ({ success: true }) 
+  const gql = `
+    mutation SignUp (
+      $firstName: String
+      $lastName: String
+      $email: String!
+      $title: String
+      $role: String
+    ) {
+      signUp (
+        firstName: $firstName
+        lastName: $lastName
+        email: $email
+        title: $title
+        role: $role
+      ) {
+        success
+      }
+    }
+  `
+  const variables = {
+    firstName: body.first_name,
+    lastName: body.last_name,
+    email: body.email,
+    title: body.job_title,
+    role: body.role
   }
+
+  console.log({ gql, variables })
+
+  return { gql, variables }
 }
 
 module.exports = {
