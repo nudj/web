@@ -10,7 +10,7 @@ const RandomHover = require('../../components/random-hover')
 const SignUp = (props) => {
   const style = getStyle()
   let html
-  if (props.success) {
+  if (get(props, 'signUp.success')) {
     html = (
       <div className={style.content}>
         <div className={style.formHeader}>

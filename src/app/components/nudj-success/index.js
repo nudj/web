@@ -14,7 +14,7 @@ const NudjSuccess = (props) => {
   setStyles(backgroundColour, textColour, textHighlightColour, buttonTextColour)
   const style = getStyle()
 
-  const link = `${get(props, 'url.protocol')}://${get(props, 'url.hostname')}/jobs/${get(props, 'referral.job.company.slug')}+${get(props, 'referral.job.slug')}+${get(props, 'referral.id')}`
+  const link = `${get(props, 'url.protocol')}://${get(props, 'url.hostname')}/jobs/${get(props, 'company.slug')}+${get(props, 'company.job.slug')}+${get(props, 'company.job.referral.id')}`
   const mobileOnly = get(props, 'mobileOnly', false)
 
   return (
@@ -42,8 +42,8 @@ const NudjSuccess = (props) => {
             <svg xmlns='http://www.w3.org/2000/svg' height='100%' viewBox='0 0 27 25'>
               <path fill='none' fillRule='evenodd' strokeLinecap='square' strokeWidth='2' d='M25 11.645l-10.626 9.809c-3.02 2.787-8.091 2.787-11.11 0a6.938 6.938 0 0 1 0-10.255l9.419-8.694a5.714 5.714 0 0 1 7.728 0c2.174 2.006 2.174 5.127 0 7.134l-8.694 7.914c-1.208 1.114-3.14 1.114-4.226 0-1.208-1.115-1.208-2.898 0-3.902l7.245-6.688' />
             </svg>
+            <span className={style.actionTitle} data-clipboard-label>Copy link</span>
           </div>
-          <span className={style.actionTitle} data-clipboard-label>Copy link</span>
         </CopyToClipboard>
       </div>
       <div className={style.link}>

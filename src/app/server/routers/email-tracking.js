@@ -15,7 +15,7 @@ async function emailTrackingResponseHandler (req, res, next) {
   const id = message.id
 
   await messages.updateReadCount(id, { readCount })
-  return res.sendFile(path.join(__dirname, 'tracker.png'))
+  return res.sendFile(path.join(__dirname, '../assets/images/tracker.png'))
 }
 
 const Router = ({

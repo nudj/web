@@ -1,11 +1,33 @@
-const { merge } = require('@nudj/library')
-const signup = require('../../server/modules/signup')
+const post = ({ body }) => {
+  const gql = `
+    mutation SignUp (
+      $firstName: String
+      $lastName: String
+      $email: String!
+      $title: String
+      $role: String
+    ) {
+      signUp (
+        firstName: $firstName
+        lastName: $lastName
+        email: $email
+        title: $title
+        role: $role
+      ) {
+        success
+      }
+    }
+  `
+  const variables = {
+    firstName: body.first_name,
+    lastName: body.last_name,
+    email: body.email,
+    title: body.job_title,
+    role: body.role
+  }
 
-const post = ({
-  data,
-  body
-}) => signup.send(body.first_name, body.last_name, body.email, body.job_title, body.role)
-  .then(response => merge(data, response))
+  return { gql, variables }
+}
 
 module.exports = {
   post

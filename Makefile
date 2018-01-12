@@ -5,17 +5,14 @@ CWD=$(shell pwd)
 .PHONY: build buildLocal run ssh test
 
 build:
-	@docker build \
-		-t $(IMAGEDEV) \
-		--build-arg NPM_TOKEN=${NPM_TOKEN} \
-		-f $(CWD)/Dockerfile.dev \
-		.
+	@./build.sh $(IMAGEDEV)
 
 buildLocal:
 	@docker build \
 		-t $(IMAGE):local \
 		--build-arg NPM_TOKEN=${NPM_TOKEN} \
 		--build-arg NODE_ENV=production \
+		-v $(CWD)/src/yarn.lock:/usr/src/yarn.lock \
 		-f $(CWD)/Dockerfile \
 		.
 
@@ -47,8 +44,10 @@ ssh:
 		-v $(CWD)/src/package.json:/usr/src/package.json \
 		-v $(CWD)/src/webpack.config.js:/usr/src/webpack.config.js \
 		-v $(CWD)/src/webpack.dll.js:/usr/src/webpack.dll.js \
-		-v $(CWD)/../framework/src:/usr/src/framework \
-		-v $(CWD)/../api/src:/usr/src/api \
+		-v $(CWD)/../framework/src:/usr/src/@nudj/framework \
+		-v $(CWD)/../api/src:/usr/src/@nudj/api \
+		-v $(CWD)/../library/src:/usr/src/@nudj/library \
+		-v $(CWD)/../components/src:/usr/src/@nudj/components \
 		$(IMAGEDEV) \
 		/bin/zsh
 

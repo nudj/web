@@ -1,40 +1,102 @@
-const { actionMapAssign } = require('@nudj/library')
-const logger = require('@nudj/framework/logger')
-
-const job = require('../../server/modules/job')
 const template = require('../../server/modules/template')
 
-const get = ({
-  data,
-  params
-}) => {
+const get = ({ params, session }) => {
+  const { data } = session
+
   const [
     companySlug,
     jobSlug,
     referralId
   ] = params.companySlugJobSlugReferralId.split('+')
 
-  return job.get({
+  const gql = `
+    query GetReferralAndJobForPerson (
+      $companySlug: String!,
+      $jobSlug: String!,
+      $referralId: ID,
+      $personId: ID,
+      $loggedIn: Boolean!
+    ) {
+      referral: referralByFilters(filters: {
+        id: $referralId
+      }) {
+        id
+        job {
+          slug
+          company {
+            slug
+          }
+        }
+      }
+      company: companyByFilters(filters: {
+        slug: $companySlug
+      }) {
+        id
+        name
+        logo
+        industry
+        mission
+        slug
+        description
+        url
+        job: jobByFilters(filters: {
+          slug: $jobSlug
+        }) {
+          id
+          created
+          modified
+          title
+          slug
+          url
+          status
+          bonus
+          description
+          roleDescription
+          candidateDescription
+          type
+          remuneration
+          templateTags
+          location
+          application: applicationByFilters(filters: {
+            person: $personId
+          }) @include(if: $loggedIn) {
+            id
+          }
+          referral: referralByFilters(filters: {
+            person: $personId
+          }) @include(if: $loggedIn) {
+            id
+          }
+          relatedJobs {
+            id
+            title
+            slug
+            company {
+              name
+              slug
+            }
+          }
+        }
+      }
+    }
+  `
+
+  const variables = {
     companySlug,
     jobSlug,
     referralId,
-    personId: data.person && data.person.id,
-    loggedIn: !!data.person
-  })
-  .then(result => actionMapAssign(
-    data,
-    {
-      referral: result.referral,
-      job: result.company.job
-    },
-    {
-      templates: data => jobPrismicTemplate(data.job)
+    personId: data && data.person && data.person.id,
+    loggedIn: !!(data && data.person)
+  }
+
+  return {
+    gql,
+    variables,
+    transformData: async data => {
+      const templates = await jobPrismicTemplate(data.company.job)
+      return Object.assign({}, data, { templates })
     }
-  ))
-  .catch(error => {
-    logger.log('error', error.message, params, data)
-    throw error
-  })
+  }
 }
 
 function jobPrismicTemplate (job) {
