@@ -85,7 +85,7 @@ const Job = props => {
 
   const applyForJobButton = application ? (
     <button className={style.applied} disabled id='applyButton'>
-      You've already applied
+      You&apos;ve already applied
     </button>
   ) : (
     <RandomHover>
@@ -169,7 +169,7 @@ const Job = props => {
       <input type='hidden' name='_csrf' value={get(props, 'csrfToken')} />
       {applyForJobButton}
       <p className={style.actionCopy}>
-        It takes 2 seconds &amp; you don't need a CV!
+        It takes 2 seconds &amp; you don&apos;t need a CV!
       </p>
     </form>
   )
