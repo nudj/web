@@ -24,9 +24,9 @@
     ]
   },
   "dependencies": {
-    "@nudj/components": "0.1.3",
-    "@nudj/framework": "11.1.0",
-    "@nudj/library": "1.1.0",
+    "@nudj/components": "2.0.0",
+    "@nudj/framework": "12.0.0",
+    "@nudj/library": "4.1.0",
     "babel-preset-react": "^6.23.0",
     "babel-register": "^6.26.0",
     "classnames": "^2.2.5",
