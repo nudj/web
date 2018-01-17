@@ -61,11 +61,11 @@ const styles = {
     flexWrap: 'nowrap',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: `${variables.padding.c} 0 ${variables.padding.c} 0`,
-    '@media(min-width: 50rem)': {
+    padding: `${variables.padding.d} ${variables.padding.e} ${variables.padding.d} ${variables.padding.e}`,
+    '@media(min-width: 35rem)': {
       flexDirection: 'row',
       flexWrap: 'wrap',
-      padding: `${variables.padding.c}`
+      padding: `${variables.padding.d}`
     }
   }),
   job: merge({
@@ -78,16 +78,16 @@ const styles = {
     backgroundColor: variables.colors.white,
     boxShadow: '0 0.5px 0.5px 0 rgba(0, 0, 0, 0.1)',
     borderRadius: '2px',
-    padding: variables.padding.c,
+    padding: `${variables.padding.d} ${variables.padding.c} ${variables.padding.d} ${variables.padding.d}`,
     margin: variables.padding.e,
-    '@media(min-width: 50rem)': {
+    '@media(min-width: 35rem)': {
       maxWidth: `calc(50% - ${variables.padding.d})`
     },
     '@media(min-width: 70rem)': {
       maxWidth: `calc(25% - ${variables.padding.d})`
     }
   }),
-  jobTitle: merge(mixins.headings.h4, {
+  jobTitle: merge(mixins.headings.h5, {
     color: variables.colors.royalBlue,
     textAlign: 'left',
     width: '100%'
