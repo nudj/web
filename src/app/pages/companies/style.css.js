@@ -62,9 +62,10 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     padding: `${variables.padding.c} 0 ${variables.padding.c} 0`,
-    '@media(min-width: 32rem)': {
+    '@media(min-width: 50rem)': {
       flexDirection: 'row',
-      flexWrap: 'wrap'
+      flexWrap: 'wrap',
+      padding: `${variables.padding.c}`
     }
   }),
   job: merge({
@@ -79,10 +80,10 @@ const styles = {
     borderRadius: '2px',
     padding: variables.padding.c,
     margin: variables.padding.e,
-    '@media(min-width: 32rem)': {
+    '@media(min-width: 50rem)': {
       maxWidth: `calc(50% - ${variables.padding.d})`
     },
-    '@media(min-width: 50rem)': {
+    '@media(min-width: 70rem)': {
       maxWidth: `calc(25% - ${variables.padding.d})`
     }
   }),
