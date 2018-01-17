@@ -3,6 +3,7 @@ module.exports = {
   '/hiring': require('../pages/hirer'),
   '/request': require('../pages/request'),
   '/signup': require('../pages/signup'),
+  '/companies': require('../pages/companies'),
   '/jobs/:companySlugJobSlugReferralId': require('../pages/job'),
   '/jobs/:companySlugJobSlugReferralId/apply': require('../pages/apply'),
   '/jobs/:companySlugJobSlugReferralId/apply/:secret': require('../pages/apply'),
