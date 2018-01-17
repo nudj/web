@@ -150,6 +150,15 @@ const basicContainer = (properties) => {
 }
 module.exports.basicContainer = basicContainer
 
+module.exports.basicContainerLarge = (properties) => {
+  return merge({}, basicContainer(properties), {
+    [breakpoints.ns]: {
+      margin: '0 auto',
+      maxWidth: variables.sizes.contentLargeMaxWidth
+    }
+  })
+}
+
 module.exports.basicContainerMedium = (properties) => {
   return merge({}, basicContainer(properties), {
     [breakpoints.ns]: {
