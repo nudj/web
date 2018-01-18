@@ -12,7 +12,6 @@ buildLocal:
 		-t $(IMAGE):local \
 		--build-arg NPM_TOKEN=${NPM_TOKEN} \
 		--build-arg NODE_ENV=production \
-		-v $(CWD)/src/yarn.lock:/usr/src/yarn.lock \
 		-f $(CWD)/Dockerfile \
 		.
 
