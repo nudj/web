@@ -98,15 +98,13 @@ const innerBurgerAltColour = {
   backgroundColor: `${variables.colors.navy}`
 }
 
-// Commenting this out for now while we wait for a fix to Aphrodite
-// https://github.com/Khan/aphrodite/pull/240
 const navIntroAnimations = {
-  // animationDelay: variables.transitions.mediumEasy.length,
-  // animationDuration: variables.transitions.mediumEasy.length,
-  // animationFillMode: 'both',
-  // animationIterationCount: '1',
-  // animationName: mixins.animations.appearTop,
-  // animationTimingFunction: variables.transitions.mediumEasy.easing
+  animationDelay: variables.transitions.mediumEasy.length,
+  animationDuration: variables.transitions.mediumEasy.length,
+  animationFillMode: 'both',
+  animationIterationCount: '1',
+  animationName: mixins.animations.appearTop,
+  animationTimingFunction: variables.transitions.mediumEasy.easing
 }
 
 const activeLinkUnderline = mixins.afterUnderlineSquiggle('link-underline-1.svg', '30%', {
@@ -167,7 +165,7 @@ const styles = {
   }, mobileMenu),
   navBarConstant: merge({
     pointerEvents: 'all',
-    transform: `translate3d(0, calc(-100% - ${variables.padding.e}), 0)`
+    transform: `translateY(-100%) translateY(-${variables.padding.e})`
   }, navBarConstant),
   navBarConstantIsActive: merge({
     pointerEvents: 'all',
