@@ -10,16 +10,8 @@ const get = ({ params, session }) => {
   ] = params.companySlugJobSlugReferralId.split('+')
 
   const gql = `
-    query GetReferralAndJobForPerson (
-      $companySlug: String!,
-      $jobSlug: String!,
-      $referralId: ID,
-      $personId: ID,
-      $loggedIn: Boolean!
-    ) {
-      referral: referralByFilters(filters: {
-        id: $referralId
-      }) {
+    mutation GetReferralAndJobForPerson($companySlug: String!, $jobSlug: String!, $referralId: ID, $personId: ID, $loggedIn: Boolean!) {
+      referral: referralByFilters(filters: {id: $referralId}) {
         id
         job {
           slug
@@ -28,9 +20,7 @@ const get = ({ params, session }) => {
           }
         }
       }
-      company: companyByFilters(filters: {
-        slug: $companySlug
-      }) {
+      company: companyByFilters(filters: {slug: $companySlug}) {
         id
         name
         logo
@@ -39,9 +29,7 @@ const get = ({ params, session }) => {
         slug
         description
         url
-        job: jobByFilters(filters: {
-          slug: $jobSlug
-        }) {
+        job: jobByFilters(filters: {slug: $jobSlug}) {
           id
           created
           modified
@@ -57,14 +45,11 @@ const get = ({ params, session }) => {
           remuneration
           templateTags
           location
-          application: applicationByFilters(filters: {
-            person: $personId
-          }) @include(if: $loggedIn) {
+          incrementViews
+          application: applicationByFilters(filters: {person: $personId}) @include(if: $loggedIn) {
             id
           }
-          referral: referralByFilters(filters: {
-            person: $personId
-          }) @include(if: $loggedIn) {
+          referral: referralByFilters(filters: {person: $personId}) @include(if: $loggedIn) {
             id
           }
           relatedJobs {
