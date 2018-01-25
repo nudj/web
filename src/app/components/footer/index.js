@@ -1,4 +1,5 @@
 const React = require('react')
+const getYear = require('date-fns/get_year')
 
 const getStyle = require('./footer.css')
 
@@ -36,7 +37,7 @@ const Footer = (props) => {
         <img className={style.logo} src='/assets/images/nudj-logo-light.svg' />
       </div>
     </div>
-    <span className={style.copyright}>&#169; 2017 <strong>nudj</strong>, All Rights Reserved</span>
+    <span className={style.copyright}>&#169; <span>{getYear(new Date())}</span> <strong>nudj</strong>, All Rights Reserved</span>
   </div>)
 }
 
