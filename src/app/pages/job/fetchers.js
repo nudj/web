@@ -45,7 +45,7 @@ const get = ({ params, session }) => {
           remuneration
           templateTags
           location
-          incrementViews
+          incrementViewCount
           application: applicationByFilters(filters: {person: $personId}) @include(if: $loggedIn) {
             id
           }
