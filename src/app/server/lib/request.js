@@ -19,8 +19,8 @@ function request (query, variables) {
     return data.data
   })
   .catch(error => {
-    logger('debug', JSON.parse(get(error, 'response.config.data', '{}')).query)
-    logger('debug', JSON.stringify(JSON.parse(get(error, 'response.config.data', '{}')).variables, null, 2))
+    logger.log('debug', JSON.parse(get(error, 'response.config.data', '{}')).query)
+    logger.log('debug', JSON.stringify(JSON.parse(get(error, 'response.config.data', '{}')).variables, null, 2))
     get(error, 'response.data.errors', []).forEach(error => logger('error', error))
     throw error
   })
