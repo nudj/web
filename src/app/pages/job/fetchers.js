@@ -17,9 +17,9 @@ const get = ({ params, session }) => {
       $personId: ID,
       $loggedIn: Boolean!
     ) {
-      referral: referralByFilters(filters: {
+      referral: referral(
         id: $referralId
-      }) {
+      ) {
         id
         job {
           slug

@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@nudj/api@8.1.0":
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/@nudj/api/-/api-8.1.0.tgz#d2ff895c3335e0cc75102a8095c9e08f7c882375"
+"@nudj/api@8.2.0":
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/@nudj/api/-/api-8.2.0.tgz#d5e246928e9d6f06250f63a39886cc9b73c82ac4"
   dependencies:
     "@nudj/library" "4.2.0"
     apollo-server-express "^1.2.0"
@@ -72,11 +72,11 @@
     react-modal "^3.1.10"
     react-textarea-autosize "^5.2.1"
 
-"@nudj/framework@13.1.0":
-  version "13.1.0"
-  resolved "https://registry.yarnpkg.com/@nudj/framework/-/framework-13.1.0.tgz#5e64ba92673e9a03a4c8a67032bf3005543641be"
+"@nudj/framework@13.2.0":
+  version "13.2.0"
+  resolved "https://registry.yarnpkg.com/@nudj/framework/-/framework-13.2.0.tgz#40742b76951d377c4eea83c831f76d8a2fc5de73"
   dependencies:
-    "@nudj/api" "8.1.0"
+    "@nudj/api" "8.2.0"
     "@nudj/components" "2.0.0"
     "@nudj/library" "4.1.0"
     "@nudj/react-router-redux" "0.2.0--5.0.0-alpha.6"
