@@ -10,7 +10,7 @@ const RandomHover = require('../../components/random-hover')
 const Request = (props) => {
   const style = getStyle()
   let html
-  if (props.success) {
+  if (get(props, 'requestAccess.success')) {
     html = (
       <div className={style.content}>
         <div className={style.formHeader}>

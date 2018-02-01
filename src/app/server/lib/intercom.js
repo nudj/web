@@ -1,9 +1,10 @@
-let Intercom = require('intercom-client')
-let logger = require('@nudj/framework/logger')
-let intercom = new Intercom.Client({
+const Intercom = require('intercom-client')
+const format = require('date-fns/format')
+const { logger } = require('@nudj/library')
+
+const intercom = new Intercom.Client({
   token: process.env.INTERCOM_ACCESS_TOKEN
 })
-const format = require('date-fns/format')
 
 function userHasTag (user, name) {
   const tagsList = user.tags.tags || []
@@ -11,7 +12,7 @@ function userHasTag (user, name) {
 }
 
 function getBody (response) {
-  if (response.status !== 200) {
+  if (response.statusCode !== 200) {
     throw new Error(`Intercom gone done broke: ${response.status}`)
   }
   return response.body
@@ -59,30 +60,30 @@ function tagUser (user, tag) {
 }
 
 function logAndReturn (data, ...itemsToLog) {
-  logger.log('info', ...itemsToLog)
+  logger('info', ...itemsToLog)
   return data
 }
 
 function createUniqueLeadAndTag (data, tag) {
-  logger.log('info', 'createUniqueLeadAndTag', data, tag)
+  logger('info', 'createUniqueLeadAndTag', data, tag)
   return fetchLeadBy({ email: data.email })
     .then((user) => user || createLead(data))
     .then((user) => tagUser(user, tag))
     .then((user) => logAndReturn(user, 'User created and tagged', data, tag))
-    .catch((error) => logger.log('error', 'Intercom', 'createUniqueLeadAndTag', data, tag, error))
+    .catch((error) => logger('error', 'Intercom', 'createUniqueLeadAndTag', data, tag, error))
 }
 
 function createUniqueUserAndTag (data, tag) {
-  logger.log('info', 'createUniqueUserAndTag', data, tag)
+  logger('info', 'createUniqueUserAndTag', data, tag)
   return fetchUserBy({ email: data.email })
     .catch((error) => {
-      logger.log('error', 'Intercom', 'fetchUserBy', data, tag, error)
+      logger('error', 'Intercom', 'fetchUserBy', data, tag, error)
       return null
     })
     .then((user) => user || createUser(data))
     .then((user) => userHasTag(user, tag) ? user : tagUser(user, tag))
     .then((user) => logAndReturn(user, 'User created and tagged', data, tag))
-    .catch((error) => logger.log('error', 'Intercom', 'createUniqueUserAndTag', data, tag, error))
+    .catch((error) => logger('error', 'Intercom', 'createUniqueUserAndTag', data, tag, error))
 }
 
 function convert (visitor, user) {
@@ -95,31 +96,31 @@ function convert (visitor, user) {
 }
 
 function convertVisitorToUser (visitor, user) {
-  logger.log('info', 'convertVisitorToUser', visitor, user)
+  logger('info', 'convertVisitorToUser', visitor, user)
   return convert(visitor, user)
-    .then(() => logger.log('info', 'Visitor converted to user', visitor, user))
-    .catch((error) => logger.log('error', 'Intercom', 'convertVisitorToUser', visitor, user, error))
+    .then(() => logger('info', 'Visitor converted to user', visitor, user))
+    .catch((error) => logger('error', 'Intercom', 'convertVisitorToUser', visitor, user, error))
 }
 
 function updateUser (patch) {
-  logger.log('info', 'updateUser', patch)
+  logger('info', 'updateUser', patch)
   return intercom.users
     .update(patch)
-    .then(() => logger.log('info', 'User updated', patch))
-    .catch((error) => logger.log('error', 'Intercom', 'updateUser', patch, error))
+    .then(() => logger('info', 'User updated', patch))
+    .catch((error) => logger('error', 'Intercom', 'updateUser', patch, error))
 }
 
 const getTimestampInSeconds = () => format(new Date(), 'X')
 
 function logEvent ({ event_name, email, metadata }) {
-  logger.log('info', 'logEvent', event_name, email, metadata)
+  logger('info', 'logEvent', event_name, email, metadata)
   return intercom.events.create({
     created_at: getTimestampInSeconds(),
     event_name,
     email,
     metadata
   })
-  .catch((error) => logger.log('error', 'Intercom', 'logEvent', event_name, email, metadata, error))
+  .catch((error) => logger('error', 'Intercom', 'logEvent', event_name, email, metadata, error))
 }
 
 module.exports = {

@@ -19,15 +19,16 @@
       "app/server/assets",
       "app/server/build*",
       "app/node_modules",
+      "@nudj",
       "webpack*"
     ]
   },
   "dependencies": {
-    "@nudj/components": "0.1.3",
-    "@nudj/framework": "7.0.0",
-    "@nudj/library": "1.1.0",
-    "babel-register": "^6.26.0",
+    "@nudj/components": "2.2.0",
+    "@nudj/framework": "13.2.1",
+    "@nudj/library": "4.1.0",
     "babel-preset-react": "^6.23.0",
+    "babel-register": "^6.26.0",
     "classnames": "^2.2.5",
     "date-fns": "^1.28.4",
     "envkey": "^1.0.0",
@@ -59,7 +60,7 @@
   "devDependencies": {
     "babel-core": "^6.23.1",
     "babel-eslint": "^7.1.1",
-    "babel-loader": "^6.3.2",
+    "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.1.10",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",

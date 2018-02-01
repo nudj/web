@@ -2,7 +2,7 @@ require('envkey')
 require('babel-register')({
   presets: ['react'],
   ignore: function (filename) {
-    if (filename.match(/@nudj/) || filename.match(/app/) || filename.match(/framework/)) {
+    if (filename.match(/@nudj/) || filename.match(/app/)) {
       return false
     }
     return true
@@ -10,14 +10,14 @@ require('babel-register')({
 })
 const path = require('path')
 const server = require('@nudj/framework/server')
+const logger = require('@nudj/framework/logger')
 const find = require('lodash/find')
 
-const App = require('./redux')
+const reactApp = require('./redux')
 const reduxRoutes = require('./redux/routes')
 const reduxReducers = require('./redux/reducers')
 const expressRouters = {
   insecure: [
-    require('./server/routers/webhook-typeform'),
     require('./server/routers/email-tracking')
   ],
   secure: [
@@ -29,7 +29,6 @@ const expressRouters = {
     require('./pages/job/router'),
     require('./pages/apply/router'),
     require('./pages/nudj/router'),
-    require('./pages/token/router'),
     require('./server/routers/catch-all')
   ]
 }
@@ -44,8 +43,8 @@ const spoofLoggedIn = (req, res, next) => {
 }
 const errorHandlers = require('./server/errorHandlers')
 
-server({
-  App,
+const { app, getMockApiApps } = server({
+  App: reactApp,
   reduxRoutes,
   reduxReducers,
   expressRouters,
@@ -55,3 +54,19 @@ server({
   spoofLoggedIn,
   errorHandlers
 })
+
+app.listen(80, () => {
+  logger.log('info', 'Application running')
+})
+
+if (process.env.USE_MOCKS === 'true') {
+  const { jsonServer, gqlServer } = getMockApiApps({ data: mockData })
+
+  jsonServer.listen(81, () => {
+    logger.log('info', 'JSONServer running')
+  })
+
+  gqlServer.listen(82, () => {
+    logger.log('info', 'Mock GQL running')
+  })
+}

@@ -11,13 +11,13 @@ const {
 
 const Router = ({
   ensureLoggedIn,
-  respondWith
+  respondWithGql
 }) => {
   const router = createRouter()
 
   router.getHandlers('/jobs/:companySlugJobSlugReferralId/nudj', validateJobUrl, noDirectApplyNudj)
-  router.postHandlers('/jobs/:companySlugJobSlugReferralId/nudj', validateJobUrl, cacheApplyNudjSecret, ensureLoggedIn, deleteApplyNudjSecret, respondWith(fetchers.post))
-  router.getHandlers('/jobs/:companySlugJobSlugReferralId/nudj/:secret', validateJobUrl, checkApplyNudjSecret, ensureLoggedIn, deleteApplyNudjSecret, respondWith(fetchers.post))
+  router.postHandlers('/jobs/:companySlugJobSlugReferralId/nudj', validateJobUrl, cacheApplyNudjSecret, ensureLoggedIn, deleteApplyNudjSecret, respondWithGql(fetchers.post))
+  router.getHandlers('/jobs/:companySlugJobSlugReferralId/nudj/:secret', validateJobUrl, checkApplyNudjSecret, ensureLoggedIn, deleteApplyNudjSecret, respondWithGql(fetchers.post))
 
   return router
 }
