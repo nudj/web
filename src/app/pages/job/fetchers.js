@@ -28,9 +28,7 @@ const get = ({ params, session }) => {
           }
         }
       }
-      company: companyByFilters(filters: {
-        slug: $companySlug
-      }) {
+      company: companyByFilters(filters: {slug: $companySlug}) {
         id
         name
         logo
@@ -39,9 +37,7 @@ const get = ({ params, session }) => {
         slug
         description
         url
-        job: jobByFilters(filters: {
-          slug: $jobSlug
-        }) {
+        job: jobByFilters(filters: {slug: $jobSlug}) {
           id
           created
           modified
@@ -57,14 +53,11 @@ const get = ({ params, session }) => {
           remuneration
           templateTags
           location
-          application: applicationByFilters(filters: {
-            person: $personId
-          }) @include(if: $loggedIn) {
+          incrementViewCount
+          application: applicationByFilters(filters: {person: $personId}) @include(if: $loggedIn) {
             id
           }
-          referral: referralByFilters(filters: {
-            person: $personId
-          }) @include(if: $loggedIn) {
+          referral: referralByFilters(filters: {person: $personId}) @include(if: $loggedIn) {
             id
           }
           relatedJobs {

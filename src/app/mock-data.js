@@ -95,7 +95,8 @@ data.jobs = data.jobs.concat([
     company: '99',
     relatedJobs: [
       '100'
-    ]
+    ],
+    viewCount: 0
   },
   {
     id: '100',
@@ -122,7 +123,8 @@ data.jobs = data.jobs.concat([
     company: '99',
     relatedJobs: [
       '99'
-    ]
+    ],
+    viewCount: 0
   },
   {
     id: '101',
@@ -148,7 +150,8 @@ data.jobs = data.jobs.concat([
     relatedJobs: [],
     templateTags: ['film'],
     created: '2017-07-27T12:00:00.000+00:00',
-    modified: '2000-01-17T02:51:58.000+00:00'
+    modified: '2000-01-17T02:51:58.000+00:00',
+    viewCount: 0
   },
   {
     id: '102',
@@ -175,7 +178,8 @@ data.jobs = data.jobs.concat([
     company: '101',
     relatedJobs: [
       '99'
-    ]
+    ],
+    viewCount: 0
   }
 ])
 data.people = data.people.concat([
