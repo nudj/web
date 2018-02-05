@@ -10,8 +10,16 @@ const get = ({ params, session }) => {
   ] = params.companySlugJobSlugReferralId.split('+')
 
   const gql = `
-    mutation GetReferralAndJobForPerson($companySlug: String!, $jobSlug: String!, $referralId: ID, $personId: ID, $loggedIn: Boolean!) {
-      referral: referralByFilters(filters: {id: $referralId}) {
+    query GetReferralAndJobForPerson (
+      $companySlug: String!,
+      $jobSlug: String!,
+      $referralId: ID,
+      $personId: ID,
+      $loggedIn: Boolean!
+    ) {
+      referral: referral(
+        id: $referralId
+      ) {
         id
         job {
           slug

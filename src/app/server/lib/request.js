@@ -13,15 +13,15 @@ function request (query, variables) {
   })
   .then(data => {
     if (data.errors) {
-      data.errors.forEach(error => logger('error', error.message, query, variables))
+      data.errors.forEach(error => logger.log('error', error.message, query, variables))
       throw new Error(data.errors[0].message)
     }
     return data.data
   })
   .catch(error => {
-    logger('debug', JSON.parse(get(error, 'response.config.data', '{}')).query)
-    logger('debug', JSON.stringify(JSON.parse(get(error, 'response.config.data', '{}')).variables, null, 2))
-    get(error, 'response.data.errors', []).forEach(error => logger('error', error))
+    logger.log('debug', JSON.parse(get(error, 'response.config.data', '{}')).query)
+    logger.log('debug', JSON.stringify(JSON.parse(get(error, 'response.config.data', '{}')).variables, null, 2))
+    get(error, 'response.data.errors', []).forEach(error => logger.log('error', error))
     throw error
   })
 }
