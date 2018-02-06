@@ -39,6 +39,7 @@ ssh:
 		-v $(CWD)/src/app:/usr/src/app \
 		-v $(CWD)/src/test:/usr/src/test \
 		-v $(CWD)/src/.npmrc:/usr/src/.npmrc \
+		-v $(CWD)/src/.babelrc:/usr/src/.babelrc \
 		-v $(CWD)/src/nodemon.json:/usr/src/nodemon.json \
 		-v $(CWD)/src/package.json:/usr/src/package.json \
 		-v $(CWD)/src/webpack.config.js:/usr/src/webpack.config.js \
@@ -56,6 +57,7 @@ test:
 		--name web-test \
 		-v $(CWD)/src/app:/usr/src/app \
 		-v $(CWD)/src/test:/usr/src/test \
+		-v $(CWD)/src/.babelrc:/usr/src/.babelrc \
 		-v $(CWD)/src/package.json:/usr/src/package.json \
 		$(IMAGEDEV) \
 		/bin/sh -c './node_modules/.bin/standard && ./node_modules/.bin/mocha --recursive test'
