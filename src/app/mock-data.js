@@ -12,7 +12,8 @@ const data = {
   surveys: [],
   tasks: [],
   tokens: [],
-  employeeSurveys: []
+  employeeSurveys: [],
+  events: []
 }
 data.messages = data.messages.concat([
   {
