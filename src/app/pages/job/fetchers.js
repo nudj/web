@@ -1,6 +1,6 @@
 const template = require('../../server/modules/template')
 
-const get = ({ params, session }) => {
+const get = ({ params, session, req, res }) => {
   const { data } = session
 
   const [
@@ -15,7 +15,9 @@ const get = ({ params, session }) => {
       $jobSlug: String!,
       $referralId: ID,
       $personId: ID,
-      $loggedIn: Boolean!
+      $loggedIn: Boolean!,
+      $browserId: String,
+      $eventType: EventType!
     ) {
       referral: referral(
         id: $referralId
@@ -38,6 +40,10 @@ const get = ({ params, session }) => {
         description
         url
         job: jobByFilters(filters: {slug: $jobSlug}) {
+          recordEvent(type: $eventType, browserId: $browserId) {
+            id
+            browserId
+          }
           id
           created
           modified
@@ -53,7 +59,6 @@ const get = ({ params, session }) => {
           remuneration
           templateTags
           location
-          incrementViewCount
           application: applicationByFilters(filters: {person: $personId}) @include(if: $loggedIn) {
             id
           }
@@ -79,13 +84,16 @@ const get = ({ params, session }) => {
     jobSlug,
     referralId,
     personId: data && data.person && data.person.id,
-    loggedIn: !!(data && data.person)
+    loggedIn: !!(data && data.person),
+    browserId: req.cookies.browserId,
+    eventType: 'viewed'
   }
 
   return {
     gql,
     variables,
     transformData: async data => {
+      res.cookie('browserId', data.company.job.recordEvent.browserId)
       const templates = await jobPrismicTemplate(data.company.job)
       return Object.assign({}, data, { templates })
     }
