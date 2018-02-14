@@ -30,14 +30,21 @@ const companyPage = props => {
         <div className={style.header}>
           <AnimateAppearance from='bottom'>
             <h1 className={style.heroTitle}>Join the {company.name} family. They love talented people.</h1>
-            <p className={style.heroSubtitle}>{company.description}</p>
+          </AnimateAppearance>
+        </div>
+      </section>
+      <section className={style.secondaryHero}>
+        <div className={style.header}>
+          <AnimateAppearance from='bottom'>
+            <h2 className={style.secondaryHeroTitle}>About</h2>
+            <p className={style.secondaryHeroCopy}>{company.description}</p>
           </AnimateAppearance>
         </div>
       </section>
       <section className={style.jobsSection}>
         <div className={style.header}>
           <AnimateAppearance from='bottom'>
-            <h2 className={style.bodyTitle}>Jobs at {company.name}</h2>
+            <h2 className={style.bodyTitle}>Jobs</h2>
           </AnimateAppearance>
         </div>
         <AnimateAppearance className={style.jobsContainer} from='bottom'>

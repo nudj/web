@@ -33,7 +33,17 @@ const bodySubtitle = merge({
   textAlign: 'center'
 }, mixins.headings.h2)
 
+const secondaryHero = merge({
+  backgroundColor: variables.colors.navy,
+  padding: `${variables.padding.b} 0 calc(${variables.padding.b} + ${variables.padding.d}) 0`,
+  position: 'relative',
+  textAlign: 'center',
+  '::after': mixins.makePsuedoElement()
+}, mixins.beforeBackgroundSquiggle('bg-wiggle-bottom-navy.svg'))
+
 const subtitleUnderline = mixins.makeOrangeSubtitleUnderline()
+
+const subtitleUnderlineOrangeOnNavy = mixins.makeOrangeSubtitleUnderlineOnNavy()
 
 const styles = {
   body: {
@@ -46,6 +56,15 @@ const styles = {
   },
   heroTitle: heroTitle,
   bodyTitle: merge({}, bodySubtitle, subtitleUnderline),
+  secondaryHero: secondaryHero,
+  secondaryHeroTitle: merge({
+    padding: `0 0 ${variables.padding.d} 0`
+  }, mixins.typography.titleWhite, subtitleUnderlineOrangeOnNavy),
+  secondaryHeroCopy: merge({}, mixins.basicContainerMedium(), {
+    color: variables.colors.white,
+    padding: `${variables.padding.d} ${variables.padding.d}`,
+    textAlign: 'center'
+  }, mixins.headings.p),
   howUnderline: {},
   bodySubtitle: merge({
     color: variables.colors.charcoal,

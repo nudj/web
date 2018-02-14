@@ -560,6 +560,11 @@ module.exports.makeOrangeSubtitleUnderlineOnDarkGrey = (properties = {}) => {
   return merge(underline, properties)
 }
 
+module.exports.makeOrangeSubtitleUnderlineOnNavy = (properties = {}) => {
+  const underline = subtitleUnderline('table-line-1.svg', variables.colors.navy)
+  return merge(underline, properties)
+}
+
 module.exports.underlineHoverTransition = (properties = {}) => {
   const backgroundImage = properties.backgroundImage
   return merge({}, properties, {
