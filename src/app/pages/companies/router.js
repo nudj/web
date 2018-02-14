@@ -6,7 +6,7 @@ const Router = ({
 }) => {
   const router = createRouter()
 
-  router.getHandlers('/companies', respondWith())
+  router.getHandlers('/:companyName/jobs', respondWith())
 
   return router
 }
