@@ -53,7 +53,7 @@ const companyPage = props => {
               const url = `/jobs/${company.slug}+${job.slug}`
 
               return (
-                <li className={style.job}>
+                <li className={style.job} key={job.slug}>
                   <p className={style.jobTitle}>{job.title}</p>
                   <Link to={url} className={style.jobLink}>View job ></Link>
                 </li>
