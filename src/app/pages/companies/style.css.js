@@ -47,7 +47,7 @@ const subtitleUnderlineOrangeOnNavy = mixins.makeOrangeSubtitleUnderlineOnNavy()
 
 const styles = {
   body: {
-    position: 'relative' // ?
+    position: 'relative'
   },
   red: mixins.textHighlight(),
   hero: heroPeaceSign,
