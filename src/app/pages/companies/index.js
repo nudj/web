@@ -9,12 +9,8 @@ const Header = require('../../components/header')
 const AnimateAppearance = require('../../components/animate-appearance')
 
 const companyPage = props => {
-  const company = get(props, 'company', {})
-  const job = get(company, 'job', {})
-  const companyName = get(company, 'name', '')
-  const jobTitle = get(job, 'title', '')
-  const companyDescription = get(company, 'description', '')
-  const pageTitle = `${companyName}`
+  const company = get(props, 'company')
+  const pageTitle = `Jobs at ${company.name}`
 
   const style = getStyle()
 
@@ -24,47 +20,38 @@ const companyPage = props => {
         <title>{pageTitle}</title>
         <meta name='title' content={pageTitle} />
         <meta property='og:title' content={pageTitle} />
-        <meta property='twitter:title' content={pageTitle} />
-        <meta property='twitter:image' content={image} />
-        <meta property='og:image' content={image} />
       </Helmet>
       <Header
         backgroundColour='midRed'
         textColour='white'
         textHighlightColour='royalBlue'
-        location='/companies' />
+        location='/companies/:companySlug' />
       <section className={style.hero}>
         <div className={style.header}>
           <AnimateAppearance from='bottom'>
-            <h1 className={style.heroTitle}>Join the {companyName} family. They love talented people.</h1>
-            <p>{companyDescription}</p>
+            <h1 className={style.heroTitle}>Join the {company.name} family. They love talented people.</h1>
+            <p className={style.heroSubtitle}>{company.description}</p>
           </AnimateAppearance>
         </div>
       </section>
       <section className={style.jobsSection}>
         <div className={style.header}>
           <AnimateAppearance from='bottom'>
-            <h2 className={style.bodyTitle}>Jobs at {companyName}</h2>
+            <h2 className={style.bodyTitle}>Jobs at {company.name}</h2>
           </AnimateAppearance>
         </div>
-        <AnimateAppearance from='bottom'>
+        <AnimateAppearance className={style.jobsContainer} from='bottom'>
           <ul className={style.jobs}>
-            <li className={style.job}>
-              <p className={style.jobTitle}>{jobTitle} @ <span className={style.red}>{companyName}</span></p>
-              <Link to='' className={style.jobLink}>View job ></Link>
-            </li>
-            <li className={style.job}>
-              <p className={style.jobTitle}>Front-End Lead Engineer @ <span className={style.red}>nudj</span></p>
-              <Link to='' className={style.jobLink}>View job ></Link>
-            </li>
-            <li className={style.job}>
-              <p className={style.jobTitle}>Front-End Lead Engineer @ <span className={style.red}>nudj</span></p>
-              <Link to='' className={style.jobLink}>View job ></Link>
-            </li>
-            <li className={style.job}>
-              <p className={style.jobTitle}>Front-End Lead Engineer @ <span className={style.red}>nudj</span></p>
-              <Link to='' className={style.jobLink}>View job ></Link>
-            </li>
+            {company.jobs.map((job) => {
+              const url = `/jobs/${company.slug}+${job.slug}`
+
+              return (
+                <li className={style.job}>
+                  <p className={style.jobTitle}>{job.title}</p>
+                  <Link to={url} className={style.jobLink}>View job ></Link>
+                </li>
+              )
+            })}
           </ul>
         </AnimateAppearance>
       </section>

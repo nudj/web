@@ -27,6 +27,7 @@ const expressRouters = {
     require('./pages/request/router'),
     require('./pages/signup/router'),
     require('./pages/job/router'),
+    require('./pages/companies/router'),
     require('./pages/apply/router'),
     require('./pages/nudj/router'),
     require('./server/routers/catch-all')
