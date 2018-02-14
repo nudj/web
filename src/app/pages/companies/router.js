@@ -1,12 +1,14 @@
 const createRouter = require('@nudj/framework/router')
 
+const fetchers = require('./fetchers')
+
 const Router = ({
   ensureLoggedIn,
-  respondWith
+  respondWithGql
 }) => {
   const router = createRouter()
 
-  router.getHandlers('/:companyName/jobs', respondWith())
+  router.getHandlers('/companies/:companySlug', respondWithGql(fetchers.get))
 
   return router
 }

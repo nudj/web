@@ -55,12 +55,15 @@ const styles = {
   jobsSection: mixins.makeGreyBackground({
     padding: `${variables.padding.b} 0 calc(${variables.padding.b} + ${variables.padding.d})  0`
   }),
+  jobsContainer: {
+    width: '100%'
+  },
   jobs: merge(mixins.basicContainerLarge(), mixins.deList(), {
     display: 'flex',
     flexDirection: 'column',
     flexWrap: 'nowrap',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'stretch',
     padding: `${variables.padding.d} ${variables.padding.e} ${variables.padding.d} ${variables.padding.e}`,
     '@media(min-width: 35rem)': {
       flexDirection: 'row',
@@ -73,18 +76,19 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'stretch',
     textAlign: 'center',
     backgroundColor: variables.colors.white,
     boxShadow: '0 0.5px 0.5px 0 rgba(0, 0, 0, 0.1)',
     borderRadius: '2px',
     padding: `${variables.padding.d} ${variables.padding.c} ${variables.padding.d} ${variables.padding.d}`,
     margin: variables.padding.e,
+    flexBasis: '100%',
     '@media(min-width: 35rem)': {
-      maxWidth: `calc(50% - ${variables.padding.d})`
+      flexBasis: `calc(50% - ${variables.padding.d})`
     },
     '@media(min-width: 70rem)': {
-      maxWidth: `calc(25% - ${variables.padding.d})`
+      flexBasis: `calc(25% - ${variables.padding.d})`
     }
   }),
   jobTitle: merge(mixins.headings.h5, {
