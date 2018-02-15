@@ -157,6 +157,31 @@ const styles = {
     display: 'block',
     textDecoration: 'none'
   },
+  jobDeadContainer: merge(mixins.flexColumn({
+    paddingLeft: variables.padding.d,
+    paddingRight: variables.padding.d
+  })),
+  jobDeadNotice: merge(mixins.makeGreyWobbleBox({
+    marginTop: variables.padding.b,
+    paddingTop: variables.padding.d,
+    paddingRight: variables.padding.d,
+    paddingBottom: variables.padding.d,
+    paddingLeft: variables.padding.d,
+    maxWidth: '42rem',
+    width: '100%'
+  })),
+  jobDeadTitle: merge({
+    color: variables.colors.royalBlue,
+    paddingTop: variables.padding.d,
+    paddingBottom: variables.padding.d
+  }, mixins.headings.h4),
+  jobDeadCopy: merge({}, mixins.typography.copy, {
+    paddingBottom: variables.padding.d,
+    paddingRight: variables.padding.d,
+    paddingLeft: variables.padding.d,
+    margin: '0',
+    textAlign: 'center'
+  }),
   relatedCompany: mixins.textHighlight()
 }
 
