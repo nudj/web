@@ -7,8 +7,9 @@ const getStyle = require('./style.css')
 const Page = require('../../components/page')
 const Header = require('../../components/header')
 const AnimateAppearance = require('../../components/animate-appearance')
+const RandomHover = require('../../components/random-hover')
 
-const companyPage = props => {
+const CompanyPage = props => {
   const company = get(props, 'company')
   const pageTitle = `Jobs at ${company.name}`
 
@@ -25,11 +26,12 @@ const companyPage = props => {
         backgroundColour='midRed'
         textColour='white'
         textHighlightColour='royalBlue'
-        location='/companies/:companySlug' />
+        location='/companies/:companySlug'
+      />
       <section className={style.hero}>
         <div className={style.header}>
           <AnimateAppearance from='bottom'>
-            <h1 className={style.heroTitle}>Join the {company.name} family. They love talented people.</h1>
+            <h1 className={style.heroTitle}>Join the <span className={style.heroHighlight}>{company.name}</span> family. They love talented people.</h1>
           </AnimateAppearance>
         </div>
       </section>
@@ -48,22 +50,30 @@ const companyPage = props => {
           </AnimateAppearance>
         </div>
         <AnimateAppearance className={style.jobsContainer} from='bottom'>
-          <ul className={style.jobs}>
-            {company.jobs.map((job) => {
-              const url = `/jobs/${company.slug}+${job.slug}`
+          {company.jobs.length > 0 ? (
+            <ul className={style.jobs}>
+              {company.jobs.map((job) => {
+                const url = `/jobs/${company.slug}+${job.slug}`
 
-              return (
-                <li className={style.job} key={job.slug}>
-                  <p className={style.jobTitle}>{job.title}</p>
-                  <Link to={url} className={style.jobLink}>View job ></Link>
-                </li>
-              )
-            })}
-          </ul>
+                return (
+                  <li className={style.job} key={job.slug}>
+                    <p className={style.jobTitle}>{job.title}</p>
+                    <Link to={url} className={style.jobLink}>View job ></Link>
+                  </li>
+                )
+              })}
+            </ul>
+        ) : (
+          <div className={style.cta}>
+            <p className={style.bodySubtitle}>There aren&apos;t any open jobs at {company.name} right now,
+            but if you sign-up for updates we&apos;ll let you know as soon as there are.</p>
+            <RandomHover><Link to='/signup' className={style.signupButton} id='signUp'>Sign up</Link></RandomHover>
+          </div>
+        )}
         </AnimateAppearance>
       </section>
     </Page>
   )
 }
 
-module.exports = companyPage
+module.exports = CompanyPage

@@ -532,9 +532,9 @@ module.exports.makeOrDark = (properties = {}) => {
   }, properties))
 }
 
-function subtitleUnderline (image, backgroundColour) {
+function subtitleUnderline (image = 'table-line-1.svg', backgroundColour) {
   return {
-    backgroundImage: linkImage('table-line-1.svg'),
+    backgroundImage: linkImage(image),
     backgroundPosition: 'bottom center',
     backgroundRepeat: 'no-repeat',
     display: 'inline-block',
@@ -562,6 +562,11 @@ module.exports.makeOrangeSubtitleUnderlineOnDarkGrey = (properties = {}) => {
 
 module.exports.makeOrangeSubtitleUnderlineOnNavy = (properties = {}) => {
   const underline = subtitleUnderline('table-line-1.svg', variables.colors.navy)
+  return merge(underline, properties)
+}
+
+module.exports.makeWhiteSubtitleUnderlineOnOrange = (properties = {}) => {
+  const underline = subtitleUnderline('table-line-2.svg', variables.colors.midRed)
   return merge(underline, properties)
 }
 
@@ -618,6 +623,12 @@ module.exports.typography = typography
 module.exports.textHighlight = (properties = {}) => {
   return merge({}, {
     color: variables.colors.midRed
+  }, properties)
+}
+
+module.exports.textLowlight = (properties = {}) => {
+  return merge({}, {
+    color: variables.colors.royalBlue
   }, properties)
 }
 

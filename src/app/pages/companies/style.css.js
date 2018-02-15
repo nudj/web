@@ -7,7 +7,8 @@ const heroImageHeight = '27rem'
 
 const heroPeaceSign = merge({
   backgroundColor: variables.colors.midRed,
-  padding: `${variables.padding.b} 0 calc(${heroImageHeight} * 0.85) 0`,
+  paddingTop: variables.padding.b,
+  paddingBottom: `calc(${heroImageHeight} * 0.85)`,
   position: 'relative',
   '::after': mixins.makePsuedoElement({
     backgroundImage: mixins.linkImage(heroImagePath),
@@ -23,33 +24,42 @@ const heroPeaceSign = merge({
 
 const heroTitle = merge(mixins.basicContainerMedium(), {
   color: variables.colors.white,
-  padding: `0 0 ${variables.padding.d} 0`,
+  paddingBottom: `${variables.padding.d}`,
   textAlign: 'center'
 }, mixins.headings.h1)
 
 const bodySubtitle = merge({
   color: variables.colors.royalBlue,
-  padding: `0 0 ${variables.padding.d} 0`,
+  paddingBottom: `${variables.padding.d}`,
   textAlign: 'center'
 }, mixins.headings.h2)
 
 const secondaryHero = merge({
   backgroundColor: variables.colors.navy,
-  padding: `${variables.padding.b} 0 calc(${variables.padding.b} + ${variables.padding.d}) 0`,
+  paddingTop: `${variables.padding.b}`,
+  paddingBottom: `calc(${variables.padding.b} + ${variables.padding.d})`,
   position: 'relative',
   textAlign: 'center',
   '::after': mixins.makePsuedoElement()
 }, mixins.beforeBackgroundSquiggle('bg-wiggle-bottom-navy.svg'))
 
 const subtitleUnderline = mixins.makeOrangeSubtitleUnderline()
-
 const subtitleUnderlineOrangeOnNavy = mixins.makeOrangeSubtitleUnderlineOnNavy()
+const subtitleUnderlineWhiteOnOrange = mixins.makeWhiteSubtitleUnderlineOnOrange()
 
 const styles = {
   body: {
     position: 'relative'
   },
-  red: mixins.textHighlight(),
+  heroHighlight: merge(subtitleUnderlineWhiteOnOrange, {
+    marginBottom: '0'
+  }),
+  break: {
+    display: 'block',
+    [mixins.breakpoints.ns]: {
+      display: 'none'
+    }
+  },
   hero: heroPeaceSign,
   header: {
     textAlign: 'center'
@@ -58,21 +68,25 @@ const styles = {
   bodyTitle: merge({}, bodySubtitle, subtitleUnderline),
   secondaryHero: secondaryHero,
   secondaryHeroTitle: merge({
-    padding: `0 0 ${variables.padding.d} 0`
+    paddingBottom: variables.padding.d
   }, mixins.typography.titleWhite, subtitleUnderlineOrangeOnNavy),
   secondaryHeroCopy: merge({}, mixins.basicContainerMedium(), {
     color: variables.colors.white,
-    padding: `${variables.padding.d} ${variables.padding.d}`,
+    paddingTop: variables.padding.d,
+    paddingRight: variables.padding.d,
+    paddingBottom: variables.padding.d,
+    paddingLeft: variables.padding.d,
     textAlign: 'center'
   }, mixins.headings.p),
   howUnderline: {},
   bodySubtitle: merge({
     color: variables.colors.charcoal,
-    padding: `0 0 ${variables.padding.d} 0`,
+    paddingBottom: variables.padding.d,
     textAlign: 'center'
   }, mixins.headings.p),
   jobsSection: mixins.makeGreyBackground({
-    padding: `${variables.padding.b} 0 calc(${variables.padding.b} + ${variables.padding.d})  0`
+    paddingTop: `${variables.padding.b}`,
+    paddingBottom: `calc(${variables.padding.b} + ${variables.padding.d})`
   }),
   jobsContainer: {
     width: '100%'
@@ -83,11 +97,17 @@ const styles = {
     flexWrap: 'nowrap',
     justifyContent: 'center',
     alignItems: 'stretch',
-    padding: `${variables.padding.d} ${variables.padding.e} ${variables.padding.d} ${variables.padding.e}`,
+    paddingTop: variables.padding.d,
+    paddingRight: variables.padding.e,
+    paddingBottom: variables.padding.d,
+    paddingLeft: variables.padding.e,
     '@media(min-width: 35rem)': {
       flexDirection: 'row',
       flexWrap: 'wrap',
-      padding: `${variables.padding.d}`
+      paddingTop: variables.padding.d,
+      paddingRight: variables.padding.d,
+      paddingBottom: variables.padding.d,
+      paddingLeft: variables.padding.d
     }
   }),
   job: merge({
@@ -100,7 +120,10 @@ const styles = {
     backgroundColor: variables.colors.white,
     boxShadow: '0 0.5px 0.5px 0 rgba(0, 0, 0, 0.1)',
     borderRadius: '2px',
-    padding: `${variables.padding.d} ${variables.padding.c} ${variables.padding.d} ${variables.padding.d}`,
+    paddingTop: variables.padding.d,
+    paddingRight: variables.padding.e,
+    paddingBottom: variables.padding.d,
+    paddingLeft: variables.padding.e,
     margin: variables.padding.e,
     flexBasis: '100%',
     '@media(min-width: 35rem)': {
@@ -121,6 +144,15 @@ const styles = {
     textAlign: 'left',
     paddingTop: variables.padding.d,
     width: '100%'
+  }),
+  cta: merge(mixins.flexColumn(), mixins.basicContainerMedium(), {
+    paddingTop: variables.padding.d,
+    paddingRight: variables.padding.d,
+    paddingBottom: variables.padding.d,
+    paddingLeft: variables.padding.d
+  }),
+  signupButton: merge(mixins.buttonPrimary(), {
+    marginTop: variables.padding.e
   })
 }
 
