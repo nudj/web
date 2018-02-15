@@ -1,13 +1,14 @@
 const get = ({ params }) => {
   const gql = `
-    query GetCompanyAndJobs ($companySlug: String!, $client: Boolean!) {
+    query GetCompanyAndJobs ($companySlug: String!, $client: Boolean!, $jobStatus: JobStatus!) {
       company: companyByFilters(filters: { slug: $companySlug, client: $client }) {
         name
         slug
         description
-        jobs {
+        jobs: jobsByFilters (filters: {status: $jobStatus }) {
           title
           slug
+          status
         }
       }
     }
@@ -15,7 +16,8 @@ const get = ({ params }) => {
 
   const variables = {
     companySlug: params.companySlug,
-    client: true
+    client: true,
+    jobStatus: 'PUBLISHED'
   }
 
   return {
