@@ -46,7 +46,7 @@ const CompanyPage = props => {
       <section className={style.jobsSection}>
         <div className={style.header}>
           <AnimateAppearance from='bottom'>
-            <h2 className={style.bodyTitle}>Jobs</h2>
+            <h2 className={style.jobsTitle}>Jobs</h2>
           </AnimateAppearance>
         </div>
         <AnimateAppearance className={style.jobsContainer} from='bottom'>

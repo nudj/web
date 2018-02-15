@@ -46,6 +46,7 @@ const secondaryHero = merge({
 const subtitleUnderline = mixins.makeOrangeSubtitleUnderline()
 const subtitleUnderlineOrangeOnNavy = mixins.makeOrangeSubtitleUnderlineOnNavy()
 const subtitleUnderlineWhiteOnOrange = mixins.makeWhiteSubtitleUnderlineOnOrange()
+const subtitleUnderlineOrangeOnGray = mixins.makeOrangeSubtitleUnderlineOnDarkGrey()
 
 const styles = {
   body: {
@@ -67,9 +68,7 @@ const styles = {
   heroTitle: heroTitle,
   bodyTitle: merge({}, bodySubtitle, subtitleUnderline),
   secondaryHero: secondaryHero,
-  secondaryHeroTitle: merge({
-    paddingBottom: variables.padding.d
-  }, mixins.typography.titleWhite, subtitleUnderlineOrangeOnNavy),
+  secondaryHeroTitle: merge({}, mixins.typography.titleWhite, subtitleUnderlineOrangeOnNavy),
   secondaryHeroCopy: merge({}, mixins.basicContainerMedium(), {
     color: variables.colors.white,
     paddingTop: variables.padding.d,
@@ -88,6 +87,7 @@ const styles = {
     paddingTop: `${variables.padding.b}`,
     paddingBottom: `calc(${variables.padding.b} + ${variables.padding.d})`
   }),
+  jobsTitle: merge({}, bodySubtitle, subtitleUnderlineOrangeOnGray),
   jobsContainer: {
     width: '100%'
   },
@@ -121,9 +121,9 @@ const styles = {
     boxShadow: '0 0.5px 0.5px 0 rgba(0, 0, 0, 0.1)',
     borderRadius: '2px',
     paddingTop: variables.padding.d,
-    paddingRight: variables.padding.e,
+    paddingRight: variables.padding.d,
     paddingBottom: variables.padding.d,
-    paddingLeft: variables.padding.e,
+    paddingLeft: variables.padding.d,
     margin: variables.padding.e,
     flexBasis: '100%',
     '@media(min-width: 35rem)': {

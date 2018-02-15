@@ -68,6 +68,7 @@ function onFormSubmit (eventType, props) {
 
 const Job = props => {
   const company = get(props, 'company', {})
+  const allJobs = get(company, 'jobs')
   const job = get(company, 'job', {})
   const referral = get(props, 'referral')
   const companyName = get(company, 'name', '')
@@ -79,6 +80,8 @@ const Job = props => {
   const application = get(job, 'application')
   const templates = get(props, 'templates')
   const pageTitle = `${companyName} - ${jobTitle}`
+
+  const relatedJobs = allJobs.filter(relatedJob => relatedJob.id !== job.id)
 
   setStyles()
   const style = getStyle()
@@ -231,7 +234,6 @@ const Job = props => {
     actions.push(nudjForm)
   }
 
-  const relatedJobs = get(job, 'relatedJobs', [])
   let relatedJobsList = ''
   if (relatedJobs.length) {
     relatedJobsList = (
@@ -245,13 +247,10 @@ const Job = props => {
             >
               <Link
                 className={style.blockLink}
-                to={`/companies/${related.company.slug}/jobs/${related.slug}`}
+                to={`/companies/${company.slug}/jobs/${related.slug}`}
               >
                 <p className={style.jobTitle}>
-                  {related.title} @{' '}
-                  <span className={style.relatedCompany}>
-                    {related.company.name}
-                  </span>
+                  {related.title}
                 </p>
                 <span className={style.bodyLinks}>View job ></span>
               </Link>
