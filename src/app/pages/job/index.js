@@ -212,9 +212,7 @@ const Job = props => {
   } else {
     const nudjButton = (
       <RandomHover>
-        <button className={style.nudj} id='nudjButton'>
-          Send to a friend
-        </button>
+        <button className={style.nudj} id='nudjButton'>Send to a friend</button>
       </RandomHover>
     )
     const nudjForm = (
@@ -345,11 +343,15 @@ const Job = props => {
           <h1 className={style.jobHeaderTitle}>{title}</h1>
           {jobDescription}
         </div>
-        <section className={style.actions}>
-          {actions[1]}
-          <span className={style.or}>or</span>
-          {actions[0]}
-        </section>
+        {job.status !== 'ARCHIVED' ? (
+          <section className={style.actions}>
+            {actions[1]}
+            <span className={style.or}>or</span>
+            {actions[0]}
+          </section>
+        ) : (
+          null
+        )}
       </div>
       {relatedJobsList}
     </Page>
