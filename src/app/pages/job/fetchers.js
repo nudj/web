@@ -14,6 +14,7 @@ const get = ({ params, session, query, req, res }) => {
       $personId: ID,
       $loggedIn: Boolean!,
       $browserId: String,
+      $jobStatus: JobStatus!,
       $eventType: EventType!
     ) {
       referral: referral(
@@ -36,7 +37,7 @@ const get = ({ params, session, query, req, res }) => {
         slug
         description
         url
-        job: jobByFilters(filters: {slug: $jobSlug}) {
+        job: jobByFilters(filters: {slug: $jobSlug, status: $jobStatus}) {
           recordEvent(type: $eventType, browserId: $browserId) {
             id
             browserId
@@ -83,6 +84,7 @@ const get = ({ params, session, query, req, res }) => {
     personId: data && data.person && data.person.id,
     loggedIn: !!(data && data.person),
     browserId: req.cookies.browserId,
+    jobStatus: 'PUBLISHED',
     eventType: 'viewed'
   }
 
