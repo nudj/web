@@ -18,7 +18,7 @@ const Hirer = (props) => {
         location='/hiring' />
       <section className={style.hero}>
         <AnimateAppearance from='bottom'>
-          <h1 className={style.heroTitle}>The best jobs aren’t advertised. <br className={style.standardBreak} />The best talent isn’t looking. <br className={style.standardBreak} />Maybe they just need a nudj.</h1>
+          <h1 className={style.heroTitle}>The best jobs aren&apos;t advertised. <br className={style.standardBreak} />The best talent isn’t looking. <br className={style.standardBreak} />Maybe they just need a nudj.</h1>
         </AnimateAppearance>
       </section>
       <section className={style.how}>
@@ -43,7 +43,7 @@ const Hirer = (props) => {
             <div className={style.stepDescriptionReverse}>
               <AnimateAppearance from='right'>
                 <h2 className={style.stepTitle}><span className={style.red}>2.</span><br className={style.break} /> Connect the dots</h2>
-                <p className={style.stepCopy}>We'll automatically identify the people most likely to put you in touch with awesome talent, whether they’re in your network or ours.</p>
+                <p className={style.stepCopy}>We&apos;ll automatically identify the people most likely to put you in touch with awesome talent, whether they’re in your network or ours.</p>
               </AnimateAppearance>
             </div>
           </li>
@@ -80,7 +80,7 @@ const Hirer = (props) => {
         <div className={style.header}>
           <AnimateAppearance from='bottom'>
             <h2 className={style.bodyTitle}><span className={style.compareUnderline}>How we compare</span></h2>
-            <p className={style.bodySubtitle}>Anyone can say they're the best, so we&apos;ll just let the numbers do the talking.</p>
+            <p className={style.bodySubtitle}>Anyone can say they&apos;re the best, so we&apos;ll just let the numbers do the talking.</p>
           </AnimateAppearance>
         </div>
         <AnimateAppearance from='bottom'>
