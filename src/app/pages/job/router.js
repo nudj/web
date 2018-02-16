@@ -1,7 +1,7 @@
 const createRouter = require('@nudj/framework/router')
 
 const fetchers = require('./fetchers')
-const { validateJobUrl } = require('../../server/lib/middleware')
+const { handleJobUrls } = require('../../server/lib/middleware')
 
 const Router = ({
   ensureLoggedIn,
@@ -9,7 +9,8 @@ const Router = ({
 }) => {
   const router = createRouter()
 
-  router.getHandlers('/jobs/:companySlugJobSlugReferralId', validateJobUrl, respondWithGql(fetchers.get))
+  router.getHandlers('/companies/:companySlug/jobs/:jobSlug', handleJobUrls, respondWithGql(fetchers.get))
+  router.getHandlers('/jobs/:companySlugJobSlugReferralId', handleJobUrls)
 
   return router
 }
