@@ -322,10 +322,9 @@ const Job = props => {
       {job.status === 'ARCHIVED' && (
         <section className={style.jobDeadContainer}>
           <div className={style.jobDeadNotice}>
-            <h2 className={style.jobDeadTitle}>Unfortunately, this job is no longer live</h2>
+            <h2 className={style.jobDeadTitle}>Unfortunately, this job is no longer available</h2>
             <p className={style.jobDeadCopy}>
               Head over to their company page to see what open roles {company.name} currently have.
-              You can also sign-up to recieve updates when any new jobs go live.
             </p>
             <RandomHover><Link to={companiesLink} className={style.apply}>Go to company page</Link></RandomHover>
           </div>

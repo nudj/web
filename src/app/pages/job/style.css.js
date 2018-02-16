@@ -109,10 +109,10 @@ const styles = {
   jobDescriptionSection: {
     width: '100%',
     textAlign: 'center',
-    paddingBottom: variables.padding.c,
+    paddingBottom: variables.padding.b,
     display: 'block',
     ':last-of-type': {
-      paddingBottom: variables.padding.e
+      paddingBottom: variables.padding.b
     },
     [mixins.breakpoints.ns]: {
       paddingBottom: variables.padding.b,
