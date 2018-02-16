@@ -716,6 +716,7 @@ module.exports.forms = forms
 const tableCell = merge({}, headings.p, {
   color: variables.colors.royalBlue,
   padding: `${variables.padding.d} 0`,
+  width: '33%',
   textAlign: 'center',
   [breakpoints.s]: { // max-width override
     fontSize: headings.p2.fontSize
@@ -730,7 +731,7 @@ const tableUnderline = afterUnderlineSquiggle('table-line-1.svg', '0%', {
     height: '12px',
     width: `calc(100vw - ${variables.padding.d} * 2)`,
     [breakpoints.l]: {
-      width: variables.sizes.contentMaxWidth
+      width: variables.sizes.contentMediumMaxWidth
     }
   }
 })
