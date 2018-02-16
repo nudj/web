@@ -161,7 +161,7 @@ const styles = {
     }
   }),
   footerImage: {},
-  compare: mixins.basicContainer({
+  compare: mixins.basicContainerMedium({
     width: '100%',
     padding: `${variables.padding.c} ${variables.padding.d} ${variables.padding.d} ${variables.padding.d}`,
     [mixins.breakpoints.ns]: {
