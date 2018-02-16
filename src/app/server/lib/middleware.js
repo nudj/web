@@ -7,12 +7,23 @@ const {
 
 const job = require('../modules/job')
 
-const validateJobUrl = (req, res, next) => {
-  const [
-    companySlug,
-    jobSlug,
-    referralId
-  ] = req.params.companySlugJobSlugReferralId.split('+')
+const handleJobUrls = (req, res, next) => {
+  if (req.params.companySlugJobSlugReferralId) {
+    // Legacy Url
+    const [
+      companySlug,
+      jobSlug,
+      referralId
+    ] = req.params.companySlugJobSlugReferralId.split('+')
+    const query = referralId ? `?referralId=${referralId}` : ''
+
+    next(new Redirect({
+      url: `/companies/${companySlug}/jobs/${jobSlug}${query}`
+    }))
+  }
+
+  const { companySlug, jobSlug } = req.params
+  const { referralId } = req.query
 
   if (!companySlug || !jobSlug) {
     return next(new NotFound('Invalid job url', req.originalUrl))
@@ -71,7 +82,7 @@ const deleteApplyNudjSecret = (req, res, next) => {
 }
 
 module.exports = {
-  validateJobUrl,
+  handleJobUrls,
   noDirectApplyNudj,
   cacheApplyNudjSecret,
   checkApplyNudjSecret,

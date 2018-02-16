@@ -1,13 +1,10 @@
 const template = require('../../server/modules/template')
 
-const get = ({ params, session, req, res }) => {
+const get = ({ params, session, query, req, res }) => {
   const { data } = session
 
-  const [
-    companySlug,
-    jobSlug,
-    referralId
-  ] = params.companySlugJobSlugReferralId.split('+')
+  const { companySlug, jobSlug } = params
+  const { referralId } = query
 
   const gql = `
     query GetReferralAndJobForPerson (
