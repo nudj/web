@@ -113,7 +113,7 @@ const Hirer = (props) => {
               <tr className={style.tableRow}>
                 <td className={style.tableLeftFinal}>Fill Rate</td>
                 <td className={style.tableItem}>18%</td>
-                <td className={style.tableItemNudj}>32%</td>
+                <td className={style.tableItemNudj}>41%</td>
               </tr>
             </tbody>
           </table>
