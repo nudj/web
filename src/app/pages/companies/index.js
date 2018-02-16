@@ -53,7 +53,7 @@ const CompanyPage = props => {
           {company.jobs.length > 0 ? (
             <ul className={style.jobs}>
               {company.jobs.map((job) => {
-                const url = `/jobs/${company.slug}+${job.slug}`
+                const url = `/companies/${company.slug}/jobs/${job.slug}`
 
                 return (
                   <li className={style.job} key={job.slug}>

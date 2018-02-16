@@ -13,8 +13,12 @@ const NudjSuccess = (props) => {
 
   setStyles(backgroundColour, textColour, textHighlightColour, buttonTextColour)
   const style = getStyle()
+  const companySlug = get(props, 'company.slug')
+  const jobSlug = get(props, 'company.job.slug')
+  const referralId = get(props, 'company.job.referral.id')
+  const referralQuery = referralId ? `?referralId=${referralId}` : ''
 
-  const link = `${get(props, 'url.protocol')}://${get(props, 'url.hostname')}/jobs/${get(props, 'company.slug')}+${get(props, 'company.job.slug')}+${get(props, 'company.job.referral.id')}`
+  const link = `${get(props, 'url.protocol')}://${get(props, 'url.hostname')}/companies/${companySlug}/jobs/${jobSlug}${referralQuery}`
   const mobileOnly = get(props, 'mobileOnly', false)
 
   return (
