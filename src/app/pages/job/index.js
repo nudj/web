@@ -93,7 +93,8 @@ const Job = props => {
     </RandomHover>
   )
 
-  const uniqueLink = `/jobs/${get(company, 'slug', '')}+${get(job, 'slug', '')}${referral ? `+${referral.id}` : ''}`
+  const uniqueLink = `/companies/${get(company, 'slug', '')}/jobs/${get(job, 'slug', '')}`
+  const queryString = referral ? `?referralId=${referral.id}` : ''
 
   const data = {
     job: merge(job, {
@@ -161,7 +162,7 @@ const Job = props => {
   const apply = (
     <form
       className={style.action}
-      action={`${uniqueLink}/apply`}
+      action={`${uniqueLink}/apply${queryString}`}
       method='POST'
       onSubmit={onFormSubmit('new-application', props)}
     >
@@ -219,7 +220,7 @@ const Job = props => {
     const nudjForm = (
       <form
         className={style.action}
-        action={`${uniqueLink}/nudj`}
+        action={`${uniqueLink}/nudj${queryString}`}
         method='POST'
         onSubmit={onFormSubmit('new-referral', props)}
       >
@@ -246,7 +247,7 @@ const Job = props => {
             >
               <Link
                 className={style.blockLink}
-                to={`/jobs/${related.company.slug}+${related.slug}`}
+                to={`/companies/${related.company.slug}/jobs/${related.slug}`}
               >
                 <p className={style.jobTitle}>
                   {related.title} @{' '}

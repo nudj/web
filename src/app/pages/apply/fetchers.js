@@ -1,12 +1,7 @@
-const post = (props) => {
-  const { params, session } = props
+const post = ({ params, session, query }) => {
   const { data } = session
-
-  const [
-    companySlug,
-    jobSlug,
-    referralId
-  ] = params.companySlugJobSlugReferralId.split('+')
+  const { companySlug, jobSlug } = params
+  const { referralId } = query
 
   const gql = `
     mutation CreateApplicationForPerson (
@@ -36,7 +31,12 @@ const post = (props) => {
     }
   `
 
-  const variables = { companySlug, jobSlug, referral: referralId, person: data.person.id }
+  const variables = {
+    companySlug,
+    jobSlug,
+    referral: referralId,
+    person: data.person.id
+  }
 
   return { gql, variables }
 }
