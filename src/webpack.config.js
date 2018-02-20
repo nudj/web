@@ -1,3 +1,4 @@
+require('envkey')
 const path = require('path')
 const webpack = require('webpack')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
@@ -39,6 +40,7 @@ module.exports = {
           path.join(__dirname, '@nudj'),
           path.join(__dirname, 'node_modules', '@nudj')
         ],
+        exclude: /\/usr\/src\/(node_modules\/)?@nudj\/.*\/node_modules\/.*/,
         loader: 'babel-loader',
         options: {
           presets: [
