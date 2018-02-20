@@ -46,7 +46,7 @@ const secondaryHero = merge({
 const subtitleUnderline = mixins.makeOrangeSubtitleUnderline()
 const subtitleUnderlineOrangeOnNavy = mixins.makeOrangeSubtitleUnderlineOnNavy()
 const subtitleUnderlineWhiteOnOrange = mixins.makeWhiteSubtitleUnderlineOnOrange()
-const subtitleUnderlineOrangeOnGray = mixins.makeOrangeSubtitleUnderlineOnDarkGrey()
+const subtitleUnderlineOrangeOnGray = mixins.makeOrangeSubtitleUnderlineOnGrey()
 
 const styles = {
   body: {
