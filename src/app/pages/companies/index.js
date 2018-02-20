@@ -31,7 +31,7 @@ const CompanyPage = props => {
       <section className={style.hero}>
         <div className={style.header}>
           <AnimateAppearance from='bottom'>
-            <h1 className={style.heroTitle}>Join the <span className={style.heroHighlight}>{company.name}</span> family. They love talented people.</h1>
+            <h1 className={style.heroTitle}>Join the {company.name} family. They love talented people.</h1>
           </AnimateAppearance>
         </div>
       </section>
