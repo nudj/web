@@ -1,7 +1,7 @@
 const template = require('../../server/modules/template')
 
 const get = ({ params, session, query, req, res }) => {
-  const { data } = session
+  const { userId } = session
 
   const { companySlug, jobSlug } = params
   const { referralId } = query
@@ -78,8 +78,8 @@ const get = ({ params, session, query, req, res }) => {
     companySlug,
     jobSlug,
     referralId,
-    personId: data && data.person && data.person.id,
-    loggedIn: !!(data && data.person),
+    personId: userId,
+    loggedIn: !!userId,
     browserId: req.cookies.browserId,
     eventType: 'viewed',
     relatedJobStatus: 'PUBLISHED'

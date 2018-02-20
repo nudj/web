@@ -44,7 +44,7 @@ const Router = ({
   // Perform session logout and redirect to last known page or homepage
   router.get('/logout', cacheReturnTo, (req, res, next) => {
     req.logOut()
-    delete req.session.data
+    delete req.session.userId
     req.session.logout = true
     res.clearCookie('connect.sid', {path: '/'})
     res.redirect(`https://${process.env.AUTH0_DOMAIN}/v2/logout?returnTo=${encodeURIComponent(`${process.env.PROTOCOL_DOMAIN}/loggedout`)}&client_id=${process.env.AUTH0_CLIENT_ID}`)
@@ -83,7 +83,7 @@ const Router = ({
       })
       .then(checkForErrors)
       .then(data => {
-        req.session.data = data
+        req.session.userId = data.person.id
         res.redirect(req.session.returnTo || '/')
       })
       .catch((error) => {
