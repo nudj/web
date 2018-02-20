@@ -1,5 +1,5 @@
 const post = ({ params, session, query }) => {
-  const { data } = session
+  const { userId } = session
   const { companySlug, jobSlug } = params
   const { referralId } = query
 
@@ -35,7 +35,7 @@ const post = ({ params, session, query }) => {
     companySlug,
     jobSlug,
     referral: referralId,
-    person: data.person.id
+    person: userId
   }
 
   return { gql, variables }
