@@ -24,7 +24,6 @@ const heroPeaceSign = merge({
 
 const heroTitle = merge(mixins.basicContainerMedium(), {
   color: variables.colors.white,
-  paddingBottom: `${variables.padding.d}`,
   textAlign: 'center'
 }, mixins.headings.h1)
 
@@ -45,16 +44,12 @@ const secondaryHero = merge({
 
 const subtitleUnderline = mixins.makeOrangeSubtitleUnderline()
 const subtitleUnderlineOrangeOnNavy = mixins.makeOrangeSubtitleUnderlineOnNavy()
-const subtitleUnderlineWhiteOnOrange = mixins.makeWhiteSubtitleUnderlineOnOrange()
-const subtitleUnderlineOrangeOnGray = mixins.makeOrangeSubtitleUnderlineOnGrey()
+const subtitleUnderlineOrangeOnGrey = mixins.makeOrangeSubtitleUnderlineOnGrey()
 
 const styles = {
   body: {
     position: 'relative'
   },
-  heroHighlight: merge(subtitleUnderlineWhiteOnOrange, {
-    marginBottom: '0'
-  }),
   break: {
     display: 'block',
     [mixins.breakpoints.ns]: {
@@ -87,7 +82,7 @@ const styles = {
     paddingTop: `${variables.padding.b}`,
     paddingBottom: `calc(${variables.padding.b} + ${variables.padding.d})`
   }),
-  jobsTitle: merge({}, bodySubtitle, subtitleUnderlineOrangeOnGray),
+  jobsTitle: merge({}, bodySubtitle, subtitleUnderlineOrangeOnGrey),
   jobsContainer: {
     width: '100%'
   },
