@@ -63,7 +63,6 @@ const styles = {
   heading: merge({}, mixins.typography.title),
   subtitle: merge({}, mixins.typography.copy, {
     [mixins.breakpoints.ns]: {
-      fontSize: `${variables.fontSizes.f5}`,
       margin: `0 0 ${variables.padding.d} 0`
     }
   }),

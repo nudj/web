@@ -3,7 +3,7 @@ const { mixins, variables } = require('../../lib/css')
 
 const heroImagePath = 'peace-sign.svg'
 const heroImagePosition = 'bottom center'
-const heroImageHeight = '27rem'
+const heroImageHeight = '28rem'
 
 const heroPeaceSign = merge({
   backgroundColor: variables.colors.midRed,
@@ -16,7 +16,7 @@ const heroPeaceSign = merge({
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'auto',
     height: heroImageHeight,
-    left: '0',
+    left: '-1.25rem',
     position: 'absolute',
     width: '100vw'
   })

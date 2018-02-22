@@ -245,13 +245,13 @@ const Job = props => {
               className={style.relatedJob}
               key={related.title.split(' ').join('-')}
             >
+              <p className={style.jobTitle}>
+                {related.title}
+              </p>
               <Link
                 className={style.blockLink}
                 to={`/companies/${company.slug}/jobs/${related.slug}`}
               >
-                <p className={style.jobTitle}>
-                  {related.title}
-                </p>
                 <span className={style.bodyLinks}>View job ></span>
               </Link>
             </li>
@@ -318,6 +318,7 @@ const Job = props => {
         <meta property='twitter:title' content={pageTitle} />
         <meta property='twitter:image' content={image} />
         <meta property='og:image' content={image} />
+        <meta name='robots' content='none' />
       </Helmet>
       {job.status === 'ARCHIVED' && (
         <section className={style.jobDeadContainer}>

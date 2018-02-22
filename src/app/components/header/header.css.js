@@ -107,7 +107,7 @@ const navIntroAnimations = {
   animationTimingFunction: variables.transitions.mediumEasy.easing
 }
 
-const activeLinkUnderline = mixins.afterUnderlineSquiggle('link-underline-1.svg', '30%', {
+const activeLinkUnderlineHiring = mixins.afterUnderlineSquiggle('link-underline-1.svg', '30%', {
   textShadow: `-2px 0px ${variables.colors.midRed}, -3px 2px ${variables.colors.midRed}, -29px 2px ${variables.colors.midRed}, 2px 2px ${variables.colors.midRed}`,
   zIndex: '1',
   '::after': {
@@ -118,6 +118,29 @@ const activeLinkUnderline = mixins.afterUnderlineSquiggle('link-underline-1.svg'
     zIndex: '-1'
   }
 })
+
+const activeLinkUnderlineAbout = mixins.afterUnderlineSquiggle('link-underline-1.svg', '30%', {
+  zIndex: '1',
+  '::after': {
+    left: 'auto',
+    margin: '0 auto',
+    top: '31px',
+    width: '56%',
+    zIndex: '-1'
+  }
+})
+
+const linkMobileLink = merge({
+  color: variables.colors.white,
+  display: 'block',
+  padding: `${variables.padding.e} ${variables.padding.c}`,
+  textAlign: 'right'
+}, mixins.headings.h2)
+
+const linkMobileLinkActive = merge({
+  textDecoration: 'underline',
+  textDecorationSkip: 'initial'
+}, linkMobileLink, mixins.headings.h2)
 
 const styles = {
   navContainer: {
@@ -172,25 +195,19 @@ const styles = {
     transform: 'translate3d(0, 0, 0)'
   }, navBarConstant),
   link: link,
-  linkActive: merge(link, activeLinkUnderline, {
+  linkActiveHiring: merge(link, activeLinkUnderlineHiring, {
+    color: variables.colors.white
+  }),
+  linkActiveAbout: merge(link, activeLinkUnderlineAbout, {
     color: variables.colors.white
   }),
   linkLight: merge({}, link, {
     color: variables.colors.white
   }),
   request: request,
-  linkMobile: merge({}, mixins.deLink({
-    color: variables.colors.white,
-    display: 'block',
-    padding: `${variables.padding.e} ${variables.padding.c}`,
-    textAlign: 'right'
-  }), mixins.headings.h2),
-  linkMobileActive: merge({}, mixins.deLink({
-    color: variables.colors.white,
-    display: 'block',
-    padding: `${variables.padding.e} ${variables.padding.c}`,
-    textAlign: 'right'
-  }), mixins.headings.h2),
+  linkMobile: merge(linkMobileLink, mixins.deLink()),
+  linkMobileActiveHiring: linkMobileLinkActive,
+  linkMobileActiveAbout: linkMobileLinkActive,
   requestMobile: mixins.buttonPrimary({
     alignSelf: 'flex-end',
     display: 'inline-block',
