@@ -1,4 +1,5 @@
 const React = require('react')
+const { Helmet } = require('react-helmet')
 const get = require('lodash/get')
 const RandomHover = require('../../components/random-hover')
 
@@ -11,6 +12,18 @@ const Apply = (props) => {
   const style = getStyle()
 
   return (<Page {...props} className={style.bodyContainer}>
+    <Helmet>
+      <title>You&apos;ve applied - nudj</title>
+      <meta name='description' content='nudj makes it effortless for the best businesses to engage with the best talent, utilising connections they both have.' />
+      <meta name='title' content='You&apos;ve applied for a job! - nudj' />
+      <meta property='og:description' content='nudj makes it effortless for the best businesses to engage with the best talent, utilising connections they both have.' />
+      <meta property='twitter:description' content='nudj makes it effortless for the best businesses to engage with the best talent, utilising connections they both have.' />
+      <meta property='og:type' content='website' />
+      <meta property='og:title' content='You&apos;ve applied for a job on nudj!' />
+      <meta property='twitter:card' content='You&apos;ve applied for a job on nudj!' />
+      <meta property='twitter:title' content='You&apos;ve applied for a job on nudj!' />
+      <meta property='og:site_name' content='nudj' />
+    </Helmet>
     <Message message={get(props, 'message')} />
     <Header />
     <div className={style.body}>

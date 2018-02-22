@@ -134,15 +134,18 @@ class Header extends React.Component {
 
   renderNavLinks (mobile = false) {
     const linkStyleName = mobile ? 'linkMobile' : 'link'
-    const isActive = this.state.location === '/hiring'
+    const isActiveHiring = this.state.location === '/hiring'
+    const isActiveAbout = this.state.location === '/about'
 
-    const linkStyle = isActive ? this.style[`${linkStyleName}Active`] : this.style[linkStyleName]
+    const linkStyleHiring = isActiveHiring ? this.style[`${linkStyleName}ActiveHiring`] : this.style[linkStyleName]
+    const linkStyleAbout = isActiveAbout ? this.style[`${linkStyleName}ActiveAbout`] : this.style[linkStyleName]
     const requestStyle = mobile ? this.style.requestMobile : this.style.request
 
-    const companies = (<Link to='/hiring' className={linkStyle} id='hirerPage' onClick={this.onClickLink} key='0'>Employers</Link>)
-    const getInTouch = (<RandomHover key='1'><a href='mailto:help@nudj.co' id='open-intercom' className={requestStyle} onClick={this.onClickLink}>Get in touch</a></RandomHover>)
+    const companies = (<Link to='/hiring' className={linkStyleHiring} id='hirerPage' onClick={this.onClickLink} key='1'>Employers</Link>)
+    const about = (<Link to='/about' className={linkStyleAbout} id='aboutPage' onClick={this.onClickLink} key='2'>About</Link>)
+    const getInTouch = (<RandomHover key='3'><a href='mailto:help@nudj.co' id='open-intercom' className={requestStyle} onClick={this.onClickLink}>Get in touch</a></RandomHover>)
 
-    const defaultNav = [companies, getInTouch]
+    const defaultNav = [companies, about, getInTouch]
 
     return (defaultNav)
   }

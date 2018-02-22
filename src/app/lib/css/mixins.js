@@ -438,7 +438,7 @@ const beforeBackgroundSquiggle = (image, properties) => {
     height: variables.padding.d,
     left: '-10%',
     position: 'absolute',
-    top: `calc(${variables.padding.d} * -1)`,
+    top: `calc(${variables.padding.d} * -0.9)`,
     width: '120%'
   })
 
@@ -496,7 +496,11 @@ module.exports.makeRoyalBlueWobbleBox = (properties = {}) => {
 }
 
 module.exports.makeGreyWobbleBox = (properties = {}) => {
-  return merge(makeWobbleBox('grey-wobble-box-mobile.svg'), properties)
+  return merge(makeWobbleBox('grey-wobbly-box.svg'), properties)
+}
+
+module.exports.makeLargeRoyalBlueWobbleBox = (properties = {}) => {
+  return merge(makeWobbleBox('about-page/profile-bg.svg'), properties)
 }
 
 const makeOr = (properties = {}) => {
@@ -600,6 +604,11 @@ const typography = {
     margin: '0',
     padding: `0 0 ${variables.padding.d} 0`
   }, headings.h3),
+  h4: merge({
+    color: variables.colors.royalBlue,
+    margin: '0',
+    padding: `0 0 ${variables.padding.d} 0`
+  }, headings.h4),
   copy: merge({
     color: variables.colors.charcoal,
     margin: `0 0 ${variables.padding.d} 0`,
@@ -615,6 +624,10 @@ typography.titleCharcoal = merge({}, typography.title, {
 })
 
 typography.titleWhite = merge({}, typography.title, {
+  color: variables.colors.white
+})
+
+typography.h3White = merge({}, typography.h3, {
   color: variables.colors.white
 })
 

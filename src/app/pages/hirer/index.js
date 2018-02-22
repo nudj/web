@@ -1,5 +1,6 @@
 const React = require('react')
 const { Link } = require('react-router-dom')
+const { Helmet } = require('react-helmet')
 
 const getStyle = require('./style.css')
 const Page = require('../../components/page')
@@ -11,6 +12,18 @@ const Hirer = (props) => {
   const style = getStyle()
   return (
     <Page {...props} className={style.body}>
+      <Helmet>
+        <title>nudj - Hire great people, faster, for less</title>
+        <meta name='description' content='nudj makes it effortless for the best businesses to engage with the best talent, utilising connections they both have.' />
+        <meta name='title' content='nudj - Hire great people, faster, for less.' />
+        <meta property='og:description' content='nudj makes it effortless for the best businesses to engage with the best talent, utilising connections they both have.' />
+        <meta property='twitter:description' content='nudj makes it effortless for the best businesses to engage with the best talent, utilising connections they both have.' />
+        <meta property='og:type' content='website' />
+        <meta property='og:title' content='nudj - Hire great people, faster, for less.' />
+        <meta property='twitter:card' content='nudj - Hire great people, faster, for less.' />
+        <meta property='twitter:title' content='nudj - Hire great people, faster, for less.' />
+        <meta property='og:site_name' content='nudj' />
+      </Helmet>
       <Header
         backgroundColour='midRed'
         textColour='white'

@@ -9,10 +9,6 @@ const Footer = (props) => {
     <div className={style.container}>
       <ul className={style.links}>
         <li className={style.link}>
-          <a className={style.about} href='http://help.nudj.co/hiring-with-nudj/supercharge-your-referrals-with-nudj' target='_blank'>About</a>
-          <p className={style.label}>Learn more about why we started nudj.</p>
-        </li>
-        <li className={style.link}>
           <a className={style.blog} href='http://blog.nudj.co' target='_blank'>Blog</a>
           <p className={style.label}>Musings, observations and ideas from the team.</p>
         </li>
