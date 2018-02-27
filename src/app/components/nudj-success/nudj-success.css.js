@@ -27,9 +27,9 @@ const styles = {
     }
   },
   actions: {
-    alignItems: 'center',
+    alignItems: 'start',
     display: 'flex',
-    justifyContent: 'space-around',
+    justifyContent: 'space-evenly',
     padding: `${variables.padding.e} 0 0 0`,
     [mixins.breakpoints.ns]: {
       display: 'none'

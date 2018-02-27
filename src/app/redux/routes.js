@@ -1,6 +1,7 @@
 module.exports = {
   '/': require('../pages/home'),
   '/hiring': require('../pages/hirer'),
+  '/about': require('../pages/about'),
   '/request': require('../pages/request'),
   '/signup': require('../pages/signup'),
   '/companies/:companySlug': require('../pages/companies'),

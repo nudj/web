@@ -11,7 +11,7 @@ const RandomHover = require('../../components/random-hover')
 
 const CompanyPage = props => {
   const company = get(props, 'company')
-  const pageTitle = `Jobs at ${company.name}`
+  const pageTitle = `Jobs at ${company.name} - nudj`
 
   const style = getStyle()
 
