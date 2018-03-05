@@ -14,12 +14,6 @@ const RandomHover = require('../../components/random-hover')
 
 const { render } = require('../../lib/templater')
 
-function elementFromString (string) {
-  var div = document.createElement('div')
-  div.innerHTML = string
-  return div.childNodes[0]
-}
-
 function determineArticle (subject) {
   const consonantSound = /^one(![ir])/i
   const vowelSound = /^[aeio]|^u([aeiou]|[^n][^aeiou]|ni[^dmnl]|nil[^l])/i
@@ -27,41 +21,6 @@ function determineArticle (subject) {
     return 'an'
   }
   return 'a'
-}
-
-function onFormSubmit (eventType, props) {
-  const company = get(props, 'company')
-  const job = get(company, 'job')
-  return event => {
-    const target = event.target
-    const Intercom = window.Intercom || (() => {})
-    event.preventDefault()
-    if (!target.querySelector('#visitorId')) {
-      const string = `<input id='visitorId' type='hidden' name='_intercom_visitor_id' value='${Intercom(
-        'getVisitorId'
-      )}' />`
-      target.appendChild(elementFromString(string))
-    }
-    let meta = {
-      jobTitle: get(job, 'title'),
-      company: get(company, 'name'),
-      referrerName: get(props, 'referrer.name'),
-      referrerId: get(props, 'referrer.id')
-    }
-    if (eventType === 'new-application') {
-      meta.profileUrl = get(props, 'person.url')
-      Intercom('update', {
-        lastJobAppliedFor: `${meta.jobTitle} at ${meta.company}`
-      })
-    } else {
-      Intercom('update', {
-        lastJobReferredFor: `${meta.jobTitle} at ${meta.company}`
-      })
-    }
-    Intercom('trackEvent', eventType, meta)
-    target.submit()
-    return false
-  }
 }
 
 const Job = props => {
@@ -167,7 +126,6 @@ const Job = props => {
       className={style.action}
       action={`${uniqueLink}/apply${queryString}`}
       method='POST'
-      onSubmit={onFormSubmit('new-application', props)}
     >
       <input type='hidden' name='jobId' value={get(job, 'id')} />
       <input type='hidden' name='_csrf' value={get(props, 'csrfToken')} />
@@ -223,7 +181,6 @@ const Job = props => {
         className={style.action}
         action={`${uniqueLink}/nudj${queryString}`}
         method='POST'
-        onSubmit={onFormSubmit('new-referral', props)}
       >
         <input type='hidden' name='jobId' value={get(job, 'id')} />
         <input type='hidden' name='_csrf' value={get(props, 'csrfToken')} />
