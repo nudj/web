@@ -14,6 +14,7 @@ buildLocal:
 		-t $(IMAGE):local \
 		--build-arg NODE_ENV=production \
 		--build-arg NPM_TOKEN=${NPM_TOKEN} \
+		--build-arg ENVKEY=${ENVKEY} \
 		-f $(CWD)/Dockerfile \
 		.
 
