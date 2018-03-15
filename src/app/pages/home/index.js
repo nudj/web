@@ -1,4 +1,5 @@
 const React = require('react')
+const { Helmet } = require('react-helmet')
 const TypeOut = require('react-typeout').default
 const { Link } = require('react-router-dom')
 
@@ -20,6 +21,18 @@ const HomePage = (props) => {
   const style = getStyle()
   return (
     <Page {...props} className={style.body}>
+      <Helmet>
+        <title>nudj - Find your next job, approved by people you trust</title>
+        <meta name='description' content='Finding a job that you&apos;ll actually enjoy is hard. With nudj, your friends do the work for you, recommending you for roles they know you&apos;ll be interested in. No more recruiters. No more spam.' />
+        <meta name='title' content='nudj - Find your next job, approved by people you trust.' />
+        <meta property='og:description' content='Finding a job that you&apos;ll actually enjoy is hard. With nudj, your friends do the work for you, recommending you for roles they know you&apos;ll be interested in. No more recruiters. No more spam.' />
+        <meta property='twitter:description' content='Finding a job that you&apos;ll actually enjoy is hard. With nudj, your friends do the work for you, recommending you for roles they know you&apos;ll be interested in. No more recruiters. No more spam.' />
+        <meta property='og:type' content='website' />
+        <meta property='og:title' content='nudj - Find your next job, approved by people you trust.' />
+        <meta property='twitter:card' content='nudj - Find your next job, approved by people you trust.' />
+        <meta property='twitter:title' content='nudj - Find your next job, approved by people you trust.' />
+        <meta property='og:site_name' content='nudj' />
+      </Helmet>
       <div className={style.header}>
         <Header />
       </div>

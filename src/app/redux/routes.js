@@ -1,11 +1,13 @@
 module.exports = {
   '/': require('../pages/home'),
   '/hiring': require('../pages/hirer'),
+  '/about': require('../pages/about'),
   '/request': require('../pages/request'),
   '/signup': require('../pages/signup'),
-  '/jobs/:companySlugJobSlugReferralId': require('../pages/job'),
-  '/jobs/:companySlugJobSlugReferralId/apply': require('../pages/apply'),
-  '/jobs/:companySlugJobSlugReferralId/apply/:secret': require('../pages/apply'),
-  '/jobs/:companySlugJobSlugReferralId/nudj': require('../pages/nudj'),
-  '/jobs/:companySlugJobSlugReferralId/nudj/:secret': require('../pages/nudj')
+  '/companies/:companySlug': require('../pages/companies'),
+  '/companies/:companySlug/jobs/:jobId': require('../pages/job'),
+  '/companies/:companySlug/jobs/:jobId/apply': require('../pages/apply'),
+  '/companies/:companySlug/jobs/:jobId/apply/:secret': require('../pages/apply'),
+  '/companies/:companySlug/jobs/:jobId/nudj': require('../pages/nudj'),
+  '/companies/:companySlug/jobs/:jobId/nudj/:secret': require('../pages/nudj')
 }

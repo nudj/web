@@ -161,7 +161,7 @@ data.jobs = data.jobs.concat([
     title: 'Full Stack Software Engineer',
     slug: 'full-stack-software-engineer',
     url: 'https://fake.com',
-    status: 'PUBLISHED',
+    status: 'ARCHIVED',
     bonus: 1000,
     roleDescription: 'Fake job! vitae sodales velit ligula quis ligula. Sed et tincidunt nisi. Ut nec massa vitae dui ullamcorper malesuada nec in neque. Suspendisse nec sapien faucibus, mollis metus ac, tempus eros. Praesent at nisl consequat ligula auctor eleifend nec sit amet eros. Fusce consequat, ante ac maximus auctor, felis justo vestibulum elit, congue congue ipsum ligula et lacus. Vivamus est risus, viverra quis iaculis et, eleifend eget est.',
     candidateDescription: '5+ years software engineering experience, using Node (6+), ES6 (Babel) and TypeScript. You should also be familiar with Git, Github, PRs, Code Reviews - please send us a link to your Github profile.',

@@ -11,16 +11,8 @@ const Page = require('../../components/page')
 const Header = require('../../components/header')
 const NudjSuccess = require('../../components/nudj-success')
 const RandomHover = require('../../components/random-hover')
-const CollapseBox = require('../../components/collapse-box')
-const { toggleDescriptionBox } = require('./actions')
 
 const { render } = require('../../lib/templater')
-
-function elementFromString (string) {
-  var div = document.createElement('div')
-  div.innerHTML = string
-  return div.childNodes[0]
-}
 
 function determineArticle (subject) {
   const consonantSound = /^one(![ir])/i
@@ -31,43 +23,9 @@ function determineArticle (subject) {
   return 'a'
 }
 
-function onFormSubmit (eventType, props) {
-  const company = get(props, 'company')
-  const job = get(company, 'job')
-  return event => {
-    const target = event.target
-    const Intercom = window.Intercom || (() => {})
-    event.preventDefault()
-    if (!target.querySelector('#visitorId')) {
-      const string = `<input id='visitorId' type='hidden' name='_intercom_visitor_id' value='${Intercom(
-        'getVisitorId'
-      )}' />`
-      target.appendChild(elementFromString(string))
-    }
-    let meta = {
-      jobTitle: get(job, 'title'),
-      company: get(company, 'name'),
-      referrerName: get(props, 'referrer.name'),
-      referrerId: get(props, 'referrer.id')
-    }
-    if (eventType === 'new-application') {
-      meta.profileUrl = get(props, 'person.url')
-      Intercom('update', {
-        lastJobAppliedFor: `${meta.jobTitle} at ${meta.company}`
-      })
-    } else {
-      Intercom('update', {
-        lastJobReferredFor: `${meta.jobTitle} at ${meta.company}`
-      })
-    }
-    Intercom('trackEvent', eventType, meta)
-    target.submit()
-    return false
-  }
-}
-
 const Job = props => {
   const company = get(props, 'company', {})
+  const allJobs = get(company, 'jobs')
   const job = get(company, 'job', {})
   const referral = get(props, 'referral')
   const companyName = get(company, 'name', '')
@@ -79,6 +37,8 @@ const Job = props => {
   const application = get(job, 'application')
   const templates = get(props, 'templates')
   const pageTitle = `${companyName} - ${jobTitle}`
+
+  const relatedJobs = allJobs.filter(relatedJob => relatedJob.id !== job.id)
 
   setStyles()
   const style = getStyle()
@@ -93,7 +53,10 @@ const Job = props => {
     </RandomHover>
   )
 
-  const uniqueLink = `/jobs/${get(company, 'slug', '')}+${get(job, 'slug', '')}${referral ? `+${referral.id}` : ''}`
+  const uniqueLink = `/companies/${get(company, 'slug', '')}/jobs/${get(job, 'slug', '')}`
+  const queryString = referral ? `?referralId=${referral.id}` : ''
+
+  const companiesLink = `/companies/${get(company, 'slug', '')}`
 
   const data = {
     job: merge(job, {
@@ -161,9 +124,8 @@ const Job = props => {
   const apply = (
     <form
       className={style.action}
-      action={`${uniqueLink}/apply`}
+      action={`${uniqueLink}/apply${queryString}`}
       method='POST'
-      onSubmit={onFormSubmit('new-application', props)}
     >
       <input type='hidden' name='jobId' value={get(job, 'id')} />
       <input type='hidden' name='_csrf' value={get(props, 'csrfToken')} />
@@ -211,17 +173,14 @@ const Job = props => {
   } else {
     const nudjButton = (
       <RandomHover>
-        <button className={style.nudj} id='nudjButton'>
-          Send to a friend
-        </button>
+        <button className={style.nudj} id='nudjButton'>Send to a friend</button>
       </RandomHover>
     )
     const nudjForm = (
       <form
         className={style.action}
-        action={`${uniqueLink}/nudj`}
+        action={`${uniqueLink}/nudj${queryString}`}
         method='POST'
-        onSubmit={onFormSubmit('new-referral', props)}
       >
         <input type='hidden' name='jobId' value={get(job, 'id')} />
         <input type='hidden' name='_csrf' value={get(props, 'csrfToken')} />
@@ -232,7 +191,6 @@ const Job = props => {
     actions.push(nudjForm)
   }
 
-  const relatedJobs = get(job, 'relatedJobs', [])
   let relatedJobsList = ''
   if (relatedJobs.length) {
     relatedJobsList = (
@@ -244,16 +202,13 @@ const Job = props => {
               className={style.relatedJob}
               key={related.title.split(' ').join('-')}
             >
+              <p className={style.jobTitle}>
+                {related.title}
+              </p>
               <Link
                 className={style.blockLink}
-                to={`/jobs/${related.company.slug}+${related.slug}`}
+                to={`/companies/${company.slug}/jobs/${related.slug}`}
               >
-                <p className={style.jobTitle}>
-                  {related.title} @{' '}
-                  <span className={style.relatedCompany}>
-                    {related.company.name}
-                  </span>
-                </p>
                 <span className={style.bodyLinks}>View job ></span>
               </Link>
             </li>
@@ -262,11 +217,6 @@ const Job = props => {
       </section>
     )
   }
-
-  const toggleBox = () => props.dispatch(toggleDescriptionBox())
-  const toggleButtonText = props.jobPage.showDescription
-    ? 'Less -'
-    : 'Find out more +'
 
   const descriptionSections = []
   if (companyDescription) {
@@ -287,29 +237,16 @@ const Job = props => {
 
   const fullJobDescription = (
     <div className={style.jobDescriptionContainer}>
-      <CollapseBox isOpened={props.jobPage.showDescription}>
-        <div className={style.jobDescriptionBox}>
-          {descriptionSections.map(section => (
-            <div
-              className={style.jobDescriptionSection}
-              key={section[0].split(' ').join('-')}
-            >
-              <div className={style.jobDescriptionSubtitle}>{section[0]}</div>
-              <div className={style.jobDescriptionText}>{section[1]}</div>
-            </div>
-          ))}
-        </div>
-      </CollapseBox>
-      <div className={style.toggleDescriptionButtonContainer}>
-        <div className={style.collapseBoxLineLeft} />
-        <span
-          className={style.toggleButton}
-          id='toggleInformation'
-          onClick={toggleBox}
-        >
-          {toggleButtonText}
-        </span>
-        <div className={style.collapseBoxLineRight} />
+      <div className={style.jobDescriptionBox}>
+        {descriptionSections.map(section => (
+          <div
+            className={style.jobDescriptionSection}
+            key={section[0].split(' ').join('-')}
+          >
+            <div className={style.jobDescriptionSubtitle}>{section[0]}</div>
+            <div className={style.jobDescriptionText}>{section[1]}</div>
+          </div>
+        ))}
       </div>
     </div>
   )
@@ -338,17 +275,31 @@ const Job = props => {
         <meta property='twitter:title' content={pageTitle} />
         <meta property='twitter:image' content={image} />
         <meta property='og:image' content={image} />
+        <meta name='robots' content='none' />
       </Helmet>
+      {job.status === 'ARCHIVED' && (
+        <section className={style.jobDeadContainer}>
+          <div className={style.jobDeadNotice}>
+            <h2 className={style.jobDeadTitle}>Unfortunately, this job is no longer available</h2>
+            <p className={style.jobDeadCopy}>
+              Head over to their company page to see what open roles {company.name} currently have.
+            </p>
+            <RandomHover><Link to={companiesLink} className={style.apply}>Go to company page</Link></RandomHover>
+          </div>
+        </section>
+      )}
       <div className={style.job}>
         <div className={style.jobContainer}>
           <h1 className={style.jobHeaderTitle}>{title}</h1>
           {jobDescription}
         </div>
-        <section className={style.actions}>
-          {actions[1]}
-          <span className={style.or}>or</span>
-          {actions[0]}
-        </section>
+        {job.status !== 'ARCHIVED' && (
+          <section className={style.actions}>
+            {actions[1]}
+            <span className={style.or}>or</span>
+            {actions[0]}
+          </section>
+        )}
       </div>
       {relatedJobsList}
     </Page>

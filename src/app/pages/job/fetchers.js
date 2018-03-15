@@ -1,13 +1,10 @@
 const template = require('../../server/modules/template')
 
-const get = ({ params, session, req, res }) => {
-  const { data } = session
+const get = ({ params, session, query, req, res }) => {
+  const { userId } = session
 
-  const [
-    companySlug,
-    jobSlug,
-    referralId
-  ] = params.companySlugJobSlugReferralId.split('+')
+  const { companySlug, jobSlug } = params
+  const { referralId } = query
 
   const gql = `
     query GetReferralAndJobForPerson (
@@ -17,7 +14,8 @@ const get = ({ params, session, req, res }) => {
       $personId: ID,
       $loggedIn: Boolean!,
       $browserId: String,
-      $eventType: EventType!
+      $eventType: EventType!,
+      $relatedJobStatus: JobStatus!
     ) {
       referral: referral(
         id: $referralId
@@ -39,6 +37,11 @@ const get = ({ params, session, req, res }) => {
         slug
         description
         url
+        jobs: jobsByFilters(filters: {status: $relatedJobStatus}) {
+          id
+          title
+          slug
+        }
         job: jobByFilters(filters: {slug: $jobSlug}) {
           recordEvent(type: $eventType, browserId: $browserId) {
             id
@@ -59,20 +62,12 @@ const get = ({ params, session, req, res }) => {
           remuneration
           templateTags
           location
+          status
           application: applicationByFilters(filters: {person: $personId}) @include(if: $loggedIn) {
             id
           }
           referral: referralByFilters(filters: {person: $personId}) @include(if: $loggedIn) {
             id
-          }
-          relatedJobs {
-            id
-            title
-            slug
-            company {
-              name
-              slug
-            }
           }
         }
       }
@@ -83,10 +78,11 @@ const get = ({ params, session, req, res }) => {
     companySlug,
     jobSlug,
     referralId,
-    personId: data && data.person && data.person.id,
-    loggedIn: !!(data && data.person),
+    personId: userId,
+    loggedIn: !!userId,
     browserId: req.cookies.browserId,
-    eventType: 'viewed'
+    eventType: 'viewed',
+    relatedJobStatus: 'PUBLISHED'
   }
 
   return {

@@ -1,5 +1,6 @@
 const React = require('react')
 const { Link } = require('react-router-dom')
+const { Helmet } = require('react-helmet')
 
 const getStyle = require('./style.css')
 const Page = require('../../components/page')
@@ -11,6 +12,18 @@ const Hirer = (props) => {
   const style = getStyle()
   return (
     <Page {...props} className={style.body}>
+      <Helmet>
+        <title>nudj - Hire great people, faster, for less</title>
+        <meta name='description' content='nudj makes it effortless for the best businesses to engage with the best talent, utilising connections they both have.' />
+        <meta name='title' content='nudj - Hire great people, faster, for less.' />
+        <meta property='og:description' content='nudj makes it effortless for the best businesses to engage with the best talent, utilising connections they both have.' />
+        <meta property='twitter:description' content='nudj makes it effortless for the best businesses to engage with the best talent, utilising connections they both have.' />
+        <meta property='og:type' content='website' />
+        <meta property='og:title' content='nudj - Hire great people, faster, for less.' />
+        <meta property='twitter:card' content='nudj - Hire great people, faster, for less.' />
+        <meta property='twitter:title' content='nudj - Hire great people, faster, for less.' />
+        <meta property='og:site_name' content='nudj' />
+      </Helmet>
       <Header
         backgroundColour='midRed'
         textColour='white'
@@ -18,7 +31,7 @@ const Hirer = (props) => {
         location='/hiring' />
       <section className={style.hero}>
         <AnimateAppearance from='bottom'>
-          <h1 className={style.heroTitle}>The best jobs aren’t advertised. <br className={style.standardBreak} />The best talent isn’t looking. <br className={style.standardBreak} />Maybe they just need a nudj.</h1>
+          <h1 className={style.heroTitle}>The best jobs aren&apos;t advertised. <br className={style.standardBreak} />The best talent isn’t looking. <br className={style.standardBreak} />Maybe they just need a nudj.</h1>
         </AnimateAppearance>
       </section>
       <section className={style.how}>
@@ -43,7 +56,7 @@ const Hirer = (props) => {
             <div className={style.stepDescriptionReverse}>
               <AnimateAppearance from='right'>
                 <h2 className={style.stepTitle}><span className={style.red}>2.</span><br className={style.break} /> Connect the dots</h2>
-                <p className={style.stepCopy}>We'll automatically identify the people most likely to put you in touch with awesome talent, whether they’re in your network or ours.</p>
+                <p className={style.stepCopy}>We&apos;ll automatically identify the people most likely to put you in touch with awesome talent, whether they’re in your network or ours.</p>
               </AnimateAppearance>
             </div>
           </li>
@@ -70,7 +83,7 @@ const Hirer = (props) => {
             <div className={style.stepDescriptionBottom}>
               <AnimateAppearance from='bottom'>
                 <h2 className={style.stepTitle}><span className={style.red}>5.</span><br className={style.break} /> Say goodbye to paperwork</h2>
-                <p className={style.stepCopy}>We’ll then handle all the admin and payments so you don’t have to. One less thing for you to worry about.</p>
+                <p className={style.stepCopy}>We’ll then handle all the admin and payments so you don&apos;t have to. One less thing for you to worry about.</p>
               </AnimateAppearance>
             </div>
           </li>
@@ -80,7 +93,7 @@ const Hirer = (props) => {
         <div className={style.header}>
           <AnimateAppearance from='bottom'>
             <h2 className={style.bodyTitle}><span className={style.compareUnderline}>How we compare</span></h2>
-            <p className={style.bodySubtitle}>Anyone can say they're the best, so we'll just let the numbers do the talking.</p>
+            <p className={style.bodySubtitle}>Anyone can say they&apos;re the best, so we&apos;ll just let the numbers do the talking.</p>
           </AnimateAppearance>
         </div>
         <AnimateAppearance from='bottom'>
@@ -89,7 +102,7 @@ const Hirer = (props) => {
               <tr className={style.tableHeaderRow}>
                 <th className={style.tableHeaderFirst} />
                 <th className={style.tableHeader}>Recruiter</th>
-                <th className={style.tableHeader}>Job Boards</th>
+
                 <th className={style.tableHeader}>nudj<span className={style.red}>*</span></th>
               </tr>
             </thead>
@@ -97,20 +110,23 @@ const Hirer = (props) => {
               <tr className={style.tableRow}>
                 <td className={style.tableLeft}>Cost of Hire</td>
                 <td className={style.tableItem}>£5,000</td>
-                <td className={style.tableItem}>£250</td>
-                <td className={style.tableItemNudj}>£750</td>
+
+                <td className={style.tableItemNudj}>£2,000</td>
               </tr>
               <tr className={style.tableRow}>
                 <td className={style.tableLeft}>Time to Hire</td>
                 <td className={style.tableItem}>55 Days</td>
-                <td className={style.tableItem}>56 Days</td>
-                <td className={style.tableItemNudj}>20 Days</td>
+                <td className={style.tableItemNudj}>29 Days</td>
+              </tr>
+              <tr className={style.tableRow}>
+                <td className={style.tableLeft}>Interview Rate</td>
+                <td className={style.tableItem}>32%</td>
+                <td className={style.tableItemNudj}>75%</td>
               </tr>
               <tr className={style.tableRow}>
                 <td className={style.tableLeftFinal}>Fill Rate</td>
                 <td className={style.tableItem}>18%</td>
-                <td className={style.tableItem}>15%</td>
-                <td className={style.tableItemNudj}>56%</td>
+                <td className={style.tableItemNudj}>41%</td>
               </tr>
             </tbody>
           </table>

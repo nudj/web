@@ -150,6 +150,15 @@ const basicContainer = (properties) => {
 }
 module.exports.basicContainer = basicContainer
 
+module.exports.basicContainerLarge = (properties) => {
+  return merge({}, basicContainer(properties), {
+    [breakpoints.ns]: {
+      margin: '0 auto',
+      maxWidth: variables.sizes.contentLargeMaxWidth
+    }
+  })
+}
+
 module.exports.basicContainerMedium = (properties) => {
   return merge({}, basicContainer(properties), {
     [breakpoints.ns]: {
@@ -429,7 +438,7 @@ const beforeBackgroundSquiggle = (image, properties) => {
     height: variables.padding.d,
     left: '-10%',
     position: 'absolute',
-    top: `calc(${variables.padding.d} * -1)`,
+    top: `calc(${variables.padding.d} * -0.9)`,
     width: '120%'
   })
 
@@ -487,7 +496,11 @@ module.exports.makeRoyalBlueWobbleBox = (properties = {}) => {
 }
 
 module.exports.makeGreyWobbleBox = (properties = {}) => {
-  return merge(makeWobbleBox('grey-wobble-box-mobile.svg'), properties)
+  return merge(makeWobbleBox('grey-wobbly-box.svg'), properties)
+}
+
+module.exports.makeLargeRoyalBlueWobbleBox = (properties = {}) => {
+  return merge(makeWobbleBox('about-page/profile-bg.svg'), properties)
 }
 
 const makeOr = (properties = {}) => {
@@ -523,9 +536,9 @@ module.exports.makeOrDark = (properties = {}) => {
   }, properties))
 }
 
-function subtitleUnderline (image, backgroundColour) {
+function subtitleUnderline (image = 'table-line-1.svg', backgroundColour) {
   return {
-    backgroundImage: linkImage('table-line-1.svg'),
+    backgroundImage: linkImage(image),
     backgroundPosition: 'bottom center',
     backgroundRepeat: 'no-repeat',
     display: 'inline-block',
@@ -548,6 +561,16 @@ module.exports.makeOrangeSubtitleUnderlineOnGrey = (properties = {}) => {
 
 module.exports.makeOrangeSubtitleUnderlineOnDarkGrey = (properties = {}) => {
   const underline = subtitleUnderline('table-line-1.svg', variables.colors.charcoal)
+  return merge(underline, properties)
+}
+
+module.exports.makeOrangeSubtitleUnderlineOnNavy = (properties = {}) => {
+  const underline = subtitleUnderline('table-line-1.svg', variables.colors.navy)
+  return merge(underline, properties)
+}
+
+module.exports.makeWhiteSubtitleUnderlineOnOrange = (properties = {}) => {
+  const underline = subtitleUnderline('table-line-2.svg', variables.colors.midRed)
   return merge(underline, properties)
 }
 
@@ -581,6 +604,11 @@ const typography = {
     margin: '0',
     padding: `0 0 ${variables.padding.d} 0`
   }, headings.h3),
+  h4: merge({
+    color: variables.colors.royalBlue,
+    margin: '0',
+    padding: `0 0 ${variables.padding.d} 0`
+  }, headings.h4),
   copy: merge({
     color: variables.colors.charcoal,
     margin: `0 0 ${variables.padding.d} 0`,
@@ -599,11 +627,21 @@ typography.titleWhite = merge({}, typography.title, {
   color: variables.colors.white
 })
 
+typography.h3White = merge({}, typography.h3, {
+  color: variables.colors.white
+})
+
 module.exports.typography = typography
 
 module.exports.textHighlight = (properties = {}) => {
   return merge({}, {
     color: variables.colors.midRed
+  }, properties)
+}
+
+module.exports.textLowlight = (properties = {}) => {
+  return merge({}, {
+    color: variables.colors.royalBlue
   }, properties)
 }
 
@@ -716,6 +754,7 @@ module.exports.forms = forms
 const tableCell = merge({}, headings.p, {
   color: variables.colors.royalBlue,
   padding: `${variables.padding.d} 0`,
+  width: '33%',
   textAlign: 'center',
   [breakpoints.s]: { // max-width override
     fontSize: headings.p2.fontSize
@@ -730,7 +769,7 @@ const tableUnderline = afterUnderlineSquiggle('table-line-1.svg', '0%', {
     height: '12px',
     width: `calc(100vw - ${variables.padding.d} * 2)`,
     [breakpoints.l]: {
-      width: variables.sizes.contentMaxWidth
+      width: variables.sizes.contentMediumMaxWidth
     }
   }
 })

@@ -1,0 +1,21 @@
+version: '2'
+services:
+  web:
+    image: nudj/web:development
+    environment:
+      - NPM_TOKEN
+    env_file: ../web/.env
+    volumes:
+      - ../web/.zshrc:/root/.zshrc
+      - ../web/src/app:/usr/src/app
+      - ../web/src/test:/usr/src/test
+      - ../web/src/.npmrc:/usr/src/.npmrc
+      - ../web/src/nodemon.json:/usr/src/nodemon.json
+      - ../web/src/package.json:/usr/src/package.json
+      - ../web/src/webpack.config.js:/usr/src/webpack.config.js
+      - ../web/src/webpack.dll.js:/usr/src/webpack.dll.js
+      - ../framework/src:/usr/src/@nudj/framework
+      - ../library/src:/usr/src/@nudj/library
+      - ../components/src:/usr/src/@nudj/components
+    stdin_open: true
+    command: /bin/zsh

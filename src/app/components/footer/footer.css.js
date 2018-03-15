@@ -48,12 +48,13 @@ const styles = {
       alignItems: 'flex-start',
       display: 'flex',
       flexWrap: 'wrap',
-      justifyContent: 'left'
+      justifyContent: 'center'
     },
     [mixins.breakpoints.l]: {
       margin: '0',
       padding: '0',
-      width: '50%'
+      width: '50%',
+      justifyContent: 'flex-start'
     }
   })),
   link: {
