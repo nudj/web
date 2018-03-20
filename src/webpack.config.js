@@ -23,7 +23,10 @@ if (process.env.DEBUG !== 'true') {
 module.exports = {
   cache: true,
   entry: {
-    'app/server/build/app': './app/client'
+    'app/server/build/app': [
+      'babel-polyfill',
+      './app/client'
+    ]
   },
   output: {
     path: __dirname,
@@ -40,7 +43,7 @@ module.exports = {
           path.join(__dirname, '@nudj'),
           path.join(__dirname, 'node_modules', '@nudj')
         ],
-        exclude: /\/usr\/src\/(node_modules\/)?@nudj\/.*\/node_modules\/.*/,
+        exclude: /node_modules\/(?!@nudj)/,
         loader: 'babel-loader',
         options: {
           presets: [
