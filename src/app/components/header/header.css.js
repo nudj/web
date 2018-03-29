@@ -108,13 +108,25 @@ const navIntroAnimations = {
 }
 
 const activeLinkUnderlineHiring = mixins.afterUnderlineSquiggle('link-underline-1.svg', '30%', {
-  textShadow: `-2px 0px ${variables.colors.midRed}, -3px 2px ${variables.colors.midRed}, -29px 2px ${variables.colors.midRed}, 2px 2px ${variables.colors.midRed}`,
+  textShadow: `0px 0px ${variables.colors.midRed}, -2px 1px ${variables.colors.midRed}, 1px 1px ${variables.colors.midRed}, 0px 1px ${variables.colors.midRed}`,
   zIndex: '1',
   '::after': {
     left: 'auto',
     margin: '0 auto',
-    top: '31px',
-    width: '70%',
+    top: '30px',
+    width: '76%',
+    zIndex: '-1',
+    height: '0.75rem'
+  }
+})
+
+const activeLinkUnderlineJobs = mixins.afterUnderlineSquiggle('link-underline-2.svg', '30%', {
+  zIndex: '1',
+  '::after': {
+    left: 'auto',
+    margin: '0 auto',
+    top: '32px',
+    width: '67%',
     zIndex: '-1'
   }
 })
@@ -125,7 +137,7 @@ const activeLinkUnderlineAbout = mixins.afterUnderlineSquiggle('link-underline-1
     left: 'auto',
     margin: '0 auto',
     top: '31px',
-    width: '56%',
+    width: '55%',
     zIndex: '-1'
   }
 })
@@ -198,6 +210,9 @@ const styles = {
   linkActiveHiring: merge(link, activeLinkUnderlineHiring, {
     color: variables.colors.white
   }),
+  linkActiveJobs: merge(link, activeLinkUnderlineJobs, {
+    color: variables.colors.charcoal
+  }),
   linkActiveAbout: merge(link, activeLinkUnderlineAbout, {
     color: variables.colors.white
   }),
@@ -207,6 +222,7 @@ const styles = {
   request: request,
   linkMobile: merge(linkMobileLink, mixins.deLink()),
   linkMobileActiveHiring: linkMobileLinkActive,
+  linkMobileActiveJobs: linkMobileLinkActive,
   linkMobileActiveAbout: linkMobileLinkActive,
   requestMobile: mixins.buttonPrimary({
     alignSelf: 'flex-end',

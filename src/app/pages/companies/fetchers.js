@@ -8,6 +8,8 @@ const get = ({ params }) => {
         jobs: jobsByFilters (filters: {status: $jobStatus }) {
           title
           slug
+          remuneration
+          location
           status
         }
       }

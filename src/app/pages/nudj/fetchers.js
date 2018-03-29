@@ -14,12 +14,15 @@ const post = ({ params, session, query }) => {
         slug: $companySlug
       }) {
         id
+        name
         slug
         job: jobByFilters(filters: {
           slug: $jobSlug
         }) {
           id
           slug
+          title
+          bonus
           referral: createReferral(
             person: $person,
             parent: $parent

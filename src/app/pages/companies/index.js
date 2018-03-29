@@ -8,10 +8,12 @@ const Page = require('../../components/page')
 const Header = require('../../components/header')
 const AnimateAppearance = require('../../components/animate-appearance')
 const RandomHover = require('../../components/random-hover')
+const JobCard = require('../../components/job-card')
 
 const CompanyPage = props => {
   const company = get(props, 'company')
-  const pageTitle = `Jobs at ${company.name} - nudj`
+  const pageTitle = `Jobs at ${company.name}`
+  const pageDescription = `${company.description}`
 
   const style = getStyle()
 
@@ -19,8 +21,15 @@ const CompanyPage = props => {
     <Page {...props} className={style.body}>
       <Helmet>
         <title>{pageTitle}</title>
+        <meta name='description' content={pageDescription} />
         <meta name='title' content={pageTitle} />
+        <meta property='og:description' content={pageDescription} />
+        <meta property='twitter:description' content={pageDescription} />
+        <meta property='og:type' content='website' />
         <meta property='og:title' content={pageTitle} />
+        <meta property='twitter:card' content={pageTitle} />
+        <meta property='twitter:title' content={pageTitle} />
+        <meta property='og:site_name' content='nudj' />
       </Helmet>
       <Header
         backgroundColour='midRed'
@@ -49,28 +58,31 @@ const CompanyPage = props => {
             <h2 className={style.jobsTitle}>Jobs</h2>
           </AnimateAppearance>
         </div>
-        <AnimateAppearance className={style.jobsContainer} from='bottom'>
+        <section className={style.jobsContainer} from='bottom'>
           {company.jobs.length > 0 ? (
             <ul className={style.jobs}>
               {company.jobs.map((job) => {
                 const url = `/companies/${company.slug}/jobs/${job.slug}`
-
                 return (
                   <li className={style.job} key={job.slug}>
-                    <p className={style.jobTitle}>{job.title}</p>
-                    <Link to={url} className={style.jobLink}>View job ></Link>
+                    <JobCard
+                      jobHref={url}
+                      title={job.title}
+                      salary={job.remuneration}
+                      location={job.location}
+                    />
                   </li>
                 )
               })}
             </ul>
         ) : (
           <div className={style.cta}>
-            <p className={style.bodySubtitle}>There aren&apos;t any open jobs at {company.name} right now,
+            <p className={style.bodyCopy}>There aren&apos;t any open jobs at {company.name} right now,
             but if you sign-up for updates we&apos;ll let you know as soon as there are.</p>
             <RandomHover><Link to='/signup' className={style.signupButton} id='signUp'>Sign up</Link></RandomHover>
           </div>
         )}
-        </AnimateAppearance>
+        </section>
       </section>
     </Page>
   )

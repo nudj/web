@@ -72,32 +72,51 @@ const styles = {
   applied: mixins.buttonPrimaryDisabled(buttonMargins),
   apply: mixins.buttonPrimary(buttonMargins),
   nudj: mixins.buttonPrimary(buttonMargins),
-  related: merge(mixins.makeGreyBackground(), {
-    padding: `${variables.padding.c} 0 0 0`,
-    width: '100%'
+  related: mixins.makeGreyBackground({
+    paddingTop: variables.padding.b,
+    paddingBottom: variables.padding.b
   }),
   relatedTitle: merge({}, mixins.typography.title, mixins.makeOrangeSubtitleUnderlineOnGrey()),
-  list: mixins.deList(mixins.basicContainer({
-    padding: variables.padding.c,
-    [mixins.breakpoints.l]: {
-      display: 'flex',
-      justifyContent: 'center',
-      padding: `${variables.padding.c} 0`,
-      width: '100%'
+  list: merge(mixins.basicContainer(), mixins.deList(), {
+    display: 'flex',
+    flexDirection: 'column',
+    flexWrap: 'nowrap',
+    justifyContent: 'left',
+    alignItems: 'stretch',
+    paddingTop: variables.padding.d,
+    paddingRight: variables.padding.e,
+    paddingBottom: variables.padding.d,
+    paddingLeft: variables.padding.e,
+    width: '100%',
+    '@media(min-width: 55rem)': {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      paddingTop: variables.padding.d,
+      paddingRight: variables.padding.d,
+      paddingBottom: variables.padding.d,
+      paddingLeft: variables.padding.d
     }
-  })),
-  relatedJob: {
-    padding: `0 0 ${variables.padding.c} 0`,
-    [mixins.breakpoints.l]: {
-      flexBasis: '0',
-      flexGrow: '1',
-      maxWidth: '25%',
-      padding: `0 0 ${variables.padding.c} ${variables.padding.d}`,
-      ':first-child': {
-        paddingLeft: '0'
-      }
+  }),
+  relatedJob: merge({
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: 'stretch',
+    textAlign: 'center',
+    backgroundColor: variables.colors.white,
+    boxShadow: '0 0.5px 0.5px 0 rgba(0, 0, 0, 0.1)',
+    borderRadius: '2px',
+    paddingTop: variables.padding.d,
+    paddingRight: variables.padding.d,
+    paddingBottom: variables.padding.d,
+    paddingLeft: variables.padding.d,
+    margin: variables.padding.f,
+    flexBasis: '100%',
+    '@media(min-width: 55rem)': {
+      flexBasis: `calc(50% - ${variables.padding.d})`
     }
-  },
+  }),
   jobTitle: mixins.typography.h3,
   jobDescriptionBox: merge(mixins.flexColumn(), {
     display: 'flex',

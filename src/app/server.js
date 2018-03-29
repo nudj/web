@@ -26,6 +26,7 @@ const expressRouters = {
     require('./pages/request/router'),
     require('./pages/signup/router'),
     require('./pages/job/router'),
+    require('./pages/all-jobs/router'),
     require('./pages/companies/router'),
     require('./pages/apply/router'),
     require('./pages/nudj/router'),
