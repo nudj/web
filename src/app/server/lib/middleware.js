@@ -4,10 +4,14 @@ const {
   NotFound,
   AppError
 } = require('@nudj/framework/errors')
+const { isAjax } = require('@nudj/framework/lib/lib')
 
 const job = require('../modules/job')
 
 const handleJobUrls = (req, res, next) => {
+  if (isAjax(req.originalUrl)) {
+    return next()
+  }
   if (req.params.companySlugJobSlugReferralId) {
     const jobParams = req.params.companySlugJobSlugReferralId
     // Legacy Url

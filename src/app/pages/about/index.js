@@ -8,19 +8,22 @@ const AnimateAppearance = require('../../components/animate-appearance')
 const RandomHover = require('../../components/random-hover')
 
 const About = (props) => {
+  const pageTitle = `About nudj`
+  const pageDescription = `We&apos;re on a mission to make referrals the only way to hire and get hired. Why? Because the best recuriter is not a recruiter, it&apos;s a person you know and trust.`
+
   const style = getStyle()
   return (
     <Page {...props} className={style.body}>
       <Helmet>
-        <title>About - nudj</title>
-        <meta name='description' content='nudj is on a mission to make referrals the only way to hire and get hired. Why? Because the best recuriter is not a recruiter, it&apos;s a person you know and trust.' />
-        <meta name='title' content='About - nudj' />
-        <meta property='og:description' content='nudj is on a mission to make referrals the only way to hire and get hired. Why? Because the best recuriter is not a recruiter, it&apos;s a person you know and trust.' />
-        <meta property='twitter:description' content='nudj is on a mission to make referrals the only way to hire and get hired. Why? Because the best recuriter is not a recruiter, it&apos;s a person you know and trust.' />
+        <title>{pageTitle}</title>
+        <meta name='description' content={pageDescription} />
+        <meta name='title' content={pageTitle} />
+        <meta property='og:description' content={pageDescription} />
+        <meta property='twitter:description' content={pageDescription} />
         <meta property='og:type' content='website' />
-        <meta property='og:title' content='About - nudj' />
-        <meta property='twitter:card' content='About - nudj' />
-        <meta property='twitter:title' content='About - nudj' />
+        <meta property='og:title' content={pageTitle} />
+        <meta property='twitter:card' content={pageTitle} />
+        <meta property='twitter:title' content={pageTitle} />
         <meta property='og:site_name' content='nudj' />
       </Helmet>
       <Header

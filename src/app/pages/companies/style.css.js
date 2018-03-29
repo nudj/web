@@ -73,7 +73,7 @@ const styles = {
     textAlign: 'center'
   }, mixins.headings.p),
   howUnderline: {},
-  bodySubtitle: merge({
+  bodyCopy: merge({
     color: variables.colors.charcoal,
     paddingBottom: variables.padding.d,
     textAlign: 'center'
@@ -86,17 +86,17 @@ const styles = {
   jobsContainer: {
     width: '100%'
   },
-  jobs: merge(mixins.basicContainerLarge(), mixins.deList(), {
+  jobs: merge(mixins.basicContainer(), mixins.deList(), {
     display: 'flex',
     flexDirection: 'column',
     flexWrap: 'nowrap',
-    justifyContent: 'center',
+    justifyContent: 'left',
     alignItems: 'stretch',
     paddingTop: variables.padding.d,
     paddingRight: variables.padding.e,
     paddingBottom: variables.padding.d,
     paddingLeft: variables.padding.e,
-    '@media(min-width: 35rem)': {
+    '@media(min-width: 55rem)': {
       flexDirection: 'row',
       flexWrap: 'wrap',
       paddingTop: variables.padding.d,
@@ -121,11 +121,8 @@ const styles = {
     paddingLeft: variables.padding.d,
     margin: variables.padding.e,
     flexBasis: '100%',
-    '@media(min-width: 35rem)': {
+    '@media(min-width: 55rem)': {
       flexBasis: `calc(50% - ${variables.padding.d})`
-    },
-    '@media(min-width: 70rem)': {
-      flexBasis: `calc(25% - ${variables.padding.d})`
     }
   }),
   jobTitle: merge(mixins.headings.h5, {
