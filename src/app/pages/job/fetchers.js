@@ -40,6 +40,8 @@ const get = ({ params, session, query, req, res }) => {
         jobs: jobsByFilters(filters: {status: $relatedJobStatus}) {
           id
           title
+          remuneration
+          location
           slug
         }
         job: jobByFilters(filters: {slug: $jobSlug}) {

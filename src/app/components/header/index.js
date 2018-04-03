@@ -135,17 +135,20 @@ class Header extends React.Component {
   renderNavLinks (mobile = false) {
     const linkStyleName = mobile ? 'linkMobile' : 'link'
     const isActiveHiring = this.state.location === '/hiring'
+    const isActiveJobs = this.state.location === '/jobs'
     const isActiveAbout = this.state.location === '/about'
 
     const linkStyleHiring = isActiveHiring ? this.style[`${linkStyleName}ActiveHiring`] : this.style[linkStyleName]
+    const linkStyleJobs = isActiveJobs ? this.style[`${linkStyleName}ActiveJobs`] : this.style[linkStyleName]
     const linkStyleAbout = isActiveAbout ? this.style[`${linkStyleName}ActiveAbout`] : this.style[linkStyleName]
     const requestStyle = mobile ? this.style.requestMobile : this.style.request
 
-    const companies = (<Link to='/hiring' className={linkStyleHiring} id='hirerPage' onClick={this.onClickLink} key='1'>Employers</Link>)
-    const about = (<Link to='/about' className={linkStyleAbout} id='aboutPage' onClick={this.onClickLink} key='2'>About</Link>)
-    const getInTouch = (<RandomHover key='3'><a href='mailto:help@nudj.co' id='open-intercom' className={requestStyle} onClick={this.onClickLink}>Get in touch</a></RandomHover>)
+    const companies = (<a href='/hiring' className={linkStyleHiring} id='hirerPage' onClick={this.onClickLink} key='1'>For employers</a>)
+    const jobs = (<a href='/jobs' className={linkStyleJobs} id='jobsPage' onClick={this.onClickLink} key='2'>Jobs on nudj</a>)
+    const about = (<a href='/about' className={linkStyleAbout} id='aboutPage' onClick={this.onClickLink} key='3'>About</a>)
+    const getInTouch = (<RandomHover key='4'><a href='mailto:help@nudj.co' id='open-intercom' className={requestStyle} onClick={this.onClickLink}>Get in touch</a></RandomHover>)
 
-    const defaultNav = [companies, about, getInTouch]
+    const defaultNav = [companies, jobs, about, getInTouch]
 
     return (defaultNav)
   }

@@ -9,19 +9,22 @@ const AnimateAppearance = require('../../components/animate-appearance')
 const RandomHover = require('../../components/random-hover')
 
 const Hirer = (props) => {
+  const pageTitle = `Hire great people, faster, for less`
+  const pageDescription = `nudj makes it effortless for the best businesses to engage with the best talent, utilising connections they both have.`
+
   const style = getStyle()
   return (
     <Page {...props} className={style.body}>
       <Helmet>
-        <title>nudj - Hire great people, faster, for less</title>
-        <meta name='description' content='nudj makes it effortless for the best businesses to engage with the best talent, utilising connections they both have.' />
-        <meta name='title' content='nudj - Hire great people, faster, for less.' />
-        <meta property='og:description' content='nudj makes it effortless for the best businesses to engage with the best talent, utilising connections they both have.' />
-        <meta property='twitter:description' content='nudj makes it effortless for the best businesses to engage with the best talent, utilising connections they both have.' />
+        <title>{pageTitle}</title>
+        <meta name='description' content={pageDescription} />
+        <meta name='title' content={pageTitle} />
+        <meta property='og:description' content={pageDescription} />
+        <meta property='twitter:description' content={pageDescription} />
         <meta property='og:type' content='website' />
-        <meta property='og:title' content='nudj - Hire great people, faster, for less.' />
-        <meta property='twitter:card' content='nudj - Hire great people, faster, for less.' />
-        <meta property='twitter:title' content='nudj - Hire great people, faster, for less.' />
+        <meta property='og:title' content={pageTitle} />
+        <meta property='twitter:card' content={pageTitle} />
+        <meta property='twitter:title' content={pageTitle} />
         <meta property='og:site_name' content='nudj' />
       </Helmet>
       <Header

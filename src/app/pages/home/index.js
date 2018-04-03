@@ -18,19 +18,22 @@ const words = [
 ]
 
 const HomePage = (props) => {
+  const pageTitle = `Find your next job, approved by people you trust only on nudj`
+  const pageDescription = `Finding a job that you&apos;ll actually enjoy is hard. With nudj, your friends do the work for you, recommending you for roles they know you&apos;ll be interested in. No more recruiters. No more spam.`
+
   const style = getStyle()
   return (
     <Page {...props} className={style.body}>
       <Helmet>
-        <title>nudj - Find your next job, approved by people you trust</title>
-        <meta name='description' content='Finding a job that you&apos;ll actually enjoy is hard. With nudj, your friends do the work for you, recommending you for roles they know you&apos;ll be interested in. No more recruiters. No more spam.' />
-        <meta name='title' content='nudj - Find your next job, approved by people you trust.' />
-        <meta property='og:description' content='Finding a job that you&apos;ll actually enjoy is hard. With nudj, your friends do the work for you, recommending you for roles they know you&apos;ll be interested in. No more recruiters. No more spam.' />
-        <meta property='twitter:description' content='Finding a job that you&apos;ll actually enjoy is hard. With nudj, your friends do the work for you, recommending you for roles they know you&apos;ll be interested in. No more recruiters. No more spam.' />
+        <title>{pageTitle}</title>
+        <meta name='description' content={pageDescription} />
+        <meta name='title' content={pageTitle} />
+        <meta property='og:description' content={pageDescription} />
+        <meta property='twitter:description' content={pageDescription} />
         <meta property='og:type' content='website' />
-        <meta property='og:title' content='nudj - Find your next job, approved by people you trust.' />
-        <meta property='twitter:card' content='nudj - Find your next job, approved by people you trust.' />
-        <meta property='twitter:title' content='nudj - Find your next job, approved by people you trust.' />
+        <meta property='og:title' content={pageTitle} />
+        <meta property='twitter:card' content={pageTitle} />
+        <meta property='twitter:title' content={pageTitle} />
         <meta property='og:site_name' content='nudj' />
       </Helmet>
       <div className={style.header}>
@@ -41,13 +44,13 @@ const HomePage = (props) => {
           <li className={style.notHappy}>
             <div className={style.notHappyContainer}>
               <AnimateAppearance from='bottom'>
-                <h1 className={style.heroTitle}>The best <TypeOut words={words} className={style.typeout} pauseSpeed={5000} /> are always busy,<br className={style.oppositeBreak} /> but they aren't always happy.</h1>
+                <h1 className={style.heroTitle}>The best <TypeOut words={words} className={style.typeout} pauseSpeed={5000} /> are always busy,<br className={style.oppositeBreak} /> but they aren&apos;t always happy.</h1>
               </AnimateAppearance>
             </div>
           </li>
           <li className={style.unknown}>
             <div className={style.unknownContainer}>
-              <AnimateAppearance from='right'><h1 className={style.unknownTitle}>They're often hard to find and are unknown to most.</h1></AnimateAppearance>
+              <AnimateAppearance from='right'><h1 className={style.unknownTitle}>They&apos;re often hard to find and are unknown to most.</h1></AnimateAppearance>
             </div>
           </li>
           <li className={style.friends}>
@@ -92,7 +95,7 @@ const HomePage = (props) => {
             <AnimateAppearance from='bottom' className={style.stepAnimationContainer}>
               <img className={style.stepImage} src='/assets/images/home-page/3-fist-img.svg' />
               <h3 className={style.stepTitle}>Step Four</h3>
-              <p className={style.stepBody}>If they get hired then everyone gets rewarded - Everyone's a winner.</p>
+              <p className={style.stepBody}>If they get hired then everyone gets rewarded - Everyone&apos;s a winner.</p>
             </AnimateAppearance>
           </li>
         </ul>

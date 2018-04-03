@@ -11,6 +11,7 @@ const Page = require('../../components/page')
 const Header = require('../../components/header')
 const NudjSuccess = require('../../components/nudj-success')
 const RandomHover = require('../../components/random-hover')
+const JobCard = require('../../components/job-card')
 
 const { render } = require('../../lib/templater')
 
@@ -36,7 +37,8 @@ const Job = props => {
   const image = get(company, 'logo')
   const application = get(job, 'application')
   const templates = get(props, 'templates')
-  const pageTitle = `${companyName} - ${jobTitle}`
+  const pageTitle = `${jobTitle} at ${companyName}`
+  const pageDescription = `Apply to be a ${jobTitle} at ${companyName} or share the opportunity with a friend and get rewarded if they get hired.`
 
   const relatedJobs = allJobs.filter(relatedJob => relatedJob.id !== job.id)
 
@@ -197,22 +199,19 @@ const Job = props => {
       <section className={style.related}>
         <h2 className={style.relatedTitle}>Other positions</h2>
         <ul className={style.list}>
-          {relatedJobs.map(related => (
-            <li
-              className={style.relatedJob}
-              key={related.title.split(' ').join('-')}
-            >
-              <p className={style.jobTitle}>
-                {related.title}
-              </p>
-              <Link
-                className={style.blockLink}
-                to={`/companies/${company.slug}/jobs/${related.slug}`}
-              >
-                <span className={style.bodyLinks}>View job ></span>
-              </Link>
-            </li>
-          ))}
+          {relatedJobs.map((related) => {
+            const url = `/companies/${company.slug}/jobs/${related.slug}`
+            return (
+              <li className={style.relatedJob} key={related.title.split(' ').join('-')}>
+                <JobCard
+                  jobHref={url}
+                  title={related.title}
+                  salary={related.remuneration}
+                  location={related.location}
+                />
+              </li>
+            )
+          })}
         </ul>
       </section>
     )
@@ -267,16 +266,18 @@ const Job = props => {
 
   return (
     <Page {...props} className={style.body}>
-      <Header />
       <Helmet>
         <title>{pageTitle}</title>
         <meta name='title' content={pageTitle} />
+        <meta name='description' content={pageDescription} />
         <meta property='og:title' content={pageTitle} />
+        <meta name='og:description' content={pageDescription} />
         <meta property='twitter:title' content={pageTitle} />
+        <meta name='twitter:description' content={pageDescription} />
         <meta property='twitter:image' content={image} />
         <meta property='og:image' content={image} />
-        <meta name='robots' content='none' />
       </Helmet>
+      <Header />
       {job.status === 'ARCHIVED' && (
         <section className={style.jobDeadContainer}>
           <div className={style.jobDeadNotice}>
