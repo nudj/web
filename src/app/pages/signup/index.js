@@ -32,23 +32,62 @@ const SignUp = (props) => {
           <div className={style.fieldWrapContainer}>
             <div className={style.fieldWrapShortOdd}>
               <label className={style.fieldLabel} htmlFor='first_name'>First Name</label>
-              <input className={style.fieldInput} id='first_name' name='first_name' required type='text' />
+              <input
+                className={[
+                  style.fieldInput,
+                  'fs-hide'
+                ].join(' ')}
+                id='first_name'
+                name='first_name'
+                required
+                type='text'
+              />
             </div>
             <div className={style.fieldWrapShortEven}>
               <label className={style.fieldLabel} htmlFor='last_name'>Last Name</label>
-              <input className={style.fieldInput} id='last_name' name='last_name' required type='text' />
+              <input
+                className={[
+                  style.fieldInput,
+                  'fs-hide'
+                ].join(' ')}
+                id='last_name'
+                name='last_name'
+                required
+                type='text'
+              />
             </div>
             <div className={style.fieldWrap}>
               <label className={style.fieldLabel} htmlFor='email_address'>Email</label>
-              <input className={style.fieldInput} id='email' name='email' required type='text' />
+              <input
+                className={[
+                  style.fieldInput,
+                  'fs-hide'
+                ].join(' ')}
+                id='email'
+                name='email'
+                required
+                type='email'
+              />
             </div>
             <div className={style.fieldWrap}>
               <label className={style.fieldLabel} htmlFor='job_title'>Job Title</label>
-              <input className={style.fieldInput} id='job_title' name='job_title' type='text' />
+              <input
+                className={[
+                  style.fieldInput,
+                  'fs-hide'
+                ].join(' ')}
+                id='job_title'
+                name='job_title'
+                type='text'
+              />
             </div>
             <div className={style.fieldWrap}>
               <p className={style.helper}>Tell us what you do day-to-day</p>
-              <ul className={style.radioList}>
+              <ul className={[
+                style.radioList,
+                'fs-hide'
+              ].join(' ')}
+              >
                 <li className={style.radio}>
                   <input className={style.radioInput} type='radio' id='development' value='development' name='role' />
                   <label className={style.radioPrettyLabel} htmlFor='development' />
