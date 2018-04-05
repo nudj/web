@@ -87,6 +87,7 @@ const styles = {
     width: '100%'
   },
   jobs: merge(mixins.basicContainer(), mixins.deList(), {
+    width: '100%',
     display: 'flex',
     flexDirection: 'column',
     flexWrap: 'nowrap',
@@ -121,6 +122,10 @@ const styles = {
     paddingLeft: variables.padding.d,
     margin: variables.padding.e,
     flexBasis: '100%',
+    ':first-child:last-child': {
+      marginLeft: 'auto',
+      marginRight: 'auto'
+    },
     '@media(min-width: 55rem)': {
       flexBasis: `calc(50% - ${variables.padding.d})`
     }

@@ -78,6 +78,7 @@ const styles = {
   }),
   relatedTitle: merge({}, mixins.typography.title, mixins.makeOrangeSubtitleUnderlineOnGrey()),
   list: merge(mixins.basicContainer(), mixins.deList(), {
+    width: '100%',
     display: 'flex',
     flexDirection: 'column',
     flexWrap: 'nowrap',
@@ -87,7 +88,6 @@ const styles = {
     paddingRight: variables.padding.e,
     paddingBottom: variables.padding.d,
     paddingLeft: variables.padding.e,
-    width: '100%',
     '@media(min-width: 55rem)': {
       flexDirection: 'row',
       flexWrap: 'wrap',
@@ -113,6 +113,10 @@ const styles = {
     paddingLeft: variables.padding.d,
     margin: variables.padding.f,
     flexBasis: '100%',
+    ':first-child:last-child': {
+      marginLeft: 'auto',
+      marginRight: 'auto'
+    },
     '@media(min-width: 55rem)': {
       flexBasis: `calc(50% - ${variables.padding.d})`
     }

@@ -18,7 +18,7 @@ const words = [
 ]
 
 const HomePage = (props) => {
-  const pageTitle = `Find your next job, approved by people you trust only on nudj`
+  const pageTitle = `nudj - Find your next job, approved by people you trust.`
   const pageDescription = `Finding a job that you&apos;ll actually enjoy is hard. With nudj, your friends do the work for you, recommending you for roles they know you&apos;ll be interested in. No more recruiters. No more spam.`
 
   const style = getStyle()
