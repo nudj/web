@@ -19,7 +19,7 @@ const JobCard = props => {
       <div className={style.jobCardLeft}>
         <h2 className={style.jobTitle}>{title}</h2>
         { company && (
-        <Link className={style.companyTitle} to={companyHref}>{company}</Link>
+          <Link className={style.companyTitle} to={companyHref}>{company}</Link>
         )}
         <ul className={style.jobMetaList}>
           <li className={style.jobMetaItem}>
