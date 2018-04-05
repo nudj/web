@@ -26,25 +26,61 @@ const Request = (props) => {
         <input type='hidden' name='_csrf' value={props.csrfToken} />
         <div className={style.formHeader}>
           <h1 className={style.title}>Great jobs come to those who... nudj</h1>
-          <p className={style.subtitle}>Just enter your details below and we'll get back to you as soon as possible.</p>
+          <p className={style.subtitle}>Just enter your details below and we&apos;ll get back to you as soon as possible.</p>
         </div>
         <fieldset className={style.fieldSet} id='sign_up'>
           <div className={style.fieldWrapContainer}>
             <div className={style.fieldWrapShortOdd}>
               <label className={style.fieldLabel} htmlFor='first_name'>First Name</label>
-              <input className={style.fieldInput} id='first_name' name='first_name' required type='text' />
+              <input
+                className={[
+                  style.fieldInput,
+                  'fs-hide'
+                ].join(' ')}
+                id='first_name'
+                name='first_name'
+                required
+                type='text'
+              />
             </div>
             <div className={style.fieldWrapShortEven}>
               <label className={style.fieldLabel} htmlFor='last_name'>Last Name</label>
-              <input className={style.fieldInput} id='last_name' name='last_name' required type='text' />
+              <input
+                className={[
+                  style.fieldInput,
+                  'fs-hide'
+                ].join(' ')}
+                id='last_name'
+                name='last_name'
+                required
+                type='text'
+              />
             </div>
             <div className={style.fieldWrap}>
               <label className={style.fieldLabel} htmlFor='email_address'>Email</label>
-              <input className={style.fieldInput} id='email' name='email' required type='text' />
+              <input
+                className={[
+                  style.fieldInput,
+                  'fs-hide'
+                ].join(' ')}
+                id='email'
+                name='email'
+                required
+                type='email'
+              />
             </div>
             <div className={style.fieldWrap}>
               <label className={style.fieldLabel} htmlFor='company_name'>Company</label>
-              <input className={style.fieldInput} id='company_name' name='company_name' type='text' />
+              <input
+                className={[
+                  style.fieldInput,
+                  'fs-hide'
+                ].join(' ')}
+                id='company_name'
+                name='company_name'
+                required
+                type='text'
+              />
             </div>
           </div>
           <div className={style.fieldButtons}>
