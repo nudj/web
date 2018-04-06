@@ -202,6 +202,20 @@ module.exports = {
     }
     ${fragments.Person}
   `,
+  UpdatePerson: `
+    mutation UpdatePerson (
+      $id: ID!
+      $data: PersonUpdateInput!
+    ) {
+      person: updatePerson(
+        id: $id,
+        data: $data
+      ) {
+        ...Person
+      }
+    }
+    ${fragments.Person}
+  `,
   GetReferralAndJobForPerson: `
     query GetReferralAndJobForPerson (
       $companySlug: String!,
