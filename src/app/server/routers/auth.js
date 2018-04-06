@@ -78,6 +78,11 @@ const Router = ({
       .then((data) => {
         if (!data || !data.person) {
           return request(queries.CreatePerson, {email, firstName, lastName, url})
+        } else if (!data.person.firstName || !data.person.lastName) {
+          return request(queries.UpdatePerson, {
+            id: data.person.id,
+            data: { firstName, lastName }
+          })
         }
         return data
       })
