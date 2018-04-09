@@ -9,7 +9,7 @@ require('babel-register')({
   }
 })
 const path = require('path')
-const server = require('@nudj/framework/server')
+const createNudjApps = require('@nudj/framework/server')
 const logger = require('@nudj/framework/logger')
 
 const reactApp = require('./redux')
@@ -42,7 +42,7 @@ const spoofLoggedIn = (req, res, next) => {
 }
 const errorHandlers = require('./server/errorHandlers')
 
-const { app, getMockApiApps } = server({
+const app = createNudjApps({
   App: reactApp,
   reduxRoutes,
   reduxReducers,
@@ -57,15 +57,3 @@ const { app, getMockApiApps } = server({
 app.listen(80, () => {
   logger.log('info', 'Application running')
 })
-
-if (process.env.USE_MOCKS === 'true') {
-  const { jsonServer, gqlServer } = getMockApiApps({ data: mockData })
-
-  jsonServer.listen(81, () => {
-    logger.log('info', 'JSONServer running')
-  })
-
-  gqlServer.listen(82, () => {
-    logger.log('info', 'Mock GQL running')
-  })
-}
