@@ -35,7 +35,6 @@ const expressRouters = {
 }
 const expressAssetPath = path.join(__dirname, 'server/assets')
 const buildAssetPath = path.join(__dirname, 'server/build')
-const mockData = require('./mock-data')
 const spoofLoggedIn = (req, res, next) => {
   req.session.userId = process.env.SPOOF_USER_ID
   next()
@@ -49,7 +48,6 @@ const app = createNudjApps({
   expressRouters,
   expressAssetPath,
   buildAssetPath,
-  mockData,
   spoofLoggedIn,
   errorHandlers
 })
