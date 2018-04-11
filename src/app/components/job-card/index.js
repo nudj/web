@@ -21,16 +21,18 @@ const JobCard = props => {
         { company && (
           <Link className={style.companyTitle} to={companyHref}>{company}</Link>
         )}
-        <ul className={style.jobMetaList}>
-          <li className={style.jobMetaItem}>
-            <p className={style.metaTitle}>Salary</p>
-            <p className={style.metaData}>{salary}</p>
-          </li>
-          <li className={style.jobMetaItem}>
-            <p className={style.metaTitle}>Location</p>
-            <p className={style.metaData}>{location}</p>
-          </li>
-        </ul>
+        <div className={style.flexItem}>
+          <ul className={style.jobMetaList}>
+            <li className={style.jobMetaItem}>
+              <p className={style.metaTitle}>Salary</p>
+              <p className={style.metaData}>{salary}</p>
+            </li>
+            <li className={style.jobMetaItem}>
+              <p className={style.metaTitle}>Location</p>
+              <p className={style.metaData}>{location}</p>
+            </li>
+          </ul>
+        </div>
       </div>
       <div className={style.jobCardRight}>
         <Link className={style.jobLink} to={jobHref}>View job ></Link>
