@@ -13,8 +13,6 @@ const bodySubtitle = merge({
   textAlign: 'center'
 }, mixins.headings.h2)
 
-const subtitleUnderlineOrangeOnGrey = mixins.makeOrangeSubtitleUnderlineOnGrey()
-
 const styles = {
   body: {
     position: 'relative'
@@ -29,7 +27,7 @@ const styles = {
     textAlign: 'center'
   },
   hero: {
-    padding: `${variables.padding.b} 0`,
+    padding: `${variables.padding.b} ${variables.padding.d}`,
     position: 'relative'
   },
   heroTitle: heroTitle,
@@ -46,9 +44,9 @@ const styles = {
     justifyContent: 'left',
     alignItems: 'stretch',
     paddingTop: variables.padding.d,
-    paddingRight: variables.padding.e,
+    paddingRight: variables.padding.d,
     paddingBottom: variables.padding.d,
-    paddingLeft: variables.padding.e,
+    paddingLeft: variables.padding.d,
     '@media(min-width: 55rem)': {
       flexDirection: 'row',
       flexWrap: 'wrap',
@@ -82,7 +80,9 @@ const styles = {
       flexBasis: `calc(50% - ${variables.padding.d})`
     }
   }),
-  secondaryTitle: merge({}, bodySubtitle, subtitleUnderlineOrangeOnGrey),
+  secondaryTitle: merge({
+    [mixins.breakpoints.ns]: mixins.makeOrangeSubtitleUnderlineOnGrey()
+  }, bodySubtitle),
   bodyCopy: merge({
     color: variables.colors.charcoal,
     paddingBottom: variables.padding.d,
