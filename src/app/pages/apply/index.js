@@ -9,8 +9,8 @@ const Header = require('../../components/header')
 const Message = require('../../components/message')
 
 const Apply = (props) => {
-  const pageTitle = `Congratulations, you&apos;ve applied for a job on nudj!`
-  const pageDescription = `Someone from our team is now reviewing your profile and will get back to you shortly. We've also sent you an email confirming your application.`
+  const pageTitle = 'Congratulations, you\'ve applied for a job on nudj!'
+  const pageDescription = 'Someone from our team is now reviewing your profile and will get back to you shortly. We\'ve also sent you an email confirming your application.'
 
   const style = getStyle()
 
