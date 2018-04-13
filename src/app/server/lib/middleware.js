@@ -70,8 +70,9 @@ const noDirectApplyNudj = (req, res, next) => {
 }
 
 const cacheApplyNudjSecret = (req, res, next) => {
+  const queryString = req.originalUrl.substring(req.path.length)
   req.session.applyNudjSecret = createHash(8)
-  req.session.returnTo = `${req.path}/${req.session.applyNudjSecret}`
+  req.session.returnTo = `${req.path}/${req.session.applyNudjSecret}${queryString}`
   next()
 }
 
