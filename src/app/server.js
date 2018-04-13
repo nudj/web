@@ -8,9 +8,13 @@ require('babel-register')({
     return true
   }
 })
+
+const http = require('http')
 const path = require('path')
 const createNudjApps = require('@nudj/framework/server')
 const logger = require('@nudj/framework/logger')
+
+const useDevServer = process.env.USE_DEV_SERVER === 'true'
 
 const reactApp = require('./redux')
 const reduxRoutes = require('./redux/routes')
@@ -33,15 +37,16 @@ const expressRouters = {
     require('./server/routers/catch-all')
   ]
 }
-const expressAssetPath = path.join(__dirname, 'server/assets')
-const buildAssetPath = path.join(__dirname, 'server/build')
+const expressAssetPath = path.resolve('./app/server/assets')
+const buildAssetPath = !useDevServer && path.resolve('./app/server/build')
+
 const spoofLoggedIn = (req, res, next) => {
   req.session.userId = process.env.SPOOF_USER_ID
   next()
 }
 const errorHandlers = require('./server/errorHandlers')
 
-const app = createNudjApps({
+let app = createNudjApps({
   App: reactApp,
   reduxRoutes,
   reduxReducers,
@@ -52,6 +57,67 @@ const app = createNudjApps({
   errorHandlers
 })
 
-app.listen(80, () => {
+const server = http.createServer(app)
+
+server.listen(80, () => {
   logger.log('info', 'Application running')
 })
+
+if (module.hot) {
+  module.hot.accept([
+    './redux',
+    './redux/routes',
+    './redux/reducers',
+    path.resolve('./pages'),
+    path.resolve('./components'),
+    './server/routers/email-tracking',
+    './server/routers/auth',
+    './pages/home/router',
+    './pages/hirer/router',
+    './pages/request/router',
+    './pages/signup/router',
+    './pages/job/router',
+    './pages/all-jobs/router',
+    './pages/companies/router',
+    './pages/apply/router',
+    './pages/nudj/router',
+    './server/routers/catch-all'
+  ], () => {
+    const updatedReactApp = require('./redux')
+    const updatedReduxRoutes = require('./redux/routes')
+    const updatedReduxReducers = require('./redux/reducers')
+    const updatedExpressRouters = {
+      insecure: [
+        require('./server/routers/email-tracking')
+      ],
+      secure: [
+        require('./server/routers/auth'),
+        require('./pages/home/router'),
+        require('./pages/hirer/router'),
+        require('./pages/request/router'),
+        require('./pages/signup/router'),
+        require('./pages/job/router'),
+        require('./pages/all-jobs/router'),
+        require('./pages/companies/router'),
+        require('./pages/apply/router'),
+        require('./pages/nudj/router'),
+        require('./server/routers/catch-all')
+      ]
+    }
+
+    server.removeListener('request', app)
+    const newApp = createNudjApps({
+      App: updatedReactApp,
+      reduxRoutes: updatedReduxRoutes,
+      reduxReducers: updatedReduxReducers,
+      expressRouters: updatedExpressRouters,
+      expressAssetPath,
+      buildAssetPath,
+      spoofLoggedIn,
+      errorHandlers
+    })
+
+    server.on('request', newApp)
+    app = newApp
+  })
+}
