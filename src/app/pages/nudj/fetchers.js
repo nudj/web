@@ -23,7 +23,7 @@ const post = ({ params, session, query }) => {
           slug
           title
           bonus
-          referral: createReferral(
+          referral: createReferralForUser(
             person: $person,
             parent: $parent
           ) {
