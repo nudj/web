@@ -1,46 +1,163 @@
 const React = require('react')
 const { Helmet } = require('react-helmet')
-const get = require('lodash/get')
-const RandomHover = require('../../components/random-hover')
 
-const getStyle = require('./style.css')
+const {
+  InputField,
+  Input,
+  Button
+} = require('@nudj/components')
+const mss = require('@nudj/components/lib/css/modifiers.css')
+
+const { styleSheet, getLegacyStyles } = require('./style.css')
 const Page = require('../../components/page')
 const Header = require('../../components/header')
 const Message = require('../../components/message')
 
-const Apply = (props) => {
-  const pageTitle = 'Congratulations, you\'ve applied for a job on nudj!'
-  const pageDescription = 'Someone from our team is now reviewing your profile and will get back to you shortly. We\'ve also sent you an email confirming your application.'
+class ApplicationUpdate extends React.Component {
+  constructor (props) {
+    super(props)
 
-  const style = getStyle()
+    const { user } = props.app
 
-  return (<Page {...props} className={style.bodyContainer}>
-    <Helmet>
-      <title>{pageTitle}</title>
-      <meta name='description' content={pageDescription} />
-      <meta name='title' content={pageTitle} />
-      <meta property='og:description' content={pageDescription} />
-      <meta property='twitter:description' content={pageDescription} />
-      <meta property='og:type' content='website' />
-      <meta property='og:title' content={pageTitle} />
-      <meta property='twitter:card' content={pageTitle} />
-      <meta property='twitter:title' content={pageTitle} />
-      <meta property='og:site_name' content='nudj' />
-    </Helmet>
-    <Message message={get(props, 'message')} />
-    <Header />
-    <div className={style.body}>
-      <div className={style.content}>
-        <div className={style.formHeaderSuccess}>
-          <h1 className={style.title}>Nice one, you've applied!</h1>
-          <p className={style.subtitle}>We're now taking a quick look at your profile to check that it matches what the company is looking for (read more about why we do this <a href='http://help.nudj.co/the-nudj-platform/for-people-looking-for-jobs-and-referring-friends/what-happens-after-i-apply' className={style.link}>here</a>).</p>
-          <p className={style.subtitle}>In the meantime if you have a question our team are on hand to answer, so just hit the button below to speak to an actual human being!</p>
-          <p className={style.subtitle}><RandomHover><a href='mailto:help@nudj.co' id='open-intercom' className={style.button}>Ask us a question</a></RandomHover></p>
-          <img className={style.thumbsUp} src='/assets/images/thumbs-up.svg' alt='Thumbs up' />
+    this.state = {
+      title: user.title || '',
+      company: user.company || '',
+      url: user.url || ''
+    }
+  }
+
+  handleInputChange = ({ name, value }) => {
+    this.setState({
+      [name]: value
+    })
+  }
+
+  render () {
+    const pageTitle = 'Congratulations, you\'ve applied for a job on nudj!'
+    const pageDescription = 'Someone from our team is now reviewing your profile and will get back to you shortly. We\'ve also sent you an email confirming your application.'
+
+    const style = getLegacyStyles()
+
+    const {
+      app: {
+        company: {
+          name: companyName
+        },
+        message
+      },
+      match: {
+        params: {
+          companySlug,
+          jobId
+        }
+      },
+      csrfToken
+    } = this.props
+
+    const { title, company, url } = this.state
+
+    const jobUrl = `/companies/${companySlug}/jobs/${jobId}`
+
+    return (
+      <Page {...this.props}>
+        <Helmet>
+          <title>{pageTitle}</title>
+          <meta name='description' content={pageDescription} />
+          <meta name='title' content={pageTitle} />
+          <meta property='og:description' content={pageDescription} />
+          <meta property='twitter:description' content={pageDescription} />
+          <meta property='og:type' content='website' />
+          <meta property='og:title' content={pageTitle} />
+          <meta property='twitter:card' content={pageTitle} />
+          <meta property='twitter:title' content={pageTitle} />
+          <meta property='og:site_name' content='nudj' />
+        </Helmet>
+        <Message message={message} />
+        <Header />
+        <div className={style.body}>
+          <div className={style.content}>
+            <div className={style.formHeader}>
+              <h1 className={style.title}>Tell us a bit more about yourself</h1>
+              <p className={style.subtitle}>
+                So the folks at {companyName} can get a better idea of who you are
+                and what you&apos;ve done, we&apos;d like to get a few more details from you.
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </Page>)
+        <div className={style.formSection}>
+          <form
+            method='POST'
+            action={`${jobUrl}/apply/complete`}
+            className={style.form}
+          >
+            <input type='hidden' name='_csrf' value={csrfToken} />
+            <InputField
+              styleSheet={{
+                root: styleSheet.inputField,
+                label: styleSheet.inputFieldLabel,
+                description: styleSheet.inputFieldDescription
+              }}
+              htmlFor='title'
+              label='Current job title'
+            >
+              <Input
+                id='title'
+                name='title'
+                placeholder='e.g., Marketing Executive'
+                value={title}
+                onChange={this.handleInputChange}
+              />
+            </InputField>
+            <InputField
+              styleSheet={{
+                root: styleSheet.inputField,
+                label: styleSheet.inputFieldLabel,
+                description: styleSheet.inputFieldDescription
+              }}
+              htmlFor='company'
+              label='Current employer'
+            >
+              <Input
+                id='company'
+                name='company'
+                placeholder='e.g., Apple'
+                value={company}
+                onChange={this.handleInputChange}
+              />
+            </InputField>
+            <InputField
+              styleSheet={{
+                root: styleSheet.inputField,
+                label: styleSheet.inputFieldLabel,
+                description: styleSheet.inputFieldDescription
+              }}
+              htmlFor='url'
+              label='Profile URL'
+              description='e.g., your LinkedIn profile or your personal website'
+            >
+              <Input
+                id='url'
+                name='url'
+                placeholder='https://linkedin.com/in/profile'
+                value={url}
+                onChange={this.handleInputChange}
+              />
+            </InputField>
+            <div className={style.buttonContainer}>
+              <Button
+                style={mss.mtLgIi}
+                volume='cheer'
+                type='submit'
+              >
+                Submit application
+              </Button>
+            </div>
+          </form>
+        </div>
+      </Page>
+    )
+  }
 }
 
-module.exports = Apply
+module.exports = ApplicationUpdate
