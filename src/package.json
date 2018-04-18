@@ -20,7 +20,8 @@
       "app/server/build*",
       "app/node_modules",
       "@nudj",
-      "webpack*"
+      "webpack*",
+      "hot*"
     ]
   },
   "scripts": {

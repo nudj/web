@@ -1,32 +1,32 @@
-const post = ({ params, session, query }) => {
+const postApplication = (props) => {
+  const { params, session, query } = props
   const { userId } = session
   const { companySlug, jobSlug } = params
   const { referralId } = query
 
   const gql = `
-    mutation CreateApplicationForPerson (
-      $companySlug: String!
-      $jobSlug: String!
-      $person: ID!
-      $referral: ID = null
-    ) {
+    mutation CreateApplicationForPerson($companySlug: String!, $jobSlug: String!, $referralId: ID, $userId: ID!) {
       company: companyByFilters(filters: {
         slug: $companySlug
       }) {
+        name
+      }
+      job: jobByFilters(filters: {
+        slug: $jobSlug
+      }) {
         id
         slug
-        job: jobByFilters(filters: {
-          slug: $jobSlug
-        }) {
+        application: createApplication(
+          person: $userId,
+          referral: $referralId
+        ) {
           id
-          slug
-          application: createApplication(
-            person: $person,
-            referral: $referral
-          ) {
-            id
-          }
         }
+      }
+      user(id: $userId) {
+        company
+        title
+        url
       }
     }
   `
@@ -34,13 +34,16 @@ const post = ({ params, session, query }) => {
   const variables = {
     companySlug,
     jobSlug,
-    referral: referralId,
-    person: userId
+    referralId,
+    userId
   }
 
-  return { gql, variables }
+  return {
+    gql,
+    variables
+  }
 }
 
 module.exports = {
-  post
+  postApplication
 }
