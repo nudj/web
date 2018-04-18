@@ -1,7 +1,8 @@
-const { css } = require('@nudj/framework/css')
+const { css, merge } = require('@nudj/framework/css')
+const { StyleSheet } = require('@nudj/components/lib/css')
 const { mixins, variables } = require('../../lib/css')
 
-const styles = {
+const legacyStyles = {
   bodyContainer: {},
   body: mixins.flexColumn(),
   content: {
@@ -27,12 +28,27 @@ const styles = {
   radioInput: mixins.forms.inputRadio,
   radioPrettyLabel: mixins.forms.inputRadioLabel,
   radioLabel: mixins.forms.labelRadio,
+  termsLabel: merge({
+    color: variables.colors.charcoal
+  }, mixins.headings.p2),
   helper: mixins.forms.helperText,
   okHand: {
     left: `calc(${variables.padding.a} * -1)`,
     position: 'relative',
     top: variables.padding.b
+  },
+  link: {
+    color: variables.colors.royalBlue
   }
 }
 
-module.exports = css(styles)
+const styleSheet = StyleSheet.create({
+  checkboxLabel: {
+    alignItems: 'flex-start'
+  }
+})
+
+module.exports = {
+  getLegacyStyles: css(legacyStyles),
+  styleSheet
+}
