@@ -24,8 +24,12 @@ const postApplication = (props) => {
         }
       }
       user(id: $userId) {
-        company
-        title
+        company {
+          name
+        }
+        role {
+          name
+        }
         url
       }
     }

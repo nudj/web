@@ -1,5 +1,6 @@
 const React = require('react')
 const { Helmet } = require('react-helmet')
+const get = require('lodash/get')
 
 const {
   InputField,
@@ -20,8 +21,8 @@ class ApplicationUpdate extends React.Component {
     const { user } = props.app
 
     this.state = {
-      title: user.title || '',
-      company: user.company || '',
+      role: get(user, 'role.name', ''),
+      company: get(user, 'company.name', ''),
       url: user.url || ''
     }
   }
@@ -54,7 +55,7 @@ class ApplicationUpdate extends React.Component {
       csrfToken
     } = this.props
 
-    const { title, company, url } = this.state
+    const { role, company, url } = this.state
 
     const jobUrl = `/companies/${companySlug}/jobs/${jobId}`
 
@@ -98,14 +99,14 @@ class ApplicationUpdate extends React.Component {
                 label: styleSheet.inputFieldLabel,
                 description: styleSheet.inputFieldDescription
               }}
-              htmlFor='title'
+              htmlFor='role'
               label='Current job title'
             >
               <Input
-                id='title'
-                name='title'
+                id='role'
+                name='role'
                 placeholder='e.g., Marketing Executive'
-                value={title}
+                value={role}
                 onChange={this.handleInputChange}
               />
             </InputField>
