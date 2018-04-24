@@ -23,7 +23,7 @@ const postApplication = (props) => {
           id
         }
       }
-      user(id: $userId) {
+      user {
         company {
           name
         }
