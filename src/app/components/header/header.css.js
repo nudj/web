@@ -53,7 +53,7 @@ const link = merge({}, mixins.deLink({
   [mixins.breakpoints.l]: {
     display: 'block'
   }
-}), mixins.headings.h6)
+}), mixins.headings.h5)
 
 const request = mixins.buttonPrimary({
   display: 'none',
@@ -107,40 +107,10 @@ const navIntroAnimations = {
   animationTimingFunction: variables.transitions.mediumEasy.easing
 }
 
-const activeLinkUnderlineHiring = mixins.afterUnderlineSquiggle('link-underline-1.svg', '30%', {
-  textShadow: `0px 0px ${variables.colors.midRed}, -2px 1px ${variables.colors.midRed}, 1px 1px ${variables.colors.midRed}, 0px 1px ${variables.colors.midRed}`,
-  zIndex: '1',
-  '::after': {
-    left: 'auto',
-    margin: '0 auto',
-    top: '30px',
-    width: '76%',
-    zIndex: '-1',
-    height: '0.75rem'
-  }
-})
-
-const activeLinkUnderlineJobs = mixins.afterUnderlineSquiggle('link-underline-2.svg', '30%', {
-  zIndex: '1',
-  '::after': {
-    left: 'auto',
-    margin: '0 auto',
-    top: '32px',
-    width: '67%',
-    zIndex: '-1'
-  }
-})
-
-const activeLinkUnderlineAbout = mixins.afterUnderlineSquiggle('link-underline-1.svg', '30%', {
-  zIndex: '1',
-  '::after': {
-    left: 'auto',
-    margin: '0 auto',
-    top: '31px',
-    width: '55%',
-    zIndex: '-1'
-  }
-})
+const activeLinkUnderline = {
+  textDecoration: 'underline',
+  textDecorationSkip: 'ink'
+}
 
 const linkMobileLink = merge({
   color: variables.colors.white,
@@ -207,13 +177,13 @@ const styles = {
     transform: 'translate3d(0, 0, 0)'
   }, navBarConstant),
   link: link,
-  linkActiveHiring: merge(link, activeLinkUnderlineHiring, {
+  linkActiveHiring: merge(link, activeLinkUnderline, {
     color: variables.colors.white
   }),
-  linkActiveJobs: merge(link, activeLinkUnderlineJobs, {
+  linkActiveJobs: merge(link, activeLinkUnderline, {
     color: variables.colors.charcoal
   }),
-  linkActiveAbout: merge(link, activeLinkUnderlineAbout, {
+  linkActiveAbout: merge(link, activeLinkUnderline, {
     color: variables.colors.white
   }),
   linkLight: merge({}, link, {

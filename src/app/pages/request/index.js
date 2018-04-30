@@ -12,7 +12,6 @@ class Request extends React.Component {
     super(props)
 
     this.state = {
-      terms: false,
       privacy: false,
       contact: false
     }
@@ -23,8 +22,8 @@ class Request extends React.Component {
     this.setState({ [name]: checked })
   }
   render () {
-    const { terms, privacy, contact } = this.state
-    const formIsValid = contact && privacy && terms
+    const { privacy, contact } = this.state
+    const formIsValid = contact && privacy
     const style = getLegacyStyles()
     let html
     if (get(this.props, 'requestAccess.success')) {
@@ -32,7 +31,7 @@ class Request extends React.Component {
         <div className={style.content}>
           <div className={style.formHeader}>
             <h1 className={style.title}>Nice one!</h1>
-            <p className={style.subtitle}>Someone from our team will be in touch shortly.</p>
+            <p className={style.subtitle}>Someone from our team will be in touch shortly to arrange a demo.</p>
             <img className={style.okHand} src='/assets/images/ok-hand.svg' alt='Ok' />
           </div>
         </div>
@@ -42,8 +41,8 @@ class Request extends React.Component {
         <form className={style.content} action='/request' method='post'>
           <input type='hidden' name='_csrf' value={this.props.csrfToken} />
           <div className={style.formHeader}>
-            <h1 className={style.title}>Great jobs come to those who... nudj</h1>
-            <p className={style.subtitle}>Just enter your details below and we&apos;ll get back to you as soon as possible.</p>
+            <h1 className={style.title}>Discover how nudj can help you hire better</h1>
+            <p className={style.subtitle}>Just enter your details below and we&apos;ll get back to arrange a demo as soon as possible.</p>
           </div>
           <fieldset className={style.fieldSet} id='sign_up'>
             <div className={style.fieldWrapContainer}>
@@ -105,23 +104,6 @@ class Request extends React.Component {
                   styleSheet={{
                     labelContainer: styleSheet.checkboxLabel
                   }}
-                  checked={terms}
-                  onChange={this.handleCheckboxChange}
-                  id='terms'
-                  name='terms'
-                  value='terms'
-                  label={
-                    <span
-                      className={style.termsLabel}
-                    >
-                      I&apos;ve read and agree to nudj&apos;s <a className={style.link} href='https://help.nudj.co/pricing-privacy-and-terms/nudj-terms-of-service-eula'>terms and conditions</a>.
-                    </span>
-                  }
-                />
-                <Checkbox
-                  styleSheet={{
-                    labelContainer: styleSheet.checkboxLabel
-                  }}
                   checked={privacy}
                   onChange={this.handleCheckboxChange}
                   id='privacy'
@@ -148,7 +130,7 @@ class Request extends React.Component {
                     <span
                       className={style.termsLabel}
                     >
-                      I&apos;m happy for nudj to contact me about jobs that I or my friends might be interested in.
+                      I&apos;m happy for nudj to contact me.
                     </span>
                   }
                 />
@@ -161,7 +143,7 @@ class Request extends React.Component {
                 volume='cheer'
                 disabled={!formIsValid}
               >
-               Request access
+               Send information
               </Button>
             </div>
           </fieldset>

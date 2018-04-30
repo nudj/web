@@ -5,7 +5,6 @@ const { Helmet } = require('react-helmet')
 const getStyle = require('./style.css')
 const Page = require('../../components/page')
 const Header = require('../../components/header')
-const AnimateAppearance = require('../../components/animate-appearance')
 const RandomHover = require('../../components/random-hover')
 
 const Hirer = (props) => {
@@ -33,138 +32,167 @@ const Hirer = (props) => {
         textHighlightColour='royalBlue'
         location='/hiring' />
       <section className={style.hero}>
-        <AnimateAppearance from='bottom'>
-          <h1 className={style.heroTitle}>The best jobs aren&apos;t advertised. <br className={style.standardBreak} />The best talent isn’t looking. <br className={style.standardBreak} />Maybe they just need a nudj.</h1>
-        </AnimateAppearance>
+        <h1 className={style.heroTitle}>Hire better people for less</h1>
+        <p className={style.heroSubtitle}>
+          Referrals are best way to hire without breaking the bank. <br className={style.standardBreak} />
+          With our simple software you can make them the <span className={style.underline}>only</span> way to hire.
+        </p>
+      </section>
+      <section className={style.takeaway}>
+        <div className={style.takeawayLeft}>
+          <h2 className={style.bodyTitle}>How nudj can help</h2>
+          <p className={style.bodySubtitle}>Learn how our software can help your business.</p>
+        </div>
+        <div className={style.takeawayRight}>
+          <ul className={style.benefits}>
+            <li className={style.benefit}>
+              <h3 className={style.stepTitle}>Send more of the right referrals</h3>
+              <p className={style.stepCopy}>Discover who exactly from your network can help you find the right people and incentivise them to refer.</p>
+            </li>
+            <li className={style.benefit}>
+              <h3 className={style.stepTitle}>Attract higher quality employees</h3>
+              <p className={style.stepCopy}>Employees hired by referral are significantly more likely to stay at a company for longer and be more productive.</p>
+            </li>
+            <li className={style.benefit}>
+              <h3 className={style.stepTitle}>Spend less, get better results</h3>
+              <p className={style.stepCopy}>Referrals are significantly cheaper than any other hiring tool and with our risk-free pricing, you can make them work for your company.</p>
+            </li>
+          </ul>
+        </div>
       </section>
       <section className={style.how}>
         <div className={style.header}>
-          <AnimateAppearance from='bottom'>
-            <h2 className={style.bodyTitle}><span className={style.howUnderline}>How nudj works</span></h2>
-            <p className={style.bodySubtitle}>Easily ask for, track and reward referrals inside and outside your company.</p>
-          </AnimateAppearance>
+          <h2 className={style.bodyTitle}><span className={style.howUnderline}>How nudj works</span></h2>
+          <p className={style.bodySubtitle}>Easily ask for, track and reward referrals inside and outside your company.</p>
         </div>
         <ul className={style.steps}>
           <li className={style.step}>
             <img className={style.stepImage} src='/assets/images/hirer-page/tent-img.svg' />
             <div className={style.stepDescription}>
-              <AnimateAppearance from='left'>
-                <h2 className={style.stepTitle}><span className={style.red}>1.</span> <br className={style.break} />Get set-up in seconds</h2>
-                <p className={style.stepCopy}>Simply enter a few details about your company, and, hey-presto, your jobs will appear on the nudj network.</p>
-              </AnimateAppearance>
+              <h2 className={style.stepTitle}><span className={style.red}>1.</span> <br className={style.break} />Get set-up in seconds</h2>
+              <p className={style.stepCopy}>Simply email our team your job spec to our team and we'll upload to our platform for you, allowing anyone to refer or apply for your company's job.</p>
             </div>
           </li>
           <li className={style.stepReverse}>
             <img className={style.stepImageReverse} src='/assets/images/hirer-page/dot-img.svg' />
             <div className={style.stepDescriptionReverse}>
-              <AnimateAppearance from='right'>
-                <h2 className={style.stepTitle}><span className={style.red}>2.</span><br className={style.break} /> Connect the dots</h2>
-                <p className={style.stepCopy}>We&apos;ll automatically identify the people most likely to put you in touch with awesome talent, whether they’re in your network or ours.</p>
-              </AnimateAppearance>
+              <h2 className={style.stepTitle}><span className={style.red}>2.</span><br className={style.break} /> Connect the dots</h2>
+              <p className={style.stepCopy}>Invite your employees and once on-board, our software will help them identify who in their networks is most likely to connect them with awesome, vouched-for talent.</p>
             </div>
           </li>
           <li className={style.step}>
             <img className={style.stepImage} src='/assets/images/hirer-page/paper-planes-img.svg' />
             <div className={style.stepDescription}>
-              <AnimateAppearance from='left'>
-                <h2 className={style.stepTitle}><span className={style.red}>3.</span> <br className={style.break} />Make it personal</h2>
-                <p className={style.stepCopy}>Get help tailoring your messages and incentives to ensure those you ask take action.</p>
-              </AnimateAppearance>
+              <h2 className={style.stepTitle}><span className={style.red}>3.</span> <br className={style.break} />Make it personal</h2>
+              <p className={style.stepCopy}>One reason referral schemes fail is because they're just not personal. With our tested message templates and customisable incentives we can ensure everyone you ask takes action.</p>
             </div>
           </li>
           <li className={style.stepReverse}>
             <img className={style.stepImageReverse} src='/assets/images/hirer-page/review-the-best-img.svg' />
             <div className={style.stepDescriptionReverse}>
-              <AnimateAppearance from='right'>
-                <h2 className={style.stepTitle}><span className={style.red}>4.</span><br className={style.break} /> Review only the best</h2>
-                <p className={style.stepCopy}>Get a curated list of the best applicants and only the juicy details delivered straight to your inbox or ATS of your choice.</p>
-              </AnimateAppearance>
+              <h2 className={style.stepTitle}><span className={style.red}>4.</span><br className={style.break} /> Review only the best</h2>
+              <p className={style.stepCopy}>Referrals are known to help you attract the best talent, whether they're looking or not. After all, you wouldn't refer someone you didn't want to work with.</p>
             </div>
           </li>
           <li className={style.stepBottom}>
             <img className={style.stepImageBottom} src='/assets/images/hirer-page/paperwork.svg' />
             <div className={style.stepDescriptionBottom}>
-              <AnimateAppearance from='bottom'>
-                <h2 className={style.stepTitle}><span className={style.red}>5.</span><br className={style.break} /> Say goodbye to paperwork</h2>
-                <p className={style.stepCopy}>We’ll then handle all the admin and payments so you don&apos;t have to. One less thing for you to worry about.</p>
-              </AnimateAppearance>
+              <h2 className={style.stepTitle}><span className={style.red}>5.</span><br className={style.break} /> Say goodbye to paperwork</h2>
+              <p className={style.stepCopy}>We'll handle all the admin and payments so you don't have to. Giving you one less thing to worry about.</p>
             </div>
           </li>
         </ul>
       </section>
       <section className={style.compare}>
         <div className={style.header}>
-          <AnimateAppearance from='bottom'>
-            <h2 className={style.bodyTitle}><span className={style.compareUnderline}>How we compare</span></h2>
-            <p className={style.bodySubtitle}>Anyone can say they&apos;re the best, so we&apos;ll just let the numbers do the talking.</p>
-          </AnimateAppearance>
+          <h2 className={style.bodyTitle}><span className={style.compareUnderline}>How we compare</span></h2>
+          <p className={style.bodySubtitle}>Anyone can say they&apos;re the best, so we&apos;ll just let the numbers* do the talking.</p>
         </div>
-        <AnimateAppearance from='bottom'>
-          <table className={style.table}>
-            <thead>
-              <tr className={style.tableHeaderRow}>
-                <th className={style.tableHeaderFirst} />
-                <th className={style.tableHeader}>Recruiter</th>
-
-                <th className={style.tableHeader}>nudj<span className={style.red}>*</span></th>
-              </tr>
-            </thead>
-            <tbody className={style.tableBody}>
-              <tr className={style.tableRow}>
-                <td className={style.tableLeft}>Cost of Hire</td>
-                <td className={style.tableItem}>£5,000</td>
-
-                <td className={style.tableItemNudj}>£2,000</td>
-              </tr>
-              <tr className={style.tableRow}>
-                <td className={style.tableLeft}>Time to Hire</td>
-                <td className={style.tableItem}>55 Days</td>
-                <td className={style.tableItemNudj}>29 Days</td>
-              </tr>
-              <tr className={style.tableRow}>
-                <td className={style.tableLeft}>Interview Rate</td>
-                <td className={style.tableItem}>32%</td>
-                <td className={style.tableItemNudj}>75%</td>
-              </tr>
-              <tr className={style.tableRow}>
-                <td className={style.tableLeftFinal}>Fill Rate</td>
-                <td className={style.tableItem}>18%</td>
-                <td className={style.tableItemNudj}>41%</td>
-              </tr>
-            </tbody>
-          </table>
-        </AnimateAppearance>
-        <AnimateAppearance from='bottom'>
-          <p className={style.bodyNudj}>*based on tests with these lovely people.</p>
-        </AnimateAppearance>
+        <ul className={style.dataPoints}>
+          <li className={style.dataPoint}>
+            <h3 className={style.stepTitle}><span className={style.red}>85%</span> of applicants interviewed</h3>
+            <p className={style.stepCopy}>Not only are nudj applicants of a high-quality, but they also come vouched for, meaning the only sensible option is to interview them.</p>
+          </li>
+          <li className={style.dataPoint}>
+            <h3 className={style.stepTitle}><span className={style.red}>2x</span> faster to hire</h3>
+            <p className={style.stepCopy}>On average it takes 1 month to hire a candidate through nudj. That’s compared to almost 2 months when using a recruiter.</p>
+          </li>
+          <li className={style.dataPoint}>
+            <h3 className={style.stepTitle}><span className={style.red}>66%</span> cheaper than a recruiter</h3>
+            <p className={style.stepCopy}>With even the cheapest recruiters charing 15% of first year salary and with job boards not delivering for up to £500 a go, we&apos;re always cheaper,</p>
+          </li>
+        </ul>
+        <p className={style.bodyNudj}>*based on tests with these lovely people.</p>
       </section>
       <section className={style.clients}>
-        <AnimateAppearance from='bottom'>
-          <div className={style.logoWrapper}>
-            <img className={style.brand} src='/assets/images/hirer-page/mams.png' />
-            <img className={style.brand} src='/assets/images/hirer-page/ct.png' />
-            <img className={style.brand} src='/assets/images/hirer-page/mp.png' />
+        <div className={style.logoWrapper}>
+          <img className={style.brand} src='/assets/images/hirer-page/ct-2.png' />
+          <img className={style.brand} src='/assets/images/hirer-page/meem.png' />
+          <img className={style.brand} src='/assets/images/hirer-page/fundstack.png' />
+        </div>
+      </section>
+      <section className={style.referrals}>
+        <div className={style.header}>
+          <h2 className={style.bodyTitle}><span className={style.compareUnderline}>The power of referrals</span></h2>
+          <p className={style.bodySubtitle}>Referrals account for just 7% of applications but make up 40% of hires.</p>
+        </div>
+        <div className={style.barChart}>
+          <div className={style.chartImages}>
+            <img className={style.barLeft} src='assets/images/hirer-page/left-bar-chart.svg' />
+            <img className={style.barRight} src='assets/images/hirer-page/right-bar-chart.svg' />
+            <img className={style.barArrows} src='assets/images/hirer-page/arrows.svg' />
           </div>
-        </AnimateAppearance>
+          <div className={style.chartKey}>
+            <div className={style.keyOther}>
+              <h4 className={style.keyTitle}>Other channels</h4>
+              <p className={style.stepCopy}>
+                Expensive<br />
+                Hundreds of irrelevant applications<br />
+                No quality control<br />
+                Targets active candidates
+              </p>
+            </div>
+            <div className={style.keyReferrals}>
+              <h4 className={style.keyTitle}>Referrals</h4>
+              <p className={style.stepCopy}>
+                Targets passive candidates<br />
+                Better cultural and team fit<br />
+                Higher quality<br />
+                Peer-vetted
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className={style.header}>
+          <p className={style.bodySubtitle}>So, why do you need nudj...</p>
+        </div>
+        <ul className={style.whys}>
+          <li className={style.why}>
+            <h3 className={style.stepTitle}><span className={style.red}>1.</span> Not personal enough</h3>
+            <p className={style.stepCopy}>Existing referral schemes involve setting a bonus and then sending generic emails announcing jobs to employees on-mass.</p>
+          </li>
+          <li className={style.why}>
+            <h3 className={style.stepTitle}><span className={style.red}>2.</span> Hard to find who to ask</h3>
+            <p className={style.stepCopy}>If employees do decide to share a job, they post it on social networks to nobody in particular.  Why? Because, while they might someone sutiable in their network, it’s a faff to find them.</p>
+          </li>
+          <li className={style.why}>
+            <h3 className={style.stepTitle}><span className={style.red}>3.</span> Money doesn’t always work</h3>
+            <p className={style.stepCopy}>Cash doesn't always motivate employees and it can have an adverse effect candidate quality if set to high. You also can’t easily reward those outside your company and, as a result, your job doesn’t reach everyone it should.</p>
+          </li>
+        </ul>
       </section>
       <section className={style.pricing}>
         <div className={style.pricingContainer}>
-          <AnimateAppearance from='bottom'>
-            <h2 className={style.pricingTitle}>How much does it cost?</h2>
-            <p className={style.pricingSubtitle}>A simple, one-off payment that is more than 50% less than a recruiter.</p>
-          </AnimateAppearance>
-          <AnimateAppearance from='bottom'>
-            <div className={style.pricingBox}>
-              <h2 className={style.price}>£2,000 per job*</h2>
-              <small className={style.pricingSmall}>*Payable within 30 days of making a hire.</small>
-            </div>
-          </AnimateAppearance>
+          <h2 className={style.pricingTitle}>Our pricing</h2>
+          <p className={style.pricingSubtitle}>One risk-free fee. You don’t hire anyone you don’t pay.</p>
+          <div className={style.pricingBox}>
+            <h2 className={style.price}>£2,000 per job*</h2>
+            <small className={style.pricingSmall}>*Payable within 30 days of making a hire.</small>
+          </div>
           <div className={style.cta}>
-            <AnimateAppearance from='bottom'>
-              <RandomHover><Link to='/request' className={style.signup} id='requestAccess'>Request access</Link></RandomHover>
-              <span className={style.or}>or</span>
-              <a href='mailto:hello@nudj.co' id='open-intercom' className={style.contact}>Get in touch</a>
-            </AnimateAppearance>
+            <RandomHover><a href='mailto:hello@nudj.co' id='open-intercom' className={style.signup}>Send us your jobs</a></RandomHover>
+            <span className={style.or}>or</span>
+            <Link to='/request' className={style.contact} id='requestAccess'>Request demo</Link>
           </div>
         </div>
       </section>

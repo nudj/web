@@ -48,79 +48,53 @@ const fonts = {
 const headings = {
   h1: {
     fontFamily: [fonts.jan.bold],
-    fontSize: variables.fontSizes.f2,
-    [breakpoints.ns]: {
-      fontSize: variables.fontSizes.f1
-    }
+    fontSize: variables.fontSizes.f1
   },
   h2: {
     fontFamily: [fonts.jan.bold],
-    fontSize: variables.fontSizes.f3,
-    [breakpoints.ns]: {
-      fontSize: variables.fontSizes.f2
-    }
+    fontSize: variables.fontSizes.f2
   },
   h3: {
     fontFamily: [fonts.jan.bold],
-    fontSize: variables.fontSizes.f4,
-    [breakpoints.ns]: {
-      fontSize: variables.fontSizes.f3
-    }
+    fontSize: variables.fontSizes.f3
   },
   h4: {
     fontFamily: [fonts.jan.bold],
-    fontSize: variables.fontSizes.f5,
-    [breakpoints.ns]: {
-      fontSize: variables.fontSizes.f4
-    }
+    fontSize: variables.fontSizes.f4
   },
   h4Light: {
     fontFamily: [fonts.jan.light],
     fontSize: variables.fontSizes.f5,
-    fontWeight: 'normal',
-    [breakpoints.ns]: {
-      fontSize: variables.fontSizes.f4
-    }
+    fontWeight: 'normal'
   },
   h5: {
     fontFamily: [fonts.jan.bold],
-    fontSize: variables.fontSizes.f6,
-    [breakpoints.ns]: {
-      fontSize: variables.fontSizes.f5
-    }
+    fontSize: variables.fontSizes.f6
+  },
+  h5Light: {
+    fontFamily: [fonts.jan.light],
+    fontSize: variables.fontSizes.f6
   },
   h6: {
     fontFamily: [fonts.jan.bold],
-    fontSize: variables.fontSizes.f7,
-    [breakpoints.ns]: {
-      fontSize: variables.fontSizes.f6
-    }
+    fontSize: variables.fontSizes.f7
   },
   p: {
     fontFamily: [fonts.jan.light],
-    fontSize: variables.fontSizes.f6,
+    fontSize: variables.fontSizes.f7,
     fontWeight: 'normal',
-    lineHeight: variables.sizes.copyLineHeight,
-    [breakpoints.ns]: {
-      fontSize: variables.fontSizes.f7
-    }
+    lineHeight: variables.sizes.copyLineHeight
   },
   p2: {
     fontFamily: [fonts.jan.light],
-    fontSize: variables.fontSizes.f7,
+    fontSize: variables.fontSizes.f8,
     fontWeight: 'normal',
-    lineHeight: variables.sizes.copyLineHeight,
-    [breakpoints.ns]: {
-      fontSize: variables.fontSizes.f8
-    }
+    lineHeight: variables.sizes.copyLineHeight
   },
   small: {
     fontFamily: [fonts.jan.light],
     fontSize: variables.fontSizes.f9,
-    fontWeight: 'normal',
-    [breakpoints.ns]: {
-      fontSize: variables.fontSizes.f9
-    }
+    fontWeight: 'normal'
   }
 }
 

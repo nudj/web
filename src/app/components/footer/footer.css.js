@@ -5,9 +5,9 @@ const titles = mixins.underlineHoverTransition(mixins.makeOrangeSubtitleUnderlin
   color: variables.colors.white,
   display: 'inline-block',
   margin: `0 0 ${variables.padding.d} 0`
-}), mixins.headings.h4, {
+}), mixins.headings.h5, {
   [mixins.breakpoints.l]: {
-    fontSize: mixins.headings.h6[mixins.breakpoints.ns].fontSize,
+    fontSize: mixins.headings.h6,
     margin: `0 0 ${variables.padding.f} 0`
   }
 })))
@@ -85,7 +85,7 @@ const styles = {
       display: 'block'
     },
     [mixins.breakpoints.l]: {
-      fontSize: mixins.headings.p2[mixins.breakpoints.ns].fontSize
+      fontSize: mixins.headings.p2
     }
   })
 }

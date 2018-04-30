@@ -34,9 +34,6 @@ class ApplicationUpdate extends React.Component {
   }
 
   render () {
-    const pageTitle = 'Congratulations, you\'ve applied for a job on nudj!'
-    const pageDescription = 'Someone from our team is now reviewing your profile and will get back to you shortly. We\'ve also sent you an email confirming your application.'
-
     const style = getLegacyStyles()
 
     const {
@@ -58,6 +55,9 @@ class ApplicationUpdate extends React.Component {
     const { role, company, url } = this.state
 
     const jobUrl = `/companies/${companySlug}/jobs/${jobId}`
+
+    const pageTitle = 'Complete your application'
+    const pageDescription = `Before sharing your profile with the team at ${companyName}, we just need a few more details from you.`
 
     return (
       <Page {...this.props}>

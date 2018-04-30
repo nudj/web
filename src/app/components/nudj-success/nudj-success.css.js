@@ -9,7 +9,7 @@ const sharingIcons = {
 
 const styles = {
   container: merge({}, mixins.headings.small, {
-    [mixins.breakpoints.ns]: merge({}, mixins.headings.p[mixins.breakpoints.ns])
+    [mixins.breakpoints.ns]: mixins.headings.p
   }),
   mobileMessage: {
     color: variables.colors.royalBlue,
