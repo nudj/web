@@ -143,8 +143,8 @@ class Header extends React.Component {
     const linkStyleAbout = isActiveAbout ? this.style[`${linkStyleName}ActiveAbout`] : this.style[linkStyleName]
     const requestStyle = mobile ? this.style.requestMobile : this.style.request
 
-    const companies = (<a href='/hiring' className={linkStyleHiring} id='hirerPage' onClick={this.onClickLink} key='1'>For employers</a>)
-    const jobs = (<a href='/jobs' className={linkStyleJobs} id='jobsPage' onClick={this.onClickLink} key='2'>Jobs on nudj</a>)
+    const companies = (<a href='/hiring' className={linkStyleHiring} id='hirerPage' onClick={this.onClickLink} key='1'>Companies</a>)
+    const jobs = (<a href='/jobs' className={linkStyleJobs} id='jobsPage' onClick={this.onClickLink} key='2'>All jobs</a>)
     const about = (<a href='/about' className={linkStyleAbout} id='aboutPage' onClick={this.onClickLink} key='3'>About</a>)
     const getInTouch = (<RandomHover key='4'><a href='mailto:help@nudj.co' id='open-intercom' className={requestStyle} onClick={this.onClickLink}>Get in touch</a></RandomHover>)
 

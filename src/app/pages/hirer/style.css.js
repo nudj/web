@@ -3,12 +3,22 @@ const { mixins, variables } = require('../../lib/css')
 
 const heroImagePath = 'hirer-page/fist-bump-group.svg'
 const heroImagePosition = 'bottom center'
-const heroImageHeight = '168px'
+const heroImageHeight = '10.5265rem'
+
+const takeawayImagePath = 'thumbs-up-right.svg'
+const takeawayImageHeight = '15.5rem'
+
+const oneFingerPath = 'hirer-page/one-finger.svg'
+const twoFingersPath = 'hirer-page/two-fingers.svg'
+const threeFingersPath = 'hirer-page/three-fingers.svg'
 
 const heroFisting = merge({
   backgroundColor: variables.colors.midRed,
   marginBottom: `calc(${heroImageHeight} * 0.5)`,
-  padding: `${variables.padding.b} 0 ${variables.padding.a} 0`,
+  paddingTop: variables.padding.b,
+  paddingBottom: variables.padding.a,
+  paddingLeft: variables.padding.d,
+  paddingRight: variables.padding.d,
   position: 'relative',
   '::after': mixins.makePsuedoElement({
     backgroundImage: mixins.linkImage(heroImagePath),
@@ -37,7 +47,12 @@ const subtitleWhite = merge({}, subtitle, {
   color: variables.colors.white
 })
 
-const subtitleUnderline = mixins.makeOrangeSubtitleUnderline()
+const subtitleUnderline = merge(mixins.makeOrangeSubtitleUnderline(), {
+  '@media(max-width: 28.125rem)': {
+    backgroundImage: 'none',
+    textShadow: 'none'
+  }
+})
 
 const stepContainer = mixins.basicContainer({
   padding: `${variables.padding.c} ${variables.padding.d} 0 ${variables.padding.d}`,
@@ -69,12 +84,14 @@ const stepCopy = merge({
 }, mixins.headings.p)
 
 const stepImage = {
-  padding: `0 0 ${variables.padding.d} 0`,
+  padding: `0 0 ${variables.padding.c} 0`,
   width: '100%',
   [mixins.breakpoints.ns]: {
     width: `calc(50% - ${variables.padding.c})`
   }
 }
+
+const deList = mixins.deList()
 
 const styles = {
   body: {
@@ -95,24 +112,101 @@ const styles = {
   },
   // Hero
   hero: heroFisting,
-  heroTitle: merge({}, mixins.typography.titleWhite, mixins.basicContainer()),
-  how: {
-    padding: `${variables.padding.c} 0 0 0`,
+  heroTitle: merge({
+    color: variables.colors.white,
+    paddingBottom: variables.padding.e,
+    textAlign: 'center'
+  }, mixins.headings.h2),
+  heroSubtitle: merge({
+    color: variables.colors.white,
+    textAlign: 'center'
+  }, mixins.headings.h5Light),
+  // Takeaways
+  takeaway: mixins.basicContainer({
+    paddingTop: variables.padding.b,
+    '@media(max-width: 60rem)': {
+      paddingBottom: takeawayImageHeight
+    },
     [mixins.breakpoints.ns]: {
-      padding: `${variables.padding.b} 0 0 0`
+      paddingTop: variables.padding.a
+    },
+    position: 'relative',
+    '::after': mixins.makePsuedoElement({
+      position: 'absolute',
+      backgroundImage: mixins.linkImage(takeawayImagePath),
+      backgroundSize: 'auto',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'bottom left',
+      height: takeawayImageHeight,
+      left: '-15rem',
+      width: '150vw',
+      '@media(max-width: 32.5rem)': {
+        left: '-25rem',
+        width: '220vw'
+      }
+    }),
+    '@media(min-width: 60rem)': {
+      '::after': mixins.makePsuedoElement({
+        backgroundImage: mixins.linkImage(takeawayImagePath),
+        backgroundPosition: 'bottom left',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'auto',
+        bottom: '0.5rem',
+        height: takeawayImageHeight,
+        left: '-25rem',
+        position: 'absolute',
+        width: '100vw'
+      })
+    }}),
+  takeawayLeft: {
+    [mixins.breakpoints.l]: {
+      width: '50%',
+      textAlign: 'left',
+      verticalAlign: 'top'
+    },
+    width: '100%',
+    paddingLeft: '0',
+    textAlign: 'center',
+    display: 'inline-block'
+  },
+  takeawayRight: {
+    width: '100%',
+    textAlign: 'left',
+    display: 'block',
+    paddingTop: variables.padding.c,
+    margin: '0 auto',
+    maxWidth: variables.sizes.contentMediumMaxWidth,
+    [mixins.breakpoints.l]: {
+      width: '50%',
+      verticalAlign: 'top',
+      display: 'inline-block'
+    },
+    [mixins.breakpoints.ns]: {
+      paddingTop: '0'
     }
   },
-  bodyTitle: merge({}, heroSubtitle, subtitleUnderline),
-  pricingTitle: subtitleWhite,
-  howUnderline: {},
-  bodySubtitle: merge({}, stepCopy, {
-    textAlign: 'center'
+  benefits: deList,
+  // Section: How nudj works
+  how: mixins.basicContainerLarge({
+    paddingTop: variables.padding.b,
+    paddingLeft: variables.padding.d,
+    paddingRight: variables.padding.d,
+    [mixins.breakpoints.ns]: {
+      paddingTop: variables.padding.a
+    }
   }),
+  bodyTitle: merge({}, heroSubtitle, subtitleUnderline),
+  howUnderline: {},
+  bodySubtitle: merge({
+    color: variables.colors.charcoal,
+    paddingBottom: variables.padding.b
+  }, mixins.headings.h5Light),
   pricingSubtitle: merge({}, stepCopy, {
     color: variables.colors.white,
     textAlign: 'center'
   }),
   steps: mixins.deList({
+    paddingBottom: variables.padding.b,
     '::after': mixins.makePsuedoElement({
       backgroundImage: mixins.linkImage('hirer-page/page-break-img.svg'),
       backgroundPosition: 'center center',
@@ -162,50 +256,174 @@ const styles = {
   }),
   footerImage: {},
   compare: mixins.basicContainerMedium({
-    width: '100%',
-    padding: `${variables.padding.c} ${variables.padding.d} ${variables.padding.d} ${variables.padding.d}`,
-    [mixins.breakpoints.ns]: {
-      padding: `${variables.padding.b} ${variables.padding.d} ${variables.padding.b} ${variables.padding.d}`
-    }
+    width: '100%'
   }),
+  // Section: Compare
   header: {
     textAlign: 'center'
   },
   compareUnderline: {},
-  table: mixins.basicTable.table,
-  tableHeaderRow: mixins.basicTable.tableHeaderRow,
-  tableHeaderFirst: mixins.basicTable.tableHeaderFirst,
-  tableHeader: mixins.basicTable.tableHeader,
-  tableBody: mixins.basicTable.tableBody,
-  tableRow: mixins.basicTable.tableRow,
-  tableLeft: mixins.basicTable.tableCellLeft,
-  tableLeftFinal: mixins.basicTable.tableCellLeftFinal,
-  tableItem: mixins.basicTable.tableCell,
-  tableItemNudj: mixins.basicTable.tableCellBold,
-  bodyNudj: merge(mixins.textHighlight({
-    padding: `${variables.padding.d} 0`,
+  dataPoints: deList,
+  dataPoint: {
+    paddingBottom: variables.padding.d
+  },
+  bodyNudj: merge({
+    paddingBottom: variables.padding.c,
     textAlign: 'center'
-  }), mixins.headings.small),
-  clients: mixins.makeGreyBackground({
-    padding: `${variables.padding.c} 0 ${variables.padding.b} 0`
-  }),
-  logoWrapper: mixins.basicContainer({
-    [mixins.breakpoints.ns]: {
-      alignItems: 'center',
-      display: 'flex',
-      justifyContent: 'space-around'
+  }, mixins.headings.small),
+  // Section: Clients
+  clients: {
+    paddingBottom: variables.padding.b
+  },
+  logoWrapper: merge(mixins.basicContainerMedium(), {
+    width: '100%',
+    '@media(max-width: 38rem)': {
+      maxWidth: '300px',
+      margin: '0 auto'
     }
   }),
   brand: {
-    display: 'block',
-    maxWidth: '250px', // ?
+    display: 'inline-block',
+    verticalAlign: 'middle',
+    margin: '0 auto',
     width: '100%',
-    [mixins.breakpoints.ns]: {
-      maxWidth: 'none',
-      padding: `0 ${variables.padding.d}`,
-      width: '33.3%'
+    paddingBottom: variables.padding.b,
+    paddingLeft: variables.padding.d,
+    paddingRight: variables.padding.d,
+    '@media(min-width: 38rem)': {
+      paddingBottom: '0',
+      width: '33%'
+    },
+    ':last-child': {
+      paddingBottom: '0'
     }
   },
+  // Section: The power of referrals
+  referrals: mixins.basicContainerLarge({
+    width: '100%',
+    paddingBottom: variables.padding.b
+  }),
+  // Sub-section: Bar chart
+  barChart: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    width: '100%',
+    maxWidth: '68.75rem',
+    margin: '0 auto',
+    paddingBottom: variables.padding.b
+  },
+  barArrows: {
+    display: 'none',
+    '@media(min-width: 69rem)': {
+      display: 'block'
+    }
+  },
+  chartImages: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    flexGrow: '1',
+    paddingLeft: variables.padding.d,
+    paddingRight: variables.padding.d,
+    paddingBottom: variables.padding.d,
+    '@media(max-width: 25.75rem)': {
+      paddingLeft: '0',
+      paddingRight: '0',
+      width: '100%'
+    }
+  },
+  barLeft: {
+    paddingBottom: variables.padding.c,
+    '@media(min-width: 60.25rem)': {
+      paddingBottom: '0'
+    }
+  },
+  barRight: {
+    paddingBottom: variables.padding.c,
+    '@media(min-width: 60.25rem)': {
+      paddingBottom: '0'
+    }
+  },
+  keyTitle: merge({
+    display: 'block',
+    '@media(min-width: 60.25rem)': {
+      display: 'none'
+    }
+  }, mixins.headings.pBold),
+  chartKey: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    alignItems: 'flex-start',
+    flexGrow: '0',
+    '@media(max-width: 60.25rem)': {
+      flexDirection: 'row',
+      flexGrow: '1',
+      flexWrap: 'wrap'
+    }
+  },
+  keyOther: {
+    '@media(max-width: 30.625rem)': {
+      maxWidth: '13.4375rem'
+    }
+  },
+  keyReferrals: {
+    '@media(max-width: 30.625rem)': {
+      maxWidth: '13.4375rem',
+      width: '100%'
+    }
+  },
+  // Sub-section: Whys
+  whys: merge(deList, {
+    position: 'relative',
+    maxWidth: variables.sizes.contentMediumMaxWidth,
+    margin: '0 auto',
+    width: '100%'
+  }),
+  why: {
+    paddingBottom: variables.padding.d,
+    ':first-child:after': mixins.makePsuedoElement({
+      backgroundImage: mixins.linkImage(oneFingerPath),
+      backgroundPosition: 'top right',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'auto',
+      top: '0',
+      height: '15.5rem',
+      right: '-36rem',
+      position: 'absolute',
+      width: '100vw'
+    }),
+    ':nth-child(2):after': mixins.makePsuedoElement({
+      backgroundImage: mixins.linkImage(twoFingersPath),
+      backgroundPosition: 'top left',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'auto',
+      top: '8rem',
+      height: '15.5rem',
+      left: '-34rem',
+      position: 'absolute',
+      width: '100vw'
+    }),
+    ':nth-child(3):after': mixins.makePsuedoElement({
+      backgroundImage: mixins.linkImage(threeFingersPath),
+      backgroundPosition: 'bottom right',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'auto',
+      bottom: '-15rem',
+      height: '25rem',
+      right: '-10rem',
+      position: 'absolute',
+      width: '100vw'
+    })
+  },
+  // Section: Pricing
+  pricingTitle: merge({
+    color: variables.colors.white,
+    paddingBottom: variables.padding.d
+  }, mixins.headings.h2),
   pricing: mixins.makeOrangeBackground({
     padding: `${variables.padding.b} 0 ${variables.padding.c} 0`
   }),
