@@ -8,8 +8,8 @@ const Header = require('../../components/header')
 const RandomHover = require('../../components/random-hover')
 
 const Hirer = (props) => {
-  const pageTitle = `Hire great people, faster, for less`
-  const pageDescription = `nudj makes it effortless for the best businesses to engage with the best talent, utilising connections they both have.`
+  const pageTitle = `Supercharge your referral scheme with nudj`
+  const pageDescription = `nudj makes it effortless for you and your team to ask for, track, and reward referrals.`
 
   const style = getStyle()
   return (
@@ -32,10 +32,9 @@ const Hirer = (props) => {
         textHighlightColour='royalBlue'
         location='/hiring' />
       <section className={style.hero}>
-        <h1 className={style.heroTitle}>Hire better people for less</h1>
+        <h1 className={style.heroTitle}>Supercharge your referral scheme</h1>
         <p className={style.heroSubtitle}>
-          Referrals are best way to hire without breaking the bank. <br className={style.standardBreak} />
-          With our simple software you can make them the <span className={style.underline}>only</span> way to hire.
+          Easily ask for, track and reward referrals inside and outside your company.
         </p>
       </section>
       <section className={style.takeaway}>
@@ -50,8 +49,8 @@ const Hirer = (props) => {
               <p className={style.stepCopy}>Discover who exactly from your network can help you find the right people and incentivise them to refer.</p>
             </li>
             <li className={style.benefit}>
-              <h3 className={style.stepTitle}>Attract higher quality employees</h3>
-              <p className={style.stepCopy}>Employees hired by referral are significantly more likely to stay at a company for longer and be more productive.</p>
+              <h3 className={style.stepTitle}>Attract high quality employees</h3>
+              <p className={style.stepCopy}>Employees hired by referral are likely to be more productive and stay for longer. We help you hire more of them.</p>
             </li>
             <li className={style.benefit}>
               <h3 className={style.stepTitle}>Spend less, get better results</h3>
@@ -63,42 +62,41 @@ const Hirer = (props) => {
       <section className={style.how}>
         <div className={style.header}>
           <h2 className={style.bodyTitle}><span className={style.howUnderline}>How nudj works</span></h2>
-          <p className={style.bodySubtitle}>Easily ask for, track and reward referrals inside and outside your company.</p>
         </div>
         <ul className={style.steps}>
           <li className={style.step}>
             <img className={style.stepImage} src='/assets/images/hirer-page/tent-img.svg' />
             <div className={style.stepDescription}>
-              <h2 className={style.stepTitle}><span className={style.red}>1.</span> <br className={style.break} />Get set-up in seconds</h2>
-              <p className={style.stepCopy}>Simply email our team your job spec to our team and we'll upload to our platform for you, allowing anyone to refer or apply for your company's job.</p>
+              <h2 className={style.stepTitle}><span className={style.red}>1.</span> <br className={style.break} /> Get set up in seconds</h2>
+              <p className={style.stepCopy}>Send us your job specs and we&apos;ll upload them to our platform for you, instantly allowing anyone to refer or apply for your company&apos;s jobs.</p>
             </div>
           </li>
           <li className={style.stepReverse}>
             <img className={style.stepImageReverse} src='/assets/images/hirer-page/dot-img.svg' />
             <div className={style.stepDescriptionReverse}>
               <h2 className={style.stepTitle}><span className={style.red}>2.</span><br className={style.break} /> Connect the dots</h2>
-              <p className={style.stepCopy}>Invite your employees and once on-board, our software will help them identify who in their networks is most likely to connect them with awesome, vouched-for talent.</p>
+              <p className={style.stepCopy}>Invite your team and once on-board, our software helps them identify who in their network is most likely to connect them with awesome, vouched-for talent.</p>
             </div>
           </li>
           <li className={style.step}>
             <img className={style.stepImage} src='/assets/images/hirer-page/paper-planes-img.svg' />
             <div className={style.stepDescription}>
               <h2 className={style.stepTitle}><span className={style.red}>3.</span> <br className={style.break} />Make it personal</h2>
-              <p className={style.stepCopy}>One reason referral schemes fail is because they're just not personal. With our tested message templates and customisable incentives we can ensure everyone you ask takes action.</p>
+              <p className={style.stepCopy}>Referral schemes often fail, because they lack personalisation. With our tested message templates and customisable incentives we can ensure everyone you ask takes action.</p>
             </div>
           </li>
           <li className={style.stepReverse}>
             <img className={style.stepImageReverse} src='/assets/images/hirer-page/review-the-best-img.svg' />
             <div className={style.stepDescriptionReverse}>
               <h2 className={style.stepTitle}><span className={style.red}>4.</span><br className={style.break} /> Review only the best</h2>
-              <p className={style.stepCopy}>Referrals are known to help you attract the best talent, whether they're looking or not. After all, you wouldn't refer someone you didn't want to work with.</p>
+              <p className={style.stepCopy}>Referrals help you attract the best talent, whether they&apos;re looking or not. With nudj you can also see who referred them and why.</p>
             </div>
           </li>
           <li className={style.stepBottom}>
             <img className={style.stepImageBottom} src='/assets/images/hirer-page/paperwork.svg' />
             <div className={style.stepDescriptionBottom}>
               <h2 className={style.stepTitle}><span className={style.red}>5.</span><br className={style.break} /> Say goodbye to paperwork</h2>
-              <p className={style.stepCopy}>We'll handle all the admin and payments so you don't have to. Giving you one less thing to worry about.</p>
+              <p className={style.stepCopy}>We&apos;ll handle all the admin and payments so you don&apos;t have to. Giving you one less thing to worry about.</p>
             </div>
           </li>
         </ul>
@@ -111,15 +109,15 @@ const Hirer = (props) => {
         <ul className={style.dataPoints}>
           <li className={style.dataPoint}>
             <h3 className={style.stepTitle}><span className={style.red}>85%</span> of applicants interviewed</h3>
-            <p className={style.stepCopy}>Not only are nudj applicants of a high-quality, but they also come vouched for, meaning the only sensible option is to interview them.</p>
+            <p className={style.stepCopy}>Not only are nudj applicants high-quality, but they also come vouched for, meaning the only sensible option is to interview them.</p>
           </li>
           <li className={style.dataPoint}>
             <h3 className={style.stepTitle}><span className={style.red}>2x</span> faster to hire</h3>
-            <p className={style.stepCopy}>On average it takes 1 month to hire a candidate through nudj. That’s compared to almost 2 months when using a recruiter.</p>
+            <p className={style.stepCopy}>On average it takes 1 month to hire a candidate through nudj, compared to almost 2 months when using a recruiter.</p>
           </li>
           <li className={style.dataPoint}>
             <h3 className={style.stepTitle}><span className={style.red}>66%</span> cheaper than a recruiter</h3>
-            <p className={style.stepCopy}>With even the cheapest recruiters charing 15% of first year salary and with job boards not delivering for up to £500 a go, we&apos;re always cheaper,</p>
+            <p className={style.stepCopy}>With even the cheapest recruiters charging 15% and costly job board subscriptions not delivering, we offer better value for money.</p>
           </li>
         </ul>
         <p className={style.bodyNudj}>*based on tests with these lovely people.</p>
@@ -169,30 +167,30 @@ const Hirer = (props) => {
         <ul className={style.whys}>
           <li className={style.why}>
             <h3 className={style.stepTitle}><span className={style.red}>1.</span> Not personal enough</h3>
-            <p className={style.stepCopy}>Existing referral schemes involve setting a bonus and then sending generic emails announcing jobs to employees on-mass.</p>
+            <p className={style.stepCopy}>Existing referral schemes aren&apos;t engaging, becuase they&apos;re not personalised to each employee or referrer.</p>
           </li>
           <li className={style.why}>
             <h3 className={style.stepTitle}><span className={style.red}>2.</span> Hard to find who to ask</h3>
-            <p className={style.stepCopy}>If employees do decide to share a job, they post it on social networks to nobody in particular.  Why? Because, while they might someone sutiable in their network, it’s a faff to find them.</p>
+            <p className={style.stepCopy}>If employees do decide to share a job, they post it on social networks to nobody in particular. Why? Because, while there might be someone suitable in their network, it&apos;s a faff to find them.</p>
           </li>
           <li className={style.why}>
-            <h3 className={style.stepTitle}><span className={style.red}>3.</span> Money doesn’t always work</h3>
-            <p className={style.stepCopy}>Cash doesn't always motivate employees and it can have an adverse effect candidate quality if set to high. You also can’t easily reward those outside your company and, as a result, your job doesn’t reach everyone it should.</p>
+            <h3 className={style.stepTitle}><span className={style.red}>3.</span> Money doesn&apos;t always work</h3>
+            <p className={style.stepCopy}>Cash doesn&apos;t always motivate employees and it can have an adverse effect on candidate quality if set to high. Also, you can&apos;t easily reward those outside your company, meaning your job doesn&apos;t reach everyone it should.</p>
           </li>
         </ul>
       </section>
       <section className={style.pricing}>
         <div className={style.pricingContainer}>
           <h2 className={style.pricingTitle}>Our pricing</h2>
-          <p className={style.pricingSubtitle}>One risk-free fee. You don’t hire anyone you don’t pay.</p>
+          <p className={style.pricingSubtitle}>One risk-free fee. You don&apos;t hire anyone you don&apos;t pay.</p>
           <div className={style.pricingBox}>
             <h2 className={style.price}>£2,000 per job*</h2>
             <small className={style.pricingSmall}>*Payable within 30 days of making a hire.</small>
           </div>
           <div className={style.cta}>
-            <RandomHover><a href='mailto:hello@nudj.co' id='open-intercom' className={style.signup}>Send us your jobs</a></RandomHover>
+            <RandomHover><Link to='/request' id='requestAccess' className={style.signup}>Send us your jobs</Link></RandomHover>
             <span className={style.or}>or</span>
-            <Link to='/request' className={style.contact} id='requestAccess'>Request demo</Link>
+            <a href='mailto:hello@nudj.co' className={style.contact} id='open-intercom'>Request demo</a>
           </div>
         </div>
       </section>

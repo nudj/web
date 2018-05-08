@@ -33,6 +33,7 @@ class SignUp extends React.Component {
           <div className={style.formHeader}>
             <h1 className={style.title}>Nice one!</h1>
             <p className={style.subtitle}>Someone from our team will be in touch shortly.</p>
+            <p className={style.subtitle}>In the meantime, if you have any questions then <a href='mailto:hello@nudj.co' id='open-intercom' className={style.link}>get in touch</a>.</p>
             <img className={style.okHand} src='/assets/images/ok-hand.svg' alt='Ok' />
           </div>
         </div>
@@ -42,7 +43,7 @@ class SignUp extends React.Component {
         <form className={style.content} action='/signup' method='post'>
           <input type='hidden' name='_csrf' value={this.props.csrfToken} />
           <div className={style.formHeader}>
-            <h1 className={style.title}>Great jobs come to those who... nudj</h1>
+            <h1 className={style.title}>Great jobs come to those who nudj</h1>
             <p className={style.subtitle}>Just enter your details below and we&apos;ll get back to you as soon as possible.</p>
           </div>
           <fieldset className={style.fieldSet} id='sign_up'>

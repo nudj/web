@@ -199,7 +199,10 @@ const styles = {
   howUnderline: {},
   bodySubtitle: merge({
     color: variables.colors.charcoal,
-    paddingBottom: variables.padding.b
+    paddingBottom: variables.padding.c,
+    [mixins.breakpoints.ns]: {
+      paddingBottom: variables.padding.b
+    }
   }, mixins.headings.h5Light),
   pricingSubtitle: merge({}, stepCopy, {
     color: variables.colors.white,
@@ -256,7 +259,8 @@ const styles = {
   }),
   footerImage: {},
   compare: mixins.basicContainerMedium({
-    width: '100%'
+    width: '100%',
+    paddingTop: variables.padding.c
   }),
   // Section: Compare
   header: {
@@ -265,6 +269,7 @@ const styles = {
   compareUnderline: {},
   dataPoints: deList,
   dataPoint: {
+    paddingTop: variables.padding.d,
     paddingBottom: variables.padding.d
   },
   bodyNudj: merge({
@@ -273,7 +278,10 @@ const styles = {
   }, mixins.headings.small),
   // Section: Clients
   clients: {
-    paddingBottom: variables.padding.b
+    paddingBottom: variables.padding.b,
+    [mixins.breakpoints.ns]: {
+      paddingBottom: variables.padding.a
+    }
   },
   logoWrapper: merge(mixins.basicContainerMedium(), {
     width: '100%',
@@ -311,7 +319,11 @@ const styles = {
     width: '100%',
     maxWidth: '68.75rem',
     margin: '0 auto',
-    paddingBottom: variables.padding.b
+    paddingBottom: variables.padding.b,
+    paddingTop: variables.padding.d,
+    [mixins.breakpoints.ns]: {
+      paddingTop: '0'
+    }
   },
   barArrows: {
     display: 'none',
@@ -348,6 +360,7 @@ const styles = {
     }
   },
   keyTitle: merge({
+    color: variables.colors.charcoal,
     display: 'block',
     '@media(min-width: 60.25rem)': {
       display: 'none'

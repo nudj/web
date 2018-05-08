@@ -13,7 +13,8 @@ class Request extends React.Component {
 
     this.state = {
       privacy: false,
-      contact: false
+      contact: false,
+      terms: false
     }
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this)
   }
@@ -22,7 +23,7 @@ class Request extends React.Component {
     this.setState({ [name]: checked })
   }
   render () {
-    const { privacy, contact } = this.state
+    const { privacy, contact, terms } = this.state
     const formIsValid = contact && privacy
     const style = getLegacyStyles()
     let html
@@ -31,7 +32,8 @@ class Request extends React.Component {
         <div className={style.content}>
           <div className={style.formHeader}>
             <h1 className={style.title}>Nice one!</h1>
-            <p className={style.subtitle}>Someone from our team will be in touch shortly to arrange a demo.</p>
+            <p className={style.subtitle}>Our team will be in touch as soon as your jobs are live on nudj - usually within 1 working day.</p>
+            <p className={style.subtitle}>In the meantime, if you have any questions then <a href='mailto:hello@nudj.co' id='open-intercom' className={style.link}>get in touch</a>.</p>
             <img className={style.okHand} src='/assets/images/ok-hand.svg' alt='Ok' />
           </div>
         </div>
@@ -41,8 +43,8 @@ class Request extends React.Component {
         <form className={style.content} action='/request' method='post'>
           <input type='hidden' name='_csrf' value={this.props.csrfToken} />
           <div className={style.formHeader}>
-            <h1 className={style.title}>Discover how nudj can help you hire better</h1>
-            <p className={style.subtitle}>Just enter your details below and we&apos;ll get back to arrange a demo as soon as possible.</p>
+            <h1 className={style.title}>Great talent comes to those who nudj</h1>
+            <p className={style.subtitle}>Enter your details, add a link to your job(s) and we&apos;ll upload them onto nudj for you.</p>
           </div>
           <fieldset className={style.fieldSet} id='sign_up'>
             <div className={style.fieldWrapContainer}>
@@ -57,6 +59,7 @@ class Request extends React.Component {
                   name='first_name'
                   required
                   type='text'
+                  placeholder='Steve'
                 />
               </div>
               <div className={style.fieldWrapShortEven}>
@@ -70,6 +73,7 @@ class Request extends React.Component {
                   name='last_name'
                   required
                   type='text'
+                  placeholder='Jobs'
                 />
               </div>
               <div className={style.fieldWrap}>
@@ -83,6 +87,7 @@ class Request extends React.Component {
                   name='email'
                   required
                   type='email'
+                  placeholder='steve@apple.com'
                 />
               </div>
               <div className={style.fieldWrap}>
@@ -96,10 +101,43 @@ class Request extends React.Component {
                   name='company_name'
                   required
                   type='text'
+                  placeholder='Apple, Inc'
+                />
+              </div>
+              <div className={style.fieldWrap}>
+                <label className={style.fieldLabel} htmlFor='company_name'>Link to your job(s)</label>
+                <input
+                  className={[
+                    style.fieldInput,
+                    'fs-hide'
+                  ].join(' ')}
+                  id='job_url'
+                  name='job_url'
+                  required
+                  type='url'
+                  placeholder='https://www.apple.com/jobs/uk/'
                 />
               </div>
               <div className={style.terms}>
                 <label className={style.fieldLabel}>Terms, privacy and contact preferences</label>
+                <Checkbox
+                  styleSheet={{
+                    labelContainer: styleSheet.checkboxLabel
+                  }}
+                  checked={terms}
+                  onChange={this.handleCheckboxChange}
+                  id='terms'
+                  name='terms'
+                  value='terms'
+                  label={
+                    <span
+                      className={style.termsLabel}
+                    >
+                      I&apos;ve read and agree to nudj's <a className={style.link} href='https://help.nudj.co/pricing-privacy-and-terms/nudj-terms-of-service-eula'>terms and conditions</a>.
+                    </span>
+
+                  }
+                />
                 <Checkbox
                   styleSheet={{
                     labelContainer: styleSheet.checkboxLabel
