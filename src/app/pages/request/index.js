@@ -105,14 +105,14 @@ class Request extends React.Component {
                 />
               </div>
               <div className={style.fieldWrap}>
-                <label className={style.fieldLabel} htmlFor='company_name'>Link to your job(s)</label>
+                <label className={style.fieldLabel} htmlFor='external_job_url'>Link to your job(s)</label>
                 <input
                   className={[
                     style.fieldInput,
                     'fs-hide'
                   ].join(' ')}
-                  id='job_url'
-                  name='job_url'
+                  id='external_job_url'
+                  name='external_job_url'
                   required
                   type='url'
                   placeholder='https://www.apple.com/jobs/uk/'

@@ -5,14 +5,14 @@ const post = ({ body }) => {
       $lastName: String
       $email: String!
       $company: String
-      $jobUrl: String
+      $externalJobUrl: String
     ) {
       requestAccess (
         firstName: $firstName
         lastName: $lastName
         email: $email
         company: $company
-        jobUrl: $jobUrl
+        externalJobUrl: $externalJobUrl
       ) {
         success
       }
@@ -23,7 +23,7 @@ const post = ({ body }) => {
     lastName: body.last_name,
     email: body.email,
     company: body.company_name,
-    jobUrl: body.job_url
+    externalJobUrl: body.external_job_url
   }
 
   return { gql, variables }
