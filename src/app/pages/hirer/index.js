@@ -175,7 +175,7 @@ const Hirer = (props) => {
           </li>
           <li className={style.why}>
             <h3 className={style.stepTitle}><span className={style.red}>3.</span> Money doesn&apos;t always work</h3>
-            <p className={style.stepCopy}>Cash doesn&apos;t always motivate employees and it can have an adverse effect on candidate quality if set to high. Also, you can&apos;t easily reward those outside your company, meaning your job doesn&apos;t reach everyone it should.</p>
+            <p className={style.stepCopy}>Cash doesn&apos;t always motivate employees and it can have an adverse effect on candidate quality if set too high. Also, you can&apos;t easily reward those outside your company, meaning your job doesn&apos;t reach everyone it should.</p>
           </li>
         </ul>
       </section>
