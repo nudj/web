@@ -32,7 +32,7 @@ class Request extends React.Component {
         <div className={style.content}>
           <div className={style.formHeader}>
             <h1 className={style.title}>Nice one!</h1>
-            <p className={style.subtitle}>Our team will be in touch as soon as your jobs are live on nudj - usually within 1 working day.</p>
+            <p className={style.subtitle}>Look out for an email with your account details so you can get nudj&apos;ing</p>
             <p className={style.subtitle}>In the meantime, if you have any questions then <a href='mailto:hello@nudj.co' id='open-intercom' className={style.link}>get in touch</a>.</p>
             <img className={style.okHand} src='/assets/images/ok-hand.svg' alt='Ok' />
           </div>
@@ -44,7 +44,7 @@ class Request extends React.Component {
           <input type='hidden' name='_csrf' value={this.props.csrfToken} />
           <div className={style.formHeader}>
             <h1 className={style.title}>Great talent comes to those who nudj</h1>
-            <p className={style.subtitle}>Enter your details, add a link to your job(s) and we&apos;ll upload them onto nudj for you.</p>
+            <p className={style.subtitle}>Enter your details, add a link to your job(s) and we&apos;ll set you up within a day to get your referrals going.</p>
           </div>
           <fieldset className={style.fieldSet} id='sign_up'>
             <div className={style.fieldWrapContainer}>

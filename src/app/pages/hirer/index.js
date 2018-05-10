@@ -38,7 +38,13 @@ const Hirer = (props) => {
         </p>
         <div className={style.heroCta}>
           <RandomHover>
-            <a href='#pricing' className={style.signup}>Send us your jobs</a>
+            <Link
+              to='/request'
+              id='requestAccess'
+              className={style.signup}
+            >
+              Send us your jobs
+            </Link>
           </RandomHover>
         </div>
       </section>
