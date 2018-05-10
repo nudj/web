@@ -121,6 +121,9 @@ const styles = {
     color: variables.colors.white,
     textAlign: 'center'
   }, mixins.headings.h5Light),
+  heroCta: mixins.flexColumn({
+    paddingTop: variables.padding.c
+  }),
   // Takeaways
   takeaway: mixins.basicContainer({
     paddingTop: variables.padding.b,
@@ -451,10 +454,13 @@ const styles = {
     textAlign: 'center'
   }, mixins.headings.small),
   cta: mixins.flexColumn({
-    padding: `${variables.padding.c}`
+    paddingTop: variables.padding.c,
+    paddingBottom: variables.padding.c
   }),
   or: mixins.makeOr(),
-  signup: mixins.buttonPrimary(),
+  signup: mixins.buttonPrimary({
+    zIndex: '9999'
+  }),
   contact: mixins.buttonSecondaryBorderless()
 }
 

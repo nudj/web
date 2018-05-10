@@ -4,7 +4,6 @@ const { Link } = require('react-router-dom')
 
 const { getStyle, setStyles } = require('./header.css')
 const nudjLogo = require('./nudj-logo')
-const RandomHover = require('../random-hover')
 
 const offsetTrigger = 100
 
@@ -141,14 +140,12 @@ class Header extends React.Component {
     const linkStyleHiring = isActiveHiring ? this.style[`${linkStyleName}ActiveHiring`] : this.style[linkStyleName]
     const linkStyleJobs = isActiveJobs ? this.style[`${linkStyleName}ActiveJobs`] : this.style[linkStyleName]
     const linkStyleAbout = isActiveAbout ? this.style[`${linkStyleName}ActiveAbout`] : this.style[linkStyleName]
-    const requestStyle = mobile ? this.style.requestMobile : this.style.request
 
     const companies = (<a href='/hiring' className={linkStyleHiring} id='hirerPage' onClick={this.onClickLink} key='1'>Companies</a>)
     const jobs = (<a href='/jobs' className={linkStyleJobs} id='jobsPage' onClick={this.onClickLink} key='2'>All jobs</a>)
     const about = (<a href='/about' className={linkStyleAbout} id='aboutPage' onClick={this.onClickLink} key='3'>About</a>)
-    const getInTouch = (<RandomHover key='4'><a href='mailto:help@nudj.co' id='open-intercom' className={requestStyle} onClick={this.onClickLink}>Get in touch</a></RandomHover>)
 
-    const defaultNav = [companies, jobs, about, getInTouch]
+    const defaultNav = [companies, jobs, about]
 
     return (defaultNav)
   }

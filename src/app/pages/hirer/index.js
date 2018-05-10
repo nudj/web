@@ -36,6 +36,11 @@ const Hirer = (props) => {
         <p className={style.heroSubtitle}>
           Easily ask for, track and reward referrals inside and outside your company.
         </p>
+        <div className={style.heroCta}>
+          <RandomHover>
+            <a href='#pricing' className={style.signup}>Send us your jobs</a>
+          </RandomHover>
+        </div>
       </section>
       <section className={style.takeaway}>
         <div className={style.takeawayLeft}>
@@ -179,7 +184,7 @@ const Hirer = (props) => {
           </li>
         </ul>
       </section>
-      <section className={style.pricing}>
+      <section className={style.pricing} id='pricing'>
         <div className={style.pricingContainer}>
           <h2 className={style.pricingTitle}>Our pricing</h2>
           <p className={style.pricingSubtitle}>One risk-free fee. You don&apos;t hire anyone you don&apos;t pay.</p>
