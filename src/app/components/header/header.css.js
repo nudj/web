@@ -168,6 +168,9 @@ const styles = {
     transform: 'translate3d(0, 0, 0)'
   }, navBarConstant),
   link: link,
+  linkActiveHome: merge(link, activeLinkUnderline, {
+    color: variables.colors.charcoal
+  }),
   linkActiveHiring: merge(link, activeLinkUnderline, {
     color: variables.colors.white
   }),
@@ -181,6 +184,7 @@ const styles = {
     color: variables.colors.white
   }),
   linkMobile: merge(linkMobileLink, mixins.deLink()),
+  linkMobileActiveHome: linkMobileLinkActive,
   linkMobileActiveHiring: linkMobileLinkActive,
   linkMobileActiveJobs: linkMobileLinkActive,
   linkMobileActiveAbout: linkMobileLinkActive,
@@ -255,11 +259,6 @@ const setStyles = (backgroundColour, textColour, textHighlightColour, buttonText
   colouredStyles = {
     navContainer: {
       backgroundColor: variables.colors[backgroundColour] || styles.navContainer.backgroundColor
-    },
-    request: {
-      backgroundColor: variables.colors[textHighlightColour] || styles.request.backgroundColor,
-      borderColor: variables.colors[textHighlightColour] || styles.request.borderColor,
-      color: variables.colors[buttonTextColour] || variables.colors[textColour] || styles.request.color
     },
     link: {
       color: variables.colors[textColour] || styles.link.color
