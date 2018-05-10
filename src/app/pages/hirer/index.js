@@ -136,8 +136,8 @@ const Hirer = (props) => {
         </div>
         <div className={style.barChart}>
           <div className={style.chartImages}>
-            <img className={style.barLeft} src='assets/images/hirer-page/left-bar-chart.svg' />
-            <img className={style.barRight} src='assets/images/hirer-page/right-bar-chart.svg' />
+            <img className={style.barLeft} src='assets/images/hirer-page/left-bar-chart.svg' alt='A bar chart showing that referrals account for 7% of applications' />
+            <img className={style.barRight} src='assets/images/hirer-page/right-bar-chart.svg' alt='A bar chart showing that referrals make up 40% of all hires' />
             <img className={style.barArrows} src='assets/images/hirer-page/arrows.svg' />
           </div>
           <div className={style.chartKey}>
@@ -167,7 +167,7 @@ const Hirer = (props) => {
         <ul className={style.whys}>
           <li className={style.why}>
             <h3 className={style.stepTitle}><span className={style.red}>1.</span> Not personal enough</h3>
-            <p className={style.stepCopy}>Existing referral schemes aren&apos;t engaging, becuase they&apos;re not personalised to each employee or referrer.</p>
+            <p className={style.stepCopy}>Existing referral schemes aren&apos;t engaging, because they&apos;re not personalised to each employee or referrer.</p>
           </li>
           <li className={style.why}>
             <h3 className={style.stepTitle}><span className={style.red}>2.</span> Hard to find who to ask</h3>
