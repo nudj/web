@@ -55,15 +55,6 @@ const link = merge({}, mixins.deLink({
   }
 }), mixins.headings.h5)
 
-const request = mixins.buttonPrimary({
-  display: 'none',
-  marginLeft: variables.padding.d,
-  minWidth: 'inherit',
-  [mixins.breakpoints.l]: {
-    display: 'block'
-  }
-})
-
 const navBarConstant = mixins.makeTransition({
   properties: ['transform'],
   details: variables.transitions.bouncy
@@ -189,7 +180,6 @@ const styles = {
   linkLight: merge({}, link, {
     color: variables.colors.white
   }),
-  request: request,
   linkMobile: merge(linkMobileLink, mixins.deLink()),
   linkMobileActiveHiring: linkMobileLinkActive,
   linkMobileActiveJobs: linkMobileLinkActive,
