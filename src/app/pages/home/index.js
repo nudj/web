@@ -37,7 +37,7 @@ const HomePage = (props) => {
         <meta property='og:site_name' content='nudj' />
       </Helmet>
       <div className={style.header}>
-        <Header />
+        <Header location='/' />
       </div>
       <section className={style.hero}>
         <ul className={style.story}>
