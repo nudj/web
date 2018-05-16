@@ -271,7 +271,7 @@ const Job = props => {
         <meta name='title' content={pageTitle} />
         <meta name='description' content={pageDescription} />
         <meta property='og:title' content={pageTitle} />
-        <meta name='og:description' content={pageDescription} />
+        <meta property='og:description' content={pageDescription} />
         <meta property='twitter:title' content={pageTitle} />
         <meta name='twitter:description' content={pageDescription} />
         <meta property='twitter:image' content={image} />
