@@ -23,12 +23,12 @@ const Nudj = (props) => {
       <meta name='description' content={pageDescription} />
       <meta name='title' content={pageTitle} />
       <meta property='og:description' content={pageDescription} />
-      <meta property='twitter:description' content={pageDescription} />
       <meta property='og:type' content='website' />
       <meta property='og:title' content={socialTitle} />
-      <meta property='twitter:card' content={socialTitle} />
-      <meta property='twitter:title' content={socialTitle} />
       <meta property='og:site_name' content='nudj' />
+      <meta name='twitter:card' content={socialTitle} />
+      <meta name='twitter:title' content={socialTitle} />
+      <meta name='twitter:description' content={pageDescription} />
     </Helmet>
     <Header />
     <div className={style.page}>
