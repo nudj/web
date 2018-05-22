@@ -24,6 +24,20 @@ function determineArticle (subject) {
   return 'a'
 }
 
+const currencies = {
+  dollar: '$',
+  euro: '€',
+  pound: '£'
+}
+
+const currencyMap = {
+  'sales-i': {
+    'marketing-coordinator': currencies.dollar
+  }
+}
+
+const getCurrency = (company, job) => get(currencyMap, [company, job].join('.'), currencies.pound)
+
 const Job = props => {
   const company = get(props, 'company', {})
   const allJobs = get(company, 'jobs')
@@ -143,9 +157,7 @@ const Job = props => {
   // AWFUL HACK AHEAD
   const companySlug = get(company, 'slug')
   const jobSlug = get(job, 'slug')
-  const dollarJobs = ['marketing-coordinator'] // add jobs with bonuses in dollars to this array
-  const bonusCurrency =
-    companySlug === 'sales-i' && dollarJobs.includes(jobSlug) ? '$' : '£'
+  const bonusCurrency = getCurrency(companySlug, jobSlug)
   // END AWFUL HACK
 
   const bonusAmount = get(job, 'bonus')
