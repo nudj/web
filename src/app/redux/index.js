@@ -11,13 +11,13 @@ const ReduxRoot = (props) => {
         <meta name='description' content='nudj makes it effortless for the best businesses to engage with the best talent, utilising connections they both have.' />
         <meta name='title' content='nudj - Connecting great people with awesome companies.' />
         <meta property='og:description' content='nudj makes it effortless for the best businesses to engage with the best talent, utilising connections they both have.' />
-        <meta property='twitter:description' content='nudj makes it effortless for the best businesses to engage with the best talent, utilising connections they both have.' />
         <meta property='og:type' content='article' />
         <meta property='og:title' content='nudj - Connecting great people with awesome companies.' />
-        <meta property='twitter:card' content='nudj - Connecting great people with awesome companies.' />
-        <meta property='twitter:title' content='nudj - Connecting great people with awesome companies.' />
         <meta property='og:site_name' content='nudj' />
-        <meta property='twitter:image' content='https://assets.nudj.co/assets/images/social/nudj-card-og.jpg' />
+        <meta name='twitter:card' content='nudj - Connecting great people with awesome companies.' />
+        <meta name='twitter:title' content='nudj - Connecting great people with awesome companies.' />
+        <meta name='twitter:image' content='https://assets.nudj.co/assets/images/social/nudj-card-og.jpg' />
+        <meta name='twitter:description' content='nudj makes it effortless for the best businesses to engage with the best talent, utilising connections they both have.' />
         <meta property='og:image' content='https://assets.nudj.co/assets/images/social/nudj-card-og.jpg' />
         <link rel='icon' href='/assets/images/nudj-square.ico' type='image/x-icon' />
         <link rel='stylesheet' href='/assets/css/libs.min.css' />

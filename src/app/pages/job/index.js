@@ -272,10 +272,10 @@ const Job = props => {
         <meta name='description' content={pageDescription} />
         <meta property='og:title' content={pageTitle} />
         <meta property='og:description' content={pageDescription} />
-        <meta property='twitter:title' content={pageTitle} />
-        <meta name='twitter:description' content={pageDescription} />
-        <meta property='twitter:image' content={image} />
         <meta property='og:image' content={image} />
+        <meta name='twitter:title' content={pageTitle} />
+        <meta name='twitter:description' content={pageDescription} />
+        <meta name='twitter:image' content={image} />
       </Helmet>
       <Header />
       {job.status === 'ARCHIVED' && (
