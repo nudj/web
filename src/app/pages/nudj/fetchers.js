@@ -129,6 +129,7 @@ const post = ({ params, body }) => {
             parent: $parent
           ) {
             id
+            slug
             person {
               firstName
               lastName

@@ -1,26 +1,49 @@
 const { Redirect } = require('@nudj/library/errors')
 
 const get = (props) => {
-  const { referralId } = props.params
+  const { referralIdentifier } = props.params
 
-  const gql = `
-    query GetReferralDetail($referralId: ID!) {
-      referral: referral(
-        id: $referralId
-      ) {
-        id
-        job {
+  let gql
+  if (referralIdentifier.length === 10) {
+    // referralIdentifier should be one of our new referral slugs
+    gql = `
+      query GetReferralDetail($referralIdentifier: String) {
+        referral: referralBySlug(
+          slug: $referralIdentifier
+        ) {
+          id
           slug
-          company {
+          job {
             slug
+            company {
+              slug
+            }
           }
         }
       }
-    }
-  `
+    `
+  } else {
+    // referralIdentifier should be one of our legacy ids
+    gql = `
+      query GetReferralDetail($referralIdentifier: ID) {
+        referral: referralByLegacyId(
+          id: $referralIdentifier
+        ) {
+          id
+          slug
+          job {
+            slug
+            company {
+              slug
+            }
+          }
+        }
+      }
+    `
+  }
 
   const variables = {
-    referralId
+    referralIdentifier
   }
 
   return {
@@ -29,9 +52,10 @@ const get = (props) => {
     respond: data => {
       const companySlug = data.referral.job.company.slug
       const jobSlug = data.referral.job.slug
+      const referralSlug = data.referral.slug
 
       throw new Redirect({
-        url: `/companies/${companySlug}/jobs/${jobSlug}?referralId=${referralId}`
+        url: `/companies/${companySlug}/jobs/${jobSlug}?referral=${referralSlug}`
       })
     }
   }
