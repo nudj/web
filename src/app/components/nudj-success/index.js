@@ -1,5 +1,6 @@
 const React = require('react')
 const get = require('lodash/get')
+const { getJobUrl } = require('@nudj/library')
 
 const { getStyle, setStyles } = require('./nudj-success.css')
 const CopyToClipboard = require('../copy-to-clipboard')
@@ -36,10 +37,14 @@ const NudjSuccess = (props) => {
   const style = getStyle()
   const companySlug = get(props, 'company.slug')
   const jobSlug = get(props, 'company.job.slug')
-  const referralId = get(props, 'company.job.referral.id')
-  const referralQuery = referralId ? `?referralId=${referralId}` : ''
+  const referralSlug = get(props, 'company.job.referral.slug')
 
-  const link = `${get(props, 'url.protocol')}://${get(props, 'url.hostname')}/companies/${companySlug}/jobs/${jobSlug}${referralQuery}`
+  const link = getJobUrl({
+    hostname: get(props, 'url.hostname'),
+    company: companySlug,
+    job: jobSlug,
+    referral: referralSlug
+  })
   const mobileOnly = get(props, 'mobileOnly', false)
 
   return (

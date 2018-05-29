@@ -8,7 +8,7 @@ const Router = ({
 }) => {
   const router = createRouter()
 
-  router.getHandlers('/r/:referralId', respondWithGql(fetchers.get))
+  router.getHandlers('/r/:referralIdentifier', respondWithGql(fetchers.get))
 
   return router
 }

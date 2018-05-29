@@ -5,87 +5,165 @@ const get = ({ params, session, query, req, res }) => {
   const { userId } = session
 
   const { companySlug, jobSlug } = params
-  const { referralId } = query
+  const {
+    referralId: referralLegacyId,
+    referral: referralSlug
+  } = query
 
-  const gql = `
-    query GetReferralAndJobForPerson (
-      $companySlug: String!,
-      $jobSlug: String!,
-      $referralId: ID,
-      $personId: ID,
-      $loggedIn: Boolean!,
-      $browserId: String,
-      $eventType: EventType!,
-      $relatedJobStatus: JobStatus!
-    ) {
-      user {
-        company {
-          slug
-        }
-      }
-      referral: referral(
-        id: $referralId
+  let gql
+  if (referralLegacyId) {
+    gql = `
+      query GetReferralAndJobForPerson (
+        $companySlug: String!,
+        $jobSlug: String!,
+        $referralLegacyId: ID,
+        $personId: ID,
+        $loggedIn: Boolean!,
+        $browserId: String,
+        $eventType: EventType!,
+        $relatedJobStatus: JobStatus!
       ) {
-        id
-        job {
-          slug
+        user {
           company {
             slug
           }
         }
-      }
-      company: companyByFilters(filters: {slug: $companySlug}) {
-        id
-        name
-        logo
-        industry
-        mission
-        slug
-        description
-        url
-        jobs: jobsByFilters(filters: {status: $relatedJobStatus}) {
+        referral: referralByLegacyId( id: $referralLegacyId ) {
           id
-          title
-          remuneration
-          location
           slug
-        }
-        job: jobByFilters(filters: {slug: $jobSlug}) {
-          recordEvent(type: $eventType, browserId: $browserId) {
-            id
-            browserId
+          job {
+            slug
+            company {
+              slug
+            }
           }
+        }
+        company: companyByFilters(filters: {slug: $companySlug}) {
           id
-          created
-          modified
-          title
+          name
+          logo
+          industry
+          mission
           slug
-          url
-          status
-          bonus
           description
-          roleDescription
-          candidateDescription
-          type
-          remuneration
-          templateTags
-          location
-          status
-          application: applicationByFilters(filters: {person: $personId}) @include(if: $loggedIn) {
+          url
+          jobs: jobsByFilters(filters: {status: $relatedJobStatus}) {
             id
+            title
+            remuneration
+            location
+            slug
           }
-          referral: referralByFilters(filters: {person: $personId}) @include(if: $loggedIn) {
+          job: jobByFilters(filters: {slug: $jobSlug}) {
+            viewEvent: recordViewEvent(browserId: $browserId) {
+              id
+              browserId
+            }
             id
+            created
+            modified
+            title
+            slug
+            url
+            status
+            bonus
+            description
+            roleDescription
+            candidateDescription
+            remuneration
+            template
+            location
+            status
+            application: applicationByFilters(filters: {person: $personId}) @include(if: $loggedIn) {
+              id
+            }
+            referral: referralByFilters(filters: {person: $personId}) @include(if: $loggedIn) {
+              id
+              slug
+            }
+          }
+        }
+      }`
+  } else {
+    gql = `
+      query GetReferralAndJobForPerson (
+        $companySlug: String!,
+        $jobSlug: String!,
+        $referralSlug: String,
+        $personId: ID,
+        $loggedIn: Boolean!,
+        $browserId: String,
+        $relatedJobStatus: JobStatus!
+      ) {
+        user {
+          company {
+            slug
+          }
+        }
+        referral: referralBySlug( slug: $referralSlug ) {
+          id
+          slug
+          job {
+            slug
+            company {
+              slug
+            }
+          }
+        }
+        company: companyByFilters(filters: {slug: $companySlug}) {
+          id
+          name
+          logo
+          industry
+          mission
+          slug
+          description
+          url
+          jobs: jobsByFilters(filters: {status: $relatedJobStatus}) {
+            id
+            title
+            remuneration
+            location
+            slug
+          }
+          job: jobByFilters(filters: {slug: $jobSlug}) {
+            viewEvent: recordViewEvent(browserId: $browserId) {
+              id
+              browserId
+            }
+            id
+            created
+            modified
+            title
+            slug
+            url
+            status
+            bonus
+            description
+            roleDescription
+            candidateDescription
+            remuneration
+            template
+            location
+            status
+            application: applicationByFilters(filters: {person: $personId}) @include(if: $loggedIn) {
+              id
+            }
+            referral: referralByFilters(filters: {person: $personId}) @include(if: $loggedIn) {
+              id
+              slug
+            }
           }
         }
       }
-    }
-  `
+    `
+  }
 
   const variables = {
     companySlug,
     jobSlug,
-    referralId,
+    referralSlug,
+    referralLegacyId,
     personId: userId,
     loggedIn: !!userId,
     browserId: cookies.get(req, 'browserId'),
@@ -97,7 +175,7 @@ const get = ({ params, session, query, req, res }) => {
     gql,
     variables,
     transformData: async data => {
-      cookies.set(res, 'browserId', data.company.job.recordEvent.browserId)
+      cookies.set(res, 'browserId', data.company.job.viewEvent.browserId)
       const templates = await jobPrismicTemplate(data.company.job)
       return Object.assign({}, data, { templates })
     }
@@ -111,11 +189,7 @@ function jobPrismicTemplate (job) {
     description: 'description',
     colourPrimary: 'colourprimary'
   }
-  let tags = ['default']
-
-  if (job.templateTags && job.templateTags.length) {
-    tags = [].concat(...job.templateTags)
-  }
+  const tags = [job.template || 'default']
 
   return template.getRandom({ type, tags, keys })
 }

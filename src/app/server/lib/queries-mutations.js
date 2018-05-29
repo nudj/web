@@ -261,13 +261,13 @@ module.exports = {
       }
     }
   `,
-  getReferralForJobInCompany: `
-    query getReferralForJobInCompany (
+  getReferralBySlugForJobInCompany: `
+    query getReferralBySlugForJobInCompany (
       $companySlug: String!,
       $jobSlug: String!,
-      $referralId: ID
+      $referralSlug: String
     ) {
-      referral(id: $referralId) {
+      referral: referralBySlug( slug: $referralSlug ) {
         id
         job {
           id
@@ -282,6 +282,16 @@ module.exports = {
         }) {
           id
         }
+      }
+    }
+  `,
+  getReferralByLegacyId: `
+    query getReferralByLegacyId (
+      $referralLegacyId: ID
+    ) {
+      referral: referralByLegacyId( id: $referralLegacyId ) {
+        id
+        slug
       }
     }
   `,
