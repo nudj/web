@@ -1,18 +1,27 @@
 const request = require('../lib/request')
 const queries = require('../lib/queries-mutations')
 
-function getReferralForJobInCompany ({
+function getReferralBySlugForJobInCompany ({
   companySlug,
   jobSlug,
-  referralId
+  referralSlug
 }) {
-  return request(queries.getReferralForJobInCompany, {
+  return request(queries.getReferralBySlugForJobInCompany, {
     companySlug,
     jobSlug,
-    referralId
+    referralSlug
   })
 }
-module.exports.getReferralForJobInCompany = getReferralForJobInCompany
+module.exports.getReferralBySlugForJobInCompany = getReferralBySlugForJobInCompany
+
+function getReferralByLegacyId ({
+  referralLegacyId
+}) {
+  return request(queries.getReferralByLegacyId, {
+    referralLegacyId
+  })
+}
+module.exports.getReferralByLegacyId = getReferralByLegacyId
 
 function getJobInCompany ({
   companySlug,

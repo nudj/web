@@ -82,6 +82,7 @@ const post = ({ params, session, query }) => {
             parent: $parent
           ) {
             id
+            slug
           }
         }
       }

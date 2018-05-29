@@ -8,55 +8,83 @@ const { isAjax } = require('@nudj/framework/lib/lib')
 
 const job = require('../modules/job')
 
-const handleJobUrls = (req, res, next) => {
+const handleJobUrls = async (req, res, next) => {
   if (isAjax(req.originalUrl)) {
     return next()
   }
+
+  let companySlug
+  let jobSlug
+  let referralLegacyId
+  let referralSlug
+
+  // extract parameter and query values
   if (req.params.companySlugJobSlugReferralId) {
-    const jobParams = req.params.companySlugJobSlugReferralId
-    // Legacy Url
-    const [
+    // LEGACY URL FORMAT: /jobs/:companySlugJobSlugReferralId
+    const jobParams = req.params.companySlugJobSlugReferralId;
+    [
       companySlug,
       jobSlug,
-      referralId
+      referralLegacyId
     ] = jobParams.split('+')
-    const query = referralId ? `?referralId=${referralId}` : ''
-    const path = req.originalUrl.split(jobParams)[1] || ''
+  } else {
+    // LEGACY QUERY STRING FORMAT: /companies/:companySlug/jobs/:jobSlug?referralId=:referralLegacyId
+    referralLegacyId = req.query.referralId
 
-    next(new Redirect({
-      url: `/companies/${companySlug}/jobs/${jobSlug}${path}${query}`
-    }))
+    // CURRENT URL FORMAT: /companies/:companySlug/jobs/:jobSlug?referral=:referralSlug
+    referralSlug = req.query.referral
+
+    companySlug = req.params.companySlug
+    jobSlug = req.params.jobSlug
   }
 
-  const { companySlug, jobSlug } = req.params
-  const { referralId } = req.query
+  try {
+    if (!companySlug || !jobSlug) {
+      return next(new NotFound('Invalid job url', req.originalUrl))
+    }
 
-  if (!companySlug || !jobSlug) {
-    return next(new NotFound('Invalid job url', req.originalUrl))
-  }
+    // if legacy url format, redirect to new url format
+    if (referralLegacyId) {
+      const response = await job.getReferralByLegacyId({
+        referralLegacyId
+      })
+      if (response.referral) {
+        return next(new Redirect({
+          url: `/companies/${companySlug}/jobs/${jobSlug}?referral=${response.referral.slug}`
+        }))
+      } else {
+        return next(new NotFound('Invalid job url', req.originalUrl))
+      }
+    }
 
-  const request = referralId ? job.getReferralForJobInCompany({
-    companySlug,
-    jobSlug,
-    referralId
-  }) : job.getJobInCompany({
-    companySlug,
-    jobSlug
-  })
-  request.then(data => {
+    // fetch data based on params
+    let data
+    if (referralSlug) {
+      data = await job.getReferralBySlugForJobInCompany({
+        companySlug,
+        jobSlug,
+        referralSlug
+      })
+    } else {
+      data = await job.getJobInCompany({
+        companySlug,
+        jobSlug
+      })
+    }
+
+    // double check company, job and referral are genuine relations
     if (
       !data.company ||
       !data.company.job ||
-      (!!referralId && !data.referral) ||
-      (!!referralId && data.referral.job.id !== data.company.job.id)
+      (referralSlug && (!data.referral || data.referral.job.id !== data.company.job.id))
     ) {
       return next(new NotFound('Invalid job url', req.originalUrl))
     }
+
     next()
-  })
-  .catch(error => {
-    next(new AppError('Error validating url', error.message, companySlug, jobSlug, referralId))
-  })
+  } catch (error) {
+    next(new AppError('Error validating url', error.message, companySlug, jobSlug, referralSlug))
+  }
 }
 
 const noDirectApplyNudj = (req, res, next) => {
