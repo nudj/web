@@ -1,5 +1,4 @@
 const React = require('react')
-const { Link } = require('react-router-dom')
 const { Helmet } = require('react-helmet')
 
 const getStyle = require('./style.css')
@@ -10,8 +9,9 @@ const RandomHover = require('../../components/random-hover')
 const Hirer = (props) => {
   const pageTitle = `Supercharge your referral scheme with nudj`
   const pageDescription = `nudj makes it effortless for you and your team to ask for, track, and reward referrals.`
-
+  const hireUrl = `${props.app.hire.protocol}://${props.app.hire.hostname}/`
   const style = getStyle()
+
   return (
     <Page {...props} className={style.body}>
       <Helmet>
@@ -38,13 +38,13 @@ const Hirer = (props) => {
         </p>
         <div className={style.heroCta}>
           <RandomHover>
-            <Link
-              to='/request'
-              id='requestAccess'
+            <a
+              href={hireUrl}
+              id='getStarted'
               className={style.signup}
             >
-              Send us your jobs
-            </Link>
+              Get started
+            </a>
           </RandomHover>
         </div>
       </section>
@@ -199,7 +199,7 @@ const Hirer = (props) => {
             <small className={style.pricingSmall}>*Payable within 30 days of making a hire.</small>
           </div>
           <div className={style.cta}>
-            <RandomHover><Link to='/request' id='requestAccess' className={style.signup}>Send us your jobs</Link></RandomHover>
+            <RandomHover><a href={hireUrl} id='getStartedBottom' className={style.signup}>Get started</a></RandomHover>
             <span className={style.or}>or</span>
             <a href='mailto:hello@nudj.co' className={style.contact} id='open-intercom'>Request demo</a>
           </div>
