@@ -13,7 +13,7 @@ const Nudj = (props) => {
   const job = get(company, 'job', {})
   const pageTitle = `Congratulations, you've nudj'ed a job!`
   const socialTitle = `I'm trying to find a ${job.title} for ${company.name}. Can you help?`
-  const pageDescription = `There is a bonus of £${job.bonus} up for grabs if anyone you refer gets the job.`
+  const pageDescription = `There is a bonus of ${job.bonus} up for grabs if anyone you refer gets the job.`
 
   const style = getStyle()
   return (<Page {...props} className={style.pageContainer}>
