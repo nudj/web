@@ -143,12 +143,12 @@ class Header extends React.Component {
     const linkStyleJobs = isActiveJobs ? this.style[`${linkStyleName}ActiveJobs`] : this.style[linkStyleName]
     const linkStyleAbout = isActiveAbout ? this.style[`${linkStyleName}ActiveAbout`] : this.style[linkStyleName]
 
-    const home = (<a href='/' className={linkStyleHome} id='homePage' onClick={this.onClickLink} key='1'>Talent</a>)
-    const companies = (<a href='/hiring' className={linkStyleHiring} id='hirerPage' onClick={this.onClickLink} key='2'>Employers</a>)
+    const companies = (<a href='/' className={linkStyleHiring} id='hirerPage' onClick={this.onClickLink} key='2'>Employers</a>)
+    const talent = (<a href='/talent' className={linkStyleHome} id='talentPage' onClick={this.onClickLink} key='1'>Talent</a>)
     const jobs = (<a href='/jobs' className={linkStyleJobs} id='jobsPage' onClick={this.onClickLink} key='3'>All Jobs</a>)
     const about = (<a href='/about' className={linkStyleAbout} id='aboutPage' onClick={this.onClickLink} key='4'>About Us</a>)
 
-    const defaultNav = [home, companies, jobs, about]
+    const defaultNav = [companies, talent, jobs, about]
 
     return (defaultNav)
   }

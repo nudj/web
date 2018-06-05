@@ -6,7 +6,7 @@ const Router = ({
 }) => {
   const router = createRouter()
 
-  router.getHandlers('/', respondWith())
+  router.getHandlers('/talent', respondWith())
 
   return router
 }
