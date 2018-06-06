@@ -1,8 +1,10 @@
 const express = require('express')
 const passport = require('passport')
+const { cookies } = require('@nudj/library')
+const logger = require('@nudj/framework/logger')
+
 const request = require('../lib/request')
 const intercom = require('../lib/intercom')
-const logger = require('@nudj/framework/logger')
 const queries = require('../lib/queries-mutations')
 
 function cacheReturnTo (req, res, next) {
@@ -46,7 +48,7 @@ const Router = ({
     req.logOut()
     delete req.session.userId
     req.session.logout = true
-    res.clearCookie('connect.sid', {path: '/'})
+    cookies.clear(res, 'session')
     res.redirect(`https://${process.env.AUTH0_DOMAIN}/v2/logout?returnTo=${encodeURIComponent(`${process.env.PROTOCOL_DOMAIN}/loggedout`)}&client_id=${process.env.AUTH0_CLIENT_ID}`)
   })
 
