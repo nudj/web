@@ -1,3 +1,4 @@
+const { cookies } = require('@nudj/library')
 const template = require('../../server/modules/template')
 
 const get = ({ params, session, query, req, res }) => {
@@ -82,7 +83,7 @@ const get = ({ params, session, query, req, res }) => {
     referralId,
     personId: userId,
     loggedIn: !!userId,
-    browserId: req.cookies.browserId,
+    browserId: cookies.get(req, 'browserId'),
     eventType: 'viewed',
     relatedJobStatus: 'PUBLISHED'
   }
@@ -91,7 +92,7 @@ const get = ({ params, session, query, req, res }) => {
     gql,
     variables,
     transformData: async data => {
-      res.cookie('browserId', data.company.job.recordEvent.browserId)
+      cookies.set(res, 'browserId', data.company.job.recordEvent.browserId)
       const templates = await jobPrismicTemplate(data.company.job)
       return Object.assign({}, data, { templates })
     }
