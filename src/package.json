@@ -63,7 +63,6 @@
     "react-router-redux": "next",
     "react-typeout": "^0.6.4",
     "redux": "^3.6.0",
-    "validator": "^9.4.1",
     "winston": "^2.3.1"
   },
   "devDependencies": {
@@ -73,19 +72,19 @@
     "babel-preset-env": "^1.1.10",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
+    "clean-webpack-plugin": "^0.1.19",
     "dirty-chai": "^2.0.1",
     "mocha": "^4.0.1",
     "nock": "^9.0.22",
     "nodemon": "^1.11.0",
     "proxyquire": "^1.8.0",
+    "react-hot-loader": "^4.0.1",
     "sinon": "^4.0.1",
     "sinon-chai": "^2.14.0",
     "standard": "^10.0.3",
+    "start-server-webpack-plugin": "^2.2.5",
     "uglifyjs-webpack-plugin": "^0.4.6",
     "webpack": "^3.10.0",
-    "clean-webpack-plugin": "^0.1.19",
-    "react-hot-loader": "^4.0.1",
-    "start-server-webpack-plugin": "^2.2.5",
     "webpack-dev-server": "^2.11.1",
     "webpack-node-externals": "^1.7.2"
   }
