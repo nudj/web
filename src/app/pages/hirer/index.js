@@ -5,6 +5,7 @@ const getStyle = require('./style.css')
 const Page = require('../../components/page')
 const Header = require('../../components/header')
 const RandomHover = require('../../components/random-hover')
+const Video = require('../../components/video')
 
 const Hirer = (props) => {
   const pageTitle = `Supercharge your referral scheme with nudj`
@@ -76,38 +77,88 @@ const Hirer = (props) => {
         </div>
         <ul className={style.steps}>
           <li className={style.step}>
-            <img className={style.stepImage} src='/assets/images/hirer-page/tent-img.svg' />
-            <div className={style.stepDescription}>
-              <h2 className={style.stepTitle}><span className={style.red}>1.</span> <br className={style.break} /> Get set up in seconds</h2>
-              <p className={style.stepCopy}>Send us your job specs and we&apos;ll upload them to our platform for you, instantly allowing anyone to refer or apply for your company&apos;s jobs.</p>
+            <div className={style.stepSupportingImagery}>
+              <div className={style.stepVideoContainer}>
+                <Video
+                  poster='https://nudjcms.s3.amazonaws.com/assets/videos/demo-jun-18/setup-company.png'
+                  loop
+                >
+                  <source src='https://nudjcms.s3.amazonaws.com/assets/videos/demo-jun-18/setup-company.mp4' type='video/mp4' />
+                  <source src='https://nudjcms.s3.amazonaws.com/assets/videos/demo-jun-18/setup-company.webm' type='video/webm' />
+                </Video>
+              </div>
             </div>
-          </li>
-          <li className={style.stepReverse}>
-            <img className={style.stepImageReverse} src='/assets/images/hirer-page/dot-img.svg' />
-            <div className={style.stepDescriptionReverse}>
-              <h2 className={style.stepTitle}><span className={style.red}>2.</span><br className={style.break} /> Connect the dots</h2>
-              <p className={style.stepCopy}>Invite your team and once on-board, our software helps them identify who in their network is most likely to connect them with awesome, vouched-for talent.</p>
+            <div className={style.stepDescription}>
+              <h2 className={style.stepTitle}><span className={style.red}>1.</span>{' '}Quickly upload your jobs to nudj</h2>
+              <p className={style.stepCopy}>Add a little bit of info about roles your hiring for and they&apos;ll instantly appear&nbsp;on&nbsp;nudj</p>
             </div>
           </li>
           <li className={style.step}>
-            <img className={style.stepImage} src='/assets/images/hirer-page/paper-planes-img.svg' />
+            <div className={style.stepSupportingImagery}>
+              <div className={style.stepVideoContainer}>
+                <Video
+                  loop
+                  poster='https://nudjcms.s3.amazonaws.com/assets/videos/demo-jun-18/team-invite.png'
+                >
+                  <source src='https://nudjcms.s3.amazonaws.com/assets/videos/demo-jun-18/team-invite.mp4' type='video/mp4' />
+                  <source src='https://nudjcms.s3.amazonaws.com/assets/videos/demo-jun-18/team-invite.webm' type='video/webm' />
+                </Video>
+              </div>
+            </div>
             <div className={style.stepDescription}>
-              <h2 className={style.stepTitle}><span className={style.red}>3.</span> <br className={style.break} />Make it personal</h2>
-              <p className={style.stepCopy}>Referral schemes often fail, because they lack personalisation. With our tested message templates and customisable incentives we can ensure everyone you ask takes action.</p>
+              <h2 className={style.stepTitle}><span className={style.red}>2.</span>{' '}Make use of your team&apos;s network</h2>
+              <p className={style.stepCopy}>Make use of your entire team&apos;s network by inviting them to nudj, extending the reach of your jobs and maximising the chances of finding more great people&nbsp;to&nbsp;hire.</p>
             </div>
           </li>
-          <li className={style.stepReverse}>
-            <img className={style.stepImageReverse} src='/assets/images/hirer-page/review-the-best-img.svg' />
-            <div className={style.stepDescriptionReverse}>
-              <h2 className={style.stepTitle}><span className={style.red}>4.</span><br className={style.break} /> Review only the best</h2>
-              <p className={style.stepCopy}>Referrals help you attract the best talent, whether they&apos;re looking or not. With nudj you can also see who referred them and why.</p>
+          <li className={style.step}>
+            <div className={style.stepSupportingImagery}>
+              <div className={style.stepVideoContainer}>
+                <Video
+                  loop
+                  poster='https://nudjcms.s3.amazonaws.com/assets/videos/demo-jun-18/easy-share.png'
+                >
+                  <source src='https://nudjcms.s3.amazonaws.com/assets/videos/demo-jun-18/easy-share.mp4' type='video/mp4' />
+                  <source src='https://nudjcms.s3.amazonaws.com/assets/videos/demo-jun-18/easy-share.webm' type='video/webm' />
+                </Video>
+              </div>
+            </div>
+            <div className={style.stepDescription}>
+              <h2 className={style.stepTitle}><span className={style.red}>3.</span>{' '}Easily share your jobs</h2>
+              <p className={style.stepCopy}>Do you WhatsApp or Messenger? Or perhaps you like to keep things brief on Twitter? Whatever platform you and your team prefer to share your trackable job link on, nudj has got&nbsp;you&nbsp;covered.</p>
             </div>
           </li>
-          <li className={style.stepBottom}>
-            <img className={style.stepImageBottom} src='/assets/images/hirer-page/paperwork.svg' />
-            <div className={style.stepDescriptionBottom}>
-              <h2 className={style.stepTitle}><span className={style.red}>5.</span><br className={style.break} /> Say goodbye to paperwork</h2>
-              <p className={style.stepCopy}>We&apos;ll handle all the admin and payments so you don&apos;t have to. Giving you one less thing to worry about.</p>
+          <li className={style.step}>
+            <div className={style.stepSupportingImagery}>
+              <div className={style.stepVideoContainer}>
+                <Video
+                  loop
+                  poster='https://nudjcms.s3.amazonaws.com/assets/videos/demo-jun-18/survey.png'
+                >
+                  <source src='https://nudjcms.s3.amazonaws.com/assets/videos/demo-jun-18/survey.mp4' type='video/mp4' />
+                  <source src='https://nudjcms.s3.amazonaws.com/assets/videos/demo-jun-18/survey.webm' type='video/webm' />
+                </Video>
+              </div>
+            </div>
+            <div className={style.stepDescription}>
+              <h2 className={style.stepTitle}><span className={style.red}>4.</span>{' '}Discover who from your network can help</h2>
+              <p className={style.stepCopy}>Using an Aided Recall approach, popularised by Google, your team can uncover and refer all the people who are suitable from their networks, rather just the few that immediately spring&nbsp;to&nbsp;mind.</p>
+            </div>
+          </li>
+          <li className={style.step}>
+            <div className={style.stepSupportingImagery}>
+              <div className={style.stepVideoContainer}>
+                <Video
+                  loop
+                  poster='https://nudjcms.s3.amazonaws.com/assets/videos/demo-jun-18/applicants.png'
+                >
+                  <source src='https://nudjcms.s3.amazonaws.com/assets/videos/demo-jun-18/applicants.mp4' type='video/mp4' />
+                  <source src='https://nudjcms.s3.amazonaws.com/assets/videos/demo-jun-18/applicants.webm' type='video/webm' />
+                </Video>
+              </div>
+            </div>
+            <div className={style.stepDescription}>
+              <h2 className={style.stepTitle}><span className={style.red}>5.</span>{' '}View all your applicants in one place</h2>
+              <p className={style.stepCopy}>Most referred applicants have a bad experience because they get lost in the pile with everyone else. With nudj, you can easily view who&apos;s applied, including who referred them and then contact them from within the app if you want to take them to the&nbsp;next&nbsp;stage.</p>
             </div>
           </li>
         </ul>
@@ -195,8 +246,8 @@ const Hirer = (props) => {
           <h2 className={style.pricingTitle}>Our pricing</h2>
           <p className={style.pricingSubtitle}>One risk-free fee. You don&apos;t hire anyone you don&apos;t pay.</p>
           <div className={style.pricingBox}>
-            <h2 className={style.price}>£2,000 per job*</h2>
-            <small className={style.pricingSmall}>*Payable within 30 days of making a hire.</small>
+            <h2 className={style.price}>It&apos;s free!</h2>
+            <small className={style.pricingSmall}>*All you have to do is set your referral bonus</small>
           </div>
           <div className={style.cta}>
             <RandomHover><a href={hireUrl} id='getStartedBottom' className={style.signup}>Get started</a></RandomHover>
