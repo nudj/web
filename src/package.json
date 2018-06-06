@@ -32,7 +32,7 @@
     "watch:all": "webpack-dev-server --config ./webpack.config.client.js & webpack --config ./webpack.config.server.js"
   },
   "dependencies": {
-    "@nudj/components": "2.4.0",
+    "@nudj/components": "2.13.0",
     "@nudj/framework": "17.0.1",
     "@nudj/library": "6.3.0",
     "babel-polyfill": "^6.26.0",

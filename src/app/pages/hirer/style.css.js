@@ -55,30 +55,24 @@ const subtitleUnderline = merge(mixins.makeOrangeSubtitleUnderline(), {
 })
 
 const stepContainer = mixins.basicContainer({
-  padding: `${variables.padding.c} ${variables.padding.d} 0 ${variables.padding.d}`,
+  paddingTop: '4rem',
+  paddingLeft: variables.padding.d,
+  paddingBottom: '0',
+  paddingRight: variables.padding.d,
   textAlign: 'center',
+  display: 'flex',
+  flexDirection: 'column-reverse',
   [mixins.breakpoints.ns]: {
+    paddingTop: '8rem',
     alignItems: 'center',
-    display: 'flex',
     textAlign: 'inherit'
   }
 })
 
-const stepReverse = merge({
-  [mixins.breakpoints.ns]: {
-    flexDirection: 'row-reverse'
-  }
-}, stepContainer)
-
-const stepBottom = merge({
-  paddingBottom: variables.padding.c,
-  [mixins.breakpoints.ns]: {
-    flexDirection: 'column',
-    paddingBottom: variables.padding.b
-  }
-}, stepContainer)
-
 const stepCopy = merge({
+  maxWidth: '36rem',
+  marginLeft: 'auto',
+  marginRight: 'auto',
   color: variables.colors.charcoal,
   padding: `0 0 ${variables.padding.d} 0`
 }, mixins.headings.p)
@@ -191,6 +185,7 @@ const styles = {
   benefits: deList,
   // Section: How nudj works
   how: mixins.basicContainerLarge({
+    width: '100%',
     paddingTop: variables.padding.b,
     paddingLeft: variables.padding.d,
     paddingRight: variables.padding.d,
@@ -219,24 +214,18 @@ const styles = {
       backgroundRepeat: 'no-repeat',
       height: '23px',
       width: '100vw',
+      marginTop: variables.padding.b,
       [mixins.breakpoints.l]: {
         width: '100%'
       }
     })
   }),
   step: stepContainer,
-  stepReverse: stepReverse,
-  stepBottom: stepBottom,
   stepDescription: {
+    textAlign: 'center',
     [mixins.breakpoints.ns]: {
-      padding: `0 0 0 ${variables.padding.c}`,
-      width: '50%'
-    }
-  },
-  stepDescriptionReverse: {
-    [mixins.breakpoints.ns]: {
-      padding: `0 ${variables.padding.c} 0 0`,
-      width: '50%'
+      padding: 0,
+      width: '100%'
     }
   },
   stepDescriptionBottom: {
@@ -461,7 +450,28 @@ const styles = {
   signup: mixins.buttonPrimary({
     zIndex: '9999'
   }),
-  contact: mixins.buttonSecondaryBorderless()
+  contact: mixins.buttonSecondaryBorderless(),
+  stepSupportingImagery: {
+    width: '100%'
+  },
+  stepVideoContainer: {
+    height: '0',
+    paddingBottom: '56.25%', // 16:9 ratio
+    position: 'relative',
+    width: '100%',
+    ':after': {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      content: '""',
+      backgroundImage: 'url(/assets/images/antifill.svg)',
+      backgroundSize: 'auto 100%',
+      backgroundRepeat: 'no-repeat',
+      pointerEvents: 'none'
+    }
+  }
 }
 
 module.exports = css(styles)
