@@ -1,16 +1,23 @@
 const { css, merge } = require('@nudj/framework/css')
 const { mixins, variables } = require('../../lib/css')
 
-const titles = mixins.underlineHoverTransition(mixins.makeOrangeSubtitleUnderlineOnDarkGrey(merge(mixins.deLink({
-  color: variables.colors.white,
-  display: 'inline-block',
-  margin: `0 0 ${variables.padding.d} 0`
-}), mixins.headings.h5, {
-  [mixins.breakpoints.l]: {
-    fontSize: mixins.headings.h6,
-    margin: `0 0 ${variables.padding.f} 0`
-  }
-})))
+const titles = mixins.underlineHoverTransition(
+  mixins.makeOrangeSubtitleUnderlineOnDarkGrey(
+    merge(
+      mixins.deLink({
+        color: variables.colors.white,
+        display: 'inline-block',
+        margin: `0 0 ${variables.padding.d} 0`
+      }),
+      mixins.headings.h5,
+      {
+        [mixins.breakpoints.l]: merge(mixins.headings.h6, {
+          margin: `0 0 ${variables.padding.f} 0`
+        })
+      }
+    )
+  )
+)
 
 const styles = {
   background: {
