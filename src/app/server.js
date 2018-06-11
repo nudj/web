@@ -48,6 +48,57 @@ const spoofLoggedIn = (req, res, next) => {
 }
 const errorHandlers = require('./server/errorHandlers')
 
+const helmetConfig = {
+  contentSecurityPolicy: {
+    directives: {
+      scriptSrc: [
+        "'self'",
+        "'unsafe-inline'",
+        'widget.intercom.io',
+        'www.googletagmanager.com',
+        'js.intercomcdn.com',
+        'www.fullstory.com'
+      ],
+      connectSrc: [
+        "'self'",
+        'api-iam.intercom.io',
+        'nexus-websocket-a.intercom.io',
+        'wss://nexus-websocket-a.intercom.io',
+        'nexus-websocket-b.intercom.io',
+        'wss://nexus-websocket-b.intercom.io',
+        'rs.fullstory.com'
+      ],
+      styleSrc: [
+        "'self'",
+        "'unsafe-inline'",
+        'cdnjs.cloudflare.com'
+      ],
+      frameSrc: [
+        "'self'",
+        'web-wds.local.nudj.co'
+      ],
+      fontSrc: [
+        "'self'",
+        'js.intercomcdn.com'
+      ],
+      imgSrc: [
+        "'self'",
+        'static.intercomassets.com',
+        'nudjcms.s3.amazonaws.com'
+      ],
+      mediaSrc: [
+        "'self'",
+        'nudjcms.s3.amazonaws.com'
+      ]
+    }
+  }
+}
+if (useDevServer) {
+  helmetConfig.contentSecurityPolicy.directives.scriptSrc.push('web-wds.local.nudj.co')
+  helmetConfig.contentSecurityPolicy.directives.connectSrc.push('web-wds.local.nudj.co')
+  helmetConfig.contentSecurityPolicy.directives.connectSrc.push('wss://web-wds.local.nudj.co')
+}
+
 let app = createNudjApps({
   App: reactApp,
   reduxRoutes,
@@ -56,7 +107,8 @@ let app = createNudjApps({
   expressAssetPath,
   buildAssetPath,
   spoofLoggedIn,
-  errorHandlers
+  errorHandlers,
+  helmetConfig
 })
 
 const server = http.createServer(app)
