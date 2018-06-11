@@ -2,19 +2,7 @@ const { StyleSheet } = require('@nudj/components/lib/css')
 
 const styleSheet = StyleSheet.create({
   root: {
-    position: 'relative',
-    ':after': {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      content: '""',
-      backgroundImage: 'url(/assets/images/antifill.svg)',
-      backgroundSize: 'auto 100%',
-      backgroundRepeat: 'no-repeat',
-      pointerEvents: 'none'
-    }
+    position: 'relative'
   },
   video: {
     width: '100%',
