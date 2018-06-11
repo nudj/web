@@ -224,7 +224,7 @@ const Hirer = (props) => {
           </div>
         </div>
         <div className={style.header}>
-          <p className={style.bodySubtitle}>So, why do you need nudj...</p>
+          <h2 className={style.bodyTitle}><span className={style.howUnderline}>Why you need nudj</span></h2>
         </div>
         <ul className={style.whys}>
           <li className={style.why}>
