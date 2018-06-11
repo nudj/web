@@ -56,13 +56,15 @@ const subtitleUnderline = merge(mixins.makeOrangeSubtitleUnderline(), {
 
 const stepContainer = mixins.basicContainer({
   paddingTop: '4rem',
-  paddingLeft: variables.padding.d,
   paddingBottom: '0',
-  paddingRight: variables.padding.d,
-  textAlign: 'center',
+  paddingLeft: 0,
+  paddingRight: 0,
+  textAlign: 'left',
   display: 'flex',
   flexDirection: 'column-reverse',
   [mixins.breakpoints.ns]: {
+    paddingLeft: variables.padding.d,
+    paddingRight: variables.padding.d,
     paddingTop: '8rem',
     alignItems: 'center',
     textAlign: 'inherit'
@@ -222,9 +224,10 @@ const styles = {
   step: stepContainer,
   stepDescription: {
     maxWidth: '36rem',
-    textAlign: 'center',
+    textAlign: 'left',
     [mixins.breakpoints.ns]: {
       padding: 0,
+      textAlign: 'center',
       width: '100%'
     }
   },
@@ -459,18 +462,7 @@ const styles = {
     paddingBottom: '56.25%', // 16:9 ratio
     position: 'relative',
     width: '100%',
-    ':after': {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      content: '""',
-      backgroundImage: 'url(/assets/images/antifill.svg)',
-      backgroundSize: 'auto 100%',
-      backgroundRepeat: 'no-repeat',
-      pointerEvents: 'none'
-    }
+    marginTop: variables.padding.d
   }
 }
 

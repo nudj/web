@@ -89,8 +89,15 @@ const Hirer = (props) => {
               </div>
             </div>
             <div className={style.stepDescription}>
-              <h2 className={style.stepTitle}><span className={style.red}>1.</span>{' '}Quickly upload your jobs to nudj</h2>
-              <p className={style.stepCopy}>Add a little bit of info about roles your hiring for and they&apos;ll instantly appear&nbsp;on&nbsp;nudj</p>
+              <h2 className={style.stepTitle}>
+                <span className={style.red}>1.</span>{' '}
+                Get setup in seconds
+              </h2>
+              <p className={style.stepCopy}>
+                Add a few key details about the roles you&apos;re
+                hiring for and they&apos;ll appear on our platform.
+                Or, email us your jobs and we&apos;ll upload them&nbsp;for&nbsp;you.
+              </p>
             </div>
           </li>
           <li className={style.step}>
@@ -106,8 +113,15 @@ const Hirer = (props) => {
               </div>
             </div>
             <div className={style.stepDescription}>
-              <h2 className={style.stepTitle}><span className={style.red}>2.</span>{' '}Make use of your team&apos;s network</h2>
-              <p className={style.stepCopy}>Make use of your entire team&apos;s network by inviting them to nudj, extending the reach of your jobs and maximising the chances of finding more great people&nbsp;to&nbsp;hire.</p>
+              <h2 className={style.stepTitle}>
+                <span className={style.red}>2.</span>{' '}
+                Access your employee network
+              </h2>
+              <p className={style.stepCopy}>
+                Invite your team to share your jobs,
+                extending your reach and increasing
+                your chances of finding great people&nbsp;to&nbsp;hire.
+              </p>
             </div>
           </li>
           <li className={style.step}>
@@ -123,8 +137,15 @@ const Hirer = (props) => {
               </div>
             </div>
             <div className={style.stepDescription}>
-              <h2 className={style.stepTitle}><span className={style.red}>3.</span>{' '}Easily share your jobs</h2>
-              <p className={style.stepCopy}>Do you WhatsApp or Messenger? Or perhaps you like to keep things brief on Twitter? Whatever platform you and your team prefer to share your trackable job link on, nudj has got&nbsp;you&nbsp;covered.</p>
+              <h2 className={style.stepTitle}>
+                <span className={style.red}>3.</span>{' '}
+                Share trackable links to any of your jobs
+              </h2>
+              <p className={style.stepCopy}>
+                Every team mate gets a unique link for
+                each of your jobs, all they have to do
+                is pick the platform they want to share&nbsp;them&nbsp;on.
+              </p>
             </div>
           </li>
           <li className={style.step}>
@@ -140,8 +161,15 @@ const Hirer = (props) => {
               </div>
             </div>
             <div className={style.stepDescription}>
-              <h2 className={style.stepTitle}><span className={style.red}>4.</span>{' '}Discover who from your network can help</h2>
-              <p className={style.stepCopy}>Using an Aided Recall approach, popularised by Google, your team can uncover and refer all the people who are suitable from their networks, rather just the few that immediately spring&nbsp;to&nbsp;mind.</p>
+              <h2 className={style.stepTitle}>
+                <span className={style.red}>4.</span>{' '}
+                Find more people to refer
+              </h2>
+              <p className={style.stepCopy}>
+                By using a series of unique questions,
+                we&apos;ll help your team uncover more people
+                from their networks who are&nbsp;worth&nbsp;referring.
+              </p>
             </div>
           </li>
           <li className={style.step}>
@@ -157,8 +185,15 @@ const Hirer = (props) => {
               </div>
             </div>
             <div className={style.stepDescription}>
-              <h2 className={style.stepTitle}><span className={style.red}>5.</span>{' '}View all your applicants in one place</h2>
-              <p className={style.stepCopy}>Most referred applicants have a bad experience because they get lost in the pile with everyone else. With nudj, you can easily view who&apos;s applied, including who referred them and then contact them from within the app if you want to take them to the&nbsp;next&nbsp;stage.</p>
+              <h2 className={style.stepTitle}>
+                <span className={style.red}>5.</span>{' '}
+                Easily manage your applications
+              </h2>
+              <p className={style.stepCopy}>
+                View all your applicants in one place and
+                contact them from your account when you want
+                to take them to the&nbsp;next&nbsp;stage.
+              </p>
             </div>
           </li>
         </ul>
@@ -247,7 +282,7 @@ const Hirer = (props) => {
           <p className={style.pricingSubtitle}>One risk-free fee. You don&apos;t hire anyone you don&apos;t pay.</p>
           <div className={style.pricingBox}>
             <h2 className={style.price}>It&apos;s free!</h2>
-            <small className={style.pricingSmall}>*All you have to do is set your referral bonus</small>
+            <small className={style.pricingSmall}>All you have to do is set the referral bonus.</small>
           </div>
           <div className={style.cta}>
             <RandomHover><a href={hireUrl} id='getStartedBottom' className={style.signup}>Get started</a></RandomHover>
