@@ -70,7 +70,6 @@ const stepContainer = mixins.basicContainer({
 })
 
 const stepCopy = merge({
-  maxWidth: '36rem',
   marginLeft: 'auto',
   marginRight: 'auto',
   color: variables.colors.charcoal,
@@ -222,16 +221,11 @@ const styles = {
   }),
   step: stepContainer,
   stepDescription: {
+    maxWidth: '36rem',
     textAlign: 'center',
     [mixins.breakpoints.ns]: {
       padding: 0,
       width: '100%'
-    }
-  },
-  stepDescriptionBottom: {
-    [mixins.breakpoints.ns]: {
-      textAlign: 'center',
-      width: '50%'
     }
   },
   stepTitle: subtitle,
@@ -385,8 +379,14 @@ const styles = {
   whys: merge(deList, {
     position: 'relative',
     maxWidth: variables.sizes.contentMediumMaxWidth,
-    margin: '0 auto',
-    width: '100%'
+    marginTop: variables.padding.b,
+    marginLeft: 'auto',
+    marginBottom: '0',
+    marginRight: 'auto',
+    width: '100%',
+    [mixins.breakpoints.ns]: {
+      paddingTop: variables.padding.c
+    }
   }),
   why: {
     paddingBottom: variables.padding.d,
