@@ -1,7 +1,7 @@
 const React = require('react')
 const cookies = require('js-cookie')
 
-const { Banner, Text, Button, Link, Align } = require('@nudj/components')
+const { Banner, Text, Button } = require('@nudj/components')
 
 const { css } = require('@nudj/components/lib/css')
 
@@ -37,7 +37,6 @@ class CookieBanner extends React.Component {
   }
 
   render () {
-    const { onClickAccept, onClickDecline } = this.props
     const { shouldRender } = this.state
 
     if (!shouldRender) return null

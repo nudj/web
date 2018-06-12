@@ -95,8 +95,18 @@ const helmetConfig = {
 }
 if (useDevServer) {
   helmetConfig.contentSecurityPolicy.directives.scriptSrc.push('web-wds.local.nudj.co')
+  helmetConfig.contentSecurityPolicy.directives.scriptSrc.push('tagmanager.google.com')
+
+  helmetConfig.contentSecurityPolicy.directives.styleSrc.push('tagmanager.google.com')
+  helmetConfig.contentSecurityPolicy.directives.styleSrc.push('fonts.googleapis.com')
+
+  helmetConfig.contentSecurityPolicy.directives.imgSrc.push('ssl.gstatic.com')
+  helmetConfig.contentSecurityPolicy.directives.imgSrc.push('www.gstatic.com')
+
   helmetConfig.contentSecurityPolicy.directives.connectSrc.push('web-wds.local.nudj.co')
   helmetConfig.contentSecurityPolicy.directives.connectSrc.push('wss://web-wds.local.nudj.co')
+
+  helmetConfig.contentSecurityPolicy.directives.fontSrc.push('fonts.gstatic.com')
 }
 
 let app = createNudjApps({
