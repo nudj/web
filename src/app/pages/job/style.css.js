@@ -53,7 +53,8 @@ const styles = {
   },
   jobDescriptionText: merge(mixins.typography.copy, {
     flex: '1',
-    textAlign: 'left'
+    textAlign: 'left',
+    whiteSpace: 'pre-line'
   }),
   actions: mixins.flexColumn({
     padding: `0 ${variables.padding.d}`,
