@@ -1,4 +1,4 @@
-const { StyleSheet, utilities, colors, sizes, typography } = require('@nudj/components/lib/css')
+const { StyleSheet, utilities, colors, typography } = require('@nudj/components/lib/css')
 
 const breakpoint = '38rem'
 
@@ -16,7 +16,7 @@ const styleSheet = StyleSheet.create({
     borderRadius: '0.4rem',
     boxShadow: utilities.boxShadow[20].wide,
     [`@media(min-width: ${breakpoint})`]: {
-      display: 'flex',
+      display: 'flex'
     }
   },
   text: {
@@ -39,7 +39,6 @@ const styleSheet = StyleSheet.create({
     backgroundColor: 'transparent',
     borderColor: 'transparent',
     color: colors.primary,
-    textDecoration: 'underline',
     ':hover': {
       color: colors.primaryLight
     },
@@ -57,12 +56,12 @@ const styleSheet = StyleSheet.create({
     marginRight: '1rem',
     whiteSpace: 'nowrap',
     ':last-child': {
-      marginRight: 0,
+      marginRight: 0
     },
     [`@media(min-width: ${breakpoint})`]: {
       marginTop: 0
     }
-  },
+  }
 })
 
 module.exports = styleSheet
