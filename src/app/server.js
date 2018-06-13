@@ -182,7 +182,8 @@ if (module.hot) {
       expressAssetPath,
       buildAssetPath,
       spoofLoggedIn,
-      errorHandlers
+      errorHandlers,
+      helmetConfig
     })
 
     server.on('request', newApp)
