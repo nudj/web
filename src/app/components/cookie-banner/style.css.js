@@ -4,7 +4,7 @@ const breakpoint = '38rem'
 
 const styleSheet = StyleSheet.create({
   root: {
-    zIndex: 1,
+    zIndex: 2000,
     position: 'fixed',
     left: '50%',
     transform: 'translateX(-50%)',
