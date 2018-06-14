@@ -1,6 +1,8 @@
 const { css, merge } = require('@nudj/framework/css')
 const { mixins, variables } = require('../../lib/css')
 
+const breakpoint = '39.375rem'
+
 const buttonMargins = {
   margin: `0 0 ${variables.padding.e}`,
   [mixins.breakpoints.l]: {
@@ -34,6 +36,14 @@ const styles = {
   jobHeaderTitle: merge({}, mixins.typography.titleCharcoal, {
     margin: `0 0 ${variables.padding.c} 0`,
     textAlign: 'left'
+  }),
+  newJobHeaderTitle: merge({}, mixins.typography.titleCharcoal, {
+    margin: `0 auto ${variables.padding.c} auto`,
+    maxWidth: '48rem',
+    textAlign: 'left',
+    [`@media(min-width: ${breakpoint})`]: {
+      textAlign: 'center'
+    }
   }),
   jobHeaderTitleHighlight: jobHeaderTitleHighlight,
   jobHeaderTitleHighlightLink: merge(jobHeaderTitleHighlight, {
@@ -159,18 +169,27 @@ const styles = {
       alignItems: 'flex-end'
     }
   },
+  jobDescriptionContainer: {
+    [`@media(min-width: ${breakpoint})`]: {
+      maxWidth: '36rem',
+      marginLeft: 'auto',
+      marginRight: 'auto'
+    }
+  },
   jobDescriptionFallback: merge({}, mixins.typography.copy, {
     margin: `0 0 ${variables.padding.b} 0`,
-    [mixins.breakpoints.l]: {
-      textAlign: 'inherit'
+    textAlign: 'left',
+    whiteSpace: 'pre-line',
+    [mixins.breakpoints.ns]: {
+      textAlign: 'left'
     }
   }),
   jobDescriptionSubtitleFallback: merge({}, mixins.headings.h4, {
     color: variables.colors.midRed,
     margin: `${variables.padding.b} 0 ${variables.padding.d} 0`,
-    textAlign: 'center',
-    [mixins.breakpoints.l]: {
-      textAlign: 'inherit'
+    textAlign: 'left',
+    [`@media(min-width: ${breakpoint})`]: {
+      textAlign: 'center'
     }
   }),
   bodyLinks: merge({}, mixins.typography.copy, mixins.headings.pBold, mixins.textHighlight(), {

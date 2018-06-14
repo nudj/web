@@ -225,7 +225,7 @@ const Job = props => {
   }
 
   const fullJobDescription = (
-    <div className={style.jobDescriptionContainer}>
+    <div>
       <div className={style.jobDescriptionBox}>
         {descriptionSections.map(section => (
           <div
@@ -243,16 +243,15 @@ const Job = props => {
   const jobDescriptionFallback = (
     <div className={style.jobDescriptionContainer}>
       <h3 className={style.jobDescriptionSubtitleFallback}>
-        What else you need to know…
+        What you need to know
       </h3>
       <p className={style.jobDescriptionFallback}>{description}</p>
     </div>
   )
 
-  // > 1 ensures that the fallback renders if no additional entries are provided
-  // To render the collapse box it needs to be > 1 because company.description will always be in there as 1 entry.
-  const jobDescription =
-    descriptionSections.length > 1 ? fullJobDescription : jobDescriptionFallback
+  const expandedDescription = !!(roleDescription && candidateDescription)
+  const jobDescription = expandedDescription ? fullJobDescription : jobDescriptionFallback
+  const titleStyle = expandedDescription ? style.expandedJobHeaderTitle : style.jobHeaderTitle
 
   return (
     <Page {...props} className={style.body}>
@@ -281,7 +280,7 @@ const Job = props => {
       )}
       <div className={style.job}>
         <div className={style.jobContainer}>
-          <h1 className={style.jobHeaderTitle}>{title}</h1>
+          <h1 className={titleStyle}>{title}</h1>
           {jobDescription}
         </div>
         {job.status !== 'ARCHIVED' && (
