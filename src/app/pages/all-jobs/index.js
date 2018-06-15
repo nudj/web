@@ -27,7 +27,7 @@ const JobsPage = props => {
         <meta property='og:title' content={pageTitle} />
         <meta property='og:site_name' content='nudj' />
         <meta name='twitter:description' content={pageDescription} />
-        <meta name='twitter:card' content={pageTitle} />
+        <meta name='twitter:card' content='summary' />
         <meta name='twitter:title' content={pageTitle} />
       </Helmet>
       <Header

@@ -26,7 +26,7 @@ const Nudj = (props) => {
       <meta property='og:type' content='website' />
       <meta property='og:title' content={socialTitle} />
       <meta property='og:site_name' content='nudj' />
-      <meta name='twitter:card' content={socialTitle} />
+      <meta name='twitter:card' content='summary' />
       <meta name='twitter:title' content={socialTitle} />
       <meta name='twitter:description' content={pageDescription} />
     </Helmet>
