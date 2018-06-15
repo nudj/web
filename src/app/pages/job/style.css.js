@@ -34,16 +34,13 @@ const styles = {
   },
   jobContainer: mixins.basicContainer(),
   jobHeaderTitle: merge({}, mixins.typography.titleCharcoal, {
-    margin: `0 0 ${variables.padding.c} 0`,
+    margin: `0 auto ${variables.padding.c} auto`,
+    maxWidth: '46rem',
     textAlign: 'left'
   }),
-  newJobHeaderTitle: merge({}, mixins.typography.titleCharcoal, {
-    margin: `0 auto ${variables.padding.c} auto`,
-    maxWidth: '48rem',
-    textAlign: 'left',
-    [`@media(min-width: ${breakpoint})`]: {
-      textAlign: 'center'
-    }
+  expandedJobHeaderTitle: merge({}, mixins.typography.titleCharcoal, {
+    margin: `0 0 ${variables.padding.c} 0`,
+    textAlign: 'left'
   }),
   jobHeaderTitleHighlight: jobHeaderTitleHighlight,
   jobHeaderTitleHighlightLink: merge(jobHeaderTitleHighlight, {
@@ -171,12 +168,14 @@ const styles = {
   },
   jobDescriptionContainer: {
     [`@media(min-width: ${breakpoint})`]: {
-      maxWidth: '36rem',
+      maxWidth: '46rem',
       marginLeft: 'auto',
       marginRight: 'auto'
     }
   },
   jobDescriptionFallback: merge({}, mixins.typography.copy, {
+    fontSize: '1.125rem',
+    lineHeight: '1.7rem',
     margin: `0 0 ${variables.padding.b} 0`,
     textAlign: 'left',
     whiteSpace: 'pre-line',
@@ -187,10 +186,7 @@ const styles = {
   jobDescriptionSubtitleFallback: merge({}, mixins.headings.h4, {
     color: variables.colors.midRed,
     margin: `${variables.padding.b} 0 ${variables.padding.d} 0`,
-    textAlign: 'left',
-    [`@media(min-width: ${breakpoint})`]: {
-      textAlign: 'center'
-    }
+    textAlign: 'left'
   }),
   bodyLinks: merge({}, mixins.typography.copy, mixins.headings.pBold, mixins.textHighlight(), {
     textDecoration: 'none'
