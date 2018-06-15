@@ -54,7 +54,9 @@ const helmetConfig = {
       scriptSrc: [
         "'self'",
         "'unsafe-inline'",
+        'snap.licdn.com',
         'widget.intercom.io',
+        'tagmanager.google.com',
         'www.googletagmanager.com',
         'www.google-analytics.com',
         'js.intercomcdn.com',
