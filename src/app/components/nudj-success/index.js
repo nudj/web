@@ -51,7 +51,7 @@ const NudjSuccess = (props) => {
         </CopyToClipboard>
       </div>
       <div className={style.link}>
-        <div className={style.linkContainer}>{link}</div>
+        <input className={style.linkContainer} value={link} />
         <RandomHover><CopyToClipboard id='copy' className={style.copyLink} data-clipboard-text={link}>Copy link</CopyToClipboard></RandomHover>
       </div>
     </div>

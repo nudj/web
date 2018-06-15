@@ -70,7 +70,10 @@ const styles = {
     }
   }),
   or: mixins.makeOrDark(),
-  action: mixins.flexColumn(),
+  action: {
+    ...mixins.flexColumn(),
+    width: '100%'
+  },
   actionCopy: merge({}, mixins.typography.copy, {
     margin: '0',
     [mixins.breakpoints.l]: {
