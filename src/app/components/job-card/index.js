@@ -23,10 +23,12 @@ const JobCard = props => {
         )}
         <div className={style.flexItem}>
           <ul className={style.jobMetaList}>
-            <li className={style.jobMetaItem}>
-              <p className={style.metaTitle}>Salary</p>
-              <p className={style.metaData}>{salary}</p>
-            </li>
+            {salary && (
+              <li className={style.jobMetaItem}>
+                <p className={style.metaTitle}>Salary</p>
+                <p className={style.metaData}>{salary}</p>
+              </li>
+            )}
             <li className={style.jobMetaItem}>
               <p className={style.metaTitle}>Location</p>
               <p className={style.metaData}>{location}</p>
