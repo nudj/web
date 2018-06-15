@@ -14,7 +14,7 @@ const ReduxRoot = (props) => {
         <meta property='og:type' content='article' />
         <meta property='og:title' content='nudj - Connecting great people with awesome companies.' />
         <meta property='og:site_name' content='nudj' />
-        <meta name='twitter:card' content='nudj - Connecting great people with awesome companies.' />
+        <meta name='twitter:card' content='summary' />
         <meta name='twitter:title' content='nudj - Connecting great people with awesome companies.' />
         <meta name='twitter:image' content='https://assets.nudj.co/assets/images/social/nudj-card-og.jpg' />
         <meta name='twitter:description' content='nudj makes it effortless for the best businesses to engage with the best talent, utilising connections they both have.' />
