@@ -9,7 +9,7 @@ const RandomHover = require('../../components/random-hover')
 
 const About = (props) => {
   const pageTitle = `About nudj`
-  const pageDescription = `We&apos;re on a mission to make referrals the only way to hire and get hired. Why? Because the best recuriter is not a recruiter, it&apos;s a person you know and trust.`
+  const pageDescription = `We're on a mission to make referrals the only way to hire and get hired. Why? Because the best recuriter is not a recruiter, it's a person you know and trust.`
 
   const style = getStyle()
   return (
