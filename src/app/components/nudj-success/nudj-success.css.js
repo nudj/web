@@ -9,7 +9,8 @@ const sharingIcons = {
 
 const styles = {
   container: merge({}, mixins.headings.small, {
-    [mixins.breakpoints.ns]: mixins.headings.p
+    [mixins.breakpoints.ns]: mixins.headings.p,
+    width: '100%'
   }),
   mobileMessage: {
     color: variables.colors.royalBlue,
@@ -47,10 +48,15 @@ const styles = {
   },
   link: {
     display: 'none',
+    width: '100%',
     padding: `${variables.padding.d} 0`,
     [mixins.breakpoints.ns]: mixins.flexColumn()
   },
-  linkContainer: mixins.linkContainer,
+  linkContainer: {
+    ...mixins.linkContainer,
+    textOverflow: 'initial',
+    maxWidth: '36rem'
+  },
   copyLink: mixins.buttonPrimary(),
   copyLinkIcon: {
     cursor: 'pointer',
