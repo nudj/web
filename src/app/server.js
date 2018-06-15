@@ -56,12 +56,14 @@ const helmetConfig = {
         "'unsafe-inline'",
         'widget.intercom.io',
         'www.googletagmanager.com',
+        'www.google-analytics.com',
         'js.intercomcdn.com',
         'www.fullstory.com'
       ],
       connectSrc: [
         "'self'",
         'api-iam.intercom.io',
+        'www.google-analytics.com',
         'nexus-websocket-a.intercom.io',
         'wss://nexus-websocket-a.intercom.io',
         'nexus-websocket-b.intercom.io',
@@ -84,6 +86,7 @@ const helmetConfig = {
       imgSrc: [
         "'self'",
         'static.intercomassets.com',
+        'www.google-analytics.com',
         'nudjcms.s3.amazonaws.com'
       ],
       mediaSrc: [
