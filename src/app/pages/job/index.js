@@ -243,7 +243,11 @@ const Job = props => {
   const jobDescriptionFallback = (
     <div className={style.jobDescriptionContainer}>
       <h3 className={style.jobDescriptionSubtitleFallback}>
-        What you need to know
+        About {company.name}
+      </h3>
+      <p className={style.jobDescriptionFallback}>{companyDescription}</p>
+      <h3 className={style.jobDescriptionSubtitleFallback}>
+        About the role
       </h3>
       <p className={style.jobDescriptionFallback}>{description}</p>
     </div>
