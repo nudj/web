@@ -382,14 +382,10 @@ const styles = {
   whys: merge(deList, {
     position: 'relative',
     maxWidth: variables.sizes.contentMediumMaxWidth,
-    marginTop: variables.padding.b,
     marginLeft: 'auto',
     marginBottom: '0',
     marginRight: 'auto',
-    width: '100%',
-    [mixins.breakpoints.ns]: {
-      paddingTop: variables.padding.c
-    }
+    width: '100%'
   }),
   why: {
     paddingBottom: variables.padding.d,

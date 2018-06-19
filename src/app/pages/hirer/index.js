@@ -57,16 +57,16 @@ const Hirer = (props) => {
         <div className={style.takeawayRight}>
           <ul className={style.benefits}>
             <li className={style.benefit}>
-              <h3 className={style.stepTitle}>Send more of the right referrals</h3>
-              <p className={style.stepCopy}>Discover who exactly from your network can help you find the right people and incentivise them to refer.</p>
+              <h3 className={style.stepTitle}>Make more referrals happen</h3>
+              <p className={style.stepCopy}>We&apos;ll help you uncover who from your network can connect you with the right people and incentivise them to refer.</p>
             </li>
             <li className={style.benefit}>
               <h3 className={style.stepTitle}>Attract high quality employees</h3>
-              <p className={style.stepCopy}>Employees hired by referral are likely to be more productive and stay for longer. We help you hire more of them.</p>
+              <p className={style.stepCopy}>Employees hired by referral are more productive and stick around for longer. We&apos;ll help you hire more of them.</p>
             </li>
             <li className={style.benefit}>
               <h3 className={style.stepTitle}>Spend less, get better results</h3>
-              <p className={style.stepCopy}>Referrals are significantly cheaper than any other hiring tool and with our risk-free pricing, you can make them work for your company.</p>
+              <p className={style.stepCopy}>Referrals cost less and deliver better results. Combined with our free tool and you could save an average of over £2,000 per hire.</p>
             </li>
           </ul>
         </div>
@@ -260,14 +260,15 @@ const Hirer = (props) => {
         </div>
         <div className={style.header}>
           <h2 className={style.bodyTitle}><span className={style.howUnderline}>Why you need nudj</span></h2>
+          <p className={style.bodySubtitle}>Everyone knows referrals are the best way to hire, but most schemes fail because...</p>
         </div>
         <ul className={style.whys}>
           <li className={style.why}>
-            <h3 className={style.stepTitle}><span className={style.red}>1.</span> Not personal enough</h3>
+            <h3 className={style.stepTitle}><span className={style.red}>1.</span> They&apos;re not personal enough</h3>
             <p className={style.stepCopy}>Existing referral schemes aren&apos;t engaging, because they&apos;re not personalised to each employee or referrer.</p>
           </li>
           <li className={style.why}>
-            <h3 className={style.stepTitle}><span className={style.red}>2.</span> Hard to find who to ask</h3>
+            <h3 className={style.stepTitle}><span className={style.red}>2.</span> It&apos;s hard to know who to ask</h3>
             <p className={style.stepCopy}>If employees do decide to share a job, they post it on social networks to nobody in particular. Why? Because, while there might be someone suitable in their network, it&apos;s a faff to find them.</p>
           </li>
           <li className={style.why}>
@@ -279,7 +280,7 @@ const Hirer = (props) => {
       <section className={style.pricing} id='pricing'>
         <div className={style.pricingContainer}>
           <h2 className={style.pricingTitle}>Our pricing</h2>
-          <p className={style.pricingSubtitle}>One risk-free fee. You don&apos;t hire anyone you don&apos;t pay.</p>
+          <p className={style.pricingSubtitle}>Unlimited jobs. Unlimited users. All you have to pay for are successful referrals.</p>
           <div className={style.pricingBox}>
             <h2 className={style.price}>It&apos;s free!</h2>
             <small className={style.pricingSmall}>All you have to do is set the referral bonus.</small>
