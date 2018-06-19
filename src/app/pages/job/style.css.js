@@ -34,7 +34,8 @@ const styles = {
   },
   jobContainer: mixins.basicContainer(),
   jobHeaderTitle: merge({}, mixins.typography.titleCharcoal, {
-    margin: `0 auto ${variables.padding.c} auto`,
+    margin: `0 auto ${variables.padding.b} auto`,
+    paddingBottom: '0',
     maxWidth: '46rem',
     textAlign: 'left'
   }),
@@ -64,9 +65,9 @@ const styles = {
     whiteSpace: 'pre-line'
   }),
   actions: mixins.flexColumn({
-    padding: `0 ${variables.padding.d}`,
+    padding: `${variables.padding.d} ${variables.padding.d}`,
     [mixins.breakpoints.ns]: {
-      padding: `0 ${variables.padding.c}`
+      padding: `${variables.padding.d} ${variables.padding.c}`
     }
   }),
   or: mixins.makeOrDark(),
@@ -188,7 +189,7 @@ const styles = {
   }),
   jobDescriptionSubtitleFallback: merge({}, mixins.headings.h4, {
     color: variables.colors.midRed,
-    margin: `${variables.padding.b} 0 ${variables.padding.d} 0`,
+    margin: `0 0 ${variables.padding.d} 0`,
     textAlign: 'left'
   }),
   bodyLinks: merge({}, mixins.typography.copy, mixins.headings.pBold, mixins.textHighlight(), {
