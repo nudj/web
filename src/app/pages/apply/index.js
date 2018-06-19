@@ -105,6 +105,7 @@ class ApplicationUpdate extends React.Component {
               <Input
                 id='role'
                 name='role'
+                type='text'
                 placeholder='e.g., Marketing Executive'
                 value={role}
                 onChange={this.handleInputChange}
@@ -122,6 +123,7 @@ class ApplicationUpdate extends React.Component {
               <Input
                 id='company'
                 name='company'
+                type='text'
                 placeholder='e.g., Apple'
                 value={company}
                 onChange={this.handleInputChange}
@@ -140,6 +142,7 @@ class ApplicationUpdate extends React.Component {
               <Input
                 id='url'
                 name='url'
+                type='url'
                 placeholder='https://linkedin.com/in/profile'
                 value={url}
                 onChange={this.handleInputChange}
