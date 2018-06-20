@@ -446,9 +446,7 @@ const styles = {
     paddingBottom: variables.padding.c
   }),
   or: mixins.makeOr(),
-  signup: mixins.buttonPrimary({
-    zIndex: '9999'
-  }),
+  signup: mixins.buttonPrimary(),
   contact: mixins.buttonSecondaryBorderless(),
   stepSupportingImagery: {
     width: '100%'
