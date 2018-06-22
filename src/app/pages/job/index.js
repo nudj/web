@@ -39,6 +39,7 @@ const Job = props => {
   const templates = get(props, 'templates')
   const pageTitle = `${jobTitle} at ${companyName}`
   const pageDescription = `Apply to be a ${jobTitle} at ${companyName} or share the opportunity with a friend and get rewarded if they get hired.`
+  const userCompanySlug = get(props, 'user.company.slug')
 
   const relatedJobs = allJobs.filter(relatedJob => relatedJob.id !== job.id)
 
@@ -141,7 +142,7 @@ const Job = props => {
   actions.push(apply)
 
   const bonusAmount = get(job, 'bonus')
-  const nudjCopy = (
+  const nudjCopy = userCompanySlug === company.slug && (
     <p className={style.actionCopy}>
       You’ll get{' '}
       <strong className={style.strong}>

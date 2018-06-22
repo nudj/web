@@ -3,13 +3,6 @@ const { mixins, variables } = require('../../lib/css')
 
 const breakpoint = '39.375rem'
 
-const buttonMargins = {
-  margin: `0 0 ${variables.padding.e}`,
-  [mixins.breakpoints.l]: {
-    margin: `0 0 ${variables.padding.d} 0`
-  }
-}
-
 const jobHeaderTitleHighlight = {
   color: variables.colors.midRed,
   [mixins.breakpoints.l]: {
@@ -76,14 +69,19 @@ const styles = {
     width: '100%'
   },
   actionCopy: merge({}, mixins.typography.copy, {
-    margin: '0',
+    marginTop: variables.padding.e,
+    marginBottom: 0,
+    [mixins.breakpoints.l]: {
+      marginTop: variables.padding.d,
+      marginBottom: 0
+    },
     [mixins.breakpoints.l]: {
       textAlign: 'inherit'
     }
   }),
-  applied: mixins.buttonPrimaryDisabled(buttonMargins),
-  apply: mixins.buttonPrimary(buttonMargins),
-  nudj: mixins.buttonPrimary(buttonMargins),
+  applied: mixins.buttonPrimaryDisabled(),
+  apply: mixins.buttonPrimary(),
+  nudj: mixins.buttonPrimary(),
   related: mixins.makeGreyBackground({
     paddingTop: variables.padding.b,
     paddingBottom: variables.padding.b

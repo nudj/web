@@ -18,6 +18,11 @@ const get = ({ params, session, query, req, res }) => {
       $eventType: EventType!,
       $relatedJobStatus: JobStatus!
     ) {
+      user {
+        company {
+          slug
+        }
+      }
       referral: referral(
         id: $referralId
       ) {
