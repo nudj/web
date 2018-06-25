@@ -142,13 +142,17 @@ const Job = props => {
   actions.push(apply)
 
   const bonusAmount = get(job, 'bonus')
-  const nudjCopy = userCompanySlug === company.slug && (
+  const nudjCopy = userCompanySlug === company.slug ? (
     <p className={style.actionCopy}>
       You’ll get{' '}
       <strong className={style.strong}>
         {bonusAmount}
       </strong>{' '}
       if they get the job.
+    </p>
+  ) : (
+    <p className={style.actionCopy}>
+      Know someone perfect? Sign up to share this job with them.
     </p>
   )
 
