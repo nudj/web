@@ -58,15 +58,15 @@ const Hirer = (props) => {
           <ul className={style.benefits}>
             <li className={style.benefit}>
               <h3 className={style.stepTitle}>Make more referrals happen</h3>
-              <p className={style.stepCopy}>We&apos;ll help you uncover who from your network can connect you with the right people and incentivise them to refer.</p>
+              <p className={style.stepCopy}>We'll help your team find more of the right people, who are worth referring, and incentivise them to reach out.</p>
             </li>
             <li className={style.benefit}>
               <h3 className={style.stepTitle}>Attract high quality employees</h3>
-              <p className={style.stepCopy}>Employees hired by referral are more productive and stick around for longer. We&apos;ll help you hire more of them.</p>
+              <p className={style.stepCopy}>Referred employees are more productive and stick around for longer. All you need to do is hire more of them..</p>
             </li>
             <li className={style.benefit}>
               <h3 className={style.stepTitle}>Spend less, get better results</h3>
-              <p className={style.stepCopy}>Referrals cost less and deliver better results. Combined with our free tool and you could save an average of over £2,000 per hire.</p>
+              <p className={style.stepCopy}>Referrals cost less and deliver better results. Combined with our free tool, you could save over £2,000 per hire.</p>
             </li>
           </ul>
         </div>

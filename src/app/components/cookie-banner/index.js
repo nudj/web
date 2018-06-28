@@ -45,8 +45,8 @@ class CookieBanner extends React.Component {
       <Banner style={style.root}>
         <Text style={style.text}>
           We&apos;d like to use cookies to give you a great experience. Find out more in{' '}
-          <a className={css(style.privacyLink)} href='https://help.nudj.co/pricing-privacy-and-terms/nudj-privacy-policy'>
-            our privacy policy
+          <a className={css(style.privacyLink)} href='https://help.nudj.co/pricing-privacy-and-terms/nudj-cookie-policy'>
+            our cookie policy
           </a>.
         </Text>
         <Button
