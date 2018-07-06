@@ -33,7 +33,7 @@ const Hirer = (props) => {
         textHighlightColour='royalBlue'
         location='/hiring' />
       <section className={style.hero}>
-        <h1 className={style.heroTitle}>Supercharge your referral scheme</h1>
+        <h1 className={style.heroTitle}>Better manage your employee referral scheme <br className={style.standardBreak} />and hire more great people</h1>
         <p className={style.heroSubtitle}>
           Easily ask for, track and reward referrals inside and outside your company.
         </p>
@@ -280,10 +280,10 @@ const Hirer = (props) => {
       <section className={style.pricing} id='pricing'>
         <div className={style.pricingContainer}>
           <h2 className={style.pricingTitle}>Our pricing</h2>
-          <p className={style.pricingSubtitle}>Unlimited jobs. Unlimited users. All you have to pay for are successful referrals.</p>
+          <p className={style.pricingSubtitle}>Unlimited jobs. Unlimited users. One monthly fee.</p>
           <div className={style.pricingBox}>
-            <h2 className={style.price}>It&apos;s free!</h2>
-            <small className={style.pricingSmall}>All you have to do is set the referral bonus.</small>
+            <h2 className={style.price}>$99 p/month</h2>
+            <small className={style.pricingSmall}>14-day free trial. No payment details needed.</small>
           </div>
           <div className={style.cta}>
             <RandomHover><a href={hireUrl} id='getStartedBottom' className={style.signup}>Get started</a></RandomHover>

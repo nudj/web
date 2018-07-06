@@ -109,6 +109,8 @@ const styles = {
   hero: heroFisting,
   heroTitle: merge({
     color: variables.colors.white,
+    paddingLeft: variables.padding.d,
+    paddingRight: variables.padding.d,
     paddingBottom: variables.padding.e,
     textAlign: 'center'
   }, mixins.headings.h2),
