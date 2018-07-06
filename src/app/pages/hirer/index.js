@@ -282,7 +282,7 @@ const Hirer = (props) => {
           <h2 className={style.pricingTitle}>Our pricing</h2>
           <p className={style.pricingSubtitle}>Unlimited jobs. Unlimited users. One monthly fee.</p>
           <div className={style.pricingBox}>
-            <h2 className={style.price}>$99 p/month</h2>
+            <h2 className={style.price}>$99/month</h2>
             <small className={style.pricingSmall}>14-day free trial. No payment details needed.</small>
           </div>
           <div className={style.cta}>
