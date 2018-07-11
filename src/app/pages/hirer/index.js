@@ -54,7 +54,10 @@ const Hirer = (props) => {
       <section className={style.takeaway}>
         <div className={style.takeawayLeft}>
           <h2 className={style.bodyTitle}>How nudj can help</h2>
-          <p className={style.bodySubtitle}>Learn how our software can help your business.</p>
+          <p className={style.bodySubtitle}>
+            Combine our software with Greenhouse, Workable or any ATS to get
+            more of the candidates&nbsp;you&nbsp;need.
+          </p>
         </div>
         <div className={style.takeawayRight}>
           <ul className={style.benefits}>
