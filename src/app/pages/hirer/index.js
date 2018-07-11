@@ -33,9 +33,11 @@ const Hirer = (props) => {
         textHighlightColour='royalBlue'
         location='/hiring' />
       <section className={style.hero}>
-        <h1 className={style.heroTitle}>Better manage your employee referral scheme <br className={style.standardBreak} />and hire more great people</h1>
+        <h1 className={style.heroTitle}>
+          Better manage your employee referral scheme and hire more great&nbsp;people
+        </h1>
         <p className={style.heroSubtitle}>
-          Easily ask for, track and reward referrals inside and outside your company.
+          Easily ask for, track and reward referrals inside and outside your&nbsp;company.
         </p>
         <div className={style.heroCta}>
           <RandomHover>
