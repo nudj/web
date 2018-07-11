@@ -142,9 +142,9 @@ const Hirer = (props) => {
                 Share trackable links to any of your jobs
               </h2>
               <p className={style.stepCopy}>
-                Every team mate gets a unique link for
-                each of your jobs, all they have to do
-                is pick the platform they want to share&nbsp;them&nbsp;on.
+                Every colleague gets a unique link for each of your jobs, all
+                they have to do is pick the platform they want to
+                share&nbsp;them&nbsp;on.
               </p>
             </div>
           </li>
@@ -166,7 +166,7 @@ const Hirer = (props) => {
                 Find more people to refer
               </h2>
               <p className={style.stepCopy}>
-                By using a series of unique questions,
+                By using a set of unique questions,
                 we&apos;ll help your team uncover more people
                 from their networks who are&nbsp;worth&nbsp;referring.
               </p>
@@ -265,11 +265,11 @@ const Hirer = (props) => {
         <ul className={style.whys}>
           <li className={style.why}>
             <h3 className={style.stepTitle}><span className={style.red}>1.</span> They&apos;re not personal enough</h3>
-            <p className={style.stepCopy}>Existing referral schemes aren&apos;t engaging, because they&apos;re not personalised to each employee or referrer.</p>
+            <p className={style.stepCopy}>Existing referral schemes aren&apos;t engaging, because they&apos;re not personalized to each employee or referrer.</p>
           </li>
           <li className={style.why}>
             <h3 className={style.stepTitle}><span className={style.red}>2.</span> It&apos;s hard to know who to ask</h3>
-            <p className={style.stepCopy}>If employees do decide to share a job, they post it on social networks to nobody in particular. Why? Because, while there might be someone suitable in their network, it&apos;s a faff to find them.</p>
+            <p className={style.stepCopy}>If employees do decide to share a job, they post it on social networks to nobody in particular. Why? Because, while there might be someone suitable in their network, it&apos;s hard to find them.</p>
           </li>
           <li className={style.why}>
             <h3 className={style.stepTitle}><span className={style.red}>3.</span> Money doesn&apos;t always work</h3>
