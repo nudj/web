@@ -112,11 +112,17 @@ const styles = {
     paddingLeft: variables.padding.d,
     paddingRight: variables.padding.d,
     paddingBottom: variables.padding.e,
-    textAlign: 'center'
+    textAlign: 'center',
+    maxWidth: '48rem',
+    marginLeft: 'auto',
+    marginRight: 'auto'
   }, mixins.headings.h2),
   heroSubtitle: merge({
     color: variables.colors.white,
-    textAlign: 'center'
+    textAlign: 'center',
+    maxWidth: '36rem',
+    marginLeft: 'auto',
+    marginRight: 'auto'
   }, mixins.headings.h5Light),
   heroCta: mixins.flexColumn({
     paddingTop: variables.padding.c
