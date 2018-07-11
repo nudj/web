@@ -35,7 +35,8 @@ const heroFisting = merge({
 
 const heroSubtitle = merge({
   color: variables.colors.royalBlue,
-  padding: `0 0 ${variables.padding.d} 0`
+  padding: `0 0 ${variables.padding.d} 0`,
+  lineHeight: 1.5
 }, mixins.headings.h2)
 
 const subtitle = merge({
@@ -129,7 +130,7 @@ const styles = {
   }),
   // Takeaways
   takeaway: mixins.basicContainer({
-    paddingTop: variables.padding.b,
+    paddingTop: variables.padding.d,
     '@media(max-width: 60rem)': {
       paddingBottom: takeawayImageHeight
     },
@@ -157,7 +158,7 @@ const styles = {
         backgroundPosition: 'bottom left',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'auto',
-        bottom: '0.5rem',
+        bottom: '-3rem',
         height: takeawayImageHeight,
         left: '-25rem',
         position: 'absolute',
@@ -168,7 +169,8 @@ const styles = {
     [mixins.breakpoints.l]: {
       width: '50%',
       textAlign: 'left',
-      verticalAlign: 'top'
+      verticalAlign: 'top',
+      paddingRight: variables.padding.c
     },
     width: '100%',
     paddingLeft: '0',
@@ -185,7 +187,8 @@ const styles = {
     [mixins.breakpoints.l]: {
       width: '50%',
       verticalAlign: 'top',
-      display: 'inline-block'
+      display: 'inline-block',
+      paddingLeft: variables.padding.c
     },
     [mixins.breakpoints.ns]: {
       paddingTop: '0'
@@ -207,6 +210,7 @@ const styles = {
   bodySubtitle: merge({
     color: variables.colors.charcoal,
     paddingBottom: variables.padding.c,
+    lineHeight: 1.5,
     [mixins.breakpoints.ns]: {
       paddingBottom: variables.padding.b
     }

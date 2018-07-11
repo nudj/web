@@ -142,7 +142,7 @@ module.exports.sizes = {
   contentMaxWidth: '980px',
   contentMediumMaxWidth: '720px',
   columnWidth: '80',
-  copyLineHeight: '1.5rem',
+  copyLineHeight: '1.6',
   formsMaxWidth: '512px',
   formsInputBorderWidth: '1px',
   formsInputBorderRadius: '4px',
