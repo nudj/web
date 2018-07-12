@@ -1,0 +1,13 @@
+version: '1.0'
+
+steps:
+
+  create_stack:
+    image: nudj/devops:aws
+    # working_directory: IMAGE_WORK_DIR
+    description: Create or update the service stack
+    commands:
+      - pwd
+      - ls
+      - ls /usr/src
+      # - ./scripts/create-service.sh -s core-vpc -f ./07-create-service.json -e staging
