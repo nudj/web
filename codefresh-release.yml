@@ -37,7 +37,7 @@ steps:
     candidate: ${{build}}
     tag: ${{CF_BRANCH}}
     provider: 'ecr'
-    registry: ecr
+    registry: ${{AWS_REGISTRY}}
     accessKeyId: ${{AWS_ACCESS_KEY_ID}}
     secretAccessKey: ${{AWS_SECRET_ACCESS_KEY}}
     region: ${{AWS_DEFAULT_REGION}}
