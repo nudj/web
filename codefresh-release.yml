@@ -35,9 +35,9 @@ steps:
     title: Push ECR
     type: push
     candidate: ${{build}}
-    tag: ${{CF_BRANCH}}
+    tag: test
     provider: 'ecr'
-    registry: ${{AWS_REGISTRY}}
+    registry: ecr
     accessKeyId: ${{AWS_ACCESS_KEY_ID}}
     secretAccessKey: ${{AWS_SECRET_ACCESS_KEY}}
     region: ${{AWS_DEFAULT_REGION}}

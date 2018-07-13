@@ -5,7 +5,7 @@ steps:
   build:
     title: Build
     type: build
-    image_name: nudj/web
+    image_name: nudj/web-test
     working_directory: ${{main_clone}}
     dockerfile: Dockerfile.dev
     build_arguments:
@@ -18,14 +18,3 @@ steps:
     commands:
       - ./node_modules/.bin/standard
       - ./node_modules/.bin/mocha --recursive test/unit
-
-  push_latest_ecr:
-    title: Push ECR
-    type: push
-    candidate: ${{build}}
-    tag: test
-    provider: 'ecr'
-    registry: ecr
-    accessKeyId: ${{AWS_ACCESS_KEY}}
-    secretAccessKey: ${{AWS_SECRET_KEY}}
-    region: ${{AWS_REGION}}
