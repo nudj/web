@@ -23,7 +23,7 @@ steps:
     title: Push ECR
     type: push
     candidate: ${{build}}
-    tag: latest
+    tag: 470250561590.dkr.ecr.eu-west-1.amazonaws.com/nudj/web:latest
     provider: 'ecr'
     registry: ecr
     accessKeyId: ${{AWS_ACCESS_KEY}}
