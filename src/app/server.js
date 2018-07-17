@@ -21,6 +21,7 @@ const reduxRoutes = require('./redux/routes')
 const reduxReducers = require('./redux/reducers')
 const expressRouters = {
   insecure: [
+    require('./server/routers/health-check'),
     require('./server/routers/email-tracking')
   ],
   secure: [
