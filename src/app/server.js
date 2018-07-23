@@ -11,8 +11,11 @@ require('babel-register')({
 })
 console.log(1)
 const http = require('http')
+console.log(1.1)
 const path = require('path')
+console.log(1.2)
 const createNudjApps = require('@nudj/framework/server')
+console.log(1.3)
 const logger = require('@nudj/framework/logger')
 
 console.log(2)
