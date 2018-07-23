@@ -9,17 +9,19 @@ require('babel-register')({
     return true
   }
 })
-
+console.log(1)
 const http = require('http')
 const path = require('path')
 const createNudjApps = require('@nudj/framework/server')
 const logger = require('@nudj/framework/logger')
 
+console.log(2)
 const useDevServer = process.env.USE_DEV_SERVER === 'true'
 
 const reactApp = require('./redux')
 const reduxRoutes = require('./redux/routes')
 const reduxReducers = require('./redux/reducers')
+console.log(3)
 const expressRouters = {
   insecure: [
     require('./server/routers/health-check'),
@@ -41,6 +43,7 @@ const expressRouters = {
 }
 const expressAssetPath = path.resolve('./app/server/assets')
 const buildAssetPath = !useDevServer && path.resolve('./app/server/build')
+console.log(4)
 
 const spoofLoggedIn = (req, res, next) => {
   req.session.userId = process.env.SPOOF_USER_ID
@@ -48,6 +51,7 @@ const spoofLoggedIn = (req, res, next) => {
 }
 const errorHandlers = require('./server/errorHandlers')
 
+console.log(5)
 const helmetConfig = {
   contentSecurityPolicy: {
     directives: {
@@ -113,6 +117,7 @@ if (useDevServer) {
 
   helmetConfig.contentSecurityPolicy.directives.fontSrc.push('fonts.gstatic.com')
 }
+console.log(6)
 
 let app = createNudjApps({
   App: reactApp,
@@ -126,13 +131,17 @@ let app = createNudjApps({
   helmetConfig
 })
 
+console.log(7)
 const server = http.createServer(app)
 
+console.log(8)
 server.listen(80, () => {
   logger.log('info', 'Application running')
 })
 
+console.log(9)
 if (module.hot) {
+  console.log(10)
   module.hot.accept([
     './redux',
     './redux/routes',
@@ -191,7 +200,9 @@ if (module.hot) {
       helmetConfig
     })
 
+    console.log(11)
     server.on('request', newApp)
     app = newApp
   })
 }
+console.log(12)
