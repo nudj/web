@@ -1,4 +1,5 @@
 require('envkey')
+console.log('env', process.env)
 require('babel-register')({
   presets: ['react'],
   ignore: function (filename) {
