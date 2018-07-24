@@ -1,11 +1,20 @@
+console.log(30)
 const React = require('react')
+console.log(31)
 const { Helmet } = require('react-helmet')
+console.log(32)
 
+console.log(33)
 const getStyle = require('./style.css')
+console.log(34)
 const Page = require('../../components/page')
+console.log(35)
 const Header = require('../../components/header')
+console.log(36)
 const RandomHover = require('../../components/random-hover')
+console.log(37)
 const Video = require('../../components/video')
+console.log(38)
 
 const Hirer = (props) => {
   const pageTitle = `Better manage your employee referral scheme and hire more great people`
@@ -300,5 +309,6 @@ const Hirer = (props) => {
     </Page>
   )
 }
+console.log(39)
 
 module.exports = Hirer

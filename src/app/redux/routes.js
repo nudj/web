@@ -1,3 +1,4 @@
+console.log(20)
 const hirer = require('../pages/hirer')
 console.log(21)
 const talent = require('../pages/home')
