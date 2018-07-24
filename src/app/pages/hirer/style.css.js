@@ -1,5 +1,8 @@
+console.log(40)
 const { css, merge } = require('@nudj/framework/css')
+console.log(41)
 const { mixins, variables } = require('../../lib/css')
+console.log(42)
 
 const heroImagePath = 'hirer-page/fist-bump-group.svg'
 const heroImagePosition = 'bottom center'
@@ -11,6 +14,7 @@ const takeawayImageHeight = '15.5rem'
 const oneFingerPath = 'hirer-page/one-finger.svg'
 const twoFingersPath = 'hirer-page/two-fingers.svg'
 const threeFingersPath = 'hirer-page/three-fingers.svg'
+console.log(43)
 
 const heroFisting = merge({
   backgroundColor: variables.colors.midRed,
@@ -32,21 +36,25 @@ const heroFisting = merge({
     width: '100vw'
   })
 })
+console.log(44)
 
 const heroSubtitle = merge({
   color: variables.colors.royalBlue,
   padding: `0 0 ${variables.padding.d} 0`,
   lineHeight: 1.5
 }, mixins.headings.h2)
+console.log(45)
 
 const subtitle = merge({
   color: variables.colors.royalBlue,
   padding: `0 0 ${variables.padding.d} 0`
 }, mixins.headings.h4)
+console.log(46)
 
 const subtitleWhite = merge({}, subtitle, {
   color: variables.colors.white
 })
+console.log(47)
 
 const subtitleUnderline = merge(mixins.makeOrangeSubtitleUnderline(), {
   '@media(max-width: 28.125rem)': {
@@ -54,6 +62,7 @@ const subtitleUnderline = merge(mixins.makeOrangeSubtitleUnderline(), {
     textShadow: 'none'
   }
 })
+console.log(48)
 
 const stepContainer = mixins.basicContainer({
   paddingTop: '4rem',
@@ -71,6 +80,7 @@ const stepContainer = mixins.basicContainer({
     textAlign: 'inherit'
   }
 })
+console.log(49)
 
 const stepCopy = merge({
   marginLeft: 'auto',
@@ -78,6 +88,7 @@ const stepCopy = merge({
   color: variables.colors.charcoal,
   padding: `0 0 ${variables.padding.d} 0`
 }, mixins.headings.p)
+console.log(410)
 
 const stepImage = {
   padding: `0 0 ${variables.padding.c} 0`,
@@ -86,8 +97,10 @@ const stepImage = {
     width: `calc(50% - ${variables.padding.c})`
   }
 }
+console.log(411)
 
 const deList = mixins.deList()
+console.log(412)
 
 const styles = {
   body: {
@@ -471,5 +484,7 @@ const styles = {
     marginTop: variables.padding.d
   }
 }
+console.log(413)
 
 module.exports = css(styles)
+console.log(414)
