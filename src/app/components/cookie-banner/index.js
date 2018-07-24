@@ -1,11 +1,17 @@
+console.log(60)
 const React = require('react')
+console.log(61)
 const cookies = require('js-cookie')
+console.log(62)
 
 const { Banner, Text, Button } = require('@nudj/components')
+console.log(63)
 
 const { css } = require('@nudj/components/lib/css')
+console.log(64)
 
 const style = require('./style.css')
+console.log(65)
 
 class CookieBanner extends React.Component {
   state = {
@@ -72,5 +78,7 @@ class CookieBanner extends React.Component {
     )
   }
 }
+console.log(66)
 
 module.exports = CookieBanner
+console.log(67)
