@@ -1,5 +1,7 @@
 require('envkey')
+console.log(11)
 console.log('env', process.env)
+console.log(12)
 require('babel-register')({
   presets: ['react'],
   ignore: function (filename) {
@@ -9,22 +11,26 @@ require('babel-register')({
     return true
   }
 })
-console.log(1)
+console.log(13)
 const http = require('http')
-console.log(1.1)
+console.log(14)
 const path = require('path')
-console.log(1.2)
+console.log(15)
 const createNudjApps = require('@nudj/framework/server')
-console.log(1.3)
+console.log(16)
 const logger = require('@nudj/framework/logger')
+console.log(17)
 
-console.log(2)
 const useDevServer = process.env.USE_DEV_SERVER === 'true'
+console.log(18)
 
+console.log(19)
 const reactApp = require('./redux')
+console.log(110)
 const reduxRoutes = require('./redux/routes')
+console.log(111)
 const reduxReducers = require('./redux/reducers')
-console.log(3)
+console.log(112)
 const expressRouters = {
   insecure: [
     require('./server/routers/health-check'),
@@ -44,17 +50,23 @@ const expressRouters = {
     require('./server/routers/catch-all')
   ]
 }
+console.log(113)
 const expressAssetPath = path.resolve('./app/server/assets')
+console.log(114)
 const buildAssetPath = !useDevServer && path.resolve('./app/server/build')
-console.log(4)
+console.log(115)
 
 const spoofLoggedIn = (req, res, next) => {
+  console.log(116)
   req.session.userId = process.env.SPOOF_USER_ID
+  console.log(117)
   next()
+  console.log(118)
 }
+console.log(119)
 const errorHandlers = require('./server/errorHandlers')
+console.log(120)
 
-console.log(5)
 const helmetConfig = {
   contentSecurityPolicy: {
     directives: {
@@ -105,23 +117,35 @@ const helmetConfig = {
     }
   }
 }
+console.log(121)
 if (useDevServer) {
+  console.log(122)
   helmetConfig.contentSecurityPolicy.directives.scriptSrc.push('web-wds.local.nudj.co')
+  console.log(123)
   helmetConfig.contentSecurityPolicy.directives.scriptSrc.push('tagmanager.google.com')
+  console.log(124)
 
   helmetConfig.contentSecurityPolicy.directives.styleSrc.push('tagmanager.google.com')
+  console.log(125)
   helmetConfig.contentSecurityPolicy.directives.styleSrc.push('fonts.googleapis.com')
+  console.log(126)
 
   helmetConfig.contentSecurityPolicy.directives.imgSrc.push('ssl.gstatic.com')
+  console.log(127)
   helmetConfig.contentSecurityPolicy.directives.imgSrc.push('www.gstatic.com')
+  console.log(128)
 
   helmetConfig.contentSecurityPolicy.directives.connectSrc.push('web-wds.local.nudj.co')
+  console.log(129)
   helmetConfig.contentSecurityPolicy.directives.connectSrc.push('wss://web-wds.local.nudj.co')
+  console.log(130)
 
   helmetConfig.contentSecurityPolicy.directives.fontSrc.push('fonts.gstatic.com')
+  console.log(131)
 }
-console.log(6)
+console.log(132)
 
+console.log(133)
 let app = createNudjApps({
   App: reactApp,
   reduxRoutes,
@@ -133,18 +157,20 @@ let app = createNudjApps({
   errorHandlers,
   helmetConfig
 })
+console.log(134)
 
-console.log(7)
 const server = http.createServer(app)
+console.log(135)
 
-console.log(8)
 server.listen(80, () => {
+  console.log(136)
   logger.log('info', 'Application running')
+  console.log(137)
 })
+console.log(138)
 
-console.log(9)
 if (module.hot) {
-  console.log(10)
+  console.log(139)
   module.hot.accept([
     './redux',
     './redux/routes',
@@ -166,9 +192,13 @@ if (module.hot) {
     './pages/share/router',
     './server/routers/catch-all'
   ], () => {
+    console.log(140)
     const updatedReactApp = require('./redux')
+    console.log(141)
     const updatedReduxRoutes = require('./redux/routes')
+    console.log(142)
     const updatedReduxReducers = require('./redux/reducers')
+    console.log(143)
     const updatedExpressRouters = {
       insecure: [
         require('./server/routers/email-tracking')
@@ -189,8 +219,10 @@ if (module.hot) {
         require('./server/routers/catch-all')
       ]
     }
+    console.log(144)
 
     server.removeListener('request', app)
+    console.log(145)
     const newApp = createNudjApps({
       App: updatedReactApp,
       reduxRoutes: updatedReduxRoutes,
@@ -202,10 +234,13 @@ if (module.hot) {
       errorHandlers,
       helmetConfig
     })
+    console.log(146)
 
-    console.log(11)
     server.on('request', newApp)
+    console.log(147)
     app = newApp
+    console.log(148)
   })
+  console.log(149)
 }
-console.log(12)
+console.log(150)
