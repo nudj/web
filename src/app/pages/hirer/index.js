@@ -1,11 +1,12 @@
 const React = require('react')
 const { Helmet } = require('react-helmet')
 
+const { Video } = require('@nudj/components')
+
 const getStyle = require('./style.css')
 const Page = require('../../components/page')
 const Header = require('../../components/header')
 const RandomHover = require('../../components/random-hover')
-const Video = require('../../components/video')
 
 const Hirer = (props) => {
   const pageTitle = `Better manage your employee referral scheme and hire more great people`
@@ -31,7 +32,8 @@ const Hirer = (props) => {
         backgroundColour='midRed'
         textColour='white'
         textHighlightColour='royalBlue'
-        location='/hiring' />
+        location='/hiring'
+      />
       <section className={style.hero}>
         <h1 className={style.heroTitle}>
           Better manage your employee referral scheme and hire more great&nbsp;people
