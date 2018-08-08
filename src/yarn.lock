@@ -53,9 +53,9 @@
     react-dom "15.6.2"
     react-dropzone "4.2.3"
 
-"@nudj/components@2.13.0":
-  version "2.13.0"
-  resolved "https://registry.yarnpkg.com/@nudj/components/-/components-2.13.0.tgz#93b5ef116acf078277f161c3b6296a0e1e0ee753"
+"@nudj/components@2.17.0":
+  version "2.17.0"
+  resolved "https://registry.yarnpkg.com/@nudj/components/-/components-2.17.0.tgz#4e4ed77dc72ff4ef49ef0de7d10f756bba260fbf"
   dependencies:
     "@nudj/library" "1.1.0"
     aphrodite "^1.2.0"
@@ -72,13 +72,14 @@
     react-animate-height "^0.10.10"
     react-dom "15.6.2"
     react-dropzone "4.2.3"
+    react-html5video "^2.5.1"
     react-modal "^3.1.10"
     react-textarea-autosize "^5.2.1"
     warning "^3.0.0"
 
-"@nudj/framework@17.4.0":
-  version "17.4.0"
-  resolved "https://registry.yarnpkg.com/@nudj/framework/-/framework-17.4.0.tgz#8fc42c880a05ba787dd5995515701213cfa1de53"
+"@nudj/framework@17.6.1":
+  version "17.6.1"
+  resolved "https://registry.yarnpkg.com/@nudj/framework/-/framework-17.6.1.tgz#2b1b1e9387eb423287a8f07e268f8563e58b6a79"
   dependencies:
     "@nudj/api" "14.0.0"
     "@nudj/components" "2.0.0"
@@ -7357,6 +7358,10 @@ react-hot-loader@^4.0.1:
     hoist-non-react-statics "^2.5.0"
     prop-types "^15.6.1"
     shallowequal "^1.0.2"
+
+react-html5video@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/react-html5video/-/react-html5video-2.5.1.tgz#bbc4314be1d583cb991a11ca3480e70a3c964caf"
 
 react-modal@^3.1.10:
   version "3.2.1"
