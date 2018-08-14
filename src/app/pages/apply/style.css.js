@@ -1,5 +1,5 @@
 const { css, merge } = require('@nudj/framework/css')
-const { StyleSheet, typography, colors, sizes } = require('@nudj/components/lib/css')
+const { StyleSheet, sizes } = require('@nudj/components/lib/css')
 const { mixins, variables } = require('../../lib/css')
 
 const legacyStyles = {
@@ -9,18 +9,26 @@ const legacyStyles = {
   },
   formHeader: mixins.basicContainerMedium({
     paddingBottom: variables.padding.c,
+    paddingTop: variables.padding.c,
     [mixins.breakpoints.ns]: {
-      paddingTop: variables.padding.a
-    },
-    paddingTop: variables.padding.c
+      paddingTop: variables.padding.b,
+      paddingBottom: variables.padding.b
+    }
   }),
-  title: mixins.typography.title,
+  title: mixins.typography.titleCharcoal,
   subtitle: merge(mixins.typography.copy, {
     [mixins.breakpoints.ns]: {
       margin: `0 0 ${variables.padding.d} 0`
     }
   }),
-  formSection: mixins.forms.fieldSet,
+  formSection: merge(mixins.forms.fieldSet, {
+    paddingBottom: variables.padding.c,
+    paddingTop: variables.padding.c,
+    [mixins.breakpoints.ns]: {
+      paddingTop: variables.padding.b,
+      paddingBottom: variables.padding.b
+    }
+  }),
   form: merge(mixins.forms.fieldWrapContainer, {
     display: 'block'
   }),
@@ -35,13 +43,6 @@ const styleSheet = StyleSheet.create({
     ':nth-child(n) + *': {
       marginTop: sizes.regular
     }
-  },
-  inputFieldLabel: {
-    ...typography.type.regular,
-    color: colors.text
-  },
-  inputFieldDescription: {
-    ...typography.type.smallI
   }
 })
 

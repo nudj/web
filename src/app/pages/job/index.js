@@ -46,20 +46,26 @@ const Job = props => {
   setStyles()
   const style = getStyle()
 
+  const uniqueLink = `/companies/${get(company, 'slug', '')}/jobs/${get(job, 'slug', '')}`
+  const queryString = referral ? `?referralId=${referral.id}` : ''
+
+  const companiesLink = `/companies/${get(company, 'slug', '')}`
+
   const applyForJobButton = application ? (
     <button className={style.applied} disabled id='applyButton'>
       You&apos;ve already applied
     </button>
   ) : (
     <RandomHover>
-      <button className={style.apply} id='applyButton'>Apply for job</button>
+      <Link
+        to={`${uniqueLink}/apply${queryString}`}
+        className={style.apply}
+        id='applyButton'
+      >
+        Apply for job
+      </Link>
     </RandomHover>
   )
-
-  const uniqueLink = `/companies/${get(company, 'slug', '')}/jobs/${get(job, 'slug', '')}`
-  const queryString = referral ? `?referralId=${referral.id}` : ''
-
-  const companiesLink = `/companies/${get(company, 'slug', '')}`
 
   const data = {
     job: merge(job, {
@@ -125,18 +131,12 @@ const Job = props => {
 
   const actions = []
   const apply = (
-    <form
-      className={style.action}
-      action={`${uniqueLink}/apply${queryString}`}
-      method='POST'
-    >
-      <input type='hidden' name='jobId' value={get(job, 'id')} />
-      <input type='hidden' name='_csrf' value={get(props, 'csrfToken')} />
+    <div>
       {applyForJobButton}
       <p className={style.actionCopy}>
         It takes 2 seconds &amp; you don&apos;t need a CV!
       </p>
-    </form>
+    </div>
   )
 
   actions.push(apply)

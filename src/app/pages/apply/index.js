@@ -1,29 +1,27 @@
 const React = require('react')
 const { Helmet } = require('react-helmet')
-const get = require('lodash/get')
 
 const {
   InputField,
   Input,
   Button
 } = require('@nudj/components')
+const { css } = require('@nudj/components/lib/css')
 const mss = require('@nudj/components/lib/css/modifiers.css')
 
 const { styleSheet, getLegacyStyles } = require('./style.css')
 const Page = require('../../components/page')
 const Header = require('../../components/header')
-const Message = require('../../components/message')
 
 class ApplicationUpdate extends React.Component {
   constructor (props) {
     super(props)
 
-    const { user } = props.app
-
     this.state = {
-      role: get(user, 'role.name', ''),
-      company: get(user, 'company.name', ''),
-      url: user.url || ''
+      firstName: '',
+      lastName: '',
+      email: '',
+      profileUrl: ''
     }
   }
 
@@ -37,11 +35,11 @@ class ApplicationUpdate extends React.Component {
     const style = getLegacyStyles()
 
     const {
-      app: {
-        company: {
-          name: companyName
-        },
-        message
+      company: {
+        name: companyName,
+        job: {
+          title: jobTitle
+        }
       },
       match: {
         params: {
@@ -52,7 +50,7 @@ class ApplicationUpdate extends React.Component {
       csrfToken
     } = this.props
 
-    const { role, company, url } = this.state
+    const { firstName, lastName, email, url } = this.state
 
     const jobUrl = `/companies/${companySlug}/jobs/${jobId}`
 
@@ -73,16 +71,15 @@ class ApplicationUpdate extends React.Component {
           <meta name='twitter:card' content='summary' />
           <meta name='twitter:title' content={pageTitle} />
         </Helmet>
-        <Message message={message} />
         <Header />
         <div className={style.body}>
           <div className={style.content}>
             <div className={style.formHeader}>
-              <h1 className={style.title}>Tell us a bit more about yourself</h1>
-              <p className={style.subtitle}>
-                So the folks at {companyName} can get a better idea of who you are
-                and what you&apos;ve done, we&apos;d like to get a few more details from you.
-              </p>
+              <h1 className={style.title}>
+                Your application to be a{' '}
+                <span className={css(mss.fgMidRed)}>{jobTitle}</span> with{' '}
+                <span className={css(mss.fgMidRed)}>{companyName}</span>.
+              </h1>
             </div>
           </div>
         </div>
@@ -99,16 +96,18 @@ class ApplicationUpdate extends React.Component {
                 label: styleSheet.inputFieldLabel,
                 description: styleSheet.inputFieldDescription
               }}
-              htmlFor='role'
-              label='Current job title'
+              htmlFor='firstName'
+              label='First name'
+              required
             >
               <Input
-                id='role'
-                name='role'
+                id='firstName'
+                name='firstName'
                 type='text'
-                placeholder='e.g., Marketing Executive'
-                value={role}
+                placeholder='Buzz'
+                value={firstName}
                 onChange={this.handleInputChange}
+                required
               />
             </InputField>
             <InputField
@@ -117,16 +116,38 @@ class ApplicationUpdate extends React.Component {
                 label: styleSheet.inputFieldLabel,
                 description: styleSheet.inputFieldDescription
               }}
-              htmlFor='company'
-              label='Current employer'
+              htmlFor='lastName'
+              label='Last name'
+              required
             >
               <Input
-                id='company'
-                name='company'
+                id='lastName'
+                name='lastName'
                 type='text'
-                placeholder='e.g., Apple'
-                value={company}
+                placeholder='Lightyear'
+                value={lastName}
                 onChange={this.handleInputChange}
+                required
+              />
+            </InputField>
+            <InputField
+              styleSheet={{
+                root: styleSheet.inputField,
+                label: styleSheet.inputFieldLabel,
+                description: styleSheet.inputFieldDescription
+              }}
+              htmlFor='email'
+              label='Email address'
+              required
+            >
+              <Input
+                id='email'
+                name='email'
+                type='email'
+                placeholder='buzz.lightyear@starcommand.tld'
+                value={email}
+                onChange={this.handleInputChange}
+                required
               />
             </InputField>
             <InputField
@@ -137,7 +158,7 @@ class ApplicationUpdate extends React.Component {
               }}
               htmlFor='url'
               label='Profile URL'
-              description='e.g., your LinkedIn profile or your personal website'
+              description='Add your LinkedIn profile or online portfolio'
             >
               <Input
                 id='url'
