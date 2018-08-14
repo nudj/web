@@ -131,7 +131,7 @@ const Job = props => {
 
   const actions = []
   const apply = (
-    <div>
+    <div className={style.action}>
       {applyForJobButton}
       <p className={style.actionCopy}>
         It takes 2 seconds &amp; you don&apos;t need a CV!
