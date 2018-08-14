@@ -1,45 +1,25 @@
-const postApplication = (props) => {
-  const { params, session, query } = props
-  const { userId } = session
-  const { companySlug, jobSlug } = params
-  const { referralId } = query
+const get = (props) => {
+  const { params } = props
 
   const gql = `
-    mutation CreateApplicationForPerson($companySlug: String!, $jobSlug: String!, $referralId: ID, $userId: ID!) {
+    query GetCompanyAndJob($companySlug: String!, $jobSlug: String!) {
       company: companyByFilters(filters: {
         slug: $companySlug
       }) {
         name
-      }
-      job: jobByFilters(filters: {
-        slug: $jobSlug
-      }) {
-        id
-        slug
-        application: createApplication(
-          person: $userId,
-          referral: $referralId
-        ) {
-          id
+        job: jobByFilters(filters: {
+          slug: $jobSlug
+        }) {
+          title
+          slug
         }
-      }
-      user {
-        company {
-          name
-        }
-        role {
-          name
-        }
-        url
       }
     }
   `
 
   const variables = {
-    companySlug,
-    jobSlug,
-    referralId,
-    userId
+    companySlug: params.companySlug,
+    jobSlug: params.jobSlug
   }
 
   return {
@@ -48,6 +28,4 @@ const postApplication = (props) => {
   }
 }
 
-module.exports = {
-  postApplication
-}
+module.exports = { get }

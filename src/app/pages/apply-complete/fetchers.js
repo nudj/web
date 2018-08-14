@@ -1,17 +1,22 @@
-const postApplicationUpdate = ({ session, body }) => {
-  const { userId } = session
-
+const postApplication = ({ params, body }) => {
   const gql = `
-    mutation UpdatePersonForApplication($userId: ID!, $data: PersonUpdateInput!) {
-      person: updatePerson(id: $userId, data: $data) {
-        id
+    mutation CreatePersonAndApplication($companySlug: String!, $jobSlug: String!, $person: PersonCreateInput!) {
+      company: companyByFilters(filters: {slug: $companySlug}) {
+        name
+        job: jobByFilters(filters: {slug: $jobSlug}) {
+          getOrCreatePersonAndApplication(person: $person) {
+            id
+          }
+        }
       }
     }
+
   `
 
   const variables = {
-    userId,
-    data: body
+    person: body,
+    companySlug: params.companySlug,
+    jobSlug: params.jobId
   }
 
   return {
@@ -21,5 +26,5 @@ const postApplicationUpdate = ({ session, body }) => {
 }
 
 module.exports = {
-  postApplicationUpdate
+  postApplication
 }
