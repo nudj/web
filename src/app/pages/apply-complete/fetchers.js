@@ -16,7 +16,7 @@ const postApplication = ({ params, body }) => {
   const variables = {
     person: body,
     companySlug: params.companySlug,
-    jobSlug: params.jobId
+    jobSlug: params.jobSlug
   }
 
   return {

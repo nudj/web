@@ -19,7 +19,7 @@ const get = (props) => {
 
   const variables = {
     companySlug: params.companySlug,
-    jobSlug: params.jobId
+    jobSlug: params.jobSlug
   }
 
   return {
