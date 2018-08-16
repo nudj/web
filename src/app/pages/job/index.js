@@ -179,7 +179,6 @@ const Job = props => {
         action={`${uniqueLink}/nudj${queryString}`}
         method='POST'
       >
-        <input type='hidden' name='jobId' value={get(job, 'id')} />
         <input type='hidden' name='_csrf' value={get(props, 'csrfToken')} />
         {nudjButton}
         {nudjCopy}

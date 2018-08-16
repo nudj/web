@@ -10,8 +10,8 @@ const {
 const Router = ({ respondWithGql }) => {
   const router = createRouter()
 
-  router.getHandlers('/companies/:companySlug/jobs/:jobId/apply', handleJobUrls, respondWithGql(fetchers.get))
-  router.getHandlers('/companies/:companySlug/jobs/:jobId/apply/:secret', handleJobUrls, checkApplyNudjSecret, deleteApplyNudjSecret, respondWithGql(fetchers.get))
+  router.getHandlers('/companies/:companySlug/jobs/:jobSlug/apply', handleJobUrls, respondWithGql(fetchers.get))
+  router.getHandlers('/companies/:companySlug/jobs/:jobSlug/apply/:secret', handleJobUrls, checkApplyNudjSecret, deleteApplyNudjSecret, respondWithGql(fetchers.get))
 
   // Legacy urls
   router.getHandlers('/jobs/:companySlugJobSlugReferralId/apply', handleJobUrls)

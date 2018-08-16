@@ -44,7 +44,7 @@ class ApplicationUpdate extends React.Component {
       match: {
         params: {
           companySlug,
-          jobId
+          jobSlug
         }
       },
       csrfToken
@@ -52,7 +52,7 @@ class ApplicationUpdate extends React.Component {
 
     const { firstName, lastName, email, url } = this.state
 
-    const jobUrl = `/companies/${companySlug}/jobs/${jobId}`
+    const jobUrl = `/companies/${companySlug}/jobs/${jobSlug}`
 
     const pageTitle = 'Complete your application'
     const pageDescription = `Before sharing your profile with the team at ${companyName}, we just need a few more details from you.`
