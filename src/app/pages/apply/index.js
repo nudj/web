@@ -47,6 +47,11 @@ class ApplicationUpdate extends React.Component {
           jobSlug
         }
       },
+      url: {
+        query: {
+          referralId
+        }
+      },
       csrfToken
     } = this.props
 
@@ -90,6 +95,7 @@ class ApplicationUpdate extends React.Component {
             className={style.form}
           >
             <input type='hidden' name='_csrf' value={csrfToken} />
+            <input type='hidden' name='referralId' value={referralId} />
             <InputField
               styleSheet={{
                 root: styleSheet.inputField,
