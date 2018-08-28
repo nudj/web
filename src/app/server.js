@@ -26,7 +26,7 @@ const expressRouters = {
   ],
   secure: [
     require('./server/routers/auth'),
-    require('./pages/home/router'),
+    require('./pages/talent/router'),
     require('./pages/hirer/router'),
     require('./pages/request/router'),
     require('./pages/signup/router'),
@@ -106,6 +106,7 @@ if (useDevServer) {
 
   helmetConfig.contentSecurityPolicy.directives.imgSrc.push('ssl.gstatic.com')
   helmetConfig.contentSecurityPolicy.directives.imgSrc.push('www.gstatic.com')
+  helmetConfig.contentSecurityPolicy.directives.imgSrc.push('web-wds.local.nudj.co')
 
   helmetConfig.contentSecurityPolicy.directives.connectSrc.push('web-wds.local.nudj.co')
   helmetConfig.contentSecurityPolicy.directives.connectSrc.push('wss://web-wds.local.nudj.co')
@@ -140,7 +141,7 @@ if (module.hot) {
     path.resolve('./components'),
     './server/routers/email-tracking',
     './server/routers/auth',
-    './pages/home/router',
+    './pages/talent/router',
     './pages/hirer/router',
     './pages/request/router',
     './pages/signup/router',
@@ -162,7 +163,7 @@ if (module.hot) {
       ],
       secure: [
         require('./server/routers/auth'),
-        require('./pages/home/router'),
+        require('./pages/talent/router'),
         require('./pages/hirer/router'),
         require('./pages/request/router'),
         require('./pages/signup/router'),

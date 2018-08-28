@@ -10,4 +10,5 @@ tmp/*
 src/test/output/*
 !src/test/output/readme.md
 src/app/server/hot/
+src/app/server/assets/static
 hot-build.js

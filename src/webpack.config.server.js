@@ -4,6 +4,9 @@ const nodeExternals = require('webpack-node-externals')
 const StartServerPlugin = require('start-server-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 
+/**
+ * This is only used for development
+ */
 module.exports = {
   entry: ['webpack/hot/poll?1000', './app/server'],
   output: {
@@ -34,6 +37,14 @@ module.exports = {
           path.join(__dirname, 'app/server/hot-build.js'),
           path.join(__dirname, 'app/server/hot')
         ]
+      },
+      {
+        test: /\.(svg|png|jpg)$/,
+        exclude: /\.js$/,
+        loader: require.resolve('file-loader'),
+        options: {
+          name: 'assets/static/media/[path][name].[ext]',
+        },
       }
     ]
   },

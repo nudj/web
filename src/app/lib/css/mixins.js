@@ -1,4 +1,5 @@
 const { merge } = require('@nudj/library')
+const { sizes } = require('@nudj/components/lib/css')
 
 const variables = require('./variables')
 
@@ -113,11 +114,16 @@ module.exports.headings = headings
 // Layout
 const basicContainer = (properties) => {
   const basicContainerBasic = {
-    padding: `0 ${variables.padding.d}`,
+    paddingTop: sizes.regular,
+    paddingLeft: sizes.regular,
+    paddingRight: sizes.regular,
+    paddingBottom: sizes.regular,
+    margin: '0 auto',
     position: 'relative',
-    [breakpoints.ns]: {
-      margin: '0 auto',
-      maxWidth: variables.sizes.contentMaxWidth
+    maxWidth: variables.sizes.contentMaxWidth,
+    '@media(min-width: 42.5rem)': {
+      paddingLeft: sizes.largeIi,
+      paddingRight: sizes.largeIi
     }
   }
   return merge({}, basicContainerBasic, properties || {})
