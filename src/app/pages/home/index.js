@@ -1,29 +1,163 @@
 const React = require('react')
 const { Helmet } = require('react-helmet')
-const TypeOut = require('react-typeout').default
-const { Link } = require('react-router-dom')
 
-const getStyle = require('./style.css')
+const { Link } = require('@nudj/components')
+const { css } = require('@nudj/components/lib/css')
+const mss = require('@nudj/components/lib/css/modifiers.css')
+
+/** TODO: Refactor Page and Header if applicable */
 const Page = require('../../components/page')
-const AnimateAppearance = require('../../components/animate-appearance')
-const Header = require('../../components/header')
-const RandomHover = require('../../components/random-hover')
+const Navigation = require('../../components/header')
+const RandomHover = require('../../components/composable-random-hover')
+const Section = require('../../components/section')
+const Statistic = require('../../components/statistic')
+const ClientGrid = require('../../components/client-grid')
+const Blockquote = require('../../components/blockquote')
+const Citation = require('../../components/citation')
+const Conversation = require('../../components/conversation')
+const WobblyBox = require('../../components/wobbly-box')
+const style = require('./style.css')
 
-const words = [
-  'designers',
-  'product managers',
-  'marketers',
-  'sales people',
-  'developers'
-]
+const benImage = require('./assets/ben.png')
+const dittoSvg = require('./assets/ditto.svg')
+const head1Svg = require('./assets/head-1.svg')
+const head2Svg = require('./assets/head-2.svg')
+const head3Svg = require('./assets/head-3.svg')
+const head4Svg = require('./assets/head-4.svg')
+const headNudjSvg = require('./assets/head-nudj.svg')
+
+const getConversations = () => {
+  const poorlyCommunicatedConversation = [{
+    displayPicture: head1Svg,
+    name: 'People team',
+    body: (
+      <p className={css(mss.reg)}>
+        We send a company wide email once a week, but we don’t get a very
+        good response.
+      </p>
+    ),
+    recipient: true
+  }, {
+    displayPicture: headNudjSvg,
+    name: 'nudj',
+    body: (
+      <p className={css(mss.reg)}>
+        nudj personalises communication to the individual referrers and send
+        gentle reminders to make sure they don’t forget to take action.
+      </p>
+    ),
+    recipient: false
+  }]
+
+  const tooMuchWorkConversation = [{
+    displayPicture: head2Svg,
+    name: 'Employee',
+    body: (
+      <p className={css(mss.reg)}>
+        Making a referral is a job in itself. Asking my network, getting their
+        CV and uploading it into the system is too time consuming, so I
+        don’t bother.
+      </p>
+    ),
+    recipient: true
+  }, {
+    displayPicture: headNudjSvg,
+    name: 'nudj',
+    body: (
+      <p className={css(mss.reg)}>
+        With nudj, anyone can make a referral in 2-clicks and post trackable
+        links to any platform, allowing even the busiest of employees to ask
+        their network with ease.
+      </p>
+    ),
+    recipient: false
+  }]
+
+  const scratchSurfaceConversation = [{
+    displayPicture: head3Svg,
+    name: 'Employee',
+    body: (
+      <p className={css(mss.reg)}>
+        None of my friends are currently looking for a job.
+      </p>
+    ),
+    recipient: true
+  }, {
+    displayPicture: headNudjSvg,
+    name: 'nudj',
+    body: (
+      <div>
+        <p className={css(mss.reg)}>
+          Most referral schemes focus on introducing active candidates.
+        </p>
+        <p className={css(mss.reg, mss.mtReg)}>
+          nudj helps your teams search beyond their immediate networks.
+          Using our tailored ‘Aided Recall’ approach we help them dig deeper
+          into their personal networks.
+        </p>
+      </div>
+    ),
+    recipient: false
+  }]
+
+  const adminNightmareConversation = [{
+    displayPicture: head4Svg,
+    name: 'Employee',
+    body: (
+      <p className={css(mss.reg)}>
+        I’ve recommended people in the past but my referrals get lost in
+        the system.
+      </p>
+    ),
+    recipient: true
+  }, {
+    displayPicture: headNudjSvg,
+    name: 'nudj',
+    body: (
+      <p className={css(mss.reg)}>
+        Keep your referred candidates out of your inbox. Follow up and track
+        conversations with candidates and referrers from within the platform.
+      </p>
+    ),
+    recipient: false
+  }]
+
+  return {
+    poorlyCommunicatedConversation,
+    tooMuchWorkConversation,
+    scratchSurfaceConversation,
+    adminNightmareConversation
+  }
+}
+
+const RandomHoverButton = ({ style, ...props }) => {
+  return (
+    <RandomHover
+      render={({ style: hoverStyle, ...hoverProps }) => (
+        <Link
+          style={[style, hoverStyle]}
+          {...hoverProps}
+          {...props}
+        />
+      )}
+    />
+  )
+}
 
 const HomePage = (props) => {
-  const pageTitle = 'nudj - Find your next job, approved by people you trust.'
-  const pageDescription = 'Finding a job that you\'ll actually enjoy is hard. With nudj, your friends do the work for you, recommending you for roles they know you\'ll be interested in. No more recruiters. No more spam.'
+  const pageTitle = `Better manage your employee referral scheme and hire more great people`
+  const pageDescription = `nudj makes it effortless for you and your team to ask for, track, and reward referrals.`
+  const hireUrl = `${props.app.hire.protocol}://${props.app.hire.hostname}/welcome`
 
-  const style = getStyle()
+  const {
+    poorlyCommunicatedConversation,
+    tooMuchWorkConversation,
+    scratchSurfaceConversation,
+    adminNightmareConversation
+  } = getConversations()
+
   return (
-    <Page {...props} className={style.body}>
+    <Page {...props} className={style.root}>
       <Helmet>
         <title>{pageTitle}</title>
         <meta name='description' content={pageDescription} />
@@ -36,86 +170,178 @@ const HomePage = (props) => {
         <meta name='twitter:card' content='summary' />
         <meta name='twitter:title' content={pageTitle} />
       </Helmet>
-      <div className={style.header}>
-        <Header location='/' />
+      <Navigation />
+      <div className={css(style.wrapper)}>
+        <header className={css(style.header)}>
+          <div className={css(style.headerContent)}>
+            <h1 className={css(style.title, mss.fgPrimary)}>
+              Hiring sucks.<br />
+              <span className={css(mss.fgMidRed)}>Referrals are the answer.</span>
+            </h1>
+            <p className={css(style.subtitle, mss.reg, mss.mtReg)}>
+              nudj will help you build a ‘best in class’ employee referral
+              program that will consistently deliver results: top talent,
+              reduced time to hire and major savings.
+            </p>
+            <div className={css(style.ctaGroup)}>
+              <RandomHoverButton
+                href={hireUrl}
+                style={style.cta}
+                volume='cheer'
+              >
+                Try it free
+              </RandomHoverButton>
+              <RandomHoverButton
+                href='mailto:robyn@nudj.co'
+                style={style.cta}
+              >
+                Request a demo
+              </RandomHoverButton>
+            </div>
+          </div>
+        </header>
+        <Section style={style.section}>
+          <h2 className={css(style.sectionH1, mss.fgPrimary)}>
+            <span className={css(style.underlineBgWhite, style.whatToExpectUnderline)}>
+              What to expect with nudj
+            </span>
+          </h2>
+          <p className={css(mss.reg, mss.mtReg, style.sectionSubtitle)}>
+            Combine our software with Greenhouse, Workable or any ATS to get
+            more of the candidates you need.
+          </p>
+          <dl className={css(style.statistics)}>
+            <div className={css(style.statisticContainer)}>
+              <dt>
+                <Statistic style={style.statistic}>85%</Statistic>
+                <h3 className={css(style.sectionH2, mss.fgPrimary, mss.mtReg)}>
+                  Applicants interviewed
+                </h3>
+              </dt>
+              <dd className={css(style.statisticDescription)}>
+                Not only are nudj applicants high quality, but they also come
+                vouched for, meaning the only sensible option is to interview them.
+              </dd>
+            </div>
+            <div className={css(style.statisticContainer)}>
+              <dt>
+                <Statistic style={[style.statistic, style.statistic2]}>2x</Statistic>
+                <h3 className={css(style.sectionH2, mss.fgPrimary, mss.mtReg)}>
+                  Faster to hire
+                </h3>
+              </dt>
+              <dd className={css(style.statisticDescription)}>
+                On average it takes 1 month to hire a candidate through nudj,
+                compared to almost 2 months when using a recruiter.
+              </dd>
+            </div>
+            <div className={css(style.statisticContainer)}>
+              <dt>
+                <Statistic style={[style.statistic, style.statistic3]}>66%</Statistic>
+                <h3 className={css(style.sectionH2, mss.fgPrimary, mss.mtReg)}>
+                  Cheaper than a recruiter
+                </h3>
+              </dt>
+              <dd className={css(style.statisticDescription)}>
+                With even the cheapest recruiters charging 15% and costly job
+                board subscriptions not delivering, we offer better value for money.
+              </dd>
+            </div>
+          </dl>
+        </Section>
+        <Section style={style.section} backgroundColor='greyLightest'>
+          <h2 className={css(style.sectionH1, mss.fgPrimary)}>
+            <span className={css(style.underlineBgGrey, style.clientsIncludeUnderline)}>
+              Our clients include
+            </span>
+          </h2>
+          <ClientGrid style={style.clientGrid} />
+          <Blockquote
+            style={style.quote}
+            citation={(
+              <Citation
+                style={style.citation}
+                image={benImage}
+                name='Ben Gardener'
+                position='Direction of Customer Success'
+                logo={dittoSvg}
+              />
+            )}
+          >
+            When you are looking for people who aren’t just after a job but
+            also share our vision to save the planet, referrals are the only
+            option. Candidates sourced via nudj were higher calibre than
+            anything we’ve used before.
+          </Blockquote>
+        </Section>
+        <Section style={style.section}>
+          <h2 className={css(style.sectionH1, mss.fgPrimary)}>
+            <span className={css(style.underlineBgWhite, style.businessScenarioTopUnderline)}>
+              We already have a referral
+            </span>{' '}
+            <span className={css(style.underlineBgWhite, style.businessScenarioBottomUnderline)}>
+              scheme so why do we need nudj?
+            </span>
+          </h2>
+          <section className={css(style.scenario)}>
+            <h3 className={css(style.sectionH2, mss.fgPrimary)}>
+              Referral schemes are poorly communicated and aren’t personalised
+              to the individual…
+            </h3>
+            <Conversation conversation={poorlyCommunicatedConversation} style={mss.mtLgIi} />
+          </section>
+          <section className={css(style.scenario)}>
+            <h3 className={css(style.sectionH2, mss.fgPrimary)}>
+              Referral schemes involve too much work for the referrer and
+              candidate…
+            </h3>
+            <Conversation conversation={tooMuchWorkConversation} style={mss.mtLgIi} />
+          </section>
+          <section className={css(style.scenario)}>
+            <h3 className={css(style.sectionH2, mss.fgPrimary)}>
+              Most schemes only scratch the surface…
+            </h3>
+            <Conversation conversation={scratchSurfaceConversation} style={mss.mtLgIi} />
+          </section>
+          <section className={css(style.scenario)}>
+            <h3 className={css(style.sectionH2, mss.fgPrimary)}>
+              Referrals are an admin nightmare…
+            </h3>
+            <Conversation conversation={adminNightmareConversation} style={mss.mtLgIi} />
+          </section>
+        </Section>
+        <Section style={style.section} backgroundColor='midRed'>
+          <h2 className={css(style.sectionH1, mss.fgWhite)}>
+            Our pricing
+          </h2>
+          <p className={css(mss.reg, mss.mtReg, mss.fgWhite, style.sectionSubtitle)}>
+            Unlimited jobs. Unlimited users. One monthly fee.
+          </p>
+          <WobblyBox backgroundColor='white' style={style.pricingBox}>
+            <strong className={css(mss.lgIi, mss.bold, mss.fgWhite)}>$99/month</strong>
+            <p className={css(mss.reg, mss.mtReg, mss.fgWhite)}>
+              14-day free trial. No payment details needed.
+            </p>
+          </WobblyBox>
+          <div className={css(style.ctaGroup, style.pricingCtaGroup)}>
+            <RandomHoverButton
+              href={hireUrl}
+              style={style.cta}
+              volume='cheer'
+            >
+              Try it free
+            </RandomHoverButton>
+            <RandomHoverButton
+              href='mailto:robyn@nudj.co'
+              style={style.cta}
+            >
+              Request a demo
+            </RandomHoverButton>
+          </div>
+        </Section>
       </div>
-      <section className={style.hero}>
-        <ul className={style.story}>
-          <li className={style.notHappy}>
-            <div className={style.notHappyContainer}>
-              <AnimateAppearance from='bottom'>
-                <h1 className={style.heroTitle}>The best <TypeOut words={words} className={style.typeout} pauseSpeed={5000} /> are always busy,<br className={style.oppositeBreak} /> but they aren&apos;t always happy.</h1>
-              </AnimateAppearance>
-            </div>
-          </li>
-          <li className={style.unknown}>
-            <div className={style.unknownContainer}>
-              <AnimateAppearance from='right'><h1 className={style.unknownTitle}>They&apos;re often hard to find and are unknown to most.</h1></AnimateAppearance>
-            </div>
-          </li>
-          <li className={style.friends}>
-            <div className={style.friendsContainer}>
-              <AnimateAppearance from='left'><h1 className={style.friendsTitle}>Their friends know who they are, but have no way to help... <br className={style.standardBreak} /><span className={style.highlight}>until now.</span></h1></AnimateAppearance>
-            </div>
-          </li>
-          <li className={style.simpleNudj}>
-            <div className={style.simpleNudjContainer}>
-              <AnimateAppearance from='bottom'><h1 className={style.nudjTitle}>With a simple nudj, you can help them access the best jobs and get rewarded in the process.</h1></AnimateAppearance>
-            </div>
-          </li>
-        </ul>
-      </section>
-      <section className={style.how}>
-        <AnimateAppearance from='bottom'>
-          <h2 className={style.bodyTitle}><span className={style.howUnderline}>How nudj works</span></h2>
-        </AnimateAppearance>
-        <ul className={style.steps}>
-          <li className={style.stepOne}>
-            <AnimateAppearance from='bottom' className={style.stepAnimationContainer}>
-              <img className={style.stepImage} src='/assets/images/home-page/post-jobs-img.svg' />
-              <h3 className={style.stepTitle}>Step One</h3>
-              <p className={style.stepBody}>Great companies post their jobs.</p>
-            </AnimateAppearance>
-          </li>
-          <li className={style.stepTwo}>
-            <AnimateAppearance from='bottom' className={style.stepAnimationContainer}>
-              <img className={style.stepImage} src='/assets/images/home-page/ask-people-img.svg' />
-              <h3 className={style.stepTitle}>Step Two</h3>
-              <p className={style.stepBody}>They then ask the people they rate to recommend their talented friends...</p>
-            </AnimateAppearance>
-          </li>
-          <li className={style.stepThree}>
-            <AnimateAppearance from='bottom' className={style.stepAnimationContainer}>
-              <img className={style.stepImage} src='/assets/images/home-page/apply-button-img.svg' />
-              <h3 className={style.stepTitle}>Step Three</h3>
-              <p className={style.stepBody}>...who can apply in a matter of seconds & get direct access to the company.</p>
-            </AnimateAppearance>
-          </li>
-          <li className={style.stepFour}>
-            <AnimateAppearance from='bottom' className={style.stepAnimationContainer}>
-              <img className={style.stepImage} src='/assets/images/home-page/3-fist-img.svg' />
-              <h3 className={style.stepTitle}>Step Four</h3>
-              <p className={style.stepBody}>If they get hired then everyone gets rewarded - Everyone&apos;s a winner.</p>
-            </AnimateAppearance>
-          </li>
-        </ul>
-      </section>
-      <section className={style.signup}>
-        <div className={style.signupContainer}>
-          <AnimateAppearance from='bottom'>
-            <h2 className={style.signupTitle}>What are you waiting for?</h2>
-            <p className={style.signupSubtitle}>We're all tired of recruiter spam, so we promise to only send you the stuff we know you'll care about (and you can opt out anytime).</p>
-          </AnimateAppearance>
-          <AnimateAppearance from='bottom'>
-            <div className={style.cta}>
-              <RandomHover><Link to='/signup' className={style.signupButton} id='signUp'>Sign up</Link></RandomHover>
-              <span className={style.or}>or</span>
-              <a href='mailto:hello@nudj.co' id='open-intercom' className={style.contact}>Get in touch</a>
-            </div>
-          </AnimateAppearance>
-        </div>
-      </section>
-    </Page>)
+    </Page>
+  )
 }
 
 module.exports = HomePage

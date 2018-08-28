@@ -139,7 +139,7 @@ module.exports.sizes = {
   buttonBorderWidth: '2px',
   buttonMinWidth: '200px',
   contentLargeMaxWidth: '1240px',
-  contentMaxWidth: '980px',
+  contentMaxWidth: '1188px',
   contentMediumMaxWidth: '720px',
   columnWidth: '80',
   copyLineHeight: '1.6',

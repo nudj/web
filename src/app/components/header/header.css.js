@@ -1,6 +1,8 @@
 const { css, merge } = require('@nudj/framework/css')
 const { mixins, variables } = require('../../lib/css')
 
+const { sizes } = require('@nudj/components/lib/css')
+
 const mobileMenuBase = mixins.flexColumn({
   alignItems: 'stretch',
   backgroundColor: variables.colors.navy,
@@ -123,11 +125,17 @@ const styles = {
     alignItems: 'center',
     display: 'flex',
     justifyContent: 'space-between',
-    padding: variables.padding.d,
+    paddingTop: sizes.regular,
+    paddingLeft: sizes.regular,
+    paddingRight: sizes.regular,
+    paddingBottom: sizes.regular,
     position: 'relative',
-    [mixins.breakpoints.l]: {
-      margin: '0 auto',
-      maxWidth: variables.sizes.contentMaxWidth
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    maxWidth: variables.sizes.contentMaxWidth,
+    '@media(min-width: 42.5rem)': {
+      paddingLeft: sizes.largeIi,
+      paddingRight: sizes.largeIi
     }
   },
   navLeft: merge({
@@ -191,7 +199,10 @@ const styles = {
   requestMobile: mixins.buttonPrimary({
     alignSelf: 'flex-end',
     display: 'inline-block',
-    margin: `calc(${variables.padding.d} + ${variables.padding.e}) calc(${variables.padding.d} + ${variables.padding.e}) 0 calc(${variables.padding.d} + ${variables.padding.e})`,
+    marginTop: `calc(${variables.padding.d} + ${variables.padding.e})`,
+    marginRight: `calc(${variables.padding.d} + ${variables.padding.e})`,
+    marginBottom: 0,
+    marginLeft: `calc(${variables.padding.d} + ${variables.padding.e})`,
     textAlign: 'center'
   }),
   hamburgerHolder: {
