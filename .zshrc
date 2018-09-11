@@ -3,7 +3,9 @@ source /root/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 PROMPT='web» '
 
 yank () {
-  cd ./@nudj/$1 && yarn link && cd ../.. && yarn link @nudj/$1
+  for package in "$@"; do
+    cd ./@nudj/$package && yarn link && cd ../.. && yarn link @nudj/$package
+  done
 }
 
 alias run="yarn start"
