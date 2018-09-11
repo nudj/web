@@ -60,6 +60,7 @@ const post = ({ params, session, query }) => {
       $parent: ID = null
     ) {
       user {
+        id
         firstName
         lastName
         email
