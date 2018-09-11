@@ -66,16 +66,6 @@ const config = {
             'babel-plugin-transform-object-rest-spread'
           ]
         }
-      },
-      {
-        test: /\.(svg|png|jpg)$/,
-        exclude: /\.js$/,
-        loader: require.resolve('file-loader'),
-        options: {
-          name: process.env.USE_DEV_SERVER
-            ? 'assets/static/media/[path][name].[ext]'
-            : 'assets/static/media/[path][name].[hash:8].[ext]',
-        },
       }
     ]
   },

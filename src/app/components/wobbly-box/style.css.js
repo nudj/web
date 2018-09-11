@@ -1,9 +1,9 @@
 const { StyleSheet, colors, sizes } = require('@nudj/components/lib/css')
-const charcoalSvg = require('./assets/charcoal.svg')
-const midRedSvg = require('./assets/mid-red.svg')
-const greyLightestSvg = require('./assets/grey-lightest.svg')
-const primarySvg = require('./assets/primary.svg')
-const whiteSvg = require('./assets/white.svg')
+const charcoalSvg = 'assets/app/components/wobbly-box/charcoal.svg'
+const midRedSvg = 'assets/app/components/wobbly-box/mid-red.svg'
+const greyLightestSvg = 'assets/app/components/wobbly-box/grey-lightest.svg'
+const primarySvg = 'assets/app/components/wobbly-box/primary.svg'
+const whiteSvg = 'assets/app/components/wobbly-box/white.svg'
 
 const styleSheet = StyleSheet.create({
   root: {

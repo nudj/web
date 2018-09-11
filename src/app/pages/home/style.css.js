@@ -1,10 +1,10 @@
 const { StyleSheet, colors, sizes, typography } = require('@nudj/components/lib/css')
-const smallSvg = require('./assets/small.svg')
-const combinedSvg = require('./assets/combined.svg')
-const whatToExpectUnderlineSvg = require('./assets/what-to-expect-underline.svg')
-const clientsIncludeUnderlineSvg = require('./assets/clients-include-underline.svg')
-const referralSchemeTopUnderlineSvg = require('./assets/referral-scheme-top-underline.svg')
-const referralSchemeBottomUnderlineSvg = require('./assets/referral-scheme-bottom-underline.svg')
+const smallSvg = 'assets/app/pages/home/small.svg'
+const combinedSvg = 'assets/app/pages/home/combined.svg'
+const whatToExpectUnderlineSvg = 'assets/app/pages/home/what-to-expect-underline.svg'
+const clientsIncludeUnderlineSvg = 'assets/app/pages/home/clients-include-underline.svg'
+const referralSchemeTopUnderlineSvg = 'assets/app/pages/home/referral-scheme-top-underline.svg'
+const referralSchemeBottomUnderlineSvg = 'assets/app/pages/home/referral-scheme-bottom-underline.svg'
 
 const styleSheet = StyleSheet.create({
   root: {
