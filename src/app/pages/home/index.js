@@ -18,13 +18,13 @@ const Conversation = require('../../components/conversation')
 const WobblyBox = require('../../components/wobbly-box')
 const style = require('./style.css')
 
-const benImage = require('./assets/ben.png')
-const dittoSvg = require('./assets/ditto.svg')
-const head1Svg = require('./assets/head-1.svg')
-const head2Svg = require('./assets/head-2.svg')
-const head3Svg = require('./assets/head-3.svg')
-const head4Svg = require('./assets/head-4.svg')
-const headNudjSvg = require('./assets/head-nudj.svg')
+const benImage = 'assets/app/pages/home/ben.png'
+const dittoSvg = 'assets/app/pages/home/ditto.svg'
+const head1Svg = 'assets/app/pages/home/head-1.svg'
+const head2Svg = 'assets/app/pages/home/head-2.svg'
+const head3Svg = 'assets/app/pages/home/head-3.svg'
+const head4Svg = 'assets/app/pages/home/head-4.svg'
+const headNudjSvg = 'assets/app/pages/home/head-nudj.svg'
 
 const getConversations = () => {
   const poorlyCommunicatedConversation = [{

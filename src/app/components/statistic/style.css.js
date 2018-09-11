@@ -1,5 +1,5 @@
 const { StyleSheet, colors, sizes } = require('@nudj/components/lib/css')
-const backgroundImage = require('./background.svg')
+const backgroundImage = 'assets/app/components/statistic/background.svg'
 
 const styleSheet = StyleSheet.create({
   root: {

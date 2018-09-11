@@ -1,9 +1,9 @@
 const { StyleSheet, colors, sizes } = require('@nudj/components/lib/css')
-const charcoalSvg = require('./assets/charcoal.svg')
-const midRedSvg = require('./assets/mid-red.svg')
-const greyLightestSvg = require('./assets/grey-lightest.svg')
-const primarySvg = require('./assets/primary.svg')
-const whiteSvg = require('./assets/white.svg')
+const charcoalSvg = 'assets/app/components/section/charcoal.svg'
+const midRedSvg = 'assets/app/components/section/mid-red.svg'
+const greyLightestSvg = 'assets/app/components/section/grey-lightest.svg'
+const primarySvg = 'assets/app/components/section/primary.svg'
+const whiteSvg = 'assets/app/components/section/white.svg'
 
 const wiggleBackgroundBase = {
   position: 'relative',

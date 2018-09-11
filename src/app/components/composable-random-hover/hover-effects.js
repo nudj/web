@@ -1,15 +1,15 @@
-const leftOne = require('./svgs/left-one.svg')
-const leftTwo = require('./svgs/left-two.svg')
-const leftThree = require('./svgs/left-three.svg')
-const leftFour = require('./svgs/left-four.svg')
-const leftFive = require('./svgs/left-five.svg')
-const leftSix = require('./svgs/left-six.svg')
-const rightOne = require('./svgs/right-one.svg')
-const rightTwo = require('./svgs/right-two.svg')
-const rightThree = require('./svgs/right-three.svg')
-const rightFour = require('./svgs/right-four.svg')
-const rightFive = require('./svgs/right-five.svg')
-const rightSix = require('./svgs/right-six.svg')
+const leftOne = 'assets/app/components/composable-random-hover/left-one.svg'
+const leftTwo = 'assets/app/components/composable-random-hover/left-two.svg'
+const leftThree = 'assets/app/components/composable-random-hover/left-three.svg'
+const leftFour = 'assets/app/components/composable-random-hover/left-four.svg'
+const leftFive = 'assets/app/components/composable-random-hover/left-five.svg'
+const leftSix = 'assets/app/components/composable-random-hover/left-six.svg'
+const rightOne = 'assets/app/components/composable-random-hover/right-one.svg'
+const rightTwo = 'assets/app/components/composable-random-hover/right-two.svg'
+const rightThree = 'assets/app/components/composable-random-hover/right-three.svg'
+const rightFour = 'assets/app/components/composable-random-hover/right-four.svg'
+const rightFive = 'assets/app/components/composable-random-hover/right-five.svg'
+const rightSix = 'assets/app/components/composable-random-hover/right-six.svg'
 
 module.exports = [{
   left: leftOne,
