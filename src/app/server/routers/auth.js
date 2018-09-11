@@ -2,10 +2,15 @@ const express = require('express')
 const passport = require('passport')
 const { cookies } = require('@nudj/library')
 const logger = require('@nudj/framework/logger')
+const { Analytics } = require('@nudj/library/server')
+const isUndefined = require('lodash/isUndefined')
+const omitBy = require('lodash/omitBy')
 
 const request = require('../lib/request')
 const intercom = require('../lib/intercom')
 const queries = require('../lib/queries-mutations')
+
+const omitUndefined = obj => omitBy(obj, isUndefined)
 
 function cacheReturnTo (req, res, next) {
   if (!req.session.returnTo) {
@@ -64,6 +69,7 @@ const Router = ({
         throw new Error('user null')
       }
 
+      const analytics = new Analytics({ app: 'web', distinctId: req.cookies.mixpanelDistinctId })
       const {email, firstName, lastName, url} = getUserInfo(req.user._json)
 
       if (req.session._intercom_visitor_id) {
@@ -76,27 +82,59 @@ const Router = ({
       }
 
       request(queries.GetPersonByEmail, {email})
-      .then(checkForErrors)
-      .then((data) => {
-        if (!data || !data.person) {
-          return request(queries.CreatePerson, {email, firstName, lastName, url})
-        } else if (!data.person.firstName || !data.person.lastName) {
-          return request(queries.UpdatePerson, {
-            id: data.person.id,
-            data: { firstName, lastName }
+        .then(checkForErrors)
+        .then(async data => {
+          let response
+          if (!data.person) {
+            response = await request(queries.CreatePerson, {
+              email,
+              firstName,
+              lastName,
+              url,
+              signedUp: true
+            })
+          } else if (!data.person.signedUp) {
+            response = await request(queries.UpdatePerson, {
+              id: data.person.id,
+              data: omitUndefined({ firstName, lastName, signedUp: true })
+            })
+          }
+
+          const userData = omitUndefined({
+            firstName,
+            lastName,
+            email
           })
-        }
-        return data
-      })
-      .then(checkForErrors)
-      .then(data => {
-        req.session.userId = data.person.id
-        res.redirect(req.session.returnTo || '/')
-      })
-      .catch((error) => {
-        logger.log('error', error)
-        next('Unable to login')
-      })
+
+          if (response) {
+            await analytics.alias({ alias: response.person.id }, userData)
+            await analytics.track({
+              object: analytics.objects.user,
+              action: analytics.actions.user.signedUp
+            })
+
+            return response
+          } else {
+            await analytics.identify({ id: data.person.id }, userData, {
+              preserveTraits: true
+            })
+            analytics.track({
+              object: analytics.objects.user,
+              action: analytics.actions.user.loggedIn
+            })
+
+            return data
+          }
+        })
+        .then(checkForErrors)
+        .then(data => {
+          req.session.userId = data.person.id
+          res.redirect(req.session.returnTo || '/')
+        })
+        .catch((error) => {
+          logger.log('error', error)
+          next('Unable to login')
+        })
     }
   )
 
