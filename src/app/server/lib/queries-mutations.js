@@ -6,6 +6,7 @@ const fragments = {
       url
       firstName
       lastName
+      signedUp
     }
   `,
   Company: `
@@ -190,12 +191,14 @@ module.exports = {
       $firstName: String!
       $lastName: String!
       $url: String
+      $signedUp: Boolean
     ) {
       person: createPerson(input: {
         email: $email
         firstName: $firstName
         lastName: $lastName
         url: $url
+        signedUp: $signedUp
       }) {
         ...Person
       }
