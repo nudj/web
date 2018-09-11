@@ -24,7 +24,7 @@ class CookieBanner extends React.Component {
     this.setState({
       shouldRender: false
     }, () => {
-      cookies.set('cookiesEnabled', true)
+      cookies.set('cookiesEnabled', true, { expires: 3650 })
     })
   }
 
@@ -32,7 +32,7 @@ class CookieBanner extends React.Component {
     this.setState({
       shouldRender: false
     }, () => {
-      cookies.set('cookiesEnabled', false)
+      cookies.set('cookiesEnabled', false, { expires: 3650 })
     })
   }
 
