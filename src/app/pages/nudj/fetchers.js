@@ -1,5 +1,5 @@
 const { logger } = require('@nudj/library')
-const { intercom } = require('@nudj/library/lib/analytics')
+const intercom = require('@nudj/library/lib/analytics/intercom')
 const omitBy = require('lodash/omitBy')
 const isNil = require('lodash/isNil')
 
