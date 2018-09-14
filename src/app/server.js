@@ -11,11 +11,16 @@ require('babel-register')({
 
 const http = require('http')
 const path = require('path')
+const get = require('lodash/get')
 const createNudjApps = require('@nudj/framework/server')
 const logger = require('@nudj/framework/logger')
+const { Analytics } = require('@nudj/library/server')
+const { omitUndefined } = require('@nudj/library')
 
 const useDevServer = process.env.USE_DEV_SERVER === 'true'
 
+const request = require('./server/lib/request')
+const queries = require('./server/lib/queries-mutations')
 const reactApp = require('./redux')
 const reduxRoutes = require('./redux/routes')
 const reduxReducers = require('./redux/reducers')
@@ -115,8 +120,35 @@ if (useDevServer) {
   helmetConfig.contentSecurityPolicy.directives.fontSrc.push('fonts.gstatic.com')
 }
 
+async function getAnalytics (req) {
+  if (req.session.userId && !req.session.analyticsEventProperties) {
+    // A user exists and has no event properties, fetch them.
+    try {
+      const response = await request(queries.GetHirerFromPerson, {
+        person: req.session.userId
+      })
+      req.session.analyticsEventProperties = omitUndefined({
+        firstName: get(response, 'person.firstName'),
+        lastName: get(response, 'person.lastName'),
+        email: get(response, 'person.email'),
+        companyName: get(response, 'person.hirer.company.name')
+      })
+    } catch (error) {
+      console.error(`Error fetching analytics EventProperties for user ${req.session.userId}`, error)
+    }
+  }
+  const analyticsData = omitUndefined({
+    app: 'hire',
+    distinctId: req.session.userId || req.cookies.mixpanelDistinctId,
+    eventProperties: req.session.analyticsEventProperties
+  })
+
+  return new Analytics(analyticsData)
+}
+
 let app = createNudjApps({
   App: reactApp,
+  getAnalytics,
   reduxRoutes,
   reduxReducers,
   expressRouters,

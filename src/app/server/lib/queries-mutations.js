@@ -528,13 +528,14 @@ module.exports = {
     ${fragments.Company}
   `,
   GetHirerFromPerson: `
-    query GetHirerFromPerson (
-      $person: ID!
-    ) {
-      hirer:hirerByFilters(filters: {
-        person: $person
-      }) {
-        ...Hirer
+    query GetHirerFromPerson ($person: ID!) {
+      person(id: $person) {
+        firstName
+        lastName
+        email
+        hirer {
+          ...Hirer
+        }
       }
     }
     ${fragments.Hirer}
