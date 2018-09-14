@@ -1,17 +1,20 @@
 const { StyleSheet } = require('@nudj/components/lib/css')
 
-const hoverEffects = require('./hover-effects')
 const SVG_HEIGHT = '2.8rem'
 const ANIMATION_DURATION = 275
+const hoverEffects = {
+  left: 'assets/app/components/composable-random-hover/left-one.svg',
+  right: 'assets/app/components/composable-random-hover/right-one.svg'
+}
 
 const styleSheet = StyleSheet.create({
-  ...hoverEffects.map(({ left, right }) => ({
+  hoverEffect: {
     position: 'relative',
     transition: 'transform 275ms cubic-bezier(0.68, -0.55, 0.265, 1.55)',
     transform: 'scale(1)',
     zIndex: 2,
     ':before': {
-      backgroundImage: `url(${left})`,
+      backgroundImage: `url(${hoverEffects.left})`,
       content: '""',
       display: 'block',
       position: 'absolute',
@@ -30,7 +33,7 @@ const styleSheet = StyleSheet.create({
     },
     ':after': {
       content: '""',
-      backgroundImage: `url(${right})`,
+      backgroundImage: `url(${hoverEffects.right})`,
       display: 'block',
       position: 'absolute',
       backgroundRepeat: 'no-repeat',
@@ -57,8 +60,7 @@ const styleSheet = StyleSheet.create({
         opacity: 1
       }
     }
-  }))
+  }
 })
 
 module.exports = styleSheet
-module.exports.animationDuration = ANIMATION_DURATION
