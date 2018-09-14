@@ -1,177 +1,79 @@
 const React = require('react')
 const get = require('lodash/get')
-const { Link } = require('react-router-dom')
+const PropTypes = require('prop-types')
+const { Link, NavLink } = require('react-router-dom')
 
-const { getStyle, setStyles } = require('./header.css')
-const nudjLogo = require('./nudj-logo')
+// const { getStyle, setStyles } = require('./header.css')
+const { css } = require('@nudj/components/lib/css')
 
-const offsetTrigger = 100
+const Logo = require('./nudj-logo')
+const style = require('./style.css')
 
-class Header extends React.Component {
-  constructor (props) {
-    super(props)
+const backgroundColourToBackgroundColorMap = {
+  navy: 'navy',
+  grey: 'greyLightest',
+  midRed: 'midRed',
+  white: 'white',
+  charcoal: 'charcoal'
+}
 
-    const burgerActive = false
-    const burgerStyle = 'hamburger'
-    const mobileMenuStyle = 'mobileMenu'
-    const navBarConstantStyle = 'navBarConstant'
-    const location = get(props, 'location')
+function convertBackgroundColourToBackgroundColor (backgroundColour) {
+  if (backgroundColour) return backgroundColourToBackgroundColorMap[backgroundColour]
+}
 
-    const colours = {
-      backgroundColour: get(props, 'backgroundColour'),
-      textColour: get(props, 'textColour'),
-      textHighlightColour: get(props, 'textHighlightColour'),
-      buttonTextColour: get(props, 'buttonTextColour')
-    }
+const Header = (props) => {
+  // Backwards compatibility and unifying the API with `Section` and `WobblyBox`
+  const backgroundColor = props.backgroundColor || convertBackgroundColourToBackgroundColor(props.backgroundColour)
 
-    this.state = {burgerActive, burgerStyle, mobileMenuStyle, navBarConstantStyle, colours, location}
-
-    this.handleScroll = this.handleScroll.bind(this)
-    this.updateNavBarActive = this.updateNavBarActive.bind(this)
-    this.onClickLink = this.onClickLink.bind(this)
-    this.onClickBurger = this.onClickBurger.bind(this)
-  }
-
-  componentDidMount () {
-    window.addEventListener('scroll', this.handleScroll)
-  }
-
-  componentWillUnmount () {
-    window.removeEventListener('scroll', this.handleScroll)
-  }
-
-  handleScroll () {
-    if (this.handlingScrollUpdate) {
-      return
-    }
-
-    this.handlingScrollUpdate = true
-    window.requestAnimationFrame(this.updateNavBarActive)
-  }
-
-  onClickBurger (event) {
-    event.preventDefault()
-
-    const burgerActive = !this.state.burgerActive
-    const burgerStyle = burgerActive ? 'hamburgerIsActive' : 'hamburger'
-    const mobileMenuStyle = burgerActive ? 'mobileMenuIsActive' : 'mobileMenu'
-
-    this.setState({burgerActive, burgerStyle, mobileMenuStyle}, () => this.updateNavBarStyle())
-  }
-
-  onClickLink () {
-    const burgerActive = false
-    const burgerStyle = 'hamburger'
-    const mobileMenuStyle = 'mobileMenu'
-
-    this.setState({burgerActive, burgerStyle, mobileMenuStyle}, () => this.updateNavBarStyle())
-  }
-
-  updateNavBarActive () {
-    const pageYOffset = window.pageYOffset
-    const navBarActive = pageYOffset >= offsetTrigger
-
-    this.setState({navBarActive}, () => this.updateNavBarStyle())
-    window.requestAnimationFrame(() => {
-      this.handlingScrollUpdate = false
-    })
-  }
-
-  updateNavBarStyle () {
-    const burgerActive = this.state.burgerActive
-    const navBarActive = this.state.navBarActive
-    const navBarConstantStyle = navBarActive || burgerActive ? 'navBarConstantIsActive' : 'navBarConstant'
-
-    this.setState({navBarConstantStyle})
-  }
-
-  renderBrandLogo (colour) {
-    const logo = nudjLogo(colour || this.state.colours.textColour)
-    return logo
-  }
-
-  renderBurger (coloured = false) {
-    let burgerClass = 'hamburger hamburger--elastic'
-
-    if (this.state.burgerActive) {
-      burgerClass += ' is-active'
-    }
-
-    const burgerColour = coloured ? this.style.burgerColoured : this.style.burgerColourDefault
-
-    return (
-      <div className={this.style.hamburgerHolder}>
-        <button id='mobileMenu' className={`${burgerClass} ${this.style.burger}`} type='button' onClick={this.onClickBurger}>
-          <span className={`hamburger-box ${this.style.burgerBox}`}>
-            <span className={`hamburger-inner ${burgerColour} ${this.style.burgerPosition}`} />
-          </span>
-        </button>
-      </div>
-    )
-  }
-
-  renderMobileMenu () {
-    const baseStyleName = this.state.mobileMenuStyle
-    const baseStyle = this.style[baseStyleName]
-    return (
-      <nav className={baseStyle}>
-        {this.renderNavLinks(true)}
+  return (
+    <div className={css(backgroundColor && style[backgroundColor])}>
+      <nav className={css(style.nav)}>
+        <div className={css(style.navLeft)}>
+          <Link
+            to='/'
+            className={css(style.homeLink)}
+          >
+            <Logo className={css(style.logo)} colourName='currentColor' />
+          </Link>
+        </div>
+        <div className={css(style.navRight)}>
+          <NavLink
+            to='/'
+            className={css(style.link)}
+            activeClassName={css(style.activeLink)}
+            exact
+          >
+            Employers
+          </NavLink>
+          <NavLink
+            to='/talent'
+            className={css(style.link)}
+            activeClassName={css(style.activeLink)}
+          >
+            Talent
+          </NavLink>
+          <NavLink
+            to='/about'
+            className={css(style.link)}
+            activeClassName={css(style.activeLink)}
+          >
+            About Us
+          </NavLink>
+        </div>
       </nav>
-    )
-  }
+    </div>
+  )
+}
 
-  renderNavBarConstant () {
-    const baseStyleName = this.state.navBarConstantStyle
-    const baseStyle = this.style[baseStyleName]
-    return (<div className={baseStyle}>
-      <Link className={this.style.homeSmall} to='/' onClick={this.onClickLink}>
-        <img className={this.style.brandSmall} src='/assets/images/nudj-logo-light-small.svg' alt='Nudj' />
-      </Link>
-      {this.renderBurger()}
-    </div>)
-  }
-
-  renderNavLinks (mobile = false) {
-    const linkStyleName = mobile ? 'linkMobile' : 'link'
-    const isActiveHome = this.state.location === '/'
-    const isActiveHiring = this.state.location === '/hiring'
-    const isActiveAbout = this.state.location === '/about'
-
-    const linkStyleHome = isActiveHome ? this.style[`${linkStyleName}ActiveHome`] : this.style[linkStyleName]
-    const linkStyleHiring = isActiveHiring ? this.style[`${linkStyleName}ActiveHiring`] : this.style[linkStyleName]
-    const linkStyleAbout = isActiveAbout ? this.style[`${linkStyleName}ActiveAbout`] : this.style[linkStyleName]
-
-    const companies = (<a href='/' className={linkStyleHiring} id='hirerPage' onClick={this.onClickLink} key='2'>Employers</a>)
-    const talent = (<a href='/talent' className={linkStyleHome} id='talentPage' onClick={this.onClickLink} key='1'>Talent</a>)
-    const about = (<a href='/about' className={linkStyleAbout} id='aboutPage' onClick={this.onClickLink} key='4'>About Us</a>)
-
-    const defaultNav = [companies, talent, about]
-
-    return (defaultNav)
-  }
-
-  render () {
-    setStyles(this.state.colours.backgroundColour, this.state.colours.textColour, this.state.colours.textHighlightColour, this.state.colours.buttonTextColour)
-    this.style = getStyle()
-
-    return (
-      <div className={this.style.navContainer}>
-        <nav className={this.style.nav}>
-          <div className={this.style.navLeft}>
-            <Link className={this.style.homeButton} to='/' onClick={this.onClickLink}>
-              {this.renderBrandLogo()}
-            </Link>
-          </div>
-          {this.renderNavBarConstant()}
-          {this.renderMobileMenu()}
-          <div className={this.style.navRight}>
-            {this.renderBurger(true)}
-            {this.renderNavLinks()}
-          </div>
-        </nav>
-      </div>
-    )
-  }
+Header.propTypes = {
+  backgroundColor: PropTypes.oneOf(Object.keys(backgroundColourToBackgroundColorMap)),
+  backgroundColour: PropTypes.oneOf([
+    'navy',
+    'greyLightest',
+    'charcoal',
+    'midRed',
+    'white'
+  ])
 }
 
 module.exports = Header
