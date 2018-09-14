@@ -3,14 +3,11 @@ const passport = require('passport')
 const { cookies } = require('@nudj/library')
 const logger = require('@nudj/framework/logger')
 const { Analytics } = require('@nudj/library/server')
-const isUndefined = require('lodash/isUndefined')
-const omitBy = require('lodash/omitBy')
+const { omitUndefined } = require('@nudj/library')
 
 const request = require('../lib/request')
 const intercom = require('../lib/intercom')
 const queries = require('../lib/queries-mutations')
-
-const omitUndefined = obj => omitBy(obj, isUndefined)
 
 function cacheReturnTo (req, res, next) {
   if (!req.session.returnTo) {
@@ -52,6 +49,7 @@ const Router = ({
   router.get('/logout', cacheReturnTo, (req, res, next) => {
     req.logOut()
     delete req.session.userId
+    delete req.session.analyticsEventProperties
     req.session.logout = true
     cookies.clear(res, 'session')
     res.redirect(`https://${process.env.AUTH0_DOMAIN}/v2/logout?returnTo=${encodeURIComponent(`${process.env.PROTOCOL_DOMAIN}/loggedout`)}&client_id=${process.env.AUTH0_CLIENT_ID}`)
