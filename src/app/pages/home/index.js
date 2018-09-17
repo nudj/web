@@ -42,7 +42,7 @@ const getConversations = () => {
     name: 'nudj',
     body: (
       <p className={css(mss.reg)}>
-        nudj personalises communication to the individual referrers and send
+        nudj personalises communication to the individual referrers and sends
         gentle reminders to make sure they don’t forget to take action.
       </p>
     ),
