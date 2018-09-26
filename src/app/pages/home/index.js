@@ -147,7 +147,7 @@ const RandomHoverButton = ({ style, ...props }) => {
 const HomePage = (props) => {
   const pageTitle = `Better manage your employee referral scheme and hire more great people`
   const pageDescription = `nudj makes it effortless for you and your team to ask for, track, and reward referrals.`
-  const hireUrl = `${props.app.hire.protocol}://${props.app.hire.hostname}/welcome`
+  const hireUrl = `${props.app.hire.protocol}://${props.app.hire.hostname}`
 
   const {
     poorlyCommunicatedConversation,
