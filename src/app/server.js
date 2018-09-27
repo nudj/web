@@ -143,7 +143,18 @@ async function getAnalytics (req) {
     eventProperties: req.session.analyticsEventProperties
   })
 
-  return new Analytics(analyticsData)
+  const analytics = new Analytics(analyticsData)
+
+  /**
+   * Persists the session equivalent of `analytics.traits` and
+   * `analytics.eventProperties` whenever they're changed down the chain, e.g.,
+   * through the use of `analytics.updateIdentity`
+   */
+  analytics.onEventPropertiesChange(update => {
+    req.session.analyticsEventProperties = update
+  })
+
+  return analytics
 }
 
 let app = createNudjApps({
