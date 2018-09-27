@@ -30,7 +30,8 @@ const About = (props) => {
         backgroundColour='navy'
         textColour='white'
         textHighlightColour='royalBlue'
-        location='/about' />
+        location={props.location.pathname}
+      />
       <section className={style.hero}>
         <div className={style.header}>
           <AnimateAppearance from='bottom'>

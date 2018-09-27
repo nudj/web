@@ -76,7 +76,7 @@ class ApplicationUpdate extends React.Component {
           <meta name='twitter:card' content='summary' />
           <meta name='twitter:title' content={pageTitle} />
         </Helmet>
-        <Header />
+        <Header location={this.props.location.pathname} />
         <div className={style.body}>
           <div className={style.content}>
             <div className={style.formHeader}>

@@ -28,7 +28,7 @@ const ApplicationComplete = (props) => {
       <meta name='twitter:title' content={pageTitle} />
     </Helmet>
     <Message message={get(props, 'message')} />
-    <Header />
+    <Header location={props.location.pathname} />
     <div className={style.body}>
       <div className={style.content}>
         <div className={style.formHeaderSuccess}>

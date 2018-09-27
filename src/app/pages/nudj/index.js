@@ -30,7 +30,7 @@ const Nudj = (props) => {
       <meta name='twitter:title' content={socialTitle} />
       <meta name='twitter:description' content={pageDescription} />
     </Helmet>
-    <Header />
+    <Header location={props.location.pathname} />
     <div className={style.page}>
       <div className={style.box}>
         <h1 className={style.heading}>We&apos;ve created a unique link for you. Now share it!</h1>

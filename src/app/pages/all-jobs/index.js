@@ -30,9 +30,7 @@ const JobsPage = props => {
         <meta name='twitter:card' content='summary' />
         <meta name='twitter:title' content={pageTitle} />
       </Helmet>
-      <Header
-        location='/jobs'
-      />
+      <Header location={props.location.pathname} />
       <section className={style.hero}>
         <div className={style.header}>
           <h1 className={style.heroTitle}>There are <span className={style.highlight}>{jobs.length}</span> jobs on nudj. <br />Take your pick!</h1>

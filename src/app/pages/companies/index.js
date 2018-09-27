@@ -35,7 +35,7 @@ const CompanyPage = props => {
         backgroundColour='midRed'
         textColour='white'
         textHighlightColour='royalBlue'
-        location='/companies/:companySlug'
+        location={props.location.pathname}
       />
       <section className={style.hero}>
         <div className={style.header}>
@@ -75,13 +75,13 @@ const CompanyPage = props => {
                 )
               })}
             </ul>
-        ) : (
-          <div className={style.cta}>
-            <p className={style.bodyCopy}>There aren&apos;t any open jobs at {company.name} right now,
-            but if you sign-up for updates we&apos;ll let you know as soon as there are.</p>
-            <RandomHover><Link to='/signup' className={style.signupButton} id='signUp'>Sign up</Link></RandomHover>
-          </div>
-        )}
+          ) : (
+            <div className={style.cta}>
+              <p className={style.bodyCopy}>There aren&apos;t any open jobs at {company.name} right now,
+              but if you sign-up for updates we&apos;ll let you know as soon as there are.</p>
+              <RandomHover><Link to='/signup' className={style.signupButton} id='signUp'>Sign up</Link></RandomHover>
+            </div>
+          )}
         </section>
       </section>
     </Page>

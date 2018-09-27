@@ -176,11 +176,11 @@ const styles = {
     transform: 'translate3d(0, 0, 0)'
   }, navBarConstant),
   link: link,
-  linkActiveHome: merge(link, activeLinkUnderline, {
+  linkActiveEmployers: merge(link, activeLinkUnderline, {
     color: variables.colors.charcoal
   }),
-  linkActiveHiring: merge(link, activeLinkUnderline, {
-    color: variables.colors.white
+  linkActiveTalent: merge(link, activeLinkUnderline, {
+    color: variables.colors.charcoal
   }),
   linkActiveJobs: merge(link, activeLinkUnderline, {
     color: variables.colors.charcoal
@@ -192,8 +192,8 @@ const styles = {
     color: variables.colors.white
   }),
   linkMobile: merge(linkMobileLink, mixins.deLink()),
-  linkMobileActiveHome: linkMobileLinkActive,
-  linkMobileActiveHiring: linkMobileLinkActive,
+  linkMobileActiveEmployers: linkMobileLinkActive,
+  linkMobileActiveTalent: linkMobileLinkActive,
   linkMobileActiveJobs: linkMobileLinkActive,
   linkMobileActiveAbout: linkMobileLinkActive,
   requestMobile: mixins.buttonPrimary({

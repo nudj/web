@@ -15,7 +15,6 @@ class Header extends React.Component {
     const burgerStyle = 'hamburger'
     const mobileMenuStyle = 'mobileMenu'
     const navBarConstantStyle = 'navBarConstant'
-    const location = get(props, 'location')
 
     const colours = {
       backgroundColour: get(props, 'backgroundColour'),
@@ -24,7 +23,7 @@ class Header extends React.Component {
       buttonTextColour: get(props, 'buttonTextColour')
     }
 
-    this.state = {burgerActive, burgerStyle, mobileMenuStyle, navBarConstantStyle, colours, location}
+    this.state = {burgerActive, burgerStyle, mobileMenuStyle, navBarConstantStyle, colours}
 
     this.handleScroll = this.handleScroll.bind(this)
     this.updateNavBarActive = this.updateNavBarActive.bind(this)
@@ -133,19 +132,21 @@ class Header extends React.Component {
 
   renderNavLinks (mobile = false) {
     const linkStyleName = mobile ? 'linkMobile' : 'link'
-    const isActiveHome = this.state.location === '/'
-    const isActiveHiring = this.state.location === '/hiring'
-    const isActiveAbout = this.state.location === '/about'
+    const isActiveEmployers = this.props.location === '/'
+    const isActiveTalent = this.props.location === '/talent'
+    const isActiveAbout = this.props.location === '/about'
+    const hireUrl = `${process.env.HIRE_PROTOCOL}://${process.env.HIRE_HOST}`
 
-    const linkStyleHome = isActiveHome ? this.style[`${linkStyleName}ActiveHome`] : this.style[linkStyleName]
-    const linkStyleHiring = isActiveHiring ? this.style[`${linkStyleName}ActiveHiring`] : this.style[linkStyleName]
+    const linkStyleEmployers = isActiveEmployers ? this.style[`${linkStyleName}ActiveEmployers`] : this.style[linkStyleName]
+    const linkStyleTalent = isActiveTalent ? this.style[`${linkStyleName}ActiveTalent`] : this.style[linkStyleName]
     const linkStyleAbout = isActiveAbout ? this.style[`${linkStyleName}ActiveAbout`] : this.style[linkStyleName]
 
-    const companies = (<a href='/' className={linkStyleHiring} id='hirerPage' onClick={this.onClickLink} key='2'>Employers</a>)
-    const talent = (<a href='/talent' className={linkStyleHome} id='talentPage' onClick={this.onClickLink} key='1'>Talent</a>)
+    const companies = (<a href='/' className={linkStyleEmployers} id='hirerPage' onClick={this.onClickLink} key='2'>Employers</a>)
+    const talent = (<a href='/talent' className={linkStyleTalent} id='talentPage' onClick={this.onClickLink} key='1'>Talent</a>)
     const about = (<a href='/about' className={linkStyleAbout} id='aboutPage' onClick={this.onClickLink} key='4'>About Us</a>)
+    const login = (<a href={hireUrl} className={this.style[linkStyleName]} id='login' onClick={this.onClickLink} key='5'>Login</a>)
 
-    const defaultNav = [companies, talent, about]
+    const defaultNav = [companies, talent, about, login]
 
     return (defaultNav)
   }

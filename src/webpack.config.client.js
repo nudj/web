@@ -18,7 +18,9 @@ const plugins = [
     'DEV_SERVER_PATH',
     'FACEBOOK_APP_ID',
     'ANALYTICS_ENABLED',
-    'MIXPANEL_API_TOKEN'
+    'MIXPANEL_API_TOKEN',
+    'HIRE_PROTOCOL',
+    'HIRE_HOST'
   ]),
   process.env.USE_DEV_SERVER && new webpack.HotModuleReplacementPlugin(),
   process.env.USE_DEV_SERVER && new webpack.NamedModulesPlugin(),

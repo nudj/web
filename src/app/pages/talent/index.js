@@ -37,7 +37,7 @@ const Talent = (props) => {
         <meta name='twitter:title' content={pageTitle} />
       </Helmet>
       <div className={style.header}>
-        <Header location='/' />
+        <Header location={props.location.pathname} />
       </div>
       <section className={style.hero}>
         <ul className={style.story}>
