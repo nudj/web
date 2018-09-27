@@ -127,11 +127,11 @@ async function getAnalytics (req) {
       const response = await request(queries.GetHirerFromPerson, {
         person: req.session.userId
       })
+      const person = get(response, 'person', {})
       req.session.analyticsEventProperties = omitUndefined({
-        firstName: get(response, 'person.firstName'),
-        lastName: get(response, 'person.lastName'),
-        email: get(response, 'person.email'),
-        companyName: get(response, 'person.hirer.company.name')
+        name: person.firstName && person.lastName && `${person.firstName} ${person.lastName}`,
+        email: person.email,
+        companyName: get(person, 'hirer.company.name')
       })
     } catch (error) {
       console.error(`Error fetching analytics EventProperties for user ${req.session.userId}`, error)

@@ -99,8 +99,7 @@ const Router = ({
           }
 
           const userData = omitUndefined({
-            firstName,
-            lastName,
+            name: firstName && lastName ? `${firstName} ${lastName}` : undefined,
             email
           })
 
