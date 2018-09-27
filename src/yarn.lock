@@ -136,9 +136,9 @@
     react-textarea-autosize "^5.2.1"
     warning "^3.0.0"
 
-"@nudj/framework@17.8.0":
-  version "17.8.0"
-  resolved "https://registry.yarnpkg.com/@nudj/framework/-/framework-17.8.0.tgz#a23fa29ab90ea478cd7cb516bf5e1efd278b4dcc"
+"@nudj/framework@17.9.0":
+  version "17.9.0"
+  resolved "https://registry.yarnpkg.com/@nudj/framework/-/framework-17.9.0.tgz#f3057456d4b29d7411b1033d59daeb03202c269c"
   dependencies:
     "@nudj/api" "14.0.0"
     "@nudj/components" "2.0.0"

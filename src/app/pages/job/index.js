@@ -274,7 +274,7 @@ const Job = props => {
         <meta name='twitter:description' content={pageDescription} />
         <meta name='twitter:image' content={image} />
       </Helmet>
-      <Header />
+      <Header location={props.location.pathname} />
       {job.status === 'ARCHIVED' && (
         <section className={style.jobDeadContainer}>
           <div className={style.jobDeadNotice}>

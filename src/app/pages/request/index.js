@@ -190,7 +190,7 @@ class Request extends React.Component {
     }
     return (<Page {...this.props} className={style.bodyContainer}>
       <Message message={get(this.props, 'message')} />
-      <Header />
+      <Header location={this.props.location.pathname} />
       <div className={style.body}>
         {html}
       </div>
