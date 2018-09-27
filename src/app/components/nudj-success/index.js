@@ -7,9 +7,9 @@ const RandomHover = require('../random-hover')
 const analytics = require('../../lib/browser-analytics')
 
 const trackReferral = async (props, method) => {
-  await analytics.identify({ id: props.user.id }, {
-    firstName: props.user.firstName,
-    lastName: props.user.lastName
+  const { firstName, lastName, id } = props.user
+  await analytics.identify({ id }, {
+    name: firstName && lastName && `${firstName} ${lastName}`
   })
   analytics.track({
     object: analytics.objects.job,

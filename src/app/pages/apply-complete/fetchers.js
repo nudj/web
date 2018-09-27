@@ -32,8 +32,12 @@ const postApplication = ({ params, body, analytics, req }) => {
 
   const transformData = async data => {
     const personId = data.company.job.application.person.id
+    const { email, firstName, lastName } = person
 
-    await analytics.identify({ id: personId }, person, { preserveTraits: true })
+    await analytics.identify({ id: personId }, {
+      email,
+      name: firstName && lastName && `${firstName} ${lastName}`
+    }, { preserveTraits: true })
     analytics.track({
       object: analytics.objects.applicant,
       action: analytics.actions.applicant.created,
