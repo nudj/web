@@ -2,12 +2,6 @@ source /root/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 PROMPT='web» '
 
-yank () {
-  for package in "$@"; do
-    cd ./@nudj/$package && yarn link && cd ../.. && yarn link @nudj/$package
-  done
-}
-
 alias run="yarn start"
 alias dev="yarn run dev"
 alias test="./node_modules/.bin/standard && ./node_modules/.bin/mocha --recursive test/unit"
@@ -18,7 +12,13 @@ alias tdd='./node_modules/.bin/nodemon \
 	--delay 250ms \
 	-x "./node_modules/.bin/standard && ./node_modules/.bin/mocha --recursive test/unit || exit 1"'
 
-alias idev="yank framework && yank components && yank api && yank library && dev"
+yank () {
+  for package in "$@"; do
+    cd /usr/src/yank/$package && yarn link && cd /usr/src && yarn link $package
+  done
+}
+
+alias idev="yank @nudj/framework @nudj/components @nudj/api @nudj/library && dev"
 alias ll="ls -la"
 alias d="docker"
 alias dm="docker-machine"

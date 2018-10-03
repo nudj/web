@@ -4,5 +4,5 @@ RUN mkdir -p /usr/src && apk update && apk add zsh make git && mkdir /root/.zsh 
 WORKDIR /usr/src
 COPY src /usr/src
 RUN yarn
-EXPOSE 80 81 82 83
+EXPOSE 80 81
 CMD ./node_modules/.bin/webpack --config ./webpack.config.dll.js --bail --hide-modules && ./node_modules/.bin/webpack --config ./webpack.config.client.js --bail --hide-modules && node .
