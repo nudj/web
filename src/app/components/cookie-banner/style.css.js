@@ -1,4 +1,4 @@
-const { StyleSheet, utilities, colors, typography } = require('@nudj/components/lib/css')
+const { StyleSheet, utilities, colors, typography, sizes } = require('@nudj/components/styles')
 
 const breakpoint = '38rem'
 
@@ -10,9 +10,11 @@ const styleSheet = StyleSheet.create({
     transform: 'translateX(-50%)',
     width: 'calc(100% - 2rem)',
     maxWidth: '67.25rem',
-    bottom: '1rem',
-    paddingTop: '1.5rem',
-    paddingBottom: '1.5rem',
+    bottom: sizes.regular,
+    paddingTop: sizes.largeI,
+    paddingBottom: sizes.largeI,
+    paddingLeft: sizes.largeIi,
+    paddingRight: sizes.largeIi,
     borderRadius: '0.4rem',
     boxShadow: utilities.boxShadow[20].wide,
     [`@media(min-width: ${breakpoint})`]: {
@@ -23,7 +25,7 @@ const styleSheet = StyleSheet.create({
     display: 'block',
     [`@media(min-width: ${breakpoint})`]: {
       display: 'inline',
-      marginRight: '1rem',
+      marginRight: sizes.regular,
       flexGrow: 1
     }
   },
@@ -52,8 +54,8 @@ const styleSheet = StyleSheet.create({
     paddingBottom: 0,
     paddingLeft: 0,
     paddingRight: 0,
-    marginTop: '1rem',
-    marginRight: '1rem',
+    marginTop: sizes.regular,
+    marginRight: sizes.regular,
     whiteSpace: 'nowrap',
     ':last-child': {
       marginRight: 0

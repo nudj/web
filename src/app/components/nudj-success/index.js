@@ -3,14 +3,17 @@ const get = require('lodash/get')
 
 const { getStyle, setStyles } = require('./nudj-success.css')
 const CopyToClipboard = require('../copy-to-clipboard')
-const RandomHover = require('../random-hover')
 const analytics = require('../../lib/browser-analytics')
 
 const trackReferral = async (props, method) => {
   const { firstName, lastName, id } = props.user
-  await analytics.identify({ id }, {
-    name: firstName && lastName && `${firstName} ${lastName}`
-  })
+
+  if (id) {
+    await analytics.identify({ id }, {
+      name: firstName && lastName && `${firstName} ${lastName}`
+    })
+  }
+
   analytics.track({
     object: analytics.objects.job,
     action: analytics.actions.job.referred,
@@ -76,16 +79,14 @@ const NudjSuccess = (props) => {
       </div>
       <div className={style.link}>
         <input className={style.linkContainer} value={link} readOnly onCopy={() => trackReferral(props, 'copied link')} />
-        <RandomHover>
-          <CopyToClipboard
-            id='copy'
-            className={style.copyLink}
-            data-clipboard-text={link}
-            onClick={() => trackReferral(props, 'copied link')}
-          >
-            Copy link
-          </CopyToClipboard>
-        </RandomHover>
+        <CopyToClipboard
+          id='copy'
+          className={style.copyLink}
+          data-clipboard-text={link}
+          onClick={() => trackReferral(props, 'copied link')}
+        >
+          Copy link
+        </CopyToClipboard>
       </div>
     </div>
   )

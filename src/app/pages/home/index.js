@@ -1,14 +1,12 @@
 const React = require('react')
 const { Helmet } = require('react-helmet')
 
-const { Link } = require('@nudj/components')
-const { css } = require('@nudj/components/lib/css')
-const mss = require('@nudj/components/lib/css/modifiers.css')
+const { css, mss } = require('@nudj/components/styles')
 
 /** TODO: Refactor Page and Header if applicable */
 const Page = require('../../components/page')
 const Navigation = require('../../components/header')
-const RandomHover = require('../../components/composable-random-hover')
+const RandomHoverButton = require('../../components/random-hover-button')
 const Section = require('../../components/section')
 const Statistic = require('../../components/statistic')
 const ClientGrid = require('../../components/client-grid')
@@ -128,20 +126,6 @@ const getConversations = () => {
     scratchSurfaceConversation,
     adminNightmareConversation
   }
-}
-
-const RandomHoverButton = ({ style, ...props }) => {
-  return (
-    <RandomHover
-      render={({ style: hoverStyle, ...hoverProps }) => (
-        <Link
-          style={[style, hoverStyle]}
-          {...hoverProps}
-          {...props}
-        />
-      )}
-    />
-  )
 }
 
 const HomePage = (props) => {

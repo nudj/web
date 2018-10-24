@@ -1,4 +1,5 @@
 const { css, merge } = require('@nudj/framework/css')
+const { sizes } = require('@nudj/components/styles')
 const { mixins, variables } = require('../../lib/css')
 
 const sharingIcons = {
@@ -57,7 +58,10 @@ const styles = {
     textOverflow: 'initial',
     maxWidth: '36rem'
   },
-  copyLink: mixins.buttonPrimary(),
+  copyLink: {
+    ...mixins.buttonPrimary(),
+    borderRadius: sizes.smallIi
+  },
   copyLinkIcon: {
     cursor: 'pointer',
     display: 'block',
