@@ -89,7 +89,8 @@ const Router = ({
               firstName,
               lastName,
               url,
-              signedUp: true
+              signedUp: true,
+              acceptedTerms: true
             })
           } else if (!data.person.signedUp) {
             response = await request(queries.UpdatePerson, {
