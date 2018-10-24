@@ -211,7 +211,7 @@ function buttonPrimaryHover () {
 
   const visible = {
     opacity: '1',
-    transform: 'scale3d(1.05, 1.05, 1)'
+    transform: 'scale3d(1.1, 1.1, 1)'
   }
 
   const transition = {
