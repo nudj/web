@@ -37,7 +37,6 @@ const expressRouters = {
     require('./pages/signup/router'),
     require('./pages/job/router'),
     require('./pages/apply/router'),
-    require('./pages/apply-complete/router'),
     require('./pages/nudj/router'),
     require('./pages/share/router'),
     require('./server/routers/catch-all')
@@ -193,7 +192,6 @@ if (module.hot) {
     './pages/all-jobs/router',
     './pages/companies/router',
     './pages/apply/router',
-    './pages/apply-complete/router',
     './pages/nudj/router',
     './pages/share/router',
     './server/routers/catch-all'
@@ -215,7 +213,6 @@ if (module.hot) {
         require('./pages/all-jobs/router'),
         require('./pages/companies/router'),
         require('./pages/apply/router'),
-        require('./pages/apply-complete/router'),
         require('./pages/nudj/router'),
         require('./pages/share/router'),
         require('./server/routers/catch-all')
