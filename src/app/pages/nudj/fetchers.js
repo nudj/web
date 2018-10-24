@@ -2,26 +2,29 @@ const { logger } = require('@nudj/library')
 const intercom = require('@nudj/library/lib/analytics/intercom')
 const omitBy = require('lodash/omitBy')
 const isNil = require('lodash/isNil')
+const { Redirect } = require('@nudj/framework/errors')
 
 const logReferralToIntercom = async (data) => {
   try {
-    const { user, company } = data
-    const name = user.firstName && user.lastName
-      ? `${user.firstName} ${user.lastName}`
+    const { company } = data
+    const { job } = company
+    const { referral: { person } } = job
+    const name = person.firstName && person.lastName
+      ? `${person.firstName} ${person.lastName}`
       : null
-    const lead = await intercom.lead.getBy({ email: user.email })
+    const lead = await intercom.lead.getBy({ email: person.email })
 
     if (lead && lead.id) {
       await intercom.lead.convertToUser({
         id: lead.id,
-        email: user.email
+        email: person.email
       })
     } else {
       const intercomUser = omitBy({
-        email: user.email,
+        email: person.email,
         name,
         custom_attributes: {
-          lastJobReferredFor: `${company.job.title} at ${company.name}`
+          lastJobReferredFor: `${job.title} at ${company.name}`
         }
       }, isNil)
       await intercom.user.create(intercomUser)
@@ -29,13 +32,13 @@ const logReferralToIntercom = async (data) => {
 
     await intercom.user.logEvent({
       user: {
-        email: user.email,
+        email: person.email,
         name
       },
       event: {
         name: 'new-referral',
         metadata: {
-          jobTitle: company.job.title,
+          jobTitle: job.title,
           company: company.name
         }
       }
@@ -47,24 +50,67 @@ const logReferralToIntercom = async (data) => {
   return data
 }
 
-const post = ({ params, session, query }) => {
-  const { userId } = session
+const get = (props) => {
+  const { params } = props
+
+  const gql = `
+    query GetCompanyAndJob(
+      $companySlug: String!,
+      $jobSlug: String!
+    ) {
+      company: companyByFilters(filters: {
+        slug: $companySlug
+      }) {
+        name
+        slug
+        job: jobByFilters(filters: {
+          slug: $jobSlug
+        }) {
+          title
+          slug
+        }
+      }
+    }
+  `
+
+  const variables = {
+    companySlug: params.companySlug,
+    jobSlug: params.jobSlug
+  }
+
+  return {
+    gql,
+    variables
+  }
+}
+
+const post = ({ params, body }) => {
   const { companySlug, jobSlug } = params
-  const { referralId } = query
+  const {
+    email,
+    firstName,
+    lastName,
+    acceptedTerms,
+    referralId: parent
+  } = body
+
+  if (!acceptedTerms) {
+    throw new Redirect({
+      url: `/companies/${companySlug}/jobs/${jobSlug}/nudj?referralId=${parent}`,
+      notification: {
+        type: 'error',
+        message: 'You need to accept our terms before we can generate your referral link.'
+      }
+    })
+  }
 
   const gql = `
     mutation CreateReferralForPerson (
       $companySlug: String!
       $jobSlug: String!
-      $person: ID!
+      $person: PersonCreateInput!
       $parent: ID = null
     ) {
-      user {
-        id
-        firstName
-        lastName
-        email
-      }
       company: companyByFilters(filters: {
         slug: $companySlug
       }) {
@@ -78,11 +124,16 @@ const post = ({ params, session, query }) => {
           slug
           title
           bonus
-          referral: getOrCreateReferralForUser(
+          referral: getOrCreatePersonAndReferral(
             person: $person,
             parent: $parent
           ) {
             id
+            person {
+              firstName
+              lastName
+              email
+            }
           }
         }
       }
@@ -91,8 +142,13 @@ const post = ({ params, session, query }) => {
   const variables = {
     companySlug,
     jobSlug,
-    parent: referralId,
-    person: userId
+    person: {
+      email,
+      firstName,
+      lastName,
+      acceptedTerms
+    },
+    parent
   }
 
   return {
@@ -103,5 +159,6 @@ const post = ({ params, session, query }) => {
 }
 
 module.exports = {
+  get,
   post
 }

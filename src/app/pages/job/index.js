@@ -149,7 +149,7 @@ const Job = props => {
     </p>
   ) : (
     <p className={css(style.actionCopy)}>
-      Know someone perfect? Sign up to share this job with them.
+      Know someone perfect? Generate your personal referral link then share it with them.
     </p>
   )
 
@@ -166,17 +166,12 @@ const Job = props => {
     actions.unshift(nudjd)
   } else {
     const nudjForm = (
-      <form
-        className={css(style.action)}
-        action={`${uniqueLink}/nudj${queryString}`}
-        method='POST'
-      >
-        <input type='hidden' name='_csrf' value={get(props, 'csrfToken')} />
-        <Button style={style.button} volume='cheer' id='nudjButton' type='submit'>
+      <div className={css(style.action)}>
+        <Link href={`${uniqueLink}/nudj${queryString}`} style={style.button} volume='cheer'>
           Send to a friend
-        </Button>
+        </Link>
         {nudjCopy}
-      </form>
+      </div>
     )
     actions.push(nudjForm)
   }

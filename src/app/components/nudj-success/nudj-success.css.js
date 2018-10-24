@@ -60,6 +60,10 @@ const styles = {
   },
   copyLink: {
     ...mixins.buttonPrimary(),
+    paddingTop: sizes.smallIi,
+    paddingRight: sizes.largeI,
+    paddingBottom: sizes.smallIi,
+    paddingLeft: sizes.largeI,
     borderRadius: sizes.smallIi
   },
   copyLinkIcon: {

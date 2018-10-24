@@ -2,11 +2,7 @@ const createRouter = require('@nudj/framework/router')
 
 const fetchers = require('./fetchers')
 const {
-  handleJobUrls,
-  noDirectApplyNudj,
-  cacheApplyNudjSecret,
-  checkApplyNudjSecret,
-  deleteApplyNudjSecret
+  handleJobUrls
 } = require('../../server/lib/middleware')
 
 const Router = ({
@@ -15,9 +11,8 @@ const Router = ({
 }) => {
   const router = createRouter()
 
-  router.getHandlers('/companies/:companySlug/jobs/:jobSlug/nudj', handleJobUrls, noDirectApplyNudj)
-  router.postHandlers('/companies/:companySlug/jobs/:jobSlug/nudj', handleJobUrls, cacheApplyNudjSecret, ensureLoggedIn, deleteApplyNudjSecret, respondWithGql(fetchers.post))
-  router.getHandlers('/companies/:companySlug/jobs/:jobSlug/nudj/:secret', handleJobUrls, checkApplyNudjSecret, ensureLoggedIn, deleteApplyNudjSecret, respondWithGql(fetchers.post))
+  router.getHandlers('/companies/:companySlug/jobs/:jobSlug/nudj', handleJobUrls, respondWithGql(fetchers.get))
+  router.postHandlers('/companies/:companySlug/jobs/:jobSlug/nudj', handleJobUrls, respondWithGql(fetchers.post))
 
   // Legacy urls
   router.getHandlers('/jobs/:companySlugJobSlugReferralId/nudj', handleJobUrls)
