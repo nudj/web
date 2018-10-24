@@ -1,4 +1,4 @@
-const { css } = require('@nudj/framework/css')
+const { StyleSheet, colors, sizes } = require('@nudj/components/lib/css')
 const { mixins, variables } = require('../../lib/css')
 
 const title = {
@@ -11,7 +11,7 @@ const title = {
 
 const subtitle = {
   ...mixins.headings.h4,
-  color: variables.colors.royalBlue
+  color: colors.royalBlue
 }
 
 const howStep = mixins.flexColumn({
@@ -72,7 +72,7 @@ const simpleNudjImageRatio = 167 / 2441
 const simpleNudjImageZoomMobile = 2.5
 const simpleNudjImageMobile = homeImages(simpleNudjImagePath, simpleNudjImageRatio, simpleNudjImageZoomMobile)
 
-const styles = {
+const styleSheet = StyleSheet.create({
   body: {
     marginTop: `calc(${variables.padding.b} * -1)`
   },
@@ -115,7 +115,7 @@ const styles = {
     paddingRight: variables.padding.d,
     paddingBottom: 0,
     paddingLeft: variables.padding.d,
-    textShadow: `-2px -2px ${variables.colors.white}, -2px 2px ${variables.colors.white}, 2px -2px ${variables.colors.white}, 2px 2px ${variables.colors.white}`,
+    textShadow: `-2px -2px ${colors.white}, -2px 2px ${colors.white}, 2px -2px ${colors.white}, 2px 2px ${colors.white}`,
     '::after': {
       ...notHappyImageMobile,
       marginLeft: `-${variables.padding.d}`
@@ -230,18 +230,18 @@ const styles = {
   stepBody: mixins.typography.copy,
   basicContainer: mixins.basicContainer(),
   signup: mixins.beforeBackgroundSquiggle('bg-wiggle-mid-red.svg', {
-    backgroundColor: variables.colors.midRed,
+    backgroundColor: colors.midRed,
     paddingBottom: variables.padding.b
   }),
   signupContainer: mixins.basicContainer(mixins.flexColumn()),
   signupTitle: {
     ...title,
-    color: variables.colors.white
+    color: colors.white
   },
   signupSubtitle: {
     ...mixins.basicContainerSmaller(),
     ...mixins.headings.p,
-    color: variables.colors.white,
+    color: colors.white,
     marginTop: 0,
     marginRight: 0,
     marginBottom: 0,
@@ -257,8 +257,11 @@ const styles = {
     paddingLeft: variables.padding.c
   }),
   or: mixins.makeOr(),
-  signupButton: mixins.buttonPrimary(),
-  contact: mixins.buttonSecondaryBorderless(),
+  actionButton: {
+    paddingTop: sizes.regular,
+    paddingBottom: sizes.regular,
+    minWidth: sizes.largeIx
+  },
   highlight: mixins.textHighlight(),
   oppositeBreak: {
     display: 'none',
@@ -272,6 +275,6 @@ const styles = {
       display: 'inline-block'
     }
   }
-}
+})
 
-module.exports = css(styles)
+module.exports = styleSheet

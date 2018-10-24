@@ -1,18 +1,19 @@
 /* global window */
 
 const React = require('react')
-const { Link } = require('react-router-dom')
 const get = require('lodash/get')
-const { merge } = require('@nudj/library')
 const { Helmet } = require('react-helmet')
-const { getStyle, setStyles } = require('./style.css')
 
+const { merge } = require('@nudj/library')
+const { Button, Link } = require('@nudj/components')
+const { css } = require('@nudj/components/styles')
+
+const style = require('./style.css')
 const Page = require('../../components/page')
 const Header = require('../../components/header')
 const NudjSuccess = require('../../components/nudj-success')
-const RandomHover = require('../../components/random-hover')
+const RandomHoverButton = require('../../components/random-hover-button')
 const JobCard = require('../../components/job-card')
-
 const { render } = require('../../lib/templater')
 
 function determineArticle (subject) {
@@ -43,28 +44,24 @@ const Job = props => {
 
   const relatedJobs = allJobs.filter(relatedJob => relatedJob.id !== job.id)
 
-  setStyles()
-  const style = getStyle()
-
   const uniqueLink = `/companies/${get(company, 'slug', '')}/jobs/${get(job, 'slug', '')}`
   const queryString = referral ? `?referralId=${referral.id}` : ''
 
   const companiesLink = `/companies/${get(company, 'slug', '')}`
 
   const applyForJobButton = application ? (
-    <button className={style.applied} disabled id='applyButton'>
+    <Button style={style.button} volume='cheer' id='applyButton' disabled>
       You&apos;ve already applied
-    </button>
+    </Button>
   ) : (
-    <RandomHover>
-      <Link
-        to={`${uniqueLink}/apply${queryString}`}
-        className={style.apply}
-        id='applyButton'
-      >
-        Apply for job
-      </Link>
-    </RandomHover>
+    <Link
+      href={`${uniqueLink}/apply${queryString}`}
+      style={style.button}
+      volume='cheer'
+      id='applyButton'
+    >
+      Apply for job
+    </Link>
   )
 
   const data = {
@@ -88,7 +85,7 @@ const Job = props => {
       if (chunk === 'job.company.name' && data && data.company.url) {
         return (
           <a
-            className={style.jobHeaderTitleHighlightLink}
+            className={css(style.jobHeaderTitleHighlightLink)}
             key={`chunk${index}`}
             href={data.company.url}
             target='_blank'
@@ -99,7 +96,7 @@ const Job = props => {
       } else if (chunk === 'job.title' && data && data.job.url) {
         return (
           <a
-            className={style.jobHeaderTitleHighlightLink}
+            className={css(style.jobHeaderTitleHighlightLink)}
             key={`chunk${index}`}
             href={data.job.url}
             target='_blank'
@@ -109,7 +106,7 @@ const Job = props => {
         )
       }
       return (
-        <span className={style.jobHeaderTitleHighlight} key={`chunk${index}`}>
+        <span className={css(style.jobHeaderTitleHighlight)} key={`chunk${index}`}>
           {contents}
         </span>
       )
@@ -131,9 +128,9 @@ const Job = props => {
 
   const actions = []
   const apply = (
-    <div className={style.action}>
+    <div className={css(style.action)}>
       {applyForJobButton}
-      <p className={style.actionCopy}>
+      <p className={css(style.actionCopy)}>
         It takes 2 seconds &amp; you don&apos;t need a CV!
       </p>
     </div>
@@ -143,15 +140,15 @@ const Job = props => {
 
   const bonusAmount = get(job, 'bonus')
   const nudjCopy = userCompanySlug === company.slug ? (
-    <p className={style.actionCopy}>
+    <p className={css(style.actionCopy)}>
       You’ll get{' '}
-      <strong className={style.strong}>
+      <strong className={css(style.strong)}>
         {bonusAmount}
       </strong>{' '}
       if they get the job.
     </p>
   ) : (
-    <p className={style.actionCopy}>
+    <p className={css(style.actionCopy)}>
       Know someone perfect? Sign up to share this job with them.
     </p>
   )
@@ -161,26 +158,23 @@ const Job = props => {
       <NudjSuccess {...props} />
     )
     const nudjd = (
-      <div className={style.action}>
+      <div className={css(style.action)}>
         {nudjLink}
         {nudjCopy}
       </div>
     )
     actions.unshift(nudjd)
   } else {
-    const nudjButton = (
-      <RandomHover>
-        <button className={style.nudj} id='nudjButton'>Send to a friend</button>
-      </RandomHover>
-    )
     const nudjForm = (
       <form
-        className={style.action}
+        className={css(style.action)}
         action={`${uniqueLink}/nudj${queryString}`}
         method='POST'
       >
         <input type='hidden' name='_csrf' value={get(props, 'csrfToken')} />
-        {nudjButton}
+        <Button style={style.button} volume='cheer' id='nudjButton' type='submit'>
+          Send to a friend
+        </Button>
         {nudjCopy}
       </form>
     )
@@ -190,13 +184,13 @@ const Job = props => {
   let relatedJobsList = ''
   if (relatedJobs.length) {
     relatedJobsList = (
-      <section className={style.related}>
-        <h2 className={style.relatedTitle}>Other positions</h2>
-        <ul className={style.list}>
+      <section className={css(style.related)}>
+        <h2 className={css(style.relatedTitle)}>Other positions</h2>
+        <ul className={css(style.list)}>
           {relatedJobs.map((related) => {
             const url = `/companies/${company.slug}/jobs/${related.slug}`
             return (
-              <li className={style.relatedJob} key={related.title.split(' ').join('-')}>
+              <li className={css(style.relatedJob)} key={related.title.split(' ').join('-')}>
                 <JobCard
                   jobHref={url}
                   title={related.title}
@@ -230,14 +224,14 @@ const Job = props => {
 
   const fullJobDescription = (
     <div>
-      <div className={style.jobDescriptionBox}>
+      <div className={css(style.jobDescriptionBox)}>
         {descriptionSections.map(section => (
           <div
-            className={style.jobDescriptionSection}
+            className={css(style.jobDescriptionSection)}
             key={section[0].split(' ').join('-')}
           >
-            <div className={style.jobDescriptionSubtitle}>{section[0]}</div>
-            <div className={style.jobDescriptionText}>{section[1]}</div>
+            <div className={css(style.jobDescriptionSubtitle)}>{section[0]}</div>
+            <div className={css(style.jobDescriptionText)}>{section[1]}</div>
           </div>
         ))}
       </div>
@@ -245,15 +239,15 @@ const Job = props => {
   )
 
   const jobDescriptionFallback = (
-    <div className={style.jobDescriptionContainer}>
-      <h3 className={style.jobDescriptionSubtitleFallback}>
+    <div className={css(style.jobDescriptionContainer)}>
+      <h3 className={css(style.jobDescriptionSubtitleFallback)}>
         About {company.name}
       </h3>
-      <p className={style.jobDescriptionFallback}>{companyDescription}</p>
-      <h3 className={style.jobDescriptionSubtitleFallback}>
+      <p className={css(style.jobDescriptionFallback)}>{companyDescription}</p>
+      <h3 className={css(style.jobDescriptionSubtitleFallback)}>
         About the role
       </h3>
-      <p className={style.jobDescriptionFallback}>{description}</p>
+      <p className={css(style.jobDescriptionFallback)}>{description}</p>
     </div>
   )
 
@@ -262,7 +256,7 @@ const Job = props => {
   const titleStyle = expandedDescription ? style.expandedJobHeaderTitle : style.jobHeaderTitle
 
   return (
-    <Page {...props} className={style.body}>
+    <Page {...props}>
       <Helmet>
         <title>{pageTitle}</title>
         <meta name='title' content={pageTitle} />
@@ -276,25 +270,27 @@ const Job = props => {
       </Helmet>
       <Header location={props.location.pathname} />
       {job.status === 'ARCHIVED' && (
-        <section className={style.jobDeadContainer}>
-          <div className={style.jobDeadNotice}>
-            <h2 className={style.jobDeadTitle}>Unfortunately, this job is no longer available</h2>
-            <p className={style.jobDeadCopy}>
+        <section className={css(style.jobDeadContainer)}>
+          <div className={css(style.jobDeadNotice)}>
+            <h2 className={css(style.jobDeadTitle)}>Unfortunately, this job is no longer available</h2>
+            <p className={css(style.jobDeadCopy)}>
               Head over to their company page to see what open roles {company.name} currently have.
             </p>
-            <RandomHover><Link to={companiesLink} className={style.apply}>Go to company page</Link></RandomHover>
+            <RandomHoverButton href={companiesLink} style={style.button} volume='cheer'>
+              Go to company page
+            </RandomHoverButton>
           </div>
         </section>
       )}
-      <div className={style.job}>
-        <div className={style.jobContainer}>
-          <h1 className={titleStyle}>{title}</h1>
+      <div className={css(style.job)}>
+        <div className={css(style.jobContainer)}>
+          <h1 className={css(titleStyle)}>{title}</h1>
           {jobDescription}
         </div>
         {job.status !== 'ARCHIVED' && (
-          <section className={style.actions}>
+          <section className={css(style.actions)}>
             {actions[1]}
-            <span className={style.or}>or</span>
+            <span className={css(style.or)}>or</span>
             {actions[0]}
           </section>
         )}

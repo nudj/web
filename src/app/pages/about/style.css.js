@@ -1,4 +1,5 @@
-const { css, merge } = require('@nudj/framework/css')
+const { StyleSheet, sizes } = require('@nudj/components/styles')
+const { merge } = require('@nudj/library')
 const { mixins, variables } = require('../../lib/css')
 
 const heroImagePath = 'about-page/raised-hands.svg'
@@ -87,7 +88,7 @@ const sectionContainer = mixins.basicContainer({
   padding: `${variables.padding.b} 0 ${variables.padding.b} 0`
 })
 
-const styles = {
+const styleSheet = StyleSheet.create({
   body: {
     position: 'relative' // ?
   },
@@ -155,7 +156,11 @@ const styles = {
     marginTop: variables.padding.e,
     textAlign: 'center'
   },
-  viewJobs: mixins.buttonPrimary()
-}
+  viewJobs: {
+    paddingTop: sizes.regular,
+    paddingBottom: sizes.regular,
+    minWidth: sizes.largeIx
+  }
+})
 
-module.exports = css(styles)
+module.exports = styleSheet

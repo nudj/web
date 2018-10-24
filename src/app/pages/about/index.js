@@ -1,19 +1,19 @@
 const React = require('react')
 const { Helmet } = require('react-helmet')
 
-const getStyle = require('./style.css')
+const { css } = require('@nudj/components/styles')
+const style = require('./style.css')
 const Page = require('../../components/page')
 const Header = require('../../components/header')
 const AnimateAppearance = require('../../components/animate-appearance')
-const RandomHover = require('../../components/random-hover')
+const RandomHoverButton = require('../../components/random-hover-button')
 
 const About = (props) => {
   const pageTitle = `About nudj`
   const pageDescription = `We're on a mission to make referrals the only way to hire and get hired. Why? Because the best recuriter is not a recruiter, it's a person you know and trust.`
 
-  const style = getStyle()
   return (
-    <Page {...props} className={style.body}>
+    <Page {...props} className={css(style.body)}>
       <Helmet>
         <title>{pageTitle}</title>
         <meta name='description' content={pageDescription} />
@@ -32,43 +32,43 @@ const About = (props) => {
         textHighlightColour='royalBlue'
         location={props.location.pathname}
       />
-      <section className={style.hero}>
-        <div className={style.header}>
+      <section className={css(style.hero)}>
+        <div className={css(style.header)}>
           <AnimateAppearance from='bottom'>
-            <h1 className={style.heroTitle}>Hiring is broken. <br className={style.standardBreak} />Referrals are the answer. <br className={style.standardBreak} />All they need is a nudj.</h1>
+            <h1 className={css(style.heroTitle)}>Hiring is broken. <br className={css(style.standardBreak)} />Referrals are the answer. <br className={css(style.standardBreak)} />All they need is a nudj.</h1>
           </AnimateAppearance>
         </div>
       </section>
-      <section className={style.solution}>
-        <ul className={style.steps}>
-          <li className={style.stepReverse}>
-            <img className={style.stepImageReverse} src='/assets/images/about-page/rubiks-cube.svg' alt='' />
-            <div className={style.stepDescriptionReverse}>
+      <section className={css(style.solution)}>
+        <ul className={css(style.steps)}>
+          <li className={css(style.stepReverse)}>
+            <img className={css(style.stepImageReverse)} src='/assets/images/about-page/rubiks-cube.svg' alt='' />
+            <div className={css(style.stepDescriptionReverse)}>
               <AnimateAppearance from='left'>
-                <h2 className={style.stepTitle}>Solving the hiring puzzle</h2>
-                <p className={style.stepCopy}>Hiring is time consuming, expensive and increasingly difficult.
+                <h2 className={css(style.stepTitle)}>Solving the hiring puzzle</h2>
+                <p className={css(style.stepCopy)}>Hiring is time consuming, expensive and increasingly difficult.
                 Whether you&apos;re a company trying to find and attract good people, or a person looking to take the next step in their career,
-                 it&apos;s tough. <a href='https://qz.com/299923/why-job-referrals-matter/' className={style.red}>Referrals are proven to help</a>.</p>
+                 it&apos;s tough. <a href='https://qz.com/299923/why-job-referrals-matter/' className={css(style.red)}>Referrals are proven to help</a>.</p>
               </AnimateAppearance>
             </div>
           </li>
-          <li className={style.step}>
-            <img className={style.stepImage} src='/assets/images/about-page/target.svg' alt='' />
-            <div className={style.stepDescription}>
+          <li className={css(style.step)}>
+            <img className={css(style.stepImage)} src='/assets/images/about-page/target.svg' alt='' />
+            <div className={css(style.stepDescription)}>
               <AnimateAppearance from='right'>
-                <h2 className={style.stepTitle}>Finding the best people</h2>
-                <p className={style.stepCopy}>Recruiters, job boards and marketplaces only help companies reach those that are actively
+                <h2 className={css(style.stepTitle)}>Finding the best people</h2>
+                <p className={css(style.stepCopy)}>Recruiters, job boards and marketplaces only help companies reach those that are actively
                  looking for a job. Referrals, however, help get jobs in front of the best people, regardless of whether they&apos;re
                  looking or not.</p>
               </AnimateAppearance>
             </div>
           </li>
-          <li className={style.stepReverse}>
-            <img className={style.stepImageReverse} src='/assets/images/about-page/white-board.svg' alt='' />
-            <div className={style.stepDescriptionReverse}>
+          <li className={css(style.stepReverse)}>
+            <img className={css(style.stepImageReverse)} src='/assets/images/about-page/white-board.svg' alt='' />
+            <div className={css(style.stepDescriptionReverse)}>
               <AnimateAppearance from='left'>
-                <h2 className={style.stepTitle}>Getting them engaged</h2>
-                <p className={style.stepCopy}>For you to share a job with a friend, you need to know what role would interest
+                <h2 className={css(style.stepTitle)}>Getting them engaged</h2>
+                <p className={css(style.stepCopy)}>For you to share a job with a friend, you need to know what role would interest
                  them. Likewise for a company, the team hiring is best positioned to know the type of person they need. All this ensures that come interview time
                  everyone is already commited.</p>
               </AnimateAppearance>
@@ -76,16 +76,18 @@ const About = (props) => {
           </li>
         </ul>
       </section>
-      <section className={style.joinUs}>
-        <div className={style.header}>
+      <section className={css(style.joinUs)}>
+        <div className={css(style.header)}>
           <AnimateAppearance from='bottom'>
-            <h2 className={style.bodyTitle}><span className={style.compareUnderline}>Join us</span></h2>
-            <p className={style.bodySubtitle}>We are not hiring at the moment, but we always like to hear from talented people.</p>
+            <h2 className={css(style.bodyTitle)}><span className={css(style.compareUnderline)}>Join us</span></h2>
+            <p className={css(style.bodySubtitle)}>We are not hiring at the moment, but we always like to hear from talented people.</p>
           </AnimateAppearance>
         </div>
         <AnimateAppearance from='bottom'>
-          <div className={style.cta}>
-            <RandomHover><a href='mailto:hello@nudj.co?subject=Joining the nudj team' className={style.viewJobs} id='joinUs'>Email the team</a></RandomHover>
+          <div className={css(style.cta)}>
+            <RandomHoverButton volume='cheer' href='mailto:hello@nudj.co?subject=Joining the nudj team' style={style.viewJobs} id='joinUs'>
+              Email the team
+            </RandomHoverButton>
           </div>
         </AnimateAppearance>
       </section>

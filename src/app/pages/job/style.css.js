@@ -1,4 +1,5 @@
-const { css, merge } = require('@nudj/framework/css')
+const { merge } = require('@nudj/library')
+const { StyleSheet, sizes } = require('@nudj/components/styles')
 const { mixins, variables } = require('../../lib/css')
 
 const breakpoint = '39.375rem'
@@ -10,7 +11,7 @@ const jobHeaderTitleHighlight = {
   }
 }
 
-const styles = {
+const styleSheet = StyleSheet.create({
   navContainer: {
     backgroundColor: 'blue'
   },
@@ -223,31 +224,12 @@ const styles = {
     margin: '0',
     textAlign: 'center'
   }),
-  relatedCompany: mixins.textHighlight()
-}
-
-const getStyle = css(styles)
-
-const setStyles = (highlightColour) => {
-  if (highlightColour === 'undefined') {
-    highlightColour = undefined
+  relatedCompany: mixins.textHighlight(),
+  button: {
+    paddingTop: sizes.regular,
+    paddingBottom: sizes.regular,
+    minWidth: sizes.largeIx
   }
+})
 
-  const colouredStyles = {
-    jobHeaderTitleHighlight: {
-      color: variables.colors[highlightColour] || styles.jobHeaderTitleHighlight.color
-    },
-    jobHeaderTitleHighlightLink: {
-      color: variables.colors[highlightColour] || styles.jobHeaderTitleHighlightLink.color
-    },
-    jobDescriptionSubtitle: {
-      color: variables.colors[highlightColour] || styles.jobDescriptionSubtitle.color
-    }
-  }
-
-  merge(styles, colouredStyles)
-}
-
-module.exports = getStyle
-module.exports.getStyle = getStyle
-module.exports.setStyles = setStyles
+module.exports = styleSheet

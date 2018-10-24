@@ -1,21 +1,10 @@
-const React = require('react')
 const PropTypes = require('prop-types')
-
+const { noop } = require('@nudj/library')
 const style = require('./style.css')
 
-class RandomHover extends React.Component {
-  static propTypes = {
-    render: PropTypes.func.isRequired
-  }
+const ComposableRandomHover = props => props.render({ style: style.hoverEffect })
 
-  render () {
-    const { render } = this.props
+ComposableRandomHover.defaultProps = { render: noop }
+ComposableRandomHover.propTypes = { render: PropTypes.func.isRequired }
 
-    return render && render({
-      style: style.hoverEffect,
-      onMouseEnter: this.handleMouseEnter
-    })
-  }
-}
-
-module.exports = RandomHover
+module.exports = ComposableRandomHover
