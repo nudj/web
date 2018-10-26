@@ -2,8 +2,8 @@ source /root/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 PROMPT='web» '
 
-alias run="yarn start"
-alias dev="yarn run dev"
+alias run="yarn run build:dlls && yarn run build:client && node ."
+alias dev='yarn run build:dlls && ./node_modules/.bin/nodemon --config ./nodemon.json -e js,html,css --quiet --watch ./ --delay 250ms -x "yarn run build:client && node ."'
 alias test="./node_modules/.bin/standard && ./node_modules/.bin/mocha --recursive test/unit"
 alias tdd='./node_modules/.bin/nodemon \
   --config ./nodemon-tdd.json \
