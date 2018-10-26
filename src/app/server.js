@@ -17,8 +17,6 @@ const logger = require('@nudj/framework/logger')
 const { Analytics } = require('@nudj/library/server')
 const { omitUndefined } = require('@nudj/library')
 
-const useDevServer = process.env.USE_DEV_SERVER === 'true'
-
 const request = require('./server/lib/request')
 const queries = require('./server/lib/queries-mutations')
 const reactApp = require('./redux')
@@ -43,7 +41,7 @@ const expressRouters = {
   ]
 }
 const expressAssetPath = path.resolve('./app/server/assets')
-const buildAssetPath = !useDevServer && path.resolve('./app/server/build')
+const buildAssetPath = path.resolve('./app/server/build')
 
 const spoofLoggedIn = (req, res, next) => {
   req.session.userId = process.env.SPOOF_USER_ID
@@ -102,22 +100,6 @@ const helmetConfig = {
     }
   }
 }
-if (useDevServer) {
-  helmetConfig.contentSecurityPolicy.directives.scriptSrc.push('web-wds.local.nudj.co')
-  helmetConfig.contentSecurityPolicy.directives.scriptSrc.push('tagmanager.google.com')
-
-  helmetConfig.contentSecurityPolicy.directives.styleSrc.push('tagmanager.google.com')
-  helmetConfig.contentSecurityPolicy.directives.styleSrc.push('fonts.googleapis.com')
-
-  helmetConfig.contentSecurityPolicy.directives.imgSrc.push('ssl.gstatic.com')
-  helmetConfig.contentSecurityPolicy.directives.imgSrc.push('www.gstatic.com')
-  helmetConfig.contentSecurityPolicy.directives.imgSrc.push('web-wds.local.nudj.co')
-
-  helmetConfig.contentSecurityPolicy.directives.connectSrc.push('web-wds.local.nudj.co')
-  helmetConfig.contentSecurityPolicy.directives.connectSrc.push('wss://web-wds.local.nudj.co')
-
-  helmetConfig.contentSecurityPolicy.directives.fontSrc.push('fonts.gstatic.com')
-}
 
 async function getAnalytics (req) {
   if (req.session.userId && !req.session.analyticsEventProperties) {
@@ -156,7 +138,7 @@ async function getAnalytics (req) {
   return analytics
 }
 
-let app = createNudjApps({
+const app = createNudjApps({
   App: reactApp,
   getAnalytics,
   reduxRoutes,
@@ -169,70 +151,6 @@ let app = createNudjApps({
   helmetConfig
 })
 
-const server = http.createServer(app)
-
-server.listen(80, () => {
+http.createServer(app).listen(process.env.API_PORT, () => {
   logger.log('info', 'Application running')
 })
-
-if (module.hot) {
-  module.hot.accept([
-    './redux',
-    './redux/routes',
-    './redux/reducers',
-    path.resolve('./pages'),
-    path.resolve('./components'),
-    './server/routers/email-tracking',
-    './server/routers/auth',
-    './pages/talent/router',
-    './pages/hirer/router',
-    './pages/request/router',
-    './pages/signup/router',
-    './pages/job/router',
-    './pages/all-jobs/router',
-    './pages/companies/router',
-    './pages/apply/router',
-    './pages/nudj/router',
-    './pages/share/router',
-    './server/routers/catch-all'
-  ], () => {
-    const updatedReactApp = require('./redux')
-    const updatedReduxRoutes = require('./redux/routes')
-    const updatedReduxReducers = require('./redux/reducers')
-    const updatedExpressRouters = {
-      insecure: [
-        require('./server/routers/email-tracking')
-      ],
-      secure: [
-        require('./server/routers/auth'),
-        require('./pages/talent/router'),
-        require('./pages/hirer/router'),
-        require('./pages/request/router'),
-        require('./pages/signup/router'),
-        require('./pages/job/router'),
-        require('./pages/all-jobs/router'),
-        require('./pages/companies/router'),
-        require('./pages/apply/router'),
-        require('./pages/nudj/router'),
-        require('./pages/share/router'),
-        require('./server/routers/catch-all')
-      ]
-    }
-
-    server.removeListener('request', app)
-    const newApp = createNudjApps({
-      App: updatedReactApp,
-      reduxRoutes: updatedReduxRoutes,
-      reduxReducers: updatedReduxReducers,
-      expressRouters: updatedExpressRouters,
-      expressAssetPath,
-      buildAssetPath,
-      spoofLoggedIn,
-      errorHandlers,
-      helmetConfig
-    })
-
-    server.on('request', newApp)
-    app = newApp
-  })
-}
