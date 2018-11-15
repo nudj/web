@@ -9,6 +9,9 @@ require('babel-register')({
   }
 })
 
+console.log('REDIS', process.env.REDIS_SESSION, process.env.REDIS_HOST, process.env.REDIS_PORT)
+console.log('TYPES', typeof process.env.REDIS_SESSION, typeof process.env.REDIS_HOST, typeof process.env.REDIS_PORT)
+
 const http = require('http')
 const path = require('path')
 const get = require('lodash/get')
