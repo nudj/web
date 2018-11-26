@@ -3,6 +3,7 @@
 const React = require('react')
 const get = require('lodash/get')
 const { Helmet } = require('react-helmet')
+const ReactHtmlParser = require('react-html-parser')
 
 const { merge } = require('@nudj/library')
 const { Button, Link } = require('@nudj/components')
@@ -16,6 +17,9 @@ const RandomHoverButton = require('../../components/random-hover-button')
 const JobCard = require('../../components/job-card')
 const { render } = require('../../lib/templater')
 
+const { convertNodeToElement } = ReactHtmlParser
+const parseHtml = ReactHtmlParser.default || ReactHtmlParser
+
 function determineArticle (subject) {
   const consonantSound = /^one(![ir])/i
   const vowelSound = /^[aeio]|^u([aeiou]|[^n][^aeiou]|ni[^dmnl]|nil[^l])/i
@@ -23,6 +27,20 @@ function determineArticle (subject) {
     return 'an'
   }
   return 'a'
+}
+
+function formatDescription (description) {
+  const transform = (node, index) => {
+    const excludedTypes = ['script', 'img']
+    if (node.type === 'tag' && excludedTypes.includes(node.name)) {
+      // Strip & do not render certain tags
+      return null
+    } else {
+      return convertNodeToElement(node, index, transform)
+    }
+  }
+
+  return parseHtml(description, { transform })
 }
 
 const Job = props => {
@@ -242,7 +260,9 @@ const Job = props => {
       <h3 className={css(style.jobDescriptionSubtitleFallback)}>
         About the role
       </h3>
-      <p className={css(style.jobDescriptionFallback)}>{description}</p>
+      <p className={css(style.jobDescriptionFallback)}>
+        {formatDescription(description)}
+      </p>
     </div>
   )
 
