@@ -70,10 +70,12 @@ const Router = ({
       const analytics = new Analytics({ app: 'web', distinctId: req.cookies.mixpanelDistinctId })
       const {email, firstName, lastName, url} = getUserInfo(req.user._json)
 
-      if (req.session._intercom_visitor_id) {
+      // Add the `INTERCOM_ENABLED` check here as there are no `visitors` methods
+      // in the `@nudj/library` intercom lib as of version `7.4.0`
+      if (req.session._intercom_visitor_id && process.env.INTERCOM_ENABLED === 'true') {
         intercom.convertVisitorToUser({
           'user_id': req.session._intercom_visitor_id
-        }, {email})
+        }, { email })
         .catch((error) => {
           logger.log('Unable to convert visitor to user', req.session._intercom_visitor_id, email, error)
         })
