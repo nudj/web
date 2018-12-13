@@ -71,7 +71,6 @@ const get = ({ params, session, query, req, res }) => {
             roleDescription
             candidateDescription
             remuneration
-            template
             location
             status
             application: applicationByFilters(filters: {person: $personId}) @include(if: $loggedIn) {
@@ -143,7 +142,6 @@ const get = ({ params, session, query, req, res }) => {
             roleDescription
             candidateDescription
             remuneration
-            template
             location
             status
             application: applicationByFilters(filters: {person: $personId}) @include(if: $loggedIn) {
